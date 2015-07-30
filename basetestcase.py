@@ -6,7 +6,7 @@ from time import sleep
 
 class BaseTestCase(unittest.TestCase):
     @classmethod
-    def setUp(cls):
+    def setUpClass(cls):
         # create a new Firefox session
         cls.driver = webdriver.Firefox()
         cls.driver.implicitly_wait(30)
@@ -30,7 +30,7 @@ class BaseTestCase(unittest.TestCase):
         sleep(10)
 
     @classmethod
-    def tearDown(cls):
+    def tearDownClass(cls):
         # close the browser
         cls.driver.quit()
 
