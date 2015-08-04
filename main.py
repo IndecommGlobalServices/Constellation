@@ -188,5 +188,101 @@ class MainDriverScript(BaseTestCase):
         # go to search and filter page
         self.driver.find_element_by_link_text("Assets").click()
 
+
+    @attr(priority="high")
+    def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
+
+        # Click on Create asset
+        clickCreateAsset = self.driver.find_element_by_xpath("//img[@alt='Create asset']")
+        clickCreateAsset.click()
+        sleep(12)
+        # switch to new window
+        self.driver.switch_to.active_element
+
+        # Verify title "Asset overview" window
+        Create_Asset_Title = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
+        sleep(2)
+        self.assertEqual("Asset overview", Create_Asset_Title)
+
+        # Select Place from the dropdown to create new place asset
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
+        self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Verify that all the controls displayed related to Place asset
+        # 1. Name, 2. Address, 3. Address2, 4. City, 5. State, 6. Zip, 7. Owner, 8. Phone, 9. Type, 10. Cancel, 11. Save
+
+        school_name = self.driver.find_element_by_xpath("//input[@ng-model='model']")
+        school_address = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address1']")
+        school_address2 = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address2']")
+        school_city = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.city']")
+        school_state = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.state']")
+        school_zip = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.zip']")
+        school_owner = self.driver.find_element_by_xpath("//input[@placeholder='Owner']")
+        school_phone = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/div[3]/input")
+        school_district = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/button[1]")
+        school_grade = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/button[1]")
+        school_type = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/button[1]")
+        school_cancel = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]")
+        school_save = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]")
+
+        # check all fields are enabled
+        self.assertTrue(school_name.is_enabled()
+                        and school_address.is_enabled()
+                        and school_address2.is_enabled()
+                        and school_city.is_enabled()
+                        and school_state.is_enabled()
+                        and school_zip.is_enabled()
+                        and school_owner.is_enabled()
+                        and school_phone.is_enabled()
+                        and school_type.is_enabled()
+                        and school_cancel.is_enabled()
+                        and school_save.is_enabled())
+
+        # fill out the fields
+        school_name.send_keys("kk school automation test")
+        school_name.send_keys(Keys.TAB)
+        sleep(2)
+        school_address.send_keys("indecomm")
+        school_address.send_keys(Keys.TAB)
+        sleep(2)
+        school_address2.send_keys("MG Road")
+        school_address2.send_keys(Keys.TAB)
+        sleep(2)
+        school_city.send_keys("Bangalore")
+        school_city.send_keys(Keys.TAB)
+        sleep(2)
+        school_state.send_keys("KA")
+        school_state.send_keys(Keys.TAB)
+        sleep(2)
+        school_zip.send_keys("56009")
+        school_zip.send_keys(Keys.TAB)
+        sleep(2)
+        school_phone.send_keys("994-550-8652")
+        school_phone.send_keys(Keys.TAB)
+        sleep(2)
+        school_district.click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li[1]/a").click()
+        sleep(2)
+        school_grade.click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li[1]/a").click()
+        sleep(2)
+
+        school_owner.send_keys("indecomm")
+        school_owner.send_keys(Keys.TAB)
+        sleep(2)
+        # Type selection
+        school_type.click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/ul/li[2]/a").click()
+        sleep(2)
+        # Click SAVE button to save the form
+        school_save.click()
+        sleep(5)
+        # check new place is created - verifying on Breadcrumb
+        self.assertEqual("kk school automation test", self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        # go to search and filter page
+        self.driver.find_element_by_link_text("Assets").click()
+
+
 if __name__ =='__main__':
     unittest.main(verbosity=2)
