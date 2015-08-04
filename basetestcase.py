@@ -6,33 +6,33 @@ from time import sleep
 
 class BaseTestCase(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):
+    def setUpClass(self):
         # create a new Firefox session
-        cls.driver = webdriver.Firefox()
-        cls.driver.implicitly_wait(30)
-        cls.driver.maximize_window()
+        self.driver = webdriver.Firefox()
+        self.driver.implicitly_wait(30)
+        self.driver.maximize_window()
 
         # navigate to the application home page
-        cls.driver.get("https://constellation-dev.haystax.com/#/")
+        self.driver.get("https://constellation-dev.haystax.com/#/")
 
-        homepage = HomePage(cls.driver)
+        homepage = HomePage(self.driver)
         homepage.loginlink.click()
-        #cls.assertEqual("https://constellation-dev.haystax.com/#/login", cls.driver.current_url)
-        loginpage = LoginPage(cls.driver)
+        #self.assertEqual("https://constellation-dev.haystax.com/#/login", self.driver.current_url)
+        loginpage = LoginPage(self.driver)
         loginpage.email.send_keys("Deepa.Sivadas@indecomm.net")
         loginpage.password.send_keys("myhaystax")
         loginpage.login.click()
         #self.assertEqual("https://constellation-dev.haystax.com/apps/#", self.driver.current_url)
         sleep(10)
         # click on Assets
-        lnkAssets_field = cls.driver.find_element_by_id("app_assets")
+        lnkAssets_field = self.driver.find_element_by_id("app_assets")
         lnkAssets_field.click()
         sleep(10)
 
     @classmethod
-    def tearDownClass(cls):
+    def tearDownClass(self):
         # close the browser
-        cls.driver.quit()
+        self.driver.quit()
 
 
 
