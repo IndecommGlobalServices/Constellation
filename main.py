@@ -30,6 +30,7 @@ class MainDriverScript(BaseTestCase):
         selectAction_dropdown_delete.click()
         print("Nothing to delete")
 
+    '''
     @attr(priority="high")
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
         asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
@@ -47,6 +48,7 @@ class MainDriverScript(BaseTestCase):
 
 
         print("First record deleted successfully.")
+    '''
 
     @attr(priority="high")
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
@@ -54,13 +56,16 @@ class MainDriverScript(BaseTestCase):
         asset_checkbox.click()
 
         selectAction_dropdown = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/button[2]")
+        sleep(2)
         selectAction_dropdown.click()
         sleep(2)
         selectAction_dropdown_delete = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
+        sleep(2)
         selectAction_dropdown_delete.click()
 
-
+        sleep(2)
         delete_button = self.driver.find_element_by_xpath(".//*[@id='delete_asset_modal']/div/div/div[3]/button[1]")
+        sleep(2)
         delete_button.click()
 
         print("First record cancelled successfully.")
@@ -96,12 +101,11 @@ class MainDriverScript(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
-        #self.driver.find_element_by_xpath("//span[@id='span_filters']/div/div/button[2]").click()
-        #self.driver.find_element_by_link_text("School").click()
-        #sleep(10)
-        expectedAfterResetFilter = self.driver.find_element_by_xpath("//span[@id='span_filters']/div/div/button[1]").text
         resetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/button")
         resetFilter.click()
+        sleep(2)
+        expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
+        sleep(2)
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
 
