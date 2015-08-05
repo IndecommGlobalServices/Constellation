@@ -13,7 +13,7 @@ class BaseTestCase(unittest.TestCase):
         self.driver.maximize_window()
 
         # navigate to the application home page
-        self.driver.get("https://constellation-dev.haystax.com/#/")
+        self.driver.get("https://constellation-qa.haystax.com/#/")
 
         homepage = HomePage(self.driver)
         homepage.loginlink.click()
