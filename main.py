@@ -4,6 +4,7 @@ from basetestcase import BaseTestCase
 from time import sleep
 from nose.plugins.attrib import attr
 from selenium.webdriver.common.keys import Keys
+from faker import Factory
 
 
 class MainDriverScript(BaseTestCase):
@@ -151,29 +152,53 @@ class MainDriverScript(BaseTestCase):
                         and place_cancel.is_enabled()
                         and place_save.is_enabled())
 
+        fake = Factory.create()
         # fill out the fields
-        place_name.send_keys("kk place automation test")
+        place_name.send_keys(fake.company())
+        #place_name.send_keys("kk place automation test")
         place_name.send_keys(Keys.TAB)
         sleep(2)
-        place_address.send_keys("indecomm")
+
+        '''
+        # switch to the alert
+        alert = self.driver.switch_to().alert
+
+        # get the text from alert
+        alert_text = alert.text
+
+        # check alert text
+        self.assertEqual("Would you like to share your location with constellation-dev.haystax.com?", alert_text)
+
+        # click on close button
+        alert.dismiss()
+        '''
+
+        place_address.send_keys(fake.address())
+        #place_address.send_keys("indecomm")
         place_address.send_keys(Keys.TAB)
         sleep(2)
-        place_address2.send_keys("MG Road")
+        place_address2.send_keys(fake.secondary_address())
+        #place_address2.send_keys("MG Road")
         place_address2.send_keys(Keys.TAB)
         sleep(2)
-        place_city.send_keys("Bangalore")
+        #place_city.send_keys("Bangalore")
+        place_city.send_keys(fake.city())
         place_city.send_keys(Keys.TAB)
         sleep(2)
-        place_state.send_keys("KA")
+        #place_state.send_keys("KA")
+        place_state.send_keys(fake.state_abbr())
         place_state.send_keys(Keys.TAB)
         sleep(2)
-        place_zip.send_keys("56009")
+        #place_zip.send_keys("56009")
+        place_zip.send_keys(fake.zipcode())
         place_zip.send_keys(Keys.TAB)
         sleep(2)
-        place_phone.send_keys("994-550-8652")
+        #place_phone.send_keys("994-550-8652")
+        place_phone.send_keys(fake.phone_number())
         place_phone.send_keys(Keys.TAB)
         sleep(2)
-        place_owner.send_keys("indecomm")
+        #place_owner.send_keys("indecomm")
+        place_owner.send_keys(fake.domain_name())
         place_owner.send_keys(Keys.TAB)
         sleep(2)
         # Type selection
@@ -184,9 +209,18 @@ class MainDriverScript(BaseTestCase):
         place_save.click()
         sleep(5)
         # check new place is created - verifying on Breadcrumb
-        self.assertEqual("kk place automation test", self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.assertTrue(self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         # go to search and filter page
         self.driver.find_element_by_link_text("Assets").click()
+
+    @attr(priority="high")
+    def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
+        assets = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        print "Found " + str(len(assets))
+        for asset in assets:
+            # verify color is Yellow
+            #self.assertEqual("rgba(255,236,158, 0.8)",asset.value_of_css_property("background-color"))
+            self.assertEqual("transparent",asset.value_of_css_property("background-color"))
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
