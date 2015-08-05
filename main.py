@@ -28,7 +28,7 @@ class MainDriverScript(BaseTestCase):
         selectAction_dropdown_delete = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
         self.assertFalse(selectAction_dropdown_delete.is_enabled())
 
-    '''
+
     @attr(priority="high")
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
         asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
@@ -46,7 +46,7 @@ class MainDriverScript(BaseTestCase):
 
 
         print("First record deleted successfully.")
-    '''
+
 
     @attr(priority="high")
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
