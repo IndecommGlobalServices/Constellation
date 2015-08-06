@@ -6,6 +6,8 @@ from time import sleep
 from nose.plugins.attrib import attr
 from selenium.webdriver.common.keys import Keys
 from faker import Factory
+from selenium.webdriver.common.action_chains import ActionChains
+import re
 
 
 class MainDriverScript(BaseTestCase):
@@ -41,25 +43,29 @@ class MainDriverScript(BaseTestCase):
         selectAction_dropdown_delete = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
         selectAction_dropdown_delete.click()
 
-
+        sleep(5)
         delete_button = self.driver.find_element_by_xpath(".//*[@id='delete_asset_modal']/div/div/div[3]/button[2]")
         delete_button.click()
-
+        sleep(5)
 
         print("First record deleted successfully.")
 
 
     @attr(priority="high")
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
+        #Click the Checkbox in the Grid
         asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
         asset_checkbox.click()
-
+        sleep(5)
+        #Click on Select Action dropdown
         selectAction_dropdown = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/button[2]")
         selectAction_dropdown.click()
-
-        selectAction_dropdown_delete = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
-        selectAction_dropdown_delete.click()
-
+        sleep(5)
+        #Click on Delete link in dropdown
+        selectAction_dropdown_delete_link = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
+        selectAction_dropdown_delete_link.click()
+        sleep(5)
+        #Click on Cancel button
         cancel_button = self.driver.find_element_by_xpath(".//*[@id='delete_asset_modal']/div/div/div[3]/button[1]")
         cancel_button.click()
 
@@ -465,6 +471,55 @@ class MainDriverScript(BaseTestCase):
         assets = self.driver.find_elements_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[2]/td[2]")
         '''
 
+    @attr(priority="high")
+    def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_Detail_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[1]/div[2]/input").click()
+        self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[1]/small").is_displayed())
+
+    @attr(priority="high")
+    def test_AS_30_To_Click_On_Save_Without_LastName_Asset_Detail_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[1]/div[1]/input").send_keys("name")
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[1]/div[1]/input").click()
+        self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[2]/small").is_displayed())
+
+    @attr(priority="high")
+    def test_AS_31_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[1]/div/img").click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input").clear()
+        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input").send_keys("test@test.com")
+        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").click()
+        regex = re.compile(r'[\w.-]+@[\w.-]+')
+        self.assertRegexpMatches((self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[2]/table/tbody/tr[4]/td[2]/span").text),regex)
+
+    @attr(priority="high")
+    def test_AS_32_To_Click_On_Save_With_Wrong_Email_Asset_Detail_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[1]/div/img").click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input").clear()
+        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input").send_keys("abcd")
+        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").click()
+        self.assertFalse(self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").is_enabled())
+
+    @attr(priority="high")
+    def test_AS_33_To_Click_On_Save_With_Wrong_Fax_Asset_Detail_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[1]/div/img").click()
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
