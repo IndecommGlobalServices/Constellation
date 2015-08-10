@@ -237,7 +237,7 @@ class MainDriverScript(BaseTestCase):
         sleep(12)
         # switch to new window
         self.driver.switch_to.active_element
-
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4")))
         # Verify title "Asset overview" window
         Create_Asset_Title = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
         sleep(2)
@@ -384,7 +384,7 @@ class MainDriverScript(BaseTestCase):
         sleep(12)
         # switch to new window
         self.driver.switch_to.active_element
-
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4")))
         # Verify title "Asset overview" window
         Create_Asset_Title = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
         sleep(2)
