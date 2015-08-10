@@ -553,6 +553,7 @@ class MainDriverScript(BaseTestCase):
         regex = re.compile(r'[\w.-]+@[\w.-]+')
         self.assertRegexpMatches(email, regex)
 
+
     @attr(priority="high")
     def test_AS_32_To_Click_On_Save_With_Wrong_Email_Asset_Detail_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
