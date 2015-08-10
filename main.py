@@ -64,6 +64,7 @@ class MainDriverScript(BaseTestCase):
         selectAction_dropdown_delete = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
         selectAction_dropdown_delete.click()
 
+        sleep(10)
         cancel_button = self.driver.find_element_by_xpath(".//*[@id='delete_asset_modal']/div/div/div[3]/button[1]")
         cancel_button.click()
 
@@ -374,10 +375,137 @@ class MainDriverScript(BaseTestCase):
 
         # go to search and filter page
         self.driver.find_element_by_link_text("Assets").click()
+        sleep(10)
+
+
+
+    @attr(priority="high")
+    def test_AS_50_To_validate_SchoolName_Field(self):
+        #Navigate to create asset dialouge
+        clickCreateAsset = self.driver.find_element_by_xpath("//img[@alt='Create asset']")
+        clickCreateAsset.click()
+        sleep(12)
+
+        # switch to new window
+        self.driver.switch_to.active_element
+
+
+        # Verify title "Asset overview" window
+        #Create_Asset = WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4"))
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4")))
+        #Create_Asset = WebDriverWait(self.driver, 3).until(expected_conditions.title_is("Asset overview"))
+        Create_Asset_Title = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
+        sleep(2)
+        self.assertEqual("Asset overview", Create_Asset_Title)
+
+        # Select Place from the dropdown to create new school asset
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
+        self.driver.find_element_by_link_text("School").click()
+
+        # Verify that all the controls displayed related to School asset
+        school_name = self.driver.find_element_by_xpath("//input[@ng-model='model']")
+        school_save = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]")
+        school_cancel = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]")
+
+        #Try to save without entering school name
+        school_save.click()
+
+        #Verfiy the dialouge is not dismissed and the name field is still available after the save operation
+        self.assertEqual("Asset overview", Create_Asset_Title)
+        self.assertTrue(school_name.is_enabled)
+
+        #****Red star validation script to be added later
+
+        school_cancel.click()
+
+
+    @attr(priority="high")
+    def test_AS_52_To_validate_GradeandDistrict_Fields(self):
+
+        fake= Factory.create()
+
+        #Navigate to create asset dialouge
+        clickCreateAsset = self.driver.find_element_by_xpath("//img[@alt='Create asset']")
+        clickCreateAsset.click()
+        sleep(12)
+
+        # switch to new window
+        self.driver.switch_to.active_element
+
+
+        # Verify title "Asset overview" window
+        #Create_Asset = WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4"))
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4")))
+        #Create_Asset = WebDriverWait(self.driver, 3).until(expected_conditions.title_is("Asset overview"))
+        Create_Asset_Title = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
+        sleep(2)
+        self.assertEqual("Asset overview", Create_Asset_Title)
+
+        # Select Place from the dropdown to create new school asset
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
+        self.driver.find_element_by_link_text("School").click()
+
+        # Verify that all the controls displayed related to School asset
+        school_name = self.driver.find_element_by_xpath("//input[@ng-model='model']")
+        school_save = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]")
+        school_district = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/button[1]")
+        school_grade = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/button[1]")
+        school_cancel = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]")
+
+        # check all fields are enabled
+        self.assertTrue(school_name.is_enabled()
+                        and school_grade.is_enabled()
+                        and school_district.is_enabled()
+                        and school_save.is_enabled())
+
+        schoolName = fake.company()
+        school_name.send_keys(schoolName)
+
+        school_district.click()
+        sleep(2)
+        school_newdistrict = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input")
+        school_newdistrict.click()
+        school_newdistrict.send_keys("Vali123@*(>? ")
+        school_add = self.driver.find_element_by_xpath(".//*[@id='newItemButton']")
+        self.assertTrue(school_add.is_enabled())
+        school_add.click()
+        sleep(2)
+
+        school_grade.click()
+        sleep(2)
+        school_newgrade = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input")
+        school_newgrade.click()
+        school_newgrade.send_keys("Vali123@*(>? ")
+        school_add = self.driver.find_element_by_xpath(".//*[@id='newItemButton']")
+        try:
+            self.assertTrue(school_add.is_displayed())
+        except:
+            indi = 1
+            print("Add button not enabled")
+        else:
+            school_add.click()
+
+
+        #Save the school asset
+        school_save.click()
+
+        # check new school is created - verifying on Breadcrumb
+        self.assertEqual(schoolName, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+
+        school_name_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[1]/td[2]")
+        school_district_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[4]/td[2]")
+        school_grade_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[5]/td[2]")
+        self.assertEqual(schoolName,school_name_page.text)
+        self.assertEqual("Vali123@*(>?",school_district_page.text)
+        #self.assertEqual("Vali123@*(>?",school_grade_page.text)
+
+        # go to search and filter page
+        self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
     def test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel(self):
 
+        sleep(10)
         # Click on Create asset
         clickCreateAsset = self.driver.find_element_by_xpath("//img[@alt='Create asset']")
         clickCreateAsset.click()
@@ -505,126 +633,10 @@ class MainDriverScript(BaseTestCase):
 
         try:
             self.driver.find_element_by_xpath(".//*[@id='header']/div[1]/span[3]/span")
+            print ("element found")
         except NoSuchElementException:
             print ("In Assets main page")
 
-
-    @attr(priority="high")
-    def test_AS_50_To_validate_SchoolName_Field(self):
-        #Navigate to create asset dialouge
-        clickCreateAsset = self.driver.find_element_by_xpath("//img[@alt='Create asset']")
-        clickCreateAsset.click()
-        sleep(12)
-
-        # switch to new window
-        self.driver.switch_to.active_element
-
-
-        # Verify title "Asset overview" window
-        #Create_Asset = WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4"))
-        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4")))
-        #Create_Asset = WebDriverWait(self.driver, 3).until(expected_conditions.title_is("Asset overview"))
-        Create_Asset_Title = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
-        sleep(2)
-        self.assertEqual("Asset overview", Create_Asset_Title)
-
-        # Select Place from the dropdown to create new school asset
-        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
-        self.driver.find_element_by_link_text("School").click()
-
-        # Verify that all the controls displayed related to School asset
-        school_name = self.driver.find_element_by_xpath("//input[@ng-model='model']")
-        school_save = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]")
-        #Try to save without entering school name
-        school_save.click()
-
-        #Verfiy the dialouge is not dismissed and the name field is still available after the save operation
-        self.assertEqual("Asset overview", Create_Asset_Title)
-        self.assertTrue(school_name.is_enabled)
-
-        #****Red star validation script to be added later
-
-    @attr(priority="high")
-    def test_AS_52_To_validate_GradeandDistrict_Fields(self):
-
-        fake= Factory.create()
-
-        #Navigate to create asset dialouge
-        clickCreateAsset = self.driver.find_element_by_xpath("//img[@alt='Create asset']")
-        clickCreateAsset.click()
-        sleep(12)
-
-        # switch to new window
-        self.driver.switch_to.active_element
-
-
-        # Verify title "Asset overview" window
-        #Create_Asset = WebDriverWait(self.driver, 3).until(expected_conditions.presence_of_element_located(By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4"))
-        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4")))
-        #Create_Asset = WebDriverWait(self.driver, 3).until(expected_conditions.title_is("Asset overview"))
-        Create_Asset_Title = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
-        sleep(2)
-        self.assertEqual("Asset overview", Create_Asset_Title)
-
-        # Select Place from the dropdown to create new school asset
-        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
-        self.driver.find_element_by_link_text("School").click()
-
-        # Verify that all the controls displayed related to School asset
-        school_name = self.driver.find_element_by_xpath("//input[@ng-model='model']")
-        school_save = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]")
-        school_district = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/button[1]")
-        school_grade = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/button[1]")
-
-        # check all fields are enabled
-        self.assertTrue(school_name.is_enabled()
-                        and school_grade.is_enabled()
-                        and school_district.is_enabled()
-                        and school_save.is_enabled())
-
-        schoolName = fake.company()
-        school_name.send_keys(schoolName)
-
-        school_district.click()
-        sleep(2)
-        school_newdistrict = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input")
-        school_newdistrict.click()
-        school_newdistrict.send_keys("Vali123@*(>? ")
-        school_add = self.driver.find_element_by_xpath(".//*[@id='newItemButton']")
-        self.assertTrue(school_add.is_enabled())
-        school_add.click()
-        sleep(2)
-
-        school_grade.click()
-        sleep(2)
-        school_newgrade = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input")
-        school_newgrade.click()
-        school_newgrade.send_keys("Vali123@*(>? ")
-        school_add = self.driver.find_element_by_xpath(".//*[@id='newItemButton']")
-        try:
-            self.assertTrue(school_add.is_displayed())
-        except:
-            indi = 1
-            print("Add button not enabled")
-        else:
-            school_add.click()
-
-
-        #Save the school asset
-        school_save.click()
-
-        # check new school is created - verifying on Breadcrumb
-        self.assertEqual(schoolName, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-
-        school_name_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[1]/td[2]")
-        school_district_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[4]/td[2]")
-        school_grade_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[5]/td[2]")
-        self.assertEqual(schoolName,school_name_page.text)
-        self.assertEqual("Vali123@*(>?",school_district_page.text)
-        self.assertEqual("Vali123@*(>?",school_grade_page.text)
-
-        # go to search and filter page
-        self.driver.find_element_by_link_text("Assets").click()
 
     if __name__ =='__main__':
          unittest.main(verbosity=2)
