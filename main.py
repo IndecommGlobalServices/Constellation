@@ -2,6 +2,7 @@ import unittest
 from time import sleep
 
 from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 from selenium.webdriver.common.keys import Keys
 from faker import Factory
 
@@ -18,7 +19,11 @@ import re
 
 class MainDriverScript(BaseTestCase):
 
+    fake = Factory.create()
+    Place_name = fake.company()
+
     @attr(priority="high")
+    @SkipTest
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
         selectAction_dropdown = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/button[2]")
         selectAction_dropdown.click()
@@ -26,6 +31,7 @@ class MainDriverScript(BaseTestCase):
         self.assertFalse(selectAction_dropdown_delete.is_enabled(), "Delete must be disabled.")
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_02_To_Verify_Delete_Deselect_All_Assets(self):
         assets_checkbox = self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[1]/label/span/span[2]")
         for asset_checkbox in assets_checkbox:
@@ -58,6 +64,7 @@ class MainDriverScript(BaseTestCase):
     '''
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
         #Click the Checkbox in the Grid
         asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
@@ -79,6 +86,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_06_To_Verify_The_Filter_Function_Filter_By_Place(self):
         self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
         self.driver.find_element_by_link_text("Place").click()
@@ -90,6 +98,7 @@ class MainDriverScript(BaseTestCase):
              self.assertEqual (i.text, "Place")
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_07_To_Verify_The_Filter_Function_Filter_By_School(self):
         self.driver.find_element_by_xpath("//span[@id='span_filters']/div/div/button[2]").click()
         self.driver.find_element_by_link_text("School").click()
@@ -101,6 +110,7 @@ class MainDriverScript(BaseTestCase):
              self.assertEqual (i.text, "School")
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
         resetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/button")
         resetFilter.click()
@@ -109,6 +119,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
         print "Getting Search data from Json"
         searchasset_filepath = os.path.abspath('data/json_searchAssets.json')
@@ -184,8 +195,10 @@ class MainDriverScript(BaseTestCase):
 
         fake = Factory.create()
         # fill out the fields
-        place_name.send_keys(fake.company())
-        #place_name.send_keys("kk place automation test")
+        #place_name_yellow = fake.company()
+        place_name.send_keys(self.Place_name)
+        #place_name.send_keys(fake.company())
+        place_name.send_keys("kk automation")
         place_name.send_keys(Keys.TAB)
         sleep(2)
 
@@ -245,22 +258,18 @@ class MainDriverScript(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
-        #assets = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        assets = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        print "Found " + str(len(assets))
-        #for asset in assets:
-            # verify color is Yellow
-            #print "start" + asset.text
-            #self.assertEqual("rgba(255,236,158, 0.8)",asset.value_of_css_property("background-color"))
-            #print "end"
-            #self.assertEqual("transparent",asset.value_of_css_property("background-color"))
-        for i in assets :
-             #self.assertEqual (i.text, "Place")
-            if i.text == "kk automation":
-                self.assertEqual("rgb(255,236,158)", i.value_of_css_property("background-color"))
+        searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
+        searchAsset_textbox.send_keys(self.Place_name)
+        sleep(20)
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+            print (i.text)
+            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+            #print(i.value_of_css_property("background-color"))
+
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
 
         sleep(10)
@@ -356,6 +365,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_50_To_validate_SchoolName_Field(self):
 
         sleep(10)
@@ -397,6 +407,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_52_To_validate_GradeandDistrict_Fields(self):
 
         fake= Factory.create()
@@ -480,6 +491,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel(self):
 
         sleep(10)
@@ -617,6 +629,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_33_To_Click_On_Save_With_FirstName_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -638,6 +651,7 @@ class MainDriverScript(BaseTestCase):
         self.assertRegexpMatches(exp_firstname, regex)
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_34_To_Click_On_Save_With_Prefix_Title_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -661,6 +675,7 @@ class MainDriverScript(BaseTestCase):
         self.assertTrue("Title", title)
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_35_To_Click_On_Save_With_Phone_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -682,6 +697,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
@@ -698,6 +714,7 @@ class MainDriverScript(BaseTestCase):
         self.assertTrue(state)
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_30_To_Click_On_Save_Without_LastName_Asset_ContactInfo_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
@@ -716,6 +733,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_31_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
@@ -734,6 +752,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_32_To_Click_On_Save_With_Wrong_Email_Asset_Detail_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
