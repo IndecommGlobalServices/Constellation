@@ -13,6 +13,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import NoSuchElementException
+from nose.plugins.skip import SkipTest
 
 import re
 
@@ -37,8 +38,9 @@ class MainDriverScript(BaseTestCase):
         selectAction_dropdown_delete = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
         self.assertFalse(selectAction_dropdown_delete.is_enabled(), "Delete must be disabled.")
 
-    '''
+
     @attr(priority="high")
+    @SkipTest
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
         asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
         asset_checkbox.click()
@@ -55,7 +57,6 @@ class MainDriverScript(BaseTestCase):
         sleep(5)
 
         print("First record deleted successfully.")
-    '''
 
     @attr(priority="high")
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
@@ -135,6 +136,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
 
         # Click on Create asset
@@ -241,9 +243,8 @@ class MainDriverScript(BaseTestCase):
         # go to search and filter page
         self.driver.find_element_by_link_text("Assets").click()
 
-
-
     @attr(priority="high")
+    @SkipTest
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         #assets = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         assets = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
@@ -261,6 +262,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
 
         sleep(10)
@@ -356,6 +358,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_50_To_validate_SchoolName_Field(self):
 
         sleep(10)
@@ -397,6 +400,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_52_To_validate_GradeandDistrict_Fields(self):
 
         fake= Factory.create()
@@ -750,12 +754,12 @@ class MainDriverScript(BaseTestCase):
         self.assertFalse(state)
 
 
-    '''  @attr(priority="high")
+    @attr(priority="high")
+    @SkipTest
     def test_AS_33_To_Click_On_Save_With_Wrong_Fax_Asset_Detail_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
-        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[1]/div/img").click()'''
-
+        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[1]/div/img").click()
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
