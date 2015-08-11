@@ -2,20 +2,18 @@ import unittest
 from time import sleep
 
 from nose.plugins.attrib import attr
-from nose.plugins.skip import SkipTest
 from selenium.webdriver.common.keys import Keys
 from faker import Factory
 
 from testcases.basetestcase import BaseTestCase
-import json
-import os
+import json, os, re
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import NoSuchElementException
+from nose.plugins.skip import SkipTest
 
-import re
 
 class MainDriverScript(BaseTestCase):
 
@@ -41,8 +39,9 @@ class MainDriverScript(BaseTestCase):
         selectAction_dropdown_delete = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
         self.assertFalse(selectAction_dropdown_delete.is_enabled(), "Delete must be disabled.")
 
-    '''
+
     @attr(priority="high")
+    @SkipTest
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
         asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
         asset_checkbox.click()
@@ -59,7 +58,6 @@ class MainDriverScript(BaseTestCase):
         sleep(5)
 
         print("First record deleted successfully.")
-    '''
 
     @attr(priority="high")
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
@@ -139,6 +137,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
 
         # Click on Create asset
@@ -188,10 +187,8 @@ class MainDriverScript(BaseTestCase):
 
         fake = Factory.create()
         # fill out the fields
-        #place_name_yellow = fake.company()
         place_name.send_keys(self.Place_name)
-        #place_name.send_keys(fake.company())
-        place_name.send_keys("kk automation")
+        #place_name.send_keys("kk place automation test")
         place_name.send_keys(Keys.TAB)
         sleep(2)
 
@@ -247,17 +244,15 @@ class MainDriverScript(BaseTestCase):
         # go to search and filter page
         self.driver.find_element_by_link_text("Assets").click()
 
-
-
     @attr(priority="high")
+    @SkipTest
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
-        searchAsset_textbox.send_keys(self.Place_name)
+        searchAsset_textbox.send_keys("kk place automation test")
         sleep(20)
-        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td"):
             print (i.text)
-            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
-            #print(i.value_of_css_property("background-color"))
+            print(i.value_of_css_property("background-color"))
 
 
     @attr(priority="high")
@@ -521,6 +516,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_50_To_validate_SchoolName_Field(self):
 
         sleep(10)
@@ -562,6 +558,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_52_To_validate_GradeandDistrict_Fields(self):
 
         fake= Factory.create()
@@ -779,147 +776,6 @@ class MainDriverScript(BaseTestCase):
             self.driver.find_element_by_xpath(".//*[@id='header']/div[1]/span[3]/span")
         except NoSuchElementException:
             print ("In Assets main page")
-
-
-    @attr(priority="high")
-    def test_AS_33_To_Click_On_Save_With_FirstName_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
-        sleep(3)
-        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
-        self.driver.find_element_by_id('btn_add_asset_contact').click()
-        sleep(4)
-        self.driver.find_element_by_name("first_name").clear()
-        self.driver.find_element_by_name("first_name").send_keys(firstname)
-        self.driver.find_element_by_name("last_name").clear()
-        self.driver.find_element_by_name("last_name").send_keys(lastname)
-        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
-        exp_firstname = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]").text
-        print exp_firstname
-        self.driver.find_element_by_link_text("Assets").click()
-        regex = re.compile(r'[\w.-@]+\,\s[\w.-@]+')
-        self.assertRegexpMatches(exp_firstname, regex)
-
-    @attr(priority="high")
-    def test_AS_34_To_Click_On_Save_With_Prefix_Title_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
-        sleep(3)
-        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
-        self.driver.find_element_by_id('btn_add_asset_contact').click()
-        sleep(4)
-        self.driver.find_element_by_name("first_name").clear()
-        self.driver.find_element_by_name("first_name").send_keys(firstname)
-        self.driver.find_element_by_name("last_name").clear()
-        self.driver.find_element_by_name("last_name").send_keys(lastname)
-        self.driver.find_element_by_xpath("//input[@placeholder='Prefix']").clear()
-        self.driver.find_element_by_xpath("//input[@placeholder='Prefix']").send_keys("Prefix")
-        self.driver.find_element_by_xpath("//input[@placeholder='Title']").clear()
-        self.driver.find_element_by_xpath("//input[@placeholder='Title']").send_keys("Title")
-        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
-        title = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]").text
-        self.driver.find_element_by_link_text("Assets").click()
-        self.assertTrue("Title", title)
-
-    @attr(priority="high")
-    def test_AS_35_To_Click_On_Save_With_Phone_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
-        sleep(3)
-        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
-        self.driver.find_element_by_id('btn_add_asset_contact').click()
-        sleep(4)
-        self.driver.find_element_by_name("first_name").clear()
-        self.driver.find_element_by_name("first_name").send_keys(firstname)
-        self.driver.find_element_by_name("last_name").clear()
-        self.driver.find_element_by_name("last_name").send_keys(lastname)
-        self.driver.find_element_by_name("phone").clear()
-        self.driver.find_element_by_name("phone").send_keys("111-222-9999")
-        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
-        phone = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]").text
-        self.driver.find_element_by_link_text("Assets").click()
-
-
-    @attr(priority="high")
-    def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
-        sleep(3)
-        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
-        self.driver.find_element_by_id('btn_add_asset_contact').click()
-        self.driver.find_element_by_name("first_name").clear()
-        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
-        self.driver.find_element_by_name("last_name").click()
-        state = self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[1]/small").is_displayed()
-        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
-        self.driver.find_element_by_link_text("Assets").click()
-        sleep(3)
-        self.assertTrue(state)
-
-    @attr(priority="high")
-    def test_AS_30_To_Click_On_Save_Without_LastName_Asset_ContactInfo_Field(self):
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
-        sleep(3)
-        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
-        self.driver.find_element_by_id('btn_add_asset_contact').click()
-        self.driver.find_element_by_name("first_name").send_keys("Firtst Name")
-        self.driver.find_element_by_name("last_name").clear()
-        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
-        self.driver.find_element_by_name("first_name").click()
-        state =(self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[2]/small").is_displayed())
-        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
-        self.driver.find_element_by_link_text("Assets").click()
-        sleep(3)
-        self.assertTrue(state)
-
-
-    @attr(priority="high")
-    def test_AS_31_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
-        sleep(5)
-        self.driver.find_element_by_xpath(".//div[contains(text(),'Details')]/div/img").click()
-        self.driver.find_element_by_xpath("//input[@placeholder='Email']").clear()
-        self.driver.find_element_by_xpath("//input[@placeholder='Email']").send_keys("test@test")
-        sleep(4)
-        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").click()
-        sleep(4)
-        email = (self.driver.find_element_by_xpath(".//span[text()='Email']/../following-sibling::td").text)
-        sleep(2)
-        self.driver.find_element_by_link_text("Assets").click()
-        regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(email, regex)
-
-
-    @attr(priority="high")
-    def test_AS_32_To_Click_On_Save_With_Wrong_Email_Asset_Detail_Field(self):
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
-        sleep(5)
-        self.driver.find_element_by_xpath(".//div[contains(text(),'Details')]/div/img").click()
-        sleep(2)
-        self.driver.find_element_by_xpath("//input[@placeholder='Email']").clear()
-        self.driver.find_element_by_xpath("//input[@placeholder='Email']").send_keys("testtest")
-        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").click()
-        state =(self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").is_enabled())
-        self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/div/button").click()
-        self.driver.find_element_by_link_text("Assets").click()
-        sleep(3)
-        self.assertFalse(state)
-
-
-    '''  @attr(priority="high")
-    def test_AS_33_To_Click_On_Save_With_Wrong_Fax_Asset_Detail_Field(self):
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
-        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[1]/div/img").click()'''
 
 
 if __name__ =='__main__':
