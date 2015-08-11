@@ -111,6 +111,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
         print "Getting Search data from Json"
         searchasset_filepath = os.path.abspath('data/json_searchAssets.json')
@@ -127,6 +128,8 @@ class MainDriverScript(BaseTestCase):
                 expectedAfterSearchFilter = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr/td").text
                 searchNames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
                 print "Found " + str(len(searchNames)) + " by Name search."
+                sleep(2)
+                searchAsset_textbox.clear()
                 for searchName in searchNames:
                     #if searchName.text == expectedAfterSearchFilter:
                     if expectedAfterSearchFilter:
@@ -135,9 +138,7 @@ class MainDriverScript(BaseTestCase):
                         print searchName.text
 
 
-
     @attr(priority="high")
-    @SkipTest
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
 
         # Click on Create asset
@@ -245,7 +246,6 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
-    @SkipTest
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
         searchAsset_textbox.send_keys("kk place automation test")
@@ -331,6 +331,12 @@ class MainDriverScript(BaseTestCase):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
+        delete_path = self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img")
+        if delete_path.is_displayed():
+            sleep(2)
+            delete_path.click()
+            sleep(4)
+            self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         sleep(4)
@@ -352,6 +358,12 @@ class MainDriverScript(BaseTestCase):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
+        delete_path = self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img")
+        if delete_path.is_displayed():
+            sleep(2)
+            delete_path.click()
+            sleep(4)
+            self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         sleep(4)
@@ -370,11 +382,18 @@ class MainDriverScript(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_35_To_Click_On_Save_With_Phone_Asset_ContactInfo_Field(self):
+        self.test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel()
         firstname = "FirstName"
         lastname = "ZLastName"
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
+        delete_path = self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img")
+        if delete_path.is_displayed():
+            sleep(2)
+            delete_path.click()
+            sleep(4)
+            self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         sleep(4)
@@ -390,11 +409,18 @@ class MainDriverScript(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_36_To_Click_On_Save_With_Email_Asset_ContactInfo_Field(self):
+        self.test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel()
         firstname = "FirstName"
         lastname = "ZLastName"
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
+        delete_path = self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img")
+        if delete_path.is_displayed():
+            sleep(2)
+            delete_path.click()
+            sleep(4)
+            self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         sleep(4)
@@ -414,13 +440,13 @@ class MainDriverScript(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_33_To_Click_On_Save_With_Wrong_Fax_Asset_Detail_Field(self):
+    def test_AS_37_To_Click_On_Save_With_Wrong_Fax_Asset_Detail_Field(self):
+        self.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset()
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[1]/div/img").click()
 
     @attr(priority="high")
-    @SkipTest
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
 
         sleep(10)
@@ -516,7 +542,6 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
-    @SkipTest
     def test_AS_50_To_validate_SchoolName_Field(self):
 
         sleep(10)
@@ -558,7 +583,6 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
     def test_AS_52_To_validate_GradeandDistrict_Fields(self):
 
         fake= Factory.create()
