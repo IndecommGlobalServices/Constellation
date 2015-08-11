@@ -6,8 +6,7 @@ from selenium.webdriver.common.keys import Keys
 from faker import Factory
 
 from testcases.basetestcase import BaseTestCase
-import json
-import os
+import json, os, re
 
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
@@ -15,9 +14,11 @@ from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import NoSuchElementException
 from nose.plugins.skip import SkipTest
 
-import re
 
 class MainDriverScript(BaseTestCase):
+
+    fake = Factory.create()
+    Place_name = fake.company()
 
     @attr(priority="high")
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
@@ -186,7 +187,7 @@ class MainDriverScript(BaseTestCase):
 
         fake = Factory.create()
         # fill out the fields
-        place_name.send_keys(fake.company())
+        place_name.send_keys(self.Place_name)
         #place_name.send_keys("kk place automation test")
         place_name.send_keys(Keys.TAB)
         sleep(2)
@@ -246,19 +247,12 @@ class MainDriverScript(BaseTestCase):
     @attr(priority="high")
     @SkipTest
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
-        #assets = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        assets = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        print "Found " + str(len(assets))
-        #for asset in assets:
-            # verify color is Yellow
-            #print "start" + asset.text
-            #self.assertEqual("rgba(255,236,158, 0.8)",asset.value_of_css_property("background-color"))
-            #print "end"
-            #self.assertEqual("transparent",asset.value_of_css_property("background-color"))
-        for i in assets :
-             #self.assertEqual (i.text, "Place")
-            if i.text == "kk automation":
-                self.assertEqual("rgb(255,236,158)", i.value_of_css_property("background-color"))
+        searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
+        searchAsset_textbox.send_keys("kk place automation test")
+        sleep(20)
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td"):
+            print (i.text)
+            print(i.value_of_css_property("background-color"))
 
 
     @attr(priority="high")
