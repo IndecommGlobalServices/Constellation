@@ -2,7 +2,7 @@ from lib.base import BasePage
 from lib.base import InvalidPageException
 import csv
 from ddt import ddt, data, unpack
-from lib import loginData
+#from lib import loginData
 
 class LoginPage(BasePage):
     _email_input_id_locator     = "inputusername"

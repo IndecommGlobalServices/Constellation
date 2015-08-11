@@ -10,7 +10,7 @@ import json
 
 
 SCREEN_DUMP_LOCATION = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'screendumps')
-
+L1 = os.path.abspath('data/json_login.json')
 
 #@ddt
 class BaseTestCase(unittest.TestCase):
@@ -32,7 +32,7 @@ class BaseTestCase(unittest.TestCase):
         loginpage = LoginPage(self.driver)
 
         print "Getting Login data from Json"
-        with open("D:\Project\Constellation\data\json_login.json") as data_file:
+        with open(L1) as data_file:
             data_text = json.load(data_file)
 
             for each in data_text:
