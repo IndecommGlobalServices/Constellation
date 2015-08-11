@@ -1,6 +1,8 @@
 import unittest
-from homepage import HomePage
-from basetestcase import BaseTestCase
+
+from pages.homepage import HomePage
+from testcases.basetestcase import BaseTestCase
+
 
 class HomePageTest(BaseTestCase):
     #def test_Home_Landing_Logo(self):

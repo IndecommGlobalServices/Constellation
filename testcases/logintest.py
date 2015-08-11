@@ -1,6 +1,8 @@
 import unittest
+from pages.homepage import HomePage
+from pages.loginpage import LoginPage
 
-from basetestcase import BaseTestCase
+from testcases.basetestcase import BaseTestCase
 
 class LoginPageTest(BaseTestCase):
     #def test_Home_Landing_Logo(self):
@@ -10,8 +12,8 @@ class LoginPageTest(BaseTestCase):
         homepage = HomePage(self.driver)
         homepage.loginlink.click()
         self.assertEqual("https://constellation-dev.haystax.com/#/login", self.driver.current_url)
-        loginpage = LoginPage(self.driver)
-        loginpage.email.send_keys()
+        #loginpage = LoginPage(self.driver)
+        #loginpage.email.send_keys()
 
 
 if __name__ =='__main__':
