@@ -331,12 +331,12 @@ class MainDriverScript(BaseTestCase):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
-        delete_path = self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img")
-        if delete_path.is_displayed():
-            sleep(2)
-            delete_path.click()
-            sleep(4)
-            self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         sleep(4)
@@ -346,7 +346,6 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_name("last_name").send_keys(lastname)
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
         exp_firstname = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]").text
-        print exp_firstname
         self.driver.find_element_by_link_text("Assets").click()
         regex = re.compile(r'[\w.-@]+\,\s[\w.-@]+')
         self.assertRegexpMatches(exp_firstname, regex)
@@ -358,12 +357,12 @@ class MainDriverScript(BaseTestCase):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
-        delete_path = self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img")
-        if delete_path.is_displayed():
-            sleep(2)
-            delete_path.click()
-            sleep(4)
-            self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         sleep(4)
@@ -382,18 +381,17 @@ class MainDriverScript(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_35_To_Click_On_Save_With_Phone_Asset_ContactInfo_Field(self):
-        self.test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel()
         firstname = "FirstName"
         lastname = "ZLastName"
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
-        delete_path = self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img")
-        if delete_path.is_displayed():
-            sleep(2)
-            delete_path.click()
-            sleep(4)
-            self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         sleep(4)
@@ -409,18 +407,17 @@ class MainDriverScript(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_36_To_Click_On_Save_With_Email_Asset_ContactInfo_Field(self):
-        self.test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel()
         firstname = "FirstName"
         lastname = "ZLastName"
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
-        delete_path = self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img")
-        if delete_path.is_displayed():
-            sleep(2)
-            delete_path.click()
-            sleep(4)
-            self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         sleep(4)
@@ -638,7 +635,7 @@ class MainDriverScript(BaseTestCase):
         sleep(2)
         school_newgrade = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input")
         school_newgrade.click()
-        school_newgrade.send_keys("Vali123@*(>? ")
+        school_newgrade.send_keys("Vali123@*>? ")
         school_add = self.driver.find_element_by_xpath(".//*[@id='newItemButton']")
         try:
             self.assertTrue(school_add.is_displayed())
@@ -658,20 +655,21 @@ class MainDriverScript(BaseTestCase):
         school_name_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[1]/td[2]")
         school_district_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[4]/td[2]")
         school_grade_page = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[5]/td[2]")
-        self.assertEqual(schoolName,school_name_page.text)
-        self.assertEqual("Vali123@*(>?",school_district_page.text)
-        #self.assertEqual("Vali123@*(>?",school_grade_page.text)
-
-        # go to search and filter page
+        act_schoolname = str(school_name_page.text)
+        act_distname = str(school_district_page.text)
         self.driver.find_element_by_link_text("Assets").click()
+        self.assertEqual(schoolName,act_schoolname)
+        self.assertEqual("Vali123@*>?",act_distname)
+        #self.assertEqual("Vali123@*(>?",school_grade_page.text)
+        # go to search and filter page
+
 
     @attr(priority="high")
     def test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel(self):
 
         sleep(10)
         # Click on Create asset
-        clickCreateAsset = self.driver.find_element_by_xpath("//img[@alt='Create asset']")
-        clickCreateAsset.click()
+        self.driver.find_element_by_xpath("//img[contains(@title,'Create asset')]").click()
         sleep(12)
         # switch to new window
         self.driver.switch_to.active_element
