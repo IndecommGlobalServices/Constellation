@@ -388,7 +388,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
         title = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]").text
         self.driver.find_element_by_link_text("Assets").click()
-        self.assertTrue("Title", title)
+        self.assertEqual("Title", title)
 
     @attr(priority="high")
     def test_AS_35_To_Click_On_Save_With_Phone_Asset_ContactInfo_Field(self):
@@ -415,6 +415,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
         phone = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]").text
         self.driver.find_element_by_link_text("Assets").click()
+        self.assertEqual("111-222-9999", phone)
 
     @attr(priority="high")
     def test_AS_36_To_Click_On_Save_With_Email_Asset_ContactInfo_Field(self):
@@ -622,6 +623,33 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
         sleep(2)
         self.assertTrue(state)
+
+    @attr(priority="high")
+    def test_AS_43_To_Click_On_Save_With_Prefix_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(4)
+        self.driver.find_element_by_name("first_name").clear()
+        self.driver.find_element_by_name("first_name").send_keys(firstname)
+        self.driver.find_element_by_name("last_name").clear()
+        self.driver.find_element_by_name("last_name").send_keys(lastname)
+        self.driver.find_element_by_xpath("//input[@placeholder='Prefix']").clear()
+        self.driver.find_element_by_xpath("//input[@placeholder='Prefix']").send_keys("Prefix")
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
+        prefix = self.driver.find_element_by_xpath("//div[@id='form_main_contact']//div//table//tbody/tr//td//span[text()='Name']/../following-sibling::td").text
+        self.driver.find_element_by_link_text("Assets").click()
+        self.assertEqual("Prefix", (prefix.split())[0], "Prefix value is not matching")
 
     @attr(priority="high")
 #    @SkipTest
