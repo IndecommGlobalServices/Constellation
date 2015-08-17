@@ -1174,7 +1174,6 @@ class MainDriverScript(BaseTestCase):
             self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/ul/li[2]/a").click()
         sleep(2)'''
 
-
         # Click cancel button to save the form
         school_save.click()
         sleep(5)
