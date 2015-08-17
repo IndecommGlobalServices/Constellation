@@ -243,10 +243,10 @@ class MainDriverScript(BaseTestCase):
         # Click SAVE button to save the form
         place_save.click()
         sleep(20)
-        expected_schoolname = self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text
+        expected_placename = self.driver.find_element_by_xpath(".//*[@id='header']/div[1]/span[3]/span").text
         self.driver.find_element_by_link_text("Assets").click()
         # check new place is created - verifying on Breadcrumb
-        self.assertEqual(self.Place_name, expected_schoolname )
+        self.assertEqual(self.Place_name, expected_placename )
         # go to search and filter page
         sleep(20)
 
@@ -265,6 +265,8 @@ class MainDriverScript(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
+        searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
+        searchAsset_textbox.clear()
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(3)
@@ -486,7 +488,7 @@ class MainDriverScript(BaseTestCase):
         school_phone = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/div[3]/input")
         school_district = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/button[1]")
         school_grade = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/button[1]")
-        school_type = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/button[1]")
+        school_type = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/button[2]")
         school_cancel = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]")
         school_save = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]")
 
@@ -526,20 +528,50 @@ class MainDriverScript(BaseTestCase):
         school_phone.send_keys("994-550-8652")
         school_phone.send_keys(Keys.TAB)
         sleep(2)
+        #school_district.click()
+        #self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li[1]/a").click()
+        #sleep(2)
+        #school_grade.click()
+        #self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li[1]/a").click()
+        #sleep(2)
+
         school_district.click()
-        self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li[1]/a").click()
         sleep(2)
+        try:
+            self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li[1]/a").click()
+        except:
+            school_newdistrict = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input")
+            school_newdistrict.click()
+            school_newdistrict.send_keys("new")
+            school_add = self.driver.find_element_by_xpath(".//*[@id='newItemButton']")
+            self.assertTrue(school_add.is_enabled())
+            school_add.click()
+        sleep(2)
+
         school_grade.click()
-        self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li[1]/a").click()
         sleep(2)
+        try:
+            self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li[1]/a").click()
+        except:
+            school_newgrade = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input")
+            school_newgrade.click()
+            school_newgrade.send_keys("new")
+            school_add = self.driver.find_element_by_xpath(".//*[@id='newItemButton']")
+            try:
+                self.assertTrue(school_add.is_displayed())
+            except:
+                print("Add button not enabled")
+            else:
+                school_add.click()
+        sleep(10)
+        school_grade.send_keys(Keys.TAB)
 
         school_owner.send_keys("indecomm")
         school_owner.send_keys(Keys.TAB)
-        sleep(2)
-        # Type selection
-        school_type.click()
-        self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/ul/li[2]/a").click()
-        sleep(2)
+        sleep(10)
+        # Type selection (add the code)
+
+
         # Click SAVE button to save the form
         school_save.click()
         sleep(5)
@@ -548,9 +580,24 @@ class MainDriverScript(BaseTestCase):
         # go to search and filter page
         self.driver.find_element_by_link_text("Assets").click()
 
+
+    @attr(priority="high")
+ #  @SkipTest
+    def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
+
+        searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
+        searchAsset_textbox.clear()
+        searchAsset_textbox.send_keys(self.School_name)
+        sleep(20)
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+            print (i.text)
+            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+        searchAsset_textbox.clear()
+
+
     @attr(priority="high")
 #    @SkipTest
-    def test_AS_50_To_validate_SchoolName_Field(self):
+    def test_AS_51_To_validate_SchoolName_Field(self):
 
         sleep(10)
         #Navigate to create asset dialouge
@@ -588,11 +635,13 @@ class MainDriverScript(BaseTestCase):
         #****Red star validation script to be added later
 
         school_cancel.click()
+        sleep(10)
+
 
 
     @attr(priority="high")
 #    @SkipTest
-    def test_AS_52_To_validate_GradeandDistrict_Fields(self):
+    def test_AS_53_To_validate_GradeandDistrict_Fields(self):
 
         fake= Factory.create()
         sleep(10)
@@ -671,24 +720,11 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
         self.assertEqual(schoolName,act_schoolname)
         self.assertEqual("Vali123@*>?",act_distname)
+        print(act_distname,act_schoolname, schoolName)
         #self.assertEqual("Vali123@*(>?",school_grade_page.text)
 
-        # go to search and filter page
-        self.driver.find_element_by_link_text("Assets").click()
-        sleep(20)
 
 
-    @attr(priority="high")
- #   @SkipTest
-    def test_AS_53_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
-        searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
-        searchAsset_textbox.clear()
-        searchAsset_textbox.send_keys(self.School_name)
-        sleep(20)
-        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
-            print (i.text)
-            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
-        searchAsset_textbox.clear()
 
     @attr(priority="high")
 #    @SkipTest
@@ -696,7 +732,8 @@ class MainDriverScript(BaseTestCase):
 
         sleep(10)
         # Click on Create asset
-        self.driver.find_element_by_xpath("//img[contains(@title,'Create asset')]").click()
+        #self.driver.find_element_by_xpath("//img[contains(@title,'Create asset')]").click()
+        self.driver.find_element_by_xpath("//img[@alt='Create asset']").click()
         sleep(12)
         # switch to new window
         self.driver.switch_to.active_element
@@ -831,18 +868,21 @@ class MainDriverScript(BaseTestCase):
 #    @SkipTest
     def test_AS_55_To_Verify_SchoolAsset_Edit(self):
         sleep(12)
-        searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
-        searchAsset_textbox.send_keys(self.School_name)
 
-        #searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        #searchnames[0].click()
+        self.driver.find_element_by_xpath("//span[@id='span_filters']/div/div/button[2]").click()
+        self.driver.find_element_by_link_text("School").click()
+
         sleep(10)
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(20)
 
         editOverview = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[1]/div/div[1]/div/img")
         editOverview.click()
 
         # switch to new window
         self.driver.switch_to.active_element
+
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//div[@id='asset_overview_modal']/div/div/div/h4")))
         # Verify title "Asset overview" window
         # Create_Asset_Title = self.driver.find_element_by_xpath(".//*[@id='H1']").text
@@ -970,7 +1010,6 @@ class MainDriverScript(BaseTestCase):
         self.assertEqual("kk school automation edit", self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         # go to search and filter page
         self.driver.find_element_by_link_text("Assets").click()
-
 
 
         if __name__ =='__main__':
