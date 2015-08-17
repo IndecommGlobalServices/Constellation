@@ -256,7 +256,7 @@ class MainDriverScript(BaseTestCase):
         searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
         searchAsset_textbox.clear()
         searchAsset_textbox.send_keys(self.Place_name)
-        sleep(20)
+        sleep(10)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
             self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
@@ -269,7 +269,7 @@ class MainDriverScript(BaseTestCase):
         searchAsset_textbox.clear()
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
-        sleep(3)
+        sleep(2)
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         self.driver.find_element_by_name("first_name").clear()
@@ -278,14 +278,14 @@ class MainDriverScript(BaseTestCase):
         state = self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[1]/small").is_displayed()
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
-        sleep(3)
+        sleep(2)
         self.assertTrue(state)
 
     @attr(priority="high")
     def test_AS_30_To_Click_On_Save_Without_LastName_Asset_ContactInfo_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
-        sleep(3)
+        sleep(2)
         self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
         self.driver.find_element_by_id('btn_add_asset_contact').click()
         self.driver.find_element_by_name("first_name").send_keys("Firtst Name")
@@ -295,7 +295,7 @@ class MainDriverScript(BaseTestCase):
         state =(self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[2]/small").is_displayed())
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
-        sleep(3)
+        sleep(2)
         self.assertTrue(state)
 
 
@@ -330,7 +330,7 @@ class MainDriverScript(BaseTestCase):
         state =(self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").is_enabled())
         self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
-        sleep(3)
+        sleep(2)
         self.assertFalse(state)
 
 
@@ -340,7 +340,7 @@ class MainDriverScript(BaseTestCase):
         lastname = "ZLastName"
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
-        sleep(3)
+        sleep(2)
         try:
             if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
                 self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
@@ -362,12 +362,12 @@ class MainDriverScript(BaseTestCase):
         self.assertRegexpMatches(exp_firstname, regex)
 
     @attr(priority="high")
-    def test_AS_34_To_Click_On_Save_With_Prefix_Title_Asset_ContactInfo_Field(self):
+    def test_AS_34_To_Click_On_Save_With_Title_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
-        sleep(3)
+        sleep(2)
         try:
             if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
                 self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
@@ -396,7 +396,7 @@ class MainDriverScript(BaseTestCase):
         lastname = "ZLastName"
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
-        sleep(3)
+        sleep(2)
         try:
             if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
                 self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
@@ -422,7 +422,7 @@ class MainDriverScript(BaseTestCase):
         lastname = "ZLastName"
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
-        sleep(3)
+        sleep(2)
         try:
             if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
                 self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
@@ -440,18 +440,188 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_name("email").send_keys("text@text")
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
         email = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]").text
-        print email, "dddddddddddddddddddddddddddddd", type(email)
         self.driver.find_element_by_link_text("Assets").click()
         regex = re.compile(r'[\w.-]+@[\w.-]+')
         self.assertRegexpMatches(email, regex)
 
-
     @attr(priority="high")
-    @SkipTest
-    def test_AS_33_To_Click_On_Save_With_Wrong_Fax_Asset_Detail_Field(self):
+    #@SkipTest
+    def test_AS_37_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
-        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[5]/div/div[1]/div/img").click()
+        sleep(2)
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(2)
+        self.driver.find_element_by_name("first_name").clear()
+        self.driver.find_element_by_name("first_name").send_keys("Test")
+        self.driver.find_element_by_name("last_name").clear()
+        self.driver.find_element_by_name("last_name").send_keys("Test1")
+        self.driver.find_element_by_name("email").clear()
+        self.driver.find_element_by_name("email").send_keys("texttext.com")
+        sleep(2)
+        self.driver.find_element_by_name("last_name").click()
+        state =(self.driver.find_element_by_xpath("//*[@id='asset_contact_error']/div[6]//small").is_displayed())
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
+        self.driver.find_element_by_link_text("Assets").click()
+        self.assertTrue(state)
+
+    @attr(priority="high")
+    #SkipTest
+    def test_AS_38_To_Delete_Contact_Asset_ContactInfo_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(4)
+        self.driver.find_element_by_name("first_name").clear()
+        self.driver.find_element_by_name("first_name").send_keys("Test")
+        self.driver.find_element_by_name("last_name").clear()
+        self.driver.find_element_by_name("last_name").send_keys("Test1")
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
+        self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+        self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        sleep(2)
+        try:
+            self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed()
+            self.driver.find_element_by_link_text("Assets").click()
+            self.assertFalse("Fail")
+        except NoSuchElementException:
+            self.driver.find_element_by_link_text("Assets").click()
+            self.assertTrue("Pass")
+
+    @attr(priority="high")
+    def test_AS_39_To_Click_On_Save_Address_Asset_ContactInfo_Field(self):
+        address_1 = r"635 Lubowitz Lights Apt. 404"
+        address_2 = r"Suite 950"
+        city = r"North Estiefurt"
+        state = "AB"
+        zip_code = "12345"
+        exp_city = city+", "+state+"  "+zip_code
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(4)
+        self.driver.find_element_by_name("first_name").clear()
+        self.driver.find_element_by_name("first_name").send_keys("firstname")
+        self.driver.find_element_by_name("last_name").clear()
+        self.driver.find_element_by_name("last_name").send_keys("lastname")
+        self.driver.find_element_by_name("address").clear()
+        self.driver.find_element_by_name("address").send_keys(address_1)
+        self.driver.find_element_by_xpath("*//input[@ng-model='contact_edit.address.address2']").clear()
+        self.driver.find_element_by_xpath("*//input[@ng-model='contact_edit.address.address2']").send_keys(address_2)
+        self.driver.find_element_by_xpath("*//input[@placeholder='City']").clear()
+        self.driver.find_element_by_xpath("*//input[@placeholder='City']").send_keys(city)
+        self.driver.find_element_by_name("state").clear()
+        self.driver.find_element_by_name("state").send_keys(state)
+        self.driver.find_element_by_name("zip").clear()
+        self.driver.find_element_by_name("zip").send_keys(zip_code)
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
+        sleep(2)
+        act_address_1 = self.driver.find_element_by_xpath("//tr[@ng-if='main_contact.address.address1']//td[contains(@class, 'tableitemvalue ng-binding')]").text
+        act_address_2 = self.driver.find_element_by_xpath("//tr[@ng-if='main_contact.address.address2']//td[contains(@class,'tableitemvalue ng-binding')]").text
+        act_city =  self.driver.find_element_by_xpath("//tr[@ng-if='main_contact.address.state']//td[contains(@class,'tableitemvalue ng-binding')]").text
+        self.driver.find_element_by_link_text("Assets").click()
+        self.assertEqual(address_1, act_address_1)
+        self.assertEqual (address_2, act_address_2)
+        self.assertEqual(exp_city, act_city)
+        sleep(2)
+
+    @attr(priority="high")
+    def test_AS_40_To_Click_On_Save_Wrong_State_Asset_ContactInfo_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(4)
+        self.driver.find_element_by_name("first_name").clear()
+        self.driver.find_element_by_name("first_name").send_keys("firstname")
+        self.driver.find_element_by_name("last_name").clear()
+        self.driver.find_element_by_name("last_name").send_keys("lastname")
+        self.driver.find_element_by_name("state").clear()
+        self.driver.find_element_by_name("state").send_keys("ABC")
+        self.driver.find_element_by_name("zip").click()
+        state =(self.driver.find_element_by_xpath("//*[@id='asset_contact_error']/div[3]/small").is_displayed())
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
+        self.driver.find_element_by_link_text("Assets").click()
+        sleep(2)
+        self.assertTrue(state)
+
+    @attr(priority="high")
+    def test_AS_41_To_Click_On_Save_Wrong_Zip_1_Asset_ContactInfo_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(4)
+        self.driver.find_element_by_name("first_name").clear()
+        self.driver.find_element_by_name("first_name").send_keys("firstname")
+        self.driver.find_element_by_name("last_name").clear()
+        self.driver.find_element_by_name("last_name").send_keys("lastname")
+        self.driver.find_element_by_name("zip").clear()
+        self.driver.find_element_by_name("zip").send_keys("AAAAA")
+        self.driver.find_element_by_name("state").click()
+        state =(self.driver.find_element_by_xpath("//*[@id='asset_contact_error']/div[4]/small").is_displayed())
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
+        self.driver.find_element_by_link_text("Assets").click()
+        sleep(2)
+        self.assertTrue(state)
+
+    @attr(priority="high")
+    def test_AS_42_To_Click_On_Save_Wrong_Zip_2_Asset_ContactInfo_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(4)
+        self.driver.find_element_by_name("first_name").clear()
+        self.driver.find_element_by_name("first_name").send_keys("firstname")
+        self.driver.find_element_by_name("last_name").clear()
+        self.driver.find_element_by_name("last_name").send_keys("lastname")
+        self.driver.find_element_by_name("zip").clear()
+        self.driver.find_element_by_name("zip").send_keys(123456)
+        self.driver.find_element_by_name("state").click()
+        state =(self.driver.find_element_by_xpath("//*[@id='asset_contact_error']/div[4]/small").is_displayed())
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
+        self.driver.find_element_by_link_text("Assets").click()
+        sleep(2)
+        self.assertTrue(state)
 
     @attr(priority="high")
 #    @SkipTest
@@ -723,6 +893,7 @@ class MainDriverScript(BaseTestCase):
         print(act_distname,act_schoolname, schoolName)
         #self.assertEqual("Vali123@*(>?",school_grade_page.text)
 
+        # go to search and filter page
 
 
 
