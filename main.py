@@ -151,7 +151,7 @@ class MainDriverScript(BaseTestCase):
 
 
     @attr(priority="high")
- #   @SkipTest
+    @SkipTest
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
 
         # Click on Create asset
@@ -292,7 +292,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
         sleep(2)
-        self.assertTrue(state)
+        self.assertTrue(state, "Error message is not displayed for First Name")
 
     @attr(priority="high")
     def test_AS_30_To_Click_On_Save_Without_LastName_Asset_ContactInfo_Field(self):
@@ -309,7 +309,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
         sleep(2)
-        self.assertTrue(state)
+        self.assertTrue(state, "Error message is not displayed for Last Name")
 
 
     @attr(priority="high")
@@ -327,7 +327,7 @@ class MainDriverScript(BaseTestCase):
         sleep(2)
         self.driver.find_element_by_link_text("Assets").click()
         regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(email, regex)
+        self.assertRegexpMatches(email, regex, "Expected and actual value is not matching for EMAIL")
 
 
     @attr(priority="high")
@@ -340,11 +340,11 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath("//input[@placeholder='Email']").clear()
         self.driver.find_element_by_xpath("//input[@placeholder='Email']").send_keys("testtest")
         self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").click()
-        state =(self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]").is_enabled())
+        state =(self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[6]/small").is_displayed())
         self.driver.find_element_by_xpath(".//*[@id='asset_details_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
         sleep(2)
-        self.assertFalse(state)
+        self.assertFalse(state, "Error message is not displayed for wrong EMAIL")
 
 
     @attr(priority="high")
@@ -372,7 +372,7 @@ class MainDriverScript(BaseTestCase):
         print exp_firstname
         self.driver.find_element_by_link_text("Assets").click()
         regex = re.compile(r'[\w.-@]+\,\s[\w.-@]+')
-        self.assertRegexpMatches(exp_firstname, regex)
+        self.assertRegexpMatches(exp_firstname, regex, "Expected and actual value is not matching for First Name")
 
     @attr(priority="high")
     def test_AS_34_To_Click_On_Save_With_Title_Asset_ContactInfo_Field(self):
@@ -401,7 +401,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
         title = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]").text
         self.driver.find_element_by_link_text("Assets").click()
-        self.assertEqual("Title", title)
+        self.assertEqual("Title", title, "Expected and actual value is not matching for Title")
 
     @attr(priority="high")
     def test_AS_35_To_Click_On_Save_With_Phone_Asset_ContactInfo_Field(self):
@@ -428,7 +428,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
         phone = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]").text
         self.driver.find_element_by_link_text("Assets").click()
-        self.assertEqual("111-222-9999", phone)
+        self.assertEqual("111-222-9999", phone, "Expected and actual value is not matching for Phone")
 
     @attr(priority="high")
     def test_AS_36_To_Click_On_Save_With_Email_Asset_ContactInfo_Field(self):
@@ -456,7 +456,7 @@ class MainDriverScript(BaseTestCase):
         email = self.driver.find_element_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]").text
         self.driver.find_element_by_link_text("Assets").click()
         regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(email, regex)
+        self.assertRegexpMatches(email, regex, "Expected and actual value is not matching for EMAIL")
 
     @attr(priority="high")
     #@SkipTest
@@ -484,7 +484,7 @@ class MainDriverScript(BaseTestCase):
         state =(self.driver.find_element_by_xpath("//*[@id='asset_contact_error']/div[6]//small").is_displayed())
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
-        self.assertTrue(state)
+        self.assertTrue(state, "Error message is not displayed for wrong EMAIL address.")
 
     @attr(priority="high")
     #SkipTest
@@ -506,10 +506,10 @@ class MainDriverScript(BaseTestCase):
         try:
             self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed()
             self.driver.find_element_by_link_text("Assets").click()
-            self.assertFalse("Fail")
+            self.assertFalse("Contact not deleted")
         except NoSuchElementException:
             self.driver.find_element_by_link_text("Assets").click()
-            self.assertTrue("Pass")
+            self.assertTrue("Contact has been deleted")
 
     @attr(priority="high")
     def test_AS_39_To_Click_On_Save_Address_Asset_ContactInfo_Field(self):
@@ -551,9 +551,9 @@ class MainDriverScript(BaseTestCase):
         act_address_2 = self.driver.find_element_by_xpath("//tr[@ng-if='main_contact.address.address2']//td[contains(@class,'tableitemvalue ng-binding')]").text
         act_city =  self.driver.find_element_by_xpath("//tr[@ng-if='main_contact.address.state']//td[contains(@class,'tableitemvalue ng-binding')]").text
         self.driver.find_element_by_link_text("Assets").click()
-        self.assertEqual(address_1, act_address_1)
-        self.assertEqual (address_2, act_address_2)
-        self.assertEqual(exp_city, act_city)
+        self.assertEqual(address_1, act_address_1, "Address 1 is not matching")
+        self.assertEqual (address_2, act_address_2, "Address 2 is not matching")
+        self.assertEqual(exp_city, act_city, "City is not Matching")
         sleep(2)
 
     @attr(priority="high")
@@ -581,7 +581,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
         sleep(2)
-        self.assertTrue(state)
+        self.assertTrue(state, "Error message is not displayed for wrong State")
 
     @attr(priority="high")
     def test_AS_41_To_Click_On_Save_Wrong_Zip_1_Asset_ContactInfo_Field(self):
@@ -608,7 +608,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
         sleep(2)
-        self.assertTrue(state)
+        self.assertTrue(state, "Error message is not displayed for wrong zip code")
 
     @attr(priority="high")
     def test_AS_42_To_Click_On_Save_Wrong_Zip_2_Asset_ContactInfo_Field(self):
@@ -635,7 +635,7 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
         self.driver.find_element_by_link_text("Assets").click()
         sleep(2)
-        self.assertTrue(state)
+        self.assertTrue(state, "Error message is not displayed for wrong zip code")
 
     @attr(priority="high")
     def test_AS_43_To_Click_On_Save_With_Prefix_Asset_ContactInfo_Field(self):
@@ -663,6 +663,34 @@ class MainDriverScript(BaseTestCase):
         prefix = self.driver.find_element_by_xpath("//div[@id='form_main_contact']//div//table//tbody/tr//td//span[text()='Name']/../following-sibling::td").text
         self.driver.find_element_by_link_text("Assets").click()
         self.assertEqual("Prefix", (prefix.split())[0], "Prefix value is not matching")
+
+    @attr(priority="high")
+    def test_AS_44_To_Click_On_Cancel_Asset_ContactInfo_Field(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(2)
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[1]").click()
+        try:
+            state = self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal_title']").is_displayed()
+            self.driver.find_element_by_link_text("Assets").click()
+            self.assertFalse(state, "Asset Contact Window not Closed.")
+        except NoSuchElementException:
+            self.driver.find_element_by_link_text("Assets").click()
+            self.assertTrue("Pass", "Asset Contact Window has been Closed.")
+
+    @attr(priority="high")
+    def test_AS_45_
+
+
 
     @attr(priority="high")
 #    @SkipTest
