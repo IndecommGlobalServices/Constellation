@@ -4,18 +4,10 @@ from pages.loginpage import LoginPage
 
 cwd = os.getcwd()
 os.chdir('..')
-login_file_path = os.path.join(os.getcwd(), "data\json_filterAssets.json")
 filterPlaceasset_filepath = os.path.join(os.getcwd(), "data\json_filterAssets.json")
 filterSchoolasset_filepath = os.path.join(os.getcwd(), "data\json_filterSchoolAssets.json")
 os.chdir(cwd)
 
-def getLoginData(self):
-    loginpage = LoginPage(self.driver)
-    with open(login_file_path) as data_file:
-        data_text = json.load(data_file)
-        for each in data_text:
-            usernameText = each["username"]
-            passwordText = each["password"]
 
 def getFilterData(self):
     assetpage = AssetPage(self.driver)
