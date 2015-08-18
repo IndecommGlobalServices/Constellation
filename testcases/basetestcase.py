@@ -5,19 +5,23 @@ from time import sleep
 from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
-from ddt import ddt, data, unpack
+
+#from pyvirtualdisplay import Display
 import json
 
 
 SCREEN_DUMP_LOCATION = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'screendumps')
-L1 = os.path.abspath('data/json_login.json')
 
-#@ddt
+cwd = os.getcwd()
+os.chdir('..')
+L1 = os.path.join(os.getcwd(), "data\json_login.json")
+os.chdir(cwd)
+
 class BaseTestCase(unittest.TestCase):
     @classmethod
-    #@data(loginData.get_data("data/loginData1.csv"))
-    #@unpack
     def setUpClass(self):
+    #    display = Display(visible=0, size=(1024,768))
+    #    display.start()
         # create a new Firefox session
         self.driver = webdriver.Firefox()
         self.driver.implicitly_wait(30)
