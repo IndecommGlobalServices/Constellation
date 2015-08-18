@@ -46,20 +46,20 @@ class AssetPage(BasePage):
 
 
     @property
-    def select_action_drop_down(cls):
-        return cls.driver.find_element_by_xpath(cls._select_action_delete_click_xpath_locator)
+    def select_action_drop_down(self):
+        return self.driver.find_element_by_xpath(self._select_action_delete_click_xpath_locator)
 
     @property
-    def click_delete_text(cls):
-        return cls.driver.find_element_by_xpath(cls._click_delete_text_xpath_locator)
+    def click_delete_text(self):
+        return self.driver.find_element_by_xpath(self._click_delete_text_xpath_locator)
 
     @property
-    def display_place_type_drop_down(cls):
-        return cls.driver.find_element_by_xpath(cls._asset_place_type_drop_down_locator)
+    def display_place_type_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_locator)
 
     @property
-    def display_school_district_drop_down(cls):
-        return cls.driver.find_element_by_xpath(cls._asset_school_district_drop_down_locator)
+    def display_school_district_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
 
     def select_checkbox_in_grid(self):
         assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
@@ -72,12 +72,12 @@ class AssetPage(BasePage):
             sleep(1)
             asset_checkbox.click()
 
-    def asset_filter_based_on_place_and_school(cls, assetType):
+    def asset_filter_based_on_place_and_school(self, assetType):
 
-        cls.driver.find_element_by_xpath(cls._asset_filter_drop_down_locator).click()
-        cls.driver.find_element_by_link_text(assetType).click()
+        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
+        self.driver.find_element_by_link_text(assetType).click()
 
-        assetsType = cls.driver.find_elements_by_xpath(cls._asset_list_locator)
+        assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
 
 
@@ -187,9 +187,9 @@ class AssetPage(BasePage):
         sleep(20)
 
 
-    def _validate_page(cls, driver):
+    def _validate_page(self, driver):
         try:
-            driver.find_element_by_xpath(cls._select_action_delete_click_xpath_locator)
+            driver.find_element_by_xpath(self._select_action_delete_click_xpath_locator)
         except:
             raise InvalidPageException("Select Action drop down not found.")
 
