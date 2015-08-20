@@ -5,7 +5,8 @@ from time import sleep
 from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
-
+from selenium.webdriver.support.events import EventFiringWebDriver
+from selenium.webdriver.support.events import AbstractEventListener
 
 #from pyvirtualdisplay import Display
 import json

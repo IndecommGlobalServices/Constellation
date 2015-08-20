@@ -4,6 +4,7 @@ from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
+from time import sleep
 
 
 class AssetPageTest(BaseTestCase):
@@ -34,21 +35,38 @@ class AssetPageTest(BaseTestCase):
         getSchoolFilterData(self)
         self.assertTrue(assetpage.display_school_district_drop_down.is_displayed(), "Invalid filter")
 
+    @attr(priority="high")
+    def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
+        resetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/button")
+        resetFilter.click()
+        expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
+        self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
-    @SkipTest
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create()
+        assetpage.select_asset_type()
+        assetpage.input_asset_fields()
 
-        expected_schoolname = self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text
+        expected_placename = "bb"
+
+        self.assertEqual(expected_placename, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
-        # check new place is created - verifying on Breadcrumb
-        self.assertEqual(assetpage.Place_name, expected_schoolname )
-        # go to search and filter page
-        #sleep(20)
+        sleep(5)
+        table = self.driver.find_element_by_xpath(".//*[@id='main_content']")
+        sleep(5)
+        rows = table.find_elements_by_tag_name("tr")
+        sleep(5)
+        self.assertIn('bb' + ' Place', [row.text for row in rows])
 
+    @attr(priority="high")
+    def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
 
+        table = self.driver.find_element_by_xpath(".//*[@id='main_content']")
+        rows = table.find_elements_by_tag_name("tr")
+        self.assertIn('aa' + ' Place' , [row.text for row in rows])
+        #self.assertEqual("rgba(255, 236, 158, 1)", [row.value_of_css_property("background-color") for row in rows])
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
