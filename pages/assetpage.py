@@ -26,6 +26,22 @@ class AssetPage(BasePage):
     # New Asset creation related
     _asset_create_asset = "//img[@alt='Create asset']"
 
+    # Place and School - Creation mode related
+    _asset_type_field_name_text_box_locator = "//input[@ng-model='model']"
+    _asset_type_field_address_text_box_locator = "//input[@ng-model='asset_edit.address.address1']"
+    _asset_type_field_address2_text_box_locator = "//input[@ng-model='asset_edit.address.address2']"
+    _asset_type_field_city_text_box_locator = "//input[@ng-model='asset_edit.address.city']"
+    _asset_type_field_state_text_box_locator = "//input[@ng-model='asset_edit.address.state']"
+    _asset_type_field_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
+    _asset_type_field_owner_text_box_locator = "//input[@placeholder='Owner']"
+    _asset_type_field_phone_text_box_locator = "span > div.forminputfields > input[name=\"phone\"]"
+    #_asset_type_field_type_drop_down_locator = "//div[@key='overview.type']"
+    _asset_type_field_type_drop_down_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li[2]/a"
+    _asset_type_field_district_drop_down_locator = "//div[@key='overview.district']"
+    _asset_type_field_grade_drop_down_locator = "//div[@key='overview.grade']"
+
+    _asset_type_cancel_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
+    _asset_type_save_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
 
 
 
@@ -46,20 +62,75 @@ class AssetPage(BasePage):
 
 
     @property
-    def select_action_drop_down(cls):
-        return cls.driver.find_element_by_xpath(cls._select_action_delete_click_xpath_locator)
+    def select_action_drop_down(self):
+        return self.driver.find_element_by_xpath(self._select_action_delete_click_xpath_locator)
 
     @property
-    def click_delete_text(cls):
-        return cls.driver.find_element_by_xpath(cls._click_delete_text_xpath_locator)
+    def click_delete_text(self):
+        return self.driver.find_element_by_xpath(self._click_delete_text_xpath_locator)
 
     @property
-    def display_place_type_drop_down(cls):
-        return cls.driver.find_element_by_xpath(cls._asset_place_type_drop_down_locator)
+    def display_place_type_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_locator)
 
     @property
-    def display_school_district_drop_down(cls):
-        return cls.driver.find_element_by_xpath(cls._asset_school_district_drop_down_locator)
+    def display_school_district_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
+
+
+    @property
+    def enter_asset_type_name(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_name_text_box_locator)
+
+    @property
+    def enter_asset_type_address(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_address_text_box_locator)
+
+    @property
+    def enter_asset_type_address2(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_address2_text_box_locator)
+
+    @property
+    def enter_asset_type_city(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_city_text_box_locator)
+
+    @property
+    def enter_asset_type_state(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_state_text_box_locator)
+
+    @property
+    def enter_asset_type_zip(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_zip_text_box_locator)
+
+    @property
+    def enter_asset_type_owner(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_owner_text_box_locator)
+
+    @property
+    def enter_asset_type_phone(self):
+        return self.driver.find_element_by_css_selector(self._asset_type_field_phone_text_box_locator)
+
+    @property
+    def select_asset_type_type(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_type_drop_down_locator)
+
+    @property
+    def select_asset_type_district(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_district_drop_down_locator)
+
+    @property
+    def select_asset_type_grade(self):
+        return self.driver.find_element_by_xpath(self._asset_type_field_grade_drop_down_locator)
+
+    @property
+    def click_asset_type_cancel(self):
+        return self.driver.find_element_by_xpath(self._asset_type_cancel_button_locator)
+
+    @property
+    def click_asset_type_save(self):
+        return self.driver.find_element_by_xpath(self._asset_type_save_button_locator)
+
+
 
     def select_checkbox_in_grid(self):
         assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
@@ -71,13 +142,19 @@ class AssetPage(BasePage):
         for asset_checkbox in assets_checkbox:
             sleep(1)
             asset_checkbox.click()
+    '''
+    def display_asset_names_in_grid(self):
+        assets_name = self.driver.find_elements_by_xpath(self._asset_list_asset_name_locator)
+        sleep(2)
+        for asset_name in assets_name:
+    '''
 
-    def asset_filter_based_on_place_and_school(cls, assetType):
+    def asset_filter_based_on_place_and_school(self, assetType):
 
-        cls.driver.find_element_by_xpath(cls._asset_filter_drop_down_locator).click()
-        cls.driver.find_element_by_link_text(assetType).click()
+        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
+        self.driver.find_element_by_link_text(assetType).click()
 
-        assetsType = cls.driver.find_elements_by_xpath(cls._asset_list_locator)
+        assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
 
 
@@ -85,35 +162,59 @@ class AssetPage(BasePage):
         # Click on Create asset
         clickCreateAsset = self.driver.find_element_by_xpath(self._asset_create_asset)
         clickCreateAsset.click()
-        sleep(12)
+        sleep(10)
         # switch to new window
         self.driver.switch_to.active_element
-
-
         # Verify title "Asset overview" window
-        Create_Asset_Title = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
-        sleep(2)
-        print("Asset overview", Create_Asset_Title)
+        self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
+        #sleep(2)
+        #print("Asset overview", Create_Asset_Title)
 
+    def select_asset_type(self):
         # Select Place from the dropdown to create new place asset
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("Place").click()
         sleep(10)
 
+
+    def input_asset_fields(self):
+
         # Verify that all the controls displayed related to Place asset
         # 1. Name, 2. Address, 3. Address2, 4. City, 5. State, 6. Zip, 7. Owner, 8. Phone, 9. Type, 10. Cancel, 11. Save
+        asset_name = "bb"
+        asset_address = "Indecomm"
+        asset_address2 = "MG Road"
+        asset_city = "Bangalore"
+        asset_state = "KA"
+        asset_zip = "56009"
+        asset_owner = "kiran"
 
-        place_name = self.driver.find_element_by_xpath("//input[@ng-model='model']")
-        place_address = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address1']")
-        place_address2 = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address2']")
-        place_city = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.city']")
-        place_state = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.state']")
-        place_zip = self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.zip']")
-        place_owner = self.driver.find_element_by_xpath("//input[@placeholder='Owner']")
-        place_phone = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/div[3]/input")
-        place_type = self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/button[2]")
-        place_cancel = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]")
-        place_save = self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]")
+        self.enter_asset_type_name.send_keys(asset_name)
+        self.enter_asset_type_name.send_keys(Keys.TAB)
+        sleep(2)
+        self.enter_asset_type_address.send_keys(asset_address)
+        self.enter_asset_type_address.send_keys(Keys.TAB)
+        sleep(2)
+        self.enter_asset_type_address2.send_keys(asset_address2)
+        self.enter_asset_type_address2.send_keys(Keys.TAB)
+        sleep(2)
+        self.enter_asset_type_city.send_keys(asset_city)
+        self.enter_asset_type_city.send_keys(Keys.TAB)
+        sleep(2)
+        self.enter_asset_type_state.send_keys(asset_state)
+        self.enter_asset_type_state.send_keys(Keys.TAB)
+        sleep(2)
+        self.enter_asset_type_zip.send_keys(asset_zip)
+        self.enter_asset_type_zip.send_keys(Keys.TAB)
+        sleep(2)
+        self.enter_asset_type_owner.send_keys(asset_owner)
+        self.enter_asset_type_owner.send_keys(Keys.TAB)
+        sleep(2)
+        #self.select_asset_type_type.click()
+        #sleep(2)
+        self.click_asset_type_save.click()
+        sleep(2)
+
 
         '''
         # check all fields are enabled
@@ -130,66 +231,12 @@ class AssetPage(BasePage):
                         and place_save.is_enabled())
         '''
 
-        fake = Factory.create()
-        # fill out the fields
-        #place_name.send_keys(self.Place_name)
-
-        place_name.send_keys("kk validation")
-        place_name.send_keys(Keys.TAB)
-        sleep(2)
-        # switch to the alert
-        #alert = self.driver.switch_to().alert
-
-        # get the text from alert
-        #alert_text = alert.text
-
-        # check alert text
-        #self.assertEqual("Would you like to share your location with constellation-dev.haystax.com?", alert_text)
-
-        # click on close button
-        #alert.dismiss()
-
-        place_address.send_keys(fake.address())
-        #place_address.send_keys("indecomm")
-        place_address.send_keys(Keys.TAB)
-        sleep(2)
-        place_address2.send_keys(fake.secondary_address())
-        #place_address2.send_keys("MG Road")
-        place_address2.send_keys(Keys.TAB)
-        sleep(2)
-        #place_city.send_keys("Bangalore")
-        place_city.send_keys(fake.city())
-        place_city.send_keys(Keys.TAB)
-        sleep(2)
-        #place_state.send_keys("KA")
-        place_state.send_keys(fake.state_abbr())
-        place_state.send_keys(Keys.TAB)
-        sleep(2)
-        #place_zip.send_keys("56009")
-        place_zip.send_keys(fake.zipcode())
-        place_zip.send_keys(Keys.TAB)
-        sleep(2)
-        #place_phone.send_keys("994-550-8652")
-        place_phone.send_keys(fake.phone_number())
-        place_phone.send_keys(Keys.TAB)
-        sleep(2)
-        #place_owner.send_keys("indecomm")
-        #place_owner.send_keys(fake.domain_name())
-        #place_owner.send_keys(validate_email("kk@indecomm.net"))
-        place_owner.send_keys(Keys.TAB)
-        sleep(2)
-        # Type selection
-        place_type.click()
-        self.driver.find_element_by_xpath(".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li[2]/a").click()
-        sleep(2)
-        # Click SAVE button to save the form
-        place_save.click()
-        sleep(20)
 
 
-    def _validate_page(cls, driver):
+
+    def _validate_page(self, driver):
         try:
-            driver.find_element_by_xpath(cls._select_action_delete_click_xpath_locator)
+            driver.find_element_by_xpath(self._select_action_delete_click_xpath_locator)
         except:
             raise InvalidPageException("Select Action drop down not found.")
 

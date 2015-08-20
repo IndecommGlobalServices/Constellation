@@ -1,5 +1,13 @@
 from lib.base import BasePage
 from lib.base import InvalidPageException
+import json, os
+from time import sleep
+
+
+cwd = os.getcwd()
+os.chdir('..')
+L1 = os.path.join(os.getcwd(), "data\json_login.json")
+os.chdir(cwd)
 
 class LoginPage(BasePage):
     _email_input_id_locator     = "inputusername"
@@ -20,6 +28,27 @@ class LoginPage(BasePage):
     @property
     def login(cls):
         return cls.driver.find_element_by_xpath(cls._login_click_xpath_locator)
+
+    def loginDashboard(self):
+        #loginpage = LoginPage(self.driver)
+        with open(L1) as data_file:
+            data_text = json.load(data_file)
+
+            for each in data_text:
+                usernameText = each["username"]
+                passwordText = each["password"]
+                #loginpage.email.send_keys("Deepa.Sivadas@indecomm.net")
+                self.email.send_keys(usernameText)
+                #loginpage.password.send_keys("myhaystax")
+                self.password.send_keys(passwordText)
+                #loginpage.password.send_keys(pwd)
+                self.login.click()
+                #self.assertEqual("https://constellation-dev.haystax.com/apps/#", self.driver.current_url)
+                sleep(10)
+                # click on Assets
+                lnkAssets_field = self.driver.find_element_by_id("app_assets")
+                lnkAssets_field.click()
+                sleep(10)
 
 
     def _validate_page(cls, driver):

@@ -5,17 +5,19 @@ from time import sleep
 from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
+from selenium.webdriver.support.events import EventFiringWebDriver
+from selenium.webdriver.support.events import AbstractEventListener
 
 #from pyvirtualdisplay import Display
 import json
 
-
-SCREEN_DUMP_LOCATION = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'screendumps')
-
 cwd = os.getcwd()
 os.chdir('..')
-L1 = os.path.join(os.getcwd(), "data\json_login.json")
+SCREEN_DUMP_LOCATION = os.path.join(os.getcwd(), "creenshots")
 os.chdir(cwd)
+
+
+
 
 class BaseTestCase(unittest.TestCase):
     @classmethod
@@ -32,28 +34,13 @@ class BaseTestCase(unittest.TestCase):
 
         homepage = HomePage(self.driver)
         homepage.loginlink.click()
-        #self.assertEqual("https://constellation-dev.haystax.com/#/login", self.driver.current_url)
-        loginpage = LoginPage(self.driver)
 
         print "Getting Login data from Json"
-        with open(L1) as data_file:
-            data_text = json.load(data_file)
 
-            for each in data_text:
-                usernameText = each["username"]
-                passwordText = each["password"]
-                #loginpage.email.send_keys("Deepa.Sivadas@indecomm.net")
-                loginpage.email.send_keys(usernameText)
-                #loginpage.password.send_keys("myhaystax")
-                loginpage.password.send_keys(passwordText)
-                #loginpage.password.send_keys(pwd)
-                loginpage.login.click()
-                #self.assertEqual("https://constellation-dev.haystax.com/apps/#", self.driver.current_url)
-                sleep(10)
-                # click on Assets
-                lnkAssets_field = self.driver.find_element_by_id("app_assets")
-                lnkAssets_field.click()
-                sleep(10)
+        loginpage = LoginPage(self.driver)
+        loginpage.loginDashboard()
+
+
 
     @classmethod
     def tearDownClass(self):
@@ -66,11 +53,14 @@ class BaseTestCase(unittest.TestCase):
                 self.driver.switch_to_window(handle)
                 self.take_screenshot()
                 self.dump_html()
-        '''
+
         #st = datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
+
+        '''
         st = datetime.now().isoformat().replace(':', '.')[:19]
         file_name = "Screenshot " + st + ".png"
         self.driver.save_screenshot(file_name)
+
 
         # close the browser
         self.driver.quit()
