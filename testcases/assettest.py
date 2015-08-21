@@ -46,27 +46,35 @@ class AssetPageTest(BaseTestCase):
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create()
-        assetpage.select_asset_type()
+        assetpage.select_place_asset_template_type()
+
         assetpage.input_asset_fields()
+        assetpage.asset_save()
 
         expected_placename = "bb"
 
         self.assertEqual(expected_placename, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
-        sleep(5)
-        table = self.driver.find_element_by_xpath(".//*[@id='main_content']")
-        sleep(5)
-        rows = table.find_elements_by_tag_name("tr")
-        sleep(5)
-        self.assertIn('bb' + ' Place', [row.text for row in rows])
+
 
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
 
         table = self.driver.find_element_by_xpath(".//*[@id='main_content']")
         rows = table.find_elements_by_tag_name("tr")
-        self.assertIn('aa' + ' Place' , [row.text for row in rows])
+        self.assertIn('bb' + ' Place' , [row.text for row in rows])
         #self.assertEqual("rgba(255, 236, 158, 1)", [row.value_of_css_property("background-color") for row in rows])
+
+    @attr(priority="high")
+    def test_AS_18_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.asset_create()
+        assetpage.select_place_asset_template_type()
+        assetpage.input_asset_fields()
+        assetpage.asset_cancel()
+
+        expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
+        self.assertEqual("Asset Type",expectedAfterResetFilter)
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
