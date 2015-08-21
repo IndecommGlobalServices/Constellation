@@ -688,7 +688,144 @@ class MainDriverScript(BaseTestCase):
             self.assertTrue("Pass", "Asset Contact Window has been Closed.")
 
     @attr(priority="high")
-    def test_AS_45_
+    def test_AS_45_Name_With_No_Value_Asset_Overview(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(8)
+        self.driver.find_element_by_xpath("//div[contains(text(),'Overview')]/div/img").click()
+        self.driver.find_element_by_name("name").clear()
+        state = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]").is_enabled()
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/div/button").click()
+        self.driver.find_element_by_link_text("Assets").click()
+        self.assertFalse(state, "Save button is enabled.")
+
+    @attr(priority="high")
+    def test_AS_46_State_With_Wrong_Value_1_Asset_Overview(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(8)
+        self.driver.find_element_by_xpath("//div[contains(text(),'Overview')]/div/img").click()
+        self.driver.find_element_by_xpath("//div[@aria-hidden='false']//input[@placeholder='State']").clear()
+        self.driver.find_element_by_xpath("//div[@aria-hidden='false']//input[@placeholder='State']").send_keys(12)
+        sleep(3)
+        state = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]").is_enabled()
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/div/button").click()
+        self.driver.find_element_by_link_text("Assets").click()
+        self.assertFalse(state, "Save button is enabled.")
+
+    @attr(priority="high")
+    def test_AS_47_State_With_Wrong_Value_2_Asset_Overview(self):
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(8)
+        self.driver.find_element_by_xpath("//div[contains(text(),'Overview')]/div/img").click()
+        self.driver.find_element_by_xpath("//div[@aria-hidden='false']//input[@placeholder='State']").clear()
+        self.driver.find_element_by_xpath("//div[@aria-hidden='false']//input[@placeholder='State']").send_keys("aaaaa")
+        sleep(3)
+        state = self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]").is_enabled()
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/div/button").click()
+        self.driver.find_element_by_link_text("Assets").click()
+        self.assertFalse(state, "Save button is enabled.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_48_Asset_School_Overview_All_Field(self):
+        school_name = r"Preston Hall Middle School"
+        address_1 = r"605 Main St"
+        address_2 = r"12th Cross"
+        city = r"Waitsburg"
+        state = r"WA"
+        zip_code = r"94821"
+        phone = r"111-111-1111"
+        grade = r"Grade"
+        district = r"Dist"
+        school_type = r"Type"
+        owner = r"Indecomm"
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(8)
+        self.driver.find_element_by_xpath("//div[contains(text(),'Overview')]/div/img").click()
+        self.driver.find_element_by_name("name").clear()
+        self.driver.find_element_by_name("name").send_keys(school_name,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address1']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address1']").send_keys(address_1,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address2']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address2']").send_keys(address_2,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.city']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.city']").send_keys(city,Keys.TAB )
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.state']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.state']").send_keys(state,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.zip']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.zip']").send_keys(zip_code,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.phone']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.phone']").send_keys(phone)
+        self.driver.find_element_by_xpath("//div[@label='District']//button[@data-toggle='dropdown']").click()
+        self.driver.find_element_by_xpath("//div[@label='District']//button[@data-toggle='dropdown']").send_keys(Keys.TAB, district, Keys.TAB, Keys.ENTER)
+        self.driver.find_element_by_xpath("//div[@label='Grade']//button[@data-toggle='dropdown']").click()
+        self.driver.find_element_by_xpath("//div[@label='Grade']//button[@data-toggle='dropdown']").send_keys(Keys.TAB, grade, Keys.TAB, Keys.ENTER)
+        self.driver.find_element_by_xpath("//input[@placeholder='Owner']").clear()
+        self.driver.find_element_by_xpath("//input[@placeholder='Owner']").send_keys(owner)
+        self.driver.find_element_by_xpath("(//div[@label='Type']//button[@data-toggle='dropdown'])[2]").click()
+        self.driver.find_element_by_xpath("(//div[@label='Type']//button[@data-toggle='dropdown'])[2]").send_keys(Keys.TAB, school_type, Keys.TAB, Keys.ENTER)
+        self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]").click()
+        sleep(2)
+        act_school_name = self.driver.find_element_by_xpath("//table/tbody/tr[@ng-show='asset.overview.name']//td[contains(@class,'tableitemvalue')]").text
+        act_address  = self.driver.find_element_by_xpath("//table/tbody/tr[contains(@ng-if,'overview.address')]//td[contains(@class,'tableitemvalue')]").text
+        act_phone = self.driver.find_element_by_xpath("//td//span[text()='Phone']/../following-sibling::td").text
+        act_district = self.driver.find_element_by_xpath("//td//span[text()='District']/../following-sibling::td").text
+        act_grade = self.driver.find_element_by_xpath("//td//span[text()='Grade']/../following-sibling::td").text
+        act_owner = self.driver.find_element_by_xpath("//td//span[text()='Owner']/../following-sibling::td").text
+        act_type = self.driver.find_element_by_xpath("//td//span[text()='Type']/../following-sibling::td").text
+        act_overview = str(act_school_name)+" "+str(" ".join(act_address.splitlines()))+" "+str(act_phone)+" "+str(act_district)+" "+str(act_grade)+" "+str(act_owner)+" "+str(act_type)
+        exp_overview = (school_name+" "+address_1+" "+address_2+" "+city+", "+state+"  "+zip_code+" "+phone+" "+district+" "+grade+" "+owner+" "+school_type)
+        self.driver.find_element_by_link_text("Assets").click()
+        self.assertEqual(act_overview, exp_overview, "Overview information are not macthing")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_48_Asset_Place_Overview_All_Field(self):
+        place_name = r"Preston Hall Middle Place"
+        address_1 = r"605 Main St"
+        address_2 = r"12th Cross"
+        city = r"Waitsburg"
+        state = r"WA"
+        zip_code = r"94821"
+        phone = r"111-111-1111"
+        place_type = r"Type"
+        owner = r"Indecomm"
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(8)
+        self.driver.find_element_by_xpath("//div[contains(text(),'Overview')]/div/img").click()
+        self.driver.find_element_by_name("name").clear()
+        self.driver.find_element_by_name("name").send_keys(place_name,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address1']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address1']").send_keys(address_1,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address2']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.address2']").send_keys(address_2,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.city']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.city']").send_keys(city,Keys.TAB )
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.state']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.state']").send_keys(state,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.zip']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.address.zip']").send_keys(zip_code,Keys.TAB)
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.phone']").clear()
+        self.driver.find_element_by_xpath("//input[@ng-model='asset_edit.phone']").send_keys(phone)
+        self.driver.find_element_by_xpath("//input[@placeholder='Owner']").clear()
+        self.driver.find_element_by_xpath("//input[@placeholder='Owner']").send_keys(owner)
+        self.driver.find_element_by_xpath("(//div[@label='Type']//button[@data-toggle='dropdown'])[2]").click()
+        self.driver.find_element_by_xpath("(//div[@label='Type']//button[@data-toggle='dropdown'])[2]").send_keys(Keys.TAB, place_type, Keys.TAB, Keys.ENTER)
+        self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]").click()
+        sleep(2)
+        act_place_name = self.driver.find_element_by_xpath("//table/tbody/tr[@ng-show='asset.overview.name']//td[contains(@class,'tableitemvalue')]").text
+        act_address  = self.driver.find_element_by_xpath("//table/tbody/tr[contains(@ng-if,'overview.address')]//td[contains(@class,'tableitemvalue')]").text
+        act_phone = self.driver.find_element_by_xpath("//td//span[text()='Phone']/../following-sibling::td").text
+        act_owner = self.driver.find_element_by_xpath("//td//span[text()='Owner']/../following-sibling::td").text
+        act_type = self.driver.find_element_by_xpath("//td//span[text()='Type']/../following-sibling::td").text
+        act_overview = str(act_place_name)+" "+str(" ".join(act_address.splitlines()))+" "+str(act_phone)+" "+str(act_owner)+" "+str(act_type)
+        exp_overview = (place_name+" "+address_1+" "+address_2+" "+city+", "+state+"  "+zip_code+" "+phone+" "+owner+" "+place_type)
+        self.driver.find_element_by_link_text("Assets").click()
+        self.assertEqual(act_overview, exp_overview, "Overview information are not macthing")
 
 
 
