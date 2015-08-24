@@ -27,21 +27,20 @@ class AssetPage(BasePage):
     _asset_create_asset = "//img[@alt='Create asset']"
 
     # Place and School - Creation mode related
-    _asset_type_field_name_text_box_locator = "//input[@ng-model='model']"
+    _asset_type_field_name_text_box_locator = "name"
     _asset_type_field_address_text_box_locator = "//input[@ng-model='asset_edit.address.address1']"
     _asset_type_field_address2_text_box_locator = "//input[@ng-model='asset_edit.address.address2']"
     _asset_type_field_city_text_box_locator = "//input[@ng-model='asset_edit.address.city']"
     _asset_type_field_state_text_box_locator = "//input[@ng-model='asset_edit.address.state']"
     _asset_type_field_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
     _asset_type_field_owner_text_box_locator = "//input[@placeholder='Owner']"
-    _asset_type_field_phone_text_box_locator = "span > div.forminputfields > input[name=\"phone\"]"
-    #_asset_type_field_type_drop_down_locator = "//div[@key='overview.type']"
-    _asset_type_field_type_drop_down_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li[2]/a"
-    _asset_type_field_district_drop_down_locator = "//div[@key='overview.district']"
-    _asset_type_field_grade_drop_down_locator = "//div[@key='overview.grade']"
+    _asset_type_field_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
+    _asset_type_field_type_drop_down_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
+    _asset_type_field_district_drop_down_locator = "//div[@label='District']//button[@data-toggle='dropdown']"
+    _asset_type_field_grade_drop_down_locator = "//div[@label='Grade']//button[@data-toggle='dropdown']"
 
-    _asset_type_cancel_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
-    _asset_type_save_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
+    _asset_type_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
+    _asset_type_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
 
 
 
@@ -80,7 +79,7 @@ class AssetPage(BasePage):
 
     @property
     def enter_asset_type_name(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_name_text_box_locator)
+        return self.driver.find_element_by_name(self._asset_type_field_name_text_box_locator)
 
     @property
     def enter_asset_type_address(self):
@@ -170,16 +169,22 @@ class AssetPage(BasePage):
         #sleep(2)
         #print("Asset overview", Create_Asset_Title)
 
-    def select_asset_type(self):
+    def select_place_asset_template_type(self):
         # Select Place from the dropdown to create new place asset
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("Place").click()
-        sleep(10)
+        sleep(4)
+
+    def select_school_asset_template_type(self):
+        # Select Place from the dropdown to create new place asset
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
+        self.driver.find_element_by_link_text("School").click()
+        sleep(4)
 
 
     def input_asset_fields(self):
 
-        # Verify that all the controls displayed related to Place asset
+        # Verify that all the controls displayed related to asset type
         # 1. Name, 2. Address, 3. Address2, 4. City, 5. State, 6. Zip, 7. Owner, 8. Phone, 9. Type, 10. Cancel, 11. Save
         asset_name = "bb"
         asset_address = "Indecomm"
@@ -188,6 +193,7 @@ class AssetPage(BasePage):
         asset_state = "KA"
         asset_zip = "56009"
         asset_owner = "kiran"
+
 
         self.enter_asset_type_name.send_keys(asset_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
@@ -212,10 +218,21 @@ class AssetPage(BasePage):
         sleep(2)
         #self.select_asset_type_type.click()
         #sleep(2)
-        self.click_asset_type_save.click()
+
+    def input_school_asset_fields(self):
+
+        self.select_asset_type_district_type.click()
         sleep(2)
 
 
+
+    def asset_save(self):
+        self.click_asset_type_save.click()
+        sleep(2)
+
+    def asset_cancel(self):
+        self.click_asset_type_cancel.click()
+        sleep(2)
         '''
         # check all fields are enabled
         self.assertTrue(place_name.is_enabled()
