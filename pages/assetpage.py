@@ -42,7 +42,36 @@ class AssetPage(BasePage):
     _asset_type_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
     _asset_type_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
 
+    _asset_points_of_contact_locator = "//div[contains(text(), 'Points of Contact')]"
+    _asset_add_contact_locator = "btn_add_asset_contact"
+    _asset_newcontact_firstname_locator = "first_name"
+    _asset_newcontact_lastname_locator = "last_name"
+    _asset_newcontact_prefix_locator = "//input[@placeholder='Prefix']"
+    _asset_newcontact_title_locator = "//input[@placeholder='Title']"
+    _asset_newcontact_phone_locator = "phone"
+    _asset_newcontact_email_locator = "email"
+    _asset_newcontact_address1_locator = "address"
+    _asset_newcontact_address2_locator = "*//input[@ng-model='contact_edit.address.address2']"
+    _asset_newcontact_city_locator = "*//input[@placeholder='City']"
+    _asset_newcontact_state_locator = "state"
+    _asset_newcontact_zip_locator = "zip"
+    _asset_newcontact_save_locator = ".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]"
+    _asset_newcontact_cancel_locator = ".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[1]"
+    _asset_newcontact_delete_contact_locator = ".//*[@id='contacts_table']/tbody/tr/td[5]/a/img"
+    _asset_newcontact_delete_contact_popup_locator = ".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]"
+    _asset_newcontact_window_popup_cross_button_locator = ".//*[@id='asset_contact_modal']/div/div/div/button"
+    _asset_newcontact_firstname_error_message_locator = ".//*[@id='asset_contact_error']/div[1]/small"
+    _asset_newcontact_lastname_error_message_locator = ".//*[@id='asset_contact_error']/div[2]/small"
+    _asset_newcontact_email_error_message_locator = ".//*[@id='asset_contact_error']/div[6]/small"
+    _asset_newcontact_state_error_message_locator = "//*[@id='asset_contact_error']/div[3]/small"
+    _asset_newcontact_zip_error_message_locator = "//*[@id='asset_contact_error']/div[4]/small"
 
+    _asset_detail_email_locator = "//input[@placeholder='Email']"
+    _asset_detail_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
+
+    _asset_overview_edit_link_locator = "//div[contains(text(),'Overview')]/div/img"
+    _asset_overview_edit_name_locator = "name"
+    _asset_overview_window_popup_cross_button_locator = "//*[@id='asset_overview_modal']/div/div/div/button"
 
     _asset_count = 0
     _assets = {}
@@ -129,6 +158,117 @@ class AssetPage(BasePage):
     def click_asset_type_save(self):
         return self.driver.find_element_by_xpath(self._asset_type_save_button_locator)
 
+    @property
+    def select_asset_points_of_contact(self):
+        return self.driver.find_element_by_xpath(self._asset_points_of_contact_locator)
+
+    @property
+    def select_asset_add_contact(self):
+        return self.driver.find_element_by_id(self._asset_add_contact_locator)
+
+    @property
+    def select_asset_newcontact_firstname(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_firstname_locator)
+
+    @property
+    def select_asset_newcontact_lastname(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_lastname_locator)
+
+    @property
+    def select_asset_newcontact_prefix(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_prefix_locator)
+
+    @property
+    def select_asset_newcontact_title(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_title_locator)
+
+    @property
+    def select_asset_newcontact_phone(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_phone_locator)
+
+    @property
+    def select_asset_newcontact_email(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_email_locator)
+
+    @property
+    def select_asset_newcontact_address1(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_address1_locator)
+
+    @property
+    def select_asset_newcontact_address2(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_address2_locator)
+
+    @property
+    def select_asset_newcontact_city(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_city_locator)
+
+    @property
+    def select_asset_newcontact_state(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_state_locator)
+
+    @property
+    def select_asset_newcontact_zip(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_zip_locator)
+
+    @property
+    def select_asset_newcontact_save(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_save_locator)
+
+    @property
+    def select_asset_newcontact_cancel(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_cancel_locator)
+
+    @property
+    def select_asset_newcontact_delete_icon(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_locator)
+
+    @property
+    def select_asset_newcontact_delete_popup_window(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_popup_locator)
+
+    @property
+    def select_asset_newcontact_window_cross_button(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_window_popup_cross_button_locator)
+
+    @property
+    def check_asset_newcontact_firstname_error_message(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_firstname_error_message_locator)
+
+    @property
+    def check_asset_newcontact_lastname_error_message(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_lastname_error_message_locator)
+
+    @property
+    def check_asset_newcontact_state_error_message(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_state_error_message_locator)
+
+    @property
+    def check_asset_newcontact_zip_error_message(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_zip_error_message_locator)
+
+    @property
+    def check_asset_newcontact_email_error_message(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_email_error_message_locator)
+
+    @property
+    def select_asset_detail_edit_email_text_box(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_email_locator)
+
+    @property
+    def select_asset_detail_edit_save_button(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_save_button_locator)
+
+    @property
+    def select_asset_overview_edit_link(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
+
+    @property
+    def select_asset_overview_edit_name_text_box(self):
+        return self.driver.find_element_by_name(self._asset_overview_edit_name_locator)
+
+    @property
+    def select_asset_overview_window_cross_button(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_window_popup_cross_button_locator)
 
 
     def select_checkbox_in_grid(self):
