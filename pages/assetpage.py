@@ -154,6 +154,7 @@ class AssetPage(BasePage):
         for asset_name in assets_name:
     '''
 
+
     def asset_filter_based_on_place_and_school(self, assetType):
 
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
@@ -175,6 +176,7 @@ class AssetPage(BasePage):
         #sleep(2)
         #print("Asset overview", Create_Asset_Title)
 
+
     def get_schooldata(self):
 
         with open(L1) as data_file:
@@ -191,9 +193,6 @@ class AssetPage(BasePage):
                 self.asset_type = each["asset_type"]
                 self.asset_distrct = each["asset_district"]
                 self.asset_grade = each["asset_grade"]
-
-
-
 
 
     def create_school_asset(self):
@@ -226,9 +225,6 @@ class AssetPage(BasePage):
         sleep(2)
         #self.select_asset_type_type.click()
         #sleep(2)
-
-
-
 
     def asset_save(self):
         self.click_asset_type_save.click()
