@@ -1,4 +1,7 @@
 import unittest
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 from pages.assetpage import AssetPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
@@ -46,9 +49,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create()
-        assetpage.select_place_asset_template_type()
-
-        assetpage.input_asset_fields()
+        assetpage.create_place_asset()
         assetpage.asset_save()
 
         expected_placename = "bb"
@@ -77,6 +78,7 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
+<<<<<<< HEAD
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
         searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
         searchAsset_textbox.clear()
@@ -98,6 +100,16 @@ class AssetPageTest(BaseTestCase):
         sleep(2)
         self.assertTrue(firstname_error, "Error message is not displayed for First Name")
         self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
+=======
+    def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.asset_create()
+        assetpage.create_school_asset()
+        assetpage.asset_save()
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.driver.find_element_by_link_text("Assets").click()
+>>>>>>> c5ab26ee67dcdd1a1c9ba77698cae3f6e0497faf
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)

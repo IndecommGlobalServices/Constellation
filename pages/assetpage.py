@@ -3,7 +3,12 @@ from lib.base import InvalidPageException
 from time import sleep
 from faker import Factory
 from selenium.webdriver.common.keys import Keys
+import os,json
 
+cwd = os.getcwd()
+os.chdir('..')
+L1 = os.path.join(os.getcwd(), "data\json_Schooldata.json")
+os.chdir(cwd)
 
 class AssetPage(BasePage):
     # Asset Delete related locators
@@ -27,7 +32,8 @@ class AssetPage(BasePage):
     _asset_create_asset = "//img[@alt='Create asset']"
 
     # Place and School - Creation mode related
-    _asset_type_field_name_text_box_locator = "name"
+    _asset_type_field_name_text_box_locator = "//input[@ng-model='model']"
+    #_asset_type_field_name_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/div[1]/typeahead/div/input"
     _asset_type_field_address_text_box_locator = "//input[@ng-model='asset_edit.address.address1']"
     _asset_type_field_address2_text_box_locator = "//input[@ng-model='asset_edit.address.address2']"
     _asset_type_field_city_text_box_locator = "//input[@ng-model='asset_edit.address.city']"
@@ -108,7 +114,7 @@ class AssetPage(BasePage):
 
     @property
     def enter_asset_type_name(self):
-        return self.driver.find_element_by_name(self._asset_type_field_name_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_type_field_name_text_box_locator)
 
     @property
     def enter_asset_type_address(self):
@@ -288,6 +294,7 @@ class AssetPage(BasePage):
         for asset_name in assets_name:
     '''
 
+
     def asset_filter_based_on_place_and_school(self, assetType):
 
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
@@ -309,62 +316,55 @@ class AssetPage(BasePage):
         #sleep(2)
         #print("Asset overview", Create_Asset_Title)
 
-    def select_place_asset_template_type(self):
-        # Select Place from the dropdown to create new place asset
-        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
-        self.driver.find_element_by_link_text("Place").click()
-        sleep(4)
 
-    def select_school_asset_template_type(self):
+    def get_schooldata(self):
+
+        with open(L1) as data_file:
+            school_data = json.load(data_file)
+
+            for each in school_data:
+                self.asset_name = each["asset_name"]
+                self.asset_address = each["asset_address"]
+                self.asset_address2 = each["asset_address2"]
+                self.asset_city = each["asset_city"]
+                self.asset_state = each["asset_state"]
+                self.asset_zip = each["asset_zip"]
+                self.asset_owner = each["asset_owner"]
+                self.asset_type = each["asset_type"]
+                self.asset_distrct = each["asset_district"]
+                self.asset_grade = each["asset_grade"]
+
+
+    def create_school_asset(self):
         # Select Place from the dropdown to create new place asset
+        self.get_schooldata()
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("School").click()
         sleep(4)
 
-
-    def input_asset_fields(self):
-
-        # Verify that all the controls displayed related to asset type
-        # 1. Name, 2. Address, 3. Address2, 4. City, 5. State, 6. Zip, 7. Owner, 8. Phone, 9. Type, 10. Cancel, 11. Save
-        asset_name = "bb"
-        asset_address = "Indecomm"
-        asset_address2 = "MG Road"
-        asset_city = "Bangalore"
-        asset_state = "KA"
-        asset_zip = "56009"
-        asset_owner = "kiran"
-
-
-        self.enter_asset_type_name.send_keys(asset_name)
+        self.enter_asset_type_name.send_keys(self.asset_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address.send_keys(asset_address)
+        self.enter_asset_type_address.send_keys(self.asset_address)
         self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address2.send_keys(asset_address2)
+        self.enter_asset_type_address2.send_keys(self.asset_address2)
         self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_city.send_keys(asset_city)
+        self.enter_asset_type_city.send_keys(self.asset_city)
         self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_state.send_keys(asset_state)
+        self.enter_asset_type_state.send_keys(self.asset_state)
         self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_zip.send_keys(asset_zip)
+        self.enter_asset_type_zip.send_keys(self.asset_zip)
         self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_owner.send_keys(asset_owner)
+        self.enter_asset_type_owner.send_keys(self.asset_owner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
         #self.select_asset_type_type.click()
         #sleep(2)
-
-    def input_school_asset_fields(self):
-
-        self.select_asset_type_district_type.click()
-        sleep(2)
-
-
 
     def asset_save(self):
         self.click_asset_type_save.click()
