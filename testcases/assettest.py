@@ -53,7 +53,6 @@ class AssetPageTest(BaseTestCase):
         assetpage.input_asset_fields("kk place", "Indecomm", "MG Road", "Bangalore", "KA","56009", "kiran")
         assetpage.asset_save()
 
-
         expected_placename = "kk place"
 
         self.assertEqual(expected_placename, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
