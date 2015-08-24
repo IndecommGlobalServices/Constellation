@@ -168,7 +168,6 @@ class AssetPage(BasePage):
         assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
 
-
     def asset_create_click(self):
         # Click on Create asset
         clickCreateAsset = self.driver.find_element_by_xpath(self._asset_create_asset)
