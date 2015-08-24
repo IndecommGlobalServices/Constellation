@@ -159,7 +159,6 @@ class AssetPage(BasePage):
         sleep(2)
         for asset_name in assets_name:
     '''
-
     def asset_filter_based_on_place_and_school(self, assetType):
 
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()

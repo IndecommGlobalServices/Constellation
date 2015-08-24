@@ -59,7 +59,6 @@ class AssetPageTest(BaseTestCase):
         #self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
 
-
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
 
