@@ -1,4 +1,7 @@
 import unittest
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 from pages.assetpage import AssetPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
@@ -46,9 +49,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create()
-        assetpage.select_place_asset_template_type()
-
-        assetpage.input_asset_fields()
+        assetpage.create_place_asset()
         assetpage.asset_save()
 
         expected_placename = "bb"
@@ -75,6 +76,16 @@ class AssetPageTest(BaseTestCase):
 
         expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
+
+    @attr(priority="high")
+    def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.asset_create()
+        assetpage.create_school_asset()
+        assetpage.asset_save()
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.driver.find_element_by_link_text("Assets").click()
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
