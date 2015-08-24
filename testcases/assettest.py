@@ -5,7 +5,9 @@ from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
+import json, os
 
+placeData = os.path.join(os.getcwd(), "data\json_login.json")
 
 class AssetPageTest(BaseTestCase):
     @attr(priority="high")
@@ -45,15 +47,16 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
-        assetpage.asset_create()
-        assetpage.select_place_asset_template_type()
-
-        assetpage.input_asset_fields()
+        assetpage.asset_create_click()
+        assetpage.select_asset_template_type("Place")
+        sleep(4)
+        assetpage.input_asset_fields("kk place", "Indecomm", "MG Road", "Bangalore", "KA","56009", "kiran")
         assetpage.asset_save()
 
-        expected_placename = "bb"
+        expected_placename = "kk place"
 
         self.assertEqual(expected_placename, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        #self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
 
 
