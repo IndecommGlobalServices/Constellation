@@ -160,7 +160,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.click_on_asset_link.click()
 
 
-     #@attr(priority = "high")
+    @attr(priority = "high")
     #  @SkipTest
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         assetpage = AssetPage(self.driver)
