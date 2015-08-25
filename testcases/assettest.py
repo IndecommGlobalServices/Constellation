@@ -10,12 +10,8 @@ from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os
 
-cwd = os.getcwd()
-os.chdir('..')
-placeData = os.path.join(os.getcwd(), "data\json_place_asset.json")
-os.chdir(cwd)
-class AssetPageTest(BaseTestCase):
 
+class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
         sleep(5)
@@ -59,38 +55,11 @@ class AssetPageTest(BaseTestCase):
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
-        with open(placeData) as data_file:
-            data_text = json.load(data_file)
 
-            for each in data_text:
-                passetTemplate = each["assetTemplate"]
-                papname = each["apname"]
-                papaddress = each["apaddress"]
-                papaddress1 = each["apaddress1"]
-                papcity=each["apcity"]
-                papstate=each["apstate"]
-                papzip=each["apzip"]
-                papowner=each["apowner"]
-                pexp_apame = each["exp_apame"]
-
-                sleep(5)
-                assetpage.asset_create_click()
-                assetpage.select_asset_template_type(passetTemplate)
-                sleep(4)
-                assetpage.input_asset_fields(papname, papaddress, papaddress1, papcity, papstate,papzip, papowner)
-                sleep(5)
-                assetpage.asset_save()
-                sleep(5)
-                expected_placename = pexp_apame
-
-
-                self.assertEqual(expected_placename, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-                #self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-                self.driver.find_element_by_link_text("Assets").click()
-
-                table = self.driver.find_element_by_css_selector("tbody.pure-table")
-                rows = table.find_elements_by_tag_name("tr")
-                self.assertIn(expected_placename + ' Place' , [row.text for row in rows])
+        assetpage.create_asset("Place")
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
@@ -191,7 +160,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.click_on_asset_link.click()
 
 
-     #@attr(priority = "high")
+    @attr(priority = "high")
     #  @SkipTest
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         assetpage = AssetPage(self.driver)
