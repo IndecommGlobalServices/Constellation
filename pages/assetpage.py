@@ -232,7 +232,7 @@ class AssetPage(BasePage):
         self.select_asset_type_district_type.click()
         sleep(2)
 
-     def get_schooldata(self):
+    def get_schooldata(self):
 
         with open(L1) as data_file:
             school_data = json.load(data_file)

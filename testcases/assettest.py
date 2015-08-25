@@ -135,7 +135,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
         assetpage = AssetPage(self.driver)
-        assetpage.asset_create()
+        assetpage.asset_create_click()
         assetpage.create_school_asset()
         assetpage.asset_save()
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
