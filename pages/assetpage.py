@@ -498,6 +498,7 @@ class AssetPage(BasePage):
         self.get_overview_type_add_button.click()
 
 
+
     def asset_save(self):
         self.click_asset_type_save.click()
         sleep(2)
