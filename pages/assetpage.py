@@ -369,8 +369,6 @@ class AssetPage(BasePage):
         asset_owner = "kiran"
 
         sleep(2)
-        
-        
 
         self.enter_asset_type_name.send_keys(aname)
         self.enter_asset_type_name.send_keys(Keys.TAB)
