@@ -47,6 +47,17 @@ class AssetPage(BasePage):
 
     _asset_type_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
     _asset_type_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
+    _asset_type_cancel_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
+    _asset_type_save_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
+    _asset_points_of_contact_locator = "//div[contains(text(), 'Points of Contact')]"
+    _asset_add_contact_locator = "btn_add_asset_contact"
+    _asset_newcontact_firstname_locator = "first_name"
+    _asset_newcontact_lastname_locator = "last_name"
+    _asset_newcontact_prefix_locator = "//input[@placeholder='Prefix']"
+    _asset_newcontact_title_locator = "//input[@placeholder='Title']"
+    _asset_newcontact_phone_locator = "phone"
+    _asset_newcontact_email_locator = "email"
+
 
     _asset_points_of_contact_locator = "//div[contains(text(), 'Points of Contact')]"
     _asset_add_contact_locator = "btn_add_asset_contact"

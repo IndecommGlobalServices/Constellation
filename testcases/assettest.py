@@ -83,6 +83,7 @@ class AssetPageTest(BaseTestCase):
                 sleep(5)
                 expected_placename = pexp_apame
 
+
                 self.assertEqual(expected_placename, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
                 #self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
                 self.driver.find_element_by_link_text("Assets").click()
@@ -103,6 +104,30 @@ class AssetPageTest(BaseTestCase):
         rows = table.find_elements_by_tag_name("tr")
         self.assertIn(pexp_apame + ' Place' , [row.text for row in rows])
         #self.assertEqual("rgba(255, 236, 158, 1)", [row.value_of_css_property("background-color") for row in rows])
+
+
+    @attr(priority="high")
+    def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
+        searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
+        searchAsset_textbox.clear()
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(8)
+        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+        self.driver.find_element_by_id('btn_add_asset_contact').click()
+        sleep(2)
+        self.driver.find_element_by_name("first_name").clear()
+        self.driver.find_element_by_name("last_name").click()
+        self.driver.find_element_by_xpath("//input[@placeholder='Prefix']").clear()
+        sleep(5)
+        firstname_error = self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[1]/small").is_displayed()
+        lastname_error = self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[2]/small").is_displayed()
+        sleep(4)
+        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
+        self.driver.find_element_by_link_text("Assets").click()
+        sleep(2)
+        self.assertTrue(firstname_error, "Error message is not displayed for First Name")
+        self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
 
     @attr(priority="high")
     def test_AS_18_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
