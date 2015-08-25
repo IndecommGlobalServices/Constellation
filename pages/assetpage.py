@@ -8,6 +8,7 @@ import os,json
 cwd = os.getcwd()
 os.chdir('..')
 L1 = os.path.join(os.getcwd(), "data\json_Schooldata.json")
+placeData = os.path.join(os.getcwd(), "data\json_place_asset.json")
 os.chdir(cwd)
 
 class AssetPage(BasePage):
@@ -342,45 +343,51 @@ class AssetPage(BasePage):
         self.driver.find_element_by_link_text("School").click()
         sleep(4)
 
-    def input_asset_fields(self, aname, aaddress, aaddress2, acity, astate, azip, aowner):
+    def get_placedata(self):
 
-        # Verify that all the controls displayed related to asset type
-        # 1. Name, 2. Address, 3. Address2, 4. City, 5. State, 6. Zip, 7. Owner, 8. Phone, 9. Type, 10. Cancel, 11. Save
-        asset_name = "bb"
-        asset_address = "Indecomm"
-        asset_address2 = "MG Road"
-        asset_city = "Bangalore"
-        asset_state = "KA"
-        asset_zip = "56009"
-        asset_owner = "kiran"
+        with open(placeData) as data_file:
+            place_data = json.load(data_file)
 
-        sleep(2)
-        
-        
+            for each in place_data:
+                self.asset_name = each["asset_name"]
+                self.asset_address = each["asset_address"]
+                self.asset_address2 = each["asset_address2"]
+                self.asset_city = each["asset_city"]
+                self.asset_state = each["asset_state"]
+                self.asset_zip = each["asset_zip"]
+                self.asset_owner = each["asset_owner"]
+                self.asset_type = each["asset_type"]
 
-        self.enter_asset_type_name.send_keys(aname)
+    def create_place_asset(self):
+        # Select Place from the dropdown to create new place asset
+        self.get_placedata()
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
+        self.driver.find_element_by_link_text("Place").click()
+        sleep(4)
+        self.enter_asset_type_name.send_keys(self.asset_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address.send_keys(asset_address)
+        self.enter_asset_type_address.send_keys(self.asset_address)
         self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address2.send_keys(asset_address2)
+        self.enter_asset_type_address2.send_keys(self.asset_address2)
         self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_city.send_keys(asset_city)
+        self.enter_asset_type_city.send_keys(self.asset_city)
         self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_state.send_keys(asset_state)
+        self.enter_asset_type_state.send_keys(self.asset_state)
         self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_zip.send_keys(asset_zip)
+        self.enter_asset_type_zip.send_keys(self.asset_zip)
         self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_owner.send_keys(asset_owner)
+        self.enter_asset_type_owner.send_keys(self.asset_owner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
         #self.select_asset_type_type.click()
         #sleep(2)
+
 
     def input_school_asset_fields(self):
 
