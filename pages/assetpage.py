@@ -29,6 +29,8 @@ class AssetPage(BasePage):
     _asset_place_type_drop_down_locator = "//div[@label='Type']"
     _asset_school_district_drop_down_locator = "//div[@label= 'District']"
 
+    #asset search textbox
+    _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
     # New Asset creation related
     _asset_create_asset = "//img[@alt='Create asset']"
 
@@ -293,6 +295,10 @@ class AssetPage(BasePage):
     def click_on_asset_link(self):
         return self.driver.find_element_by_link_text(self._asset_link_locator)
 
+    @property
+    def select_asset_search_text_box(self):
+        return self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
+
     def select_checkbox_in_grid(self):
         assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
         sleep(2)
@@ -317,6 +323,14 @@ class AssetPage(BasePage):
 
         assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
+
+    def textbox_clear(self, textboxlocator):
+        textboxlocator.clear()
+
+    def asset_search_assetname(self, name):
+        search_textbox = self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
+        self.textbox_clear(search_textbox)
+        search_textbox.send_keys(name)
 
 
     def asset_create_click(self):
