@@ -187,18 +187,18 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
-        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.assertEqual(assetpage.asset_school_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         assetpage.click_on_asset_link.click()
 
 
-     #@attr(priority = "high")
+    @attr(priority = "high")
     #  @SkipTest
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
         assetpage.click_on_asset_link.click()
-        assetpage.asset_search_assetname(assetpage.asset_name)
-        sleep(20)
+        assetpage.asset_search_assetname(assetpage.asset_school_name)
+        sleep(2)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
             self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
