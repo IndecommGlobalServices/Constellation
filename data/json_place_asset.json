@@ -1,0 +1,27 @@
+[
+    {
+        "assetTemplate":"Place",
+        "apname":"kk place 1",
+        "apaddress":"Brigade Tower 1",
+        "apaddress1":"MG Road 1",
+        "apcity":"Bangalore 1",
+        "apstate":"KA",
+        "apzip":"56001",
+        "apowner":"Kiran 1",
+        "exp_apame":"kk place 1"
+    },
+
+    {
+        "assetTemplate":"Place",
+        "apname":"kk place 2",
+        "apaddress":"Brigade Tower 2",
+        "apaddress1":"MG Road 2",
+        "apcity":"Bangalore 2",
+        "apstate":"KA",
+        "apzip":"56002",
+        "apowner":"Kiran 2",
+        "exp_apame":"kk place 2"
+    }
+
+
+]

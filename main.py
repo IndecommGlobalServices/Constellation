@@ -16,8 +16,8 @@ from nose.plugins.skip import SkipTest
 from pages.assetpage import AssetPage
 
 cwd = os.getcwd()
-os.chdir('..')
-searchasset_filepath = os.path.join(os.getcwd(), "data\jjson_searchAssets.json")
+#os.chdir('..')
+searchasset_filepath = os.path.join(os.getcwd(), "data\json_searchAssets.json")
 os.chdir(cwd)
 
 

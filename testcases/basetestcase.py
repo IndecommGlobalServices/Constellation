@@ -13,7 +13,7 @@ import json
 
 cwd = os.getcwd()
 os.chdir('..')
-SCREEN_DUMP_LOCATION = os.path.join(os.getcwd(), "creenshots")
+SCREEN_DUMP_LOCATION = os.path.join(os.getcwd(), "Screenshots")
 os.chdir(cwd)
 
 
