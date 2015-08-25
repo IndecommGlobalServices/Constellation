@@ -78,6 +78,7 @@ class AssetPage(BasePage):
     _asset_overview_edit_link_locator = "//div[contains(text(),'Overview')]/div/img"
     _asset_overview_edit_name_locator = "name"
     _asset_overview_window_popup_cross_button_locator = "//*[@id='asset_overview_modal']/div/div/div/button"
+    _asset_link_locator = "Assets"
 
     _asset_count = 0
     _assets = {}
@@ -276,6 +277,9 @@ class AssetPage(BasePage):
     def select_asset_overview_window_cross_button(self):
         return self.driver.find_element_by_xpath(self._asset_overview_window_popup_cross_button_locator)
 
+    @property
+    def click_on_asset_link(self):
+        return self.driver.find_element_by_link_text(self._asset_link_locator)
 
     def select_checkbox_in_grid(self):
         assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)

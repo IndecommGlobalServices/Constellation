@@ -78,29 +78,31 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
-<<<<<<< HEAD
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
         searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
         searchAsset_textbox.clear()
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
         sleep(8)
-        self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
-        self.driver.find_element_by_id('btn_add_asset_contact').click()
-        sleep(2)
-        self.driver.find_element_by_name("first_name").clear()
-        self.driver.find_element_by_name("last_name").click()
-        self.driver.find_element_by_xpath("//input[@placeholder='Prefix']").clear()
+        assetpage.select_asset_points_of_contact.click()
+        assetpage.select_asset_add_contact.click()
+        sleep(8)
+        assetpage.select_asset_newcontact_firstname.clear()
+        assetpage.select_asset_newcontact_lastname.click()
+        assetpage.select_asset_newcontact_prefix.clear()
         sleep(5)
-        firstname_error = self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[1]/small").is_displayed()
-        lastname_error = self.driver.find_element_by_xpath(".//*[@id='asset_contact_error']/div[2]/small").is_displayed()
+        firstname_error = assetpage.check_asset_newcontact_firstname_error_message.is_displayed()
+        lastname_error = assetpage.check_asset_newcontact_lastname_error_message.is_displayed()
         sleep(4)
-        self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/div/button").click()
-        self.driver.find_element_by_link_text("Assets").click()
+        assetpage.select_asset_newcontact_window_cross_button.click()
+        assetpage.click_on_asset_link.click()
         sleep(2)
         self.assertTrue(firstname_error, "Error message is not displayed for First Name")
         self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
-=======
+
+
+
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create()
@@ -109,7 +111,7 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
->>>>>>> c5ab26ee67dcdd1a1c9ba77698cae3f6e0497faf
+
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
