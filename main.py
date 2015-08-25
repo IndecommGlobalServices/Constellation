@@ -1823,5 +1823,12 @@ class MainDriverScript(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
 
+    @attr(priority="high")
+    def test_AS_36(self):
+        assetpage = AssetPage(self.driver)
+
+
+
+
 if __name__ =='__main__':
     unittest.main(verbosity=2)

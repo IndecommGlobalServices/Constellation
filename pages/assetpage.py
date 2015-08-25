@@ -458,7 +458,13 @@ class AssetPage(BasePage):
                         and place_save.is_enabled())
         '''
 
-
+    def create_asset(self, type):
+        self.asset_create_click()
+        if type == "School":
+            self.create_school_asset()
+        elif type == "Place":
+            self.create_place_asset()
+        self.asset_save()
 
 
     def _validate_page(self, driver):

@@ -5,9 +5,8 @@ from time import sleep
 
 
 cwd = os.getcwd()
-#print os.getcwd(), "yyyyyyyyyyyyyyy"
-#os.chdir('..')
-
+print os.getcwd(), "yyyyyyyyyyyyyyy"
+os.chdir('..')
 L1 = os.path.join(os.getcwd(), "data\json_login.json")
 os.chdir(cwd)
 

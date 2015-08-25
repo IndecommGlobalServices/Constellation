@@ -18,7 +18,6 @@ os.chdir(cwd)
 
 
 
-
 class BaseTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(self):
