@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76a6158f-c964-4bd4-9f55-7a82441e4aa1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main.py" afterPath="$PROJECT_DIR$/main.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="47bfa8cf-4e8d-42dc-b093-b764af6418f7" name="Failed commit: Default" comment="Json_Schooldata" />
@@ -1142,7 +1139,13 @@
       <option name="project" value="LOCAL" />
       <updated>1440572824255</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="added testcase">
+      <created>1440590887736</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1440590887736</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1220,7 +1223,8 @@
     <MESSAGE value="AS_49&#10;Added get_schooldata&#10;Added create_school_asset" />
     <MESSAGE value="Json_Schooldata" />
     <MESSAGE value="test_AS_15_To_Verify_Validation_Of_Name_Field&#10;Global Variable creation" />
-    <option name="LAST_COMMIT_MESSAGE" value="test_AS_15_To_Verify_Validation_Of_Name_Field&#10;Global Variable creation" />
+    <MESSAGE value="added testcase" />
+    <option name="LAST_COMMIT_MESSAGE" value="added testcase" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
