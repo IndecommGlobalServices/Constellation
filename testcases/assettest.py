@@ -9,7 +9,12 @@ from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os
+from selenium.webdriver.common.keys import Keys
 
+cwd = os.getcwd()
+#os.chdir('..')
+searchasset_filepath = os.path.join(os.getcwd(), "data\json_searchAssets.json")
+os.chdir(cwd)
 
 class AssetPageTest(BaseTestCase):
     @attr(priority="high")
@@ -26,6 +31,49 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_checkbox_in_grid()
         assetpage.select_action_drop_down.click()
         self.assertFalse(assetpage.click_delete_text.is_enabled(), "Delete must be disabled.")
+
+    # Need to rework
+    @attr(priority="high")
+    @SkipTest
+    def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
+        asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
+        asset_checkbox.click()
+
+        selectAction_dropdown = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/button[2]")
+        selectAction_dropdown.click()
+
+        selectAction_dropdown_delete = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
+        selectAction_dropdown_delete.click()
+
+        sleep(5)
+        delete_button = self.driver.find_element_by_xpath(".//*[@id='delete_asset_modal']/div/div/div[3]/button[2]")
+        delete_button.click()
+        sleep(5)
+
+        print("First record deleted successfully.")
+
+    # Need to rework
+    @attr(priority="high")
+    def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
+        #Click the Checkbox in the Grid
+        asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
+        asset_checkbox.click()
+        sleep(5)
+        #Click on Select Action dropdown
+        selectAction_dropdown = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/button[2]")
+        selectAction_dropdown.click()
+        sleep(5)
+        #Click on Delete link in dropdown
+        selectAction_dropdown_delete_link = self.driver.find_element_by_xpath(".//*[@id='asset_actions_dropdown']/ul/li/a")
+        selectAction_dropdown_delete_link.click()
+        sleep(5)
+        #Click on Cancel button
+        cancel_button = self.driver.find_element_by_xpath(".//*[@id='delete_asset_modal']/div/div/div[3]/button[1]")
+        cancel_button.click()
+
+        print("First record cancelled successfully.")
+
+
 
     @attr(priority="high")
     def test_AS_06_To_Verify_The_Filter_Function_Filter_By_Place(self):
@@ -47,8 +95,22 @@ class AssetPageTest(BaseTestCase):
     def test_AS_08_To_Verify_The_Filter_Function_Filter_By_School_District(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
-        print "Filtering data based on School from Json"
-        assetpage.asset_filter_based_on_school_district("School")
+        assetpage.select_asset_school_district()
+        sleep(10)
+
+    @attr(priority="high")
+    def test_AS_09_To_Verify_The_Filter_Function_Filter_By_School_Grade(self):
+        sleep(5)
+        assetpage = AssetPage(self.driver)
+        assetpage.select_asset_school_grade()
+        sleep(10)
+
+    @attr(priority="high")
+    def test_AS_10_To_Verify_The_Filter_Function_Filter_By_School_Type(self):
+        sleep(5)
+        assetpage = AssetPage(self.driver)
+        assetpage.select_asset_school_type()
+        sleep(10)
 
 
     @attr(priority="high")
@@ -59,11 +121,51 @@ class AssetPageTest(BaseTestCase):
         expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
+    # Need to rework
+    @attr(priority="high")
+    def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
+        print "Getting Search data from Json"
+
+
+        with open(searchasset_filepath) as data_file:
+            data_SearchAsset_text = json.load(data_file)
+
+            for each in data_SearchAsset_text:
+                searchText = each["Search_name"]
+
+                searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
+                searchAsset_textbox.clear()
+                searchAsset_textbox.send_keys(searchText)
+                sleep(5)
+                expectedAfterSearchFilter = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr/td").text
+                searchNames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+                print "Found " + str(len(searchNames)) + " by Name search."
+                sleep(2)
+                searchAsset_textbox.clear()
+                sleep(2)
+                for searchName in searchNames:
+                    #if searchName.text == expectedAfterSearchFilter:
+                    if expectedAfterSearchFilter:
+                        self.assertEqual("No matching records found", expectedAfterSearchFilter, "No records to find asset.")
+                        sleep(2)
+                    else:
+                        print searchName.text
+                        sleep(2)
+                searchAsset_textbox.clear()
+                sleep(2)
+
+    @attr(priority="high")
+    def test_AS_13_To_Verify_The_Search_For_Asset_Function_Search_By_Special_Characters(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.asset_search_assetname("{}")
+        assetpage.asset_search_special_characters()
+        sleep(10)
+
+
     @attr(priority="high")
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
-
         assetpage.create_asset("Place")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
@@ -73,9 +175,15 @@ class AssetPageTest(BaseTestCase):
     def test_AS_15_To_Verify_Validation_Of_Name_Field(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create_click()
-        sleep(5)
         assetpage.select_asset_template_type("Place")
-        self.assertFalse(assetpage.click_asset_type_save.is_enabled(), "Save button is not disabled.")
+        sleep(2)
+        aname = ""
+        assetpage.enter_asset_type_name.send_keys(aname)
+        assetpage.enter_asset_type_name.send_keys(Keys.TAB)
+
+        sleep(5)
+        if aname == '':
+            self.assertFalse(assetpage.click_asset_type_save.is_enabled(), "Save button is not disabled.")
 
         #WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         #self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
@@ -139,33 +247,6 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(firstname_error, "Error message is not displayed for First Name")
         self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
 
-    @attr(priority="high")
-    def test_AS_18_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
-        assetpage = AssetPage(self.driver)
-        sleep(5)
-        with open(placeData) as data_file:
-            data_text = json.load(data_file)
-
-            for each in data_text:
-                passetTemplate = each["assetTemplate"]
-                papname = each["apname"]
-                papaddress = each["apaddress"]
-                papaddress1 = each["apaddress1"]
-                papcity=each["apcity"]
-                papstate=each["apstate"]
-                papzip=each["apzip"]
-                papowner=each["apowner"]
-
-                assetpage.asset_create_click()
-                assetpage.select_asset_template_type(passetTemplate)
-                sleep(4)
-
-                assetpage.input_asset_fields(papname, papaddress, papaddress1, papcity, papstate,papzip, papowner)
-                assetpage.asset_cancel()
-
-                expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
-                self.assertEqual("Asset Type",expectedAfterResetFilter)
-       
 
     @attr(priority="high")
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
