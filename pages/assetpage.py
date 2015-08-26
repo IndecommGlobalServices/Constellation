@@ -28,6 +28,7 @@ class AssetPage(BasePage):
     # we need xpath for type column i,e place or school. locator is already defined above i,e _asset_list_asset_type_locator
     _asset_place_type_drop_down_locator = "//div[@label='Type']"
     _asset_school_district_drop_down_locator = "//div[@label= 'District']"
+    _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
 
     #asset search textbox
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
@@ -322,16 +323,6 @@ class AssetPage(BasePage):
 
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text(assetType).click()
-
-        assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
-        print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
-
-    def asset_filter_based_on_school_district(self, assetType):
-
-        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
-        self.driver.find_element_by_link_text(assetType).click()
-        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
-        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
 
         assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
