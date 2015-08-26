@@ -299,6 +299,11 @@ class AssetPage(BasePage):
     def select_asset_search_text_box(self):
         return self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
 
+    @property
+    def get_assets_name_list(self):
+        return self.driver.find_elements_by_xpath(self._asset_list_asset_name_locator)
+
+
     def select_checkbox_in_grid(self):
         assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
         sleep(2)
@@ -486,6 +491,22 @@ class AssetPage(BasePage):
         elif type == "Place":
             self.create_place_asset()
         self.asset_save()
+
+    def select_school_or_place_asset(self, asset_name1,asset_type):
+        try:
+            self.asset_search_assetname(asset_name1)
+            sleep(6)
+            asset_list = self.get_assets_name_list
+            if len(asset_list)>=1:
+                asset_list[0].click()
+            else:
+                sleep(4)
+                self.asset_search_assetname("")
+                sleep(2)
+                self.create_asset(asset_type)
+                sleep(2)
+        except:
+            print "No Asset is existing or Asset Creation has been failed."
 
 
     def _validate_page(self, driver):
