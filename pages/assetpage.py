@@ -26,7 +26,8 @@ class AssetPage(BasePage):
     _asset_filter_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
     #asset list is already specified above i,e _asset_list_locator
     # we need xpath for type column i,e place or school. locator is already defined above i,e _asset_list_asset_type_locator
-
+    _asset_place_type_drop_down_locator = "//div[@label='Type']"
+    _asset_school_district_drop_down_locator = "//div[@label= 'District']"
 
     #asset search textbox
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
@@ -43,13 +44,9 @@ class AssetPage(BasePage):
     _asset_type_field_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
     _asset_type_field_owner_text_box_locator = "//input[@placeholder='Owner']"
     _asset_type_field_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
-    _asset_overview_type_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/ul/li[3]/input"
-    _asset_overview_district_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input"
-    _asset_overview_grade_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input"
-    _asset_overview_type_drop_down_locator = "//div[@label='Type']"
-    _asset_overview_district_drop_down_locator = "//div[@label= 'District']"
-    _asset_overview_grade_drop_down_locator = "//div[@label= 'Grade']"
-    _asset_overview_add_button_locator = ".//*[@id='newItemButton']"
+    _asset_type_field_type_drop_down_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
+    _asset_type_field_district_drop_down_locator = "//div[@label='District']//button[@data-toggle='dropdown']"
+    _asset_type_field_grade_drop_down_locator = "//div[@label='Grade']//button[@data-toggle='dropdown']"
 
     _asset_type_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
     _asset_type_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
@@ -103,6 +100,8 @@ class AssetPage(BasePage):
 
     def __init__(self, driver):
         super(AssetPage, self).__init__(driver)
+        AssetPage.asset_school_name = "School Name Dee"
+        AssetPage.asset_place_name = "kk place 1"
 
         '''
         assets_results = self.driver.find_elements_by_xpath(self._asset_list_locator)
@@ -122,16 +121,12 @@ class AssetPage(BasePage):
         return self.driver.find_element_by_xpath(self._click_delete_text_xpath_locator)
 
     @property
-    def get_overview_type_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_type_drop_down_locator)
+    def display_place_type_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_locator)
 
     @property
-    def get_overview_district_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_district_drop_down_locator)
-
-    @property
-    def get_overview_grade_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_grade_drop_down_locator)
+    def display_school_district_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
 
 
     @property
@@ -306,30 +301,6 @@ class AssetPage(BasePage):
     def select_asset_search_text_box(self):
         return self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
 
-    @property
-    def get_overview_newdistrict_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_district_text_box_locator)
-
-    @property
-    def get_overview_newgrade_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_grade_text_box_locator)
-
-    @property
-    def get_overview_newtype_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_type_text_box_locator)
-
-    @property
-    def get_overview_district_add_button(self):
-        return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[0]
-
-    @property
-    def get_overview_grade_add_button(self):
-        return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[1]
-
-    @property
-    def get_overview_type_add_button(self):
-        return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
-
     def select_checkbox_in_grid(self):
         assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
         sleep(2)
@@ -355,6 +326,16 @@ class AssetPage(BasePage):
         assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
 
+    def asset_filter_based_on_school_district(self, assetType):
+
+        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
+        self.driver.find_element_by_link_text(assetType).click()
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
+
+        assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
+        print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
+
     def textbox_clear(self, textboxlocator):
         textboxlocator.clear()
 
@@ -376,18 +357,20 @@ class AssetPage(BasePage):
         #sleep(2)
         #print("Asset overview", Create_Asset_Title)
 
+    # This function is based on selecting the Template either by Place or School.
+    # We need to pass the parameter
     def select_asset_template_type(self, template):
         # Select Place from the dropdown to create new place asset
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text(template).click()
         sleep(4)
-
+    '''
     def select_school_asset_template_type(self):
         # Select Place from the dropdown to create new place asset
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("School").click()
         sleep(4)
-
+    '''
     def get_placedata(self):
 
         with open(placeData) as data_file:
@@ -445,16 +428,16 @@ class AssetPage(BasePage):
             school_data = json.load(data_file)
 
             for each in school_data:
-                self.asset_school_name = each["asset_name"]
-                self.asset_school_address = each["asset_address"]
-                self.asset_school_address2 = each["asset_address2"]
-                self.asset_school_city = each["asset_city"]
-                self.asset_school_state = each["asset_state"]
-                self.asset_school_zip = each["asset_zip"]
-                self.asset_school_owner = each["asset_owner"]
-                self.asset_school_type = each["asset_type"]
-                self.asset_school_district = each["asset_district"]
-                self.asset_school_grade = each["asset_grade"]
+                self.asset_name = each["asset_name"]
+                self.asset_address = each["asset_address"]
+                self.asset_address2 = each["asset_address2"]
+                self.asset_city = each["asset_city"]
+                self.asset_state = each["asset_state"]
+                self.asset_zip = each["asset_zip"]
+                self.asset_owner = each["asset_owner"]
+                self.asset_type = each["asset_type"]
+                self.asset_distrct = each["asset_district"]
+                self.asset_grade = each["asset_grade"]
 
 
     def create_school_asset(self):
@@ -464,40 +447,29 @@ class AssetPage(BasePage):
         self.driver.find_element_by_link_text("School").click()
         sleep(4)
 
-        self.enter_asset_type_name.send_keys(self.asset_school_name)
+        self.enter_asset_type_name.send_keys(self.asset_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address.send_keys(self.asset_school_address)
+        self.enter_asset_type_address.send_keys(self.asset_address)
         self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address2.send_keys(self.asset_school_address2)
+        self.enter_asset_type_address2.send_keys(self.asset_address2)
         self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_city.send_keys(self.asset_school_city)
+        self.enter_asset_type_city.send_keys(self.asset_city)
         self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_state.send_keys(self.asset_school_state)
+        self.enter_asset_type_state.send_keys(self.asset_state)
         self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_zip.send_keys(self.asset_school_zip)
+        self.enter_asset_type_zip.send_keys(self.asset_zip)
         self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_owner.send_keys(self.asset_school_owner)
+        self.enter_asset_type_owner.send_keys(self.asset_owner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
-        self.get_overview_district_drop_down.click()
-        self.get_overview_newdistrict_text_box.send_keys(self.asset_school_district)
-        self.get_overview_district_add_button.click()
-        sleep(2)
-        self.get_overview_grade_drop_down.click()
-        self.get_overview_newgrade_text_box.send_keys(self.asset_school_grade)
-        self.get_overview_grade_add_button.click()
-        sleep(2)
-        self.get_overview_type_drop_down.click()
-        self.get_overview_newtype_text_box.send_keys(self.asset_school_type)
-        self.get_overview_type_add_button.click()
-
-
+        #self.select_asset_type_type.click()
+        #sleep(2)
 
     def asset_save(self):
         self.click_asset_type_save.click()
