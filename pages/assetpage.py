@@ -28,8 +28,15 @@ class AssetPage(BasePage):
     #asset list is already specified above i,e _asset_list_locator
     # we need xpath for type column i,e place or school. locator is already defined above i,e _asset_list_asset_type_locator
     _asset_place_type_drop_down_locator = "//div[@label='Type']"
-    _asset_school_district_drop_down_locator = "//div[@label= 'District']"
+    #_asset_school_district_drop_down_locator = "//div[@label= 'District']"
+    _asset_school_district_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
     _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
+
+    _asset_school_grade_drop_down_locator = ".//*[@id='span_filters']/div[3]/div/button[2]"
+    _asset_school_grade_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[3]/div/ul/li[1]/a"
+
+    _asset_school_type_drop_down_locator = ".//*[@id='span_filters']/div[4]/div/button[2]"
+    _asset_school_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[4]/div/ul/li[1]/a"
 
     #asset search textbox
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
@@ -45,7 +52,9 @@ class AssetPage(BasePage):
     _asset_type_field_state_text_box_locator = "//input[@ng-model='asset_edit.address.state']"
     _asset_type_field_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
     _asset_type_field_owner_text_box_locator = "//input[@placeholder='Owner']"
-    _asset_type_field_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
+    #_asset_type_field_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
+    #_asset_type_field_phone_text_box_locator = "//input[@placeholder='Phone']"
+    _asset_type_field_phone_text_box_locator =".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/div[3]/input"
     _asset_type_field_type_drop_down_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
     _asset_type_field_district_drop_down_locator = "//div[@label='District']//button[@data-toggle='dropdown']"
     _asset_type_field_grade_drop_down_locator = "//div[@label='Grade']//button[@data-toggle='dropdown']"
@@ -160,7 +169,7 @@ class AssetPage(BasePage):
 
     @property
     def enter_asset_type_phone(self):
-        return self.driver.find_element_by_css_selector(self._asset_type_field_phone_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_type_field_phone_text_box_locator)
 
     @property
     def select_asset_type_type(self):
@@ -348,6 +357,53 @@ class AssetPage(BasePage):
         assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
 
+    # This function is to select the school district
+    def select_asset_school_district(self):
+        sleep(5)
+        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
+        self.driver.find_element_by_link_text("School").click()
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
+        #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
+
+        districtNames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+
+        for distname in districtNames:
+            print distname.text
+
+    # This function is to select the school grade
+    def select_asset_school_grade(self):
+        sleep(5)
+        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
+        self.driver.find_element_by_link_text("School").click()
+        self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator).click()
+        self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
+        #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
+
+        gradeNames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        if len(gradeNames) > 0:
+            for gradename in gradeNames:
+                print gradename.text
+        else:
+            print "No records found."
+
+    # This function is to select the school grade
+    def select_asset_school_type(self):
+        sleep(5)
+        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
+        self.driver.find_element_by_link_text("School").click()
+        self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator).click()
+        self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
+        #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
+
+        typeNames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        print len(typeNames)
+        if len(typeNames) > 0:
+            for typename in typeNames:
+                print typename.text
+        else:
+            print "No records found."
+
     def textbox_clear(self, textboxlocator):
         textboxlocator.clear()
 
@@ -355,6 +411,18 @@ class AssetPage(BasePage):
         search_textbox = self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
         self.textbox_clear(search_textbox)
         search_textbox.send_keys(name)
+
+    def asset_search_special_characters(self):
+        sleep(5)
+        searchNames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        print len(searchNames)
+        sleep(5)
+        if len(searchNames) > 0:
+            for searchname in searchNames:
+                print searchname.text
+        else:
+            print "No records found."
+
 
 
     def asset_create_click(self):
@@ -376,6 +444,8 @@ class AssetPage(BasePage):
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text(template).click()
         sleep(4)
+
+
     '''
     def select_school_asset_template_type(self):
         # Select Place from the dropdown to create new place asset

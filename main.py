@@ -96,7 +96,7 @@ class MainDriverScript(BaseTestCase):
         for place in places:
             print place.text
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[3]"):
-             self.assertEqual (i.text, "Place")
+             self.assertEqual(i.text, "Place")
 
     @attr(priority="high")
     def test_AS_07_To_Verify_The_Filter_Function_Filter_By_School(self):
@@ -107,7 +107,7 @@ class MainDriverScript(BaseTestCase):
         for school in schools:
             print school.text
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[3]"):
-             self.assertEqual (i.text, "School")
+             self.assertEqual(i.text, "School")
 
     @attr(priority="high")
     def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
