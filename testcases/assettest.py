@@ -8,9 +8,7 @@ from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
-import json, os
-from selenium.webdriver.common.keys import Keys
-import re
+import json, os, re
 
 
 cwd = os.getcwd()
@@ -34,7 +32,6 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_action_drop_down.click()
         self.assertFalse(assetpage.click_delete_text.is_enabled(), "Delete must be disabled.")
 
-    # Need to rework
     @attr(priority="high")
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
         asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
@@ -241,7 +238,6 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
-    @SkipTest
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
         searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
         searchAsset_textbox.clear()
@@ -266,25 +262,21 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
-        searchAsset_textbox.clear()
-        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
-        searchnames[0].click()
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
-        assetpage.select_asset_points_of_contact.click()
-        assetpage.select_asset_add_contact.click()
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
         sleep(8)
-        assetpage.select_asset_newcontact_firstname.clear()
-        assetpage.select_asset_newcontact_lastname.click()
-        assetpage.select_asset_newcontact_prefix.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.click()
+        assetpage.get_asset_newcontact_prefix_textbox.clear()
         sleep(5)
-        firstname_error = assetpage.check_asset_newcontact_firstname_error_message.is_displayed()
-        lastname_error = assetpage.check_asset_newcontact_lastname_error_message.is_displayed()
-        sleep(4)
-        assetpage.select_asset_newcontact_window_cross_button.click()
+        firstname_error = assetpage.get_asset_newcontact_firstname_error_message.is_displayed()
+        lastname_error = assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
+        sleep(3)
+        assetpage.get_asset_newcontact_window_cross_button.click()
         assetpage.click_on_asset_link.click()
         sleep(2)
         self.assertTrue(firstname_error, "Error message is not displayed for First Name")
@@ -292,7 +284,6 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priotity = "high")
-    @SkipTest
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
@@ -302,7 +293,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority = "high")
-    @SkipTest
+    #  @SkipTest
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
@@ -313,6 +304,144 @@ class AssetPageTest(BaseTestCase):
             print (i.text)
             self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
+
+    @attr(priority="high")
+    def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
+        sleep(8)
+        assetpage.get_asset_detail_edit_link.click()
+        assetpage.get_asset_detail_edit_email_text_box.clear()
+        sleep(2)
+        assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
+        sleep(2)
+        assetpage.get_asset_detail_edit_save_button.click()
+        sleep(2)
+        email = assetpage.get_asset_detail_email_value_text.text
+        sleep(2)
+        assetpage.click_on_asset_link.click()
+        regex = re.compile(r'[\w.-]+@[\w.-]+')
+        self.assertRegexpMatches(email, regex, "Expected and actual value is not matching for EMAIL")
+
+
+    @attr(priority="high")
+    def test_AS_59_2_To_Click_On_Save_With_Wrong_Email_Asset_Detail_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
+        sleep(8)
+        assetpage.get_asset_detail_edit_link.click()
+        assetpage.get_asset_detail_edit_email_text_box.clear()
+        sleep(2)
+        assetpage.get_asset_detail_edit_email_text_box.send_keys("testtest")
+        sleep(2)
+        assetpage.get_asset_detail_edit_save_button.click()
+        sleep(2)
+        state = assetpage.get_asset_detail_edit_save_button.is_enabled()
+        assetpage.get_asset_detail_edit_window_cross_button.click()
+        assetpage.click_on_asset_link.click()
+        sleep(2)
+        self.assertFalse(state, "Save Button is enabled even though EMAIL value is wrong")
+
+    @attr(priority="high")
+    def test_AS_62_1_To_Click_On_Save_With_FirstLastName_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(8)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        sleep(2)
+        exp_first_last_name = assetpage.get_asset_contact_first_last_name_value_text.text
+        sleep(2)
+        regex = re.compile(r'[\w.-@]+\,\s[\w.-@]+')
+        assetpage.click_on_asset_link.click()
+        self.assertRegexpMatches(exp_first_last_name, regex, "Expected and actual values are not matching for First & Last Name")
+
+    @attr(priority="high")
+    def test_AS_62_2_To_Click_On_Save_With_Title_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(8)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        assetpage.get_asset_newcontact_title_textbox.clear()
+        assetpage.get_asset_newcontact_title_textbox.send_keys("Title")
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        sleep(2)
+        exp_title = assetpage.get_asset_contact_title_value_text.text
+        sleep(2)
+        assetpage.click_on_asset_link.click()
+        self.assertEqual("Title", exp_title, "Expected and actual value is not matching for Title")
+
+    @attr(priority="high")
+    def test_AS_64_To_Click_On_Save_Without_FirstLastName_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
+        sleep(8)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(8)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.click()
+        assetpage.get_asset_newcontact_prefix_textbox.clear()
+        sleep(5)
+        firstname_error = assetpage.get_asset_newcontact_firstname_error_message.is_displayed()
+        lastname_error = assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
+        sleep(3)
+        assetpage.get_asset_newcontact_window_cross_button.click()
+        assetpage.click_on_asset_link.click()
+        sleep(2)
+        self.assertTrue(firstname_error, "Error message is not displayed for First Name")
+        self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
+
+    @attr(priority="high")
+    def test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(8)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        assetpage.get_asset_newcontact_phone_textbox.clear()
+        assetpage.get_asset_newcontact_phone_textbox.send_keys("111@222-3343")
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        sleep(2)
+        exp_phone = assetpage.get_asset_contact_title_value_text.text
+        sleep(2)
+        assetpage.click_on_asset_link.click()
+        regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
+        assetpage.click_on_asset_link.click()
+        self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
+
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
