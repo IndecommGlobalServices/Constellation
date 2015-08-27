@@ -25,9 +25,12 @@ class AssetPage(BasePage):
 
     # Asset Filter related to place and school
     _asset_filter_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
+
     #asset list is already specified above i,e _asset_list_locator
     # we need xpath for type column i,e place or school. locator is already defined above i,e _asset_list_asset_type_locator
     _asset_place_type_drop_down_locator = "//div[@label='Type']"
+    _asset_school_district_drop_down_locator = "//div[@label= 'District']"
+    _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
     #_asset_school_district_drop_down_locator = "//div[@label= 'District']"
     _asset_school_district_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
     _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
@@ -102,6 +105,7 @@ class AssetPage(BasePage):
         super(AssetPage, self).__init__(driver)
         AssetPage.asset_school_name = "School Name Dee"
         AssetPage.asset_place_name = "kk place 1"
+
 
         '''
         assets_results = self.driver.find_elements_by_xpath(self._asset_list_locator)
@@ -349,6 +353,16 @@ class AssetPage(BasePage):
         assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
 
+    def asset_filter_based_on_school_district(self, assetType):
+
+        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
+        self.driver.find_element_by_link_text(assetType).click()
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
+
+        assetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
+        print "Found " + str(len(assetsType)) + " - " + assetType + " Asset Types"
+
     def textbox_clear(self, textboxlocator):
         textboxlocator.clear()
 
@@ -390,14 +404,12 @@ class AssetPage(BasePage):
         self.driver.find_element_by_link_text(template).click()
         sleep(4)
 
-
-    '''
     def select_school_asset_template_type(self):
         # Select Place from the dropdown to create new place asset
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("School").click()
         sleep(4)
-    '''
+
     def get_placedata(self):
 
         with open(placeData) as data_file:
@@ -505,20 +517,6 @@ class AssetPage(BasePage):
     def asset_cancel(self):
         self.click_asset_type_cancel.click()
         sleep(2)
-        '''
-        # check all fields are enabled
-        self.assertTrue(place_name.is_enabled()
-                        and place_address.is_enabled()
-                        and place_address2.is_enabled()
-                        and place_city.is_enabled()
-                        and place_state.is_enabled()
-                        and place_zip.is_enabled()
-                        and place_owner.is_enabled()
-                        and place_phone.is_enabled()
-                        and place_type.is_enabled()
-                        and place_cancel.is_enabled()
-                        and place_save.is_enabled())
-        '''
 
     def create_asset(self, type):
         self.asset_create_click()

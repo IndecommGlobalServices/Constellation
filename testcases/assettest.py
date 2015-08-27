@@ -20,6 +20,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
         sleep(5)
+
         assetpage = AssetPage(self.driver)
         assetpage.select_action_drop_down.click()
         self.assertFalse(assetpage.click_delete_text.is_enabled(), "Delete must be disabled.")
@@ -119,7 +120,6 @@ class AssetPageTest(BaseTestCase):
         expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
-    # Need to rework
     @attr(priority="high")
     def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
         print "Getting Search data from Json"
@@ -202,6 +202,7 @@ class AssetPageTest(BaseTestCase):
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches(aphone, regex, "Expected and actual value is not matching for EMAIL")
         assetpage.asset_cancel()
+
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         sleep(5)
@@ -214,7 +215,7 @@ class AssetPageTest(BaseTestCase):
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
             self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
-        assetpage.asset_search_assetname("")
+        #assetpage.asset_search_assetname("")
 
     @attr(priority="high")
     def test_AS_18_To_Verify_Create_Asset_Function_Cancel_Place_Asset(self):
