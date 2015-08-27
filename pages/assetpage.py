@@ -70,7 +70,7 @@ class AssetPage(BasePage):
     _asset_newcontact_zip_textbox_locator = "zip"
     _asset_newcontact_save_button_locator = "//form[@name='form_contact_edit']//div//button[@type='submit' and text()='Save']"
     _asset_newcontact_cancel_button_locator = "//form[@name='form_contact_edit']//div//button[@type='button' and text()='Cancel']"
-    _asset_newcontact_delete_contact_icon_locator = ".//*[@id='contacts_table']/tbody/tr/td[5]/a/img"
+    _asset_newcontact_delete_contact_icon_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[4]//a//img"
     _asset_newcontact_delete_contact_popup_delete_button_locator = ".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]"
     _asset_newcontact_window_popup_cross_button_locator = ".//*[@id='asset_contact_modal']/div/div/div/button"
     _asset_newcontact_firstname_error_message_locator = ".//*[@id='asset_contact_error']/div[1]/small"
@@ -80,6 +80,8 @@ class AssetPage(BasePage):
     _asset_newcontact_zip_error_message_locator = "//*[@id='asset_contact_error']/div[4]/small"
     _asset_contact_first_last_name_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]"
     _asset_contact_title_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]"
+    _asset_contact_phone_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]"
+    _asset_contact_email_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]"
     _asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
@@ -282,6 +284,13 @@ class AssetPage(BasePage):
     def get_asset_contact_title_value_text(self):
         return self.driver.find_element_by_xpath(self._asset_contact_title_value_text)
 
+    @property
+    def get_asset_contact_phone_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_contact_phone_value_text)
+
+    @property
+    def get_asset_contact_email_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_contact_email_value_text)
 
     @property
     def get_asset_detail_edit_link(self):
