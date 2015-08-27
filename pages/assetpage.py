@@ -51,7 +51,9 @@ class AssetPage(BasePage):
     _asset_type_field_state_text_box_locator = "//input[@ng-model='asset_edit.address.state']"
     _asset_type_field_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
     _asset_type_field_owner_text_box_locator = "//input[@placeholder='Owner']"
-    _asset_type_field_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
+    #_asset_type_field_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
+    #_asset_type_field_phone_text_box_locator = "//input[@placeholder='Phone']"
+    _asset_type_field_phone_text_box_locator =".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/div[3]/input"
     _asset_type_field_type_drop_down_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
     _asset_type_field_district_drop_down_locator = "//div[@label='District']//button[@data-toggle='dropdown']"
     _asset_type_field_grade_drop_down_locator = "//div[@label='Grade']//button[@data-toggle='dropdown']"
@@ -167,7 +169,7 @@ class AssetPage(BasePage):
 
     @property
     def enter_asset_type_phone(self):
-        return self.driver.find_element_by_css_selector(self._asset_type_field_phone_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_type_field_phone_text_box_locator)
 
     @property
     def select_asset_type_type(self):

@@ -10,6 +10,8 @@ from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os
 from selenium.webdriver.common.keys import Keys
+import re
+
 
 cwd = os.getcwd()
 #os.chdir('..')
@@ -187,8 +189,20 @@ class AssetPageTest(BaseTestCase):
 
         #WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         #self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+    @attr(priority="high")
+    def test_AS_16_To_Verify_Validation_Of_Phone_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.asset_create_click()
+        assetpage.select_asset_template_type("Place")
+        sleep(2)
 
+        aphone = "123abc1234"
+        assetpage.enter_asset_type_phone.send_keys(aphone)
+        assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
 
+        sleep(5)
+        regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
+        self.assertRegexpMatches(aphone, regex, "Expected and actual value is not matching for EMAIL")
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         sleep(5)
