@@ -76,7 +76,7 @@ class AssetPage(BasePage):
     _asset_newcontact_zip_textbox_locator = "zip"
     _asset_newcontact_save_button_locator = "//form[@name='form_contact_edit']//div//button[@type='submit' and text()='Save']"
     _asset_newcontact_cancel_button_locator = "//form[@name='form_contact_edit']//div//button[@type='button' and text()='Cancel']"
-    _asset_newcontact_delete_contact_icon_locator = ".//*[@id='contacts_table']/tbody/tr/td[5]/a/img"
+    _asset_newcontact_delete_contact_icon_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[4]//a//img"
     _asset_newcontact_delete_contact_popup_delete_button_locator = ".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]"
     _asset_newcontact_window_popup_cross_button_locator = ".//*[@id='asset_contact_modal']/div/div/div/button"
     _asset_newcontact_firstname_error_message_locator = ".//*[@id='asset_contact_error']/div[1]/small"
@@ -86,6 +86,8 @@ class AssetPage(BasePage):
     _asset_newcontact_zip_error_message_locator = "//*[@id='asset_contact_error']/div[4]/small"
     _asset_contact_first_last_name_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]"
     _asset_contact_title_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]"
+    _asset_contact_phone_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]"
+    _asset_contact_email_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]"
     _asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
@@ -106,7 +108,6 @@ class AssetPage(BasePage):
         AssetPage.asset_school_name = "School Name Dee"
         AssetPage.asset_place_name = "kk place 1"
 
-
         '''
         assets_results = self.driver.find_elements_by_xpath(self._asset_list_locator)
         for asset in assets_results:
@@ -118,6 +119,7 @@ class AssetPage(BasePage):
     @property
     def get_assets_name_list(self):
         return self.driver.find_elements_by_xpath(self._asset_list_assets_name_locator)
+
 
     @property
     def select_action_drop_down(self):
@@ -289,6 +291,14 @@ class AssetPage(BasePage):
         return self.driver.find_element_by_xpath(self._asset_contact_title_value_text)
 
     @property
+    def get_asset_contact_phone_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_contact_phone_value_text)
+
+    @property
+    def get_asset_contact_email_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_contact_email_value_text)
+
+    @property
     def get_asset_detail_edit_link(self):
         return self.driver.find_element_by_xpath(self._asset_detail_edit_link_locator)
 
@@ -382,8 +392,6 @@ class AssetPage(BasePage):
         else:
             print "No records found."
 
-
-
     def asset_create_click(self):
         # Click on Create asset
         clickCreateAsset = self.driver.find_element_by_xpath(self._asset_create_asset)
@@ -403,13 +411,13 @@ class AssetPage(BasePage):
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text(template).click()
         sleep(4)
-
+    '''
     def select_school_asset_template_type(self):
         # Select Place from the dropdown to create new place asset
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("School").click()
         sleep(4)
-
+    '''
     def get_placedata(self):
 
         with open(placeData) as data_file:
@@ -517,6 +525,20 @@ class AssetPage(BasePage):
     def asset_cancel(self):
         self.click_asset_type_cancel.click()
         sleep(2)
+        '''
+        # check all fields are enabled
+        self.assertTrue(place_name.is_enabled()
+                        and place_address.is_enabled()
+                        and place_address2.is_enabled()
+                        and place_city.is_enabled()
+                        and place_state.is_enabled()
+                        and place_zip.is_enabled()
+                        and place_owner.is_enabled()
+                        and place_phone.is_enabled()
+                        and place_type.is_enabled()
+                        and place_cancel.is_enabled()
+                        and place_save.is_enabled())
+        '''
 
     def create_asset(self, type):
         self.asset_create_click()
