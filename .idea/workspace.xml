@@ -29,11 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66270787" vertical-offset="333" max-vertical-offset="10013">
-              <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+            <state vertical-scroll-proportion="-3.275862" vertical-offset="4648" max-vertical-offset="9571">
+              <caret line="279" column="8" selection-start-line="279" selection-start-column="8" selection-end-line="279" selection-end-column="52" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -41,24 +41,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1421" max-vertical-offset="9044">
-              <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="10888" max-vertical-offset="31025">
+              <caret line="666" column="4" selection-start-line="666" selection-start-column="4" selection-end-line="667" selection-end-column="68" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="getFilterData.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/getFilterData.py">
+      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="544">
-              <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
-              <folding />
+            <state vertical-scroll-proportion="21.857143" vertical-offset="0" max-vertical-offset="7072">
+              <caret line="405" column="58" selection-start-line="405" selection-start-column="58" selection-end-line="405" selection-end-column="58" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,28 +112,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="Constellation">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-        <subPane subId="Default">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -196,6 +174,28 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT USER_OBJECT="Constellation">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+        <subPane subId="Default">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
@@ -221,6 +221,9 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="837" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
+    <property name="options.lastSelected" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+    <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="options.splitter.details.proportions" value="0.2" />
   </component>
   <component name="PyConsoleOptionsProvider">
     <option name="myPythonConsoleState">
@@ -238,74 +241,7 @@
       <recent name="D:\Project\Constellation\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in assettest">
-    <configuration default="false" name="Unittests in BaseTestCase" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/basetestcase.py" />
-      <option name="CLASS_NAME" value="BaseTestCase" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_CLASS" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="assetpage" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pages" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pages/assetpage.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest MainDriverScript.test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
-      <option name="CLASS_NAME" value="MainDriverScript" />
-      <option name="METHOD_NAME" value="test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field">
     <configuration default="false" name="Unittest AssetPageTest.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -326,6 +262,102 @@
       <option name="PUREUNITTEST" value="true" />
       <option name="PARAMS" value="" />
       <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+      <option name="METHOD_NAME" value="test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_66_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+      <option name="METHOD_NAME" value="test_AS_66_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_66_2_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+      <option name="METHOD_NAME" value="test_AS_66_2_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+      <option name="METHOD_NAME" value="test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
     <configuration default="true" type="PythonConfigurationType" factoryName="Python">
@@ -1020,7 +1052,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <list size="28">
+    <list size="29">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available" />
       <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_06_To_Verify_The_Filter_Function_Filter_By_Place" />
       <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_07_To_Verify_The_Filter_Function_Filter_By_School" />
@@ -1045,17 +1077,19 @@
       <item index="21" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_04_To_Verify_Delete_Asset_Cancel" />
       <item index="22" class="java.lang.String" itemvalue="Python tests.Unittests in main" />
       <item index="23" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available" />
-      <item index="24" class="java.lang.String" itemvalue="Python tests.Unittests in BaseTestCase" />
-      <item index="25" class="java.lang.String" itemvalue="Python.assetpage" />
-      <item index="26" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field" />
-      <item index="27" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" />
+      <item index="24" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" />
+      <item index="25" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+      <item index="26" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+      <item index="27" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_2_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field" />
+      <item index="28" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" />
-        <item index="1" class="java.lang.String" itemvalue="Python.assetpage" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in BaseTestCase" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_2_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" />
       </list>
     </recent_temporary>
   </component>
@@ -1100,7 +1134,25 @@
       <option name="project" value="LOCAL" />
       <updated>1440485027981</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added_New_Contact_testcases">
+      <created>1440670396446</created>
+      <option name="number" value="00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1440670396446</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Added_New_Contact_testcases">
+      <created>1440670404609</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1440670404609</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Added_New_Contact_testcases">
+      <created>1440678522785</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1440678522785</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1114,22 +1166,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23938507" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2735849" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4192496" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23883928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39937106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1177,11 +1229,12 @@
     </option>
     <MESSAGE value="AS_49&#10;Added get_schooldata&#10;Added create_school_asset" />
     <MESSAGE value="Json_Schooldata" />
-    <option name="LAST_COMMIT_MESSAGE" value="Json_Schooldata" />
+    <MESSAGE value="Added_New_Contact_testcases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added_New_Contact_testcases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="5" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1433,7 +1486,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334" vertical-offset="0" max-vertical-offset="0">
           <caret line="392" column="0" selection-start-line="392" selection-start-column="0" selection-end-line="392" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1528,6 +1580,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/getFilterData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.13980263" vertical-offset="0" max-vertical-offset="608">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/loginpage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1122">
@@ -1554,36 +1613,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2193" max-vertical-offset="31025">
-          <caret line="144" column="32" selection-start-line="144" selection-start-column="32" selection-end-line="144" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="10888" max-vertical-offset="31025">
+          <caret line="666" column="4" selection-start-line="666" selection-start-column="4" selection-end-line="667" selection-end-column="68" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/getFilterData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="40" max-vertical-offset="544">
-          <caret line="18" column="50" selection-start-line="18" selection-start-column="50" selection-end-line="18" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1421" max-vertical-offset="9044">
-          <caret line="89" column="26" selection-start-line="89" selection-start-column="26" selection-end-line="89" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66270787" vertical-offset="333" max-vertical-offset="10013">
-          <caret line="36" column="25" selection-start-line="36" selection-start-column="25" selection-end-line="36" selection-end-column="25" />
+        <state vertical-scroll-proportion="-3.275862" vertical-offset="4648" max-vertical-offset="9571">
+          <caret line="279" column="8" selection-start-line="279" selection-start-column="8" selection-end-line="279" selection-end-column="52" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="21.857143" vertical-offset="0" max-vertical-offset="7072">
+          <caret line="405" column="58" selection-start-line="405" selection-start-column="58" selection-end-line="405" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
