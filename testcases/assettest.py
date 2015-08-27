@@ -10,7 +10,6 @@ from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os, re
 
-
 cwd = os.getcwd()
 os.chdir('..')
 searchasset_filepath = os.path.join(os.getcwd(), "data\json_searchAssets.json")
@@ -20,7 +19,6 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
         sleep(5)
-
         assetpage = AssetPage(self.driver)
         assetpage.select_action_drop_down.click()
         self.assertFalse(assetpage.click_delete_text.is_enabled(), "Delete must be disabled.")
@@ -78,7 +76,6 @@ class AssetPageTest(BaseTestCase):
     def test_AS_06_To_Verify_The_Filter_Function_Filter_By_Place(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
-        print "Filtering data based on Place from Json"
         getFilterData(self)
         self.assertTrue(assetpage.display_place_type_drop_down.is_displayed(), "Invalid filter")
 
@@ -261,6 +258,8 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(firstname_error, "Error message is not displayed for First Name")
         self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
 
+
+       
 
     @attr(priority="high")
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):

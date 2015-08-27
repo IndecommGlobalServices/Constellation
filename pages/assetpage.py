@@ -25,7 +25,6 @@ class AssetPage(BasePage):
 
     # Asset Filter related to place and school
     _asset_filter_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
-
     #asset list is already specified above i,e _asset_list_locator
     # we need xpath for type column i,e place or school. locator is already defined above i,e _asset_list_asset_type_locator
     _asset_place_type_drop_down_locator = "//div[@label='Type']"
@@ -411,13 +410,13 @@ class AssetPage(BasePage):
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text(template).click()
         sleep(4)
-    '''
+
     def select_school_asset_template_type(self):
         # Select Place from the dropdown to create new place asset
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("School").click()
         sleep(4)
-    '''
+
     def get_placedata(self):
 
         with open(placeData) as data_file:
@@ -576,8 +575,9 @@ class AssetPage(BasePage):
 
 
     def _validate_page(self, driver):
-        try:
-            driver.find_element_by_xpath(self._select_action_delete_click_xpath_locator)
-        except:
-            raise InvalidPageException("Select Action drop down not found.")
+        #try:
+        #    driver.find_element_by_xpath(self._select_action_delete_click_xpath_locator)
+        #except:
+        #    raise InvalidPageException("Select Action drop down not found.")
+        pass
 
