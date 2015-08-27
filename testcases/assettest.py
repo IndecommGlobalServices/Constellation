@@ -9,6 +9,7 @@ from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os, re
+from selenium.common.exceptions import NoSuchElementException
 
 
 class AssetPageTest(BaseTestCase):
@@ -404,6 +405,34 @@ class AssetPageTest(BaseTestCase):
         except:
             assetpage.click_on_asset_link.click()
             self.assertTrue("New Contact is not created.")
+
+
+    @attr(priority="high")
+    def test_AS_69_To_Delete_Contact_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(8)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        assetpage.delete_existing_contact()
+        try:
+            if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("New Contact is not Deleted")
+        except NoSuchElementException:
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("The Contact has been Deleted")
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)

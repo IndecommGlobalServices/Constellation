@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76a6158f-c964-4bd4-9f55-7a82441e4aa1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="47bfa8cf-4e8d-42dc-b093-b764af6418f7" name="Failed commit: Default" comment="Json_Schooldata" />
@@ -30,8 +31,8 @@
       <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.275862" vertical-offset="4648" max-vertical-offset="9571">
-              <caret line="279" column="8" selection-start-line="279" selection-start-column="8" selection-end-line="279" selection-end-column="52" />
+            <state vertical-scroll-proportion="-3.275862" vertical-offset="4104" max-vertical-offset="9571">
+              <caret line="247" column="40" selection-start-line="247" selection-start-column="8" selection-end-line="247" selection-end-column="40" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -42,8 +43,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="10888" max-vertical-offset="31025">
-              <caret line="666" column="4" selection-start-line="666" selection-start-column="4" selection-end-line="667" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="8007" max-vertical-offset="31025">
+              <caret line="488" column="4" selection-start-line="488" selection-start-column="4" selection-end-line="490" selection-end-column="60" />
               <folding />
             </state>
           </provider>
@@ -52,8 +53,8 @@
       <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="21.857143" vertical-offset="0" max-vertical-offset="7072">
-              <caret line="405" column="58" selection-start-line="405" selection-start-column="58" selection-end-line="405" selection-end-column="58" />
+            <state vertical-scroll-proportion="23.368254" vertical-offset="0" max-vertical-offset="7565">
+              <caret line="433" column="0" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -239,29 +240,7 @@
       <recent name="D:\Project\Constellation\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field">
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_69_To_Delete_Contact_Asset_ContactInfo_Field">
     <configuration default="false" name="Unittest AssetPageTest.test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -347,6 +326,30 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
       <option name="METHOD_NAME" value="test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_69_To_Delete_Contact_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+      <option name="METHOD_NAME" value="test_AS_69_To_Delete_Contact_Asset_ContactInfo_Field" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -1075,19 +1078,19 @@
       <item index="21" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_04_To_Verify_Delete_Asset_Cancel" />
       <item index="22" class="java.lang.String" itemvalue="Python tests.Unittests in main" />
       <item index="23" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available" />
-      <item index="24" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" />
-      <item index="25" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
-      <item index="26" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
-      <item index="27" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_2_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field" />
-      <item index="28" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" />
+      <item index="24" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+      <item index="25" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+      <item index="26" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_2_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field" />
+      <item index="27" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" />
+      <item index="28" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_69_To_Delete_Contact_Asset_ContactInfo_Field" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_2_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_69_To_Delete_Contact_Asset_ContactInfo_Field" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_67_To_Click_On_Cancel_Asset_ContactInfo_Field" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_2_To_Click_On_Save_With_Wrong_Email_Asset_ContactInfo_Field" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_66_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_65_To_Click_On_Save_With_phone_Asset_ContactInfo_Field" />
       </list>
     </recent_temporary>
   </component>
@@ -1156,7 +1159,13 @@
       <option name="project" value="LOCAL" />
       <updated>1440678585242</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added_New_Contact_testcases">
+      <created>1440681444956</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1440681444956</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1170,7 +1179,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1181,7 +1190,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4192496" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23883928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23883928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39937106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1238,7 +1247,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1617,16 +1626,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="10888" max-vertical-offset="31025">
-          <caret line="666" column="4" selection-start-line="666" selection-start-column="4" selection-end-line="667" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="8007" max-vertical-offset="31025">
+          <caret line="488" column="4" selection-start-line="488" selection-start-column="4" selection-end-line="490" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.275862" vertical-offset="4648" max-vertical-offset="9571">
-          <caret line="279" column="8" selection-start-line="279" selection-start-column="8" selection-end-line="279" selection-end-column="52" />
+        <state vertical-scroll-proportion="-3.275862" vertical-offset="4104" max-vertical-offset="9571">
+          <caret line="247" column="40" selection-start-line="247" selection-start-column="8" selection-end-line="247" selection-end-column="40" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -1635,8 +1644,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="21.857143" vertical-offset="0" max-vertical-offset="7072">
-          <caret line="405" column="58" selection-start-line="405" selection-start-column="58" selection-end-line="405" selection-end-column="58" />
+        <state vertical-scroll-proportion="23.368254" vertical-offset="0" max-vertical-offset="7565">
+          <caret line="433" column="0" selection-start-line="433" selection-start-column="0" selection-end-line="433" selection-end-column="0" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
