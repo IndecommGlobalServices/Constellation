@@ -14,7 +14,7 @@ import re
 
 
 cwd = os.getcwd()
-#os.chdir('..')
+os.chdir('..')
 searchasset_filepath = os.path.join(os.getcwd(), "data\json_searchAssets.json")
 os.chdir(cwd)
 
@@ -36,7 +36,6 @@ class AssetPageTest(BaseTestCase):
 
     # Need to rework
     @attr(priority="high")
-    @SkipTest
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
         asset_checkbox = self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]")
         asset_checkbox.click()
@@ -161,7 +160,9 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.asset_search_assetname("{}")
         assetpage.asset_search_special_characters()
-        sleep(10)
+        sleep(2)
+        assetpage.asset_search_assetname("")
+        sleep(5)
 
 
     @attr(priority="high")
@@ -181,14 +182,14 @@ class AssetPageTest(BaseTestCase):
         sleep(2)
         aname = ""
         assetpage.enter_asset_type_name.send_keys(aname)
-        assetpage.enter_asset_type_name.send_keys(Keys.TAB)
+        #assetpage.enter_asset_type_name.send_keys(Keys.TAB)
 
         sleep(5)
         if aname == '':
             self.assertFalse(assetpage.click_asset_type_save.is_enabled(), "Save button is not disabled.")
+        assetpage.asset_cancel()
 
-        #WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
-        #self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+
     @attr(priority="high")
     def test_AS_16_To_Verify_Validation_Of_Phone_Field(self):
         assetpage = AssetPage(self.driver)
@@ -198,11 +199,12 @@ class AssetPageTest(BaseTestCase):
 
         aphone = "123abc1234"
         assetpage.enter_asset_type_phone.send_keys(aphone)
-        assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
+        #assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
 
         sleep(5)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches(aphone, regex, "Expected and actual value is not matching for EMAIL")
+        assetpage.asset_cancel()
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         sleep(5)
@@ -215,7 +217,7 @@ class AssetPageTest(BaseTestCase):
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
             self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
-        assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
+        assetpage.asset_search_assetname("")
 
     @attr(priority="high")
     def test_AS_18_To_Verify_Create_Asset_Function_Cancel_Place_Asset(self):
@@ -239,6 +241,7 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
         searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
         searchAsset_textbox.clear()
@@ -263,6 +266,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
         searchAsset_textbox = self.driver.find_element_by_id("txt_search_assets")
@@ -288,6 +292,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priotity = "high")
+    @SkipTest
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
@@ -297,7 +302,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority = "high")
-    #  @SkipTest
+    @SkipTest
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")

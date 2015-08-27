@@ -392,10 +392,10 @@ class AssetPage(BasePage):
         search_textbox.send_keys(name)
 
     def asset_search_special_characters(self):
-        sleep(5)
+        sleep(1)
         searchNames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         print len(searchNames)
-        sleep(5)
+        sleep(1)
         if len(searchNames) > 0:
             for searchname in searchNames:
                 print searchname.text
@@ -564,8 +564,10 @@ class AssetPage(BasePage):
 
 
     def _validate_page(self, driver):
+        '''
         try:
             driver.find_element_by_xpath(self._select_action_delete_click_xpath_locator)
         except:
             raise InvalidPageException("Select Action drop down not found.")
-
+        '''
+        pass
