@@ -3,6 +3,7 @@ from lib.base import InvalidPageException
 from time import sleep
 from faker import Factory
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import NoSuchElementException
 import os,json
 
 cwd = os.getcwd()
@@ -19,7 +20,7 @@ class AssetPage(BasePage):
     # Asset List related
     _asset_list_locator = "//tbody/tr/td/a"
     _asset_list_check_box_locator = ".//*[@id='assetstable']/tbody/tr/td[1]/label/span/span[2]"
-    _asset_list_asset_name_locator = ".//*[@id='assetstable']/tbody/tr/td[2]/a"
+    _asset_list_assets_name_locator = ".//*[@id='assetstable']/tbody/tr/td[2]/a"
     _asset_list_asset_type_locator = ".//*[@id='assetstable']/tbody/tr/td[3]"
 
     # Asset Filter related to place and school
@@ -53,45 +54,40 @@ class AssetPage(BasePage):
     _asset_type_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
     _asset_type_cancel_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
     _asset_type_save_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
-    _asset_points_of_contact_locator = "//div[contains(text(), 'Points of Contact')]"
-    _asset_add_contact_locator = "btn_add_asset_contact"
-    _asset_newcontact_firstname_locator = "first_name"
-    _asset_newcontact_lastname_locator = "last_name"
-    _asset_newcontact_prefix_locator = "//input[@placeholder='Prefix']"
-    _asset_newcontact_title_locator = "//input[@placeholder='Title']"
-    _asset_newcontact_phone_locator = "phone"
-    _asset_newcontact_email_locator = "email"
 
-
-    _asset_points_of_contact_locator = "//div[contains(text(), 'Points of Contact')]"
-    _asset_add_contact_locator = "btn_add_asset_contact"
-    _asset_newcontact_firstname_locator = "first_name"
-    _asset_newcontact_lastname_locator = "last_name"
-    _asset_newcontact_prefix_locator = "//input[@placeholder='Prefix']"
-    _asset_newcontact_title_locator = "//input[@placeholder='Title']"
-    _asset_newcontact_phone_locator = "phone"
-    _asset_newcontact_email_locator = "email"
-    _asset_newcontact_address1_locator = "address"
-    _asset_newcontact_address2_locator = "*//input[@ng-model='contact_edit.address.address2']"
-    _asset_newcontact_city_locator = "*//input[@placeholder='City']"
-    _asset_newcontact_state_locator = "state"
-    _asset_newcontact_zip_locator = "zip"
-    _asset_newcontact_save_locator = ".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]"
-    _asset_newcontact_cancel_locator = ".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[1]"
-    _asset_newcontact_delete_contact_locator = ".//*[@id='contacts_table']/tbody/tr/td[5]/a/img"
-    _asset_newcontact_delete_contact_popup_locator = ".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]"
+    _asset_points_of_contact_header_locator = "//div[contains(text(), 'Points of Contact')]"
+    _asset_add_contact_button_locator = "btn_add_asset_contact"
+    _asset_newcontact_firstname_textbox_locator = "first_name"
+    _asset_newcontact_lastname_textbox_locator = "last_name"
+    _asset_newcontact_prefix_textbox_locator = "//input[@placeholder='Prefix']"
+    _asset_newcontact_title_textbox_locator = "//input[@placeholder='Title']"
+    _asset_newcontact_phone_textbox_locator = "phone"
+    _asset_newcontact_email_textbox_locator = "email"
+    _asset_newcontact_address1_textbox_locator = "address"
+    _asset_newcontact_address2_textbox_locator = "*//input[@ng-model='contact_edit.address.address2']"
+    _asset_newcontact_city_textbox_locator = "*//input[@placeholder='City']"
+    _asset_newcontact_state_textbox_locator = "state"
+    _asset_newcontact_zip_textbox_locator = "zip"
+    _asset_newcontact_save_button_locator = "//form[@name='form_contact_edit']//div//button[@type='submit' and text()='Save']"
+    _asset_newcontact_cancel_button_locator = "//form[@name='form_contact_edit']//div//button[@type='button' and text()='Cancel']"
+    _asset_newcontact_delete_contact_icon_locator = ".//*[@id='contacts_table']/tbody/tr/td[5]/a/img"
+    _asset_newcontact_delete_contact_popup_delete_button_locator = ".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]"
     _asset_newcontact_window_popup_cross_button_locator = ".//*[@id='asset_contact_modal']/div/div/div/button"
     _asset_newcontact_firstname_error_message_locator = ".//*[@id='asset_contact_error']/div[1]/small"
     _asset_newcontact_lastname_error_message_locator = ".//*[@id='asset_contact_error']/div[2]/small"
     _asset_newcontact_email_error_message_locator = ".//*[@id='asset_contact_error']/div[6]/small"
     _asset_newcontact_state_error_message_locator = "//*[@id='asset_contact_error']/div[3]/small"
     _asset_newcontact_zip_error_message_locator = "//*[@id='asset_contact_error']/div[4]/small"
-
-    _asset_detail_email_locator = "//input[@placeholder='Email']"
-    _asset_detail_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
+    _asset_contact_first_last_name_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]"
+    _asset_contact_title_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]"
+    _asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
+    _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
+    _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
+    _asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
+    _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
 
     _asset_overview_edit_link_locator = "//div[contains(text(),'Overview')]/div/img"
-    _asset_overview_edit_name_locator = "name"
+    _asset_overview_edit_name_textbox_locator = "name"
     _asset_overview_window_popup_cross_button_locator = "//*[@id='asset_overview_modal']/div/div/div/button"
     _asset_link_locator = "Assets"
 
@@ -111,6 +107,10 @@ class AssetPage(BasePage):
             self._assets[assetname] = asset.find_element_by_xpath(self._asset_list_check_box_locator)
             self._assets[assetname] = asset.find_element_by_xpath(self._asset_list_asset_type_locator)
         '''
+
+    @property
+    def get_assets_name_list(self):
+        return self.driver.find_elements_by_xpath(self._asset_list_assets_name_locator)
 
 
     @property
@@ -183,115 +183,136 @@ class AssetPage(BasePage):
         return self.driver.find_element_by_xpath(self._asset_type_save_button_locator)
 
     @property
-    def select_asset_points_of_contact(self):
-        return self.driver.find_element_by_xpath(self._asset_points_of_contact_locator)
+    def get_asset_points_of_contact_header(self):
+        return self.driver.find_element_by_xpath(self._asset_points_of_contact_header_locator)
 
     @property
-    def select_asset_add_contact(self):
-        return self.driver.find_element_by_id(self._asset_add_contact_locator)
+    def get_asset_add_contact_button(self):
+        return self.driver.find_element_by_id(self._asset_add_contact_button_locator)
 
     @property
-    def select_asset_newcontact_firstname(self):
-        return self.driver.find_element_by_name(self._asset_newcontact_firstname_locator)
+    def get_asset_newcontact_firstname_textbox(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_firstname_textbox_locator)
 
     @property
-    def select_asset_newcontact_lastname(self):
-        return self.driver.find_element_by_name(self._asset_newcontact_lastname_locator)
+    def get_asset_newcontact_lastname_textbox(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_lastname_textbox_locator)
 
     @property
-    def select_asset_newcontact_prefix(self):
-        return self.driver.find_element_by_xpath(self._asset_newcontact_prefix_locator)
+    def get_asset_newcontact_prefix_textbox(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_prefix_textbox_locator)
 
     @property
-    def select_asset_newcontact_title(self):
-        return self.driver.find_element_by_xpath(self._asset_newcontact_title_locator)
+    def get_asset_newcontact_title_textbox(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_title_textbox_locator)
 
     @property
-    def select_asset_newcontact_phone(self):
-        return self.driver.find_element_by_name(self._asset_newcontact_phone_locator)
+    def get_asset_newcontact_phone_textbox(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_phone_textbox_locator)
 
     @property
-    def select_asset_newcontact_email(self):
-        return self.driver.find_element_by_name(self._asset_newcontact_email_locator)
+    def get_asset_newcontact_email_textbox(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_email_textbox_locator)
 
     @property
-    def select_asset_newcontact_address1(self):
-        return self.driver.find_element_by_name(self._asset_newcontact_address1_locator)
+    def get_asset_newcontact_address1_textbox(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_address1_textbox_locator)
 
     @property
-    def select_asset_newcontact_address2(self):
-        return self.driver.find_element_by_xpath(self._asset_newcontact_address2_locator)
+    def get_asset_newcontact_address2_textbox(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_address2_textbox_locator)
 
     @property
-    def select_asset_newcontact_city(self):
-        return self.driver.find_element_by_xpath(self._asset_newcontact_city_locator)
+    def get_asset_newcontact_city_textbox(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_city_textbox_locator)
 
     @property
-    def select_asset_newcontact_state(self):
-        return self.driver.find_element_by_name(self._asset_newcontact_state_locator)
+    def get_asset_newcontact_state_textbox(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_state_textbox_locator)
 
     @property
-    def select_asset_newcontact_zip(self):
-        return self.driver.find_element_by_name(self._asset_newcontact_zip_locator)
+    def get_asset_newcontact_zip_textbox(self):
+        return self.driver.find_element_by_name(self._asset_newcontact_zip_textbox_locator)
 
     @property
-    def select_asset_newcontact_save(self):
-        return self.driver.find_element_by_xpath(self._asset_newcontact_save_locator)
+    def get_asset_newcontact_save_button(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_save_button_locator)
 
     @property
-    def select_asset_newcontact_cancel(self):
-        return self.driver.find_element_by_xpath(self._asset_newcontact_cancel_locator)
+    def get_asset_newcontact_cancel_button(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_cancel_button_locator)
 
     @property
-    def select_asset_newcontact_delete_icon(self):
-        return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_locator)
+    def get_asset_newcontact_delete_icon(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_icon_locator)
 
     @property
-    def select_asset_newcontact_delete_popup_window(self):
-        return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_popup_locator)
+    def get_asset_newcontact_delete_popup_delete_button(self):
+        return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_popup_delete_button_locator)
 
     @property
-    def select_asset_newcontact_window_cross_button(self):
+    def get_asset_newcontact_window_cross_button(self):
         return self.driver.find_element_by_xpath(self._asset_newcontact_window_popup_cross_button_locator)
 
     @property
-    def check_asset_newcontact_firstname_error_message(self):
+    def get_asset_newcontact_firstname_error_message(self):
         return self.driver.find_element_by_xpath(self._asset_newcontact_firstname_error_message_locator)
 
     @property
-    def check_asset_newcontact_lastname_error_message(self):
+    def get_asset_newcontact_lastname_error_message(self):
         return self.driver.find_element_by_xpath(self._asset_newcontact_lastname_error_message_locator)
 
     @property
-    def check_asset_newcontact_state_error_message(self):
+    def get_asset_newcontact_state_error_message(self):
         return self.driver.find_element_by_xpath(self._asset_newcontact_state_error_message_locator)
 
     @property
-    def check_asset_newcontact_zip_error_message(self):
+    def get_asset_newcontact_zip_error_message(self):
         return self.driver.find_element_by_xpath(self._asset_newcontact_zip_error_message_locator)
 
     @property
-    def check_asset_newcontact_email_error_message(self):
+    def get_asset_newcontact_email_error_message(self):
         return self.driver.find_element_by_xpath(self._asset_newcontact_email_error_message_locator)
 
     @property
-    def select_asset_detail_edit_email_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_email_locator)
+    def get_asset_contact_first_last_name_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_contact_first_last_name_value_text)
 
     @property
-    def select_asset_detail_edit_save_button(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_save_button_locator)
+    def get_asset_contact_title_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_contact_title_value_text)
+
 
     @property
-    def select_asset_overview_edit_link(self):
+    def get_asset_detail_edit_link(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_link_locator)
+
+    @property
+    def get_asset_detail_edit_email_text_box(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_email_textbox_locator)
+
+    @property
+    def get_asset_detail_email_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_email_value_text_locator)
+
+    @property
+    def get_asset_detail_edit_save_button(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_save_button_locator)
+
+    @property
+    def get_asset_detail_edit_window_cross_button(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_window_popup_cross_button_locator)
+
+    @property
+    def get_asset_overview_edit_link(self):
         return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
 
     @property
-    def select_asset_overview_edit_name_text_box(self):
-        return self.driver.find_element_by_name(self._asset_overview_edit_name_locator)
+    def get_asset_overview_edit_name_text_box(self):
+        return self.driver.find_element_by_name(self._asset_overview_edit_name_textbox_locator)
 
     @property
-    def select_asset_overview_window_cross_button(self):
+    def get_asset_overview_window_cross_button(self):
         return self.driver.find_element_by_xpath(self._asset_overview_window_popup_cross_button_locator)
 
     @property
@@ -491,6 +512,32 @@ class AssetPage(BasePage):
         elif type == "Place":
             self.create_place_asset()
         self.asset_save()
+
+    def select_school_or_place_asset(self, asset_name1,asset_type):
+        try:
+            self.asset_search_assetname(asset_name1)
+            sleep(6)
+            asset_list = self.get_assets_name_list
+            if len(asset_list)>=1:
+                asset_list[0].click()
+            else:
+                sleep(4)
+                self.asset_search_assetname("")
+                sleep(2)
+                self.create_asset(asset_type)
+                sleep(2)
+        except:
+            print "No Asset is existing or Asset Creation has been failed."
+
+    def delete_existing_contact(self):
+        try:
+            if self.get_asset_newcontact_delete_icon.is_displayed():
+                sleep(2)
+                self.get_asset_newcontact_delete_icon.click()
+                sleep(1)
+                self.get_asset_newcontact_delete_popup_delete_button.click()
+        except NoSuchElementException:
+            print "No contact exist."
 
 
     def _validate_page(self, driver):
