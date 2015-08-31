@@ -100,9 +100,11 @@ class AssetPage(BasePage):
     _asset_newcontact_state_error_message_locator = "//*[@id='asset_contact_error']/div[3]/small"
     _asset_newcontact_zip_error_message_locator = "//*[@id='asset_contact_error']/div[4]/small"
     _asset_contact_first_last_name_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]"
-    _asset_contact_title_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]"
-    _asset_contact_phone_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]"
-    _asset_contact_email_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]"
+    _asset_contact_title_value_text_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]"
+    _asset_contact_phone_value_text_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]"
+    _asset_contact_email_value_text_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]"
+    _asset_contact_new_contact_text_locator = "//table[@id='contacts_table']//tbody//tr"
+
     _asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
@@ -354,15 +356,19 @@ class AssetPage(BasePage):
 
     @property
     def get_asset_contact_title_value_text(self):
-        return self.driver.find_element_by_xpath(self._asset_contact_title_value_text)
+        return self.driver.find_element_by_xpath(self._asset_contact_title_value_text_locator)
 
     @property
     def get_asset_contact_phone_value_text(self):
-        return self.driver.find_element_by_xpath(self._asset_contact_phone_value_text)
+        return self.driver.find_element_by_xpath(self._asset_contact_phone_value_text_locator)
 
     @property
     def get_asset_contact_email_value_text(self):
-        return self.driver.find_element_by_xpath(self._asset_contact_email_value_text)
+        return self.driver.find_element_by_xpath(self._asset_contact_email_value_text_locator)
+
+    @property
+    def get_asset_contact_new_contact_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_contact_new_contact_text_locator)
 
     # Asset Details related properties
 
