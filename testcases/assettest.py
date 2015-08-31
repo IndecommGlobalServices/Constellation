@@ -270,7 +270,6 @@ class AssetPageTest(BaseTestCase):
     # Click on Details panel
         assetpage.get_asset_detail_edit_link.click()
 
-
     # Modify the values
         assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "22222", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "63", "12001", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
@@ -319,7 +318,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
         assetpage.click_on_asset_link.click()
-        assetpage.asset_search_assetname(assetpage.asset_name)
+        assetpage.asset_search_assetname(assetpage.asset_school_name)
         sleep(20)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
