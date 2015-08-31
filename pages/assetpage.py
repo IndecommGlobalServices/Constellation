@@ -469,10 +469,14 @@ class AssetPage(BasePage):
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text("School").click()
-        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
-        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
-        #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
 
+        # Click on District dropdown
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
+
+        # Click on first link inside District dropdown
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
+
+        # Find total no of school based on District
         districtNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
 
         for distname in districtNames:
@@ -483,32 +487,78 @@ class AssetPage(BasePage):
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Click on Grade dropdown
         self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator).click()
-        self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
-        #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
+        sleep(5)
 
-        gradeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
-        if len(gradeNames) > 0:
-            for gradename in gradeNames:
-                print gradename.text
-        else:
-            print "No records found."
+        # Check the values exists inside Grade dropdown
+        chkGradeDropDownValuesExists = self.driver.find_elements_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
+        sleep(5)
+        try:
 
-    # This function is to select the school grade
+            # If value exists inside Grade dropdown
+            if len(chkGradeDropDownValuesExists) > 1:
+                # Click on the First link inside Grade dropdown
+                self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
+
+                # Count the no of schools displayed in the list after filtering by Grade dropdown
+                gradeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
+
+                # Print the School names based on Grade dropdown
+                if len(gradeNames) > 0:
+                    for gradename in gradeNames:
+                        print gradename.text
+                else:
+                    print "No school records found."
+            else:
+                print "No value to select inside School Grade dropdown."
+        except:
+            self.driver.get_asset_reset_button.click()
+
+
+
+
+    # This function is to select the school type
     def get_asset_school_type(self):
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Check the values exists inside School dropdown
         self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator).click()
+        sleep(5)
+
+        # Check the values exists inside School dropdown
         self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
         #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
 
-        typeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
-        if len(typeNames) > 0:
-            for typename in typeNames:
-                print typename.text
-        else:
-            print "No records found."
+         # Check the values exists inside School dropdown
+        chkSchoolDropDownValuesExists = self.driver.find_elements_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
+        sleep(5)
+        try:
+
+            # If value exists inside Grade dropdown
+            if len(chkSchoolDropDownValuesExists) > 1:
+                # Click on the First link inside Grade dropdown
+                self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
+
+                # Count the no of schools displayed in the list after filtering by Grade dropdown
+                typeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
+
+                # Print the School names based on Grade dropdown
+                if len(typeNames) > 0:
+                    for typename in typeNames:
+                        print typename.text
+                else:
+                    print "No school records found."
+            else:
+                print "No value to select inside School Type dropdown."
+        except:
+            self.driver.get_asset_reset_button.click()
+
 
     def textbox_clear(self, textboxlocator):
         textboxlocator.clear()
@@ -573,9 +623,10 @@ class AssetPage(BasePage):
     def create_place_asset(self):
         # Select Place from the dropdown to create new place asset
         self.get_placedata()
+
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("Place").click()
-        sleep(4)
+        sleep(6)
         self.enter_asset_type_name.send_keys(self.asset_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
@@ -599,6 +650,7 @@ class AssetPage(BasePage):
         sleep(2)
         #self.select_asset_type_type.click()
         #sleep(2)
+
 
 
     def input_school_asset_fields(self):
