@@ -116,6 +116,7 @@ class AssetPage(BasePage):
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
     _asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
+    #.//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]
     _asset_detail_edit_cancel_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[1]"
     _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
     #_asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
@@ -123,12 +124,11 @@ class AssetPage(BasePage):
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[2]/div/span/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
-    #_asset_detail_edit_email_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[5]/div/span/input"
-    _asset_detail_edit_fax_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
-    _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[7]/div/span/input"
+    _asset_detail_edit_fax_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[5]/div/span/input"
+    _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
-    _asset_detail_edit_size_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[9]/div/span/input"
-    _asset_detail_edit_website_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[10]/div/span/input"
+    _asset_detail_edit_size_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[7]/div/span/input"
+    _asset_detail_edit_website_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
 
 
 
@@ -375,27 +375,27 @@ class AssetPage(BasePage):
 
     @property
     def get_asset_detail_edit_detail_district_number_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_detail_district_number_textbox_locator_textbox_locator)
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_detail_district_number_textbox_locator)
 
     @property
     def get_asset_detail_edit_detail_fax_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_detail_fax_textbox_locator_textbox_locator)
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_fax_textbox_locator)
 
     @property
     def get_asset_detail_edit_detail_opened_number_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_detail_opened_textbox_locator_textbox_locator)
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_opened_textbox_locator)
 
     @property
     def get_asset_detail_edit_detail_school_number_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_detail_school_number_textbox_locator_textbox_locator)
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_school_number_textbox_locator)
 
     @property
     def get_asset_detail_edit_detail_size_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_detail_size_textbox_locator_textbox_locator)
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_size_textbox_locator)
 
     @property
     def get_asset_detail_edit_detail_website_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_detail_website_textbox_locator_textbox_locator)
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_website_textbox_locator)
 
     @property
     def get_asset_detail_edit_email_text_box(self):
@@ -740,7 +740,7 @@ class AssetPage(BasePage):
         #self.select_asset_type_type.click()
         #sleep(2)
 
-    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite):
+    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
         # fill out the fields
 
         self.get_asset_detail_edit_capacity_text_box.send_keys("")
@@ -761,11 +761,11 @@ class AssetPage(BasePage):
 
         sleep(2)
 
-        self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
-        self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
-        self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
+        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
+        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
+        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_email_text_box.send_keys("")
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
@@ -785,11 +785,11 @@ class AssetPage(BasePage):
 
         sleep(2)
 
-        self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
-        self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
-        self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
+        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
+        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
+        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_detail_size_text_box.send_keys("")
         self.get_asset_detail_edit_detail_size_text_box.send_keys(psize)

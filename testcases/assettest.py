@@ -267,14 +267,16 @@ class AssetPageTest(BaseTestCase):
 
     # Click on Details panel
         assetpage.get_asset_detail_edit_link.click()
-
+        sleep(10)
 
     # Modify the values
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "22222", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "63", "12001", "http://www.haystax.com")
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
+        sleep(10)
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
+        # Capacity, Closed, Description, Email, Fax, Opened, Size, Website
     # Click on Save
-        assetpage.get_asset_detail_edit_save_button()
-
+        assetpage.get_asset_detail_edit_save_button.click()
+        sleep(10)
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
 
@@ -555,12 +557,12 @@ class AssetPageTest(BaseTestCase):
 
         # Click on Attach file button and attached the file path with the send_keys
         attachfile = self.driver.find_element_by_xpath(".//*[@id='upload_document_file_upload']")
-        attachfile.click()
+        #attachfile.click()
         sleep(10)
         #D:\Project\Constellation
         #attachfile.send_keys(os.getcwd()+"/test.txt")
         attachfile.send_keys("D:/Project/Constellation/test.txt")
-        attachfile.send_keys(Keys.ENTER)
+        #attachfile.send_keys(Keys.ENTER)
         sleep(10)
 
 
