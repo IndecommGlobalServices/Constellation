@@ -414,6 +414,38 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Title", exp_title, "Expected and actual value is not matching for Title")
 
     @attr(priority="high")
+    def test_AS_62_3_To_Save_All_Contact_Info_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(6)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        assetpage.get_asset_newcontact_prefix_textbox.send_keys("Mr")
+        assetpage.get_asset_newcontact_title_textbox.send_keys("Title")
+        assetpage.get_asset_newcontact_address1_textbox.send_keys("Indecomm")
+        assetpage.get_asset_newcontact_address2_textbox.send_keys("Brigade South Parade")
+        assetpage.get_asset_newcontact_city_textbox.send_keys("Banaglore")
+        assetpage.get_asset_newcontact_state_textbox.send_keys("IN")
+        assetpage.get_asset_newcontact_zip_textbox.send_keys("56001")
+        assetpage.get_asset_newcontact_phone_textbox.send_keys("111-111-1111")
+        assetpage.get_asset_newcontact_email_textbox.send_keys("test@test.com")
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        sleep(2)
+        act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
+        exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
+        assetpage.click_on_asset_link.click()
+        self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
+
+
+    @attr(priority="high")
     def test_AS_64_To_Click_On_Save_Without_FirstLastName_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
