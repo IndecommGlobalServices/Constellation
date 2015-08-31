@@ -2,6 +2,8 @@ import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.keys import Keys
 from pages.assetpage import AssetPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
@@ -9,7 +11,7 @@ from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os, re
-from selenium.webdriver.common.keys import Keys
+
 cwd = os.getcwd()
 os.chdir('..')
 searchasset_filepath = os.path.join(os.getcwd(), "data\json_searchAssets.json")
