@@ -600,19 +600,6 @@ class AssetPageTest(BaseTestCase):
             assetpage.click_on_asset_link.click()
             self.assertFalse("The Contact has been Deleted.")
 
-        # Click on Photo/Document panel - File Upload button
-        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/button").click()
-        sleep(10)
-
-        # Click on Attach file button and attached the file path with the send_keys
-        attachfile = self.driver.find_element_by_xpath(".//*[@id='upload_document_file_upload']")
-        #attachfile.click()
-        sleep(10)
-        #D:\Project\Constellation
-        #attachfile.send_keys(os.getcwd()+"/test.txt")
-        attachfile.send_keys("D:/Project/Constellation/test.txt")
-        #attachfile.send_keys(Keys.ENTER)
-        sleep(10)
 
 
 if __name__ =='__main__':
