@@ -45,6 +45,14 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(assetpage.display_school_district_drop_down.is_displayed(), "Invalid filter")
 
     @attr(priority="high")
+    def test_AS_08_To_Verify_The_Filter_Function_Filter_By_School_District(self):
+        sleep(5)
+        assetpage = AssetPage(self.driver)
+        print "Filtering data based on School from Json"
+        assetpage.asset_filter_based_on_school_district("School")
+
+
+    @attr(priority="high")
     def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
         sleep(5)
         resetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/button")
@@ -63,18 +71,40 @@ class AssetPageTest(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
+    def test_AS_15_To_Verify_Validation_Of_Name_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.asset_create_click()
+        sleep(5)
+        assetpage.select_asset_template_type("Place")
+        self.assertFalse(assetpage.click_asset_type_save.is_enabled(), "Save button is not disabled.")
+
+        #WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        #self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+
+
+    @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         sleep(5)
-        with open(placeData) as data_file:
-            data_text = json.load(data_file)
-            for each in data_text:
-                pexp_apame = each["exp_apame"]
+        assetpage = AssetPage(self.driver)
+        assetpage.create_asset("Place")
+        assetpage.click_on_asset_link.click()
+        sleep(10)
+        assetpage.asset_search_assetname(assetpage.asset_name)
+        sleep(20)
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+            print (i.text)
+            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+        assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
 
-        table = self.driver.find_element_by_xpath(".//*[@id='main_content']")
-        rows = table.find_elements_by_tag_name("tr")
-        self.assertIn(pexp_apame + ' Place' , [row.text for row in rows])
-        #self.assertEqual("rgba(255, 236, 158, 1)", [row.value_of_css_property("background-color") for row in rows])
+    @attr(priority="high")
+    def test_AS_18_To_Verify_Create_Asset_Function_Cancel_Place_Asset(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+        assetpage.asset_create_click()
+        assetpage.asset_cancel()
 
+        expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
+        self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
     def test_AS_19_To_Verify_Create_Asset_Function_Cancel_Place_Asset(self):
@@ -83,6 +113,10 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.create_place_asset()
         assetpage.asset_cancel()
+
+        expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
+        self.assertEqual("Asset Type",expectedAfterResetFilter)
+
 
     @attr(priority="high")
     def test_AS_18_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
@@ -245,6 +279,29 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Title", exp_title, "Expected and actual value is not matching for Title")
 
     @attr(priority="high")
+    def test_AS_62_3_To_Save_All_Field_Info_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(8)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        assetpage.get_asset_newcontact_title_textbox.clear()
+        assetpage.get_asset_newcontact_title_textbox.send_keys("Title")
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        sleep(2)
+
+
+    @attr(priority="high")
     def test_AS_64_To_Click_On_Save_Without_FirstLastName_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
@@ -394,11 +451,45 @@ class AssetPageTest(BaseTestCase):
         assetpage.delete_existing_contact()
         try:
             if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                sleep(2)
                 assetpage.click_on_asset_link.click()
                 self.assertFalse("New Contact is not Deleted")
         except NoSuchElementException:
             assetpage.click_on_asset_link.click()
             self.assertTrue("The Contact has been Deleted")
+
+    @attr(priority="high")
+    def test_AS_70_To_Delete_Cancel_Contact_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(8)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        try:
+            if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                sleep(2)
+                assetpage.get_asset_newcontact_delete_icon.click()
+                sleep(2)
+                assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
+                sleep(2)
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Pass. Cancel Button is working properly.")
+        except NoSuchElementException:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("The Contact has been Deleted.")
+
+
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)

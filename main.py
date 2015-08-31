@@ -557,6 +557,114 @@ class MainDriverScript(BaseTestCase):
         sleep(2)
 
     @attr(priority="high")
+    def test_AS_assesnding_desending(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
+        searchnames[0].click()
+        sleep(2)
+        try:
+            while (self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").is_displayed()):
+                self.driver.find_element_by_xpath(".//*[@id='contacts_table']/tbody/tr/td[5]/a/img").click()
+                self.driver.find_element_by_xpath(".//*[@id='asset_delete_contact_modal']/div/div/div[3]/button[2]").click()
+        except NoSuchElementException:
+            print "No contact"
+
+        firstnamelist= ['def', 'jkl', 'pqr', 'vwx']
+        secondnamelist=['abc','ghi','mno', 'stu']
+        phonelist = ['111-111-1111','222-222-2222', '333-333-3333', '444-444-4444']
+        emaillist = ['abc@def', 'ghi@jkl','mno@pqr', 'stu@vwx']
+        tilelist = ['AA', 'BB', 'CC', 'DD']
+        exp_name_ascending = "abc, def, ghi, jkl, mno, pqr, stu, vwx"
+        exp_name_descending = "stu, vwx, mno, pqr, ghi, jkl, abc, def"
+        exp_title_ascending = 'AA, BB, CC, DD'
+        exp_title_descending = 'DD, CC, BB, AA'
+        exp_phone_ascending = "111-111-1111, 222-222-2222, 333-333-3333, 444-444-4444"
+        exp_phone_descending = "444-444-4444, 333-333-3333, 222-222-2222, 111-111-1111"
+        exp_email_ascending = 'abc@def, ghi@jkl, mno@pqr, stu@vwx'
+        exp_email_descending = 'stu@vwx, mno@pqr, ghi@jkl, abc@def'
+        for i in range(4):
+            self.driver.find_element_by_xpath("//div[contains(text(), 'Points of Contact')]")
+            self.driver.find_element_by_id('btn_add_asset_contact').click()
+            sleep(2)
+            self.driver.find_element_by_name("first_name").clear()
+            self.driver.find_element_by_name("first_name").send_keys(firstnamelist[i])
+            self.driver.find_element_by_name("last_name").clear()
+            self.driver.find_element_by_name("last_name").send_keys(secondnamelist[i])
+            self.driver.find_element_by_xpath("//input[@placeholder='Title']").clear()
+            self.driver.find_element_by_xpath("//input[@placeholder='Title']").send_keys(tilelist[i])
+            self.driver.find_element_by_name("phone").clear()
+            self.driver.find_element_by_name("phone").send_keys(phonelist[i])
+            self.driver.find_element_by_name("email").clear()
+            self.driver.find_element_by_name("email").send_keys(emaillist[i])
+            self.driver.find_element_by_xpath(".//*[@id='asset_contact_modal']/div/div/form/div[2]/button[2]").click()
+            sleep(2)
+        self.driver.find_element_by_xpath(".//*[@id='contacts_table']/thead/tr/th[1]").click()
+        sleep(2)
+        act_name_list = self.driver.find_elements_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])")
+        act_title_list = self.driver.find_elements_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[1]")
+        act_phone_list = self.driver.find_elements_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[2]")
+        act_email_list = self.driver.find_elements_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[3]")
+        act_name_list_value =[]
+        act_title_list_value =[]
+        act_phone_list_value =[]
+        act_email_list_value =[]
+        for name in act_name_list:
+            print name.text
+            act_name_list_value.append(name.text)
+        for title in act_title_list:
+            print title.text
+            act_title_list_value.append(title.text)
+        for phone in act_phone_list:
+            print phone.text
+            act_phone_list_value.append(phone.text)
+        for email in act_email_list:
+            print email.text
+            act_email_list_value.append(email.text)
+        print ", ".join(act_name_list_value)
+        print ", ".join(act_title_list_value)
+        print ", ".join(act_phone_list_value)
+        print ", ".join(act_email_list_value)
+        self.assertTrue(", ".join(act_name_list_value), exp_name_descending)
+        self.assertTrue(", ".join(act_title_list_value), exp_title_descending)
+        self.assertTrue(", ".join(act_phone_list_value), exp_phone_descending)
+        self.assertTrue(", ".join(act_email_list_value), exp_email_descending)
+        print "finaaaaaaaaaaaaa"
+        self.driver.find_element_by_xpath(".//*[@id='contacts_table']/thead/tr/th[1]").click()
+        sleep(2)
+        act_name_list = self.driver.find_elements_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])")
+        act_title_list = self.driver.find_elements_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[1]")
+        act_phone_list = self.driver.find_elements_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[2]")
+        act_email_list = self.driver.find_elements_by_xpath("(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[3]")
+        act_name_list_value =[]
+        act_title_list_value =[]
+        act_phone_list_value =[]
+        act_email_list_value =[]
+        for name in act_name_list:
+            print name.text
+            act_name_list_value.append(name.text)
+        for title in act_title_list:
+            print title.text
+            act_title_list_value.append(title.text)
+        for phone in act_phone_list:
+            print phone.text
+            act_phone_list_value.append(phone.text)
+        for email in act_email_list:
+            print email.text
+            act_email_list_value.append(email.text)
+        print ", ".join(act_name_list_value)
+        print ", ".join(act_title_list_value)
+        print ", ".join(act_phone_list_value)
+        print ", ".join(act_email_list_value)
+        self.assertTrue(", ".join(act_name_list_value), exp_name_ascending)
+        self.assertTrue(", ".join(act_title_list_value), exp_title_ascending)
+        self.assertTrue(", ".join(act_phone_list_value), exp_phone_ascending)
+        self.assertTrue(", ".join(act_email_list_value), exp_email_ascending)
+
+
+
+
+    @attr(priority="high")
     def test_AS_40_To_Click_On_Save_Wrong_State_Asset_ContactInfo_Field(self):
         searchnames = self.driver.find_elements_by_xpath("//tbody/tr/td/a")
         searchnames[0].click()
