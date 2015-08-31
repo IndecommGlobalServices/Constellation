@@ -2,6 +2,8 @@ import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.keys import Keys
 from pages.assetpage import AssetPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
@@ -9,7 +11,7 @@ from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os, re
-from selenium.webdriver.common.keys import Keys
+
 cwd = os.getcwd()
 os.chdir('..')
 searchasset_filepath = os.path.join(os.getcwd(), "data\json_searchAssets.json")
@@ -267,16 +269,13 @@ class AssetPageTest(BaseTestCase):
 
     # Click on Details panel
         assetpage.get_asset_detail_edit_link.click()
-        sleep(10)
 
     # Modify the values
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
-        sleep(10)
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "22222", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "63", "12001", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
-        # Capacity, Closed, Description, Email, Fax, Opened, Size, Website
     # Click on Save
-        assetpage.get_asset_detail_edit_save_button.click()
-        sleep(10)
+        assetpage.get_asset_detail_edit_save_button()
+
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
 
@@ -319,7 +318,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
         assetpage.click_on_asset_link.click()
-        assetpage.asset_search_assetname(assetpage.asset_name)
+        assetpage.asset_search_assetname(assetpage.asset_school_name)
         sleep(20)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
@@ -543,14 +542,63 @@ class AssetPageTest(BaseTestCase):
             self.assertTrue("New Contact is not created.")
 
     @attr(priority="high")
-    @SkipTest
-    def test_AS_100_To_Upload_a_document(self):
+    def test_AS_69_To_Delete_Contact_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-
-        # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        assetpage.select_school_or_place_asset("Test1", "School")
         sleep(8)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        assetpage.delete_existing_contact()
+        try:
+            if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                sleep(2)
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("New Contact is not Deleted")
+        except NoSuchElementException:
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("The Contact has been Deleted")
+
+    @attr(priority="high")
+    def test_AS_70_To_Delete_Cancel_Contact_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(8)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.get_asset_points_of_contact_header.click()
+        assetpage.get_asset_add_contact_button.click()
+        sleep(4)
+        assetpage.get_asset_newcontact_firstname_textbox.clear()
+        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        assetpage.get_asset_newcontact_lastname_textbox.clear()
+        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        sleep(2)
+        assetpage.get_asset_newcontact_save_button.click()
+        try:
+            if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                sleep(2)
+                assetpage.get_asset_newcontact_delete_icon.click()
+                sleep(2)
+                assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
+                sleep(2)
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Pass. Cancel Button is working properly.")
+        except NoSuchElementException:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("The Contact has been Deleted.")
 
         # Click on Photo/Document panel - File Upload button
         self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/button").click()
