@@ -129,11 +129,11 @@ class AssetPage(BasePage):
     _asset_main_contact_name_locator = ".//*[@id='form_main_contact']/div[2]/table/tbody/tr[1]/td[2]"
 
 
-    _asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
-    _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
-    _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
-    _asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
-    _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
+    #_asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
+    #_asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
+    #_asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
+    #_asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
+    #_asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
 
 
     _asset_link_locator = "Assets"
