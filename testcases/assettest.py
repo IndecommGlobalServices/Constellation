@@ -327,6 +327,7 @@ class AssetPageTest(BaseTestCase):
                 self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
 
+
     @attr(priority="high")
 #    @SkipTest
     def test_AS_51_To_validate_SchoolName_Field(self):
