@@ -104,9 +104,11 @@ class AssetPage(BasePage):
     _asset_newcontact_state_error_message_locator = "//*[@id='asset_contact_error']/div[3]/small"
     _asset_newcontact_zip_error_message_locator = "//*[@id='asset_contact_error']/div[4]/small"
     _asset_contact_first_last_name_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]"
-    _asset_contact_title_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]"
-    _asset_contact_phone_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]"
-    _asset_contact_email_value_text = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]"
+    _asset_contact_title_value_text_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[1]"
+    _asset_contact_phone_value_text_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]"
+    _asset_contact_email_value_text_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]"
+    _asset_contact_new_contact_text_locator = "//table[@id='contacts_table']//tbody//tr"
+
     _asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
@@ -147,7 +149,7 @@ class AssetPage(BasePage):
 
     def __init__(self, driver):
         super(AssetPage, self).__init__(driver)
-        AssetPage.asset_school_name = "Schoo3"
+        AssetPage.asset_school_name = "School Name Dee"
         AssetPage.asset_place_name = "kk place 1"
         self.get_schooldata()
 
@@ -405,15 +407,19 @@ class AssetPage(BasePage):
 
     @property
     def get_asset_contact_title_value_text(self):
-        return self.driver.find_element_by_xpath(self._asset_contact_title_value_text)
+        return self.driver.find_element_by_xpath(self._asset_contact_title_value_text_locator)
 
     @property
     def get_asset_contact_phone_value_text(self):
-        return self.driver.find_element_by_xpath(self._asset_contact_phone_value_text)
+        return self.driver.find_element_by_xpath(self._asset_contact_phone_value_text_locator)
 
     @property
     def get_asset_contact_email_value_text(self):
-        return self.driver.find_element_by_xpath(self._asset_contact_email_value_text)
+        return self.driver.find_element_by_xpath(self._asset_contact_email_value_text_locator)
+
+    @property
+    def get_asset_contact_new_contact_value_text(self):
+        return self.driver.find_element_by_xpath(self._asset_contact_new_contact_text_locator)
 
     # Asset Details related properties
 
@@ -525,10 +531,14 @@ class AssetPage(BasePage):
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text("School").click()
-        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
-        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
-        #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
 
+        # Click on District dropdown
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
+
+        # Click on first link inside District dropdown
+        self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
+
+        # Find total no of school based on District
         districtNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
 
         for distname in districtNames:
@@ -539,32 +549,78 @@ class AssetPage(BasePage):
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Click on Grade dropdown
         self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator).click()
-        self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
-        #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
+        sleep(5)
 
-        gradeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
-        if len(gradeNames) > 0:
-            for gradename in gradeNames:
-                print gradename.text
-        else:
-            print "No records found."
+        # Check the values exists inside Grade dropdown
+        chkGradeDropDownValuesExists = self.driver.find_elements_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
+        sleep(5)
+        try:
 
-    # This function is to select the school grade
+            # If value exists inside Grade dropdown
+            if len(chkGradeDropDownValuesExists) > 1:
+                # Click on the First link inside Grade dropdown
+                self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
+
+                # Count the no of schools displayed in the list after filtering by Grade dropdown
+                gradeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
+
+                # Print the School names based on Grade dropdown
+                if len(gradeNames) > 0:
+                    for gradename in gradeNames:
+                        print gradename.text
+                else:
+                    print "No school records found."
+            else:
+                print "No value to select inside School Grade dropdown."
+        except:
+            self.driver.get_asset_reset_button.click()
+
+
+
+
+    # This function is to select the school type
     def get_asset_school_type(self):
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Check the values exists inside School dropdown
         self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator).click()
+        sleep(5)
+
+        # Check the values exists inside School dropdown
         self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
         #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
 
-        typeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
-        if len(typeNames) > 0:
-            for typename in typeNames:
-                print typename.text
-        else:
-            print "No records found."
+         # Check the values exists inside School dropdown
+        chkSchoolDropDownValuesExists = self.driver.find_elements_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
+        sleep(5)
+        try:
+
+            # If value exists inside Grade dropdown
+            if len(chkSchoolDropDownValuesExists) > 1:
+                # Click on the First link inside Grade dropdown
+                self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
+
+                # Count the no of schools displayed in the list after filtering by Grade dropdown
+                typeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
+
+                # Print the School names based on Grade dropdown
+                if len(typeNames) > 0:
+                    for typename in typeNames:
+                        print typename.text
+                else:
+                    print "No school records found."
+            else:
+                print "No value to select inside School Type dropdown."
+        except:
+            self.driver.get_asset_reset_button.click()
+
 
     def textbox_clear(self, textboxlocator):
         textboxlocator.clear()
@@ -629,10 +685,13 @@ class AssetPage(BasePage):
     def create_place_asset(self):
         # Select Place from the dropdown to create new place asset
         self.get_placedata()
+
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("Place").click()
         sleep(4)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
+        sleep(6)
+        self.enter_asset_type_name.send_keys(self.asset_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_address.send_keys(self.asset_place_address)
@@ -891,6 +950,36 @@ class AssetPage(BasePage):
                 self.get_asset_newcontact_delete_popup_delete_button.click()
         except NoSuchElementException:
             print "No contact exist."
+
+    def create_new_contact(self, firstname, lastname, title="Title", prefix="Shri", address1="Indecomm", address2="Brigade South Parade", city="Bangalore", state="KA", zip="56001", phone="111-111-1111", email="test@test.com"):
+        self.get_asset_points_of_contact_header.click()
+        self.get_asset_add_contact_button.click()
+        sleep(4)
+        self.get_asset_newcontact_firstname_textbox.clear()
+        self.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        self.get_asset_newcontact_lastname_textbox.clear()
+        self.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        self.get_asset_newcontact_prefix_textbox.clear()
+        self.get_asset_newcontact_prefix_textbox.send_keys(prefix)
+        self.get_asset_newcontact_title_textbox.clear()
+        self.get_asset_newcontact_title_textbox.send_keys(title)
+        self.get_asset_newcontact_address1_textbox.clear()
+        self.get_asset_newcontact_address1_textbox.send_keys(address1)
+        self.get_asset_newcontact_address2_textbox.clear()
+        self.get_asset_newcontact_address2_textbox.send_keys(address2)
+        self.get_asset_newcontact_city_textbox.clear()
+        self.get_asset_newcontact_city_textbox.send_keys(city)
+        self.get_asset_newcontact_state_textbox.clear()
+        self.get_asset_newcontact_state_textbox.send_keys(state)
+        self.get_asset_newcontact_zip_textbox.clear()
+        self.get_asset_newcontact_zip_textbox.send_keys(zip)
+        self.get_asset_newcontact_phone_textbox.clear()
+        self.get_asset_newcontact_phone_textbox.send_keys(phone)
+        self.get_asset_newcontact_email_textbox.clear()
+        self.get_asset_newcontact_email_textbox.send_keys(email)
+        sleep(2)
+        self.get_asset_newcontact_save_button.click()
+        sleep(2)
 
 
     def _validate_page(self, driver):

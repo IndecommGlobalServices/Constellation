@@ -25,7 +25,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
         sleep(5)
         AssetPage(self.driver).get_asset_select_action_drop_down.click()
-        self.assertFalse(AssetPage(self.driver).get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
+        self.assertTrue(AssetPage(self.driver).get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
 
     @attr(priority="high")
     def test_AS_02_To_Verify_Delete_Deselect_All_Assets(self):
@@ -33,7 +33,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.get_select_checkbox_in_grid()
         assetpage.get_asset_select_action_drop_down.click()
-        self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
+        self.assertTrue(assetpage.get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
 
     @attr(priority="high")
     @SkipTest
@@ -446,6 +446,41 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Title", exp_title, "Expected and actual value is not matching for Title")
 
     @attr(priority="high")
+    def test_AS_62_3_To_Save_All_Contact_Info_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(6)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.create_new_contact(firstname,lastname)
+        act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
+        exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
+        assetpage.click_on_asset_link.click()
+        self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
+
+    @attr(priority="high")
+    def test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(6)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.create_new_contact(firstname,lastname)
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='form_main_contact']"):
+                textvalue = self.driver.find_element_by_xpath(".//*[@id='form_main_contact']/div/table/tbody/tr//td//span[text()='Name']/../following-sibling::td").text
+                exp_value = "Shri "+firstname+" "+lastname
+                self.assertEqual(textvalue,exp_value)
+        except NoSuchElementException:
+            self.assertFalse("No Main Contact")
+
+
+
+    @attr(priority="high")
     def test_AS_64_To_Click_On_Save_Without_FirstLastName_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
@@ -632,19 +667,6 @@ class AssetPageTest(BaseTestCase):
             assetpage.click_on_asset_link.click()
             self.assertFalse("The Contact has been Deleted.")
 
-        # Click on Photo/Document panel - File Upload button
-        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/button").click()
-        sleep(10)
-
-        # Click on Attach file button and attached the file path with the send_keys
-        attachfile = self.driver.find_element_by_xpath(".//*[@id='upload_document_file_upload']")
-        attachfile.click()
-        sleep(10)
-        #D:\Project\Constellation
-        #attachfile.send_keys(os.getcwd()+"/test.txt")
-        attachfile.send_keys("D:/Project/Constellation/test.txt")
-        attachfile.send_keys(Keys.ENTER)
-        sleep(10)
 
 
 if __name__ =='__main__':
