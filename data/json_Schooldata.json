@@ -1,6 +1,6 @@
 [
     {
-        "asset_name": "Schoo1",
+        "asset_name": "Schoo3",
         "asset_address": "Orlean",
         "asset_address2": "Street",
         "asset_city": "Virginia",
@@ -9,7 +9,8 @@
         "asset_owner": "Deepa",
         "asset_type": "BA",
         "asset_district": "VA",
-        "asset_grade": "PM"
+        "asset_grade": "PM",
+        "asset_dist_grade_validation": "Vali123@*>?"
     }
 
 
