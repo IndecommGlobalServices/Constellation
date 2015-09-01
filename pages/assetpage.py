@@ -925,6 +925,36 @@ class AssetPage(BasePage):
         except NoSuchElementException:
             print "No contact exist."
 
+    def create_new_contact(self, firstname, lastname, title="Title", prefix="Shri", address1="Indecomm", address2="Brigade South Parade", city="Bangalore", state="KA", zip="56001", phone="111-111-1111", email="test@test.com"):
+        self.get_asset_points_of_contact_header.click()
+        self.get_asset_add_contact_button.click()
+        sleep(4)
+        self.get_asset_newcontact_firstname_textbox.clear()
+        self.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        self.get_asset_newcontact_lastname_textbox.clear()
+        self.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        self.get_asset_newcontact_prefix_textbox.clear()
+        self.get_asset_newcontact_prefix_textbox.send_keys(prefix)
+        self.get_asset_newcontact_title_textbox.clear()
+        self.get_asset_newcontact_title_textbox.send_keys(title)
+        self.get_asset_newcontact_address1_textbox.clear()
+        self.get_asset_newcontact_address1_textbox.send_keys(address1)
+        self.get_asset_newcontact_address2_textbox.clear()
+        self.get_asset_newcontact_address2_textbox.send_keys(address2)
+        self.get_asset_newcontact_city_textbox.clear()
+        self.get_asset_newcontact_city_textbox.send_keys(city)
+        self.get_asset_newcontact_state_textbox.clear()
+        self.get_asset_newcontact_state_textbox.send_keys(state)
+        self.get_asset_newcontact_zip_textbox.clear()
+        self.get_asset_newcontact_zip_textbox.send_keys(zip)
+        self.get_asset_newcontact_phone_textbox.clear()
+        self.get_asset_newcontact_phone_textbox.send_keys(phone)
+        self.get_asset_newcontact_email_textbox.clear()
+        self.get_asset_newcontact_email_textbox.send_keys(email)
+        sleep(2)
+        self.get_asset_newcontact_save_button.click()
+        sleep(2)
+
 
     def _validate_page(self, driver):
         '''
