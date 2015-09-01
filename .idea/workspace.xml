@@ -2,6 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76a6158f-c964-4bd4-9f55-7a82441e4aa1" name="Default" comment="">
+<<<<<<< Updated upstream
+=======
+      <change type="DELETED" beforePath="D:\Project\Constellation\data\json_Placedata.json" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
+>>>>>>> Stashed changes
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="47bfa8cf-4e8d-42dc-b093-b764af6418f7" name="Failed commit: Default" comment="Json_Schooldata" />
@@ -26,6 +32,7 @@
     <favorites_list name="Constellation" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< Updated upstream
     <leaf>
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
@@ -62,8 +69,12 @@
         </entry>
       </file>
     </leaf>
+=======
+    <leaf />
+>>>>>>> Stashed changes
   </component>
   <component name="Git.Settings">
+    <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
@@ -201,32 +212,13 @@
       <recent name="D:\Project\Constellation\lib" />
     </key>
   </component>
+<<<<<<< Updated upstream
   <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field">
     <configuration default="false" name="Unittest AssetPageTest.test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
+=======
+  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_24_To_Verify_The_Validation_Of_Email_Field">
     <configuration default="false" name="Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -238,7 +230,11 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
+<<<<<<< Updated upstream
+      <option name="METHOD_NAME" value="test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" />
+=======
       <option name="METHOD_NAME" value="test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
+>>>>>>> Stashed changes
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -250,7 +246,43 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
+<<<<<<< Updated upstream
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_25_To_Verify_The_Validation_Of_Fax_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+<<<<<<< Updated upstream
+      <option name="METHOD_NAME" value="test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
+=======
+      <option name="METHOD_NAME" value="test_AS_25_To_Verify_The_Validation_Of_Fax_Field" />
+>>>>>>> Stashed changes
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+<<<<<<< Updated upstream
     <configuration default="false" name="Unittest AssetPageTest.test_AS_100_To_Upload_a_document" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_24_To_Verify_The_Validation_Of_Email_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -262,7 +294,11 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
+<<<<<<< Updated upstream
       <option name="METHOD_NAME" value="test_AS_100_To_Upload_a_document" />
+=======
+      <option name="METHOD_NAME" value="test_AS_24_To_Verify_The_Validation_Of_Email_Field" />
+>>>>>>> Stashed changes
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -274,7 +310,11 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
+<<<<<<< Updated upstream
     <configuration default="false" name="Unittest AssetPageTest.test_AS_62_3_To_Save_All_Contact_Info_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_26_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -286,7 +326,11 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
+<<<<<<< Updated upstream
       <option name="METHOD_NAME" value="test_AS_62_3_To_Save_All_Contact_Info_Asset_ContactInfo_Field" />
+=======
+      <option name="METHOD_NAME" value="test_AS_26_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully" />
+>>>>>>> Stashed changes
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -298,7 +342,11 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
+<<<<<<< Updated upstream
     <configuration default="false" name="Unittest AssetPageTest.test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+=======
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_To_Upload_a_document" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+>>>>>>> Stashed changes
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -310,7 +358,11 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
+<<<<<<< Updated upstream
       <option name="METHOD_NAME" value="test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field" />
+=======
+      <option name="METHOD_NAME" value="test_AS_To_Upload_a_document" />
+>>>>>>> Stashed changes
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -1064,6 +1116,7 @@
       <item index="22" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_04_To_Verify_Delete_Asset_Cancel" />
       <item index="23" class="java.lang.String" itemvalue="Python tests.Unittests in main" />
       <item index="24" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available" />
+<<<<<<< Updated upstream
       <item index="25" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" />
       <item index="26" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
       <item index="27" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_100_To_Upload_a_document" />
@@ -1077,6 +1130,21 @@
         <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_100_To_Upload_a_document" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" />
+=======
+      <item index="25" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
+      <item index="26" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_25_To_Verify_The_Validation_Of_Fax_Field" />
+      <item index="27" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_24_To_Verify_The_Validation_Of_Email_Field" />
+      <item index="28" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_26_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully" />
+      <item index="29" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_To_Upload_a_document" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_24_To_Verify_The_Validation_Of_Email_Field" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_26_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_To_Upload_a_document" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_25_To_Verify_The_Validation_Of_Fax_Field" />
+>>>>>>> Stashed changes
       </list>
     </recent_temporary>
   </component>
@@ -1133,6 +1201,7 @@
       <option name="project" value="LOCAL" />
       <updated>1441022657682</updated>
     </task>
+<<<<<<< Updated upstream
     <task id="LOCAL-00008" summary="Added test case no 63.">
       <created>1441087732484</created>
       <option name="number" value="00008" />
@@ -1146,6 +1215,15 @@
       <updated>1441087740287</updated>
     </task>
     <option name="localTasksCounter" value="10" />
+=======
+    <task id="LOCAL-00008" summary="Latest">
+      <created>1441023512478</created>
+      <option name="number" value="00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1441023512478</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
+>>>>>>> Stashed changes
     <servers />
   </component>
   <component name="TodoView">
@@ -1168,9 +1246,15 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+<<<<<<< Updated upstream
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4274062" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23883928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+=======
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.42767295" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.17569546" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+>>>>>>> Stashed changes
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39937106" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1223,8 +1307,13 @@
     <MESSAGE value="AS_49&#10;Added get_schooldata&#10;Added create_school_asset" />
     <MESSAGE value="Json_Schooldata" />
     <MESSAGE value="Working on File-upload" />
+<<<<<<< Updated upstream
     <MESSAGE value="Added test case no 63." />
     <option name="LAST_COMMIT_MESSAGE" value="Added test case no 63." />
+=======
+    <MESSAGE value="Latest" />
+    <option name="LAST_COMMIT_MESSAGE" value="Latest" />
+>>>>>>> Stashed changes
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1233,16 +1322,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/json_place_asset.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1254,9 +1333,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="159" column="26" selection-start-line="159" selection-start-column="26" selection-end-line="159" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1278,9 +1355,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="58" column="15" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1515,13 +1590,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_place_asset.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.89171976" vertical-offset="0" max-vertical-offset="0">
-          <caret line="26" column="1" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/loginpage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="1122">
@@ -1557,13 +1625,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/getFilterData.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/json_filterSchoolAssets.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="221">
@@ -1578,16 +1639,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4047619" vertical-offset="255" max-vertical-offset="13158">
+          <caret line="22" column="12" selection-start-line="22" selection-start-column="12" selection-end-line="22" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="0.0" vertical-offset="30192" max-vertical-offset="32861">
           <caret line="1792" column="0" selection-start-line="1792" selection-start-column="0" selection-end-line="1792" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.76870745" vertical-offset="7305" max-vertical-offset="32861">
+          <caret line="458" column="99" selection-start-line="458" selection-start-column="48" selection-end-line="458" selection-end-column="99" />
+>>>>>>> Stashed changes
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state vertical-scroll-proportion="0.0" vertical-offset="7340" max-vertical-offset="11016">
           <caret line="441" column="49" selection-start-line="441" selection-start-column="49" selection-end-line="441" selection-end-column="80" />
           <folding>
@@ -1603,6 +1678,35 @@
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
+=======
+        <state vertical-scroll-proportion="-0.47619048" vertical-offset="14675" max-vertical-offset="16048">
+          <caret line="855" column="8" selection-start-line="855" selection-start-column="8" selection-end-line="855" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/json_place_asset.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7677419" vertical-offset="0" max-vertical-offset="340">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/getFilterData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.1904762" vertical-offset="89" max-vertical-offset="544">
+          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+          <folding />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>

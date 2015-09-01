@@ -11,6 +11,8 @@ from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os, re
+import threading
+
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -35,7 +37,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_select_action_drop_down.click()
         self.assertTrue(assetpage.get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
 
-    @attr(priority="high")
+    @attr(priority="low")
+    @SkipTest
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
         AssetPage(self.driver).get_asset_list_first_check_box.click()
         AssetPage(self.driver).get_asset_select_action_drop_down.click()
@@ -143,7 +146,9 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         sleep(5)
         assetpage.create_asset("Place")
+        sleep(10)
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        sleep(10)
         self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
 
@@ -172,12 +177,14 @@ class AssetPageTest(BaseTestCase):
 
         aphone = "123abc1234"
         assetpage.enter_asset_type_phone.send_keys(aphone)
-        #assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
+        assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
 
         sleep(5)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
-        self.assertRegexpMatches(aphone, regex, "Expected and actual value is not matching for EMAIL")
+        self.assertRegexpMatches(aphone, regex, "Expected and actual value is not matching for Phone")
+        sleep(5)
         assetpage.asset_cancel()
+        sleep(5)
 
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
@@ -271,15 +278,92 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_link.click()
 
     # Modify the values
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "22222", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "63", "12001", "http://www.haystax.com")
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
     # Click on Save
-        assetpage.get_asset_detail_edit_save_button()
+        assetpage.get_asset_detail_edit_save_button.click()
+        sleep(10)
 
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
 
 
+    @attr(priority="high")
+    def test_AS_24_To_Verify_The_Validation_Of_Email_Field(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+        sleep(10)
+
+    #  Enter the value for Email - Valid
+
+        aemail = "testtest"
+        assetpage.get_asset_detail_edit_email_text_box.send_keys(" ")
+        sleep(2)
+        assetpage.get_asset_detail_edit_email_text_box.send_keys(aemail)
+        sleep(2)
+        assetpage.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
+        sleep(2)
+        regex = re.compile(r'[\w.-]+@[\w.-]+')
+        sleep(5)
+        self.assertRegexpMatches(aemail, regex, "Expected and actual value is not matching for EMAIL")
+        assetpage.get_asset_detail_edit_cancel_button.click()
+
+    @attr(priority="high")
+    def test_AS_25_To_Verify_The_Validation_Of_Fax_Field(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+        sleep(10)
+
+    #  Enter the value for FAX
+
+        afax = "123abc1234"
+        assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(" ")
+        sleep(5)
+        assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(afax)
+        sleep(5)
+        assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
+        sleep(5)
+        regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
+        self.assertRegexpMatches(afax, regex, "Expected and actual value is not matching for FAX")
+        sleep(5)
+        assetpage.get_asset_detail_edit_cancel_button.click()
+
+    @attr(priority="high")
+    def test_AS_26_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+        sleep(10)
+    # Modify the values
+        assetpage.set_place_details_fields("4321", "2020-05-16", "Cancelled", "cancel@indecomm.net", "111-111-1111", "2017-02-23", "10001", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
+        sleep(10)
+    # Click on Cancel
+        assetpage.get_asset_detail_edit_cancel_button.click()
+        sleep(10)
+    # Assert on Asset name is displayed in the breadcrumb
+        self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        sleep(10)
 
     @attr(priority="high")
     def test_AS_29_To_Click_On_Save_Without_FirstName_Asset_ContactInfo_Field(self):
@@ -635,7 +719,43 @@ class AssetPageTest(BaseTestCase):
             assetpage.click_on_asset_link.click()
             self.assertFalse("The Contact has been Deleted.")
 
+    @attr(priority="high")
+    @SkipTest
+    def test_AS_To_Upload_a_document(self):
+        assetpage = AssetPage(self.driver)
 
+        # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(8)
+
+        # Click on Photo/Document panel - File Upload button
+        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/button").click()
+        sleep(10)
+
+        # Switch to alert file upload window
+        alert = self.driver.switch_to.active_element()
+
+        # Enter Caption
+        caption = self.driver.find_element_by_xpath(".//*[@id='upload_document_caption']")
+        caption.send_keys("Image file")
+        sleep(2)
+        caption.send_keys(Keys.TAB)
+        sleep(2)
+
+        # Click on Attach file button and attached the file path with the send_keys
+        attachfile = self.driver.find_element_by_xpath(".//*[@id='upload_document_file_upload']")
+        attachfile.send_keys("C:\Users\Public\Pictures\Sample Pictures\Desert.jpg")
+        attachfile.send_keys(Keys.TAB)
+        sleep(3)
+
+        # Click upload
+        self.driver.find_element_by_xpath(".//*[@id='widget_attach_document_modal']/div/div/div[3]/button[2]").click()
+        sleep(3)
+        alert.accept()
+        # Come back to the main edit page
+        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        #self.driver.find_element_by_link_text("Assets").click()
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
