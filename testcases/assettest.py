@@ -52,7 +52,7 @@ class AssetPageTest(BaseTestCase):
         AssetPage(self.driver).get_asset_select_action_drop_down.click()
         AssetPage(self.driver).get_asset_link_delete_text.click()
         sleep(5)
-        AssetPage(self.driver).get_asset_cancel_button.click()
+        AssetPage(self.driver).get_deleteasset_cancel_button.click()
         sleep(5)
         print("Record cancelled successfully.")
 
@@ -145,7 +145,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         assetpage.create_asset("Place")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
-        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
@@ -161,7 +161,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         if aname == '':
             self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
-        assetpage.asset_cancel()
+        assetpage.asset_overview_cancel_click()
 
 
     @attr(priority="high")
@@ -178,7 +178,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches(aphone, regex, "Expected and actual value is not matching for EMAIL")
-        assetpage.asset_cancel()
+        assetpage.asset_overview_cancel_click()
 
     @attr(priority="high")
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
@@ -187,7 +187,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.create_asset("Place")
         assetpage.click_on_asset_link.click()
         sleep(10)
-        assetpage.asset_search_assetname(assetpage.asset_name)
+        assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
@@ -199,7 +199,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         sleep(5)
         assetpage.asset_create_click()
-        assetpage.asset_cancel()
+        assetpage.asset_overview_cancel_click()
 
         expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
@@ -210,7 +210,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         assetpage.asset_create_click()
         assetpage.create_place_asset()
-        assetpage.asset_cancel()
+        assetpage.asset_overview_cancel_click()
 
         expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
@@ -231,7 +231,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.set_place_overview_fields("kk address", "kk address 2", "kk city", "KA", "94821", "Indecomm")
 
     # Click on Save
-        assetpage.asset_save()
+        assetpage.asset_overview_save_click()
 
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
@@ -253,7 +253,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.set_place_overview_fields("kk address cancel", "kk address 2 cancel", "kk city", "KA", "94821", "Indecomm")
 
     # Click on Cancel
-        assetpage.asset_cancel()
+        assetpage.asset_overview_cancel_click()
 
     # Assert on Asset name is displayed in the breadcrumb
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
@@ -345,7 +345,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.enter_asset_type_name.send_keys(assetpage.asset_school_name)
         assetpage.enter_school_district(assetpage.asset_school_district_grade_validation)
         assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation)
-        assetpage.get_asset_overview_save_button.click()
+        assetpage.asset_overview_save_click()
         self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_grade_text)
 

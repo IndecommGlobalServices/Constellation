@@ -18,7 +18,7 @@ class AssetPage(BasePage):
     _asset_link_delete_text_xpath_locator = ".//*[@id='asset_actions_dropdown']/ul/li/a"
     _asset_list_select_first_check_box_xpath_locator = ".//*[@id='assetstable']/tbody/tr[1]/td[1]/label/span/span[2]"
     _asset_select_action_delete_click_xpath_locator = ".//*[@id='delete_asset_modal']/div/div/div[3]/button[2]"
-    _asset_select_action_cancel_click_xpath_locator = ".//*[@id='delete_asset_modal']/div/div/div[3]/button[1]"
+    _asset_deleteasset_cancel_click_xpath_locator = ".//*[@id='delete_asset_modal']/div/div/div[3]/button[1]"
 
     # Asset List related locators
     _asset_list_locator = "//tbody/tr/td/a"
@@ -69,8 +69,8 @@ class AssetPage(BasePage):
     _asset_overview_type_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/ul/li/input"
     _asset_overview_district_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input"
     _asset_overview_grade_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input"
-    #_asset_overview_type_drop_down_locator = "//div[@label= 'Type']"
-    _asset_overview_type_drop_down_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/button[1]"
+    _asset_overview_type_drop_down_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
+    #_asset_overview_type_drop_down_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/button[1]"
     _asset_overview_district_drop_down_locator = "//div[@label= 'District']"
     _asset_overview_grade_drop_down_locator = "//div[@label= 'Grade']"
     _asset_overview_add_button_locator = ".//*[@id='newItemButton']"
@@ -177,8 +177,8 @@ class AssetPage(BasePage):
         return self.driver.find_element_by_xpath(self._asset_select_action_delete_click_xpath_locator)
 
     @property
-    def get_asset_cancel_button(self):
-        return self.driver.find_element_by_xpath(self._asset_select_action_cancel_click_xpath_locator)
+    def get_deleteasset_cancel_button(self):
+        return self.driver.find_element_by_xpath(self._asset_deleteasset_cancel_click_xpath_locator)
 
     @property
     def get_asset_reset_button(self):
@@ -587,8 +587,8 @@ class AssetPage(BasePage):
 
     def asset_create_click(self):
         # Click on Create asset
-        clickCreateAsset = self.driver.find_element_by_xpath(self._asset_create_asset)
-        clickCreateAsset.click()
+
+        self.driver.find_element_by_xpath(self._asset_create_asset).click()
         sleep(10)
         # switch to new window
         self.driver.switch_to.active_element
@@ -653,13 +653,8 @@ class AssetPage(BasePage):
         self.enter_asset_type_owner.send_keys(self.asset_place_owner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_school_type(self.asset_place_type)
+        self.enter_asset_type(self.asset_place_type)
 
-
-    def input_school_asset_fields(self):
-
-        self.select_asset_type_district_type.click()
-        sleep(2)
 
     def get_schooldata(self):
 
@@ -682,7 +677,7 @@ class AssetPage(BasePage):
 
     def create_school_asset(self):
         # Select School from the dropdown to create new School asset
-        self.get_schooldata()
+        #self.get_schooldata()
         self.select_asset_template_type("School")
         sleep(4)
 
@@ -711,7 +706,7 @@ class AssetPage(BasePage):
         sleep(2)
         self.enter_school_grade(self.asset_school_grade)
         sleep(2)
-        self.enter_school_type(self.asset_school_type)
+        self.enter_asset_type(self.asset_school_type)
 
 
     def enter_school_district(self, value):
@@ -724,17 +719,17 @@ class AssetPage(BasePage):
          self.get_overview_newgrade_text_box.send_keys(value)
          self.get_overview_grade_add_button.click()
 
-    def enter_school_type(self, value):
+    def enter_asset_type(self, value):
          self.get_overview_type_drop_down.click()
-         self.get_overview_newtype_text_box.send_keys(value)
-         self.get_overview_type_add_button.click()
+         self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
+        # self.get_overview_type_add_button.click()
 
 
-    def asset_save(self):
+    def asset_overview_save_click(self):
         self.get_asset_overview_save_button.click()
         sleep(2)
 
-    def asset_cancel(self):
+    def asset_overview_cancel_click(self):
         self.get_asset_overview_cancel_button.click()
         sleep(2)
         '''
@@ -758,7 +753,7 @@ class AssetPage(BasePage):
             self.create_school_asset()
         elif type == "Place":
             self.create_place_asset()
-        self.asset_save()
+        self.asset_overview_save_click()
 
     def create_asset_cancel(self, type):
         self.asset_create_click()
@@ -766,7 +761,7 @@ class AssetPage(BasePage):
             self.create_school_asset()
         elif type == "Place":
             self.create_place_asset()
-        self.asset_cancel()
+        self.asset_overview_cancel_click()
 
     def select_school_or_place_asset(self, asset_name1,asset_type):
         try:
