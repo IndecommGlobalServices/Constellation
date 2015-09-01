@@ -107,6 +107,9 @@ class AssetPage(BasePage):
     _asset_contact_phone_value_text_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[2]"
     _asset_contact_email_value_text_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])[1]/../following-sibling::td[3]"
     _asset_contact_new_contact_text_locator = "//table[@id='contacts_table']//tbody//tr"
+    _asset_main_contact_window_locator = ".//*[@id='form_main_contact']"
+    _asset_main_contact_name_locator = ".//*[@id='form_main_contact']/div[2]/table/tbody/tr[1]/td[2]"
+
 
     _asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
@@ -407,6 +410,14 @@ class AssetPage(BasePage):
     @property
     def get_asset_contact_new_contact_value_text(self):
         return self.driver.find_element_by_xpath(self._asset_contact_new_contact_text_locator)
+
+    @property
+    def get_asset_main_contact_window(self):
+        return self.driver.find_element_by_xpath(self._asset_main_contact_window_locator)
+
+    @property
+    def get_asset_main_contact_name_text(self):
+        return self.driver.find_element_by_xpath(self._asset_main_contact_name_locator)
 
     # Asset Details related properties
 

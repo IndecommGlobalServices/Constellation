@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="76a6158f-c964-4bd4-9f55-7a82441e4aa1" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="47bfa8cf-4e8d-42dc-b093-b764af6418f7" name="Failed commit: Default" comment="Json_Schooldata" />
@@ -30,18 +32,18 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="30192" max-vertical-offset="32861">
-              <caret line="1792" column="0" selection-start-line="1792" selection-start-column="0" selection-end-line="1792" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="14412" max-vertical-offset="32861">
+              <caret line="872" column="33" selection-start-line="872" selection-start-column="33" selection-end-line="872" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7340" max-vertical-offset="11016">
-              <caret line="441" column="49" selection-start-line="441" selection-start-column="49" selection-end-line="441" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.06049822" vertical-offset="12767" max-vertical-offset="13787">
+              <caret line="752" column="0" selection-start-line="752" selection-start-column="0" selection-end-line="752" selection-end-column="0" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -49,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.89032257" vertical-offset="16086" max-vertical-offset="16524">
-              <caret line="930" column="16" selection-start-line="930" selection-start-column="16" selection-end-line="930" selection-end-column="16" />
+            <state vertical-scroll-proportion="-3.2413793" vertical-offset="1776" max-vertical-offset="16711">
+              <caret line="110" column="100" selection-start-line="110" selection-start-column="100" selection-end-line="110" selection-end-column="100" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -201,8 +203,8 @@
       <recent name="D:\Project\Constellation\lib" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field">
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_75_To_71_file_ttt">
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_32_To_Click_On_Cancel_Place_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -214,7 +216,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" />
+      <option name="METHOD_NAME" value="test_AS_32_To_Click_On_Cancel_Place_Asset_ContactInfo_Field" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -226,7 +228,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_34_To_Delete_Contact_Place_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -238,7 +240,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
+      <option name="METHOD_NAME" value="test_AS_34_To_Delete_Contact_Place_Asset_ContactInfo_Field" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -250,7 +252,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_100_To_Upload_a_document" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_35_To_Delete_Cancel_Contact_Place_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -262,7 +264,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_100_To_Upload_a_document" />
+      <option name="METHOD_NAME" value="test_AS_35_To_Delete_Cancel_Contact_Place_Asset_ContactInfo_Field" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -274,7 +276,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_62_3_To_Save_All_Contact_Info_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetPageTest.test_71_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -286,7 +288,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_62_3_To_Save_All_Contact_Info_Asset_ContactInfo_Field" />
+      <option name="METHOD_NAME" value="test_71_file" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -298,7 +300,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_75_To_71_file_ttt" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -310,7 +312,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field" />
+      <option name="METHOD_NAME" value="test_AS_75_To_71_file_ttt" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -1064,19 +1066,19 @@
       <item index="22" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_04_To_Verify_Delete_Asset_Cancel" />
       <item index="23" class="java.lang.String" itemvalue="Python tests.Unittests in main" />
       <item index="24" class="java.lang.String" itemvalue="Python tests.Unittest MainDriverScript.test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available" />
-      <item index="25" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" />
-      <item index="26" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
-      <item index="27" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_100_To_Upload_a_document" />
-      <item index="28" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_62_3_To_Save_All_Contact_Info_Asset_ContactInfo_Field" />
-      <item index="29" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field" />
+      <item index="25" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_32_To_Click_On_Cancel_Place_Asset_ContactInfo_Field" />
+      <item index="26" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_34_To_Delete_Contact_Place_Asset_ContactInfo_Field" />
+      <item index="27" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_35_To_Delete_Cancel_Contact_Place_Asset_ContactInfo_Field" />
+      <item index="28" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_71_file" />
+      <item index="29" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_75_To_71_file_ttt" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_63_To_Test_Main_Contact_Info_Asset_ContactInfo_Field" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_62_3_To_Save_All_Contact_Info_Asset_ContactInfo_Field" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_100_To_Upload_a_document" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_21_To_Verify_That_The_Asset_In_Edit_Mode_Is_Cancelled_Successfully" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_75_To_71_file_ttt" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_71_file" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_35_To_Delete_Cancel_Contact_Place_Asset_ContactInfo_Field" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_34_To_Delete_Contact_Place_Asset_ContactInfo_Field" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_32_To_Click_On_Cancel_Place_Asset_ContactInfo_Field" />
       </list>
     </recent_temporary>
   </component>
@@ -1145,7 +1147,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441087740287</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added test case no 63.">
+      <created>1441088085847</created>
+      <option name="number" value="00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1441088085847</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1424,13 +1432,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/utrunner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="7.1073446" vertical-offset="0" max-vertical-offset="0">
-          <caret line="150" column="0" selection-start-line="150" selection-start-column="0" selection-end-line="150" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/tcunittest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5677966" vertical-offset="0" max-vertical-offset="0">
@@ -1578,30 +1579,38 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/utrunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.47368422" vertical-offset="2312" max-vertical-offset="2635">
+          <caret line="147" column="0" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.2413793" vertical-offset="1776" max-vertical-offset="16711">
+          <caret line="110" column="100" selection-start-line="110" selection-start-column="100" selection-end-line="110" selection-end-column="100" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="30192" max-vertical-offset="32861">
-          <caret line="1792" column="0" selection-start-line="1792" selection-start-column="0" selection-end-line="1792" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="14412" max-vertical-offset="32861">
+          <caret line="872" column="33" selection-start-line="872" selection-start-column="33" selection-end-line="872" selection-end-column="33" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7340" max-vertical-offset="11016">
-          <caret line="441" column="49" selection-start-line="441" selection-start-column="49" selection-end-line="441" selection-end-column="80" />
+        <state vertical-scroll-proportion="0.06049822" vertical-offset="12767" max-vertical-offset="13787">
+          <caret line="752" column="0" selection-start-line="752" selection-start-column="0" selection-end-line="752" selection-end-column="0" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.89032257" vertical-offset="16086" max-vertical-offset="16524">
-          <caret line="930" column="16" selection-start-line="930" selection-start-column="16" selection-end-line="930" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#29#0" expanded="true" />
           </folding>
         </state>
       </provider>
