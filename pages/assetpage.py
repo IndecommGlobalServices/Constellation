@@ -4,7 +4,7 @@ from time import sleep
 from faker import Factory
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
-import os,json
+import os, json
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -55,15 +55,17 @@ class AssetPage(BasePage):
     _asset_filter_asset_type_text_locator = ".//*[@id='span_filters']/div/div/button[1]"
 
     # Place and School - Creation mode related
-    _asset_type_field_name_text_box_locator = "//input[@ng-model='model']"
-    #_asset_type_field_name_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/div[1]/typeahead/div/input"
-    _asset_type_field_address_text_box_locator = "//input[@ng-model='asset_edit.address.address1']"
-    _asset_type_field_address2_text_box_locator = "//input[@ng-model='asset_edit.address.address2']"
-    _asset_type_field_city_text_box_locator = "//input[@ng-model='asset_edit.address.city']"
-    _asset_type_field_state_text_box_locator = "//input[@ng-model='asset_edit.address.state']"
-    _asset_type_field_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
-    _asset_type_field_owner_text_box_locator = "//input[@placeholder='Owner']"
-    #_asset_type_field_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
+
+
+    #Asset Overview dialouge locators
+    _asset_overview_name_text_box_locator = "//input[@ng-model='model']"
+    _asset_overview_address_text_box_locator = "//input[@ng-model='asset_edit.address.address1']"
+    _asset_overview_address2_text_box_locator = "//input[@ng-model='asset_edit.address.address2']"
+    _asset_overview_city_text_box_locator = "//input[@ng-model='asset_edit.address.city']"
+    _asset_overview_state_text_box_locator = "//input[@ng-model='asset_edit.address.state']"
+    _asset_overview_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
+    _asset_overview_owner_text_box_locator = "//input[@placeholder='Owner']"
+    _asset_overview_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
     _asset_overview_type_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/ul/li/input"
     _asset_overview_district_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input"
     _asset_overview_grade_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input"
@@ -72,11 +74,10 @@ class AssetPage(BasePage):
     _asset_overview_district_drop_down_locator = "//div[@label= 'District']"
     _asset_overview_grade_drop_down_locator = "//div[@label= 'Grade']"
     _asset_overview_add_button_locator = ".//*[@id='newItemButton']"
-
-    _asset_type_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
-    _asset_type_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
-    #_asset_type_cancel_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
-    #_asset_type_save_button_locator = "//*[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
+    _asset_overview_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
+    _asset_overview_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
+    _asset_overview_panel_district_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[4]/td[2]"
+    _asset_overview_panel_grade_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[5]/td[2]"
 
     _asset_points_of_contact_header_locator = "//div[contains(text(), 'Points of Contact')]"
     _asset_add_contact_button_locator = "btn_add_asset_contact"
@@ -146,8 +147,9 @@ class AssetPage(BasePage):
 
     def __init__(self, driver):
         super(AssetPage, self).__init__(driver)
-        AssetPage.asset_school_name = "School Name Dee"
+        AssetPage.asset_school_name = "Schoo3"
         AssetPage.asset_place_name = "kk place 1"
+        self.get_schooldata()
 
         '''
         assets_results = self.driver.find_elements_by_xpath(self._asset_list_locator)
@@ -217,36 +219,37 @@ class AssetPage(BasePage):
 
     @property
     def enter_asset_type_name(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_name_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_overview_name_text_box_locator)
 
     @property
     def enter_asset_type_address(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_address_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_overview_address_text_box_locator)
 
     @property
     def enter_asset_type_address2(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_address2_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_overview_address2_text_box_locator)
 
     @property
     def enter_asset_type_city(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_city_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_overview_city_text_box_locator)
 
     @property
     def enter_asset_type_state(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_state_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_overview_state_text_box_locator)
 
     @property
     def enter_asset_type_zip(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_zip_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_overview_zip_text_box_locator)
 
     @property
     def enter_asset_type_owner(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_owner_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_overview_owner_text_box_locator)
 
     @property
     def enter_asset_type_phone(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_phone_text_box_locator)
+        return self.driver.find_element_by_xpath(self._asset_overview_phone_text_box_locator)
 
+    '''
     @property
     def select_asset_type_type(self):
         return self.driver.find_element_by_xpath(self._asset_type_field_type_drop_down_locator)
@@ -257,7 +260,7 @@ class AssetPage(BasePage):
 
     @property
     def select_asset_type_grade(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_grade_drop_down_locator)
+        return self.driver.find_element_by_xpath(self._asset_type_field_grade_drop_down_locator)'''
 
     @property
     def get_overview_newdistrict_text_box(self):
@@ -282,13 +285,23 @@ class AssetPage(BasePage):
     @property
     def get_overview_type_add_button(self):
         return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
-    @property
-    def click_asset_type_cancel(self):
-        return self.driver.find_element_by_xpath(self._asset_type_cancel_button_locator)
+
 
     @property
-    def click_asset_type_save(self):
-        return self.driver.find_element_by_xpath(self._asset_type_save_button_locator)
+    def get_overview_district_text(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_panel_district_text).text
+
+    @property
+    def get_overview_grade_text(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_panel_grade_text).text
+
+    @property
+    def get_asset_overview_cancel_button(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_cancel_button_locator)
+
+    @property
+    def get_asset_overview_save_button(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_save_button_locator)
 
     @property
     def get_asset_points_of_contact_header(self):
@@ -604,14 +617,14 @@ class AssetPage(BasePage):
             place_data = json.load(data_file)
 
             for each in place_data:
-                self.asset_name = each["asset_name"]
-                self.asset_address = each["asset_address"]
-                self.asset_address2 = each["asset_address2"]
-                self.asset_city = each["asset_city"]
-                self.asset_state = each["asset_state"]
-                self.asset_zip = each["asset_zip"]
-                self.asset_owner = each["asset_owner"]
-                self.asset_type = each["asset_type"]
+                self.asset_place_name = each["asset_name"]
+                self.asset_place_address = each["asset_address"]
+                self.asset_place_address2 = each["asset_address2"]
+                self.asset_place_city = each["asset_city"]
+                self.asset_place_state = each["asset_state"]
+                self.asset_place_zip = each["asset_zip"]
+                self.asset_place_owner = each["asset_owner"]
+                self.asset_place_type = each["asset_type"]
 
     def create_place_asset(self):
         # Select Place from the dropdown to create new place asset
@@ -619,29 +632,28 @@ class AssetPage(BasePage):
         self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
         self.driver.find_element_by_link_text("Place").click()
         sleep(4)
-        self.enter_asset_type_name.send_keys(self.asset_name)
+        self.enter_asset_type_name.send_keys(self.asset_place_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address.send_keys(self.asset_address)
+        self.enter_asset_type_address.send_keys(self.asset_place_address)
         self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address2.send_keys(self.asset_address2)
+        self.enter_asset_type_address2.send_keys(self.asset_place_address2)
         self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_city.send_keys(self.asset_city)
+        self.enter_asset_type_city.send_keys(self.asset_place_city)
         self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_state.send_keys(self.asset_state)
+        self.enter_asset_type_state.send_keys(self.asset_place_state)
         self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_zip.send_keys(self.asset_zip)
+        self.enter_asset_type_zip.send_keys(self.asset_place_zip)
         self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_owner.send_keys(self.asset_owner)
+        self.enter_asset_type_owner.send_keys(self.asset_place_owner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
-        #self.select_asset_type_type.click()
-        #sleep(2)
+        self.enter_school_type(self.asset_place_type)
 
 
     def input_school_asset_fields(self):
@@ -665,13 +677,13 @@ class AssetPage(BasePage):
                 self.asset_school_type = each["asset_type"]
                 self.asset_school_district = each["asset_district"]
                 self.asset_school_grade = each["asset_grade"]
+                self.asset_school_district_grade_validation = each["asset_dist_grade_validation"]
 
 
     def create_school_asset(self):
-        # Select Place from the dropdown to create new place asset
+        # Select School from the dropdown to create new School asset
         self.get_schooldata()
-        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
-        self.driver.find_element_by_link_text("School").click()
+        self.select_asset_template_type("School")
         sleep(4)
 
         self.enter_asset_type_name.send_keys(self.asset_school_name)
@@ -695,25 +707,35 @@ class AssetPage(BasePage):
         self.enter_asset_type_owner.send_keys(self.asset_school_owner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
-        self.get_overview_district_drop_down.click()
-        self.get_overview_newdistrict_text_box.send_keys(self.asset_school_district)
-        self.get_overview_district_add_button.click()
+        self.enter_school_district(self.asset_school_district)
         sleep(2)
-        self.get_overview_grade_drop_down.click()
-        self.get_overview_newgrade_text_box.send_keys(self.asset_school_grade)
-        self.get_overview_grade_add_button.click()
+        self.enter_school_grade(self.asset_school_grade)
         sleep(2)
-        self.get_overview_type_drop_down.click()
-        self.get_overview_newtype_text_box.send_keys(self.asset_school_type)
-        self.get_overview_type_add_button.click()
+        self.enter_school_type(self.asset_school_type)
+
+
+    def enter_school_district(self, value):
+         self.get_overview_district_drop_down.click()
+         self.get_overview_newdistrict_text_box.send_keys(value)
+         self.get_overview_district_add_button.click()
+
+    def enter_school_grade(self, value):
+         self.get_overview_grade_drop_down.click()
+         self.get_overview_newgrade_text_box.send_keys(value)
+         self.get_overview_grade_add_button.click()
+
+    def enter_school_type(self, value):
+         self.get_overview_type_drop_down.click()
+         self.get_overview_newtype_text_box.send_keys(value)
+         self.get_overview_type_add_button.click()
 
 
     def asset_save(self):
-        self.click_asset_type_save.click()
+        self.get_asset_overview_save_button.click()
         sleep(2)
 
     def asset_cancel(self):
-        self.click_asset_type_cancel.click()
+        self.get_asset_overview_cancel_button.click()
         sleep(2)
         '''
         # check all fields are enabled
@@ -737,6 +759,14 @@ class AssetPage(BasePage):
         elif type == "Place":
             self.create_place_asset()
         self.asset_save()
+
+    def create_asset_cancel(self, type):
+        self.asset_create_click()
+        if type == "School":
+            self.create_school_asset()
+        elif type == "Place":
+            self.create_place_asset()
+        self.asset_cancel()
 
     def select_school_or_place_asset(self, asset_name1,asset_type):
         try:

@@ -36,6 +36,7 @@ class AssetPageTest(BaseTestCase):
         self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
 
     @attr(priority="high")
+    @SkipTest
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
         AssetPage(self.driver).get_asset_list_first_check_box.click()
         AssetPage(self.driver).get_asset_select_action_drop_down.click()
@@ -159,7 +160,7 @@ class AssetPageTest(BaseTestCase):
 
         sleep(5)
         if aname == '':
-            self.assertFalse(assetpage.click_asset_type_save.is_enabled(), "Save button is not disabled.")
+            self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
         assetpage.asset_cancel()
 
 
@@ -308,7 +309,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
-        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.assertEqual(assetpage.asset_school_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         assetpage.click_on_asset_link.click()
 
 
@@ -318,12 +319,43 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
         assetpage.click_on_asset_link.click()
+        sleep(2)
         assetpage.asset_search_assetname(assetpage.asset_school_name)
         sleep(20)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
-            print (i.text)
-            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+            if i.text == assetpage.asset_school_name:
+                self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
+
+    @attr(priority="high")
+#    @SkipTest
+    def test_AS_51_To_validate_SchoolName_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.asset_create_click()
+        assetpage.select_asset_template_type("School")
+        self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled())
+        #add validation for red star
+
+    @attr(priority="high")
+#   @SkipTest
+    def test_AS_53_To_validate_GradeandDistrict_Fields(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.asset_create_click()
+        assetpage.select_asset_template_type("School")
+        assetpage.enter_asset_type_name.send_keys(assetpage.asset_school_name)
+        assetpage.enter_school_district(assetpage.asset_school_district_grade_validation)
+        assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation)
+        assetpage.get_asset_overview_save_button.click()
+        self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_district_text)
+        self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_grade_text)
+
+
+    @attr(priority="high")
+    def test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.create_asset_cancel("School")
+        self.assertTrue(self.driver.find_element_by_xpath(assetpage._asset_create_asset).is_displayed())
+
 
     @attr(priority="high")
     def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
