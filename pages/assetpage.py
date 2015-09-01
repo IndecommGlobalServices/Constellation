@@ -737,8 +737,6 @@ class AssetPage(BasePage):
         self.driver.find_element_by_link_text("Place").click()
         sleep(4)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
-        sleep(6)
-        self.enter_asset_type_name.send_keys(self.asset_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_address.send_keys(self.asset_place_address)

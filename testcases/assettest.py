@@ -201,7 +201,6 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         assetpage.asset_create_click()
         assetpage.asset_overview_cancel_click()
-
         expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
@@ -212,7 +211,6 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.create_place_asset()
         assetpage.asset_overview_cancel_click()
-
         expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
@@ -579,6 +577,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("School")
         self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled())
+        assetpage.get_asset_overview_cancel_button.click()
         #add validation for red star
 
     @attr(priority="high")
