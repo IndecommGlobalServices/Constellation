@@ -173,7 +173,7 @@ class AssetPageTest(BaseTestCase):
 
         aphone = "123abc1234"
         assetpage.enter_asset_type_phone.send_keys(aphone)
-        #assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
+        assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
 
         sleep(5)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
@@ -272,10 +272,11 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_link.click()
 
     # Modify the values
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "22222", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "63", "12001", "http://www.haystax.com")
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
     # Click on Save
-        assetpage.get_asset_detail_edit_save_button()
+        assetpage.get_asset_detail_edit_save_button.click()
+        sleep(10)
 
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
@@ -312,6 +313,82 @@ class AssetPageTest(BaseTestCase):
                 self.assertEqual(act_name_value,exp_name_value)
         except NoSuchElementException:
             self.assertFalse("No Main Contact exists.")
+    @attr(priority="high")
+    def test_AS_24_To_Verify_The_Validation_Of_Email_Field(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+        sleep(10)
+
+    #  Enter the value for Email - Valid
+
+        aemail = "testtest"
+        assetpage.get_asset_detail_edit_email_text_box.send_keys(" ")
+        sleep(2)
+        assetpage.get_asset_detail_edit_email_text_box.send_keys(aemail)
+        sleep(2)
+        assetpage.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
+        sleep(2)
+        regex = re.compile(r'[\w.-]+@[\w.-]+')
+        sleep(5)
+        self.assertRegexpMatches(aemail, regex, "Expected and actual value is not matching for EMAIL")
+        assetpage.get_asset_detail_edit_cancel_button.click()
+
+    @attr(priority="high")
+    def test_AS_25_To_Verify_The_Validation_Of_Fax_Field(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+        sleep(10)
+
+    #  Enter the value for FAX
+
+        afax = "123abc1234"
+        assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(" ")
+        sleep(5)
+        assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(afax)
+        sleep(5)
+        assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
+        sleep(5)
+        regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
+        self.assertRegexpMatches(afax, regex, "Expected and actual value is not matching for FAX")
+        sleep(5)
+        assetpage.get_asset_detail_edit_cancel_button.click()
+
+    @attr(priority="high")
+    def test_AS_26_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+        sleep(10)
+    # Modify the values
+        assetpage.set_place_details_fields("4321", "2020-05-16", "Cancelled", "cancel@indecomm.net", "111-111-1111", "2017-02-23", "10001", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
+        sleep(10)
+    # Click on Cancel
+        assetpage.get_asset_detail_edit_cancel_button.click()
+        sleep(10)
+    # Assert on Asset name is displayed in the breadcrumb
+        self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        sleep(10)
 
     @attr(priority="high")
     def test_AS_29_To_Click_On_Save_Without_FirstName_Place_Asset_ContactInfo_Field(self):
