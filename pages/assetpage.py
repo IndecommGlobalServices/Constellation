@@ -1,5 +1,7 @@
-from pages.basepage import BasePage
+from lib.base import BasePageClass
 from lib.base import InvalidPageException
+from pages.IconListPage import IconListPage
+from basepage import BasePage
 from time import sleep
 from faker import Factory
 from selenium.webdriver.common.keys import Keys
@@ -12,7 +14,7 @@ L1 = os.path.join(os.getcwd(), "data\json_Schooldata.json")
 placeData = os.path.join(os.getcwd(), "data\json_place_asset.json")
 os.chdir(cwd)
 
-class AssetPage(BasePage):
+class AssetPage(BasePageClass):
     # Asset Delete related locators
     _asset_select_action_delete_select_xpath_locator = ".//*[@id='asset_actions_dropdown']/button[2]"
     _asset_link_delete_text_xpath_locator = ".//*[@id='asset_actions_dropdown']/ul/li/a"
@@ -31,7 +33,9 @@ class AssetPage(BasePage):
     _asset_filter_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
 
     _asset_place_type_drop_down_locator = "//div[@label='Type']"
-
+    #_asset_school_district_drop_down_locator = "//div[@label= 'District']"
+    #_asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
+    #_asset_school_district_drop_down_locator = "//div[@label= 'District']"
     _asset_school_district_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
     _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
 
@@ -687,13 +691,23 @@ class AssetPage(BasePage):
             print "No records found."
 
     def asset_create_click(self):
+        try:
+            self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
+        except:
+            print ("inside exception")
+            basepage = BasePage(self.driver)
+            basepage.accessURL()
+            iconlistpage = IconListPage(self.driver)
+            iconlistpage.click_asset_Icon()
+
         # Click on Create asset
+        sleep(2)
         self.driver.find_element_by_xpath(self._asset_create_asset).click()
         sleep(10)
         # switch to new window
-        #self.driver.switch_to.active_element
+        self.driver.switch_to.active_element
         # Verify title "Asset overview" window
-        #self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
+        self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
         #sleep(2)
         #print("Asset overview", Create_Asset_Title)
 
@@ -787,32 +801,32 @@ class AssetPage(BasePage):
         self.select_asset_template_type("School")
         sleep(4)
 
-        self.enter_asset_type_name.send_keys(self.asset_school_name)
+        self.enter_asset_type_name.send_keys(self.asset_school_name[0])
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address.send_keys(self.asset_school_address)
+        self.enter_asset_type_address.send_keys(self.asset_school_address[0])
         self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address2.send_keys(self.asset_school_address2)
+        self.enter_asset_type_address2.send_keys(self.asset_school_address2[0])
         self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_city.send_keys(self.asset_school_city)
+        self.enter_asset_type_city.send_keys(self.asset_school_city[0])
         self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_state.send_keys(self.asset_school_state)
+        self.enter_asset_type_state.send_keys(self.asset_school_state[0])
         self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_zip.send_keys(self.asset_school_zip)
+        self.enter_asset_type_zip.send_keys(self.asset_school_zip[0])
         self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_owner.send_keys(self.asset_school_owner)
+        self.enter_asset_type_owner.send_keys(self.asset_school_owner[0])
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_school_district(self.asset_school_district)
+        self.enter_school_district(self.asset_school_district[0])
         sleep(2)
-        self.enter_school_grade(self.asset_school_grade)
+        self.enter_school_grade(self.asset_school_grade[0])
         sleep(2)
-        self.enter_asset_type(self.asset_school_type)
+        self.enter_asset_type(self.asset_school_type[0])
 
 
     def enter_school_district(self, value):
@@ -854,6 +868,14 @@ class AssetPage(BasePage):
         '''
 
     def create_asset(self, type):
+        self.asset_create_click()
+        if type == "School":
+            self.create_school_asset()
+        elif type == "Place":
+            self.create_place_asset()
+        self.asset_overview_save_click()
+
+    def edit_asset(self, type):
         self.asset_create_click()
         if type == "School":
             self.create_school_asset()

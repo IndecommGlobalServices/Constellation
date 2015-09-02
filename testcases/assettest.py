@@ -144,7 +144,6 @@ class AssetPageTest(BaseTestCase):
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
-        #assetpage.asset_create_click()
         assetpage.create_asset("Place")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
@@ -632,6 +631,12 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset_cancel("School")
         self.assertTrue(self.driver.find_element_by_xpath(assetpage._asset_create_asset).is_displayed())
+
+    @attr(priority="high")
+#    @SkipTest
+    def test_AS_55_To_Verify_SchoolAsset_Edit(self):
+        asset = AssetPage(self.driver)
+        asset.create_asset("School")
 
 
     @attr(priority="high")

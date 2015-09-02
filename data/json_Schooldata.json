@@ -1,17 +1,18 @@
 [
     {
-        "asset_name": "Sc899",
-        "asset_address": "Orlean",
-        "asset_address2": "Street",
-        "asset_city": "Virginia",
-        "asset_state": "Nk",
-        "asset_zip": "VA1256",
-        "asset_owner": "Deepa",
-        "asset_type": "BA",
-        "asset_district": "VA",
-        "asset_grade": "PM",
+        "asset_name": ["Sc25", "editedname"],
+        "asset_address": ["Orlean", "editaddress"],
+        "asset_address2": ["Street", "editedaddress2"],
+        "asset_city": ["Virginia", "editedcity"],
+        "asset_state": ["Nk", "editedstate"],
+        "asset_zip": ["VA1256", "editedzip"],
+        "asset_owner": ["Deepa", "editedowner"],
+        "asset_type": ["TY", "ET"],
+        "asset_district": ["DA", "ED"],
+        "asset_grade": ["PG", "EG"],
         "asset_dist_grade_validation": "Vali123@*>?"
     }
+
 
 
 
