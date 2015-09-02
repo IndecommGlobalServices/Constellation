@@ -35,6 +35,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_select_action_drop_down.click()
         self.assertTrue(assetpage.get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
 
+   
     @attr(priority="high")
     @SkipTest
     def test_AS_03_To_Verify_Delete_Asset_Should_Be_Deleted(self):
@@ -281,39 +282,7 @@ class AssetPageTest(BaseTestCase):
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
 
-    @attr(priority="high")
-    def test_AS_27_To_Save_All_Contact_Info_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Place", "Place")
-        sleep(6)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.create_new_contact(firstname,lastname)
-        act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
-        exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
 
-    @attr(priority="high")
-    def test_AS_28_To_Test_Main_Contact_Info_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Place", "Place")
-        sleep(6)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.create_new_contact(firstname,lastname)
-        try:
-            if assetpage.get_asset_main_contact_window:
-                act_name_value = assetpage.get_asset_main_contact_name_text.text
-                exp_name_value = "Shri "+firstname+" "+lastname
-                self.assertEqual(act_name_value,exp_name_value)
-        except NoSuchElementException:
-            self.assertFalse("No Main Contact exists.")
-    @attr(priority="high")
     def test_AS_24_To_Verify_The_Validation_Of_Email_Field(self):
         assetpage = AssetPage(self.driver)
 
@@ -389,6 +358,39 @@ class AssetPageTest(BaseTestCase):
     # Assert on Asset name is displayed in the breadcrumb
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         sleep(10)
+
+    @attr(priority="high")
+    def test_AS_27_To_Save_All_Contact_Info_Place_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Place", "Place")
+        sleep(6)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.create_new_contact(firstname,lastname)
+        act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
+        exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
+        assetpage.click_on_asset_link.click()
+        self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
+
+    @attr(priority="high")
+    def test_AS_28_To_Test_Main_Contact_Info_Place_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Place", "Place")
+        sleep(6)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.create_new_contact(firstname,lastname)
+        try:
+            if assetpage.get_asset_main_contact_window:
+                act_name_value = assetpage.get_asset_main_contact_name_text.text
+                exp_name_value = "Shri "+firstname+" "+lastname
+                self.assertEqual(act_name_value,exp_name_value)
+        except NoSuchElementException:
+            self.assertFalse("No Main Contact exists.")
 
     @attr(priority="high")
     def test_AS_29_To_Click_On_Save_Without_FirstName_Place_Asset_ContactInfo_Field(self):
@@ -940,6 +942,43 @@ class AssetPageTest(BaseTestCase):
             assetpage.click_on_asset_link.click()
             self.assertFalse("The Contact has been Deleted.")
 
+    @attr(priority="high")
+    @SkipTest
+    def test_AS_To_Upload_a_document(self):
+        assetpage = AssetPage(self.driver)
+
+        # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(8)
+
+        # Click on Photo/Document panel - File Upload button
+        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/button").click()
+        sleep(10)
+
+        # Switch to alert file upload window
+        alert = self.driver.switch_to.active_element()
+
+        # Enter Caption
+        caption = self.driver.find_element_by_xpath(".//*[@id='upload_document_caption']")
+        caption.send_keys("Image file")
+        sleep(2)
+        caption.send_keys(Keys.TAB)
+        sleep(2)
+
+        # Click on Attach file button and attached the file path with the send_keys
+        attachfile = self.driver.find_element_by_xpath(".//*[@id='upload_document_file_upload']")
+        attachfile.send_keys("C:\Users\Public\Pictures\Sample Pictures\Desert.jpg")
+        attachfile.send_keys(Keys.TAB)
+        sleep(3)
+
+        # Click upload
+        self.driver.find_element_by_xpath(".//*[@id='widget_attach_document_modal']/div/div/div[3]/button[2]").click()
+        sleep(3)
+        alert.accept()
+        # Come back to the main edit page
+        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        #self.driver.find_element_by_link_text("Assets").click()
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
