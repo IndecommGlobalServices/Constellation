@@ -282,7 +282,6 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
 
 
-    @attr(priority="high")
     def test_AS_24_To_Verify_The_Validation_Of_Email_Field(self):
         assetpage = AssetPage(self.driver)
 
@@ -358,6 +357,39 @@ class AssetPageTest(BaseTestCase):
     # Assert on Asset name is displayed in the breadcrumb
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         sleep(10)
+
+    @attr(priority="high")
+    def test_AS_27_To_Save_All_Contact_Info_Place_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Place", "Place")
+        sleep(6)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.create_new_contact(firstname,lastname)
+        act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
+        exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
+        assetpage.click_on_asset_link.click()
+        self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
+
+    @attr(priority="high")
+    def test_AS_28_To_Test_Main_Contact_Info_Place_Asset_ContactInfo_Field(self):
+        firstname = "FirstName"
+        lastname = "ZLastName"
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Place", "Place")
+        sleep(6)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        assetpage.create_new_contact(firstname,lastname)
+        try:
+            if assetpage.get_asset_main_contact_window:
+                act_name_value = assetpage.get_asset_main_contact_name_text.text
+                exp_name_value = "Shri "+firstname+" "+lastname
+                self.assertEqual(act_name_value,exp_name_value)
+        except NoSuchElementException:
+            self.assertFalse("No Main Contact exists.")
 
     @attr(priority="high")
     def test_AS_29_To_Click_On_Save_Without_FirstName_Place_Asset_ContactInfo_Field(self):
