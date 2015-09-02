@@ -1,4 +1,4 @@
-from lib.base import BasePage
+from lib.base import BasePageClass
 from lib.base import InvalidPageException
 import json, os
 from time import sleep
@@ -10,7 +10,7 @@ os.chdir('..')
 L1 = os.path.join(os.getcwd(), "data\json_login.json")
 os.chdir(cwd)
 
-class LoginPage(BasePage):
+class LoginPage(BasePageClass):
     _email_input_id_locator     = "inputusername"
     _password_input_id_locator  = "inputpassword"
     _login_click_xpath_locator  = "//form[@id='login_form']/li[3]/button"
@@ -47,8 +47,8 @@ class LoginPage(BasePage):
                 #self.assertEqual("https://constellation-dev.haystax.com/apps/#", self.driver.current_url)
                 sleep(10)
                 # click on Assets
-                lnkAssets_field = self.driver.find_element_by_id("app_assets")
-                lnkAssets_field.click()
+               # lnkAssets_field = self.driver.find_element_by_id("app_assets")
+                #lnkAssets_field.click()
                 sleep(10)
 
 

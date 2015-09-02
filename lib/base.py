@@ -1,9 +1,9 @@
-# The BasePage object will act as a parent object for all the page object that we
+# The BasePageClass object will act as a parent object for all the page object that we
 # will create in our test suite.
 # The base page provides common code that the page object can use.
 
 from abc import abstractmethod
-class BasePage(object):
+class BasePageClass(object):
     ''' All page objects inherit from this '''
 
     def __init__(self, driver):

@@ -1,5 +1,6 @@
-from lib.base import BasePage
+from lib.base import BasePageClass
 from lib.base import InvalidPageException
+from pages.IconListPage import IconListPage
 from time import sleep
 from faker import Factory
 from selenium.webdriver.common.keys import Keys
@@ -12,7 +13,7 @@ L1 = os.path.join(os.getcwd(), "data\json_Schooldata.json")
 placeData = os.path.join(os.getcwd(), "data\json_place_asset.json")
 os.chdir(cwd)
 
-class AssetPage(BasePage):
+class AssetPage(BasePageClass):
     # Asset Delete related locators
     _asset_select_action_delete_select_xpath_locator = ".//*[@id='asset_actions_dropdown']/button[2]"
     _asset_link_delete_text_xpath_locator = ".//*[@id='asset_actions_dropdown']/ul/li/a"
@@ -687,8 +688,11 @@ class AssetPage(BasePage):
             print "No records found."
 
     def asset_create_click(self):
-        # Click on Create asset
 
+
+
+
+        # Click on Create asset
         self.driver.find_element_by_xpath(self._asset_create_asset).click()
         sleep(10)
         # switch to new window

@@ -5,6 +5,8 @@ from time import sleep
 from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
+from pages.basepage import BasePage
+from pages.IconListPage import IconListPage
 from selenium.webdriver.support.events import EventFiringWebDriver
 from selenium.webdriver.support.events import AbstractEventListener
 
@@ -29,7 +31,8 @@ class BaseTestCase(unittest.TestCase):
         self.driver.maximize_window()
 
         # navigate to the application home page
-        self.driver.get("https://constellation-qa.haystax.com/#/")
+        basepage = BasePage(self.driver)
+        basepage.accessURL()
 
         homepage = HomePage(self.driver)
         homepage.loginlink.click()
@@ -39,6 +42,8 @@ class BaseTestCase(unittest.TestCase):
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
 
+        iconlistpage = IconListPage(self.driver)
+        iconlistpage.click_asset_Icon()
 
 
     @classmethod

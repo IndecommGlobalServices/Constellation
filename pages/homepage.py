@@ -1,7 +1,7 @@
-from lib.base import BasePage
+from lib.base import BasePageClass
 from lib.base import InvalidPageException
 
-class HomePage(BasePage):
+class HomePage(BasePageClass):
     _home_page_landing_logo_locator = "//*[@id='page_content']/div[1]/div[1]/span"
     _home_page_login_link_locator = "Or log in"
 
