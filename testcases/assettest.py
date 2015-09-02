@@ -943,7 +943,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("The Contact has been Deleted.")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_To_Upload_a_document(self):
         assetpage = AssetPage(self.driver)
 
@@ -956,29 +956,25 @@ class AssetPageTest(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/button").click()
         sleep(10)
 
-        # Switch to alert file upload window
-        alert = self.driver.switch_to.active_element()
+        # Click on Attach file button and attached the file path with the send_keys
+        attachfile = self.driver.find_element_by_xpath(".//*[@id='upload_document_file_upload']")
+        attachfile.send_keys("C:\Users\Kiran.k\Downloads\Oracle VM VirtualBox UserManual.pdf")
+        sleep(3)
 
         # Enter Caption
         caption = self.driver.find_element_by_xpath(".//*[@id='upload_document_caption']")
-        caption.send_keys("Image file")
-        sleep(2)
-        caption.send_keys(Keys.TAB)
-        sleep(2)
+        caption.send_keys("Oracle VM VirtualBox UserManual.pdf")
+        sleep(5)
 
-        # Click on Attach file button and attached the file path with the send_keys
-        attachfile = self.driver.find_element_by_xpath(".//*[@id='upload_document_file_upload']")
-        attachfile.send_keys("C:\Users\Public\Pictures\Sample Pictures\Desert.jpg")
-        attachfile.send_keys(Keys.TAB)
-        sleep(3)
 
         # Click upload
         self.driver.find_element_by_xpath(".//*[@id='widget_attach_document_modal']/div/div/div[3]/button[2]").click()
-        sleep(3)
-        alert.accept()
+        sleep(30)
+
         # Come back to the main edit page
-        self.assertEqual(assetpage.asset_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        #self.driver.find_element_by_link_text("Assets").click()
+        self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.driver.find_element_by_link_text("Assets").click()
+
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)

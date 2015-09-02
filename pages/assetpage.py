@@ -899,19 +899,19 @@ class AssetPage(BasePageClass):
     def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
         # fill out the fields
 
-        self.get_asset_detail_edit_capacity_text_box.send_keys("")
+        self.get_asset_detail_edit_capacity_text_box.clear()
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_closed_text_box.send_keys("")
+        self.get_asset_detail_edit_closed_text_box.clear()
         self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
         self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_description_text_box.send_keys("")
+        self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
 
@@ -923,19 +923,19 @@ class AssetPage(BasePageClass):
 
         #sleep(2)
 
-        self.get_asset_detail_edit_email_text_box.send_keys("")
+        self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_detail_fax_text_box.send_keys("")
+        self.get_asset_detail_edit_detail_fax_text_box.clear()
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys("")
+        self.get_asset_detail_edit_detail_opened_number_text_box.clear()
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
 
@@ -947,13 +947,13 @@ class AssetPage(BasePageClass):
 
         #sleep(2)
 
-        self.get_asset_detail_edit_detail_size_text_box.send_keys("")
+        self.get_asset_detail_edit_detail_size_text_box.clear()
         self.get_asset_detail_edit_detail_size_text_box.send_keys(psize)
         self.get_asset_detail_edit_detail_size_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_detail_website_text_box.send_keys("")
+        self.get_asset_detail_edit_detail_website_text_box.clear()
         self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
         self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
 
