@@ -895,7 +895,6 @@ class AssetPage(BasePageClass):
         sleep(5)
         try:
             self.asset_search_assetname(asset_name1)
-            print asset_name1
             sleep(6)
             asset_list = self.get_assets_name_list
             if len(asset_list)>=1:
@@ -909,11 +908,8 @@ class AssetPage(BasePageClass):
         except:
             print "No Asset is existing or Asset Creation has been failed."
 
-
-
     # Place Edit mode - Overview panel
     def set_place_overview_fields(self,paddress, paddress1, pcity, pstate, pzip, powner):
-
         '''
         sleep(5)
         self.get_asset_overview_edit_name_text_box.send_keys("")
@@ -922,29 +918,29 @@ class AssetPage(BasePageClass):
         '''
         self.get_asset_overview_edit_name_text_box.send_keys(Keys.TAB)
         sleep(5)
-        self.enter_asset_type_address.send_keys("")
+        self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(paddress)
         self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(5)
-        self.enter_asset_type_address2.send_keys("")
+        self.enter_asset_type_address2.clear()
         self.enter_asset_type_address2.send_keys(paddress1)
         self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(5)
-        self.enter_asset_type_city.send_keys("")
+        self.enter_asset_type_city.clear()
         self.enter_asset_type_city.send_keys(pcity)
         self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(5)
-        self.enter_asset_type_state.send_keys("")
+        self.enter_asset_type_state.clear()
         self.enter_asset_type_state.send_keys(pstate)
         self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(5)
-        self.enter_asset_type_zip.send_keys("")
+        self.enter_asset_type_zip.clear()
         self.enter_asset_type_zip.send_keys(pzip)
         self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(5)
         self.enter_asset_type_phone.send_keys(Keys.TAB)
         sleep(5)
-        self.enter_asset_type_owner.send_keys("")
+        self.enter_asset_type_owner.clear()
         self.enter_asset_type_owner.send_keys(powner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(5)
@@ -954,19 +950,19 @@ class AssetPage(BasePageClass):
     def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
         # fill out the fields
 
-        self.get_asset_detail_edit_capacity_text_box.send_keys("")
+        self.get_asset_detail_edit_capacity_text_box.clear()
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_closed_text_box.send_keys("")
+        self.get_asset_detail_edit_closed_text_box.clear()
         self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
         self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_description_text_box.send_keys("")
+        self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
 
@@ -978,19 +974,19 @@ class AssetPage(BasePageClass):
 
         #sleep(2)
 
-        self.get_asset_detail_edit_email_text_box.send_keys("")
+        self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_detail_fax_text_box.send_keys("")
+        self.get_asset_detail_edit_detail_fax_text_box.clear()
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys("")
+        self.get_asset_detail_edit_detail_opened_number_text_box.clear()
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
 
@@ -1002,13 +998,13 @@ class AssetPage(BasePageClass):
 
         #sleep(2)
 
-        self.get_asset_detail_edit_detail_size_text_box.send_keys("")
+        self.get_asset_detail_edit_detail_size_text_box.clear()
         self.get_asset_detail_edit_detail_size_text_box.send_keys(psize)
         self.get_asset_detail_edit_detail_size_text_box.send_keys(Keys.TAB)
 
         sleep(2)
 
-        self.get_asset_detail_edit_detail_website_text_box.send_keys("")
+        self.get_asset_detail_edit_detail_website_text_box.clear()
         self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
         self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
 
