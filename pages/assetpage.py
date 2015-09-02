@@ -1,6 +1,7 @@
 from lib.base import BasePageClass
 from lib.base import InvalidPageException
 from pages.IconListPage import IconListPage
+from basepage import BasePage
 from time import sleep
 from faker import Factory
 from selenium.webdriver.common.keys import Keys
@@ -688,9 +689,14 @@ class AssetPage(BasePageClass):
             print "No records found."
 
     def asset_create_click(self):
-
-
-
+        try:
+            self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
+        except:
+            print ("inside exception")
+            basepage = BasePage(self.driver)
+            basepage.accessURL()
+            iconlistpage = IconListPage(self.driver)
+            iconlistpage.click_asset_Icon()
 
         # Click on Create asset
         self.driver.find_element_by_xpath(self._asset_create_asset).click()
