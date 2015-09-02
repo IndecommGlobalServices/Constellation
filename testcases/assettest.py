@@ -136,7 +136,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_search_assetname("{}")
         assetpage.asset_search_special_characters()
         sleep(2)
-        assetpage.asset_search_assetname("")
+        assetpage.asset_search_assetname.send_keys(Keys.CONTROL,"a",Keys.DELETE)
         sleep(5)
 
 
@@ -296,7 +296,7 @@ class AssetPageTest(BaseTestCase):
     #  Enter the value for Email - Valid
 
         aemail = "testtest"
-        assetpage.get_asset_detail_edit_email_text_box.send_keys(" ")
+        assetpage.get_asset_detail_edit_email_text_box.clear()
         sleep(2)
         assetpage.get_asset_detail_edit_email_text_box.send_keys(aemail)
         sleep(2)
@@ -323,7 +323,7 @@ class AssetPageTest(BaseTestCase):
     #  Enter the value for FAX
 
         afax = "123abc1234"
-        assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(" ")
+        assetpage.get_asset_detail_edit_detail_fax_text_box.clear()
         sleep(5)
         assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(afax)
         sleep(5)
