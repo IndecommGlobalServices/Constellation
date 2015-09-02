@@ -842,6 +842,7 @@ class AssetPage(BasePageClass):
         self.asset_overview_cancel_click()
 
     def select_school_or_place_asset(self, asset_name1,asset_type):
+        sleep(4)
         try:
             self.asset_search_assetname(asset_name1)
             sleep(6)
@@ -970,7 +971,7 @@ class AssetPage(BasePageClass):
         except NoSuchElementException:
             print "No contact exist."
 
-    def create_new_contact(self, firstname, lastname, title="Title", prefix="Shri", address1="Indecomm", address2="Brigade South Parade", city="Bangalore", state="KA", zip="56001", phone="111-111-1111", email="test@test.com"):
+    def create_new_contact(self, firstname, lastname, title="Title", phone="111-111-1111", email="test@test.com", prefix="Shri", address1="Indecomm", address2="Brigade South Parade", city="Bangalore", state="KA", zip="56001"):
         self.get_asset_points_of_contact_header.click()
         self.get_asset_add_contact_button.click()
         sleep(4)

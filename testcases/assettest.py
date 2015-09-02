@@ -884,6 +884,24 @@ class AssetPageTest(BaseTestCase):
             self.assertTrue("New Contact is not created.")
 
     @attr(priority="high")
+    def test_AS_68_To_Name_Descending_order_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("Test1", "School")
+        sleep(6)
+        assetpage.delete_existing_contact()
+        sleep(2)
+        firstname= ['def', 'jkl', 'pqr', 'vwx']
+        lastname=['abc','ghi','mno', 'stu']
+        phonelist = ['661-111-1111','222-222-2222', '433-333-3333', '123-444-4444']
+        emaillist = ['stu@vwx', 'abc@def', 'mno@pqr', 'ghi@jkl']
+        titlelist = ['HH', 'ZZ', 'CC', 'PP']
+        exp_email_descending = 'stu@vwx, mno@pqr, ghi@jkl, abc@def'
+        for i in range(4):
+            assetpage.create_new_contact(firstname[i],lastname[i],titlelist[i],phonelist[i],emaillist[i])
+            sleep(2)
+
+
+    @attr(priority="high")
     def test_AS_69_To_Delete_Contact_School_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
