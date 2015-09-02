@@ -743,15 +743,9 @@ class AssetPage(BasePageClass):
     def create_place_asset(self):
         # Select Place from the dropdown to create new place asset
         sleep(10)
-        #self.get_placedata()
+        self.get_placedata()
         self.select_asset_template_type("Place")
         sleep(10)
-        #self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
-        #sleep(10)
-        #self.driver.find_element_by_link_text("Place").click()
-        sleep(4)
-        #self.enter_asset_type_name.send_keys(self.asset_place_name)
-        sleep(6)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
