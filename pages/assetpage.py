@@ -886,7 +886,7 @@ class AssetPage(BasePageClass):
         self.asset_overview_cancel_click()
 
     def select_school_or_place_asset(self, asset_name1,asset_type):
-        sleep(5)
+        sleep(4)
         try:
             self.asset_search_assetname(asset_name1)
             sleep(6)
