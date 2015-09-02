@@ -69,6 +69,8 @@ class AssetPage(BasePageClass):
 
 
     #Asset Overview dialouge locators
+    #_asset_overview_templatetype_dropdown_locator = "//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]"
+    _asset_overview_templatetype_dropdown_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])"
     _asset_overview_name_text_box_locator = "//input[@ng-model='model']"
     _asset_overview_address_text_box_locator = "//input[@ng-model='asset_edit.address.address1']"
     _asset_overview_address2_text_box_locator = "//input[@ng-model='asset_edit.address.address2']"
@@ -203,6 +205,10 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_reset_button(self):
         return self.driver.find_element_by_xpath(self._asset_filter_reset_button_locator)
+
+    @property
+    def get_overview_templatetype_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_templatetype_dropdown_locator)
 
     @property
     def get_overview_type_drop_down(self):
@@ -707,7 +713,7 @@ class AssetPage(BasePageClass):
         # switch to new window
         self.driver.switch_to.active_element
         # Verify title "Asset overview" window
-        self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
+        #self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
         #sleep(2)
         #print("Asset overview", Create_Asset_Title)
 
@@ -715,7 +721,7 @@ class AssetPage(BasePageClass):
     # We need to pass the parameter from the Testcase
     def select_asset_template_type(self, template):
         # Select Place from the dropdown to create new place asset
-        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
+        self.get_overview_templatetype_drop_down.click()
         self.driver.find_element_by_link_text(template).click()
         sleep(4)
     '''
@@ -886,7 +892,7 @@ class AssetPage(BasePageClass):
         self.asset_overview_cancel_click()
 
     def select_school_or_place_asset(self, asset_name1,asset_type):
-        sleep(4)
+        sleep(5)
         try:
             self.asset_search_assetname(asset_name1)
             print asset_name1
