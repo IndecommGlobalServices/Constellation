@@ -886,8 +886,10 @@ class AssetPage(BasePageClass):
         self.asset_overview_cancel_click()
 
     def select_school_or_place_asset(self, asset_name1,asset_type):
+        sleep(4)
         try:
             self.asset_search_assetname(asset_name1)
+            print asset_name1
             sleep(6)
             asset_list = self.get_assets_name_list
             if len(asset_list)>=1:
@@ -901,8 +903,11 @@ class AssetPage(BasePageClass):
         except:
             print "No Asset is existing or Asset Creation has been failed."
 
+
+
     # Place Edit mode - Overview panel
     def set_place_overview_fields(self,paddress, paddress1, pcity, pstate, pzip, powner):
+
         '''
         sleep(5)
         self.get_asset_overview_edit_name_text_box.send_keys("")
