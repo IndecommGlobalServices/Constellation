@@ -92,6 +92,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_09_To_Verify_The_Filter_Function_Filter_By_School_Grade(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
+        AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_grade()
         sleep(10)
 
@@ -100,6 +101,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_10_To_Verify_The_Filter_Function_Filter_By_School_Type(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
+        AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         sleep(10)
 
@@ -147,7 +149,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_search_assetname("{}")
         assetpage.asset_search_special_characters()
         sleep(2)
-        assetpage.asset_search_assetname.send_keys(Keys.CONTROL,"a",Keys.DELETE)
+        assetpage.asset_search_assetname("")
         sleep(5)
 
 
@@ -157,7 +159,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         sleep(5)
         assetpage.create_asset("Place")
-        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
 
@@ -205,7 +207,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
-        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+        for i in self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
             self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
         #assetpage.asset_search_assetname("")
@@ -316,7 +318,7 @@ class AssetPageTest(BaseTestCase):
 
     #  Enter the value for Email - Valid
 
-        aemail = "testtest"
+        aemail = "test@email.com"
         assetpage.get_asset_detail_edit_email_text_box.clear()
         sleep(2)
         assetpage.get_asset_detail_edit_email_text_box.send_keys(aemail)
@@ -381,6 +383,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_27_To_Save_All_Contact_Info_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -396,6 +399,7 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_28_To_Test_Main_Contact_Info_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -414,6 +418,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("No Main Contact exists.")
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_29_To_Click_On_Save_Without_FirstName_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
@@ -435,6 +440,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_30_To_Click_On_Save_With_Phone_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -462,6 +468,7 @@ class AssetPageTest(BaseTestCase):
         self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_31_1_To_Click_On_Save_With_Email_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -489,6 +496,7 @@ class AssetPageTest(BaseTestCase):
         self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL")
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_31_2_To_Click_On_Save_With_Wrong_Email_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -516,6 +524,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_32_To_Click_On_Cancel_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstNameDel"
         lastname = "ZLastNameDel"
@@ -542,6 +551,7 @@ class AssetPageTest(BaseTestCase):
             self.assertTrue("New Contact is not created.")
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_34_To_Delete_Contact_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -570,6 +580,7 @@ class AssetPageTest(BaseTestCase):
             self.assertTrue("The Contact has been Deleted")
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_35_To_Delete_Cancel_Contact_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -606,7 +617,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
-        self.assertEqual(assetpage.asset_school_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         assetpage.click_on_asset_link.click()
 
 
@@ -617,10 +628,10 @@ class AssetPageTest(BaseTestCase):
         assetpage.create_asset("School")
         assetpage.click_on_asset_link.click()
         sleep(2)
-        assetpage.asset_search_assetname(assetpage.asset_school_name)
+        assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(20)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
-            if i.text == assetpage.asset_school_name:
+            if i.text == assetpage.asset_school_name[0]:
                 self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
 
@@ -641,7 +652,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("School")
-        assetpage.enter_asset_type_name.send_keys(assetpage.asset_school_name)
+        assetpage.enter_asset_type_name.send_keys(assetpage.asset_school_name[0])
         assetpage.enter_school_district(assetpage.asset_school_district_grade_validation)
         assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation)
         assetpage.asset_overview_save_click()
@@ -656,7 +667,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(self.driver.find_element_by_xpath(assetpage._asset_create_asset).is_displayed())
 
     @attr(priority="high")
-#    @SkipTest
+    @SkipTest
     def test_AS_55_To_Verify_SchoolAsset_Edit(self):
         asset = AssetPage(self.driver)
         asset.create_asset("School")
@@ -1008,7 +1019,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("The Contact has been Deleted.")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_To_Upload_a_document(self):
         assetpage = AssetPage(self.driver)
 
