@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="76a6158f-c964-4bd4-9f55-7a82441e4aa1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/basetestcase.py" afterPath="$PROJECT_DIR$/testcases/basetestcase.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/json_Schooldata.json" afterPath="$PROJECT_DIR$/data/json_Schooldata.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/json_place_asset.json" afterPath="$PROJECT_DIR$/data/json_place_asset.json" />
+    <list default="true" id="76a6158f-c964-4bd4-9f55-7a82441e4aa1" name="Default" comment="Added index parameter to create_school_asset">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-01T20.57.47.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-01T20.59.57.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-01T21.01.41.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T13.19.06.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T13.29.50.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T13.36.55.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.18.13.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.19.19.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.21.41.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.24.26.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.26.38.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.45.55.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.47.20.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.48.28.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.51.04.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T14.53.55.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.11.59.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.12.59.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.18.42.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.20.27.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.22.47.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.25.13.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.27.34.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.30.55.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.34.47.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T15.36.41.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T16.31.34.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T16.35.10.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T17.15.40.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T17.19.13.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T17.26.18.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T18.59.16.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T19.12.16.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-02T19.16.58.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-03T11.45.38.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-03T11.49.44.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-03T12.00.55.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-03T13.02.27.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-03T13.05.11.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/testcases/Screenshot 2015-09-03T13.58.17.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Test Results - Unittests_in_assettest.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="47bfa8cf-4e8d-42dc-b093-b764af6418f7" name="Failed commit: Default" comment="Json_Schooldata" />
@@ -1221,7 +1258,13 @@
       <option name="project" value="LOCAL" />
       <updated>1441261129179</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Added index parameter to create_school_asset">
+      <created>1441270428159</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1441270428159</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1235,7 +1278,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23883928" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
