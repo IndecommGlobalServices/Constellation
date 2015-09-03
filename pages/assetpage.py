@@ -1097,8 +1097,8 @@ class AssetPage(BasePageClass):
         sleep(2)
         self.delete_existing_contact()
         sleep(2)
-        firstname = ['def', 'jkl', 'pqr', 'vwx']
-        lastname =['abc','ghi','mno', 'stu']
+        firstname = ['jkl','vwx', 'def', 'pqr']
+        lastname = ['mno', 'abc','stu', 'ghi']
         phonelist = ['661-111-1111','222-222-2222', '433-333-3333', '123-444-4444']
         emaillist = ['stu@vwx', 'abc@def', 'mno@pqr', 'ghi@jkl']
         titlelist = ['HH', 'ZZ', 'CC', 'PP']
