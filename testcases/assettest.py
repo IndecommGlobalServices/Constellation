@@ -159,7 +159,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         sleep(5)
         assetpage.create_asset("Place")
-        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
 
@@ -209,8 +209,7 @@ class AssetPageTest(BaseTestCase):
         sleep(20)
         for i in self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
-            self.assertEqual("rgba(255, "
-                             "236, 158, 1)", i.value_of_css_property("background-color"))
+            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
         #assetpage.asset_search_assetname("")
 
     @attr(priority="high")
