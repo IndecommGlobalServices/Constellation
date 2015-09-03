@@ -207,7 +207,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
-        for i in self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
             self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
         #assetpage.asset_search_assetname("")
