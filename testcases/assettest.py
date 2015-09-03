@@ -923,7 +923,7 @@ class AssetPageTest(BaseTestCase):
         exp_name_descending = "stu, vwx, mno, pqr, ghi, jkl, abc, def"
         assetpage.get_asset_point_of_contact_name_tab.click()
         act_name_list = assetpage.get_asset_point_of_contact_name_text_value
-        act_name_list_value =[]
+        act_name_list_value = []
         for name in act_name_list:
             print name.text
             act_name_list_value.append(name.text)
