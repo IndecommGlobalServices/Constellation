@@ -172,6 +172,7 @@ class AssetPage(BasePageClass):
         AssetPage.asset_school_name = "School Name Dee"
         AssetPage.asset_place_name = "kk place 1"
         self.get_schooldata()
+        self.get_placedata()
 
         '''
         assets_results = self.driver.find_elements_by_xpath(self._asset_list_locator)
@@ -680,6 +681,7 @@ class AssetPage(BasePageClass):
         textboxlocator.clear()
 
     def asset_search_assetname(self, name):
+        sleep(4)
         search_textbox = self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
         self.textbox_clear(search_textbox)
         search_textbox.send_keys(name)
@@ -748,7 +750,7 @@ class AssetPage(BasePageClass):
     def create_place_asset(self):
         # Select Place from the dropdown to create new place asset
         sleep(10)
-        self.get_placedata()
+        #self.get_placedata()
         self.select_asset_template_type("Place")
         sleep(10)
         self.enter_asset_type_name.send_keys(self.asset_place_name)

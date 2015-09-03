@@ -92,6 +92,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_09_To_Verify_The_Filter_Function_Filter_By_School_Grade(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
+        AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_grade()
         sleep(10)
 
@@ -100,6 +101,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_10_To_Verify_The_Filter_Function_Filter_By_School_Type(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
+        AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         sleep(10)
 
@@ -205,9 +207,10 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
-        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+        for i in self.driver.find_element_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             print (i.text)
-            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+            self.assertEqual("rgba(255, "
+                             "236, 158, 1)", i.value_of_css_property("background-color"))
         #assetpage.asset_search_assetname("")
 
     @attr(priority="high")
@@ -980,7 +983,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("The Contact has been Deleted.")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_To_Upload_a_document(self):
         assetpage = AssetPage(self.driver)
 

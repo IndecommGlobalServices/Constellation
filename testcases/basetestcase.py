@@ -37,8 +37,6 @@ class BaseTestCase(unittest.TestCase):
         homepage = HomePage(self.driver)
         homepage.loginlink.click()
 
-        print "Getting Login data from Json"
-
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
 
