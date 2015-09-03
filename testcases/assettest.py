@@ -960,6 +960,42 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
 
     @attr(priority="high")
+    def test_AS_68_1_To_Name_Descending_order_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("abcd", "School")
+        sleep(6)
+        assetpage.multiple_contact_create()
+        sleep(2)
+        exp_name_descending = "stu, vwx, mno, pqr, ghi, jkl, abc, def"
+        assetpage.get_asset_point_of_contact_name_tab.click()
+        act_name_list = assetpage.get_asset_point_of_contact_name_text_value
+        act_name_list_value = []
+        for name in act_name_list:
+            print name.text
+            act_name_list_value.append(name.text)
+        self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
+
+    @attr(priority="high")
+    def test_AS_68_2_To_Name_Ascending_order_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("abcd", "School")
+        sleep(6)
+        assetpage.multiple_contact_create()
+        sleep(2)
+        exp_name_ascending = "abc, def, ghi, jkl, mno, pqr, stu, vwx"
+        assetpage.get_asset_point_of_contact_name_tab.click()
+        sleep(1)
+        assetpage.get_asset_point_of_contact_name_tab.click()
+        act_name_list = assetpage.get_asset_point_of_contact_name_text_value
+        act_name_list_value =[]
+        for name in act_name_list:
+            act_name_list_value.append(name.text)
+        print ", ".join(act_name_list_value)
+        print exp_name_ascending
+        self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
+
+
+    @attr(priority="high")
     def test_AS_69_To_Delete_Contact_School_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"

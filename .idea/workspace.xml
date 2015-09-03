@@ -1,9 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="76a6158f-c964-4bd4-9f55-7a82441e4aa1" name="Default" comment="">
+    <list default="true" id="76a6158f-c964-4bd4-9f55-7a82441e4aa1" name="Default" comment="File upload Function">
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-01T20.57.47.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-01T20.59.57.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-01T21.01.41.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T13.19.06.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T13.29.50.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T13.36.55.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.18.13.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.19.19.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.21.41.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.24.26.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.26.38.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.45.55.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.47.20.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.48.28.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.51.04.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T14.53.55.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.11.59.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.12.59.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.18.42.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.20.27.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.22.47.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.25.13.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.27.34.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.30.55.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.34.47.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T15.36.41.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T16.31.34.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T16.35.10.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T17.15.40.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T17.19.13.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T17.26.18.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T18.59.16.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T19.12.16.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-02T19.16.58.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-03T11.45.38.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-03T11.49.44.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-03T12.00.55.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-03T13.02.27.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-03T13.05.11.png" afterPath="" />
+      <change type="DELETED" beforePath="D:\project\Constellation\Constellation\testcases\Screenshot 2015-09-03T13.58.17.png" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/json_place_asset.json" afterPath="$PROJECT_DIR$/data/json_place_asset.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <list id="47bfa8cf-4e8d-42dc-b093-b764af6418f7" name="Failed commit: Default" comment="Json_Schooldata" />
@@ -20,6 +59,9 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="ExportTestResults" outputFolder="$PROJECT_DIR$" userTempatePath="" />
   <component name="FavoritesManager">
@@ -27,21 +69,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/base.py">
+      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="18416" max-vertical-offset="18989">
+              <caret line="943" column="8" selection-start-line="943" selection-start-column="8" selection-end-line="943" selection-end-column="8" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="json_Schooldata.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
+      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.54285717" vertical-offset="2074" max-vertical-offset="17255">
-              <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="16269" max-vertical-offset="18683">
+              <caret line="958" column="31" selection-start-line="958" selection-start-column="31" selection-end-line="958" selection-end-column="31" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -49,80 +91,12 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="json_searchAssets.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/json_searchAssets.json">
+      <file leaf-file-name="Test Results - Unittests_in_assettest.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Test Results - Unittests_in_assettest.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="357">
-              <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="getFilterData.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/getFilterData.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="41" max-vertical-offset="544">
-              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="basepage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/basepage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="306">
-              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-              <folding>
-                <element signature="e#29#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="homepage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/homepage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="306" max-vertical-offset="408">
-              <caret line="18" column="62" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="IconListPage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+            <state vertical-scroll-proportion="-20.599634" vertical-offset="11268" max-vertical-offset="11815">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#29#63#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/base.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="442" max-vertical-offset="544">
-              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="loginpage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/loginpage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2" max-vertical-offset="1105">
-              <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#34#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -246,34 +220,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1294,12 +1240,11 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2942899" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27901787" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1308,6 +1253,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -1371,13 +1317,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pages/loginpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1647,25 +1586,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1581">
           <caret line="39" column="25" selection-start-line="39" selection-start-column="25" selection-end-line="39" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="544">
-          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1685,7 +1609,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="408">
           <caret line="18" column="62" selection-start-line="18" selection-start-column="62" selection-end-line="18" selection-end-column="62" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1705,7 +1629,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="548" max-vertical-offset="1054">
           <caret line="53" column="0" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1734,15 +1658,31 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/data/json_searchAssets.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693" vertical-offset="0" max-vertical-offset="357">
+        <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="357">
           <caret line="15" column="1" selection-start-line="15" selection-start-column="1" selection-end-line="15" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.60714287" vertical-offset="0" max-vertical-offset="560">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7542662" vertical-offset="0" max-vertical-offset="586">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="15697" max-vertical-offset="17918">
+        <state vertical-scroll-proportion="0.0" vertical-offset="18416" max-vertical-offset="18989">
           <caret line="943" column="8" selection-start-line="943" selection-start-column="8" selection-end-line="943" selection-end-column="8" />
           <folding />
         </state>
@@ -1750,11 +1690,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.54285717" vertical-offset="2074" max-vertical-offset="17255">
-          <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="16269" max-vertical-offset="18683">
+          <caret line="958" column="31" selection-start-line="958" selection-start-column="31" selection-end-line="958" selection-end-column="31" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test Results - Unittests_in_assettest.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.599634" vertical-offset="11268" max-vertical-offset="11815">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
