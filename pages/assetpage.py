@@ -131,7 +131,14 @@ class AssetPage(BasePageClass):
     _asset_contact_new_contact_text_locator = "//table[@id='contacts_table']//tbody//tr"
     _asset_main_contact_window_locator = ".//*[@id='form_main_contact']"
     _asset_main_contact_name_locator = ".//*[@id='form_main_contact']/div[2]/table/tbody/tr[1]/td[2]"
-
+    _asset_point_of_contact_name_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Name']"
+    _asset_point_of_contact_title_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Title']"
+    _asset_point_of_contact_phone_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Phone']"
+    _asset_point_of_contact_email_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Email']"
+    _asset_point_of_contact_name_text_value_locator = "//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit']"
+    _asset_point_of_contact_title_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[1]"
+    _asset_point_of_contact_phone_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[2]"
+    _asset_point_of_contact_email_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[3]"
 
     #_asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
     #_asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
@@ -448,6 +455,38 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_main_contact_name_text(self):
         return self.driver.find_element_by_xpath(self._asset_main_contact_name_locator)
+
+    @property
+    def get_asset_point_of_contact_name_tab(self):
+        return self.driver.find_element_by_xpath(self._asset_point_of_contact_name_tab_locator)
+
+    @property
+    def get_asset_point_of_contact_title_tab(self):
+        return self.driver.find_element_by_xpath(self._asset_point_of_contact_title_tab_locator)
+
+    @property
+    def get_asset_point_of_contact_phone_tab(self):
+        return self.driver.find_element_by_xpath(self._asset_point_of_contact_phone_tab_locator)
+
+    @property
+    def get_asset_point_of_contact_email_tab(self):
+        return self.driver.find_element_by_xpath(self._asset_point_of_contact_email_tab_locator)
+
+    @property
+    def get_asset_point_of_contact_name_text_value(self):
+        return self.driver.find_elements_by_xpath(self._asset_point_of_contact_name_text_value_locator)
+
+    @property
+    def get_asset_point_of_contact_title_text_value(self):
+        return self.driver.find_elements_by_xpath(self._asset_point_of_contact_title_text_value_locator)
+
+    @property
+    def get_asset_point_of_contact_phone_text_value(self):
+        return self.driver.find_elements_by_xpath(self._asset_point_of_contact_phone_text_value_locator)
+
+    @property
+    def get_asset_point_of_contact_email_text_value(self):
+        return self.driver.find_elements_by_xpath(self._asset_point_of_contact_email_text_value_locator)
 
     # Asset Details related properties
 
@@ -1013,7 +1052,7 @@ class AssetPage(BasePageClass):
                 sleep(1)
                 self.get_asset_newcontact_delete_popup_delete_button.click()
         except NoSuchElementException:
-            print "No contact exist."
+            pass
 
     def create_new_contact(self, firstname, lastname, title="Title", phone="111-111-1111", email="test@test.com", prefix="Shri", address1="Indecomm", address2="Brigade South Parade", city="Bangalore", state="KA", zip="56001"):
         self.get_asset_points_of_contact_header.click()
@@ -1044,6 +1083,21 @@ class AssetPage(BasePageClass):
         sleep(2)
         self.get_asset_newcontact_save_button.click()
         sleep(2)
+
+    def multiple_contact_create(self):
+        sleep(2)
+        self.delete_existing_contact()
+        sleep(2)
+        firstname = ['def', 'jkl', 'pqr', 'vwx']
+        lastname =['abc','ghi','mno', 'stu']
+        phonelist = ['661-111-1111','222-222-2222', '433-333-3333', '123-444-4444']
+        emaillist = ['stu@vwx', 'abc@def', 'mno@pqr', 'ghi@jkl']
+        titlelist = ['HH', 'ZZ', 'CC', 'PP']
+        for contact in range(4):
+            self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],emaillist[contact])
+            sleep(2)
+        sleep(2)
+
 
 
     def _validate_page(self, driver):

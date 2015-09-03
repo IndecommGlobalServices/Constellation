@@ -779,8 +779,10 @@ class AssetPageTest(BaseTestCase):
             if assetpage.get_asset_main_contact_window:
                 act_name_value = assetpage.get_asset_main_contact_name_text.text
                 exp_name_value = "Shri "+firstname+" "+lastname
+                assetpage.click_on_asset_link.click()
                 self.assertEqual(act_name_value,exp_name_value)
         except NoSuchElementException:
+            assetpage.click_on_asset_link.click()
             self.assertFalse("No Main Contact exists.")
 
     @attr(priority="high")
@@ -912,22 +914,39 @@ class AssetPageTest(BaseTestCase):
             self.assertTrue("New Contact is not created.")
 
     @attr(priority="high")
-    def test_AS_68_To_Name_Descending_order_School_Asset_ContactInfo_Field(self):
+    def test_AS_68_1_To_Name_Descending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset("abcd", "School")
         sleep(6)
-        assetpage.delete_existing_contact()
+        assetpage.multiple_contact_create()
         sleep(2)
-        firstname= ['def', 'jkl', 'pqr', 'vwx']
-        lastname=['abc','ghi','mno', 'stu']
-        phonelist = ['661-111-1111','222-222-2222', '433-333-3333', '123-444-4444']
-        emaillist = ['stu@vwx', 'abc@def', 'mno@pqr', 'ghi@jkl']
-        titlelist = ['HH', 'ZZ', 'CC', 'PP']
-        exp_email_descending = 'stu@vwx, mno@pqr, ghi@jkl, abc@def'
-        for i in range(4):
-            assetpage.create_new_contact(firstname[i],lastname[i],titlelist[i],phonelist[i],emaillist[i])
-            sleep(2)
+        exp_name_descending = "stu, vwx, mno, pqr, ghi, jkl, abc, def"
+        assetpage.get_asset_point_of_contact_name_tab.click()
+        act_name_list = assetpage.get_asset_point_of_contact_name_text_value
+        act_name_list_value =[]
+        for name in act_name_list:
+            print name.text
+            act_name_list_value.append(name.text)
+        self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
 
+    @attr(priority="high")
+    def test_AS_68_2_To_Name_Ascending_order_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset("abcd", "School")
+        sleep(6)
+        assetpage.multiple_contact_create()
+        sleep(2)
+        exp_name_ascending = "abc, def, ghi, jkl, mno, pqr, stu, vwx"
+        assetpage.get_asset_point_of_contact_name_tab.click()
+        sleep(1)
+        assetpage.get_asset_point_of_contact_name_tab.click()
+        act_name_list = assetpage.get_asset_point_of_contact_name_text_value
+        act_name_list_value =[]
+        for name in act_name_list:
+            act_name_list_value.append(name.text)
+        print ", ".join(act_name_list_value)
+        print exp_name_ascending
+        self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
 
     @attr(priority="high")
     def test_AS_69_To_Delete_Contact_School_Asset_ContactInfo_Field(self):
