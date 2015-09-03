@@ -60,8 +60,12 @@ class BaseTestCase(unittest.TestCase):
 
         '''
         st = datetime.now().isoformat().replace(':', '.')[:19]
+        os.chdir('..')
+        path = os.path.join(os.getcwd(), "Screenshots")
         file_name = "Screenshot " + st + ".png"
-        self.driver.save_screenshot(file_name)
+        SaveLocation = os.path.join(path, file_name)
+        print SaveLocation
+        self.driver.save_screenshot(SaveLocation)
 
 
         # close the browser
