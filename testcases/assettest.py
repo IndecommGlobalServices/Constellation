@@ -22,14 +22,14 @@ os.chdir(cwd)
 class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
         sleep(5)
         AssetPage(self.driver).get_asset_select_action_drop_down.click()
         self.assertTrue(AssetPage(self.driver).get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_02_To_Verify_Delete_Deselect_All_Assets(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
@@ -50,7 +50,7 @@ class AssetPageTest(BaseTestCase):
         print("Record deleted successfully.")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
         AssetPage(self.driver).get_asset_list_first_check_box.click()
         AssetPage(self.driver).get_asset_select_action_drop_down.click()
@@ -62,7 +62,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_06_To_Verify_The_Filter_Function_Filter_By_Place(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
@@ -71,7 +71,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_07_To_Verify_The_Filter_Function_Filter_By_School(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
@@ -80,7 +80,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_08_To_Verify_The_Filter_Function_Filter_By_School_District(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
@@ -88,7 +88,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_09_To_Verify_The_Filter_Function_Filter_By_School_Grade(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
@@ -96,7 +96,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_10_To_Verify_The_Filter_Function_Filter_By_School_Type(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
@@ -105,7 +105,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
         sleep(5)
         AssetPage(self.driver).get_asset_reset_button.click()
@@ -114,7 +114,7 @@ class AssetPageTest(BaseTestCase):
 
     # Need to re-visit
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
 
         with open(searchasset_filepath) as data_file:
@@ -141,18 +141,18 @@ class AssetPageTest(BaseTestCase):
                 sleep(2)
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_13_To_Verify_The_Search_For_Asset_Function_Search_By_Special_Characters(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_search_assetname("{}")
         assetpage.asset_search_special_characters()
         sleep(2)
-        assetpage.asset_search_assetname.send_keys(Keys.CONTROL,"a",Keys.DELETE)
+        assetpage.asset_search_assetname("")
         sleep(5)
 
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
@@ -162,7 +162,7 @@ class AssetPageTest(BaseTestCase):
         self.driver.find_element_by_link_text("Assets").click()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_15_To_Verify_Validation_Of_Name_Field(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create_click()
@@ -179,7 +179,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_16_To_Verify_Validation_Of_Phone_Field(self):
         assetpage = AssetPage(self.driver)
         assetpage.asset_create_click()
@@ -196,7 +196,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_overview_cancel_click()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
@@ -211,7 +211,7 @@ class AssetPageTest(BaseTestCase):
         #assetpage.asset_search_assetname("")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_18_To_Verify_Create_Asset_Function_Cancel_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
@@ -221,7 +221,7 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_19_To_Verify_Create_Asset_Function_Cancel_Place_Asset(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
@@ -232,7 +232,7 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_20_To_Verify_That_The_Asset_In_Overview_Panel_Edit_Mode_Is_Saved_Successfully(self):
         assetpage = AssetPage(self.driver)
 
@@ -255,7 +255,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_21_To_Verify_That_The_Asset_In_Overview_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
         assetpage = AssetPage(self.driver)
 
@@ -278,7 +278,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully(self):
         assetpage = AssetPage(self.driver)
 
@@ -301,7 +301,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_24_To_Verify_The_Validation_Of_Email_Field(self):
         assetpage = AssetPage(self.driver)
 
@@ -316,7 +316,7 @@ class AssetPageTest(BaseTestCase):
 
     #  Enter the value for Email - Valid
 
-        aemail = "testtest"
+        aemail = "test@email.com"
         assetpage.get_asset_detail_edit_email_text_box.clear()
         sleep(2)
         assetpage.get_asset_detail_edit_email_text_box.send_keys(aemail)
@@ -329,7 +329,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_cancel_button.click()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_25_To_Verify_The_Validation_Of_Fax_Field(self):
         assetpage = AssetPage(self.driver)
 
@@ -357,7 +357,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_cancel_button.click()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_26_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
         assetpage = AssetPage(self.driver)
 
@@ -381,7 +381,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_27_To_Save_All_Contact_Info_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -397,7 +397,7 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_28_To_Test_Main_Contact_Info_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -416,7 +416,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("No Main Contact exists.")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_29_To_Click_On_Save_Without_FirstName_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
@@ -438,7 +438,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_30_To_Click_On_Save_With_Phone_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -466,7 +466,7 @@ class AssetPageTest(BaseTestCase):
         self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_31_1_To_Click_On_Save_With_Email_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -494,7 +494,7 @@ class AssetPageTest(BaseTestCase):
         self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_31_2_To_Click_On_Save_With_Wrong_Email_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -522,7 +522,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_32_To_Click_On_Cancel_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstNameDel"
         lastname = "ZLastNameDel"
@@ -549,7 +549,7 @@ class AssetPageTest(BaseTestCase):
             self.assertTrue("New Contact is not created.")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_34_To_Delete_Contact_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -578,7 +578,7 @@ class AssetPageTest(BaseTestCase):
             self.assertTrue("The Contact has been Deleted")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_35_To_Delete_Cancel_Contact_Place_Asset_ContactInfo_Field(self):
         firstname = "FirstName"
         lastname = "ZLastName"
@@ -665,7 +665,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(self.driver.find_element_by_xpath(assetpage._asset_create_asset).is_displayed())
 
     @attr(priority="high")
-#    @SkipTest
+    @SkipTest
     def test_AS_55_To_Verify_SchoolAsset_Edit(self):
         asset = AssetPage(self.driver)
         asset.create_asset("School")

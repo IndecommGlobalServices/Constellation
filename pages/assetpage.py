@@ -45,9 +45,8 @@ class AssetPage(BasePageClass):
     _asset_school_type_drop_down_locator = ".//*[@id='span_filters']/div[4]/div/button[2]"
     _asset_school_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[4]/div/ul/li[1]/a"
 
-    # asset search textbox
+    #asset search textbox
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
-
     # New Asset creation related
     _asset_create_asset = "//img[@alt='Create asset']"
 
@@ -161,6 +160,7 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
     _asset_detail_edit_cancel_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[1]"
     _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
+
 
 
     _asset_count = 0
@@ -278,11 +278,11 @@ class AssetPage(BasePageClass):
     '''
     @property
     def select_asset_type_type(self):
-        return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator)
+        return self.driver.find_element_by_xpath(self._asset_type_field_type_drop_down_locator)
 
     @property
     def select_asset_type_district(self):
-        return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
+        return self.driver.find_element_by_xpath(self._asset_type_field_district_drop_down_locator)
 
     @property
     def select_asset_type_grade(self):
@@ -312,7 +312,6 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_type_add_button(self):
         return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
-
 
 
     @property
@@ -707,7 +706,7 @@ class AssetPage(BasePageClass):
             iconlistpage.click_asset_Icon()
 
         # Click on Create asset
-        sleep(2)
+        sleep(5)
         self.driver.find_element_by_xpath(self._asset_create_asset).click()
         sleep(10)
         # switch to new window
@@ -795,38 +794,38 @@ class AssetPage(BasePageClass):
                 self.asset_school_district_grade_validation = each["asset_dist_grade_validation"]
 
 
-    def create_school_asset(self):
+    def create_school_asset(self, index):
         # Select School from the dropdown to create new School asset
         #self.get_schooldata()
         self.select_asset_template_type("School")
         sleep(4)
 
-        self.enter_asset_type_name.send_keys(self.asset_school_name[0])
+        self.enter_asset_type_name.send_keys(self.asset_school_name[index])
         self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address.send_keys(self.asset_school_address[0])
+        self.enter_asset_type_address.send_keys(self.asset_school_address[index])
         self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_address2.send_keys(self.asset_school_address2[0])
+        self.enter_asset_type_address2.send_keys(self.asset_school_address2[index])
         self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_city.send_keys(self.asset_school_city[0])
+        self.enter_asset_type_city.send_keys(self.asset_school_city[index])
         self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_state.send_keys(self.asset_school_state[0])
+        self.enter_asset_type_state.send_keys(self.asset_school_state[index])
         self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_zip.send_keys(self.asset_school_zip[0])
+        self.enter_asset_type_zip.send_keys(self.asset_school_zip[index])
         self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_asset_type_owner.send_keys(self.asset_school_owner[0])
+        self.enter_asset_type_owner.send_keys(self.asset_school_owner[index])
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
-        self.enter_school_district(self.asset_school_district[0])
+        self.enter_school_district(self.asset_school_district[index])
         sleep(2)
-        self.enter_school_grade(self.asset_school_grade[0])
+        self.enter_school_grade(self.asset_school_grade[index])
         sleep(2)
-        self.enter_asset_type(self.asset_school_type[0])
+        self.enter_asset_type(self.asset_school_type[index])
 
 
     def enter_school_district(self, value):
@@ -866,11 +865,13 @@ class AssetPage(BasePageClass):
                         and place_cancel.is_enabled()
                         and place_save.is_enabled())
         '''
+    newSchool = 0
+    editSchool = 1
 
     def create_asset(self, type):
         self.asset_create_click()
         if type == "School":
-            self.create_school_asset()
+            self.create_school_asset(self.newSchool)
         elif type == "Place":
             self.create_place_asset()
         self.asset_overview_save_click()
@@ -878,7 +879,7 @@ class AssetPage(BasePageClass):
     def edit_asset(self, type):
         self.asset_create_click()
         if type == "School":
-            self.create_school_asset()
+            self.create_school_asset(self.editSchool)
         elif type == "Place":
             self.create_place_asset()
         self.asset_overview_save_click()
@@ -886,7 +887,7 @@ class AssetPage(BasePageClass):
     def create_asset_cancel(self, type):
         self.asset_create_click()
         if type == "School":
-            self.create_school_asset()
+            self.create_school_asset(self.newSchool)
         elif type == "Place":
             self.create_place_asset()
         self.asset_overview_cancel_click()
@@ -916,7 +917,7 @@ class AssetPage(BasePageClass):
         sleep(2)
         self.get_asset_overview_edit_name_text_box.send_keys(pname)
         '''
-        self.get_asset_overview_edit_name_text_box.send_keys(Keys.TAB)
+        #self.get_asset_overview_edit_name_text_box.send_keys(Keys.TAB)
         sleep(5)
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(paddress)
