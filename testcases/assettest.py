@@ -563,8 +563,7 @@ class AssetPageTest(BaseTestCase):
         act_name_list_value = []
         for name in act_name_list:
             act_name_list_value.append(name.text)
-        print ", ".join(act_name_list_value)
-        print exp_name_ascending
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
 
     @attr(priority="high")
@@ -582,8 +581,7 @@ class AssetPageTest(BaseTestCase):
         act_name_list_value =[]
         for name in act_name_list:
             act_name_list_value.append(name.text)
-        print exp_name_descending
-        print  ", ".join(act_name_list_value)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
 
     @attr(priority="high")
@@ -600,6 +598,7 @@ class AssetPageTest(BaseTestCase):
         act_title_list_value = []
         for title in act_title_list:
             act_title_list_value.append(title.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
 
     @attr(priority="high")
@@ -616,6 +615,7 @@ class AssetPageTest(BaseTestCase):
         act_title_list_value = []
         for title in act_title_list:
             act_title_list_value.append(title.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
 
     @attr(priority="high")
@@ -630,8 +630,9 @@ class AssetPageTest(BaseTestCase):
         sleep(1)
         act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
         act_phone_list_value = []
-        for title in act_phone_list:
-            act_phone_list_value.append(title.text)
+        for phone in act_phone_list:
+            act_phone_list_value.append(phone.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
 
     @attr(priority="high")
@@ -647,8 +648,9 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_point_of_contact_phone_tab.click()
         act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
         act_phone_list_value = []
-        for title in act_phone_list:
-            act_phone_list_value.append(title.text)
+        for phone in act_phone_list:
+            act_phone_list_value.append(phone.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
 
     @attr(priority="high")
@@ -665,6 +667,7 @@ class AssetPageTest(BaseTestCase):
         act_email_list_value = []
         for email in act_email_list:
             act_email_list_value.append(email.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
 
     @attr(priority="high")
@@ -682,6 +685,7 @@ class AssetPageTest(BaseTestCase):
         act_email_list_value = []
         for email in act_email_list:
             act_email_list_value.append(email.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
 
     @attr(priority="high")
@@ -1071,8 +1075,7 @@ class AssetPageTest(BaseTestCase):
         act_name_list_value = []
         for name in act_name_list:
             act_name_list_value.append(name.text)
-        print ", ".join(act_name_list_value)
-        print exp_name_ascending
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
 
     @attr(priority="high")
@@ -1090,8 +1093,7 @@ class AssetPageTest(BaseTestCase):
         act_name_list_value =[]
         for name in act_name_list:
             act_name_list_value.append(name.text)
-        print exp_name_descending
-        print  ", ".join(act_name_list_value)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
 
     @attr(priority="high")
@@ -1108,6 +1110,7 @@ class AssetPageTest(BaseTestCase):
         act_title_list_value = []
         for title in act_title_list:
             act_title_list_value.append(title.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
 
     @attr(priority="high")
@@ -1124,6 +1127,7 @@ class AssetPageTest(BaseTestCase):
         act_title_list_value = []
         for title in act_title_list:
             act_title_list_value.append(title.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
 
     @attr(priority="high")
@@ -1138,8 +1142,9 @@ class AssetPageTest(BaseTestCase):
         sleep(1)
         act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
         act_phone_list_value = []
-        for title in act_phone_list:
-            act_phone_list_value.append(title.text)
+        for phone in act_phone_list:
+            act_phone_list_value.append(phone.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
 
     @attr(priority="high")
@@ -1155,8 +1160,9 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_point_of_contact_phone_tab.click()
         act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
         act_phone_list_value = []
-        for title in act_phone_list:
-            act_phone_list_value.append(title.text)
+        for phone in act_phone_list:
+            act_phone_list_value.append(phone.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
 
     @attr(priority="high")
@@ -1173,6 +1179,7 @@ class AssetPageTest(BaseTestCase):
         act_email_list_value = []
         for email in act_email_list:
             act_email_list_value.append(email.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
 
     @attr(priority="high")
@@ -1190,6 +1197,7 @@ class AssetPageTest(BaseTestCase):
         act_email_list_value = []
         for email in act_email_list:
             act_email_list_value.append(email.text)
+        assetpage.click_on_asset_link.click()
         self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
 
     @attr(priority="high")
