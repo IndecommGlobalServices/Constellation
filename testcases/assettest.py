@@ -417,8 +417,10 @@ class AssetPageTest(BaseTestCase):
             if assetpage.get_asset_main_contact_window:
                 act_name_value = assetpage.get_asset_main_contact_name_text.text
                 exp_name_value = "Shri "+firstname+" "+lastname
+                assetpage.click_on_asset_link.click()
                 self.assertEqual(act_name_value,exp_name_value)
         except NoSuchElementException:
+            assetpage.click_on_asset_link.click()
             self.assertFalse("No Main Contact exists.")
 
     @attr(priority="high")

@@ -176,8 +176,6 @@ class AssetPage(BasePageClass):
 
     def __init__(self, driver):
         super(AssetPage, self).__init__(driver)
-        AssetPage.asset_school_name = "School Name Dee"
-        AssetPage.asset_place_name = "kk place 1"
         self.get_schooldata()
         self.get_placedata()
 
