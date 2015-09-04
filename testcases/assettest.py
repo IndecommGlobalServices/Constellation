@@ -208,8 +208,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
-            print (i.text)
-            self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+           self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
         #assetpage.asset_search_assetname("")
 
     @attr(priority="high")
@@ -254,6 +253,7 @@ class AssetPageTest(BaseTestCase):
 
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
+        assetpage.click_on_asset_link.click()
 
 
     @attr(priority="high")
@@ -277,6 +277,7 @@ class AssetPageTest(BaseTestCase):
 
     # Assert on Asset name is displayed in the breadcrumb
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        assetpage.click_on_asset_link.click()
 
 
     @attr(priority="high")
@@ -301,6 +302,7 @@ class AssetPageTest(BaseTestCase):
 
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
+        assetpage.click_on_asset_link.click()
 
     @attr(priority="high")
     #@SkipTest
@@ -329,6 +331,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         self.assertRegexpMatches(aemail, regex, "Expected and actual value is not matching for EMAIL")
         assetpage.get_asset_detail_edit_cancel_button.click()
+        assetpage.click_on_asset_link.click()
 
     @attr(priority="high")
     #@SkipTest
@@ -357,6 +360,7 @@ class AssetPageTest(BaseTestCase):
         self.assertRegexpMatches(afax, regex, "Expected and actual value is not matching for FAX")
         sleep(5)
         assetpage.get_asset_detail_edit_cancel_button.click()
+        assetpage.click_on_asset_link.click()
 
     @attr(priority="high")
     #@SkipTest
@@ -380,7 +384,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
     # Assert on Asset name is displayed in the breadcrumb
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        sleep(10)
+        assetpage.click_on_asset_link.click()
 
     @attr(priority="high")
     #@SkipTest
