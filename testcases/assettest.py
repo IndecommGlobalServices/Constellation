@@ -159,7 +159,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         sleep(5)
         assetpage.create_asset("Place")
-        WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        sleep(10)
+        #WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         self.driver.find_element_by_link_text("Assets").click()
 
@@ -201,15 +202,22 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         sleep(5)
+        check =0
         assetpage = AssetPage(self.driver)
-        assetpage.create_asset("Place")
-        assetpage.click_on_asset_link.click()
+        #assetpage.create_asset("Place")
+        #assetpage.click_on_asset_link.click()
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
-           self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
-        #assetpage.asset_search_assetname("")
+            if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
+                check = 1
+                #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+                break
+        assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
+        self.assertFalse(check == 0, "Newly created asset is not appaering with yellow background")
+
+
 
     @attr(priority="high")
     #@SkipTest
@@ -392,7 +400,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Place", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -408,7 +416,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Place", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -451,7 +459,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Place", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -479,7 +487,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -507,7 +515,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -535,7 +543,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstNameDel"
         lastname = "ZLastNameDel"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -559,7 +567,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_1_To_Name_Ascending_order_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -575,7 +583,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_2_To_Name_Descending_order_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -593,7 +601,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_3_To_Title_Ascending_order_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -610,7 +618,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_4_To_Title_Descending_order_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -627,7 +635,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_5_To_Phone_Ascending_order_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -644,7 +652,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_6_To_Phone_Descending_order_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -662,7 +670,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_7_To_Email_Ascending_order_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -679,7 +687,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_8_To_Email_Descending_order_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -700,7 +708,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -729,7 +737,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("abcd", "Place")
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -768,16 +776,21 @@ class AssetPageTest(BaseTestCase):
     @attr(priority = "high")
     #  @SkipTest
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
+        check = 0
         assetpage = AssetPage(self.driver)
-        assetpage.create_asset("School")
-        assetpage.click_on_asset_link.click()
+        #assetpage.create_asset("School")
+        #assetpage.click_on_asset_link.click()
         sleep(2)
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(20)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
-            if i.text == assetpage.asset_school_name[0]:
-                self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+            if (i.text  == assetpage.asset_school_name[0]) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
+                check = 1
+                #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+                break
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
+        self.assertFalse(check == 0, "Newly created asset is not appaering with yellow background")
+
 
 
     @attr(priority="high")
@@ -797,11 +810,11 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("School")
         assetpage.enter_asset_type_name.send_keys(assetpage.asset_school_name[0])
-        assetpage.enter_school_district(assetpage.asset_school_district_grade_validation)
-        assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation)
+        assetpage.enter_school_district(assetpage.asset_school_district_grade_validation[0])
+        assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation[0])
         assetpage.asset_overview_save_click()
-        self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_district_text)
-        self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_grade_text)
+        self.assertEqual(assetpage.asset_school_district_grade_validation[0], assetpage.get_overview_district_text)
+        self.assertEqual(assetpage.asset_school_district_grade_validation[0], assetpage.get_overview_grade_text)
 
 
     @attr(priority="high")
@@ -813,14 +826,24 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     @SkipTest
     def test_AS_55_To_Verify_SchoolAsset_Edit(self):
-        asset = AssetPage(self.driver)
-        asset.create_asset("School")
+        assetpage = AssetPage(self.driver)
+        assetpage.edit_asset("School")
+        print assetpage.get_overview_address1_text
+        self.assertEqual(assetpage.asset_school_name[assetpage.editSchool], assetpage.get_asset_overview_edit_name_text_box)
+        self.assertEqual(assetpage.asset_school_district[1], assetpage.get_overview_district_text)
+        self.assertEqual(assetpage.asset_school_grade[1], assetpage.get_overview_grade_text)
 
+    @SkipTest
+    def test_test(self):
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        assetpage.get_asset_overview_edit_link.click()
+        print assetpage.get_overview_address1_text
 
     @attr(priority="high")
     def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.get_asset_detail_edit_link.click()
         assetpage.get_asset_detail_edit_email_text_box.clear()
@@ -839,7 +862,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_59_2_To_Click_On_Save_With_Wrong_Email_Asset_Detail_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.get_asset_detail_edit_link.click()
         assetpage.get_asset_detail_edit_email_text_box.clear()
@@ -859,7 +882,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -884,7 +907,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -910,7 +933,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -925,7 +948,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -966,7 +989,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -993,7 +1016,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -1020,7 +1043,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -1047,7 +1070,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstNameDel"
         lastname = "ZLastNameDel"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -1071,7 +1094,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_68_1_To_Name_Ascending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("test", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -1087,7 +1110,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_68_2_To_Name_Descending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("test", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -1105,7 +1128,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_68_3_To_Title_Ascending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("test", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -1122,7 +1145,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_68_4_To_Title_Descending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("test", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -1139,7 +1162,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_68_5_To_Phone_Ascending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("test", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -1156,7 +1179,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_68_6_To_Phone_Descending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("test", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -1174,7 +1197,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_68_7_To_Email_Ascending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("test", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -1191,7 +1214,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_68_8_To_Email_Descending_order_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("test", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(6)
         assetpage.multiple_contact_create()
         sleep(2)
@@ -1211,7 +1234,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)
@@ -1239,7 +1262,7 @@ class AssetPageTest(BaseTestCase):
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset("Test1", "School")
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.delete_existing_contact()
         sleep(2)

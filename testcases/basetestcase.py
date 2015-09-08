@@ -64,7 +64,6 @@ class BaseTestCase(unittest.TestCase):
         path = os.path.join(os.getcwd(), "Screenshots")
         file_name = "Screenshot " + st + ".png"
         SaveLocation = os.path.join(path, file_name)
-        print SaveLocation
         self.driver.save_screenshot(SaveLocation)
 
 
