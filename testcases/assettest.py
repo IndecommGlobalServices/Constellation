@@ -833,13 +833,6 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(assetpage.asset_school_district[1], assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_grade[1], assetpage.get_overview_grade_text)
 
-    @SkipTest
-    def test_test(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        assetpage.get_asset_overview_edit_link.click()
-        print assetpage.get_overview_address1_text
-
     @attr(priority="high")
     def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
         assetpage = AssetPage(self.driver)

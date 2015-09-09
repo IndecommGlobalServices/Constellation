@@ -754,7 +754,7 @@ class AssetPage(BasePageClass):
         try:
             self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
         except:
-            print ("inside exception")
+            print ("Application recovering")
             basepage = BasePage(self.driver)
             basepage.accessURL()
             iconlistpage = IconListPage(self.driver)
