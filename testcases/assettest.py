@@ -11,6 +11,7 @@ from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 import json, os, re
+import selenium.webdriver as webdriver
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -753,6 +754,243 @@ class AssetPageTest(BaseTestCase):
             assetpage.click_on_asset_link.click()
             self.assertFalse("The Contact has been Deleted.")
 
+    @attr(priority="high")
+    def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+        sleep(2)
+        caption_val = "Test_Case_40"
+        image_file_name = "Test_Case_40.jpg"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(10)
+        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_after_file_upload = len(number_of_image_after_upload)
+        sleep(2)
+        caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='neutron_document_img']"
+        self.driver.find_element_by_xpath(caption_path).click()
+        sleep(2)
+        delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
+        delete_icon.click()
+        sleep(2)
+        self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
+        sleep(10)
+        number_of_image_after_delete = assetpage.get_asset_photos_documents_header_text
+        image_count_after_file_delete = len(number_of_image_after_delete)
+        if (image_count_after_file_upload == image_count_after_file_delete+1):
+            try:
+                if (assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
+                    assetpage.click_on_asset_link.click()
+                    self.assertFalse("Test Case has been failed.")
+            except NoSuchElementException:
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+    @attr(priority="high")
+    def test_AS_41_To_Upload_Image_Cancel_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(10)
+        assetpage.delete_uploaded_files()
+        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_before_file_upload = len(number_of_image_before_upload)
+
+        # Click on Photo/Document panel - File Upload button
+        assetpage.get_asset_photos_documents_upload_file_button.click()
+        sleep(2)
+
+        # Click on Attach file button and attached the file path with the send_keys
+        file_path = assetpage.file_path("Test_Case_41.jpg")
+        assetpage.get_asset_photos_documents_attached_file_button.send_keys(file_path)
+        sleep(3)
+        # Enter Caption
+        caption_val = "Test_Case_41"
+        assetpage.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
+        sleep(2)
+        # Click Cancel.
+        assetpage.get_asset_photos_documents_window_cancel_button.click()
+        sleep(2)
+        try:
+            number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_upload = len(number_of_image_after_upload)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload)):
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed")
+        except:
+            self.assertFalse("Test case has been failed")
+
+    @attr(priority="high")
+    def test_AS_42_To_Upload_Image_With_Caption_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_42"
+        image_file_name = "Test_Case_42.jpg"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(5)
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed. No Caption Displayed.")
+
+    @attr(priority="high")
+    def test_AS_43_To_Upload_Image_With_Max_size_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(15)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_43"
+        image_file_name = "Test_Case_43.jpg"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(70)
+        if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed. No Error message displayed.")
+
+    @attr(priority="high")
+    def test_AS_44_1_To_Upload_PDF_With_Caption_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_44_1"
+        image_file_name = "Test_Case_44_1.pdf"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(14)
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+    @attr(priority="high")
+    def test_AS_44_2_To_Upload_HTML_With_Caption_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_44_2"
+        image_file_name = "Test_Case_44_2.html"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(14)
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+    @attr(priority="high")
+    def test_AS_44_3_To_Upload_TXT_With_Caption_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_44_3"
+        image_file_name = "Test_Case_44_3.txt"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(14)
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+
+    @attr(priority="high")
+    def test_AS_45_To_Upload_Images_Count_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(10)
+        assetpage.delete_uploaded_files()
+        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_before_file_upload = len(number_of_image_before_upload)
+
+        caption_val = ["Test_Case_45_1", "Test_Case_45_2", "Test_Case_45_3"]
+        image_file_name = ["Test_Case_45_1.jpg", "Test_Case_45_2.jpg", "Test_Case_45_3.jpg"]
+        for num in range(3):
+            assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
+
+        sleep(10)
+        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_after_file_upload = len(number_of_image_after_upload)
+
+
+        if (image_count_after_file_upload == image_count_before_file_upload+3):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+    @attr(priority="high")
+    def test_AS_47_To_Upload_Image_Place_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(10)
+        assetpage.delete_uploaded_files()
+        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_before_file_upload = len(number_of_image_before_upload)
+
+        caption_val = "Test_Case_47"
+        image_file_name = "Test_Case_47.jpg"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(10)
+        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_after_file_upload = len(number_of_image_after_upload)
+
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed")
 
     @attr(priotity = "high")
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
@@ -1264,37 +1502,244 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("The Contact has been Deleted.")
 
     @attr(priority="high")
-    @SkipTest
-    def test_AS_To_Upload_a_document(self):
+    def test_AS_75_To_Delete_Upload_Image_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-
         # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+        sleep(2)
+        caption_val = "Test_Case_75"
+        image_file_name = "Test_Case_75.jpg"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(10)
+        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_after_file_upload = len(number_of_image_after_upload)
+        sleep(2)
+        caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='neutron_document_img']"
+        self.driver.find_element_by_xpath(caption_path).click()
+        sleep(2)
+        delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
+        delete_icon.click()
+        sleep(2)
+        self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
+        sleep(10)
+        number_of_image_after_delete = assetpage.get_asset_photos_documents_header_text
+        image_count_after_file_delete = len(number_of_image_after_delete)
+        if (image_count_after_file_upload == image_count_after_file_delete+1):
+            try:
+                if (assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
+                    assetpage.click_on_asset_link.click()
+                    self.assertFalse("Test Case has been failed.")
+            except NoSuchElementException:
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+    @attr(priority="high")
+    def test_AS_76_To_Upload_Image_Cancel_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(10)
+        assetpage.delete_uploaded_files()
+        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_before_file_upload = len(number_of_image_before_upload)
 
         # Click on Photo/Document panel - File Upload button
-        self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/button").click()
-        sleep(10)
+        assetpage.get_asset_photos_documents_upload_file_button.click()
+        sleep(2)
 
         # Click on Attach file button and attached the file path with the send_keys
-        attachfile = self.driver.find_element_by_xpath(".//*[@id='upload_document_file_upload']")
-        attachfile.send_keys("C:\Users\Kiran.k\Downloads\Oracle VM VirtualBox UserManual.pdf")
+        file_path = assetpage.file_path("Test_Case_76.jpg")
+        assetpage.get_asset_photos_documents_attached_file_button.send_keys(file_path)
         sleep(3)
-
         # Enter Caption
-        caption = self.driver.find_element_by_xpath(".//*[@id='upload_document_caption']")
-        caption.send_keys("Oracle VM VirtualBox UserManual.pdf")
+        caption_val = "Test_Case_76"
+        assetpage.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
+        sleep(2)
+        # Click Cancel.
+        assetpage.get_asset_photos_documents_window_cancel_button.click()
+        sleep(2)
+        try:
+            number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_upload = len(number_of_image_after_upload)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload)):
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed")
+        except:
+            self.assertFalse("Test case has been failed")
+
+    @attr(priority="high")
+    def test_AS_77_To_Upload_Image_With_Caption_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_77"
+        image_file_name = "Test_Case_77.jpg"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
         sleep(5)
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed. No Caption Displayed.")
+
+    @attr(priority="high")
+    def test_AS_78_To_Upload_Image_With_Max_size_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(15)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_78"
+        image_file_name = "Test_Case_78.jpg"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(70)
+        if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed. No Error message displayed.")
+
+    @attr(priority="high")
+    def test_AS_79_1_To_Upload_PDF_With_Caption_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_79_1"
+        image_file_name = "Test_Case_79_1.pdf"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(14)
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+    @attr(priority="high")
+    def test_AS_79_2_To_Upload_HTML_With_Caption_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_79_2"
+        image_file_name = "Test_Case_79_2.html"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(14)
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+    @attr(priority="high")
+    def test_AS_79_3_To_Upload_TXT_With_Caption_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(20)
+        assetpage.delete_uploaded_files()
+
+        caption_val = "Test_Case_79_3"
+        image_file_name = "Test_Case_79_3.txt"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(14)
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
 
 
-        # Click upload
-        self.driver.find_element_by_xpath(".//*[@id='widget_attach_document_modal']/div/div/div[3]/button[2]").click()
-        sleep(30)
+    @attr(priority="high")
+    def test_AS_80_To_Upload_Images_Count_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(10)
+        assetpage.delete_uploaded_files()
+        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_before_file_upload = len(number_of_image_before_upload)
 
-        # Come back to the main edit page
-        self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        self.driver.find_element_by_link_text("Assets").click()
+        caption_val = ["Test_Case_80_1", "Test_Case_80_2", "Test_Case_80_3"]
+        image_file_name = ["Test_Case_80_1.jpg", "Test_Case_80_2.jpg", "Test_Case_80_3.jpg"]
+        for num in range(3):
+            assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
+
+        sleep(10)
+        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_after_file_upload = len(number_of_image_after_upload)
+
+
+        if (image_count_after_file_upload == image_count_before_file_upload+3):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed.")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed.")
+
+    @attr(priority="high")
+    def test_AS_82_To_Upload_Image_School_Asset_ContactInfo_Field(self):
+        assetpage = AssetPage(self.driver)
+        # Search and Click on Place in the List for EDIT mode
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(10)
+        assetpage.delete_uploaded_files()
+        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_before_file_upload = len(number_of_image_before_upload)
+
+        caption_val = "Test_Case_82"
+        image_file_name = "Test_Case_82.jpg"
+        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        sleep(10)
+        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+        image_count_after_file_upload = len(number_of_image_after_upload)
+
+        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
+            assetpage.click_on_asset_link.click()
+            self.assertTrue("Test Case has been passed")
+        else:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case has been failed")
+
+
 
 
 if __name__ =='__main__':
