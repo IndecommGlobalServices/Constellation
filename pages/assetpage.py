@@ -908,7 +908,6 @@ class AssetPage(BasePageClass):
          self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
         # self.get_overview_type_add_button.click()
 
-
     def asset_overview_save_click(self):
         self.get_asset_overview_save_button.click()
         sleep(2)

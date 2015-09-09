@@ -10,6 +10,7 @@ from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
+from pages.IconListPage import IconListPage
 import json, os, re
 
 cwd = os.getcwd()
@@ -20,6 +21,7 @@ os.chdir(cwd)
 
 
 class AssetPageTest(BaseTestCase):
+
 
     @attr(priority="high")
     #@SkipTest
@@ -810,11 +812,11 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("School")
         assetpage.enter_asset_type_name.send_keys(assetpage.asset_school_name[0])
-        assetpage.enter_school_district(assetpage.asset_school_district_grade_validation[0])
-        assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation[0])
+        assetpage.enter_school_district(assetpage.asset_school_district_grade_validation)
+        assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation)
         assetpage.asset_overview_save_click()
-        self.assertEqual(assetpage.asset_school_district_grade_validation[0], assetpage.get_overview_district_text)
-        self.assertEqual(assetpage.asset_school_district_grade_validation[0], assetpage.get_overview_grade_text)
+        self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_district_text)
+        self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_grade_text)
 
 
     @attr(priority="high")
