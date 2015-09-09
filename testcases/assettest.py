@@ -23,12 +23,14 @@ os.chdir(cwd)
 class AssetPageTest(BaseTestCase):
 
 
+
     @attr(priority="high")
     #@SkipTest
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
         sleep(5)
-        AssetPage(self.driver).get_asset_select_action_drop_down.click()
-        self.assertTrue(AssetPage(self.driver).get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
+        assetpage = AssetPage(self.driver)
+        assetpage.get_asset_select_action_drop_down.click()
+        self.assertTrue(assetpage.get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
 
     @attr(priority="high")
     #@SkipTest

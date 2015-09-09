@@ -1,9 +1,7 @@
 from lib.base import BasePageClass
-from lib.base import InvalidPageException
 from pages.IconListPage import IconListPage
 from basepage import BasePage
 from time import sleep
-from faker import Factory
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 import os, json
@@ -15,6 +13,7 @@ placeData = os.path.join(os.getcwd(), "data\json_place_asset.json")
 os.chdir(cwd)
 
 class AssetPage(BasePageClass):
+
     # Asset Delete related locators
     _asset_select_action_delete_select_xpath_locator = ".//*[@id='asset_actions_dropdown']/button[2]"
     _asset_link_delete_text_xpath_locator = ".//*[@id='asset_actions_dropdown']/ul/li/a"
@@ -181,6 +180,8 @@ class AssetPage(BasePageClass):
         super(AssetPage, self).__init__(driver)
         self.get_schooldata()
         self.get_placedata()
+        appicon = IconListPage(self.driver)
+        appicon.click_asset_icon()
 
         '''
         assets_results = self.driver.find_elements_by_xpath(self._asset_list_locator)
