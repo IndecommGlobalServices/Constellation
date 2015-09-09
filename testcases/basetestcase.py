@@ -22,26 +22,29 @@ os.chdir(cwd)
 
 class BaseTestCase(unittest.TestCase):
     @classmethod
-    def setUpClass(self):
+
+    def setUpClass(cls):
     #    display = Display(visible=0, size=(1024,768))
     #    display.start()
         # create a new Firefox session
-        self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(30)
-        self.driver.maximize_window()
+        cls.driver = webdriver.Firefox()
+        cls.driver.implicitly_wait(30)
+        cls.driver.maximize_window()
 
         # navigate to the application home page
-        basepage = BasePage(self.driver)
+        basepage = BasePage(cls.driver)
         basepage.accessURL()
 
-        homepage = HomePage(self.driver)
+        homepage = HomePage(cls.driver)
         homepage.loginlink.click()
 
-        loginpage = LoginPage(self.driver)
+        loginpage = LoginPage(cls.driver)
         loginpage.loginDashboard()
 
-        iconlistpage = IconListPage(self.driver)
-        iconlistpage.click_asset_Icon()
+        #iconlistpage = IconListPage(cls.driver)
+        #iconlistpage.click_asset_icon()
+
+
 
 
     @classmethod
@@ -64,7 +67,6 @@ class BaseTestCase(unittest.TestCase):
         path = os.path.join(os.getcwd(), "Screenshots")
         file_name = "Screenshot " + st + ".png"
         SaveLocation = os.path.join(path, file_name)
-        print SaveLocation
         self.driver.save_screenshot(SaveLocation)
 
 

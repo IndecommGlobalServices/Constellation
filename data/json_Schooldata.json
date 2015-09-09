@@ -1,11 +1,11 @@
 [
     {
-        "asset_name": ["SDD", "editedname", "IndecommSchool"],
+        "asset_name": ["D school", "editedname"],
         "asset_address": ["Orlean", "editaddress"],
         "asset_address2": ["Street", "editedaddress2"],
         "asset_city": ["Virginia", "editedcity"],
-        "asset_state": ["Nk", "editedstate"],
-        "asset_zip": ["VA1256", "editedzip"],
+        "asset_state": ["Nk", "ES"],
+        "asset_zip": ["12345", "editedzip"],
         "asset_owner": ["Deepa", "editedowner"],
         "asset_type": ["TY", "ET"],
         "asset_district": ["DA", "ED"],

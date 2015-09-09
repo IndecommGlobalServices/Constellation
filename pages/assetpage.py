@@ -1,9 +1,7 @@
 from lib.base import BasePageClass
-from lib.base import InvalidPageException
 from pages.IconListPage import IconListPage
 from basepage import BasePage
 from time import sleep
-from faker import Factory
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 import os, json
@@ -15,6 +13,7 @@ placeData = os.path.join(os.getcwd(), "data\json_place_asset.json")
 os.chdir(cwd)
 
 class AssetPage(BasePageClass):
+
     # Asset Delete related locators
     _asset_select_action_delete_select_xpath_locator = ".//*[@id='asset_actions_dropdown']/button[2]"
     _asset_link_delete_text_xpath_locator = ".//*[@id='asset_actions_dropdown']/ul/li/a"
@@ -90,6 +89,9 @@ class AssetPage(BasePageClass):
     _asset_overview_add_button_locator = ".//*[@id='newItemButton']"
     _asset_overview_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
     _asset_overview_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
+    _asset_overview_panel_name_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[1]/td[2]"
+    _asset_overview_panel_address_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[2]/td[2]"
+    _asset_overview_panel_owner_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[6]/td[2]"
     _asset_overview_panel_district_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[4]/td[2]"
     _asset_overview_panel_grade_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[5]/td[2]"
 
@@ -186,10 +188,10 @@ class AssetPage(BasePageClass):
 
     def __init__(self, driver):
         super(AssetPage, self).__init__(driver)
-        AssetPage.asset_school_name = "School Name Dee"
-        AssetPage.asset_place_name = "kk place 1"
         self.get_schooldata()
         self.get_placedata()
+        appicon = IconListPage(self.driver)
+        appicon.click_asset_icon()
 
         '''
         assets_results = self.driver.find_elements_by_xpath(self._asset_list_locator)
@@ -308,6 +310,10 @@ class AssetPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._asset_type_field_grade_drop_down_locator)'''
 
     @property
+    def get_overview_editname_text_box(self):
+        return self.driver.find_element_by_name("name")
+
+    @property
     def get_overview_newdistrict_text_box(self):
         return self.driver.find_element_by_xpath(self._asset_overview_district_text_box_locator)
 
@@ -331,6 +337,15 @@ class AssetPage(BasePageClass):
     def get_overview_type_add_button(self):
         return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
 
+
+    @property
+    def get_overview_name_text(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_panel_name_text)
+
+
+    @property
+    def get_overview_address1_text(self):
+        return self.driver.find_element_by_xpath(self._asset_overview_panel_address_text).text
 
     @property
     def get_overview_district_text(self):
@@ -786,7 +801,7 @@ class AssetPage(BasePageClass):
         try:
             self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
         except:
-            print ("inside exception")
+            print ("Application recovering")
             basepage = BasePage(self.driver)
             basepage.accessURL()
             iconlistpage = IconListPage(self.driver)
@@ -884,27 +899,37 @@ class AssetPage(BasePageClass):
     def create_school_asset(self, index):
         # Select School from the dropdown to create new School asset
         #self.get_schooldata()
-        self.select_asset_template_type("School")
-        sleep(4)
 
-        self.enter_asset_type_name.send_keys(self.asset_school_name[index])
-        self.enter_asset_type_name.send_keys(Keys.TAB)
-        sleep(2)
+        sleep(4)
+        if(index == 0):
+            self.enter_asset_type_name.send_keys(self.asset_school_name[index])
+            self.enter_asset_type_name.send_keys(Keys.TAB)
+        else:
+            self.get_overview_editname_text_box.clear()
+            self.get_overview_editname_text_box.send_keys(self.asset_school_name[index])
+            self.get_overview_editname_text_box.send_keys(Keys.TAB)
+
+        self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(self.asset_school_address[index])
         self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
+        self.enter_asset_type_address2.clear()
         self.enter_asset_type_address2.send_keys(self.asset_school_address2[index])
         self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
+        self.enter_asset_type_city.clear()
         self.enter_asset_type_city.send_keys(self.asset_school_city[index])
         self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
+        self.enter_asset_type_state.clear
         self.enter_asset_type_state.send_keys(self.asset_school_state[index])
         self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
+        self.enter_asset_type_zip.clear()
         self.enter_asset_type_zip.send_keys(self.asset_school_zip[index])
         self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
+        self.enter_asset_type_owner.clear()
         self.enter_asset_type_owner.send_keys(self.asset_school_owner[index])
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
@@ -929,7 +954,6 @@ class AssetPage(BasePageClass):
          self.get_overview_type_drop_down.click()
          self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
         # self.get_overview_type_add_button.click()
-
 
     def asset_overview_save_click(self):
         self.get_asset_overview_save_button.click()
@@ -958,14 +982,17 @@ class AssetPage(BasePageClass):
     def create_asset(self, type):
         self.asset_create_click()
         if type == "School":
+            self.select_asset_template_type("School")
             self.create_school_asset(self.newSchool)
         elif type == "Place":
             self.create_place_asset()
         self.asset_overview_save_click()
 
     def edit_asset(self, type):
-        self.asset_create_click()
+        self.select_school_or_place_asset(self.asset_school_name[0], type)
         if type == "School":
+            sleep(10)
+            self.get_asset_overview_edit_link.click()
             self.create_school_asset(self.editSchool)
         elif type == "Place":
             self.create_place_asset()
@@ -974,6 +1001,7 @@ class AssetPage(BasePageClass):
     def create_asset_cancel(self, type):
         self.asset_create_click()
         if type == "School":
+            self.select_asset_template_type("School")
             self.create_school_asset(self.newSchool)
         elif type == "Place":
             self.create_place_asset()
@@ -986,7 +1014,10 @@ class AssetPage(BasePageClass):
             sleep(6)
             asset_list = self.get_assets_name_list
             if len(asset_list)>=1:
-                asset_list[0].click()
+                for i in asset_list:
+                    if i.text == asset_name1:
+                        i.click()
+                        break
             else:
                 sleep(4)
                 self.asset_search_assetname("")
