@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="neutronApp"  id="ng-app" xmlns:ng="http://angularjs.org"> <!-- id is required to work in old IE versions -->
+  <head>
+    <!-- This tells IE to run without emulating a previous version of IE and allow the Google Chrome Frame plugin to work -->
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> -->
+    
+    <meta charset="utf-8">
+    <title>{{ siteName() }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../flatui/images/favicon.ico">
+	
+    <!-- Loading Bootstrap -->
+    <link href="../flatui/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="../flatui/css/flat-ui.css" rel="stylesheet">
+
+    <!-- Loading our native CSS -->
+    <link href="../css/neutron.css" rel="stylesheet">
+ 	
+    <link ng-href="../themes/{{ themeName() }}/theme.css" type="text/css" rel="stylesheet">
+
+    <link href="../components/ng-grid-2.0.12/ng-grid.min.css" rel="stylesheet">
+
+  </head>
+  <body ng-controller="AppCtrl">
+    <script type="text/javascript">
+        // Check to see if this version/mode of IE is supported
+        if (document.documentMode && (document.documentMode < 9))
+            location = "../compatibility.html"
+    </script>
+
+    <notification screen="main"></notification>
+
+    <!-- User Profile popup -->
+    <div class="modal" id="profile_modal" hide-modal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true" ng-click=cancelProfile()></button>
+                    <h4 class="modal-title">Update Your Profile</h4>
+                </div>
+                <form name="form_profile_update" >
+                <div class="modal-body" >
+                    <!-- User Name -->
+                    <p>
+                        <div class="forminputfields">
+                            <label for="profile_username" class="forminputlabel">Email</label>
+                            <span>{{profile.username}}</span>
+                        </div>
+                    </p>
+                    <!-- First name -->
+                    <p>
+                        <div class="forminputfields">
+                            <label for="profile_firstname" class="forminputlabel">First name</label>
+                            <input ng-model="profile_edit.firstname" ng-model-options="{updateOn: 'default blur' }" type="text" placeholder="First name" name="profile_firstname" class="form-control not_full_width" required />
+                        </div>
+                    </p>
+                    <p>
+                        <div class="forminputfields">
+                            <label for="profile_lastname" class="forminputlabel">Last name</label>
+                            <input ng-model="profile_edit.lastname" ng-model-options="{updateOn: 'default blur' }" type="text" placeholder="Last name" name="profile_lastame" class="form-control not_full_width" required />
+                        </div>
+                    </p>
+                    <div ng-show="showThreatStreamsApp">
+                        <p><span>Communication Options</span></p>
+                        <p>
+                            <div class="forminputfields">
+                                <label class="checkbox" ng-class="{checked: profile_edit.digest }"  ng-click="profile_edit.digest=!profile_edit.digest;"  ><span class="icons"><span class="first-icon fui-checkbox-unchecked"></span><span class="second-icon fui-checkbox-checked"></span></span>Daily Digest Email</label>  
+                            </div>
+                        </p>
+                    </div>
+                              
+                    <br/><span class="error" ng-show="saved">Profile updated.</span>
+                        
+                </div>
+            
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" ng-click=cancelProfile()>Cancel</button>
+                    <button type="button" class="btn btn-primary"  ng-click=saveProfile() ng-disabled="form_profile_update.$invalid">Save</button>
+                </div>
+	        </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Invite popup -->
+    <div class="modal" id="invite_modal" hide-modal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true" ng-click="cancelInvite()"></button>
+                    <h4 class="modal-title">Invite members to join {{ profile.clientcode }}</h3>
+                </div>
+                        
+                <div class="modal-body" ng-form="submitInvite_form">
+                    <!-- Invite To email -->
+                    <p>
+                    <div class="forminputfields">
+                        <label for="invite_email_list" class="forminputlabel">Send to:</label>
+                        <input ng-model="submitInvite.emailList" name="invite_email_list" ng-pattern='regexEmail+"(,"+regexEmail+")*"' placeholder="Comma-separated list of emails" class="form-control not_full_width emailinput">
+                        <p></p>
+                        <div class="inviteerror email" ng-if="invitesComplete && val.returnCode != '200'" ng-repeat="(key, val) in emailStatus">
+                            {{ key }}:
+                            <span ng-if="val.returnCode == '400'">Invitation already sent or bad email used</span>
+                            <span ng-if="val.returnCode == '415'">User already has an account</span>
+                        </div>
+                        <p class="inviteerror" ng-show="errorUserExists">One or more e-mails are already associated with a Neutron account. Soon you will be able to join existing Neutron users to your organization, but for now it's just one tenant per user.</p>
+                    </div>
+                    </p>
+                    <br><span class="error" ng-show="saved">Invitations sent.</span>
+                </div>
+
+                <div class="modal-footer">
+                    <button class="btn btn-default" ng-click="cancelInvite()">Cancel</button>
+                    <button class="btn btn-primary" ng-click="sendInvite()" ng-disabled="submitInvite_form.$invalid">Invite</button>
+                </div>
+            </div>
+        </div>  
+    </div>
+
+    <div class="modal" id="submit_feedback_modal" hide-modal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true" ng-click="cancel_submit_feedback()"></button>
+                    <h4 id="H1" class="modal-title"><img src="../images/icon_feedback.png" width="30"> &nbsp;  Feedback</h4>
+                </div>
+                <form name="form_asset_edit" ng-submit="save_submit_feedback()">
+                    <div class="modal-body"> 
+                        <div class="forminputfields">
+                            <p>Is there something on this page that's pretty spectacular, not working correctly, or could be improved?  Please share!</p>
+                        </div>
+                        <div class="forminputfields">
+                            <textarea style="width: 100%; height: 100px;" class="form-control not_full_width" ng-model="feedback.message"></textarea>
+                        </div>
+                        <div class="modal_status">
+                            <span class="error" ng-show="saved">Feedback sent</span>
+                        </div>
+                        <p></p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="cancel_submit_feedback()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="upgrade_required_modal" hide-modal>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close fui-cross" data-dismiss="modal" aria-hidden="true" ng-click="closeUpgradeRequired()"></button>
+                    <h4 class="modal-title"><img src="../images/icon_upgrade.png" width="30"> &nbsp;  Upgrade Required</h4>
+                </div>
+                <form name="form_upgrade_required" ng-submit="submitUpgradeRequired()">
+                    <div class="modal-body"> 
+                        <div class="forminputfields">
+                            <p>You may not add anymore {{serviceLevel.type}} because you already have the maximum {{serviceLevel.max}} {{serviceLevel.type}} in the system.</p>
+                            <p>If you would like to add more {{serviceLevel.type}} you will need to upgrade your account.</p>
+                            <p />
+                            <p>Contact <a href="mailto:support@haystax.com" target="_top">support@haystax.com</a> for details.</p>
+                        </div>
+                        <div class="modal_status"><!-- ng-show="serviceLevel.results"-->
+                            <span class="error">{{serviceLevel.results}}</span>
+                            <br/>
+                            <br/>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" ng-click="closeUpgradeRequired()">Close</button>
+                        <!--button type="submit" class="btn btn-primary">Submit</button-->
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="page_applist" style='display: block; opacity: 1'>
+
+        <img src="../images/icon_feedback.png" class="feedback_button" ng-click="start_submit_feedback();" alt="Feedback!" title="Feedback!"/>
+        
+        <div class="burrito_area">
+            <img src="../images/burrito_cat.png" class="burrito_button" id="burrito_button" ng-click="burrito_show_message()" ng-show="show_burrito"/>
+            <div id="burrito_message" class="burrito_message">
+                {{ burrito_notification.html }}
+            </div>
+        </div>
+        
+        <div id="navarea" class="navarea" style='display: none; opacity: 0'>
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand logoscale" id="toplogo" ng-href='#/'><span class="logo"></span></a>
+                </div>
+                
+                <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                    <ul class="nav navbar-nav navbar-right">
+                            
+                        <li class="dropdown ng-isolate-scope">
+                            <a class="dropdown-toggle navbar-link showaslink" data-toggle="dropdown" >{{ profile.fullname }} <span class="caret"></span></a>
+                            <span class="dropdown-arrow"></span>
+                            <ul class=" dropdown-menu" role="menu">
+                                <li  class="ng-scope showaslink">
+                                    <a ng-click="viewProfile()" class="ng-binding">Profile</a>
+                                </li>
+                                <li class="ng-scope showaslink">
+                                    <a ng-click="logoutApp()" class="ng-binding">Logout</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="dropdown ng-isolate-scope">
+                            <a class="dropdown-toggle navbar-link showaslink" data-toggle="dropdown">My organization <span class="caret"></span></a>
+                            <span class="dropdown-arrow"></span>
+                            <ul class="scrollable-menu dropdown-menu" role="menu">
+                                <li  class="ng-scope showaslink">
+                                    <a ng-click="invite()" class="ng-binding" >Invite members</a>
+                                </li>
+                                <li class="ng-scope">
+                                    <a ng-show="showManageApp" class="ng-binding" href='#/manage/access'>Manage access</a>
+                                </li>
+                                <li class="ng-scope">
+                                    <a ng-show="showManageApp" class="ng-binding" href='#/manage/invitation'>Pending invitations</a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="ng-isolate-scope" ng-show="showStatusApp">
+                            <a class="navbar-link showaslink" href='#/status'>Status</a>
+                        </li>
+                        
+                        <li class="ng-isolate-scope">
+                            <a class="navbar-link showaslink" href='#/help/access'>Help</a>
+                        </li>
+                        
+                    </ul>
+                </div><!-- .navbar-collapse -->
+            </nav><!-- navbar -->
+        </div>
+				
+        <div ng-view></div>
+
+    </div>
+
+    <!-- Load JS here for greater good =============================-->
+
+    <!-- FlatUI Pro -->
+    <script src="../flatui/js/jquery-1.8.3.min.js"></script>
+    <script src="../flatui/js/jquery-ui-1.10.3.custom.min.js"></script>
+    <script src="../flatui/js/jquery.ui.touch-punch.min.js"></script>
+    <script src="../flatui/js/bootstrap.min.js"></script>
+    <script src="../flatui/js/bootstrap-select.js"></script>
+    <script src="../flatui/js/bootstrap-switch.js"></script>
+    <script src="../flatui/js/flatui-checkbox.js"></script>
+    <script src="../flatui/js/flatui-radio.js"></script>
+    <script src="../flatui/js/jquery.tagsinput.js"></script>
+    <script src="../flatui/js/jquery.placeholder.js"></script>
+    <script src="../flatui/js/flatui-fileinput.js"></script>
+    <script src="../components/jquery.cookie-1.4.0.js"></script>  <!-- https://raw.github.com/carhartl/jquery-cookie/master/jquery.cookie.js -->
+    
+    <!-- File to allow the code to work in I.E. 9 crappy browser -->
+    <script src="../components/compatibility_fixes.js"></script>    
+
+    <!-- AngularJS -->
+    <script src="../components/angularjs/angular.js"></script>
+    <script src="../components/angularjs/angular-animate.js"></script>
+    <script src="../components/angularjs/angular-route.js"></script>
+    <script src="../components/angularjs/angular-resource.js"></script>
+    <script src="../components/angularjs/angular-sanitize.js"></script>
+    <script src="../components/angularextras/ng-breadcrumb.js"></script>
+    <script src="../components/angularextras/ng-cookiestore.js"></script>
+    <script src="../components/angularextras/flatui-radio-button-controller.js"></script>
+    <script src="../components/angularextras/flatui-radio-button-directive.js"></script>
+    <script src="../components/angularextras/flatui-checkbox-controller.js"></script>
+    <script src="../components/angularextras/flatui-checkbox-directive.js"></script>
+    <script src="../components/angularextras/flatui-checkbox-list-controller.js"></script>
+    <script src="../components/angularextras/flatui-checkbox-list-directive.js"></script>
+    <script src="../components/angularextras/flatui-dropdown-directive.js"></script>
+    <script src="../components/angularextras/flatui-dropdown-controller.js"></script>    
+    <script src="../components/angularextras/neutron-form-utils-controller.js"></script>
+    <script src="../components/angularextras/ng-focus-directive.js"></script>
+    <script src="../components/angularextras/neutron-dropdown-directive.js"></script>
+    <script src="../components/angularextras/neutron-dropdown-controller.js"></script>
+    <script src="../components/angularextras/neutron-map-directive.js"></script>
+    <script src="../components/angularextras/neutron-document-upload-directive.js"></script>
+    <script src="../components/angularextras/neutron-squintemlist-directive.js"></script>
+    <script src="../components/angularextras/neutron-squintemfilter-edit-directive.js"></script>
+    <script src="../components/angularextras/neutron-piecharts-directive.js"></script>
+    <script src="../components/angularextras/neutron-graph-directive.js"></script>
+    <script src="../components/angularextras/notification-directive.js"></script>
+	<script src="../components/angularextras/type-ahead-directive.js"></script>
+	<script src="../components/angularextras/neutron-date-filter.js"></script>
+
+    <script src="../components/angularextras/ui-bootstrap-0.12.0.min.js"></script>
+
+    <script src="../settings.js"></script>
+
+    <script src="../components/util.js"></script>
+    <script src="app.js"></script>
+    <script src="../components/angularextras/user-settings-factory.js"></script>
+    <script src="../components/angularextras/notification-factory.js"></script>
+    <script src="../components/angularextras/filter-list-factory.js"></script>
+    <script src="controllers.js"></script>
+    <script src="applist_controller.js"></script>
+    <script src="assets/asset_controllers.js"></script>
+    <script src="assessments/assessment_controllers.js"></script>
+    <script src="manage/access_controllers.js"></script>
+    <script src="manage/invitation_controllers.js"></script>
+    <script src="help/help_controllers.js"></script>
+    <script src="map/map_controllers.js"></script>
+    <script src="incidents/incident_controllers.js"></script>
+    <script src="events/event_controllers.js"></script>
+    <script src="threatstreams/threatstream_controllers.js"></script>
+    <script src="threatstreams/thing_controllers.js"></script>
+    <script src="status/status_controllers.js"></script>
+    <script src="dashboard/dashboard_controllers.js"></script>
+    <script src="services.js"></script>
+    <script src="../neutron.js"></script>
+    
+    <script src="../components/event_handler.js"></script>
+    <script src="../components/widgets/base.js"></script>
+    <script src="../components/widgets/text.js"></script>
+    <script src="../components/widgets/map.js"></script>
+    <script src="../components/widgets/key_value.js"></script>
+    <script src="../components/widgets/image.js"></script>
+    <script src="../components/widgets/file.js"></script>
+    <script src="../components/crud.js"></script>
+    <script src="../components/server/resthelper.js"></script>
+    <!--<script src="../components/server/loginout.js"></script>-->
+    <script src="../components/server/assets.js"></script>
+    <script src="../components/server/assessment_template.js"></script>
+    <script src="../components/server/assessments.js"></script>
+    <script src="../components/server/incidents.js"></script>
+    
+    <script src="../components/ng-grid-2.0.12/ng-grid-2.0.12.min.js"></script>
+    <script src="../components/ng-grid-2.0.12/plugins/ng-grid-flexible-height.js"></script>
+    <script src="../components/spinner/spin.js"></script>
+
+    <script src="../components/raphael/raphael-min.js"></script>
+    <script src="../components/raphael/g.raphael-min.js"></script>
+    <script src="../components/raphael/g.pie-min.js"></script>
+ 
+
+  </body>
+</html>

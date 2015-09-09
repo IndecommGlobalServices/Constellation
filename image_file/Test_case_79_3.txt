@@ -1,0 +1,329 @@
+Some material adapted
+from Upenn cis391
+slides and other sources• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ] 
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
+
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
+
+
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
+
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
+
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
+
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
+
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
+
+
+• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]• If list contains elements of different types, then
+expression must operate correctly on the types
+of all of list members.
+• If the elements of list are other containers, then
+name can consist of a container of names
+matching the type and “shape” of the list
+members.
+>>> li = [(‘a’ , 1), (‘b’, 2), (‘c’, 7)]
+>>> [ n * 3 for (x, n) in li]
+[3, 6, 21]
+• Containers are objects that contain references
+to other objects (e.g., lists, types, dictionaries)
+[ expression for name in list ]
