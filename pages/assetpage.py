@@ -151,6 +151,7 @@ class AssetPage(BasePageClass):
 
 
     _asset_link_locator = "Assets"
+    _asset_header_save_text_locator = ".//*[@id='header']/div[contains(@class,'right ng-binding')]"
 
     # Asset Detail panel related
 
@@ -170,6 +171,15 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_cancel_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[1]"
     _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
 
+
+    # Asset Photo/Document Upload Panel
+
+    _asset_photos_documents_header_locator = "//div[contains(text(),'Photos / Documents')]"
+    _asset_photos_documents_upload_file_button_locator = "//button[contains(text(), 'Upload file')]"
+    _asset_photos_documents_attached_file_button_locator = "upload_document_file_upload"
+    _asset_photos_documents_caption_textbox_locator = "upload_document_caption"
+    _asset_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Upload')]"
+    _asset_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
 
 
     _asset_count = 0
@@ -590,8 +600,44 @@ class AssetPage(BasePageClass):
         return self.driver.find_element_by_link_text(self._asset_link_locator)
 
     @property
+    def get_asset_header_save_text(self):
+        return self.driver.find_element_by_xpath(self._asset_header_save_text_locator)
+
+    @property
     def select_asset_search_text_box(self):
         return self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
+
+    @property
+    def get_asset_photos_documents_header_text(self):
+        return self.driver.find_elements_by_xpath(self._asset_photos_documents_header_locator)
+
+    @property
+    def get_asset_photos_documents_upload_file_button(self):
+        return self.driver.find_element_by_xpath(self._asset_photos_documents_upload_file_button_locator)
+
+    @property
+    def get_asset_photos_documents_attached_file_button(self):
+        return self.driver.find_element_by_id(self._asset_photos_documents_attached_file_button_locator)
+
+    @property
+    def get_asset_photos_documents_caption_textbox(self):
+        return self.driver.find_element_by_id(self._asset_photos_documents_caption_textbox_locator)
+
+    @property
+    def get_asset_photos_documents_window_upload_button(self):
+        return self.driver.find_element_by_xpath(self._asset_photos_documents_window_upload_button_locator)
+
+    @property
+    def get_asset_photos_documents_window_cancel_button(self):
+        return self.driver.find_element_by_xpath(self._asset_photos_documents_window_cancel_button_locator)
+
+    def get_asset_photos_documents_image_caption_text(self, caption_val):
+        caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption_val+"')]"
+        return self.driver.find_element_by_xpath(caption_xpath)
+
+    def get_asset_photos_documents_header_caption_text(self, caption_val):
+        caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//a[contains(text(),'"+caption_val+"')]"
+        return self.driver.find_element_by_xpath(caption_xpath)
 
     def get_select_checkbox_in_grid(self):
         assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
@@ -1125,20 +1171,72 @@ class AssetPage(BasePageClass):
         sleep(2)
 
     def multiple_contact_create(self):
-        sleep(2)
-        self.delete_existing_contact()
-        sleep(2)
-        firstname = ['jkl','vwx', 'def', 'pqr']
-        lastname = ['mno', 'abc','stu', 'ghi']
-        phonelist = ['661-111-1111','222-222-2222', '433-333-3333', '123-444-4444']
-        emaillist = ['stu@vwx', 'abc@def', 'mno@pqr', 'ghi@jkl']
-        titlelist = ['HH', 'ZZ', 'CC', 'PP']
-        for contact in range(4):
-            self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],emaillist[contact])
+        try:
             sleep(2)
-        sleep(2)
+            self.delete_existing_contact()
+            sleep(2)
+            firstname = ['jkl','vwx', 'def', 'pqr']
+            lastname = ['mno', 'abc','stu', 'ghi']
+            phonelist = ['661-111-1111','222-222-2222', '433-333-3333', '123-444-4444']
+            emaillist = ['stu@vwx', 'abc@def', 'mno@pqr', 'ghi@jkl']
+            titlelist = ['HH', 'ZZ', 'CC', 'PP']
+            for contact in range(4):
+                self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],emaillist[contact])
+                sleep(2)
+            sleep(2)
+        except:
+            print "multiple file creation has been failed"
+
+    def file_path(self, image_file_name):
+        cur_dir = os.getcwd()
+        os.chdir("..")
+        file_path = "image_file\\"+image_file_name
+        complete_file_path = os.path.join(os.getcwd(),file_path)
+        os.chdir(cur_dir)
+        return complete_file_path
+
+    def delete_uploaded_files(self):
+        try:
+            self.driver.find_element_by_xpath("(//div[contains(text(),'Photos / Documents')])[1]").click()
+            sleep(2)
+            image_icons = self.driver.find_elements_by_xpath(".//img[@class='neutron_document_img']")
+            num_of_files = len(image_icons)
+            if num_of_files>= 1:
+                sleep(2)
+                for count in range(num_of_files, 0, -1):
+                    sleep(5)
+                    index = count
+                    xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
+                    image_icons[count-1].click()
+                    sleep(3)
+                    delete_icon = self.driver.find_element_by_xpath(xpath)
+                    delete_icon.click()
+                    sleep(3)
+                    self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
+                    sleep(10)
+        except :
+            print "File deletion not done properly"
 
 
+    def upload_a_file_with_caption(self, image_caption, image_file_name):
+        try:
+            # Click on Photo/Document panel - File Upload button
+            self.get_asset_photos_documents_upload_file_button.click()
+            sleep(2)
+
+            # Click on Attach file button and attached the file path with the send_keys
+            file_path = self.file_path(image_file_name)
+            self.get_asset_photos_documents_attached_file_button.send_keys(file_path)
+            sleep(3)
+            # Enter Caption
+            caption_val = image_caption
+            self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
+            sleep(2)
+            # Click Upload.
+            self.get_asset_photos_documents_window_upload_button.click()
+            sleep(2)
+        except:
+            print "File uploads failed."
 
     def _validate_page(self, driver):
         '''
