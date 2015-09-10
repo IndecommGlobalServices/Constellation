@@ -23,7 +23,7 @@ os.chdir(cwd)
 class BaseTestCase(unittest.TestCase):
     @classmethod
     
-    def setUpClass(cls):
+    def setUpClass(self):
     #    display = Display(visible=0, size=(1024,768))
     #    display.start()
         # create a new Firefox session
@@ -32,13 +32,13 @@ class BaseTestCase(unittest.TestCase):
         self.driver.maximize_window()
 
         # navigate to the application home page
-        basepage = BasePage(cls.driver)
+        basepage = BasePage(self.driver)
         basepage.accessURL()
 
-        homepage = HomePage(cls.driver)
+        homepage = HomePage(self.driver)
         homepage.loginlink.click()
 
-        loginpage = LoginPage(cls.driver)
+        loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
 
         #iconlistpage = IconListPage(cls.driver)

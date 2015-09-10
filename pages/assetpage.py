@@ -894,6 +894,8 @@ class AssetPage(BasePageClass):
                 self.asset_school_district = each["asset_district"]
                 self.asset_school_grade = each["asset_grade"]
                 self.asset_school_district_grade_validation = each["asset_dist_grade_validation"]
+                self.asset_contact_firstname = each["contact_firstname"]
+                self.asset_contact_lastname = each["contact_firstname"]
 
 
     def create_school_asset(self, index):

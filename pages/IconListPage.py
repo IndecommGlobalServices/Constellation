@@ -48,7 +48,6 @@ class IconListPage(BasePageClass):
 
     def click_assessments_icon(self):
         try:
-            print "Assessment"
             self.get_app_assessments_icon.click()
         except:
             print "Assessment app is open"
