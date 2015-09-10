@@ -12,10 +12,12 @@ class AssessmentPage(BasePageClass):
 
     _app = ".//*[@id='header']/span[2]/span"
 
+
     def __init__(self, driver):
         super(AssessmentPage, self).__init__(driver)
-        appicon = IconListPage(self)
+        appicon = IconListPage(self.driver)
         appicon.click_assessments_icon()
+
 
     @property
     def get_app(self):
