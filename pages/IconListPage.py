@@ -44,15 +44,14 @@ class IconListPage(BasePageClass):
         try:
             cls.get_app_asset_icon.click()
         except:
-            print "Asset app is open"
+            pass
 
     def click_assessments_icon(self):
         try:
             self.get_app_assessments_icon.click()
         except:
-            print "Assessment app is open"
+            pass
         #self.get_app_assessments_icon.click()
-
 
     def click_map(self):
         self.get_app_map_icon.click()

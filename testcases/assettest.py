@@ -65,7 +65,6 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         print("Record cancelled successfully.")
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_06_To_Verify_The_Filter_Function_Filter_By_Place(self):
@@ -109,7 +108,6 @@ class AssetPageTest(BaseTestCase):
         AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         sleep(10)
-
 
     @attr(priority="high")
     #@SkipTest
@@ -157,7 +155,6 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_search_assetname("")
         sleep(5)
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
@@ -179,7 +176,6 @@ class AssetPageTest(BaseTestCase):
         aname = ""
         assetpage.enter_asset_type_name.send_keys(aname)
         #assetpage.enter_asset_type_name.send_keys(Keys.TAB)
-
         sleep(5)
         if aname == '':
             self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
@@ -193,7 +189,6 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
         sleep(2)
-
         aphone = "123abc1234"
         assetpage.enter_asset_type_phone.send_keys(aphone)
         assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
@@ -209,8 +204,8 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         check =0
         assetpage = AssetPage(self.driver)
-        #assetpage.create_asset("Place")
-        #assetpage.click_on_asset_link.click()
+        assetpage.create_asset("Place")
+        assetpage.click_on_asset_link.click()
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
@@ -220,9 +215,7 @@ class AssetPageTest(BaseTestCase):
                 #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
                 break
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
-        self.assertFalse(check == 0, "Newly created asset is not appaering with yellow background")
-
-
+        self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
 
     @attr(priority="high")
     #@SkipTest
@@ -389,7 +382,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_link.click()
         sleep(10)
     # Modify the values
-        assetpage.set_place_details_fields("4321", "2020-05-16", "Cancelled", "cancel@indecomm.net", "111-111-1111", "2017-02-23", "10001", "http://www.haystax.com")
+        assetpage.set_place_details_fields("4321", "2020-05-16", "Cancelled", "", "cancel@indecomm.net", "111-111-1111", "2017-02-23", "", "10001", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
         sleep(10)
     # Click on Cancel
@@ -799,7 +792,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Enter the value for Latitude
-        lati = "500"
+        lati = "550"
         latitudeValue = self.driver.find_element_by_name("latitude")
         #latitudeValue = assetpage.get_asset_location_latitude_textbox()
         latitudeValue.clear()
@@ -1203,8 +1196,8 @@ class AssetPageTest(BaseTestCase):
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         check = 0
         assetpage = AssetPage(self.driver)
-        #assetpage.create_asset("School")
-        #assetpage.click_on_asset_link.click()
+        assetpage.create_asset("School")
+        assetpage.click_on_asset_link.click()
         sleep(2)
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(20)
@@ -1257,6 +1250,53 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(assetpage.asset_school_name[assetpage.editSchool], assetpage.get_asset_overview_edit_name_text_box)
         self.assertEqual(assetpage.asset_school_district[1], assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_grade[1], assetpage.get_overview_grade_text)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_56_To_Verify_That_The_SchoolAsset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+
+    # Modify the values
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
+    # Click on Save
+        assetpage.get_asset_detail_edit_cancel_button.click()
+        sleep(10)
+
+        self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        assetpage.click_on_asset_link.click()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_58_To_Verify_That_The_SchoolAsset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+
+    # Modify the values
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
+    # Click on Save
+        assetpage.get_asset_detail_edit_save_button.click()
+        sleep(10)
+
+    # Assert on Saved text is displayed
+        self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
+        assetpage.click_on_asset_link.click()
 
     @attr(priority="high")
     def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):

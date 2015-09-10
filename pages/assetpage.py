@@ -160,7 +160,8 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[2]/div/span/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
-    _asset_detail_edit_fax_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[5]/div/span/input"
+    #_asset_detail_edit_fax_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[5]/div/span/input"
+    _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
     _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
     _asset_detail_edit_size_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[7]/div/span/input"
@@ -1114,7 +1115,7 @@ class AssetPage(BasePageClass):
         #self.select_asset_type_type.click()
         #sleep(2)
 
-    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
+    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite):
         # fill out the fields
 
         self.get_asset_detail_edit_capacity_text_box.clear()
@@ -1134,12 +1135,11 @@ class AssetPage(BasePageClass):
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
 
         sleep(2)
-
-        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
-        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
-        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
+        if pdistrict is not None:
+            self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
+            self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
+            self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
+            sleep(2)
 
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
@@ -1159,11 +1159,11 @@ class AssetPage(BasePageClass):
 
         sleep(2)
 
-        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
-        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
-        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
+        if pschoolnumber is not None:
+            self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
+            self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
+            self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
+            sleep(2)
 
         self.get_asset_detail_edit_detail_size_text_box.clear()
         self.get_asset_detail_edit_detail_size_text_box.send_keys(psize)
