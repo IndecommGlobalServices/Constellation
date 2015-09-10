@@ -181,6 +181,17 @@ class AssetPage(BasePageClass):
     _asset_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Upload')]"
     _asset_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
 
+    # Location related
+    _asset_location_map_id_locator = "map_control"
+    _asset_location_edit_icon_css_locator = "img.widget_edit"
+    _asset_location_title_id_locator = "(H1)[1]"
+    _asset_location_latitude_name_locator = "latitude"
+    _asset_location_latitude_error_css_locator = "small"
+    _asset_location_save_xpath_locator = "(//button[@type='submit'])[2]"
+    _asset_location_longitude_name_locator = "longitude"
+    _asset_location_longitude_error_xpath_locator = "//div[2]/span/small"
+
+
 
     _asset_count = 0
     _assets = {}
@@ -630,6 +641,41 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_window_cancel_button(self):
         return self.driver.find_element_by_xpath(self._asset_photos_documents_window_cancel_button_locator)
+
+    # Location related properties
+    @property
+    def get_asset_location_map(self):
+        return self.driver.find_element_by_id(self._asset_location_map_id_locator)
+
+    @property
+    def get_asset_location_edit_icon(self):
+        return self.driver.find_element_by_css_selector(self._asset_location_edit_icon_css_locator)
+
+    @property
+    def get_asset_location_title(self):
+        return self.driver.find_elements_by_xpath(self._asset_location_title_id_locator)
+
+    @property
+    def get_asset_location_latitude_textbox(self):
+        return self.driver.find_element_by_name(self._asset_location_latitude_name_locator)
+
+    @property
+    def get_asset_location_latitude_error_text(self):
+        return self.driver.find_element_by_css_selector(self._asset_location_latitude_error_css_locator)
+
+    @property
+    def get_asset_location_save_button(self):
+        return self.driver.find_element_by_xpath(self._asset_location_save_xpath_locator)
+
+    @property
+    def get_asset_location_longitude_textbox(self):
+        return self.driver.find_element_by_name(self._asset_location_longitude_name_locator)
+
+    @property
+    def get_asset_location_longitude_error_text(self):
+        return self.driver.find_element_by_xpath_selector(self._asset_location_longitude_error_xpath_locator)
+
+
 
     def get_asset_photos_documents_image_caption_text(self, caption_val):
         caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption_val+"')]"
