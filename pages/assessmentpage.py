@@ -17,7 +17,7 @@ class AssessmentPage(BasePageClass):
     #Assessment app name locator
     _ast_name_text = ".//*[@id='header']/span[2]/span"
 
-     # Assessment filter related to status locators
+    # Assessment filter related to status locators
     _ast_filter_drop_down_locator = ".//*[@id='span_filters']/div[1]/div/button[1]"
     _ast_filter_reset_button = ".//*[@id='span_filters']/button"
 
