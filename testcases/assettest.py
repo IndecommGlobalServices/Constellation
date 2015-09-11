@@ -10,6 +10,7 @@ from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
+from selenium.webdriver.support.ui import Select
 from pages.IconListPage import IconListPage
 import json, os, re
 import selenium.webdriver as webdriver
@@ -402,13 +403,17 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AS_27_To_Save_All_Contact_Info_Place_Asset_ContactInfo_Field(self):
+        #Test all manadatory fields.
         firstname = "FirstName"
         lastname = "ZLastName"
         assetpage = AssetPage(self.driver)
+        #Select user defined place from the available asset list.
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(6)
+        #delete existing contacts.
         assetpage.delete_existing_contact()
         sleep(2)
+        #create new contact.
         assetpage.create_new_contact(firstname,lastname)
         act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
         exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
@@ -770,40 +775,44 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
-        assetpage.delete_uploaded_files()
-        sleep(2)
-        caption_val = "Test_Case_40"
-        image_file_name = "Test_Case_40.jpg"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(10)
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_after_file_upload = len(number_of_image_after_upload)
-        sleep(2)
-        caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='neutron_document_img']"
-        self.driver.find_element_by_xpath(caption_path).click()
-        sleep(2)
-        delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
-        delete_icon.click()
-        sleep(2)
-        self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
-        sleep(10)
-        number_of_image_after_delete = assetpage.get_asset_photos_documents_header_text
-        image_count_after_file_delete = len(number_of_image_after_delete)
-        if (image_count_after_file_upload == image_count_after_file_delete+1):
-            try:
-                if (assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(20)
+            assetpage.delete_uploaded_files()
+            sleep(2)
+            caption_val = "Test_Case_40"
+            image_file_name = "Test_Case_40.jpg"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(10)
+            number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_upload = len(number_of_image_after_upload)
+            sleep(2)
+            caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='neutron_document_img']"
+            self.driver.find_element_by_xpath(caption_path).click()
+            sleep(2)
+            delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
+            delete_icon.click()
+            sleep(2)
+            self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
+            sleep(10)
+            number_of_image_after_delete = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_delete = len(number_of_image_after_delete)
+            if (image_count_after_file_upload == image_count_after_file_delete+1):
+                try:
+                    if (assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
+                        assetpage.click_on_asset_link.click()
+                        self.assertFalse("Test Case has been failed.")
+                except NoSuchElementException:
                     assetpage.click_on_asset_link.click()
-                    self.assertFalse("Test Case has been failed.")
-            except NoSuchElementException:
+                    self.assertTrue("Test Case 40 has been passed.")
+            else:
                 assetpage.click_on_asset_link.click()
-                self.assertTrue("Test Case has been passed.")
-        else:
+                self.assertFalse("Test Case 40 has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test Case 40 has been failed.")
 
     @attr(priority="high")
     def test_AS_41_To_Upload_Image_Cancel_Place_Asset_ContactInfo_Field(self):
@@ -829,182 +838,318 @@ class AssetPageTest(BaseTestCase):
         sleep(2)
         # Click Cancel.
         assetpage.get_asset_photos_documents_window_cancel_button.click()
-        sleep(2)
         try:
             number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
             image_count_after_file_upload = len(number_of_image_after_upload)
-            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
-            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload)):
+            if (image_count_after_file_upload == image_count_before_file_upload):
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("Test Case has been failed")
+                self.assertTrue("Test Case 41 has been passed.")
+
             else:
                 assetpage.click_on_asset_link.click()
-                self.assertTrue("Test Case has been passed")
+                self.assertFalse("Test Case 41 has been failed")
         except:
-            self.assertFalse("Test case has been failed")
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test case 41 has been failed")
 
     @attr(priority="high")
     def test_AS_42_To_Upload_Image_With_Caption_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(20)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_42"
-        image_file_name = "Test_Case_42.jpg"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(5)
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            caption_val = "Test_Case_42"
+            image_file_name = "Test_Case_42.jpg"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(5)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed. No Caption Displayed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed. No Caption Displayed.")
+            self.assertFalse("Test case 42 has been failed")
+
 
     @attr(priority="high")
     def test_AS_43_To_Upload_Image_With_Max_size_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(15)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(15)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_43"
-        image_file_name = "Test_Case_43.jpg"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(70)
-        if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
+            caption_val = "Test_Case_43"
+            image_file_name = "Test_Case_43.jpg"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(70)
+            if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed. No Error message displayed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed. No Error message displayed.")
+            self.assertFalse("Test case 43 has been failed")
+
 
     @attr(priority="high")
     def test_AS_44_1_To_Upload_PDF_With_Caption_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(20)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_44_1"
-        image_file_name = "Test_Case_44_1.pdf"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(14)
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            caption_val = "Test_Case_44_1"
+            image_file_name = "Test_Case_44_1.pdf"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(14)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test case 44_1 has been failed")
+
 
     @attr(priority="high")
     def test_AS_44_2_To_Upload_HTML_With_Caption_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(20)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_44_2"
-        image_file_name = "Test_Case_44_2.html"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(14)
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            caption_val = "Test_Case_44_2"
+            image_file_name = "Test_Case_44_2.html"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(14)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test case 44_2 has been failed")
+
 
     @attr(priority="high")
     def test_AS_44_3_To_Upload_TXT_With_Caption_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(20)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_44_3"
-        image_file_name = "Test_Case_44_3.txt"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(14)
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            caption_val = "Test_Case_44_3"
+            image_file_name = "Test_Case_44_3.txt"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(14)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test case 44_3 has been failed")
 
 
     @attr(priority="high")
     def test_AS_45_To_Upload_Images_Count_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
-        assetpage.delete_uploaded_files()
-        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_before_file_upload = len(number_of_image_before_upload)
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(10)
+            assetpage.delete_uploaded_files()
+            number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_before_file_upload = len(number_of_image_before_upload)
 
-        caption_val = ["Test_Case_45_1", "Test_Case_45_2", "Test_Case_45_3"]
-        image_file_name = ["Test_Case_45_1.jpg", "Test_Case_45_2.jpg", "Test_Case_45_3.jpg"]
-        for num in range(3):
-            assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
+            caption_val = ["Test_Case_45_1", "Test_Case_45_2", "Test_Case_45_3"]
+            image_file_name = ["Test_Case_45_1.jpg", "Test_Case_45_2.jpg", "Test_Case_45_3.jpg"]
+            for num in range(3):
+                assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
 
-        sleep(10)
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_after_file_upload = len(number_of_image_after_upload)
+            sleep(10)
+            number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_upload = len(number_of_image_after_upload)
 
 
-        if (image_count_after_file_upload == image_count_before_file_upload+3):
+            if (image_count_after_file_upload == image_count_before_file_upload+3):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test case 45 has been failed")
+
 
     @attr(priority="high")
     def test_AS_47_To_Upload_Image_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
-        assetpage.delete_uploaded_files()
-        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_before_file_upload = len(number_of_image_before_upload)
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(10)
+            assetpage.delete_uploaded_files()
+            number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_before_file_upload = len(number_of_image_before_upload)
 
-        caption_val = "Test_Case_47"
-        image_file_name = "Test_Case_47.jpg"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(10)
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_after_file_upload = len(number_of_image_after_upload)
+            caption_val = "Test_Case_47"
+            image_file_name = "Test_Case_47.jpg"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(10)
+            number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_upload = len(number_of_image_after_upload)
 
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed")
-        else:
+            self.assertFalse("Test case 47 has been failed")
+
+
+    @attr(priority="high")
+    def test_AS_48_1_To_Annotation_Groups_Text_Place_Asset(self):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            exp_text_val = "This is Indecomm Testing. Groups."
+            assetpage.delete_all_annotation()
+            sleep(2)
+            assetpage.get_asset_annotation_plus_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
+            assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
+            assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            sleep(2)
+            text = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text.split('-'))[0].strip()
             assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed")
+            self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 48_1 has been failed.")
+
+    @attr(priority="high")
+    def test_AS_48_2_To_Annotation_Tenant_Text_Place_Asset(self):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            exp_text_val = "This is Indecomm Testing. Tenant."
+            assetpage.delete_all_annotation()
+            sleep(2)
+            assetpage.get_asset_annotation_plus_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
+            assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
+            assetpage.get_asset_annotation_edit_window_dropdown_tenant.click()
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            sleep(2)
+            text = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text.split('-'))[0].strip()
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 48_2 has been failed.")
+
+    @attr(priority="high")
+    def test_AS_83_3_To_Annotation_User_Text_Place_Asset(self):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            exp_text_val = "This is Indecomm Testing. Groups."
+            assetpage.delete_all_annotation()
+            sleep(2)
+            assetpage.get_asset_annotation_plus_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
+            assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
+            assetpage.get_asset_annotation_edit_window_dropdown_user.click()
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            sleep(2)
+            text = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text.split('-'))[0].strip()
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 48_3 has been failed.")
+
+    @attr(priority="high")
+    def test_AS_48_4_To_Annotation_Edit_Text_Place_Asset(self):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            exp_text_val = "This is Indecomm Testing. User."
+            assetpage.delete_all_annotation()
+            sleep(30)
+            assetpage.get_asset_annotation_plus_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys("Random Text Value.")
+            assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
+            assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            sleep(2)
+            assetpage.get_asset_annotation_edit_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.clear()
+            sleep(4)
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
+            sleep(4)
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            text = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text.split('-'))[0].strip()
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 48_4 has been failed.")
+
 
     @attr(priotity = "high")
     def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
@@ -1588,16 +1733,15 @@ class AssetPageTest(BaseTestCase):
         try:
             number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
             image_count_after_file_upload = len(number_of_image_after_upload)
-            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
-            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload)):
+            if (image_count_after_file_upload == image_count_before_file_upload):
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("Test Case has been failed")
+                self.assertTrue("Test Case 76 has been passed.")
+
             else:
                 assetpage.click_on_asset_link.click()
-                self.assertTrue("Test Case has been passed")
+                self.assertFalse("Test Case 76 has been failed")
         except:
-            self.assertFalse("Test case has been failed")
+            self.assertFalse("Test case 76 has been failed")
 
     @attr(priority="high")
     def test_AS_77_To_Upload_Image_With_Caption_School_Asset_ContactInfo_Field(self):
@@ -1761,8 +1905,107 @@ class AssetPageTest(BaseTestCase):
             assetpage.click_on_asset_link.click()
             self.assertFalse("Test Case has been failed")
 
+    @attr(priority="high")
+    def test_AS_83_1_To_Annotation_Groups_Text_School_Asset(self):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on school in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            exp_text_val = "This is Indecomm Testing. Groups."
+            assetpage.delete_all_annotation()
+            sleep(2)
+            assetpage.get_asset_annotation_plus_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
+            assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
+            assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            sleep(2)
+            text = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text.split('-'))[0].strip()
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 83_1 has been failed.")
 
+    @attr(priority="high")
+    def test_AS_83_2_To_Annotation_Tenant_Text_School_Asset(self):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on school in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            exp_text_val = "This is Indecomm Testing. Tenant."
+            assetpage.delete_all_annotation()
+            sleep(2)
+            assetpage.get_asset_annotation_plus_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
+            assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
+            assetpage.get_asset_annotation_edit_window_dropdown_tenant.click()
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            sleep(2)
+            text = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text.split('-'))[0].strip()
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 83_2 has been failed.")
 
+    @attr(priority="high")
+    def test_AS_83_3_To_Annotation_User_Text_School_Asset(self):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on school in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            exp_text_val = "This is Indecomm Testing. Groups."
+            assetpage.delete_all_annotation()
+            sleep(2)
+            assetpage.get_asset_annotation_plus_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
+            assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
+            assetpage.get_asset_annotation_edit_window_dropdown_user.click()
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            sleep(2)
+            text = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text.split('-'))[0].strip()
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 83_3 has been failed.")
+
+    @attr(priority="high")
+    def test_AS_83_4_To_Annotation_Edit_Text_School_Asset(self):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on school in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            exp_text_val = "This is Indecomm Testing. User."
+            assetpage.delete_all_annotation()
+            sleep(30)
+            assetpage.get_asset_annotation_plus_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys("Random Text Value.")
+            assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
+            assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            sleep(2)
+            assetpage.get_asset_annotation_edit_image.click()
+            assetpage.get_asset_annotation_edit_window_text_area.clear()
+            sleep(4)
+            assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
+            sleep(4)
+            assetpage.get_asset_annotation_edit_window_save_button.click()
+            text = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text.split('-'))[0].strip()
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 83_4 has been failed.")
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)

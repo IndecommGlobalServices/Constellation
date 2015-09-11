@@ -171,7 +171,6 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_cancel_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[1]"
     _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
 
-
     # Asset Photo/Document Upload Panel
 
     _asset_photos_documents_header_locator = "//div[contains(text(),'Photos / Documents')]"
@@ -180,6 +179,19 @@ class AssetPage(BasePageClass):
     _asset_photos_documents_caption_textbox_locator = "upload_document_caption"
     _asset_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Upload')]"
     _asset_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
+
+    # Asset Annotation Panel
+    _asset_annotation_plus_image_locator = "//div[contains(text(),'Annotations')]//img"
+    _asset_annotation_edit_window_text_area_locator = "//label[text()='Annotation']//following-sibling::textarea"
+    _asset_annotation_edit_window_visibility_dropdown_locator = "//label[text()='Visibility']//following-sibling::div//button[@data-toggle='dropdown']"
+    _asset_annotation_edit_window_dropdown_groups_locator = "//label[text()='Visibility']//following-sibling::div//ul//li[1]//a"
+    _asset_annotation_edit_window_dropdown_tenant_locator = "//label[text()='Visibility']//following-sibling::div//ul//li[2]//a"
+    _asset_annotation_edit_window_dropdown_user_locator = "//label[text()='Visibility']//following-sibling::div//ul//li[3]//a"
+    _asset_annotation_edit_window_save_button_locator = "//*[@id='asset_annotation_modal']//div//button[text()='Save']"
+    _asset_annotation_edit_window_cancel_button_locator = "//*[@id='asset_annotation_modal']//div//button[text()='Cancel']"
+    _asset_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
+    _asset_annotation_delete_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'deleteItem')]"
+    _asset_annotation_edit_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'editItem')]"
 
 
     _asset_count = 0
@@ -630,6 +642,50 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_window_cancel_button(self):
         return self.driver.find_element_by_xpath(self._asset_photos_documents_window_cancel_button_locator)
+
+    @property
+    def get_asset_annotation_plus_image(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_plus_image_locator)
+
+    @property
+    def get_asset_annotation_edit_window_text_area(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_edit_window_text_area_locator)
+
+    @property
+    def get_asset_annotation_edit_window_visibility_dropdown(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_edit_window_visibility_dropdown_locator)
+
+    @property
+    def get_asset_annotation_edit_window_dropdown_groups(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_edit_window_dropdown_groups_locator)
+
+    @property
+    def get_asset_annotation_edit_window_dropdown_tenant(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_edit_window_dropdown_tenant_locator)
+
+    @property
+    def get_asset_annotation_edit_window_dropdown_user(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_edit_window_dropdown_user_locator)
+
+    @property
+    def get_asset_annotation_edit_window_save_button(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_edit_window_save_button_locator)
+
+    @property
+    def get_asset_annotation_edit_window_cancel_button(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_edit_window_cancel_button_locator)
+
+    @property
+    def get_asset_annotation_text_value(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_text_value_locator)
+
+    @property
+    def get_asset_annotation_delete_image(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_delete_image_locator)
+
+    @property
+    def get_asset_annotation_edit_image(self):
+        return self.driver.find_element_by_xpath(self._asset_annotation_edit_image_locator)
 
     def get_asset_photos_documents_image_caption_text(self, caption_val):
         caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption_val+"')]"
@@ -1237,6 +1293,17 @@ class AssetPage(BasePageClass):
             sleep(2)
         except:
             print "File uploads failed."
+
+
+    def delete_all_annotation(self):
+        try:
+            sleep(2)
+            while(self.get_asset_annotation_delete_image.is_displayed()):
+                sleep(2)
+                self.get_asset_annotation_delete_image.click()
+                sleep(2)
+        except:
+            print "Annotation text coulld not deletet or no annotation is available."
 
     def _validate_page(self, driver):
         '''
