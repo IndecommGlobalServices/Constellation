@@ -991,12 +991,14 @@ class AssetPage(BasePageClass):
 
 
     def enter_school_district(self, value):
+         sleep(2)
          self.get_overview_district_drop_down.click()
          sleep(2)
          self.get_overview_newdistrict_text_box.send_keys(value)
          self.get_overview_district_add_button.click()
 
     def enter_school_grade(self, value):
+         sleep(2)
          self.get_overview_grade_drop_down.click()
          sleep(2)
          self.get_overview_newgrade_text_box.send_keys(value)
