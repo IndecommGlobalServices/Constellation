@@ -40,22 +40,20 @@ class IconListPage(BasePageClass):
     def __init__(cls, driver):
         super(IconListPage,cls).__init__(driver)
 
-    def click_asset_icon(cls):
+    def click_asset_icon(self):
         try:
-            cls.get_app_asset_icon.click()
+            self.get_app_asset_icon.click()
         except:
-            print "Asset app is open"
+            pass
 
     def click_assessments_icon(self):
         try:
-            print "Assessment"
             self.get_app_assessments_icon.click()
         except:
-            print "Assessment app is open"
+            pass
         #self.get_app_assessments_icon.click()
 
-
-    def click_map(self):
+    def click_map_icon(self):
         self.get_app_map_icon.click()
 
     def click_dashboard(self):

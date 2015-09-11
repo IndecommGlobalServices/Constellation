@@ -10,7 +10,9 @@
         "asset_type": ["TY", "ET"],
         "asset_district": ["DA", "ED"],
         "asset_grade": ["PG", "EG"],
-        "asset_dist_grade_validation": "Vali123@*>?"
+        "asset_dist_grade_validation": "Vali123@*>?",
+        "contact_firstname": ["FirstName"],
+        "contact_lastname": ["LastName"]
     }
 
 

@@ -10,7 +10,6 @@ from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
-from selenium.webdriver.support.ui import Select
 from pages.IconListPage import IconListPage
 import json, os, re
 import selenium.webdriver as webdriver
@@ -24,6 +23,11 @@ os.chdir(cwd)
 
 class AssetPageTest(BaseTestCase):
 
+    def test_test(self):
+        ass = AssetPage(self.driver)
+        sleep(10)
+        self.assertTrue(self.driver.find_element_by_id("asset_graph-0"))
+        print self.driver.find_element_by_id("asset_graph-0").get_attribute("")
 
 
     @attr(priority="high")
@@ -65,7 +69,6 @@ class AssetPageTest(BaseTestCase):
         AssetPage(self.driver).get_deleteasset_cancel_button.click()
         sleep(5)
         print("Record cancelled successfully.")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -110,7 +113,6 @@ class AssetPageTest(BaseTestCase):
         AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         sleep(10)
-
 
     @attr(priority="high")
     #@SkipTest
@@ -158,7 +160,6 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_search_assetname("")
         sleep(5)
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
@@ -180,7 +181,6 @@ class AssetPageTest(BaseTestCase):
         aname = ""
         assetpage.enter_asset_type_name.send_keys(aname)
         #assetpage.enter_asset_type_name.send_keys(Keys.TAB)
-
         sleep(5)
         if aname == '':
             self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
@@ -194,7 +194,6 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
         sleep(2)
-
         aphone = "123abc1234"
         assetpage.enter_asset_type_phone.send_keys(aphone)
         assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
@@ -210,8 +209,8 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         check =0
         assetpage = AssetPage(self.driver)
-        #assetpage.create_asset("Place")
-        #assetpage.click_on_asset_link.click()
+        assetpage.create_asset("Place")
+        assetpage.click_on_asset_link.click()
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
@@ -221,9 +220,7 @@ class AssetPageTest(BaseTestCase):
                 #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
                 break
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
-        self.assertFalse(check == 0, "Newly created asset is not appaering with yellow background")
-
-
+        self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
 
     @attr(priority="high")
     #@SkipTest
@@ -390,7 +387,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_link.click()
         sleep(10)
     # Modify the values
-        assetpage.set_place_details_fields("4321", "2020-05-16", "Cancelled", "cancel@indecomm.net", "111-111-1111", "2017-02-23", "10001", "http://www.haystax.com")
+        assetpage.set_place_details_fields("4321", "2020-05-16", "Cancelled", "", "cancel@indecomm.net", "111-111-1111", "2017-02-23", "", "10001", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
         sleep(10)
     # Click on Cancel
@@ -774,6 +771,189 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("The Contact has been Deleted.")
 
     @attr(priority="high")
+    #@SkipTest
+    def test_AS_36_To_Verify_Latitude_and_Longitude_Boundary_Values(self):
+        assetpage = AssetPage(self.driver)
+
+        # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(8)
+
+        # Verify that map is displayed in EDIT mode
+        #MapInEditModeDisplayed = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[1]/div/div[2]/img[1]")
+        MapInEditModeDisplayed = self.driver.find_element_by_id("map_control")
+
+        #MapInEditModeDisplayed = assetpage.get_asset_location_map()
+        self.assertTrue(MapInEditModeDisplayed.is_displayed(), "Location map not displayed.")
+        sleep(5)
+
+        # Click on the Location Edit, to display Latitude and Logitude
+        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
+        locationEdit.click()
+        # assetpage.get_asset_location_edit_icon.click()
+        sleep(5)
+
+        # Verify that title is displayed as Asset Location.
+        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        #locationTitle = assetpage.get_asset_location_title.text()
+        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        sleep(5)
+
+        # Enter the value for Latitude
+        lati = "550"
+        latitudeValue = self.driver.find_element_by_name("latitude")
+        #latitudeValue = assetpage.get_asset_location_latitude_textbox()
+        latitudeValue.clear()
+        latitudeValue.send_keys(lati)
+
+        # Verify that it displays the error message as - "Latitude must be a number between -90 and 90"
+        latitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[1]/span/small").text
+        #latitudeerrorMessage = assetpage.get_asset_location_latitude_error_text.text
+        self.assertEqual("Latitude must be a number between -90 and 90", latitudeerrorMessage, "Latitude error message not displayed")
+
+        # Verify that SAVE button is disabled.
+        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        #locationSave = assetpage.get_asset_location_save_button()
+        self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
+
+        # Enter the value for Longitude
+        longi = "200"
+        longitudeValue = self.driver.find_element_by_name("longitude")
+        #longitudeValue = assetpage.get_asset_location_longitude_textbox()
+        longitudeValue.clear()
+        longitudeValue.send_keys(longi)
+
+        # Verify that it displays the error message as - "Longitude must be a number between -180 and 180"
+        longitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[2]/span/small").text
+        #longitudeerrorMessage = assetpage.get_asset_location_longitude_error_text.text
+        self.assertEqual("Longitude must be a number between -180 and 180", longitudeerrorMessage, "Longitude error message not displayed")
+        sleep(5)
+
+        # Verify that SAVE button is disabled.
+        #locationSave = assetpage.get_asset_location_save_button()
+        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_37_To_Verify_Marker_Is_Displayed_On_The_Map_After_Setting_Latitude_And_Longitude_Values(self):
+        assetpage = AssetPage(self.driver)
+
+        # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(8)
+
+        # Verify that map is displayed in EDIT mode
+        #MapInEditModeDisplayed = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[1]/div/div[2]/img[1]")
+        MapInEditModeDisplayed = self.driver.find_element_by_id("map_control")
+        self.assertTrue(MapInEditModeDisplayed.is_displayed(), "Location map not displayed.")
+        sleep(5)
+
+        # Click on the Location Edit, to display Latitude and Logitude
+        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
+        locationEdit.click()
+        sleep(5)
+
+        # Verify that title is displayed as Asset Location.
+        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        print locationTitle
+        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        sleep(5)
+
+        # Enter the value for Latitude
+        lati = "40.7127"
+        latitudeValue = self.driver.find_element_by_name("latitude")
+        latitudeValue.clear()
+        latitudeValue.send_keys(lati)
+        sleep(5)
+
+        # Enter the value for Longitude
+        longi = "74.0059"
+        longitudeValue = self.driver.find_element_by_name("longitude")
+        longitudeValue.clear()
+        longitudeValue.send_keys(longi)
+        sleep(5)
+
+        # Verify that SAVE button is enabled and Click.
+        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        self.assertTrue(locationSave.is_enabled(), "Location Save button is not disabled")
+        locationSave.click()
+
+        sleep(15)
+
+        # Verify that Marker is available on the Map in Edit page
+        markerAvailable =  self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[3]/img")
+        self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
+        sleep(5)
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_38_To_Verify_Place_Name_When_Click_On_Marker(self):
+        assetpage = AssetPage(self.driver)
+
+        # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+        sleep(8)
+
+        # Verify that map is displayed in EDIT mode
+        #MapInEditModeDisplayed = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[1]/div/div[2]/img[1]")
+        MapInEditModeDisplayed = self.driver.find_element_by_id("map_control")
+        self.assertTrue(MapInEditModeDisplayed.is_displayed(), "Location map not displayed.")
+        sleep(5)
+
+        # Click on the Location Edit, to display Latitude and Logitude
+        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
+        locationEdit.click()
+        sleep(5)
+
+        # Verify that title is displayed as Asset Location.
+        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        print locationTitle
+        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        sleep(5)
+
+        # Enter the value for Latitude
+        lati = "40.7127"
+        latitudeValue = self.driver.find_element_by_name("latitude")
+        latitudeValue.clear()
+        latitudeValue.send_keys(lati)
+        sleep(5)
+
+        # Enter the value for Longitude
+        longi = "74.0059"
+        longitudeValue = self.driver.find_element_by_name("longitude")
+        longitudeValue.clear()
+        longitudeValue.send_keys(longi)
+        sleep(5)
+
+        # Verify that SAVE button is enabled and Click.
+        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        self.assertTrue(locationSave.is_enabled(), "Location Save button is not disabled")
+        locationSave.click()
+
+        sleep(15)
+
+        # Verify that Marker is available on the Map in Edit page
+        markerAvailable =  self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[3]/img")
+        self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
+        sleep(5)
+
+
+        # Click on Marker and Verify the text of the place
+        markerAvailable.click()
+        sleep(5)
+        placeText = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b").text
+        print placeText
+        self.assertEqual(assetpage.asset_place_name, placeText, "Marker name not displayed.")
+
+
+
+    @attr(priority="high")
     def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
@@ -929,7 +1109,6 @@ class AssetPageTest(BaseTestCase):
             assetpage.click_on_asset_link.click()
             self.assertFalse("Test case 44_1 has been failed")
 
-
     @attr(priority="high")
     def test_AS_44_2_To_Upload_HTML_With_Caption_Place_Asset_ContactInfo_Field(self):
         try:
@@ -955,7 +1134,6 @@ class AssetPageTest(BaseTestCase):
         except:
             assetpage.click_on_asset_link.click()
             self.assertFalse("Test case 44_2 has been failed")
-
 
     @attr(priority="high")
     def test_AS_44_3_To_Upload_TXT_With_Caption_Place_Asset_ContactInfo_Field(self):
@@ -1014,7 +1192,6 @@ class AssetPageTest(BaseTestCase):
         except:
             assetpage.click_on_asset_link.click()
             self.assertFalse("Test case 45 has been failed")
-
 
     @attr(priority="high")
     def test_AS_47_To_Upload_Image_Place_Asset_ContactInfo_Field(self):
@@ -1165,8 +1342,8 @@ class AssetPageTest(BaseTestCase):
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         check = 0
         assetpage = AssetPage(self.driver)
-        #assetpage.create_asset("School")
-        #assetpage.click_on_asset_link.click()
+        assetpage.create_asset("School")
+        assetpage.click_on_asset_link.click()
         sleep(2)
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(20)
@@ -1188,7 +1365,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_asset_template_type("School")
         self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled())
         assetpage.get_asset_overview_cancel_button.click()
-        #add validation for red star
+        sleep(5)
+        self.assertTrue(self.driver.find_element_by_xpath(assetpage._asset_create_asset).is_displayed())
 
     @attr(priority="high")
 #   @SkipTest
@@ -1219,6 +1397,53 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(assetpage.asset_school_name[assetpage.editSchool], assetpage.get_asset_overview_edit_name_text_box)
         self.assertEqual(assetpage.asset_school_district[1], assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_grade[1], assetpage.get_overview_grade_text)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_56_To_Verify_That_The_SchoolAsset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+
+    # Modify the values
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
+    # Click on Save
+        assetpage.get_asset_detail_edit_cancel_button.click()
+        sleep(10)
+
+        self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        assetpage.click_on_asset_link.click()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_58_To_Verify_That_The_SchoolAsset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully(self):
+        assetpage = AssetPage(self.driver)
+
+    # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(15)
+
+    # Click on Details panel
+        assetpage.get_asset_detail_edit_link.click()
+
+    # Modify the values
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
+    # Click on Save
+        assetpage.get_asset_detail_edit_save_button.click()
+        sleep(10)
+
+    # Assert on Saved text is displayed
+        self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
+        assetpage.click_on_asset_link.click()
 
     @attr(priority="high")
     def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
@@ -1669,6 +1894,186 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("The Contact has been Deleted.")
 
     @attr(priority="high")
+    #@SkipTest
+    def test_AS_71_To_Verify_Latitude_and_Longitude_Boundary_Values(self):
+        assetpage = AssetPage(self.driver)
+
+        # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(8)
+
+        # Verify that map is displayed in EDIT mode
+        #MapInEditModeDisplayed = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[1]/div/div[2]/img[1]")
+        MapInEditModeDisplayed = self.driver.find_element_by_id("map_control")
+
+        #MapInEditModeDisplayed = assetpage.get_asset_location_map()
+        self.assertTrue(MapInEditModeDisplayed.is_displayed(), "Location map not displayed.")
+        sleep(5)
+
+        # Click on the Location Edit, to display Latitude and Logitude
+        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
+        locationEdit.click()
+        # assetpage.get_asset_location_edit_icon.click()
+        sleep(5)
+
+        # Verify that title is displayed as Asset Location.
+        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        #locationTitle = assetpage.get_asset_location_title.text()
+        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        sleep(5)
+
+        # Enter the value for Latitude
+        lati = "500"
+        latitudeValue = self.driver.find_element_by_name("latitude")
+        #latitudeValue = assetpage.get_asset_location_latitude_textbox()
+        latitudeValue.clear()
+        latitudeValue.send_keys(lati)
+
+        # Verify that it displays the error message as - "Latitude must be a number between -90 and 90"
+        latitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[1]/span/small").text
+        #latitudeerrorMessage = assetpage.get_asset_location_latitude_error_text.text
+        self.assertEqual("Latitude must be a number between -90 and 90", latitudeerrorMessage, "Latitude error message not displayed")
+
+        # Verify that SAVE button is disabled.
+        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        #locationSave = assetpage.get_asset_location_save_button()
+        self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
+
+        # Enter the value for Longitude
+        longi = "200"
+        longitudeValue = self.driver.find_element_by_name("longitude")
+        #longitudeValue = assetpage.get_asset_location_longitude_textbox()
+        longitudeValue.clear()
+        longitudeValue.send_keys(longi)
+
+        # Verify that it displays the error message as - "Longitude must be a number between -180 and 180"
+        longitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[2]/span/small").text
+        #longitudeerrorMessage = assetpage.get_asset_location_longitude_error_text.text
+        self.assertEqual("Longitude must be a number between -180 and 180", longitudeerrorMessage, "Longitude error message not displayed")
+        sleep(5)
+
+        # Verify that SAVE button is disabled.
+        #locationSave = assetpage.get_asset_location_save_button()
+        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_72_To_Verify_Marker_Is_Displayed_On_The_Map_After_Setting_Latitude_And_Longitude_Values(self):
+        assetpage = AssetPage(self.driver)
+
+        # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(8)
+
+        # Verify that map is displayed in EDIT mode
+        #MapInEditModeDisplayed = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[1]/div/div[2]/img[1]")
+        MapInEditModeDisplayed = self.driver.find_element_by_id("map_control")
+        self.assertTrue(MapInEditModeDisplayed.is_displayed(), "Location map not displayed.")
+        sleep(5)
+
+        # Click on the Location Edit, to display Latitude and Logitude
+        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
+        locationEdit.click()
+        sleep(5)
+
+        # Verify that title is displayed as Asset Location.
+        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        print locationTitle
+        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        sleep(5)
+
+        # Enter the value for Latitude
+        lati = "40.7127"
+        latitudeValue = self.driver.find_element_by_name("latitude")
+        latitudeValue.clear()
+        latitudeValue.send_keys(lati)
+        sleep(5)
+
+        # Enter the value for Longitude
+        longi = "74.0059"
+        longitudeValue = self.driver.find_element_by_name("longitude")
+        longitudeValue.clear()
+        longitudeValue.send_keys(longi)
+        sleep(5)
+
+        # Verify that SAVE button is enabled and Click.
+        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        self.assertTrue(locationSave.is_enabled(), "Location Save button is not disabled")
+        locationSave.click()
+
+        sleep(15)
+
+        # Verify that Marker is available on the Map in Edit page
+        markerAvailable =  self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[3]/img")
+        self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
+        sleep(5)
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_73_To_Verify_Place_Name_When_Click_On_Marker(self):
+        assetpage = AssetPage(self.driver)
+
+        # Search and Click on Place in the List for EDIT mode
+        assetpage = AssetPage(self.driver)
+        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+        sleep(8)
+
+        # Verify that map is displayed in EDIT mode
+        #MapInEditModeDisplayed = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[1]/div/div[2]/img[1]")
+        MapInEditModeDisplayed = self.driver.find_element_by_id("map_control")
+        self.assertTrue(MapInEditModeDisplayed.is_displayed(), "Location map not displayed.")
+        sleep(5)
+
+        # Click on the Location Edit, to display Latitude and Logitude
+        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
+        locationEdit.click()
+        sleep(5)
+
+        # Verify that title is displayed as Asset Location.
+        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        print locationTitle
+        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        sleep(5)
+
+        # Enter the value for Latitude
+        lati = "40.7127"
+        latitudeValue = self.driver.find_element_by_name("latitude")
+        latitudeValue.clear()
+        latitudeValue.send_keys(lati)
+        sleep(5)
+
+        # Enter the value for Longitude
+        longi = "74.0059"
+        longitudeValue = self.driver.find_element_by_name("longitude")
+        longitudeValue.clear()
+        longitudeValue.send_keys(longi)
+        sleep(5)
+
+        # Verify that SAVE button is enabled and Click.
+        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        self.assertTrue(locationSave.is_enabled(), "Location Save button is not disabled")
+        locationSave.click()
+
+        sleep(15)
+
+        # Verify that Marker is available on the Map in Edit page
+        markerAvailable =  self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[3]/img")
+        self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
+        sleep(5)
+
+
+        # Click on Marker and Verify the text of the place
+        markerAvailable.click()
+        sleep(5)
+        schoolText = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b").text
+        self.assertEqual(assetpage.asset_school_name[0], schoolText, "Marker name not displayed.")
+
+
+    @attr(priority="high")
     def test_AS_75_To_Delete_Upload_Image_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
         # Search and Click on Place in the List for EDIT mode
@@ -1742,6 +2147,8 @@ class AssetPageTest(BaseTestCase):
                 self.assertFalse("Test Case 76 has been failed")
         except:
             self.assertFalse("Test case 76 has been failed")
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test case has been failed")
 
     @attr(priority="high")
     def test_AS_77_To_Upload_Image_With_Caption_School_Asset_ContactInfo_Field(self):

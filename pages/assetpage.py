@@ -14,6 +14,7 @@ os.chdir(cwd)
 
 class AssetPage(BasePageClass):
 
+    _test_test = ".//*[@id='asset_graph-0']/svg/text[1]/tspan"
     # Asset Delete related locators
     _asset_select_action_delete_select_xpath_locator = ".//*[@id='asset_actions_dropdown']/button[2]"
     _asset_link_delete_text_xpath_locator = ".//*[@id='asset_actions_dropdown']/ul/li/a"
@@ -160,7 +161,8 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[2]/div/span/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
-    _asset_detail_edit_fax_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[5]/div/span/input"
+    #_asset_detail_edit_fax_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[5]/div/span/input"
+    _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
     _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
     _asset_detail_edit_size_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[7]/div/span/input"
@@ -170,6 +172,7 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
     _asset_detail_edit_cancel_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[1]"
     _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
+
 
     # Asset Photo/Document Upload Panel
 
@@ -192,6 +195,16 @@ class AssetPage(BasePageClass):
     _asset_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
     _asset_annotation_delete_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'deleteItem')]"
     _asset_annotation_edit_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'editItem')]"
+    # Location related
+    _asset_location_map_id_locator = "map_control"
+    _asset_location_edit_icon_css_locator = "img.widget_edit"
+    _asset_location_title_id_locator = "(H1)[1]"
+    _asset_location_latitude_name_locator = "latitude"
+    _asset_location_latitude_error_css_locator = "small"
+    _asset_location_save_xpath_locator = "(//button[@type='submit'])[2]"
+    _asset_location_longitude_name_locator = "longitude"
+    _asset_location_longitude_error_xpath_locator = "//div[2]/span/small"
+
 
 
     _asset_count = 0
@@ -687,6 +700,41 @@ class AssetPage(BasePageClass):
     def get_asset_annotation_edit_image(self):
         return self.driver.find_element_by_xpath(self._asset_annotation_edit_image_locator)
 
+    # Location related properties
+    @property
+    def get_asset_location_map(self):
+        return self.driver.find_element_by_id(self._asset_location_map_id_locator)
+
+    @property
+    def get_asset_location_edit_icon(self):
+        return self.driver.find_element_by_css_selector(self._asset_location_edit_icon_css_locator)
+
+    @property
+    def get_asset_location_title(self):
+        return self.driver.find_elements_by_xpath(self._asset_location_title_id_locator)
+
+    @property
+    def get_asset_location_latitude_textbox(self):
+        return self.driver.find_element_by_name(self._asset_location_latitude_name_locator)
+
+    @property
+    def get_asset_location_latitude_error_text(self):
+        return self.driver.find_element_by_css_selector(self._asset_location_latitude_error_css_locator)
+
+    @property
+    def get_asset_location_save_button(self):
+        return self.driver.find_element_by_xpath(self._asset_location_save_xpath_locator)
+
+    @property
+    def get_asset_location_longitude_textbox(self):
+        return self.driver.find_element_by_name(self._asset_location_longitude_name_locator)
+
+    @property
+    def get_asset_location_longitude_error_text(self):
+        return self.driver.find_element_by_xpath_selector(self._asset_location_longitude_error_xpath_locator)
+
+
+
     def get_asset_photos_documents_image_caption_text(self, caption_val):
         caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption_val+"')]"
         return self.driver.find_element_by_xpath(caption_xpath)
@@ -729,31 +777,25 @@ class AssetPage(BasePageClass):
         # Click on District dropdown
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
 
+
         # Check the values exists inside District dropdown
-        chkDistrictDropDownValuesExists = self.driver.find_elements_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
+        chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
+        items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
 
-        try:
+        # Print the values of District drop down
+        for item in items:
+            text = item.text
+            print text
 
-            # If value exists inside Grade dropdown
-            if len(chkDistrictDropDownValuesExists) > 1:
-                # Click on the First link inside District dropdown
-                self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
 
-                # Count the no of schools displayed in the list after filtering by Grade dropdown
-                districtNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
-
-                # Print the School names based on District dropdown
-                if len(districtNames) > 0:
-                    for districtname in districtNames:
-                        print districtname.text
-                else:
-                    print "No school records found."
-            else:
-                print "No value to select inside School District dropdown."
-        except:
-            self.driver.get_asset_reset_button.click()
-
+        if len(items) > 1:
+            self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
+        else:
+            print "No items to select in District drop down."
+        sleep(5)
+        # Click on Reset filter
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/button").click()
 
     # This function is to select the school grade
     def get_asset_school_grade(self):
@@ -766,32 +808,24 @@ class AssetPage(BasePageClass):
         self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator).click()
         sleep(5)
 
-        # Check the values exists inside Grade dropdown
-        chkGradeDropDownValuesExists = self.driver.find_elements_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
+        # Check the values exists inside Grade drop down
+        chkGradeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
+        items = chkGradeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
-        try:
 
-            # If value exists inside Grade dropdown
-            if len(chkGradeDropDownValuesExists) > 1:
-                # Click on the First link inside Grade dropdown
-                self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
-
-                # Count the no of schools displayed in the list after filtering by Grade dropdown
-                gradeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
-
-                # Print the School names based on Grade dropdown
-                if len(gradeNames) > 0:
-                    for gradename in gradeNames:
-                        print gradename.text
-                else:
-                    print "No school records found."
-            else:
-                print "No value to select inside School Grade dropdown."
-        except:
-            self.driver.get_asset_reset_button.click()
+        # Print the values of Grade drop down
+        for item in items:
+            text = item.text
+            print text
 
 
-
+        if len(items) > 1:
+            self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
+        else:
+            print "No items to select in Grade drop down."
+        sleep(5)
+        # Click on Reset filter
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/button").click()
 
     # This function is to select the school type
     def get_asset_school_type(self):
@@ -804,33 +838,24 @@ class AssetPage(BasePageClass):
         self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator).click()
         sleep(5)
 
-        # Check the values exists inside School dropdown
-        self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
-        #schoolassetsType = self.driver.find_elements_by_xpath(self._asset_list_locator)
-
          # Check the values exists inside School dropdown
-        chkSchoolDropDownValuesExists = self.driver.find_elements_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
+        chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
+        items = chkSchoolTypeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
-        try:
 
-            # If value exists inside Grade dropdown
-            if len(chkSchoolDropDownValuesExists) > 1:
-                # Click on the First link inside Grade dropdown
-                self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
+        # Print the values of Type drop down
+        for item in items:
+            text = item.text
+            print text
 
-                # Count the no of schools displayed in the list after filtering by Grade dropdown
-                typeNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
 
-                # Print the School names based on Grade dropdown
-                if len(typeNames) > 0:
-                    for typename in typeNames:
-                        print typename.text
-                else:
-                    print "No school records found."
-            else:
-                print "No value to select inside School Type dropdown."
-        except:
-            self.driver.get_asset_reset_button.click()
+        if len(items) > 1:
+            self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
+        else:
+            print "No items to select in Type drop down."
+        sleep(5)
+        # Click on Reset filter
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/button").click()
 
 
     def textbox_clear(self, textboxlocator):
@@ -950,6 +975,8 @@ class AssetPage(BasePageClass):
                 self.asset_school_district = each["asset_district"]
                 self.asset_school_grade = each["asset_grade"]
                 self.asset_school_district_grade_validation = each["asset_dist_grade_validation"]
+                self.asset_contact_firstname = each["contact_firstname"]
+                self.asset_contact_lastname = each["contact_firstname"]
 
 
     def create_school_asset(self, index):
@@ -997,17 +1024,22 @@ class AssetPage(BasePageClass):
 
 
     def enter_school_district(self, value):
+         sleep(2)
          self.get_overview_district_drop_down.click()
+         sleep(2)
          self.get_overview_newdistrict_text_box.send_keys(value)
          self.get_overview_district_add_button.click()
 
     def enter_school_grade(self, value):
+         sleep(2)
          self.get_overview_grade_drop_down.click()
+         sleep(2)
          self.get_overview_newgrade_text_box.send_keys(value)
          self.get_overview_grade_add_button.click()
 
     def enter_asset_type(self, value):
          self.get_overview_type_drop_down.click()
+         sleep(2)
          self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
         # self.get_overview_type_add_button.click()
 
@@ -1122,7 +1154,7 @@ class AssetPage(BasePageClass):
         #self.select_asset_type_type.click()
         #sleep(2)
 
-    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
+    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite):
         # fill out the fields
 
         self.get_asset_detail_edit_capacity_text_box.clear()
@@ -1142,12 +1174,11 @@ class AssetPage(BasePageClass):
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
 
         sleep(2)
-
-        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
-        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
-        #self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
+        if pdistrict is not None:
+            self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
+            self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
+            self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
+            sleep(2)
 
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
@@ -1167,11 +1198,11 @@ class AssetPage(BasePageClass):
 
         sleep(2)
 
-        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
-        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
-        #self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
+        if pschoolnumber is not None:
+            self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
+            self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
+            self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
+            sleep(2)
 
         self.get_asset_detail_edit_detail_size_text_box.clear()
         self.get_asset_detail_edit_detail_size_text_box.send_keys(psize)
