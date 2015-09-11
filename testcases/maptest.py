@@ -10,11 +10,12 @@ class MapPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_MAP_01_To_Test(self):
+    def test_smoketest_map(self):
         sleep(5)
         mappage = MapPage(self.driver)
         sleep(20)
-        #self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/span[2]/span").text)
+        self.assertEqual(mappage.get_map_app_name.text, "Map")
+
 
 
 

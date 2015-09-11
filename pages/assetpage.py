@@ -14,6 +14,7 @@ os.chdir(cwd)
 
 class AssetPage(BasePageClass):
 
+    _test_test = ".//*[@id='asset_graph-0']/svg/text[1]/tspan"
     # Asset Delete related locators
     _asset_select_action_delete_select_xpath_locator = ".//*[@id='asset_actions_dropdown']/button[2]"
     _asset_link_delete_text_xpath_locator = ".//*[@id='asset_actions_dropdown']/ul/li/a"
@@ -991,16 +992,19 @@ class AssetPage(BasePageClass):
 
     def enter_school_district(self, value):
          self.get_overview_district_drop_down.click()
+         sleep(2)
          self.get_overview_newdistrict_text_box.send_keys(value)
          self.get_overview_district_add_button.click()
 
     def enter_school_grade(self, value):
          self.get_overview_grade_drop_down.click()
+         sleep(2)
          self.get_overview_newgrade_text_box.send_keys(value)
          self.get_overview_grade_add_button.click()
 
     def enter_asset_type(self, value):
          self.get_overview_type_drop_down.click()
+         sleep(2)
          self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
         # self.get_overview_type_add_button.click()
 

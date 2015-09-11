@@ -19,7 +19,7 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_smoketest_appmainpage(self):
+    def test_smoketest_assessment(self):
         assessmentpage = AssessmentPage(self.driver)
         sleep(2)
         try:

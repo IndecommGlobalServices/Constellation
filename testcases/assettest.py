@@ -23,6 +23,11 @@ os.chdir(cwd)
 
 class AssetPageTest(BaseTestCase):
 
+    def test_test(self):
+        ass = AssetPage(self.driver)
+        sleep(10)
+        self.assertTrue(self.driver.find_element_by_id("asset_graph-0"))
+        print self.driver.find_element_by_id("asset_graph-0").get_attribute("")
 
 
     @attr(priority="high")
@@ -1018,6 +1023,7 @@ class AssetPageTest(BaseTestCase):
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been passed")
         except:
+            assetpage.click_on_asset_link.click()
             self.assertFalse("Test case has been failed")
 
     @attr(priority="high")
@@ -1219,7 +1225,9 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_asset_template_type("School")
         self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled())
         assetpage.get_asset_overview_cancel_button.click()
-        #add validation for red star
+        sleep(5)
+        self.assertTrue(self.driver.find_element_by_xpath(assetpage._asset_create_asset).is_displayed())
+
 
     @attr(priority="high")
 #   @SkipTest
@@ -2000,6 +2008,7 @@ class AssetPageTest(BaseTestCase):
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been passed")
         except:
+            assetpage.click_on_asset_link.click()
             self.assertFalse("Test case has been failed")
 
     @attr(priority="high")
