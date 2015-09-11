@@ -400,375 +400,444 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AS_27_To_Save_All_Contact_Info_Place_Asset_ContactInfo_Field(self):
-        #Test all manadatory fields.
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        #Select user defined place from the available asset list.
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        #delete existing contacts.
-        assetpage.delete_existing_contact()
-        sleep(2)
-        #create new contact.
-        assetpage.create_new_contact(firstname,lastname)
-        act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
-        exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
+        try:
+            #Test all manadatory fields.
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            #Select user defined place from the available asset list.
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            #delete existing contacts.
+            assetpage.delete_existing_contact()
+            sleep(2)
+            #create new contact.
+            assetpage.create_new_contact(firstname,lastname)
+            act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
+            exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 27 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_28_To_Test_Main_Contact_Info_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.create_new_contact(firstname,lastname)
         try:
-            if assetpage.get_asset_main_contact_window:
-                act_name_value = assetpage.get_asset_main_contact_name_text.text
-                exp_name_value = "Shri "+firstname+" "+lastname
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.create_new_contact(firstname,lastname)
+            try:
+                if assetpage.get_asset_main_contact_window:
+                    act_name_value = assetpage.get_asset_main_contact_name_text.text
+                    exp_name_value = "Shri "+firstname+" "+lastname
+                    assetpage.click_on_asset_link.click()
+                    self.assertEqual(act_name_value,exp_name_value)
+            except NoSuchElementException:
                 assetpage.click_on_asset_link.click()
-                self.assertEqual(act_name_value,exp_name_value)
-        except NoSuchElementException:
+                self.assertFalse("No Main Contact exists.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertFalse("No Main Contact exists.")
+            self.assertFalse("Test Case no 28 has been failed.")
+
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_29_To_Click_On_Save_Without_FirstName_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(8)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.click()
-        assetpage.get_asset_newcontact_prefix_textbox.clear()
-        sleep(5)
-        firstname_error = assetpage.get_asset_newcontact_firstname_error_message.is_displayed()
-        lastname_error = assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
-        sleep(3)
-        assetpage.get_asset_newcontact_window_cross_button.click()
-        assetpage.click_on_asset_link.click()
-        sleep(2)
-        self.assertTrue(firstname_error, "Error message is not displayed for First Name")
-        self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(8)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(8)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.click()
+            assetpage.get_asset_newcontact_prefix_textbox.clear()
+            sleep(5)
+            firstname_error = assetpage.get_asset_newcontact_firstname_error_message.is_displayed()
+            lastname_error = assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
+            sleep(3)
+            assetpage.get_asset_newcontact_window_cross_button.click()
+            assetpage.click_on_asset_link.click()
+            sleep(2)
+            self.assertTrue(firstname_error, "Error message is not displayed for First Name")
+            self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 29 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_30_To_Click_On_Save_With_Phone_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        assetpage.get_asset_newcontact_phone_textbox.clear()
-        assetpage.get_asset_newcontact_phone_textbox.send_keys("111-222-3343")
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
-        sleep(2)
-        exp_phone = assetpage.get_asset_contact_phone_value_text.text
-        sleep(2)
-        assetpage.click_on_asset_link.click()
-        regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
-        self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            assetpage.get_asset_newcontact_phone_textbox.clear()
+            assetpage.get_asset_newcontact_phone_textbox.send_keys("111-222-3343")
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            sleep(2)
+            exp_phone = assetpage.get_asset_contact_phone_value_text.text
+            sleep(2)
+            assetpage.click_on_asset_link.click()
+            regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
+            self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 30 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_31_1_To_Click_On_Save_With_Email_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        assetpage.get_asset_newcontact_email_textbox.clear()
-        assetpage.get_asset_newcontact_email_textbox.send_keys("test@test.com")
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
-        sleep(2)
-        exp_email = assetpage.get_asset_contact_email_value_text.text
-        sleep(2)
-        assetpage.click_on_asset_link.click()
-        regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            assetpage.get_asset_newcontact_email_textbox.clear()
+            assetpage.get_asset_newcontact_email_textbox.send_keys("test@test.com")
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            sleep(2)
+            exp_email = assetpage.get_asset_contact_email_value_text.text
+            sleep(2)
+            assetpage.click_on_asset_link.click()
+            regex = re.compile(r'[\w.-]+@[\w.-]+')
+            self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 31_1 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_31_2_To_Click_On_Save_With_Wrong_Email_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        assetpage.get_asset_newcontact_email_textbox.clear()
-        assetpage.get_asset_newcontact_email_textbox.send_keys("testtest.com")
-        sleep(2)
-        assetpage.get_asset_newcontact_firstname_textbox.click()
-        sleep(2)
-        exp_error_message = assetpage.get_asset_newcontact_email_error_message.is_displayed()
-        sleep(2)
-        assetpage.get_asset_newcontact_window_cross_button.click()
-        assetpage.click_on_asset_link.click()
-        self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            assetpage.get_asset_newcontact_email_textbox.clear()
+            assetpage.get_asset_newcontact_email_textbox.send_keys("testtest.com")
+            sleep(2)
+            assetpage.get_asset_newcontact_firstname_textbox.click()
+            sleep(2)
+            exp_error_message = assetpage.get_asset_newcontact_email_error_message.is_displayed()
+            sleep(2)
+            assetpage.get_asset_newcontact_window_cross_button.click()
+            assetpage.click_on_asset_link.click()
+            self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 31_2 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_32_To_Click_On_Cancel_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstNameDel"
-        lastname = "ZLastNameDel"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        sleep(2)
-        assetpage.get_asset_newcontact_cancel_button.click()
         try:
-            if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
+            firstname = "FirstNameDel"
+            lastname = "ZLastNameDel"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            sleep(2)
+            assetpage.get_asset_newcontact_cancel_button.click()
+            try:
+                if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
+                    assetpage.click_on_asset_link.click()
+                    self.assertFalse("Contact has been created. Cancel button is not working")
+            except:
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("Contact has been created. Cancel button is not working")
+                self.assertTrue("New Contact is not created.")
         except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("New Contact is not created.")
+            self.assertFalse("Test Case no 32 has been failed.")
 
     @attr(priority="high")
     def test_AS_33_1_To_Name_Ascending_order_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_name_ascending = "stu, def, mno, jkl, ghi, pqr, abc, vwx"
-        assetpage.get_asset_point_of_contact_name_tab.click()
-        act_name_list = assetpage.get_asset_point_of_contact_name_text_value
-        act_name_list_value = []
-        for name in act_name_list:
-            act_name_list_value.append(name.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_name_ascending = "stu, def, mno, jkl, ghi, pqr, abc, vwx"
+            assetpage.get_asset_point_of_contact_name_tab.click()
+            act_name_list = assetpage.get_asset_point_of_contact_name_text_value
+            act_name_list_value = []
+            for name in act_name_list:
+                act_name_list_value.append(name.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 33_1 has been failed.")
 
     @attr(priority="high")
     def test_AS_33_2_To_Name_Descending_order_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_name_descending = "abc, vwx, ghi, pqr, mno, jkl, stu, def"
-        assetpage.get_asset_point_of_contact_name_tab.click()
-        sleep(1)
-        assetpage.get_asset_point_of_contact_name_tab.click()
-        act_name_list = assetpage.get_asset_point_of_contact_name_text_value
-        act_name_list_value =[]
-        for name in act_name_list:
-            act_name_list_value.append(name.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_name_descending = "abc, vwx, ghi, pqr, mno, jkl, stu, def"
+            assetpage.get_asset_point_of_contact_name_tab.click()
+            sleep(1)
+            assetpage.get_asset_point_of_contact_name_tab.click()
+            act_name_list = assetpage.get_asset_point_of_contact_name_text_value
+            act_name_list_value =[]
+            for name in act_name_list:
+                act_name_list_value.append(name.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 33_2 has been failed.")
 
     @attr(priority="high")
     def test_AS_33_3_To_Title_Ascending_order_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_title_ascending = "CC, HH, PP, ZZ"
-        assetpage.get_asset_point_of_contact_title_tab.click()
-        sleep(1)
-        act_title_list = assetpage.get_asset_point_of_contact_title_text_value
-        act_title_list_value = []
-        for title in act_title_list:
-            act_title_list_value.append(title.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_title_ascending = "CC, HH, PP, ZZ"
+            assetpage.get_asset_point_of_contact_title_tab.click()
+            sleep(1)
+            act_title_list = assetpage.get_asset_point_of_contact_title_text_value
+            act_title_list_value = []
+            for title in act_title_list:
+                act_title_list_value.append(title.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 33_3 has been failed.")
 
     @attr(priority="high")
     def test_AS_33_4_To_Title_Descending_order_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_title_descending = "ZZ, PP, HH, CC"
-        assetpage.get_asset_point_of_contact_title_tab.click()
-        assetpage.get_asset_point_of_contact_title_tab.click()
-        act_title_list = assetpage.get_asset_point_of_contact_title_text_value
-        act_title_list_value = []
-        for title in act_title_list:
-            act_title_list_value.append(title.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_title_descending = "ZZ, PP, HH, CC"
+            assetpage.get_asset_point_of_contact_title_tab.click()
+            assetpage.get_asset_point_of_contact_title_tab.click()
+            act_title_list = assetpage.get_asset_point_of_contact_title_text_value
+            act_title_list_value = []
+            for title in act_title_list:
+                act_title_list_value.append(title.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 33_4 has been failed.")
 
     @attr(priority="high")
     def test_AS_33_5_To_Phone_Ascending_order_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_phone_ascending = "123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
-        assetpage.get_asset_point_of_contact_phone_tab.click()
-        sleep(1)
-        act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
-        act_phone_list_value = []
-        for phone in act_phone_list:
-            act_phone_list_value.append(phone.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_phone_ascending = "123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
+            assetpage.get_asset_point_of_contact_phone_tab.click()
+            sleep(1)
+            act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
+            act_phone_list_value = []
+            for phone in act_phone_list:
+                act_phone_list_value.append(phone.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 33_5 has been failed.")
 
     @attr(priority="high")
     def test_AS_33_6_To_Phone_Descending_order_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_phone_descending = "661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
-        assetpage.get_asset_point_of_contact_phone_tab.click()
-        sleep(1)
-        assetpage.get_asset_point_of_contact_phone_tab.click()
-        act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
-        act_phone_list_value = []
-        for phone in act_phone_list:
-            act_phone_list_value.append(phone.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_phone_descending = "661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
+            assetpage.get_asset_point_of_contact_phone_tab.click()
+            sleep(1)
+            assetpage.get_asset_point_of_contact_phone_tab.click()
+            act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
+            act_phone_list_value = []
+            for phone in act_phone_list:
+                act_phone_list_value.append(phone.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 33_6 has been failed.")
 
     @attr(priority="high")
     def test_AS_33_7_To_Email_Ascending_order_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_email_ascending = "abc@def, ghi@jkl, mno@pqr, stu@vwx"
-        assetpage.get_asset_point_of_contact_email_tab.click()
-        sleep(1)
-        act_email_list = assetpage.get_asset_point_of_contact_email_text_value
-        act_email_list_value = []
-        for email in act_email_list:
-            act_email_list_value.append(email.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_email_ascending = "abc@def, ghi@jkl, mno@pqr, stu@vwx"
+            assetpage.get_asset_point_of_contact_email_tab.click()
+            sleep(1)
+            act_email_list = assetpage.get_asset_point_of_contact_email_text_value
+            act_email_list_value = []
+            for email in act_email_list:
+                act_email_list_value.append(email.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 33_7 has been failed.")
 
     @attr(priority="high")
     def test_AS_33_8_To_Email_Descending_order_Place_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_email_descending = "stu@vwx, mno@pqr, ghi@jkl, abc@def"
-        assetpage.get_asset_point_of_contact_email_tab.click()
-        sleep(1)
-        assetpage.get_asset_point_of_contact_email_tab.click()
-        act_email_list = assetpage.get_asset_point_of_contact_email_text_value
-        act_email_list_value = []
-        for email in act_email_list:
-            act_email_list_value.append(email.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_email_descending = "stu@vwx, mno@pqr, ghi@jkl, abc@def"
+            assetpage.get_asset_point_of_contact_email_tab.click()
+            sleep(1)
+            assetpage.get_asset_point_of_contact_email_tab.click()
+            act_email_list = assetpage.get_asset_point_of_contact_email_text_value
+            act_email_list_value = []
+            for email in act_email_list:
+                act_email_list_value.append(email.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 33_8 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_34_To_Delete_Contact_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
-        assetpage.delete_existing_contact()
         try:
-            if assetpage.get_asset_newcontact_delete_icon.is_displayed():
-                sleep(2)
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            assetpage.delete_existing_contact()
+            try:
+                if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                    sleep(2)
+                    assetpage.click_on_asset_link.click()
+                    self.assertFalse("New Contact is not Deleted")
+            except NoSuchElementException:
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("New Contact is not Deleted")
-        except NoSuchElementException:
+                self.assertTrue("The Contact has been Deleted")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("The Contact has been Deleted")
+            self.assertFalse("Test Case no 34 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_35_To_Delete_Cancel_Contact_Place_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
         try:
-            if assetpage.get_asset_newcontact_delete_icon.is_displayed():
-                sleep(2)
-                assetpage.get_asset_newcontact_delete_icon.click()
-                sleep(2)
-                assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
-                sleep(2)
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            try:
+                if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                    sleep(2)
+                    assetpage.get_asset_newcontact_delete_icon.click()
+                    sleep(2)
+                    assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
+                    sleep(2)
+                    assetpage.click_on_asset_link.click()
+                    self.assertTrue("Pass. Cancel Button is working properly.")
+            except NoSuchElementException:
                 assetpage.click_on_asset_link.click()
-                self.assertTrue("Pass. Cancel Button is working properly.")
-        except NoSuchElementException:
+                self.assertFalse("The Contact has been Deleted.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertFalse("The Contact has been Deleted.")
+            self.assertFalse("Test Case no 35 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
@@ -1447,451 +1516,535 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.get_asset_detail_edit_link.click()
-        assetpage.get_asset_detail_edit_email_text_box.clear()
-        sleep(2)
-        assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
-        sleep(2)
-        assetpage.get_asset_detail_edit_save_button.click()
-        sleep(2)
-        email = assetpage.get_asset_detail_email_value_text.text
-        sleep(2)
-        assetpage.click_on_asset_link.click()
-        regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(email, regex, "Expected and actual value is not matching for EMAIL")
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.get_asset_detail_edit_link.click()
+            assetpage.get_asset_detail_edit_email_text_box.clear()
+            sleep(2)
+            assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
+            sleep(2)
+            assetpage.get_asset_detail_edit_save_button.click()
+            sleep(2)
+            email = assetpage.get_asset_detail_email_value_text.text
+            sleep(2)
+            assetpage.click_on_asset_link.click()
+            regex = re.compile(r'[\w.-]+@[\w.-]+')
+            self.assertRegexpMatches(email, regex, "Expected and actual value is not matching for EMAIL")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 59_1 has been failed.")
 
 
     @attr(priority="high")
     def test_AS_59_2_To_Click_On_Save_With_Wrong_Email_Asset_Detail_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.get_asset_detail_edit_link.click()
-        assetpage.get_asset_detail_edit_email_text_box.clear()
-        sleep(2)
-        assetpage.get_asset_detail_edit_email_text_box.send_keys("testtest")
-        sleep(2)
-        assetpage.get_asset_detail_edit_save_button.click()
-        sleep(2)
-        state = assetpage.get_asset_detail_edit_save_button.is_enabled()
-        assetpage.get_asset_detail_edit_window_cross_button.click()
-        assetpage.click_on_asset_link.click()
-        sleep(2)
-        self.assertFalse(state, "Save Button is enabled even though EMAIL value is wrong")
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.get_asset_detail_edit_link.click()
+            assetpage.get_asset_detail_edit_email_text_box.clear()
+            sleep(2)
+            assetpage.get_asset_detail_edit_email_text_box.send_keys("testtest")
+            sleep(2)
+            assetpage.get_asset_detail_edit_save_button.click()
+            sleep(2)
+            state = assetpage.get_asset_detail_edit_save_button.is_enabled()
+            assetpage.get_asset_detail_edit_window_cross_button.click()
+            assetpage.click_on_asset_link.click()
+            sleep(2)
+            self.assertFalse(state, "Save Button is enabled even though EMAIL value is wrong")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 59_2 has been failed.")
 
     @attr(priority="high")
     def test_AS_62_1_To_Click_On_Save_With_FirstLastName_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
-        sleep(2)
-        exp_first_last_name = assetpage.get_asset_contact_first_last_name_value_text.text
-        sleep(2)
-        regex = re.compile(r'[\w.-@]+\,\s[\w.-@]+')
-        assetpage.click_on_asset_link.click()
-        self.assertRegexpMatches(exp_first_last_name, regex, "Expected and actual values are not matching for First & Last Name")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            sleep(2)
+            exp_first_last_name = assetpage.get_asset_contact_first_last_name_value_text.text
+            sleep(2)
+            regex = re.compile(r'[\w.-@]+\,\s[\w.-@]+')
+            assetpage.click_on_asset_link.click()
+            self.assertRegexpMatches(exp_first_last_name, regex, "Expected and actual values are not matching for First & Last Name")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 62_1 has been failed.")
 
     @attr(priority="high")
     def test_AS_62_2_To_Click_On_Save_With_Title_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        assetpage.get_asset_newcontact_title_textbox.clear()
-        assetpage.get_asset_newcontact_title_textbox.send_keys("Title")
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
-        sleep(2)
-        exp_title = assetpage.get_asset_contact_title_value_text.text
-        sleep(2)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual("Title", exp_title, "Expected and actual value is not matching for Title")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            assetpage.get_asset_newcontact_title_textbox.clear()
+            assetpage.get_asset_newcontact_title_textbox.send_keys("Title")
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            sleep(2)
+            exp_title = assetpage.get_asset_contact_title_value_text.text
+            sleep(2)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual("Title", exp_title, "Expected and actual value is not matching for Title")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 62_2 has been failed.")
 
     @attr(priority="high")
     def test_AS_62_3_To_Save_All_Contact_Info_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.create_new_contact(firstname,lastname)
-        act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
-        exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.create_new_contact(firstname,lastname)
+            act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
+            exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 62_3 has been failed.")
 
     @attr(priority="high")
     def test_AS_63_To_Test_Main_Contact_Info_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.create_new_contact(firstname,lastname)
         try:
-            if assetpage.get_asset_main_contact_window:
-                act_name_value = assetpage.get_asset_main_contact_name_text.text
-                exp_name_value = "Shri "+firstname+" "+lastname
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.create_new_contact(firstname,lastname)
+            try:
+                if assetpage.get_asset_main_contact_window:
+                    act_name_value = assetpage.get_asset_main_contact_name_text.text
+                    exp_name_value = "Shri "+firstname+" "+lastname
+                    assetpage.click_on_asset_link.click()
+                    self.assertEqual(act_name_value,exp_name_value)
+            except NoSuchElementException:
                 assetpage.click_on_asset_link.click()
-                self.assertEqual(act_name_value,exp_name_value)
-        except NoSuchElementException:
+                self.assertFalse("No Main Contact exists.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertFalse("No Main Contact exists.")
+            self.assertFalse("Test Case no 63 has been failed.")
 
     @attr(priority="high")
     def test_AS_64_To_Click_On_Save_Without_FirstLastName_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
-        sleep(8)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(8)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.click()
-        assetpage.get_asset_newcontact_prefix_textbox.clear()
-        sleep(5)
-        firstname_error = assetpage.get_asset_newcontact_firstname_error_message.is_displayed()
-        lastname_error = assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
-        sleep(3)
-        assetpage.get_asset_newcontact_window_cross_button.click()
-        assetpage.click_on_asset_link.click()
-        sleep(2)
-        self.assertTrue(firstname_error, "Error message is not displayed for First Name")
-        self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
+            sleep(8)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(8)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.click()
+            assetpage.get_asset_newcontact_prefix_textbox.clear()
+            sleep(5)
+            firstname_error = assetpage.get_asset_newcontact_firstname_error_message.is_displayed()
+            lastname_error = assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
+            sleep(3)
+            assetpage.get_asset_newcontact_window_cross_button.click()
+            assetpage.click_on_asset_link.click()
+            sleep(2)
+            self.assertTrue(firstname_error, "Error message is not displayed for First Name")
+            self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 64 has been failed.")
 
     @attr(priority="high")
     def test_AS_65_To_Click_On_Save_With_Phone_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        assetpage.get_asset_newcontact_phone_textbox.clear()
-        assetpage.get_asset_newcontact_phone_textbox.send_keys("111-222-3343")
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
-        sleep(2)
-        exp_phone = assetpage.get_asset_contact_phone_value_text.text
-        sleep(2)
-        assetpage.click_on_asset_link.click()
-        regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
-        self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            assetpage.get_asset_newcontact_phone_textbox.clear()
+            assetpage.get_asset_newcontact_phone_textbox.send_keys("111-222-3343")
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            sleep(2)
+            exp_phone = assetpage.get_asset_contact_phone_value_text.text
+            sleep(2)
+            assetpage.click_on_asset_link.click()
+            regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
+            self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 65 has been failed.")
 
     @attr(priority="high")
     def test_AS_66_1_To_Click_On_Save_With_Email_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        assetpage.get_asset_newcontact_email_textbox.clear()
-        assetpage.get_asset_newcontact_email_textbox.send_keys("test@test.com")
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
-        sleep(2)
-        exp_email = assetpage.get_asset_contact_email_value_text.text
-        sleep(2)
-        assetpage.click_on_asset_link.click()
-        regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            assetpage.get_asset_newcontact_email_textbox.clear()
+            assetpage.get_asset_newcontact_email_textbox.send_keys("test@test.com")
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            sleep(2)
+            exp_email = assetpage.get_asset_contact_email_value_text.text
+            sleep(2)
+            assetpage.click_on_asset_link.click()
+            regex = re.compile(r'[\w.-]+@[\w.-]+')
+            self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 67_1 has been failed.")
 
     @attr(priority="high")
     def test_AS_66_2_To_Click_On_Save_With_Wrong_Email_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        assetpage.get_asset_newcontact_email_textbox.clear()
-        assetpage.get_asset_newcontact_email_textbox.send_keys("testtest.com")
-        sleep(2)
-        assetpage.get_asset_newcontact_firstname_textbox.click()
-        sleep(2)
-        exp_error_message = assetpage.get_asset_newcontact_email_error_message.is_displayed()
-        sleep(2)
-        assetpage.get_asset_newcontact_window_cross_button.click()
-        assetpage.click_on_asset_link.click()
-        self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
+        try:
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            assetpage.get_asset_newcontact_email_textbox.clear()
+            assetpage.get_asset_newcontact_email_textbox.send_keys("testtest.com")
+            sleep(2)
+            assetpage.get_asset_newcontact_firstname_textbox.click()
+            sleep(2)
+            exp_error_message = assetpage.get_asset_newcontact_email_error_message.is_displayed()
+            sleep(2)
+            assetpage.get_asset_newcontact_window_cross_button.click()
+            assetpage.click_on_asset_link.click()
+            self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 67_2 has been failed.")
 
     @attr(priority="high")
     def test_AS_67_To_Click_On_Cancel_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstNameDel"
-        lastname = "ZLastNameDel"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        sleep(2)
-        assetpage.get_asset_newcontact_cancel_button.click()
         try:
-            if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
+            firstname = "FirstNameDel"
+            lastname = "ZLastNameDel"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            sleep(2)
+            assetpage.get_asset_newcontact_cancel_button.click()
+            try:
+                if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
+                    assetpage.click_on_asset_link.click()
+                    self.assertFalse("Contact has been created. Cancel button is not working")
+            except:
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("Contact has been created. Cancel button is not working")
+                self.assertTrue("New Contact is not created.")
         except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("New Contact is not created.")
+            self.assertFalse("Test Case no 67 has been failed.")
 
     @attr(priority="high")
     def test_AS_68_1_To_Name_Ascending_order_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_name_ascending = "stu, def, mno, jkl, ghi, pqr, abc, vwx"
-        assetpage.get_asset_point_of_contact_name_tab.click()
-        act_name_list = assetpage.get_asset_point_of_contact_name_text_value
-        act_name_list_value = []
-        for name in act_name_list:
-            act_name_list_value.append(name.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_name_ascending = "stu, def, mno, jkl, ghi, pqr, abc, vwx"
+            assetpage.get_asset_point_of_contact_name_tab.click()
+            act_name_list = assetpage.get_asset_point_of_contact_name_text_value
+            act_name_list_value = []
+            for name in act_name_list:
+                act_name_list_value.append(name.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 68_1 has been failed.")
 
     @attr(priority="high")
     def test_AS_68_2_To_Name_Descending_order_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_name_descending = "abc, vwx, ghi, pqr, mno, jkl, stu, def"
-        assetpage.get_asset_point_of_contact_name_tab.click()
-        sleep(1)
-        assetpage.get_asset_point_of_contact_name_tab.click()
-        act_name_list = assetpage.get_asset_point_of_contact_name_text_value
-        act_name_list_value =[]
-        for name in act_name_list:
-            act_name_list_value.append(name.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_name_descending = "abc, vwx, ghi, pqr, mno, jkl, stu, def"
+            assetpage.get_asset_point_of_contact_name_tab.click()
+            sleep(1)
+            assetpage.get_asset_point_of_contact_name_tab.click()
+            act_name_list = assetpage.get_asset_point_of_contact_name_text_value
+            act_name_list_value =[]
+            for name in act_name_list:
+                act_name_list_value.append(name.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 68_2 has been failed.")
 
     @attr(priority="high")
     def test_AS_68_3_To_Title_Ascending_order_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_title_ascending = "CC, HH, PP, ZZ"
-        assetpage.get_asset_point_of_contact_title_tab.click()
-        sleep(1)
-        act_title_list = assetpage.get_asset_point_of_contact_title_text_value
-        act_title_list_value = []
-        for title in act_title_list:
-            act_title_list_value.append(title.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_title_ascending = "CC, HH, PP, ZZ"
+            assetpage.get_asset_point_of_contact_title_tab.click()
+            sleep(1)
+            act_title_list = assetpage.get_asset_point_of_contact_title_text_value
+            act_title_list_value = []
+            for title in act_title_list:
+                act_title_list_value.append(title.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 68_3 has been failed.")
 
     @attr(priority="high")
     def test_AS_68_4_To_Title_Descending_order_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_title_descending = "ZZ, PP, HH, CC"
-        assetpage.get_asset_point_of_contact_title_tab.click()
-        assetpage.get_asset_point_of_contact_title_tab.click()
-        act_title_list = assetpage.get_asset_point_of_contact_title_text_value
-        act_title_list_value = []
-        for title in act_title_list:
-            act_title_list_value.append(title.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_title_descending = "ZZ, PP, HH, CC"
+            assetpage.get_asset_point_of_contact_title_tab.click()
+            assetpage.get_asset_point_of_contact_title_tab.click()
+            act_title_list = assetpage.get_asset_point_of_contact_title_text_value
+            act_title_list_value = []
+            for title in act_title_list:
+                act_title_list_value.append(title.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 68_4 has been failed.")
 
     @attr(priority="high")
     def test_AS_68_5_To_Phone_Ascending_order_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_phone_ascending = "123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
-        assetpage.get_asset_point_of_contact_phone_tab.click()
-        sleep(1)
-        act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
-        act_phone_list_value = []
-        for phone in act_phone_list:
-            act_phone_list_value.append(phone.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_phone_ascending = "123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
+            assetpage.get_asset_point_of_contact_phone_tab.click()
+            sleep(1)
+            act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
+            act_phone_list_value = []
+            for phone in act_phone_list:
+                act_phone_list_value.append(phone.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 68_5 has been failed.")
 
     @attr(priority="high")
     def test_AS_68_6_To_Phone_Descending_order_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_phone_descending = "661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
-        assetpage.get_asset_point_of_contact_phone_tab.click()
-        sleep(1)
-        assetpage.get_asset_point_of_contact_phone_tab.click()
-        act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
-        act_phone_list_value = []
-        for phone in act_phone_list:
-            act_phone_list_value.append(phone.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_phone_descending = "661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
+            assetpage.get_asset_point_of_contact_phone_tab.click()
+            sleep(1)
+            assetpage.get_asset_point_of_contact_phone_tab.click()
+            act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
+            act_phone_list_value = []
+            for phone in act_phone_list:
+                act_phone_list_value.append(phone.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 68_6 has been failed.")
 
     @attr(priority="high")
     def test_AS_68_7_To_Email_Ascending_order_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_email_ascending = "abc@def, ghi@jkl, mno@pqr, stu@vwx"
-        assetpage.get_asset_point_of_contact_email_tab.click()
-        sleep(1)
-        act_email_list = assetpage.get_asset_point_of_contact_email_text_value
-        act_email_list_value = []
-        for email in act_email_list:
-            act_email_list_value.append(email.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_email_ascending = "abc@def, ghi@jkl, mno@pqr, stu@vwx"
+            assetpage.get_asset_point_of_contact_email_tab.click()
+            sleep(1)
+            act_email_list = assetpage.get_asset_point_of_contact_email_text_value
+            act_email_list_value = []
+            for email in act_email_list:
+                act_email_list_value.append(email.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 68_7 has been failed.")
 
     @attr(priority="high")
     def test_AS_68_8_To_Email_Descending_order_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(6)
-        assetpage.multiple_contact_create()
-        sleep(2)
-        exp_email_descending = "stu@vwx, mno@pqr, ghi@jkl, abc@def"
-        assetpage.get_asset_point_of_contact_email_tab.click()
-        sleep(1)
-        assetpage.get_asset_point_of_contact_email_tab.click()
-        act_email_list = assetpage.get_asset_point_of_contact_email_text_value
-        act_email_list_value = []
-        for email in act_email_list:
-            act_email_list_value.append(email.text)
-        assetpage.click_on_asset_link.click()
-        self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
+        try:
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(6)
+            assetpage.multiple_contact_create()
+            sleep(2)
+            exp_email_descending = "stu@vwx, mno@pqr, ghi@jkl, abc@def"
+            assetpage.get_asset_point_of_contact_email_tab.click()
+            sleep(1)
+            assetpage.get_asset_point_of_contact_email_tab.click()
+            act_email_list = assetpage.get_asset_point_of_contact_email_text_value
+            act_email_list_value = []
+            for email in act_email_list:
+                act_email_list_value.append(email.text)
+            assetpage.click_on_asset_link.click()
+            self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
+        except:
+            assetpage.click_on_asset_link.click()
+            self.assertFalse("Test Case no 68_8 has been failed.")
 
     @attr(priority="high")
     def test_AS_69_To_Delete_Contact_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
-        assetpage.delete_existing_contact()
         try:
-            if assetpage.get_asset_newcontact_delete_icon.is_displayed():
-                sleep(2)
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            assetpage.delete_existing_contact()
+            try:
+                if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                    sleep(2)
+                    assetpage.click_on_asset_link.click()
+                    self.assertFalse("New Contact is not Deleted")
+            except NoSuchElementException:
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("New Contact is not Deleted")
-        except NoSuchElementException:
+                self.assertTrue("The Contact has been Deleted")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("The Contact has been Deleted")
+            self.assertFalse("Test Case no 69 has been failed.")
 
     @attr(priority="high")
     def test_AS_70_To_Delete_Cancel_Contact_School_Asset_ContactInfo_Field(self):
-        firstname = "FirstName"
-        lastname = "ZLastName"
-        assetpage = AssetPage(self.driver)
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
-        assetpage.delete_existing_contact()
-        sleep(2)
-        assetpage.get_asset_points_of_contact_header.click()
-        assetpage.get_asset_add_contact_button.click()
-        sleep(4)
-        assetpage.get_asset_newcontact_firstname_textbox.clear()
-        assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
-        assetpage.get_asset_newcontact_lastname_textbox.clear()
-        assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
-        sleep(2)
-        assetpage.get_asset_newcontact_save_button.click()
         try:
-            if assetpage.get_asset_newcontact_delete_icon.is_displayed():
-                sleep(2)
-                assetpage.get_asset_newcontact_delete_icon.click()
-                sleep(2)
-                assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
-                sleep(2)
+            firstname = "FirstName"
+            lastname = "ZLastName"
+            assetpage = AssetPage(self.driver)
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(8)
+            assetpage.delete_existing_contact()
+            sleep(2)
+            assetpage.get_asset_points_of_contact_header.click()
+            assetpage.get_asset_add_contact_button.click()
+            sleep(4)
+            assetpage.get_asset_newcontact_firstname_textbox.clear()
+            assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+            assetpage.get_asset_newcontact_lastname_textbox.clear()
+            assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+            sleep(2)
+            assetpage.get_asset_newcontact_save_button.click()
+            try:
+                if assetpage.get_asset_newcontact_delete_icon.is_displayed():
+                    sleep(2)
+                    assetpage.get_asset_newcontact_delete_icon.click()
+                    sleep(2)
+                    assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
+                    sleep(2)
+                    assetpage.click_on_asset_link.click()
+                    self.assertTrue("Pass. Cancel Button is working properly.")
+            except NoSuchElementException:
                 assetpage.click_on_asset_link.click()
-                self.assertTrue("Pass. Cancel Button is working properly.")
-        except NoSuchElementException:
+                self.assertFalse("The Contact has been Deleted.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertFalse("The Contact has been Deleted.")
+            self.assertFalse("Test Case no 70 has been failed.")
 
     @attr(priority="high")
     #@SkipTest
@@ -2075,40 +2228,44 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_75_To_Delete_Upload_Image_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(20)
-        assetpage.delete_uploaded_files()
-        sleep(2)
-        caption_val = "Test_Case_75"
-        image_file_name = "Test_Case_75.jpg"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(10)
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_after_file_upload = len(number_of_image_after_upload)
-        sleep(2)
-        caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='neutron_document_img']"
-        self.driver.find_element_by_xpath(caption_path).click()
-        sleep(2)
-        delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
-        delete_icon.click()
-        sleep(2)
-        self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
-        sleep(10)
-        number_of_image_after_delete = assetpage.get_asset_photos_documents_header_text
-        image_count_after_file_delete = len(number_of_image_after_delete)
-        if (image_count_after_file_upload == image_count_after_file_delete+1):
-            try:
-                if (assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(20)
+            assetpage.delete_uploaded_files()
+            sleep(2)
+            caption_val = "Test_Case_75"
+            image_file_name = "Test_Case_75.jpg"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(10)
+            number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_upload = len(number_of_image_after_upload)
+            sleep(2)
+            caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='neutron_document_img']"
+            self.driver.find_element_by_xpath(caption_path).click()
+            sleep(2)
+            delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
+            delete_icon.click()
+            sleep(2)
+            self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
+            sleep(10)
+            number_of_image_after_delete = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_delete = len(number_of_image_after_delete)
+            if (image_count_after_file_upload == image_count_after_file_delete+1):
+                try:
+                    if (assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
+                        assetpage.click_on_asset_link.click()
+                        self.assertFalse("Test Case has been failed.")
+                except NoSuchElementException:
                     assetpage.click_on_asset_link.click()
-                    self.assertFalse("Test Case has been failed.")
-            except NoSuchElementException:
+                    self.assertTrue("Test Case has been passed.")
+            else:
                 assetpage.click_on_asset_link.click()
-                self.assertTrue("Test Case has been passed.")
-        else:
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test Case no 75 has been failed.")
 
     @attr(priority="high")
     def test_AS_76_To_Upload_Image_Cancel_School_Asset_ContactInfo_Field(self):
@@ -2152,165 +2309,193 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     def test_AS_77_To_Upload_Image_With_Caption_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(20)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(20)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_77"
-        image_file_name = "Test_Case_77.jpg"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(5)
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            caption_val = "Test_Case_77"
+            image_file_name = "Test_Case_77.jpg"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(5)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed. No Caption Displayed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed. No Caption Displayed.")
+            self.assertFalse("Test Case no 77 has been failed.")
 
     @attr(priority="high")
     def test_AS_78_To_Upload_Image_With_Max_size_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(15)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(15)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_78"
-        image_file_name = "Test_Case_78.jpg"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(70)
-        if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
+            caption_val = "Test_Case_78"
+            image_file_name = "Test_Case_78.jpg"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(70)
+            if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed. No Error message displayed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed. No Error message displayed.")
+            self.assertFalse("Test Case no 78 has been failed.")
 
     @attr(priority="high")
     def test_AS_79_1_To_Upload_PDF_With_Caption_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(20)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(20)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_79_1"
-        image_file_name = "Test_Case_79_1.pdf"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(14)
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            caption_val = "Test_Case_79_1"
+            image_file_name = "Test_Case_79_1.pdf"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(14)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test Case no 79_1 has been failed.")
 
     @attr(priority="high")
     def test_AS_79_2_To_Upload_HTML_With_Caption_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(20)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(20)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_79_2"
-        image_file_name = "Test_Case_79_2.html"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(14)
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            caption_val = "Test_Case_79_2"
+            image_file_name = "Test_Case_79_2.html"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(14)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test Case no 79_2 has been failed.")
 
     @attr(priority="high")
     def test_AS_79_3_To_Upload_TXT_With_Caption_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(20)
-        assetpage.delete_uploaded_files()
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(20)
+            assetpage.delete_uploaded_files()
 
-        caption_val = "Test_Case_79_3"
-        image_file_name = "Test_Case_79_3.txt"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(14)
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            caption_val = "Test_Case_79_3"
+            image_file_name = "Test_Case_79_3.txt"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(14)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test Case no 79_3 has been failed.")
 
 
     @attr(priority="high")
     def test_AS_80_To_Upload_Images_Count_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(10)
-        assetpage.delete_uploaded_files()
-        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_before_file_upload = len(number_of_image_before_upload)
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            assetpage.delete_uploaded_files()
+            number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_before_file_upload = len(number_of_image_before_upload)
 
-        caption_val = ["Test_Case_80_1", "Test_Case_80_2", "Test_Case_80_3"]
-        image_file_name = ["Test_Case_80_1.jpg", "Test_Case_80_2.jpg", "Test_Case_80_3.jpg"]
-        for num in range(3):
-            assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
+            caption_val = ["Test_Case_80_1", "Test_Case_80_2", "Test_Case_80_3"]
+            image_file_name = ["Test_Case_80_1.jpg", "Test_Case_80_2.jpg", "Test_Case_80_3.jpg"]
+            for num in range(3):
+                assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
 
-        sleep(10)
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_after_file_upload = len(number_of_image_after_upload)
+            sleep(10)
+            number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_upload = len(number_of_image_after_upload)
 
 
-        if (image_count_after_file_upload == image_count_before_file_upload+3):
+            if (image_count_after_file_upload == image_count_before_file_upload+3):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed.")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed.")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed.")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse("Test Case no 80 has been failed.")
 
     @attr(priority="high")
     def test_AS_82_To_Upload_Image_School_Asset_ContactInfo_Field(self):
-        assetpage = AssetPage(self.driver)
-        # Search and Click on Place in the List for EDIT mode
-        assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(10)
-        assetpage.delete_uploaded_files()
-        number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_before_file_upload = len(number_of_image_before_upload)
+        try:
+            assetpage = AssetPage(self.driver)
+            # Search and Click on Place in the List for EDIT mode
+            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            sleep(10)
+            assetpage.delete_uploaded_files()
+            number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_before_file_upload = len(number_of_image_before_upload)
 
-        caption_val = "Test_Case_82"
-        image_file_name = "Test_Case_82.jpg"
-        assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        sleep(10)
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
-        image_count_after_file_upload = len(number_of_image_after_upload)
+            caption_val = "Test_Case_82"
+            image_file_name = "Test_Case_82.jpg"
+            assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+            sleep(10)
+            number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
+            image_count_after_file_upload = len(number_of_image_after_upload)
 
-        image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-        header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
+            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
+                assetpage.click_on_asset_link.click()
+                self.assertTrue("Test Case has been passed")
+            else:
+                assetpage.click_on_asset_link.click()
+                self.assertFalse("Test Case has been failed")
+        except:
             assetpage.click_on_asset_link.click()
-            self.assertTrue("Test Case has been passed")
-        else:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case has been failed")
+            self.assertFalse("Test Case no 82 has been failed.")
 
     @attr(priority="high")
     def test_AS_83_1_To_Annotation_Groups_Text_School_Asset(self):
