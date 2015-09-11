@@ -2599,6 +2599,41 @@ class AssetPageTest(BaseTestCase):
             assetpage.click_on_asset_link.click()
             self.assertFalse("Test Case no 83_4 has been failed.")
 
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+        # Click on Chart - Dashboard
+        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(5)
+        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(5)
+
+        # Verify Graph label is displayed - here it should display as Asset Type
+        graphLabel = self.driver.find_element_by_class_name("graph_label")
+        print graphLabel.text
+        self.assertTrue(graphLabel.is_displayed(), "Graph label not displayed")
+        sleep(5)
+
+        # Verify Place text is displayed.
+        placeText = self.driver.find_element_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text'][1]/*[name()='tspan']").text
+        print placeText
+        self.assertEqual("place", placeText, "place text not displayed")
+        sleep(10)
+
+
+        # Verify School text is displayed.
+        schoolText = self.driver.find_element_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text'][2]/*[name()='tspan']").text
+        print schoolText
+        self.assertEqual("school", schoolText, "school text not displayed")
+        sleep(5)
+
+        assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+        for asset in assets:
+            print asset.text
+
 if __name__ =='__main__':
     unittest.main(verbosity=2)
 
