@@ -886,7 +886,7 @@ class AssetPage(BasePageClass):
             basepage = BasePage(self.driver)
             basepage.accessURL()
             iconlistpage = IconListPage(self.driver)
-            iconlistpage.click_asset_Icon()
+            iconlistpage.click_asset_icon()
 
         # Click on Create asset
         sleep(5)

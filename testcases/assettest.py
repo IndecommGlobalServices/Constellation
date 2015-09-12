@@ -23,6 +23,7 @@ os.chdir(cwd)
 
 class AssetPageTest(BaseTestCase):
 
+    @SkipTest
     def test_test(self):
         ass = AssetPage(self.driver)
         sleep(10)
@@ -118,8 +119,9 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
         sleep(5)
-        AssetPage(self.driver).get_asset_reset_button.click()
-        expectedAfterResetFilter = AssetPage(self.driver).get_asset_asset_type_text.text
+        assetpage = AssetPage(self.driver)
+        assetpage.get_asset_reset_button.click()
+        expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     # Need to re-visit
@@ -127,18 +129,19 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
 
+        assetpage = AssetPage(self.driver)
         with open(searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
 
             for each in data_SearchAsset_text:
                 searchText = each["Search_name"]
 
-                AssetPage(self.driver).select_asset_search_text_box.send_keys(searchText)
+                assetpage.select_asset_search_text_box.send_keys(searchText)
                 sleep(2)
-                AssetPage(self.driver).select_asset_search_text_box.send_keys(Keys.CONTROL,"a",Keys.DELETE)
+                assetpage.select_asset_search_text_box.send_keys(Keys.CONTROL,"a",Keys.DELETE)
                 sleep(5)
-                expectedAfterSearchFilter = AssetPage(self.driver).get_asset_list_no_matching_records_found.text
-                searchNames = self.driver.find_elements_by_xpath(AssetPage(self.driver)._asset_list_locator)
+                expectedAfterSearchFilter = assetpage.get_asset_list_no_matching_records_found.text
+                searchNames = self.driver.find_elements_by_xpath(assetpage._asset_list_locator)
                 print "Found " + str(len(searchNames)) + " by Name search."
                 sleep(2)
                 for searchName in searchNames:
@@ -209,8 +212,6 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         check =0
         assetpage = AssetPage(self.driver)
-        assetpage.create_asset("Place")
-        assetpage.click_on_asset_link.click()
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(20)
@@ -305,7 +306,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_link.click()
 
     # Modify the values
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23","", "6300", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
     # Click on Save
         assetpage.get_asset_detail_edit_save_button.click()
@@ -1411,8 +1412,6 @@ class AssetPageTest(BaseTestCase):
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         check = 0
         assetpage = AssetPage(self.driver)
-        assetpage.create_asset("School")
-        assetpage.click_on_asset_link.click()
         sleep(2)
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(20)
@@ -1504,7 +1503,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_link.click()
 
     # Modify the values
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
     # Click on Save
         assetpage.get_asset_detail_edit_save_button.click()
