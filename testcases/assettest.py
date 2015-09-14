@@ -2601,37 +2601,292 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_To_Verify_Chart_Is_Displayed(self):
+    def test_AS_To_Verify_Chart_Is_Displayed_When_No_Asset_Type_Is_Selected(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
         # Click on Chart - Dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(5)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at place level."
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_Place_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+
+        # Select Asset Type dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/button[2]").click()
+        sleep(5)
+
+        # Click on the First element in the Asset Type drop down - Place
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/ul/li[1]/a").click()
+        sleep(5)
+
+        # Click on Chart - Dashboard
+        #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(5)
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at place level."
+
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_Place_And_Type_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+
+        # Select Asset Type dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/button[2]").click()
+        sleep(5)
+
+        # Click on the First element in the Asset Type drop down - Place
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/ul/li[1]/a").click()
+        sleep(5)
+        # Select the Type dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/button[2]").click()
+        sleep(2)
+
+        # Click on First element in the Type drop down
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul/li[1]/a").click()
+        sleep(2)
+
+        # Click on Chart - Dashboard
+        #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(5)
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at place level."
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_School_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+
+        #try:
+
+        # Select the School from Asset dropdown
+        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
+        sleep(5)
+        self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+        # Click on Chart dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(3)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at school level."
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_District_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
         sleep(5)
 
-        # Verify Graph label is displayed - here it should display as Asset Type
-        graphLabel = self.driver.find_element_by_class_name("graph_label")
-        print graphLabel.text
-        self.assertTrue(graphLabel.is_displayed(), "Graph label not displayed")
-        sleep(5)
+        #try:
 
-        # Verify Place text is displayed.
-        placeText = self.driver.find_element_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text'][1]/*[name()='tspan']").text
-        print placeText
-        self.assertEqual("place", placeText, "place text not displayed")
+        # Select the School from Asset dropdown
+        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
+        sleep(5)
+        self.driver.find_element_by_link_text("School").click()
         sleep(10)
 
+        # Select the District dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/button[2]").click()
+        sleep(2)
 
-        # Verify School text is displayed.
-        schoolText = self.driver.find_element_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text'][2]/*[name()='tspan']").text
-        print schoolText
-        self.assertEqual("school", schoolText, "school text not displayed")
+        # Click on First element in the District drop down
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul/li[1]/a").click()
+        sleep(2)
+        # Click on Chart dashboard
+        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(3)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+                # .//*[@id='asset_graph-0']/svg
+                print "Printing according to the chart wise data..."
+                # set namespace
+                #ns={'svg':'http://www.w3.org/2000/svg'}
+                # get data points - path which contain fill:#de2d26
+                #paths=t.xpath('//svg:path[contains(@style,'fill:#de2d26')]',namespaces=ns)
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at school and district level."
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_Grade_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
         sleep(5)
 
-        assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-        for asset in assets:
-            print asset.text
+        #try:
+
+        # Select the School from Asset dropdown
+        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
+        sleep(5)
+        self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Select the Grade dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/button[2]").click()
+        sleep(2)
+
+        # Click on First element in the Grade drop down
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul/li[1]/a").click()
+        sleep(2)
+        # Click on Chart dashboard
+        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(3)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+                '''
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+                '''
+        else :
+            print "No chart found at school and grade level."
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_School_Type_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+
+        #try:
+
+        # Select the School from Asset dropdown
+        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
+        sleep(5)
+        self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Select the Type dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/button[2]").click()
+        sleep(2)
+
+        # Click on First element in the Type drop down
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul/li[1]/a").click()
+        sleep(2)
+        # Click on Chart dashboard
+        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(3)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+                '''
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+                '''
+        else :
+            print "No chart found at school and school type level."
+
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
