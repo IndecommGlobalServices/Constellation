@@ -455,6 +455,7 @@ class AssetPageTest(BaseTestCase):
             lastname_error = assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
             sleep(3)
             assetpage.get_asset_newcontact_window_cross_button.click()
+            sleep(2)
             assetpage.retuntoappmainpage
             sleep(2)
             self.assertTrue(firstname_error, "Error message is not displayed for First Name")
@@ -553,6 +554,7 @@ class AssetPageTest(BaseTestCase):
             exp_error_message = assetpage.get_asset_newcontact_email_error_message.is_displayed()
             sleep(2)
             assetpage.get_asset_newcontact_window_cross_button.click()
+            sleep(2)
             assetpage.retuntoappmainpage
             self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
         except:
@@ -579,6 +581,7 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
             sleep(2)
             assetpage.get_asset_newcontact_cancel_button.click()
+            sleep(2)
             try:
                 if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
                     assetpage.retuntoappmainpage
@@ -595,7 +598,7 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_name_ascending = "stu, def, mno, jkl, ghi, pqr, abc, vwx"
@@ -615,12 +618,12 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_name_descending = "abc, vwx, ghi, pqr, mno, jkl, stu, def"
             assetpage.get_asset_point_of_contact_name_tab.click()
-            sleep(1)
+            sleep(2)
             assetpage.get_asset_point_of_contact_name_tab.click()
             act_name_list = assetpage.get_asset_point_of_contact_name_text_value
             act_name_list_value =[]
@@ -637,12 +640,12 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_title_ascending = "CC, HH, PP, ZZ"
             assetpage.get_asset_point_of_contact_title_tab.click()
-            sleep(1)
+            sleep(2)
             act_title_list = assetpage.get_asset_point_of_contact_title_text_value
             act_title_list_value = []
             for title in act_title_list:
@@ -658,12 +661,14 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_title_descending = "ZZ, PP, HH, CC"
             assetpage.get_asset_point_of_contact_title_tab.click()
+            sleep(1)
             assetpage.get_asset_point_of_contact_title_tab.click()
+            sleep(2)
             act_title_list = assetpage.get_asset_point_of_contact_title_text_value
             act_title_list_value = []
             for title in act_title_list:
@@ -679,12 +684,12 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_phone_ascending = "123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
             assetpage.get_asset_point_of_contact_phone_tab.click()
-            sleep(1)
+            sleep(2)
             act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
             act_phone_list_value = []
             for phone in act_phone_list:
@@ -700,13 +705,14 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_phone_descending = "661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
             assetpage.get_asset_point_of_contact_phone_tab.click()
             sleep(1)
             assetpage.get_asset_point_of_contact_phone_tab.click()
+            sleep(2)
             act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
             act_phone_list_value = []
             for phone in act_phone_list:
@@ -722,12 +728,12 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_email_ascending = "abc@def, ghi@jkl, mno@pqr, stu@vwx"
             assetpage.get_asset_point_of_contact_email_tab.click()
-            sleep(1)
+            sleep(2)
             act_email_list = assetpage.get_asset_point_of_contact_email_text_value
             act_email_list_value = []
             for email in act_email_list:
@@ -750,6 +756,7 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_point_of_contact_email_tab.click()
             sleep(1)
             assetpage.get_asset_point_of_contact_email_tab.click()
+            sleep(2)
             act_email_list = assetpage.get_asset_point_of_contact_email_text_value
             act_email_list_value = []
             for email in act_email_list:
@@ -768,7 +775,7 @@ class AssetPageTest(BaseTestCase):
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(8)
+            sleep(10)
             assetpage.delete_existing_contact()
             sleep(2)
             assetpage.get_asset_points_of_contact_header.click()
@@ -801,7 +808,7 @@ class AssetPageTest(BaseTestCase):
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-            sleep(8)
+            sleep(10)
             assetpage.delete_existing_contact()
             sleep(2)
             assetpage.get_asset_points_of_contact_header.click()
@@ -1009,8 +1016,6 @@ class AssetPageTest(BaseTestCase):
         placeText = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b").text
         print placeText
         self.assertEqual(assetpage.asset_place_name, placeText, "Marker name not displayed.")
-
-
 
     @attr(priority="high")
     def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
@@ -1511,7 +1516,7 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-            sleep(8)
+            sleep(10)
             assetpage.get_asset_detail_edit_link.click()
             assetpage.get_asset_detail_edit_email_text_box.clear()
             sleep(2)
@@ -1544,6 +1549,7 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             state = assetpage.get_asset_detail_edit_save_button.is_enabled()
             assetpage.get_asset_detail_edit_window_cross_button.click()
+            sleep(2)
             assetpage.retuntoappmainpage
             sleep(2)
             self.assertFalse(state, "Save Button is enabled even though EMAIL value is wrong")
@@ -1670,6 +1676,7 @@ class AssetPageTest(BaseTestCase):
             lastname_error = assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
             sleep(3)
             assetpage.get_asset_newcontact_window_cross_button.click()
+            sleep(3)
             assetpage.retuntoappmainpage
             sleep(2)
             self.assertTrue(firstname_error, "Error message is not displayed for First Name")
@@ -1765,6 +1772,7 @@ class AssetPageTest(BaseTestCase):
             exp_error_message = assetpage.get_asset_newcontact_email_error_message.is_displayed()
             sleep(2)
             assetpage.get_asset_newcontact_window_cross_button.click()
+            sleep(2)
             assetpage.retuntoappmainpage
             self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
         except:
@@ -1790,6 +1798,7 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
             sleep(2)
             assetpage.get_asset_newcontact_cancel_button.click()
+            sleep(2)
             try:
                 if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
                     assetpage.retuntoappmainpage
@@ -1806,11 +1815,12 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_name_ascending = "stu, def, mno, jkl, ghi, pqr, abc, vwx"
             assetpage.get_asset_point_of_contact_name_tab.click()
+            sleep(2)
             act_name_list = assetpage.get_asset_point_of_contact_name_text_value
             act_name_list_value = []
             for name in act_name_list:
@@ -1826,13 +1836,14 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-            sleep(6)
+            sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_name_descending = "abc, vwx, ghi, pqr, mno, jkl, stu, def"
             assetpage.get_asset_point_of_contact_name_tab.click()
             sleep(1)
             assetpage.get_asset_point_of_contact_name_tab.click()
+            sleep(2)
             act_name_list = assetpage.get_asset_point_of_contact_name_text_value
             act_name_list_value =[]
             for name in act_name_list:
@@ -1853,7 +1864,7 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_title_ascending = "CC, HH, PP, ZZ"
             assetpage.get_asset_point_of_contact_title_tab.click()
-            sleep(1)
+            sleep(2)
             act_title_list = assetpage.get_asset_point_of_contact_title_text_value
             act_title_list_value = []
             for title in act_title_list:
@@ -1874,7 +1885,9 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_title_descending = "ZZ, PP, HH, CC"
             assetpage.get_asset_point_of_contact_title_tab.click()
+            sleep(1)
             assetpage.get_asset_point_of_contact_title_tab.click()
+            sleep(2)
             act_title_list = assetpage.get_asset_point_of_contact_title_text_value
             act_title_list_value = []
             for title in act_title_list:
@@ -1895,7 +1908,7 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_phone_ascending = "123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
             assetpage.get_asset_point_of_contact_phone_tab.click()
-            sleep(1)
+            sleep(2)
             act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
             act_phone_list_value = []
             for phone in act_phone_list:
@@ -1918,6 +1931,7 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_point_of_contact_phone_tab.click()
             sleep(1)
             assetpage.get_asset_point_of_contact_phone_tab.click()
+            sleep(2)
             act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value
             act_phone_list_value = []
             for phone in act_phone_list:
@@ -1938,7 +1952,7 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_email_ascending = "abc@def, ghi@jkl, mno@pqr, stu@vwx"
             assetpage.get_asset_point_of_contact_email_tab.click()
-            sleep(1)
+            sleep(2)
             act_email_list = assetpage.get_asset_point_of_contact_email_text_value
             act_email_list_value = []
             for email in act_email_list:
@@ -1961,6 +1975,7 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_point_of_contact_email_tab.click()
             sleep(1)
             assetpage.get_asset_point_of_contact_email_tab.click()
+            sleep(2)
             act_email_list = assetpage.get_asset_point_of_contact_email_text_value
             act_email_list_value = []
             for email in act_email_list:
@@ -2235,8 +2250,9 @@ class AssetPageTest(BaseTestCase):
             image_count_after_file_upload = len(number_of_image_after_upload)
             sleep(2)
             caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='neutron_document_img']"
-            self.driver.find_element_by_xpath(caption_path).click()
-            sleep(2)
+            image_icon = self.driver.find_element_by_xpath(caption_path)
+            Hover = ActionChains(self.driver).move_to_element(image_icon)
+            Hover.perform()
             delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
             delete_icon.click()
             sleep(2)
@@ -2445,6 +2461,7 @@ class AssetPageTest(BaseTestCase):
             image_file_name = ["Test_Case_80_1.jpg", "Test_Case_80_2.jpg", "Test_Case_80_3.jpg"]
             for num in range(3):
                 assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
+                sleep(2)
 
             sleep(10)
             number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
