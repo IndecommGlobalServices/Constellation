@@ -13,6 +13,7 @@ from time import sleep
 from pages.IconListPage import IconListPage
 import json, os, re
 import selenium.webdriver as webdriver
+from selenium.webdriver.common.action_chains import ActionChains
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -1021,8 +1022,6 @@ class AssetPageTest(BaseTestCase):
         print placeText
         self.assertEqual(assetpage.asset_place_name, placeText, "Marker name not displayed.")
 
-
-
     @attr(priority="high")
     def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
         try:
@@ -1040,8 +1039,10 @@ class AssetPageTest(BaseTestCase):
             image_count_after_file_upload = len(number_of_image_after_upload)
             sleep(2)
             caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='neutron_document_img']"
-            self.driver.find_element_by_xpath(caption_path).click()
             sleep(2)
+            image_icon = self.driver.find_element_by_xpath(caption_path)
+            Hover = ActionChains(self.driver).move_to_element(image_icon)
+            Hover.perform()
             delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
             delete_icon.click()
             sleep(2)
@@ -1114,7 +1115,7 @@ class AssetPageTest(BaseTestCase):
             caption_val = "Test_Case_42"
             image_file_name = "Test_Case_42.jpg"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-            sleep(5)
+            sleep(10)
             image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
@@ -1141,16 +1142,19 @@ class AssetPageTest(BaseTestCase):
             caption_val = "Test_Case_43"
             image_file_name = "Test_Case_43.jpg"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-            sleep(70)
+            try:
+                WebDriverWait(self.driver, 140).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_header_save_text_locator),"415 - UNSUPPORTED MEDIA TYPE"))
+            except:
+                print "Error is not appeared."
             if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been passed.")
             else:
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("Test Case has been failed. No Error message displayed.")
+                self.assertTrue("Test Case has been Failed.")
         except:
             assetpage.click_on_asset_link.click()
-            self.assertFalse("Test case 43 has been failed")
+            self.assertFalse("Test case 43 has been failed. Error message is not appeared.")
 
 
     @attr(priority="high")
@@ -1165,7 +1169,7 @@ class AssetPageTest(BaseTestCase):
             caption_val = "Test_Case_44_1"
             image_file_name = "Test_Case_44_1.pdf"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-            sleep(14)
+            sleep(20)
             image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
@@ -1191,7 +1195,7 @@ class AssetPageTest(BaseTestCase):
             caption_val = "Test_Case_44_2"
             image_file_name = "Test_Case_44_2.html"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-            sleep(14)
+            sleep(15)
             image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
@@ -1247,6 +1251,7 @@ class AssetPageTest(BaseTestCase):
             image_file_name = ["Test_Case_45_1.jpg", "Test_Case_45_2.jpg", "Test_Case_45_3.jpg"]
             for num in range(3):
                 assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
+                sleep(4)
 
             sleep(10)
             number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
@@ -1274,17 +1279,15 @@ class AssetPageTest(BaseTestCase):
             number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
             image_count_before_file_upload = len(number_of_image_before_upload)
 
-            caption_val = "Test_Case_47"
+            caption_val = ""
             image_file_name = "Test_Case_47.jpg"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
             sleep(10)
             number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
             image_count_after_file_upload = len(number_of_image_after_upload)
 
-            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
-
-            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(image_file_name)
+            if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been passed")
             else:
@@ -2344,16 +2347,19 @@ class AssetPageTest(BaseTestCase):
             caption_val = "Test_Case_78"
             image_file_name = "Test_Case_78.jpg"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-            sleep(70)
+            try:
+                WebDriverWait(self.driver, 140).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_header_save_text_locator),"415 - UNSUPPORTED MEDIA TYPE"))
+            except:
+                print "Error is not appeared."
             if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been passed.")
             else:
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("Test Case has been failed. No Error message displayed.")
+                self.assertTrue("Test Case has been Failed.")
         except:
             assetpage.click_on_asset_link.click()
-            self.assertFalse("Test Case no 78 has been failed.")
+            self.assertFalse("Test case 78 has been failed. Error message is not appeared.")
 
     @attr(priority="high")
     def test_AS_79_1_To_Upload_PDF_With_Caption_School_Asset_ContactInfo_Field(self):
@@ -2367,16 +2373,16 @@ class AssetPageTest(BaseTestCase):
             caption_val = "Test_Case_79_1"
             image_file_name = "Test_Case_79_1.pdf"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-            sleep(14)
+            sleep(1)
             image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Raved")):
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been passed.")
             else:
                 assetpage.click_on_asset_link.click()
-                self.assertFalse("Test Case has been failed.")
+                self.assertFalse("Test Case has been Failed.")
         except:
             assetpage.click_on_asset_link.click()
             self.assertFalse("Test Case no 79_1 has been failed.")
@@ -2476,17 +2482,15 @@ class AssetPageTest(BaseTestCase):
             number_of_image_before_upload = assetpage.get_asset_photos_documents_header_text
             image_count_before_file_upload = len(number_of_image_before_upload)
 
-            caption_val = "Test_Case_82"
+            caption_val = ""
             image_file_name = "Test_Case_82.jpg"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
             sleep(10)
             number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
             image_count_after_file_upload = len(number_of_image_after_upload)
 
-            image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
-            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
-
-            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
+            header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(image_file_name)
+            if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been passed")
             else:

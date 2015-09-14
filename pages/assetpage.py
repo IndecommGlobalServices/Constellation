@@ -5,6 +5,7 @@ from time import sleep
 from selenium.webdriver.common.keys import Keys
 from selenium.common.exceptions import NoSuchElementException
 import os, json
+from selenium.webdriver.common.action_chains import ActionChains
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -1304,15 +1305,17 @@ class AssetPage(BasePageClass):
                     sleep(5)
                     index = count
                     xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
-                    image_icons[count-1].click()
-                    sleep(3)
+                    #image_icons[count-1].click()
+                    Hover = ActionChains(self.driver).move_to_element(image_icons[count-1])
+                    Hover.perform()
+                    sleep(2)
                     delete_icon = self.driver.find_element_by_xpath(xpath)
                     delete_icon.click()
                     sleep(3)
                     self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
                     sleep(10)
         except :
-            print "File deletion not done properly"
+            print "File deletion not done properly or some files could not be deleted."
 
 
     def upload_a_file_with_caption(self, image_caption, image_file_name):
