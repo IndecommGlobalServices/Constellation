@@ -8,12 +8,11 @@ from pages.assetpage import AssetPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
-from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
-from pages.IconListPage import IconListPage
 import json, os, re
-import selenium.webdriver as webdriver
 from selenium.webdriver.common.action_chains import ActionChains
+import selenium.webdriver as webdriver
+
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -23,14 +22,6 @@ os.chdir(cwd)
 
 
 class AssetPageTest(BaseTestCase):
-
-    @SkipTest
-    def test_test(self):
-        ass = AssetPage(self.driver)
-        sleep(10)
-        self.assertTrue(self.driver.find_element_by_id("asset_graph-0"))
-        print self.driver.find_element_by_id("asset_graph-0").get_attribute("")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -58,8 +49,6 @@ class AssetPageTest(BaseTestCase):
         AssetPage(self.driver).get_asset_link_delete_text.click()
         sleep(5)
         AssetPage(self.driver).get_asset_delete_button.click()
-        sleep(5)
-        print("Record deleted successfully.")
 
     @attr(priority="high")
     #@SkipTest
@@ -69,57 +58,52 @@ class AssetPageTest(BaseTestCase):
         AssetPage(self.driver).get_asset_link_delete_text.click()
         sleep(5)
         AssetPage(self.driver).get_deleteasset_cancel_button.click()
-        sleep(5)
-        print("Record cancelled successfully.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_06_To_Verify_The_Filter_Function_Filter_By_Place(self):
-        sleep(5)
         assetpage = AssetPage(self.driver)
-        print "Filtering data based on Place from Json"
-        getFilterData(self)
+        assetpage.asset_filter_based_on_place_and_school("Place")
         self.assertTrue(assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_07_To_Verify_The_Filter_Function_Filter_By_School(self):
-        sleep(5)
         assetpage = AssetPage(self.driver)
-        print "Filtering data based on School from Json"
-        getSchoolFilterData(self)
+        assetpage.asset_filter_based_on_place_and_school("School")
         self.assertTrue(assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_08_To_Verify_The_Filter_Function_Filter_By_School_District(self):
-        sleep(5)
         assetpage = AssetPage(self.driver)
         assetpage.get_asset_school_district()
-        sleep(10)
+        for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[4]"):
+            self.assertEqual(assetpage.selecteddistrict, item.text)
+        assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_09_To_Verify_The_Filter_Function_Filter_By_School_Grade(self):
-        sleep(5)
         assetpage = AssetPage(self.driver)
-        AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_grade()
-        sleep(10)
+        for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[5]"):
+            self.assertEqual(assetpage.selectedgrade, item.text)
+        assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_10_To_Verify_The_Filter_Function_Filter_By_School_Type(self):
-        sleep(5)
         assetpage = AssetPage(self.driver)
         AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_type()
-        sleep(10)
+        for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[6]"):
+            self.assertEqual(assetpage.selectedtype, item.text)
+        assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
-        sleep(5)
         assetpage = AssetPage(self.driver)
         assetpage.get_asset_reset_button.click()
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
@@ -129,7 +113,6 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
-
         assetpage = AssetPage(self.driver)
         with open(searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
@@ -152,7 +135,6 @@ class AssetPageTest(BaseTestCase):
                     else:
                         print searchName.text
                         sleep(2)
-                sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -162,18 +144,44 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_search_special_characters()
         sleep(2)
         assetpage.asset_search_assetname("")
-        sleep(5)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_14_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
+    def test_AS_14_17_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
+        check = 0
         assetpage = AssetPage(self.driver)
-        sleep(5)
         assetpage.create_asset("Place")
         sleep(10)
         #WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        self.driver.find_element_by_link_text("Assets").click()
+        assetpage.retuntoappmainpage()
+        sleep(5)
+        assetpage.asset_search_assetname(assetpage.asset_place_name)
+        sleep(5)
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+            if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
+                check = 1
+                #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+                break
+        assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
+        self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
+
+
+    #This test case should always follow AS_14
+    @attr(priority="high")
+    @SkipTest
+    def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
+        check =0
+        assetpage = AssetPage(self.driver)
+        sleep(10)
+        assetpage.asset_search_assetname(assetpage.asset_place_name)
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+            if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
+                check = 1
+                #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+                break
+        assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
+        self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
 
     @attr(priority="high")
     #@SkipTest
@@ -207,22 +215,6 @@ class AssetPageTest(BaseTestCase):
         self.assertRegexpMatches(aphone, regex, "Expected and actual value is not matching for EMAIL")
         assetpage.asset_overview_cancel_click()
 
-    @attr(priority="high")
-    #@SkipTest
-    def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
-        sleep(5)
-        check =0
-        assetpage = AssetPage(self.driver)
-        sleep(10)
-        assetpage.asset_search_assetname(assetpage.asset_place_name)
-        sleep(20)
-        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
-            if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
-                check = 1
-                #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
-                break
-        assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
-        self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
 
     @attr(priority="high")
     #@SkipTest
@@ -251,7 +243,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
 
     # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
 
@@ -266,7 +257,7 @@ class AssetPageTest(BaseTestCase):
 
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
-        assetpage.click_on_asset_link.click()
+        assetpage.retuntoappmainpage()
 
 
     @attr(priority="high")
@@ -275,7 +266,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
 
     # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
 
@@ -290,7 +280,7 @@ class AssetPageTest(BaseTestCase):
 
     # Assert on Asset name is displayed in the breadcrumb
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        assetpage.click_on_asset_link.click()
+        assetpage.retuntoappmainpage()
 
 
     @attr(priority="high")
@@ -299,7 +289,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
 
     # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
 
@@ -315,7 +304,7 @@ class AssetPageTest(BaseTestCase):
 
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
-        assetpage.click_on_asset_link.click()
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     #@SkipTest
@@ -323,7 +312,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
 
     # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
 
@@ -344,7 +332,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         self.assertRegexpMatches(aemail, regex, "Expected and actual value is not matching for EMAIL")
         assetpage.get_asset_detail_edit_cancel_button.click()
-        assetpage.click_on_asset_link.click()
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     #@SkipTest
@@ -1022,6 +1010,8 @@ class AssetPageTest(BaseTestCase):
         print placeText
         self.assertEqual(assetpage.asset_place_name, placeText, "Marker name not displayed.")
 
+
+
     @attr(priority="high")
     def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
         try:
@@ -1115,7 +1105,7 @@ class AssetPageTest(BaseTestCase):
             caption_val = "Test_Case_42"
             image_file_name = "Test_Case_42.jpg"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-            sleep(10)
+            sleep(5)
             image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
@@ -1147,14 +1137,16 @@ class AssetPageTest(BaseTestCase):
             except:
                 print "Error is not appeared."
             if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
-                assetpage.click_on_asset_link.click()
+                assetpage.retuntoappmainpage
                 self.assertTrue("Test Case has been passed.")
             else:
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been Failed.")
+                assetpage.retuntoappmainpage
+                self.assertFalse("Test Case has been failed. No Error message displayed.")
         except:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test case 43 has been failed. Error message is not appeared.")
+            assetpage.retuntoappmainpage
+            self.assertFalse("Test case 43 has been failed")
 
 
     @attr(priority="high")
@@ -2352,14 +2344,14 @@ class AssetPageTest(BaseTestCase):
             except:
                 print "Error is not appeared."
             if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
-                assetpage.click_on_asset_link.click()
+                assetpage.retuntoappmainpage
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.click_on_asset_link.click()
-                self.assertTrue("Test Case has been Failed.")
+                assetpage.retuntoappmainpage
+                self.assertFalse("Test Case has been failed. No Error message displayed.")
         except:
-            assetpage.click_on_asset_link.click()
-            self.assertFalse("Test case 78 has been failed. Error message is not appeared.")
+            assetpage.retuntoappmainpage
+            self.assertFalse("Test Case no 78 has been failed.")
 
     @attr(priority="high")
     def test_AS_79_1_To_Upload_PDF_With_Caption_School_Asset_ContactInfo_Field(self):
@@ -2373,16 +2365,16 @@ class AssetPageTest(BaseTestCase):
             caption_val = "Test_Case_79_1"
             image_file_name = "Test_Case_79_1.pdf"
             assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-            sleep(1)
+            sleep(14)
             image_caption_text = assetpage.get_asset_photos_documents_image_caption_text(caption_val)
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
-            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Raved")):
-                assetpage.click_on_asset_link.click()
+            if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
+                assetpage.retuntoappmainpage
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.click_on_asset_link.click()
-                self.assertFalse("Test Case has been Failed.")
+                assetpage.retuntoappmainpage
+                self.assertFalse("Test Case has been failed.")
         except:
             assetpage.click_on_asset_link.click()
             self.assertFalse("Test Case no 79_1 has been failed.")
@@ -2494,7 +2486,7 @@ class AssetPageTest(BaseTestCase):
                 assetpage.click_on_asset_link.click()
                 self.assertTrue("Test Case has been passed")
             else:
-                assetpage.click_on_asset_link.click()
+                assetpage.retuntoappmainpage
                 self.assertFalse("Test Case has been failed")
         except:
             assetpage.click_on_asset_link.click()
