@@ -9,7 +9,6 @@ from pages.assessmentpage import AssessmentPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
-from lib.getFilterData import getFilterData, getSchoolFilterData
 from time import sleep
 from pages.IconListPage import IconListPage
 import json, os, re
