@@ -878,15 +878,25 @@ class AssetPage(BasePageClass):
         else:
             print "No records found."
 
+    def retuntoappmainpage(self):
+        try:
+            self.click_on_asset_link()
+        except:
+            self.recoverapp()
+
+    def recoverapp(self):
+        print ("Application recovering")
+        basepage = BasePage(self.driver)
+        basepage.accessURL()
+        iconlistpage = IconListPage(self.driver)
+        iconlistpage.click_asset_icon()
+
+
     def asset_create_click(self):
         try:
             self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
         except:
-            print ("Application recovering")
-            basepage = BasePage(self.driver)
-            basepage.accessURL()
-            iconlistpage = IconListPage(self.driver)
-            iconlistpage.click_asset_icon()
+            self.recoverapp()
 
         # Click on Create asset
         sleep(5)
