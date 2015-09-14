@@ -765,11 +765,8 @@ class AssetPage(BasePageClass):
     '''
 
     def asset_filter_based_on_place_and_school(self, assetType):
-
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text(assetType).click()
-
-
 
     # This function is to select the school district
     def get_asset_school_district(self):
@@ -779,15 +776,15 @@ class AssetPage(BasePageClass):
         # Click on District dropdown
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
 
-
         # Check the values exists inside District dropdown
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(8)
+        sleep(10)
 
         if len(items) > 1:
-            self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
-            self.selecteddistrict = self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).text
+            firstelemet =self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator)
+            self.selecteddistrict = firstelemet.text
+            firstelemet.click()
         else:
             print "No items to select in District drop down."
         sleep(5)
@@ -810,8 +807,9 @@ class AssetPage(BasePageClass):
         sleep(5)
 
         if len(items) > 1:
-            self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
-            self.selectedgrade = self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).text
+            firstelement =self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator)
+            self.selectedgrade = firstelement.text
+            firstelement.click()
         else:
             print "No items to select in Grade drop down."
         sleep(5)
@@ -833,8 +831,9 @@ class AssetPage(BasePageClass):
         sleep(5)
 
         if len(items) > 1:
-            self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
-            selectedtype = self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).text
+            firstelemet =self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
+            self.selectedtype = firstelemet.text
+            firstelemet.click()
         else:
             print "No items to select in Type drop down."
         sleep(5)

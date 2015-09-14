@@ -63,6 +63,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.asset_filter_based_on_place_and_school("Place")
         self.assertTrue(assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
+        assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
     #@SkipTest
@@ -70,6 +71,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.asset_filter_based_on_place_and_school("School")
         self.assertTrue(assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter")
+        assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
     #@SkipTest
@@ -454,12 +456,12 @@ class AssetPageTest(BaseTestCase):
             sleep(3)
             assetpage.get_asset_newcontact_window_cross_button.click()
             sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             sleep(2)
             self.assertTrue(firstname_error, "Error message is not displayed for First Name")
             self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 29 has been failed.")
 
     @attr(priority="high")
@@ -487,11 +489,11 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_phone = assetpage.get_asset_contact_phone_value_text.text
             sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
             self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 30 has been failed.")
 
     @attr(priority="high")
@@ -607,7 +609,7 @@ class AssetPageTest(BaseTestCase):
             assetpage.retuntoappmainpage()
             self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
         except:
-            assetpage.click_on_asset_link.click()
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 33_1 has been failed.")
 
     @attr(priority="high")
@@ -1139,13 +1141,13 @@ class AssetPageTest(BaseTestCase):
             except:
                 print "Error is not appeared."
             if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed. No Error message displayed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case 43 has been failed")
 
 
@@ -1807,13 +1809,13 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             try:
                 if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertFalse("Contact has been created. Cancel button is not working")
             except:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("New Contact is not created.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 67 has been failed.")
 
     @attr(priority="high")
@@ -1831,10 +1833,10 @@ class AssetPageTest(BaseTestCase):
             act_name_list_value = []
             for name in act_name_list:
                 act_name_list_value.append(name.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 68_1 has been failed.")
 
     @attr(priority="high")
@@ -1854,10 +1856,10 @@ class AssetPageTest(BaseTestCase):
             act_name_list_value =[]
             for name in act_name_list:
                 act_name_list_value.append(name.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 68_2 has been failed.")
 
     @attr(priority="high")
@@ -1875,10 +1877,10 @@ class AssetPageTest(BaseTestCase):
             act_title_list_value = []
             for title in act_title_list:
                 act_title_list_value.append(title.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 68_3 has been failed.")
 
     @attr(priority="high")
@@ -1898,10 +1900,10 @@ class AssetPageTest(BaseTestCase):
             act_title_list_value = []
             for title in act_title_list:
                 act_title_list_value.append(title.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 68_4 has been failed.")
 
     @attr(priority="high")
@@ -1919,10 +1921,10 @@ class AssetPageTest(BaseTestCase):
             act_phone_list_value = []
             for phone in act_phone_list:
                 act_phone_list_value.append(phone.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 68_5 has been failed.")
 
     @attr(priority="high")
@@ -1942,10 +1944,10 @@ class AssetPageTest(BaseTestCase):
             act_phone_list_value = []
             for phone in act_phone_list:
                 act_phone_list_value.append(phone.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 68_6 has been failed.")
 
     @attr(priority="high")
@@ -1963,10 +1965,10 @@ class AssetPageTest(BaseTestCase):
             act_email_list_value = []
             for email in act_email_list:
                 act_email_list_value.append(email.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 68_7 has been failed.")
 
     @attr(priority="high")
@@ -1986,10 +1988,10 @@ class AssetPageTest(BaseTestCase):
             act_email_list_value = []
             for email in act_email_list:
                 act_email_list_value.append(email.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 68_8 has been failed.")
 
     @attr(priority="high")
@@ -2015,13 +2017,13 @@ class AssetPageTest(BaseTestCase):
             try:
                 if assetpage.get_asset_newcontact_delete_icon.is_displayed():
                     sleep(2)
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertFalse("New Contact is not Deleted")
             except NoSuchElementException:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("The Contact has been Deleted")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 69 has been failed.")
 
     @attr(priority="high")
@@ -2050,13 +2052,13 @@ class AssetPageTest(BaseTestCase):
                     sleep(2)
                     assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
                     sleep(2)
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertTrue("Pass. Cancel Button is working properly.")
             except NoSuchElementException:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("The Contact has been Deleted.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 70 has been failed.")
 
     @attr(priority="high")
@@ -2269,16 +2271,16 @@ class AssetPageTest(BaseTestCase):
             if (image_count_after_file_upload == image_count_after_file_delete+1):
                 try:
                     if (assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
-                        assetpage.retuntoappmainpage
+                        assetpage.retuntoappmainpage()
                         self.assertFalse("Test Case has been failed.")
                 except NoSuchElementException:
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 75 has been failed.")
 
     @attr(priority="high")
@@ -2310,15 +2312,15 @@ class AssetPageTest(BaseTestCase):
             number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
             image_count_after_file_upload = len(number_of_image_after_upload)
             if (image_count_after_file_upload == image_count_before_file_upload):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case 76 has been passed.")
 
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case 76 has been failed")
         except:
             self.assertFalse("Test case 76 has been failed")
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case has been failed")
 
     @attr(priority="high")
@@ -2338,13 +2340,13 @@ class AssetPageTest(BaseTestCase):
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
             if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed. No Caption Displayed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 77 has been failed.")
 
     @attr(priority="high")
@@ -2364,13 +2366,13 @@ class AssetPageTest(BaseTestCase):
             except:
                 print "Error is not appeared."
             if assetpage.get_asset_header_save_text.text ==r"415 - UNSUPPORTED MEDIA TYPE":
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed. No Error message displayed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 78 has been failed.")
 
     @attr(priority="high")
@@ -2390,13 +2392,13 @@ class AssetPageTest(BaseTestCase):
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
             if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 79_1 has been failed.")
 
     @attr(priority="high")
@@ -2416,13 +2418,13 @@ class AssetPageTest(BaseTestCase):
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
             if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 79_2 has been failed.")
 
     @attr(priority="high")
@@ -2442,13 +2444,13 @@ class AssetPageTest(BaseTestCase):
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
             if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 79_3 has been failed.")
 
 
@@ -2475,13 +2477,13 @@ class AssetPageTest(BaseTestCase):
 
 
             if (image_count_after_file_upload == image_count_before_file_upload+3):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 80 has been failed.")
 
     @attr(priority="high")
@@ -2504,13 +2506,13 @@ class AssetPageTest(BaseTestCase):
 
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(image_file_name)
             if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 82 has been failed.")
 
     @attr(priority="high")
@@ -2531,10 +2533,10 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             text = assetpage.get_asset_annotation_text_value.text
             act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 83_1 has been failed.")
 
     @attr(priority="high")
@@ -2555,10 +2557,10 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             text = assetpage.get_asset_annotation_text_value.text
             act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 83_2 has been failed.")
 
     @attr(priority="high")
@@ -2579,10 +2581,10 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             text = assetpage.get_asset_annotation_text_value.text
             act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 83_3 has been failed.")
 
     @attr(priority="high")
@@ -2609,10 +2611,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_save_button.click()
             text = assetpage.get_asset_annotation_text_value.text
             act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 83_4 has been failed.")
 
 
