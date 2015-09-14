@@ -1404,7 +1404,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.create_asset("School")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        assetpage.click_on_asset_link.click()
+        assetpage.retuntoappmainpage()
 
 
     @attr(priority = "high")

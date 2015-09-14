@@ -880,7 +880,8 @@ class AssetPage(BasePageClass):
 
     def retuntoappmainpage(self):
         try:
-            self.click_on_asset_link()
+            sleep(2)
+            self.click_on_asset_link.click()
         except:
             self.recoverapp()
 
