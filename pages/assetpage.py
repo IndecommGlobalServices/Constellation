@@ -783,7 +783,7 @@ class AssetPage(BasePageClass):
         # Check the values exists inside District dropdown
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(5)
+        sleep(8)
 
         if len(items) > 1:
             self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
@@ -931,25 +931,18 @@ class AssetPage(BasePageClass):
         self.select_asset_template_type("Place")
         sleep(10)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
-        self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_address.send_keys(self.asset_place_address)
-        self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_address2.send_keys(self.asset_place_address2)
-        self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_city.send_keys(self.asset_place_city)
-        self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_state.send_keys(self.asset_place_state)
-        self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_zip.send_keys(self.asset_place_zip)
-        self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_owner.send_keys(self.asset_place_owner)
-        self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type(self.asset_place_type)
 
@@ -976,41 +969,30 @@ class AssetPage(BasePageClass):
 
 
     def create_school_asset(self, index):
-        # Select School from the dropdown to create new School asset
-        #self.get_schooldata()
-
         sleep(4)
         if(index == 0):
             self.enter_asset_type_name.send_keys(self.asset_school_name[index])
-            self.enter_asset_type_name.send_keys(Keys.TAB)
         else:
             self.get_overview_editname_text_box.clear()
             self.get_overview_editname_text_box.send_keys(self.asset_school_name[index])
-            self.get_overview_editname_text_box.send_keys(Keys.TAB)
 
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(self.asset_school_address[index])
-        self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_address2.clear()
         self.enter_asset_type_address2.send_keys(self.asset_school_address2[index])
-        self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_city.clear()
         self.enter_asset_type_city.send_keys(self.asset_school_city[index])
-        self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_state.clear
         self.enter_asset_type_state.send_keys(self.asset_school_state[index])
-        self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_zip.clear()
         self.enter_asset_type_zip.send_keys(self.asset_school_zip[index])
-        self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_owner.clear()
         self.enter_asset_type_owner.send_keys(self.asset_school_owner[index])
-        self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
         self.enter_school_district(self.asset_school_district[index])
         sleep(2)

@@ -11,8 +11,6 @@ from nose.plugins.skip import SkipTest
 from time import sleep
 import json, os, re
 from selenium.webdriver.common.action_chains import ActionChains
-import selenium.webdriver as webdriver
-
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -361,7 +359,7 @@ class AssetPageTest(BaseTestCase):
         self.assertRegexpMatches(afax, regex, "Expected and actual value is not matching for FAX")
         sleep(5)
         assetpage.get_asset_detail_edit_cancel_button.click()
-        assetpage.retuntoappmainpage
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     #@SkipTest
@@ -385,7 +383,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
     # Assert on Asset name is displayed in the breadcrumb
         self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        assetpage.retuntoappmainpage
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     #@SkipTest
@@ -405,10 +403,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.create_new_contact(firstname,lastname)
             act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
             exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 27 has been failed.")
 
     @attr(priority="high")
@@ -427,13 +425,13 @@ class AssetPageTest(BaseTestCase):
                 if assetpage.get_asset_main_contact_window:
                     act_name_value = assetpage.get_asset_main_contact_name_text.text
                     exp_name_value = "Shri "+firstname+" "+lastname
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertEqual(act_name_value,exp_name_value)
             except NoSuchElementException:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("No Main Contact exists.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 28 has been failed.")
 
 
@@ -521,11 +519,11 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_email = assetpage.get_asset_contact_email_value_text.text
             sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             regex = re.compile(r'[\w.-]+@[\w.-]+')
             self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 31_1 has been failed.")
 
     @attr(priority="high")
@@ -554,11 +552,10 @@ class AssetPageTest(BaseTestCase):
             exp_error_message = assetpage.get_asset_newcontact_email_error_message.is_displayed()
             sleep(2)
             assetpage.get_asset_newcontact_window_cross_button.click()
-            sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 31_2 has been failed.")
 
     @attr(priority="high")
@@ -584,13 +581,13 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             try:
                 if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertFalse("Contact has been created. Cancel button is not working")
             except:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("New Contact is not created.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 32 has been failed.")
 
     @attr(priority="high")
@@ -607,10 +604,10 @@ class AssetPageTest(BaseTestCase):
             act_name_list_value = []
             for name in act_name_list:
                 act_name_list_value.append(name.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.click_on_asset_link.click()
             self.assertFalse("Test Case no 33_1 has been failed.")
 
     @attr(priority="high")
@@ -629,10 +626,10 @@ class AssetPageTest(BaseTestCase):
             act_name_list_value =[]
             for name in act_name_list:
                 act_name_list_value.append(name.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 33_2 has been failed.")
 
     @attr(priority="high")
@@ -650,10 +647,10 @@ class AssetPageTest(BaseTestCase):
             act_title_list_value = []
             for title in act_title_list:
                 act_title_list_value.append(title.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 33_3 has been failed.")
 
     @attr(priority="high")
@@ -673,10 +670,10 @@ class AssetPageTest(BaseTestCase):
             act_title_list_value = []
             for title in act_title_list:
                 act_title_list_value.append(title.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 33_4 has been failed.")
 
     @attr(priority="high")
@@ -694,10 +691,10 @@ class AssetPageTest(BaseTestCase):
             act_phone_list_value = []
             for phone in act_phone_list:
                 act_phone_list_value.append(phone.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 33_5 has been failed.")
 
     @attr(priority="high")
@@ -717,10 +714,10 @@ class AssetPageTest(BaseTestCase):
             act_phone_list_value = []
             for phone in act_phone_list:
                 act_phone_list_value.append(phone.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 33_6 has been failed.")
 
     @attr(priority="high")
@@ -738,10 +735,10 @@ class AssetPageTest(BaseTestCase):
             act_email_list_value = []
             for email in act_email_list:
                 act_email_list_value.append(email.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 33_7 has been failed.")
 
     @attr(priority="high")
@@ -761,10 +758,10 @@ class AssetPageTest(BaseTestCase):
             act_email_list_value = []
             for email in act_email_list:
                 act_email_list_value.append(email.text)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 33_8 has been failed.")
 
     @attr(priority="high")
@@ -791,13 +788,13 @@ class AssetPageTest(BaseTestCase):
             try:
                 if assetpage.get_asset_newcontact_delete_icon.is_displayed():
                     sleep(2)
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertFalse("New Contact is not Deleted")
             except NoSuchElementException:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("The Contact has been Deleted")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 34 has been failed.")
 
     @attr(priority="high")
@@ -827,13 +824,13 @@ class AssetPageTest(BaseTestCase):
                     sleep(2)
                     assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
                     sleep(2)
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertTrue("Pass. Cancel Button is working properly.")
             except NoSuchElementException:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("The Contact has been Deleted.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 35 has been failed.")
 
     @attr(priority="high")
@@ -1048,16 +1045,16 @@ class AssetPageTest(BaseTestCase):
             if (image_count_after_file_upload == image_count_after_file_delete+1):
                 try:
                     if (assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
-                        assetpage.retuntoappmainpage
+                        assetpage.retuntoappmainpage()
                         self.assertFalse("Test Case has been failed.")
                 except NoSuchElementException:
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertTrue("Test Case 40 has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case 40 has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case 40 has been failed.")
 
     @attr(priority="high")
@@ -1088,14 +1085,14 @@ class AssetPageTest(BaseTestCase):
             number_of_image_after_upload = assetpage.get_asset_photos_documents_header_text
             image_count_after_file_upload = len(number_of_image_after_upload)
             if (image_count_after_file_upload == image_count_before_file_upload):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case 41 has been passed.")
 
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case 41 has been failed")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case 41 has been failed")
 
     @attr(priority="high")
@@ -1115,13 +1112,13 @@ class AssetPageTest(BaseTestCase):
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
             if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed. No Caption Displayed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case 42 has been failed")
 
 
@@ -1169,13 +1166,13 @@ class AssetPageTest(BaseTestCase):
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
             if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case 44_1 has been failed")
 
     @attr(priority="high")
@@ -1195,13 +1192,13 @@ class AssetPageTest(BaseTestCase):
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
             if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case 44_2 has been failed")
 
     @attr(priority="high")
@@ -1221,13 +1218,13 @@ class AssetPageTest(BaseTestCase):
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(caption_val)
 
             if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and (assetpage.get_asset_header_save_text.text == r"Saved")):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case 44_3 has been failed")
 
 
@@ -1254,13 +1251,13 @@ class AssetPageTest(BaseTestCase):
 
 
             if (image_count_after_file_upload == image_count_before_file_upload+3):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed.")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case 45 has been failed")
 
     @attr(priority="high")
@@ -1283,13 +1280,13 @@ class AssetPageTest(BaseTestCase):
 
             header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(image_file_name)
             if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertTrue("Test Case has been passed")
             else:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("Test Case has been failed")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test case 47 has been failed")
 
 
@@ -1311,10 +1308,10 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             text = assetpage.get_asset_annotation_text_value.text
             act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 48_1 has been failed.")
 
     @attr(priority="high")
@@ -1335,10 +1332,10 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             text = assetpage.get_asset_annotation_text_value.text
             act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 48_2 has been failed.")
 
     @attr(priority="high")
@@ -1359,10 +1356,10 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             text = assetpage.get_asset_annotation_text_value.text
             act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 48_3 has been failed.")
 
     @attr(priority="high")
@@ -1389,30 +1386,40 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_save_button.click()
             text = assetpage.get_asset_annotation_text_value.text
             act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 48_4 has been failed.")
 
 
     @attr(priotity = "high")
-    def test_AS_49_To_Verify_Create_Asset_Function_Create_School_Asset(self):
+    def test_AS_49_50_To_Verify_Create_Asset_Function_Create_School_Asset(self):
+        check = 0
         assetpage = AssetPage(self.driver)
         assetpage.create_asset("School")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        assetpage.retuntoappmainpage
+        assetpage.retuntoappmainpage()
+        assetpage.asset_search_assetname(assetpage.asset_school_name[0])
+        sleep(5)
+        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+            if (i.text  == assetpage.asset_school_name[0]) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
+                check = 1
+                #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
+                break
+        assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
+        self.assertFalse(check == 0, "Newly created asset is not appaering with yellow background")
+        
 
-
+    #This test case should always follow AS_49
     @attr(priority = "high")
-    #  @SkipTest
+    @SkipTest
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         check = 0
         assetpage = AssetPage(self.driver)
-        sleep(2)
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
-        sleep(20)
+        sleep(10)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
             if (i.text  == assetpage.asset_school_name[0]) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
                 check = 1
@@ -1485,7 +1492,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
 
         self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
-        assetpage.retuntoappmainpage
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     #@SkipTest
@@ -1509,7 +1516,7 @@ class AssetPageTest(BaseTestCase):
 
     # Assert on Saved text is displayed
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
-        assetpage.retuntoappmainpage
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
@@ -1526,11 +1533,11 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             email = assetpage.get_asset_detail_email_value_text.text
             sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             regex = re.compile(r'[\w.-]+@[\w.-]+')
             self.assertRegexpMatches(email, regex, "Expected and actual value is not matching for EMAIL")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 59_1 has been failed.")
 
 
@@ -1550,11 +1557,11 @@ class AssetPageTest(BaseTestCase):
             state = assetpage.get_asset_detail_edit_save_button.is_enabled()
             assetpage.get_asset_detail_edit_window_cross_button.click()
             sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             sleep(2)
             self.assertFalse(state, "Save Button is enabled even though EMAIL value is wrong")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 59_2 has been failed.")
 
     @attr(priority="high")
@@ -1580,10 +1587,10 @@ class AssetPageTest(BaseTestCase):
             exp_first_last_name = assetpage.get_asset_contact_first_last_name_value_text.text
             sleep(2)
             regex = re.compile(r'[\w.-@]+\,\s[\w.-@]+')
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertRegexpMatches(exp_first_last_name, regex, "Expected and actual values are not matching for First & Last Name")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 62_1 has been failed.")
 
     @attr(priority="high")
@@ -1610,10 +1617,10 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_title = assetpage.get_asset_contact_title_value_text.text
             sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual("Title", exp_title, "Expected and actual value is not matching for Title")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 62_2 has been failed.")
 
     @attr(priority="high")
@@ -1629,10 +1636,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.create_new_contact(firstname,lastname)
             act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
             exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertEqual(act_new_contact_value, exp_new_contact_value, "Expected and actual values for new contact are not matching")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 62_3 has been failed.")
 
     @attr(priority="high")
@@ -1650,13 +1657,13 @@ class AssetPageTest(BaseTestCase):
                 if assetpage.get_asset_main_contact_window:
                     act_name_value = assetpage.get_asset_main_contact_name_text.text
                     exp_name_value = "Shri "+firstname+" "+lastname
-                    assetpage.retuntoappmainpage
+                    assetpage.retuntoappmainpage()
                     self.assertEqual(act_name_value,exp_name_value)
             except NoSuchElementException:
-                assetpage.retuntoappmainpage
+                assetpage.retuntoappmainpage()
                 self.assertFalse("No Main Contact exists.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 63 has been failed.")
 
     @attr(priority="high")
@@ -1677,12 +1684,12 @@ class AssetPageTest(BaseTestCase):
             sleep(3)
             assetpage.get_asset_newcontact_window_cross_button.click()
             sleep(3)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             sleep(2)
             self.assertTrue(firstname_error, "Error message is not displayed for First Name")
             self.assertTrue(lastname_error, "Error message is not displayed for Last Name")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 64 has been failed.")
 
     @attr(priority="high")
@@ -1709,11 +1716,11 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_phone = assetpage.get_asset_contact_phone_value_text.text
             sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
             self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 65 has been failed.")
 
     @attr(priority="high")
@@ -1740,11 +1747,11 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_email = assetpage.get_asset_contact_email_value_text.text
             sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             regex = re.compile(r'[\w.-]+@[\w.-]+')
             self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 67_1 has been failed.")
 
     @attr(priority="high")
@@ -1772,11 +1779,10 @@ class AssetPageTest(BaseTestCase):
             exp_error_message = assetpage.get_asset_newcontact_email_error_message.is_displayed()
             sleep(2)
             assetpage.get_asset_newcontact_window_cross_button.click()
-            sleep(2)
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
         except:
-            assetpage.retuntoappmainpage
+            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 67_2 has been failed.")
 
     @attr(priority="high")
@@ -2618,31 +2624,287 @@ class AssetPageTest(BaseTestCase):
         # Click on Chart - Dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(5)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at place level."
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_Place_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+
+        # Select Asset Type dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/button[2]").click()
+        sleep(5)
+
+        # Click on the First element in the Asset Type drop down - Place
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/ul/li[1]/a").click()
+        sleep(5)
+
+        # Click on Chart - Dashboard
+        #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(5)
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at place level."
+
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_Place_And_Type_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+
+        # Select Asset Type dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/button[2]").click()
+        sleep(5)
+
+        # Click on the First element in the Asset Type drop down - Place
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/ul/li[1]/a").click()
+        sleep(5)
+        # Select the Type dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/button[2]").click()
+        sleep(2)
+
+        # Click on First element in the Type drop down
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul/li[1]/a").click()
+        sleep(2)
+
+        # Click on Chart - Dashboard
+        #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(5)
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at place level."
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_School_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+
+        #try:
+
+        # Select the School from Asset dropdown
+        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
+        sleep(5)
+        self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+        # Click on Chart dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(3)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at school level."
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_District_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
         sleep(5)
 
-        # Verify Graph label is displayed - here it should display as Asset Type
-        graphLabel = self.driver.find_element_by_class_name("graph_label")
-        print graphLabel.text
-        self.assertTrue(graphLabel.is_displayed(), "Graph label not displayed")
-        sleep(5)
+        #try:
 
-        # Verify Place text is displayed.
-        placeText = self.driver.find_element_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text'][1]/*[name()='tspan']").text
-        print placeText
-        self.assertEqual("place", placeText, "place text not displayed")
+        # Select the School from Asset dropdown
+        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
+        sleep(5)
+        self.driver.find_element_by_link_text("School").click()
         sleep(10)
 
+        # Select the District dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/button[2]").click()
+        sleep(2)
 
-        # Verify School text is displayed.
-        schoolText = self.driver.find_element_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text'][2]/*[name()='tspan']").text
-        print schoolText
-        self.assertEqual("school", schoolText, "school text not displayed")
+        # Click on First element in the District drop down
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul/li[1]/a").click()
+        sleep(2)
+        # Click on Chart dashboard
+        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(3)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        self.driver.find_element_by_id("asset_graph-0")
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+                # .//*[@id='asset_graph-0']/svg
+                print "Printing according to the chart wise data..."
+                # set namespace
+                #ns={'svg':'http://www.w3.org/2000/svg'}
+                # get data points - path which contain fill:#de2d26
+                #paths=t.xpath('//svg:path[contains(@style,'fill:#de2d26')]',namespaces=ns)
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at school and district level."
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_Grade_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
         sleep(5)
 
-        assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-        for asset in assets:
-            print asset.text
+        #try:
+
+        # Select the School from Asset dropdown
+        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
+        sleep(5)
+        self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Select the Grade dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/button[2]").click()
+        sleep(2)
+
+        # Click on First element in the Grade drop down
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul/li[1]/a").click()
+        sleep(2)
+        # Click on Chart dashboard
+        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(3)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+                '''
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+                '''
+        else :
+            print "No chart found at school and grade level."
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_School_Type_Is_Selected(self):
+        assetpage = AssetPage(self.driver)
+        sleep(5)
+
+        #try:
+
+        # Select the School from Asset dropdown
+        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
+        sleep(5)
+        self.driver.find_element_by_link_text("School").click()
+        sleep(10)
+
+        # Select the Type dropdown
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/button[2]").click()
+        sleep(2)
+
+        # Click on First element in the Type drop down
+        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul/li[1]/a").click()
+        sleep(2)
+        # Click on Chart dashboard
+        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        sleep(3)
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) > 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+                '''
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+                '''
+        else :
+            print "No chart found at school and school type level."
+
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
