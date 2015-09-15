@@ -2715,6 +2715,7 @@ class AssetPageTest(BaseTestCase):
         # Display available chart names in the container
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
+
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) > 1:
             print "Printing chart names..."
@@ -2747,21 +2748,26 @@ class AssetPageTest(BaseTestCase):
         self.driver.find_element_by_link_text("School").click()
         sleep(10)
         # Click on Chart dashboard
-        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(3)
         # Display available chart names in the container
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
+
+
+        print self.driver.find_element_by_id("asset_graph-0").text
+        print self.driver.find_element_by_id("asset_graph-1").text
+        print self.driver.find_element_by_id("asset_graph-2").text
+
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) > 1:
             print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
-
-
                 print "Printing according to the chart wise data..."
                 #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                #assets = totalGraph.find_elements_by_xpath("//div[@id='asset_graph-0']//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                assets = totalGraph.find_elements_by_class_name("graph")
                 for asset in assets:
                     print asset.text
                     sleep(10)
