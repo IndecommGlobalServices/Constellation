@@ -26,6 +26,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_01_To_Verify_Delete_When_No_Assets_Are_Available(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.get_asset_select_action_drop_down.click()
         self.assertTrue(assetpage.get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
 
@@ -34,6 +35,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_02_To_Verify_Delete_Deselect_All_Assets(self):
         sleep(5)
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.get_select_checkbox_in_grid()
         assetpage.get_asset_select_action_drop_down.click()
         self.assertTrue(assetpage.get_asset_link_delete_text.is_enabled(), "Delete must be disabled.")
@@ -51,16 +53,19 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
-        AssetPage(self.driver).get_asset_list_first_check_box.click()
-        AssetPage(self.driver).get_asset_select_action_drop_down.click()
-        AssetPage(self.driver).get_asset_link_delete_text.click()
+        assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
+        assetpage.get_asset_list_first_check_box.click()
+        assetpage.get_asset_select_action_drop_down.click()
+        assetpage.get_asset_link_delete_text.click()
         sleep(5)
-        AssetPage(self.driver).get_deleteasset_cancel_button.click()
+        assetpage.get_deleteasset_cancel_button.click()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_06_To_Verify_The_Filter_Function_Filter_By_Place(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.asset_filter_based_on_place_and_school("Place")
         self.assertTrue(assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
         assetpage.get_asset_reset_button.click()
@@ -69,6 +74,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_07_To_Verify_The_Filter_Function_Filter_By_School(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.asset_filter_based_on_place_and_school("School")
         self.assertTrue(assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter")
         assetpage.get_asset_reset_button.click()
@@ -77,6 +83,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_08_To_Verify_The_Filter_Function_Filter_By_School_District(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.get_asset_school_district()
         for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[4]"):
             self.assertEqual(assetpage.selecteddistrict, item.text)
@@ -86,6 +93,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_09_To_Verify_The_Filter_Function_Filter_By_School_Grade(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.get_asset_school_grade()
         for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[5]"):
             self.assertEqual(assetpage.selectedgrade, item.text)
@@ -95,6 +103,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_10_To_Verify_The_Filter_Function_Filter_By_School_Type(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[6]"):
@@ -105,6 +114,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_11_To_Verify_The_Reset_Filter_Function(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.get_asset_reset_button.click()
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
@@ -114,6 +124,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         with open(searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
 
@@ -140,6 +151,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_13_To_Verify_The_Search_For_Asset_Function_Search_By_Special_Characters(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.asset_search_assetname("{}")
         assetpage.asset_search_special_characters()
         sleep(2)
@@ -150,6 +162,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_14_17_To_Verify_Create_Asset_Function_Create_Place_Asset(self):
         check = 0
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.create_asset("Place")
         sleep(10)
         #WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
@@ -173,6 +186,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_17_To_Verify_That_Created_Asset_Displayed_In_The_List(self):
         check =0
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
@@ -187,6 +201,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_15_To_Verify_Validation_Of_Name_Field(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
         sleep(2)
@@ -203,6 +218,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_16_To_Verify_Validation_Of_Phone_Field(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
         sleep(2)
@@ -220,6 +236,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_18_To_Verify_Create_Asset_Function_Cancel_Place_Asset(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         sleep(5)
         assetpage.asset_create_click()
         assetpage.asset_overview_cancel_click()
@@ -230,6 +247,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_19_To_Verify_Create_Asset_Function_Cancel_Place_Asset(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         sleep(5)
         assetpage.asset_create_click()
         assetpage.create_place_asset()
@@ -241,7 +259,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_20_To_Verify_That_The_Asset_In_Overview_Panel_Edit_Mode_Is_Saved_Successfully(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
     # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
@@ -264,7 +282,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_21_To_Verify_That_The_Asset_In_Overview_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
     # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
@@ -287,7 +305,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_23_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
     # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
@@ -310,7 +328,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_24_To_Verify_The_Validation_Of_Email_Field(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
     # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
@@ -338,9 +356,9 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_25_To_Verify_The_Validation_Of_Fax_Field(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
     # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
+
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
 
@@ -367,9 +385,8 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_26_To_Verify_That_The_Asset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
     # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
 
@@ -395,6 +412,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             #Select user defined place from the available asset list.
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(6)
@@ -418,6 +436,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(6)
             assetpage.delete_existing_contact()
@@ -442,6 +461,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_29_To_Click_On_Save_Without_FirstName_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(8)
             assetpage.get_asset_points_of_contact_header.click()
@@ -471,6 +491,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -503,6 +524,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -535,6 +557,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -567,6 +590,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstNameDel"
             lastname = "ZLastNameDel"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -596,12 +620,14 @@ class AssetPageTest(BaseTestCase):
     def test_AS_33_1_To_Name_Ascending_order_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.multiple_contact_create()
             sleep(2)
             exp_name_ascending = "stu, def, mno, jkl, ghi, pqr, abc, vwx"
             assetpage.get_asset_point_of_contact_name_tab.click()
+            sleep(2)
             act_name_list = assetpage.get_asset_point_of_contact_name_text_value
             act_name_list_value = []
             for name in act_name_list:
@@ -616,6 +642,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_33_2_To_Name_Descending_order_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.multiple_contact_create()
@@ -638,6 +665,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_33_3_To_Title_Ascending_order_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.multiple_contact_create()
@@ -659,6 +687,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_33_4_To_Title_Descending_order_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.multiple_contact_create()
@@ -682,6 +711,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_33_5_To_Phone_Ascending_order_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.multiple_contact_create()
@@ -703,6 +733,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_33_6_To_Phone_Descending_order_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.multiple_contact_create()
@@ -726,6 +757,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_33_7_To_Email_Ascending_order_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.multiple_contact_create()
@@ -747,6 +779,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_33_8_To_Email_Descending_order_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(6)
             assetpage.multiple_contact_create()
@@ -773,6 +806,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.delete_existing_contact()
@@ -806,6 +840,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             assetpage.delete_existing_contact()
@@ -839,9 +874,9 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_36_To_Verify_Latitude_and_Longitude_Boundary_Values(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
         # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
+
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
 
@@ -905,9 +940,9 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_37_To_Verify_Marker_Is_Displayed_On_The_Map_After_Setting_Latitude_And_Longitude_Values(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
 
         # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
 
@@ -959,9 +994,9 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_38_To_Verify_Place_Name_When_Click_On_Marker(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
         # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
+
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
 
@@ -1020,6 +1055,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(20)
@@ -1062,6 +1098,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_41_To_Upload_Image_Cancel_Place_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(10)
@@ -1101,6 +1138,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_42_To_Upload_Image_With_Caption_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(20)
@@ -1128,6 +1166,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_43_To_Upload_Image_With_Max_size_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(15)
@@ -1155,6 +1194,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_44_1_To_Upload_PDF_With_Caption_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(20)
@@ -1181,6 +1221,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_44_2_To_Upload_HTML_With_Caption_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(20)
@@ -1207,6 +1248,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_44_3_To_Upload_TXT_With_Caption_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(20)
@@ -1234,6 +1276,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_45_To_Upload_Images_Count_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
@@ -1266,6 +1309,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_47_To_Upload_Image_Place_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
@@ -1296,6 +1340,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_48_1_To_Annotation_Groups_Text_Place_Asset(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
@@ -1320,6 +1365,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_48_2_To_Annotation_Tenant_Text_Place_Asset(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
@@ -1341,9 +1387,10 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case no 48_2 has been failed.")
 
     @attr(priority="high")
-    def test_AS_83_3_To_Annotation_User_Text_Place_Asset(self):
+    def test_AS_48_3_To_Annotation_User_Text_Place_Asset(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
@@ -1368,6 +1415,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_48_4_To_Annotation_Edit_Text_Place_Asset(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
@@ -1399,6 +1447,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_49_50_To_Verify_Create_Asset_Function_Create_School_Asset(self):
         check = 0
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.create_asset("School")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
@@ -1420,6 +1469,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_50_To_Verify_That_Created_SchoolAsset_Displayed_In_The_List(self):
         check = 0
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(10)
         for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
@@ -1436,6 +1486,7 @@ class AssetPageTest(BaseTestCase):
 #    @SkipTest
     def test_AS_51_To_validate_SchoolName_Field(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("School")
         self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled())
@@ -1453,6 +1504,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.enter_school_district(assetpage.asset_school_district_grade_validation)
         assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation)
         assetpage.asset_overview_save_click()
+        assetpage.retuntoappmainpage()
         self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_grade_text)
 
@@ -1460,6 +1512,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.create_asset_cancel("School")
         self.assertTrue(self.driver.find_element_by_xpath(assetpage._asset_create_asset).is_displayed())
 
@@ -1467,6 +1520,7 @@ class AssetPageTest(BaseTestCase):
     @SkipTest
     def test_AS_55_To_Verify_SchoolAsset_Edit(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         assetpage.edit_asset("School")
         print assetpage.get_overview_address1_text
         self.assertEqual(assetpage.asset_school_name[assetpage.editSchool], assetpage.get_asset_overview_edit_name_text_box)
@@ -1477,9 +1531,8 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_56_To_Verify_That_The_SchoolAsset_In_Details_Panel_Edit_Mode_Is_Cancelled_Successfully(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
     # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(15)
 
@@ -1500,9 +1553,8 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_58_To_Verify_That_The_SchoolAsset_In_Details_Panel_Edit_Mode_Is_Saved_Successfully(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
     # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(15)
 
@@ -1524,6 +1576,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_59_1_To_Click_On_Save_With_Email_Asset_Detail_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
             assetpage.get_asset_detail_edit_link.click()
@@ -1547,6 +1600,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_59_2_To_Click_On_Save_With_Wrong_Email_Asset_Detail_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.get_asset_detail_edit_link.click()
@@ -1572,6 +1626,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -1601,6 +1656,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -1631,6 +1687,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(6)
             assetpage.delete_existing_contact()
@@ -1650,6 +1707,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(6)
             assetpage.delete_existing_contact()
@@ -1672,6 +1730,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_64_To_Click_On_Save_Without_FirstLastName_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name, "School")
             sleep(8)
             assetpage.get_asset_points_of_contact_header.click()
@@ -1700,6 +1759,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -1731,6 +1791,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -1762,6 +1823,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -1793,6 +1855,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstNameDel"
             lastname = "ZLastNameDel"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -1822,6 +1885,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_68_1_To_Name_Ascending_order_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
             assetpage.multiple_contact_create()
@@ -1843,6 +1907,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_68_2_To_Name_Descending_order_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
             assetpage.multiple_contact_create()
@@ -1866,6 +1931,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_68_3_To_Title_Ascending_order_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(6)
             assetpage.multiple_contact_create()
@@ -1887,6 +1953,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_68_4_To_Title_Descending_order_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(6)
             assetpage.multiple_contact_create()
@@ -1910,6 +1977,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_68_5_To_Phone_Ascending_order_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(6)
             assetpage.multiple_contact_create()
@@ -1931,6 +1999,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_68_6_To_Phone_Descending_order_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(6)
             assetpage.multiple_contact_create()
@@ -1954,6 +2023,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_68_7_To_Email_Ascending_order_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(6)
             assetpage.multiple_contact_create()
@@ -1975,6 +2045,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_68_8_To_Email_Descending_order_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(6)
             assetpage.multiple_contact_create()
@@ -2000,6 +2071,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -2032,6 +2104,7 @@ class AssetPageTest(BaseTestCase):
             firstname = "FirstName"
             lastname = "ZLastName"
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(8)
             assetpage.delete_existing_contact()
@@ -2065,9 +2138,9 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_71_To_Verify_Latitude_and_Longitude_Boundary_Values(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
         # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
+
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
 
@@ -2130,9 +2203,9 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_72_To_Verify_Marker_Is_Displayed_On_The_Map_After_Setting_Latitude_And_Longitude_Values(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
         # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
+
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
 
@@ -2184,9 +2257,9 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_73_To_Verify_Place_Name_When_Click_On_Marker(self):
         assetpage = AssetPage(self.driver)
-
+        self.appsanitycheck(assetpage)
         # Search and Click on Place in the List for EDIT mode
-        assetpage = AssetPage(self.driver)
+
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
 
@@ -2245,6 +2318,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_75_To_Delete_Upload_Image_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(20)
@@ -2286,6 +2360,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_76_To_Upload_Image_Cancel_School_Asset_ContactInfo_Field(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(10)
@@ -2327,6 +2402,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_77_To_Upload_Image_With_Caption_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(20)
@@ -2353,6 +2429,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_78_To_Upload_Image_With_Max_size_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(15)
@@ -2379,6 +2456,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_79_1_To_Upload_PDF_With_Caption_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(20)
@@ -2405,6 +2483,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_79_2_To_Upload_HTML_With_Caption_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(20)
@@ -2431,6 +2510,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_79_3_To_Upload_TXT_With_Caption_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(20)
@@ -2458,6 +2538,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_80_To_Upload_Images_Count_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
@@ -2490,6 +2571,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_82_To_Upload_Image_School_Asset_ContactInfo_Field(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on Place in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
@@ -2519,6 +2601,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_83_1_To_Annotation_Groups_Text_School_Asset(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on school in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
@@ -2543,6 +2626,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_83_2_To_Annotation_Tenant_Text_School_Asset(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on school in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
@@ -2567,6 +2651,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_83_3_To_Annotation_User_Text_School_Asset(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on school in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
@@ -2591,6 +2676,7 @@ class AssetPageTest(BaseTestCase):
     def test_AS_83_4_To_Annotation_Edit_Text_School_Asset(self):
         try:
             assetpage = AssetPage(self.driver)
+            self.appsanitycheck(assetpage)
             # Search and Click on school in the List for EDIT mode
             assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
             sleep(10)
@@ -2622,6 +2708,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_To_Verify_Chart_Is_Displayed(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         sleep(5)
         # Click on Chart - Dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
@@ -2651,6 +2738,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_To_Verify_Chart_Is_Displayed_When_Place_Is_Selected(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         sleep(5)
 
         # Select Asset Type dropdown
@@ -2691,6 +2779,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_To_Verify_Chart_Is_Displayed_When_Place_And_Type_Is_Selected(self):
         assetpage = AssetPage(self.driver)
+        self.appsanitycheck(assetpage)
         sleep(5)
 
         # Select Asset Type dropdown
@@ -2766,8 +2855,8 @@ class AssetPageTest(BaseTestCase):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                #assets = totalGraph.find_elements_by_xpath("//div[@id='asset_graph-0']//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
-                assets = totalGraph.find_elements_by_class_name("graph")
+                assets = totalGraph.find_elements_by_xpath("//div[@id='asset_graph-0']//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                #assets = totalGraph.find_elements_by_class_name("graph")
                 for asset in assets:
                     print asset.text
                     sleep(10)
@@ -2913,6 +3002,11 @@ class AssetPageTest(BaseTestCase):
         else :
             print "No chart found at school and school type level."
 
+    def appsanitycheck(self, assetpage):
+        try:
+            self.assertTrue(self.driver)
+        except:
+            assetpage.retuntoappmainpage()
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)
