@@ -1298,7 +1298,7 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             # Search and Click on place in the List for EDIT mode
-            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             exp_text_val = "This is Indecomm Testing. Groups."
             assetpage.delete_all_annotation()
@@ -1322,7 +1322,7 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             # Search and Click on place in the List for EDIT mode
-            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             exp_text_val = "This is Indecomm Testing. Tenant."
             assetpage.delete_all_annotation()
@@ -1346,7 +1346,7 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             # Search and Click on place in the List for EDIT mode
-            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             exp_text_val = "This is Indecomm Testing. Groups."
             assetpage.delete_all_annotation()
@@ -1370,7 +1370,7 @@ class AssetPageTest(BaseTestCase):
         try:
             assetpage = AssetPage(self.driver)
             # Search and Click on place in the List for EDIT mode
-            assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
+            assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
             sleep(10)
             exp_text_val = "This is Indecomm Testing. User."
             assetpage.delete_all_annotation()
