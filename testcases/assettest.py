@@ -895,7 +895,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         #locationTitle = assetpage.get_asset_location_title.text()
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
@@ -958,8 +958,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
-        print locationTitle
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
 
@@ -1012,8 +1011,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
-        print locationTitle
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
 
@@ -1048,7 +1046,6 @@ class AssetPageTest(BaseTestCase):
         markerAvailable.click()
         sleep(5)
         placeText = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b").text
-        print placeText
         self.assertEqual(assetpage.asset_place_name, placeText, "Marker name not displayed.")
 
     @attr(priority="high")
@@ -1353,12 +1350,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
             assetpage.get_asset_annotation_edit_window_save_button.click()
             sleep(2)
-            text = assetpage.get_asset_annotation_text_value.text
-            act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage()
+            text_val = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text_val.split(' - '))[1].strip()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 48_1 has been failed.")
 
     @attr(priority="high")
@@ -1378,12 +1373,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_dropdown_tenant.click()
             assetpage.get_asset_annotation_edit_window_save_button.click()
             sleep(2)
-            text = assetpage.get_asset_annotation_text_value.text
-            act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage()
+            text_val = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text_val.split(' - '))[1].strip()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 48_2 has been failed.")
 
     @attr(priority="high")
@@ -1403,12 +1396,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_dropdown_user.click()
             assetpage.get_asset_annotation_edit_window_save_button.click()
             sleep(2)
-            text = assetpage.get_asset_annotation_text_value.text
-            act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage()
+            text_val = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text_val.split(' - '))[1].strip()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 48_3 has been failed.")
 
     @attr(priority="high")
@@ -1434,12 +1425,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
             sleep(4)
             assetpage.get_asset_annotation_edit_window_save_button.click()
-            text = assetpage.get_asset_annotation_text_value.text
-            act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage()
+            text_val = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text_val.split(' - '))[1].strip()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 48_4 has been failed.")
 
 
@@ -1504,10 +1493,9 @@ class AssetPageTest(BaseTestCase):
         assetpage.enter_school_district(assetpage.asset_school_district_grade_validation)
         assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation)
         assetpage.asset_overview_save_click()
-        assetpage.retuntoappmainpage()
         self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_grade_text)
-
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     def test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel(self):
@@ -1522,7 +1510,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.appsanitycheck()
         assetpage.edit_asset("School")
-        print assetpage.get_overview_address1_text
         self.assertEqual(assetpage.asset_school_name[assetpage.editSchool], assetpage.get_asset_overview_edit_name_text_box)
         self.assertEqual(assetpage.asset_school_district[1], assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_grade[1], assetpage.get_overview_grade_text)
@@ -2159,7 +2146,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         #locationTitle = assetpage.get_asset_location_title.text()
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
@@ -2221,8 +2208,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
-        print locationTitle
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
 
@@ -2275,8 +2261,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
-        print locationTitle
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
 
@@ -2614,12 +2599,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
             assetpage.get_asset_annotation_edit_window_save_button.click()
             sleep(2)
-            text = assetpage.get_asset_annotation_text_value.text
-            act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage()
+            text_val = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text_val.split(' - '))[1].strip()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 83_1 has been failed.")
 
     @attr(priority="high")
@@ -2639,12 +2622,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_dropdown_tenant.click()
             assetpage.get_asset_annotation_edit_window_save_button.click()
             sleep(2)
-            text = assetpage.get_asset_annotation_text_value.text
-            act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage()
+            text_val = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text_val.split(' - '))[1].strip()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 83_2 has been failed.")
 
     @attr(priority="high")
@@ -2664,12 +2645,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_dropdown_user.click()
             assetpage.get_asset_annotation_edit_window_save_button.click()
             sleep(2)
-            text = assetpage.get_asset_annotation_text_value.text
-            act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage()
+            text_val = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text_val.split(' - '))[1].strip()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 83_3 has been failed.")
 
     @attr(priority="high")
@@ -2695,12 +2674,10 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)
             sleep(4)
             assetpage.get_asset_annotation_edit_window_save_button.click()
-            text = assetpage.get_asset_annotation_text_value.text
-            act_text_val = (text.split('-'))[0].strip()
-            assetpage.retuntoappmainpage()
+            text_val = assetpage.get_asset_annotation_text_value.text
+            act_text_val = (text_val.split(' - '))[1].strip()
             self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
         except:
-            assetpage.retuntoappmainpage()
             self.assertFalse("Test Case no 83_4 has been failed.")
 
 
