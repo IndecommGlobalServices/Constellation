@@ -9,7 +9,7 @@ from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from time import sleep
-import json, os, re, sys
+import json, os, re
 from selenium.webdriver.common.action_chains import ActionChains
 
 cwd = os.getcwd()
@@ -448,7 +448,7 @@ class AssetPageTest(BaseTestCase):
                     exp_name_value = "Shri "+firstname+" "+lastname
                     self.assertEqual(act_name_value,exp_name_value)
             except NoSuchElementException:
-                self.assertFalse(1,"No Main Contact exists.")
+                self.assertFalse("No Main Contact exists.")
         except Exception, e:
             error = "Test Case no 28 has been failed. Error message is ::"+str(e)
             self.assertFalse(1, error)
@@ -879,7 +879,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         #locationTitle = assetpage.get_asset_location_title.text()
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
@@ -942,8 +942,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
-        print locationTitle
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
 
@@ -996,8 +995,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
-        print locationTitle
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
 
@@ -1032,7 +1030,6 @@ class AssetPageTest(BaseTestCase):
         markerAvailable.click()
         sleep(5)
         placeText = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b").text
-        print placeText
         self.assertEqual(assetpage.asset_place_name, placeText, "Marker name not displayed.")
 
     @attr(priority="high")
@@ -1463,10 +1460,9 @@ class AssetPageTest(BaseTestCase):
         assetpage.enter_school_district(assetpage.asset_school_district_grade_validation)
         assetpage.enter_school_grade(assetpage.asset_school_district_grade_validation)
         assetpage.asset_overview_save_click()
-        assetpage.retuntoappmainpage()
         self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_district_grade_validation, assetpage.get_overview_grade_text)
-
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     def test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel(self):
@@ -1481,7 +1477,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.edit_asset("School")
-        print assetpage.get_overview_address1_text
         self.assertEqual(assetpage.asset_school_name[assetpage.editSchool], assetpage.get_asset_overview_edit_name_text_box)
         self.assertEqual(assetpage.asset_school_district[1], assetpage.get_overview_district_text)
         self.assertEqual(assetpage.asset_school_grade[1], assetpage.get_overview_grade_text)
@@ -2090,7 +2085,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         #locationTitle = assetpage.get_asset_location_title.text()
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
@@ -2152,8 +2147,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
-        print locationTitle
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
 
@@ -2206,8 +2200,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Verify that title is displayed as Asset Location.
-        locationTitle = self.driver.find_elements_by_xpath(".//*[@id='H1']")[1].text
-        print locationTitle
+        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
 
@@ -2610,32 +2603,14 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_To_Verify_Chart_Is_Displayed(self):
+    def test_AS_To_Verify_Chart_Is_Displayed_When_No_Asset_Type_Is_Selected(self):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         sleep(5)
         # Click on Chart - Dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(5)
-        # Display available chart names in the container
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
-        print len(totalGraphInContainer)
-        if len(totalGraphInContainer) > 1:
-            print "Printing chart names..."
-            for totalGraph in totalGraphInContainer:
-                print totalGraph.text
-
-
-                print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                for asset in assets:
-                    print asset.text
-                    sleep(10)
-
-        else :
-            print "No chart found at place level."
+        assetpage.charts_When_No_Asset_Type_Is_Selected()
 
 
     @attr(priority="high")
@@ -2646,10 +2621,12 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Select Asset Type dropdown
+        #assetpage.get_asset_place_type_drop_down.click()
         self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/button[2]").click()
         sleep(5)
 
         # Click on the First element in the Asset Type drop down - Place
+
         self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/ul/li[1]/a").click()
         sleep(5)
 
@@ -2657,25 +2634,7 @@ class AssetPageTest(BaseTestCase):
         #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(5)
 
-        # Display available chart names in the container
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
-        print len(totalGraphInContainer)
-        if len(totalGraphInContainer) >= 1:
-            print "Printing chart names..."
-            for totalGraph in totalGraphInContainer:
-                print totalGraph.text
-
-
-                print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                for asset in assets:
-                    print asset.text
-                    sleep(10)
-
-        else :
-            print "No chart found at place level."
+        assetpage.place_related_charts_Place_Is_Selected()
 
 
 
@@ -2705,35 +2664,13 @@ class AssetPageTest(BaseTestCase):
         #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(5)
 
-        # Display available chart names in the container
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
-
-        print len(totalGraphInContainer)
-        if len(totalGraphInContainer) > 1:
-            print "Printing chart names..."
-            for totalGraph in totalGraphInContainer:
-                print totalGraph.text
-
-
-                print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                for asset in assets:
-                    print asset.text
-                    sleep(10)
-
-        else :
-            print "No chart found at place level."
-
+        assetpage.place_related_charts_Place_And_Type_Is_Selected()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_To_Verify_Chart_Is_Displayed_When_School_Is_Selected(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
-
-        #try:
 
         # Select the School from Asset dropdown
         self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
@@ -2743,38 +2680,13 @@ class AssetPageTest(BaseTestCase):
         # Click on Chart dashboard
         #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(3)
-        # Display available chart names in the container
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
-
-
-        print self.driver.find_element_by_id("asset_graph-0").text
-        print self.driver.find_element_by_id("asset_graph-1").text
-        print self.driver.find_element_by_id("asset_graph-2").text
-
-        print len(totalGraphInContainer)
-        if len(totalGraphInContainer) > 1:
-            print "Printing chart names..."
-            for totalGraph in totalGraphInContainer:
-                print totalGraph.text
-                print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                assets = totalGraph.find_elements_by_xpath("//div[@id='asset_graph-0']//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
-                #assets = totalGraph.find_elements_by_class_name("graph")
-                for asset in assets:
-                    print asset.text
-                    sleep(10)
-
-        else :
-            print "No chart found at school level."
+        assetpage.school_related_charts_School_Is_Selected()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_District_Is_Selected(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
-
-        #try:
 
         # Select the School from Asset dropdown
         self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
@@ -2790,41 +2702,15 @@ class AssetPageTest(BaseTestCase):
         self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul/li[1]/a").click()
         sleep(2)
         # Click on Chart dashboard
-        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
-        sleep(3)
-        # Display available chart names in the container
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
-        self.driver.find_element_by_id("asset_graph-0")
-        print len(totalGraphInContainer)
-        if len(totalGraphInContainer) > 1:
-            print "Printing chart names..."
-            for totalGraph in totalGraphInContainer:
-                print totalGraph.text
+        #chartIcon = self.driver.find_element_by_xpath("//img[@title='Dashboard']")
 
-                # .//*[@id='asset_graph-0']/svg
-                print "Printing according to the chart wise data..."
-                # set namespace
-                #ns={'svg':'http://www.w3.org/2000/svg'}
-                # get data points - path which contain fill:#de2d26
-                #paths=t.xpath('//svg:path[contains(@style,'fill:#de2d26')]',namespaces=ns)
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                for asset in assets:
-                    print asset.text
-                    sleep(10)
-
-        else :
-            print "No chart found at school and district level."
-
+        assetpage.school_related_charts_School_And_District_Is_Selected()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_Grade_Is_Selected(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
-
-        #try:
 
         # Select the School from Asset dropdown
         self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
@@ -2842,33 +2728,14 @@ class AssetPageTest(BaseTestCase):
         # Click on Chart dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(3)
-        # Display available chart names in the container
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
-        print len(totalGraphInContainer)
-        if len(totalGraphInContainer) > 1:
-            print "Printing chart names..."
-            for totalGraph in totalGraphInContainer:
-                print totalGraph.text
 
-                '''
-                print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                for asset in assets:
-                    print asset.text
-                    sleep(10)
-                '''
-        else :
-            print "No chart found at school and grade level."
+        assetpage.school_related_charts_School_And_Grade_Is_Selected()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_To_Verify_Chart_Is_Displayed_When_School_And_School_Type_Is_Selected(self):
         assetpage = AssetPage(self.driver)
         sleep(5)
-
-        #try:
 
         # Select the School from Asset dropdown
         self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
@@ -2886,26 +2753,8 @@ class AssetPageTest(BaseTestCase):
         # Click on Chart dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(3)
-        # Display available chart names in the container
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
-        print len(totalGraphInContainer)
-        if len(totalGraphInContainer) > 1:
-            print "Printing chart names..."
-            for totalGraph in totalGraphInContainer:
-                print totalGraph.text
 
-                '''
-                print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
-                for asset in assets:
-                    print asset.text
-                    sleep(10)
-                '''
-        else :
-            print "No chart found at school and school type level."
-
+        assetpage.school_related_charts_School_And_Type_Is_Selected()
 
 if __name__ =='__main__':
     unittest.main(verbosity=2)

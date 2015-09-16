@@ -209,6 +209,8 @@ class AssetPage(BasePageClass):
     _asset_location_longitude_name_locator = "longitude"
     _asset_location_longitude_error_xpath_locator = "//div[2]/span/small"
 
+    # Charts related
+    _asset_chart_total_Graph_In_Container_xpath_locator = ".//*[@id='graphs_frame']/div/div/div/div[1]"
 
 
     _asset_count = 0
@@ -1316,6 +1318,182 @@ class AssetPage(BasePageClass):
                 sleep(2)
         except:
             print "Annotation text coulld not deletet or no annotation is available."
+
+    def charts_When_No_Asset_Type_Is_Selected(self):
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+                print "Printing according to the chart wise data..."
+                if totalGraph.text == "Asset Type":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+        else :
+
+            print "No chart found at place level."
+
+
+
+
+    def place_related_charts_Place_Is_Selected(self):
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+                print "Printing according to the chart wise data..."
+                if totalGraph.text == "Type":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+        else :
+            print "No chart found at place level."
+
+
+    def place_related_charts_Place_And_Type_Is_Selected(self):
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+
+                print "Printing according to the chart wise data..."
+                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                for asset in assets:
+                    print asset.text
+                    sleep(10)
+
+        else :
+            print "No chart found at place and type level."
+
+
+
+
+    def school_related_charts_School_Is_Selected(self):
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                if totalGraph.text == "District":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+                elif totalGraph.text == "Grade Level":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-1')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+                elif totalGraph.text == "School Type":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-2')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+        else :
+            print "No chart found at school level."
+
+
+    def school_related_charts_School_And_District_Is_Selected(self):
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+
+                if totalGraph.text == "Grade Level":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+                elif totalGraph.text == "School Type":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-1')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+        else :
+            print "No chart found at school and district level."
+
+
+    def school_related_charts_School_And_Grade_Is_Selected(self):
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+
+                if totalGraph.text == "District":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+                elif totalGraph.text == "School Type":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-1')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+        else :
+            print "No chart found at school and grade level."
+
+    def school_related_charts_School_And_Type_Is_Selected(self):
+
+        # Display available chart names in the container
+        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
+        sleep(10)
+        print len(totalGraphInContainer)
+        if len(totalGraphInContainer) >= 1:
+            print "Printing chart names..."
+            for totalGraph in totalGraphInContainer:
+                print totalGraph.text
+                print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+
+                if totalGraph.text == "District":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+                elif totalGraph.text == "Grade Level":
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-1')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    for asset in assets:
+                        print asset.text
+                        sleep(10)
+        else :
+            print "No chart found at school and type level."
 
     def _validate_page(self, driver):
         '''
