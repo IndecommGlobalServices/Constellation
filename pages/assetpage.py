@@ -877,14 +877,14 @@ class AssetPage(BasePageClass):
         iconlistpage.click_asset_icon()
 
 
-    def appsanitycheck(self):
+    def app_sanity_check(self):
         try:
             self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
         except:
             self.recoverapp()
 
     def asset_create_click(self):
-        self.appsanitycheck()
+        self.app_sanity_check()
         # Click on Create asset
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_create_asset).click()
