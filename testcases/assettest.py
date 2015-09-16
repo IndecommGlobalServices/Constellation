@@ -2690,24 +2690,7 @@ class AssetPageTest(BaseTestCase):
         # Click on Chart - Dashboard
         self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
         sleep(5)
-
-        # Display available chart names in the container
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
-        print len(totalGraphInContainer)
-        if len(totalGraphInContainer) >= 1:
-            print "Printing chart names..."
-            for totalGraph in totalGraphInContainer:
-                print totalGraph.text
-                print "Printing according to the chart wise data..."
-                if totalGraph.text == "Asset Type":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
-                    for asset in assets:
-                        print asset.text
-                        sleep(10)
-        else :
-
-            print "No chart found at place level."
+        assetpage.charts_When_No_Asset_Type_Is_Selected()
 
 
     @attr(priority="high")
