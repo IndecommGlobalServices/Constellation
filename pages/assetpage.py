@@ -5,6 +5,7 @@ from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 import os, json
+from selenium.webdriver.common.action_chains import ActionChains
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -766,11 +767,8 @@ class AssetPage(BasePageClass):
     '''
 
     def asset_filter_based_on_place_and_school(self, assetType):
-
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text(assetType).click()
-
-
 
     # This function is to select the school district
     def get_asset_school_district(self):
@@ -780,15 +778,15 @@ class AssetPage(BasePageClass):
         # Click on District dropdown
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
 
-
         # Check the values exists inside District dropdown
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(5)
+        sleep(10)
 
         if len(items) > 1:
-            self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).click()
-            self.selecteddistrict = self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator).text
+            firstelemet =self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator)
+            self.selecteddistrict = firstelemet.text
+            firstelemet.click()
         else:
             print "No items to select in District drop down."
         sleep(5)
@@ -811,8 +809,9 @@ class AssetPage(BasePageClass):
         sleep(5)
 
         if len(items) > 1:
-            self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).click()
-            self.selectedgrade = self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator).text
+            firstelement =self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator)
+            self.selectedgrade = firstelement.text
+            firstelement.click()
         else:
             print "No items to select in Grade drop down."
         sleep(5)
@@ -834,8 +833,9 @@ class AssetPage(BasePageClass):
         sleep(5)
 
         if len(items) > 1:
-            self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).click()
-            selectedtype = self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator).text
+            firstelemet =self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
+            self.selectedtype = firstelemet.text
+            firstelemet.click()
         else:
             print "No items to select in Type drop down."
         sleep(5)
@@ -879,12 +879,14 @@ class AssetPage(BasePageClass):
         iconlistpage.click_asset_icon()
 
 
-    def asset_create_click(self):
+    def appsanitycheck(self):
         try:
             self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
         except:
             self.recoverapp()
 
+    def asset_create_click(self):
+        self.appsanitycheck()
         # Click on Create asset
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_create_asset).click()
@@ -932,25 +934,18 @@ class AssetPage(BasePageClass):
         self.select_asset_template_type("Place")
         sleep(10)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
-        self.enter_asset_type_name.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_address.send_keys(self.asset_place_address)
-        self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_address2.send_keys(self.asset_place_address2)
-        self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_city.send_keys(self.asset_place_city)
-        self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_state.send_keys(self.asset_place_state)
-        self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_zip.send_keys(self.asset_place_zip)
-        self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_owner.send_keys(self.asset_place_owner)
-        self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type(self.asset_place_type)
 
@@ -977,41 +972,30 @@ class AssetPage(BasePageClass):
 
 
     def create_school_asset(self, index):
-        # Select School from the dropdown to create new School asset
-        #self.get_schooldata()
-
         sleep(4)
         if(index == 0):
             self.enter_asset_type_name.send_keys(self.asset_school_name[index])
-            self.enter_asset_type_name.send_keys(Keys.TAB)
         else:
             self.get_overview_editname_text_box.clear()
             self.get_overview_editname_text_box.send_keys(self.asset_school_name[index])
-            self.get_overview_editname_text_box.send_keys(Keys.TAB)
 
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(self.asset_school_address[index])
-        self.enter_asset_type_address.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_address2.clear()
         self.enter_asset_type_address2.send_keys(self.asset_school_address2[index])
-        self.enter_asset_type_address2.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_city.clear()
         self.enter_asset_type_city.send_keys(self.asset_school_city[index])
-        self.enter_asset_type_city.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_state.clear
         self.enter_asset_type_state.send_keys(self.asset_school_state[index])
-        self.enter_asset_type_state.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_zip.clear()
         self.enter_asset_type_zip.send_keys(self.asset_school_zip[index])
-        self.enter_asset_type_zip.send_keys(Keys.TAB)
         sleep(2)
         self.enter_asset_type_owner.clear()
         self.enter_asset_type_owner.send_keys(self.asset_school_owner[index])
-        self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(2)
         self.enter_school_district(self.asset_school_district[index])
         sleep(2)
@@ -1291,15 +1275,17 @@ class AssetPage(BasePageClass):
                     sleep(5)
                     index = count
                     xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
-                    image_icons[count-1].click()
-                    sleep(3)
+                    #image_icons[count-1].click()
+                    Hover = ActionChains(self.driver).move_to_element(image_icons[count-1])
+                    Hover.perform()
+                    sleep(2)
                     delete_icon = self.driver.find_element_by_xpath(xpath)
                     delete_icon.click()
                     sleep(3)
                     self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
                     sleep(10)
         except :
-            print "File deletion not done properly"
+            print "File deletion not done properly or some files could not be deleted."
 
 
     def upload_a_file_with_caption(self, image_caption, image_file_name):
