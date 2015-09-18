@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/mappage.py" afterPath="$PROJECT_DIR$/pages/mappage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/maptest.py" afterPath="$PROJECT_DIR$/testcases/maptest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Constellation.iws" />
@@ -31,8 +31,8 @@
       <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.2997199" vertical-offset="45538" max-vertical-offset="48382">
-              <caret line="2685" column="53" selection-start-line="2685" selection-start-column="53" selection-end-line="2685" selection-end-column="53" />
+            <state vertical-scroll-proportion="0.6165803" vertical-offset="0" max-vertical-offset="48382">
+              <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -43,18 +43,30 @@
       <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="22100" max-vertical-offset="25568">
-              <caret line="1321" column="45" selection-start-line="1321" selection-start-column="8" selection-end-line="1321" selection-end-column="45" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="25568">
+              <caret line="22" column="101" selection-start-line="21" selection-start-column="4" selection-end-line="22" selection-end-column="101" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IconListPage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
+      <file leaf-file-name="maptest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="714" max-vertical-offset="1207">
-              <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="2193">
+              <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+              <folding>
+                <element signature="e#29#44#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mappage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/mappage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="1258">
+              <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -71,6 +83,8 @@
         <option value="$PROJECT_DIR$/pages/IconListPage.py" />
         <option value="$PROJECT_DIR$/pages/assetpage.py" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
+        <option value="$PROJECT_DIR$/pages/mappage.py" />
+        <option value="$PROJECT_DIR$/testcases/maptest.py" />
       </list>
     </option>
   </component>
@@ -147,8 +161,8 @@
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="recentsLimit" value="5" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_To_Verify_Chart_Is_Displayed_When_No_Asset_Type_Is_Selected">
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_53_To_validate_GradeandDistrict_Fields" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittest MapPageTest.test_map_04_to_verify_Satelite_Default">
+    <configuration default="false" name="Unittest MapPageTest.test_map_05_to_verify_Satelite_Grey" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -158,75 +172,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_53_To_validate_GradeandDistrict_Fields" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_51_To_validate_SchoolName_Field" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_51_To_validate_SchoolName_Field" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_To_Verify_Chart_Is_Displayed" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_To_Verify_Chart_Is_Displayed" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="CLASS_NAME" value="MapPageTest" />
+      <option name="METHOD_NAME" value="test_map_05_to_verify_Satelite_Grey" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -238,7 +186,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_To_Verify_Chart_Is_Displayed_When_No_Asset_Type_Is_Selected" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest MapPageTest.test_map_03_to_verify_Terrain" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -248,9 +196,81 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_To_Verify_Chart_Is_Displayed_When_No_Asset_Type_Is_Selected" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="CLASS_NAME" value="MapPageTest" />
+      <option name="METHOD_NAME" value="test_map_03_to_verify_Terrain" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest MapPageTest.test_map_04_to_verify_Satelite_Default" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="CLASS_NAME" value="MapPageTest" />
+      <option name="METHOD_NAME" value="test_map_04_to_verify_Satelite_Default" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in maptest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest MapPageTest.test_map_01_to_verify_default" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="CLASS_NAME" value="MapPageTest" />
+      <option name="METHOD_NAME" value="test_map_01_to_verify_default" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -385,19 +405,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_53_To_validate_GradeandDistrict_Fields" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_51_To_validate_SchoolName_Field" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_To_Verify_Chart_Is_Displayed" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_To_Verify_Chart_Is_Displayed_When_No_Asset_Type_Is_Selected" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_05_to_verify_Satelite_Grey" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_03_to_verify_Terrain" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_04_to_verify_Satelite_Default" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_01_to_verify_default" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_To_Verify_Chart_Is_Displayed_When_No_Asset_Type_Is_Selected" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_To_Verify_Chart_Is_Displayed" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_51_To_validate_SchoolName_Field" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_54_To_Verify_Create_Asset_Function_Create_School_Asset_Cancel" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_53_To_validate_GradeandDistrict_Fields" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_04_to_verify_Satelite_Default" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_01_to_verify_default" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_05_to_verify_Satelite_Grey" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_03_to_verify_Terrain" />
       </list>
     </recent_temporary>
   </component>
@@ -415,7 +435,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442395196307</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added one function for chart in When no asset type is selected">
+      <created>1442395814718</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1442395814718</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -460,7 +486,8 @@
       <TodoPanelSettings />
     </option>
     <MESSAGE value="Rectified displaying text in Charts" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rectified displaying text in Charts" />
+    <MESSAGE value="added one function for chart in When no asset type is selected" />
+    <option name="LAST_COMMIT_MESSAGE" value="added one function for chart in When no asset type is selected" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -571,26 +598,52 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/basepage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38345864" vertical-offset="0" max-vertical-offset="399">
+          <caret line="10" column="8" selection-start-line="10" selection-start-column="8" selection-end-line="10" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="44" column="16" selection-start-line="44" selection-start-column="16" selection-end-line="44" selection-end-column="16" />
+        <state vertical-scroll-proportion="0.2982456" vertical-offset="0" max-vertical-offset="1207">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="22100" max-vertical-offset="25568">
-          <caret line="1321" column="45" selection-start-line="1321" selection-start-column="8" selection-end-line="1321" selection-end-column="45" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="25568">
+          <caret line="22" column="101" selection-start-line="21" selection-start-column="4" selection-end-line="22" selection-end-column="101" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/mappage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="1258">
+          <caret line="35" column="0" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="362" max-vertical-offset="2193">
+          <caret line="42" column="18" selection-start-line="42" selection-start-column="18" selection-end-line="42" selection-end-column="18" />
+          <folding>
+            <element signature="e#29#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2997199" vertical-offset="45538" max-vertical-offset="48382">
-          <caret line="2685" column="53" selection-start-line="2685" selection-start-column="53" selection-end-line="2685" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.6165803" vertical-offset="0" max-vertical-offset="48382">
+          <caret line="14" column="17" selection-start-line="14" selection-start-column="17" selection-end-line="14" selection-end-column="17" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
