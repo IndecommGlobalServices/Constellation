@@ -4,7 +4,10 @@ from basepage import BasePage
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
-import os, json
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+import os, json, inspect
 from selenium.webdriver.common.action_chains import ActionChains
 
 cwd = os.getcwd()
@@ -869,10 +872,11 @@ class AssetPage(BasePageClass):
             sleep(2)
             self.click_on_asset_link.click()
         except:
-            self.recoverapp()
+            self.recoverapp(inspect.stack()[1][3])
 
-    def recoverapp(self):
+    def recoverapp(self, inspectfn):
         print ("Application recovering")
+        print inspectfn
         basepage = BasePage(self.driver)
         basepage.accessURL()
         iconlistpage = IconListPage(self.driver)
@@ -1236,7 +1240,7 @@ class AssetPage(BasePageClass):
         self.get_asset_newcontact_email_textbox.send_keys(email)
         sleep(2)
         self.get_asset_newcontact_save_button.click()
-        sleep(2)
+        WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ".//*[@id='header']/div[3]"), "Saved"))
 
     def multiple_contact_create(self):
         try:
@@ -1274,11 +1278,12 @@ class AssetPage(BasePageClass):
                 for count in range(num_of_files, 0, -1):
                     sleep(5)
                     index = count
-                    xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
+                    #xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
+                    xpath = ".//*[@id='widgets']/div[6]/div[1]/div/div[2]/div/div[" + str(index)+ "]/img[4]"
                     #image_icons[count-1].click()
-                    Hover = ActionChains(self.driver).move_to_element(image_icons[count-1])
+                    image_icon_xpath =  self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/div/div[" + str(index)+ "]")
+                    Hover = ActionChains(self.driver).move_to_element(image_icon_xpath)
                     Hover.perform()
-                    sleep(2)
                     delete_icon = self.driver.find_element_by_xpath(xpath)
                     delete_icon.click()
                     sleep(3)
@@ -1304,7 +1309,7 @@ class AssetPage(BasePageClass):
             sleep(2)
             # Click Upload.
             self.get_asset_photos_documents_window_upload_button.click()
-            sleep(2)
+            WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ".//*[@id='header']/div[3]"), "Saved"))
         except:
             print "File uploads failed."
 
