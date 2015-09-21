@@ -25,7 +25,13 @@ class AssessmentPage(BasePageClass):
     _ast_search_text_box_locator = ".//*[@id='search-assessments']"
 
     #Create Assessment related locators
-    _ast_create_assessment_button_locator = ".//*[@id='page_content']/div[2]/img[1]"
+    _ast_main_create_assessment_button_locator = "//img[@alt='Create assessment']"
+    _ast_create_assessments_button_locator = "//img[@alt='Create assessments']"
+    _ast_create_templatetype_dropdown_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/button[2]"
+    _ast_create_haystax_template_option_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/ul/li/a"
+    _ast_create_assignedto_text_box_locator = ".//*[@id='create_multi_assessment_assignedto']"
+    _ast_create_start_date_text_box_locator = ".//*[@id='create_multi_assessment_datepicker-01']"
+    _ast_create_end_date_text_box_locator = ".//*[@id='create_multi_assessment_datepicker-02']"
 
 
     def __init__(self, driver):
@@ -63,9 +69,32 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._ast_search_text_box_locator)
 
     @property
-    def get_create_assessment_button(self):
-        return self.driver.find_element_by_xpath(self._ast_create_assessment_button_locator)
+    def get_main_create_assessment_button(self):
+        return self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator)
 
+    @property
+    def get_create_assessments_button(self):
+        return self.driver.find_element_by_xpath(self._ast_create_assessments_button_locator)
+
+    @property
+    def get_create_assignedto_textbox(self):
+        return self.driver.find_element_by_xpath(self._ast_create_assignedto_text_box_locator)
+
+    @property
+    def get_create_startdate_textbox(self):
+        return self.driver.find_element_by_xpath(self._ast_create_start_date_text_box_locator)
+
+    @property
+    def get_create_enddate_textbox(self):
+        return self.driver.find_element_by_xpath(self._ast_create_end_date_text_box_locator)
+
+    @property
+    def get_create_templatetype_dropdown(self):
+        return self.driver.find_element_by_xpath(self._ast_create_templatetype_dropdown_locator)
+
+    @property
+    def get_create_haystax_template_option(self):
+        return self.driver.find_element_by_xpath(self._ast_create_haystax_template_option_locator)
 
     def _validate_page(self, driver):
         pass
