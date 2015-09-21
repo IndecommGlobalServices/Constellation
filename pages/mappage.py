@@ -12,6 +12,7 @@ class MapPage(BasePageClass):
     # Map views related locators like default, Night View, Terrain, Satelite Default, Satelite Grey
     _map_mouse_hover_action_icon_xpath_locator = "//a[@title='Layers']"
     _map_click_base_map_action_accordion_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/label"
+
     _map_click_default_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[1]/input"
     _map_click_night_view_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[2]/input"
     _map_click_terrain_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[3]/input"
