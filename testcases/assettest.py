@@ -1,3 +1,4 @@
+import inspect
 import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -513,8 +514,8 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_phone = assetpage.get_asset_contact_phone_value_text.text
             sleep(2)
-            assetpage.retuntoappmainpage()
             regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
+            assetpage.retuntoappmainpage()
             self.assertRegexpMatches(exp_phone, regex, "Expected and actual phone value are not matching.")
         except Exception, e:
             error = "Test Case no 30 has been failed. Error message is ::"+str(e)
@@ -547,8 +548,8 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             exp_email = assetpage.get_asset_contact_email_value_text.text
             sleep(2)
-            assetpage.retuntoappmainpage()
             regex = re.compile(r'[\w.-]+@[\w.-]+')
+            assetpage.retuntoappmainpage()
             self.assertRegexpMatches(exp_email, regex, "Expected and actual value is not matching for EMAIL.")
         except Exception, e:
             error = "Test Case no 31_1 has been failed. Error message is ::"+str(e)
@@ -613,8 +614,10 @@ class AssetPageTest(BaseTestCase):
             sleep(2)
             try:
                 if assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
+                    assetpage.retuntoappmainpage()
                     self.assertFalse("Contact has been created. Cancel button is not working.")
             except:
+                assetpage.retuntoappmainpage()
                 self.assertTrue("New Contact is not created.")
         except Exception, e:
             error = "Test Case no 32 has been failed. Error message is ::"+str(e)
@@ -637,11 +640,13 @@ class AssetPageTest(BaseTestCase):
             act_name_list_value = []
             for name in act_name_list:
                 act_name_list_value.append(name.text)
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
         except Exception, e:
             error = "Test Case no 33_1 has been failed. Error message is ::"+str(e)
             assetpage.retuntoappmainpage()
             self.assertFalse(1, error)
+
 
     @attr(priority="high")
     def test_AS_33_2_To_Name_Descending_order_Place_Asset_ContactInfo_Field(self):
@@ -661,6 +666,7 @@ class AssetPageTest(BaseTestCase):
             act_name_list_value =[]
             for name in act_name_list:
                 act_name_list_value.append(name.text)
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
         except Exception, e:
             error = "Test Case no 33_2 has been failed. Error message is ::"+str(e)
@@ -707,6 +713,7 @@ class AssetPageTest(BaseTestCase):
             act_title_list_value = []
             for title in act_title_list:
                 act_title_list_value.append(title.text)
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
         except Exception, e:
             error = "Test Case no 33_4 has been failed. Error message is ::"+str(e)
@@ -753,6 +760,7 @@ class AssetPageTest(BaseTestCase):
             act_phone_list_value = []
             for phone in act_phone_list:
                 act_phone_list_value.append(phone.text)
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
         except Exception, e:
             error = "Test Case no 33_6 has been failed. Error message is ::"+str(e)
@@ -799,6 +807,7 @@ class AssetPageTest(BaseTestCase):
             act_email_list_value = []
             for email in act_email_list:
                 act_email_list_value.append(email.text)
+            assetpage.retuntoappmainpage()
             self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
         except Exception, e:
             error = "Test Case no 33_8 has been failed. Error message is ::"+str(e)
@@ -990,12 +999,8 @@ class AssetPageTest(BaseTestCase):
 
         # Verify that Marker is available on the Map in Edit page
         markerAvailable =  self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[3]/img")
-        assetpage.retuntoappmainpage()
         self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
-
-    def test_test(self):
-        app =AssetPage(self.driver)
-        app.recoverapp()
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     #@SkipTest
@@ -1055,8 +1060,8 @@ class AssetPageTest(BaseTestCase):
         markerAvailable.click()
         sleep(5)
         placeText = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b").text
-        assetpage.retuntoappmainpage()
         self.assertEqual(assetpage.asset_place_name, placeText, "Marker name not displayed.")
+        assetpage.retuntoappmainpage()
 
     @attr(priority="high")
     def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
@@ -2284,8 +2289,8 @@ class AssetPageTest(BaseTestCase):
 
         # Verify that Marker is available on the Map in Edit page
         markerAvailable =  self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[3]/img")
-        assetpage.retuntoappmainpage()
         self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
+        assetpage.retuntoappmainpage()
         sleep(5)
 
 
@@ -2342,13 +2347,12 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
         sleep(5)
 
-
         # Click on Marker and Verify the text of the place
         markerAvailable.click()
         sleep(5)
         schoolText = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b").text
-        assetpage.retuntoappmainpage()
         self.assertEqual(assetpage.asset_school_name[0], schoolText, "Marker name not displayed.")
+        assetpage.retuntoappmainpage()
 
 
     @attr(priority="high")

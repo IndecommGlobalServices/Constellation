@@ -46,9 +46,22 @@ class AssessmenttPageTest(BaseTestCase):
             print "Search textbox not available"
 
         try:
-            self.assertTrue(assessmentpage.get_create_assessment_button)
+            self.assertTrue(assessmentpage.get_main_create_assessment_button)
         except:
             print "Create assessment button not present"
+
+    def AST_01_To_test_creation_of_new_assessment_without_StartEnd_and_Email_info(self):
+        ast = AssessmentPage(self.driver)
+        sleep(10)
+        ast.get_main_create_assessment_button.click()
+        sleep(10)
+        ast.get_create_templatetype_dropdown.click()
+        ast.get_create_haystax_template_option.click()
+        ast.get_create_assignedto_textbox.clear()
+        ast.get_create_startdate_textbox.clear()
+        ast.get_create_enddate_textbox.clear()
+
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

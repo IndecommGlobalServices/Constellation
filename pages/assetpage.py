@@ -112,6 +112,7 @@ class AssetPage(BasePageClass):
 
     # Point of Contacts related
     _asset_points_of_contact_header_locator = "//div[contains(text(), 'Points of Contact')]"
+    _assets_points_of_contact_title_locator = ".//*[@id='asset_contact_modal_title']"
     _asset_add_contact_button_locator = "btn_add_asset_contact"
     _asset_newcontact_firstname_textbox_locator = "first_name"
     _asset_newcontact_lastname_textbox_locator = "last_name"
@@ -836,7 +837,7 @@ class AssetPage(BasePageClass):
         sleep(5)
 
         if len(items) > 1:
-            firstelemet =self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
+            firstelemet = self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
             self.selectedtype = firstelemet.text
             firstelemet.click()
         else:
@@ -871,12 +872,13 @@ class AssetPage(BasePageClass):
         try:
             sleep(2)
             self.click_on_asset_link.click()
+            WebDriverWait(self.driver,30).until(expected_conditions.presence_of_element_located((By.XPATH, self._asset_create_asset)))
         except:
-            self.recoverapp(inspect.stack()[1][3])
+            inspectstack = inspect.stack()[1][3]
+            self.recoverapp(inspectstack)
 
-    def recoverapp(self, inspectfn):
-        print ("Application recovering")
-        print inspectfn
+    def recoverapp(self, inspectstack):
+        print ("Application recovering called from " + inspectstack)
         basepage = BasePage(self.driver)
         basepage.accessURL()
         iconlistpage = IconListPage(self.driver)
@@ -887,7 +889,8 @@ class AssetPage(BasePageClass):
         try:
             self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
         except:
-            self.recoverapp()
+            inspectstack = inspect.stack()[1][3]
+            self.recoverapp(inspectstack)
 
     def asset_create_click(self):
         self.app_sanity_check()
@@ -1215,7 +1218,7 @@ class AssetPage(BasePageClass):
     def create_new_contact(self, firstname, lastname, title="Title", phone="111-111-1111", email="test@test.com", prefix="Shri", address1="Indecomm", address2="Brigade South Parade", city="Bangalore", state="KA", zip="56001"):
         self.get_asset_points_of_contact_header.click()
         self.get_asset_add_contact_button.click()
-        sleep(4)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
         self.get_asset_newcontact_firstname_textbox.clear()
         self.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         self.get_asset_newcontact_lastname_textbox.clear()
@@ -1309,7 +1312,10 @@ class AssetPage(BasePageClass):
             sleep(2)
             # Click Upload.
             self.get_asset_photos_documents_window_upload_button.click()
-            WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ".//*[@id='header']/div[3]"), "Saved"))
+            try:
+                WebDriverWait(self.driver,100).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ".//*[@id='header']/div[3]"), "Saved"))
+            except:
+                pass
         except:
             print "File uploads failed."
 
