@@ -30,6 +30,7 @@ class AssessmentPage(BasePageClass):
 
     # Assessment search related locators
     _ast_search_text_box_locator = ".//*[@id='search-assessments']"
+    _ast_list_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
 
     #Create Assessment related locators
     _ast_main_create_assessment_button_locator = "//img[@alt='Create assessment']"
@@ -115,6 +116,10 @@ class AssessmentPage(BasePageClass):
     def get_status_table_column(self):
         return self.driver.find_elements_by_xpath(self._ast_staus_table_column_locator)
 
+    @property
+    def get_list_no_matching_records_found(self):
+        return  self.driver.find_element_by_xpath(self._ast_list_No_Matching_Records_Found_locator)
+
 
     def get_table_tr_index(self, heading):
         index = 1
@@ -123,6 +128,7 @@ class AssessmentPage(BasePageClass):
                 break
             index = index+1
         return index
+
 
     def get_xpath(self, index):
         xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"

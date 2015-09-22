@@ -122,7 +122,35 @@ class AssessmenttPageTest(BaseTestCase):
         self.assertEqual(ast.get_ast_statusfilter_dropdown.text, "Status")
         self.assertEqual(ast.get_ast_typefilter_dropdown.text, "Type")
 
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_29_to_32_To_Verify_The_Search_(self):
+        cwd = os.getcwd()
+        os.chdir('..')
+        searchasset_filepath = os.path.join(os.getcwd(), "data\json_SearchAssessments.json")
+        os.chdir(cwd)
+        ast = AssessmentPage(self.driver)
+        sleep(10)
+        with open(searchasset_filepath) as data_file:
+            data_SearchAsset_text = json.load(data_file)
+            for each in data_SearchAsset_text:
+                searchText = each["Search_name"]
+                ast.get_search_textbox.clear()
+                ast.get_search_textbox.send_keys(searchText)
+                sleep(2)
+                expectedAfterSearchFilter = ast.get_list_no_matching_records_found.text
+                searchNames = ast.get_xpath(ast.get_table_tr_index("Asset"))
+                print "Found " + str(len(searchNames)) + " by Name search." + searchText
+                sleep(2)
+                for searchName in searchNames:
+                    if expectedAfterSearchFilter:
+                        self.assertEqual("No matching records found", expectedAfterSearchFilter, "No records to find asset.")
+                        sleep(2)
+                    else:
+                        print searchName.text
+                        sleep(2)
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)
-
 

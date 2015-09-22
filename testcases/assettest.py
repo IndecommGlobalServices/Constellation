@@ -126,15 +126,15 @@ class AssetPageTest(BaseTestCase):
     def test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name(self):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
+        sleep(10)
         with open(searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
-
             for each in data_SearchAsset_text:
                 searchText = each["Search_name"]
-
+                assetpage.select_asset_search_text_box.clear()
                 assetpage.select_asset_search_text_box.send_keys(searchText)
                 sleep(2)
-                assetpage.select_asset_search_text_box.send_keys(Keys.CONTROL,"a",Keys.DELETE)
+                #assetpage.select_asset_search_text_box.send_keys(Keys.CONTROL,"a",Keys.DELETE)
                 sleep(5)
                 expectedAfterSearchFilter = assetpage.get_asset_list_no_matching_records_found.text
                 searchNames = self.driver.find_elements_by_xpath(assetpage._asset_list_locator)
