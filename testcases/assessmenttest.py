@@ -17,7 +17,7 @@ import json, os, re
 class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_smoketest_assessment(self):
         assessmentpage = AssessmentPage(self.driver)
         sleep(2)
@@ -50,7 +50,9 @@ class AssessmenttPageTest(BaseTestCase):
         except:
             print "Create assessment button not present"
 
-    def AST_01_To_test_creation_of_new_assessment_without_StartEnd_and_Email_info(self):
+    @attr(priority="high")
+    @SkipTest
+    def test_AST_01_To_test_creation_of_new_assessment_without_StartEnd_and_Email_info(self):
         ast = AssessmentPage(self.driver)
         sleep(10)
         ast.get_main_create_assessment_button.click()
@@ -61,7 +63,64 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_create_startdate_textbox.clear()
         ast.get_create_enddate_textbox.clear()
 
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_26_1_To_Test_Different_filters_on_Assessment_page(self):
+        ast = AssessmentPage(self.driver)
+        ast.get_ast_statusfilter_dropdown.click()
+        ast.get_statusfilter_InProgress_link.click()
+        sleep(2)
+        for item in ast.get_xpath(ast.get_table_tr_index("Status")):
+            self.assertTrue(item.text, "In Progress")
+        ast.get_resetfilter_button.click()
 
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_26_2_To_Test_Different_filters_on_Assessment_page(self):
+        ast = AssessmentPage(self.driver)
+        ast.get_ast_statusfilter_dropdown.click()
+        ast.get_statusfilter_Submitted_link.click()
+        sleep(2)
+        for item in ast.get_xpath(ast.get_table_tr_index("Status")):
+            self.assertTrue(item.text, "Submitted")
+        ast.get_resetfilter_button.click()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_26_3_To_Test_Different_filters_on_Assessment_page(self):
+        ast = AssessmentPage(self.driver)
+        ast.get_ast_statusfilter_dropdown.click()
+        ast.get_statusfilter_NotStarted_link.click()
+        sleep(2)
+        for item in ast.get_xpath(ast.get_table_tr_index("Status")):
+            self.assertTrue(item.text, "Not Started")
+        ast.get_resetfilter_button.click()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_27_To_Test_Different_filters_on_Assessment_page(self):
+        ast = AssessmentPage(self.driver)
+        ast.get_ast_typefilter_dropdown.click()
+        ast.get_typefilter_haystax_link.click()
+        sleep(2)
+        for item in ast.get_xpath(ast.get_table_tr_index("Assessment")):
+            self.assertTrue(item.text, "Haystax School Safety")
+        ast.get_resetfilter_button.click()
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_28_To_Test_Different_filters_on_Assessment_page(self):
+        ast = AssessmentPage(self.driver)
+        ast.get_ast_statusfilter_dropdown.click()
+        ast.get_statusfilter_NotStarted_link.click()
+        self.assertEqual(ast.get_ast_statusfilter_dropdown.text, "Not Started")
+        ast.get_ast_typefilter_dropdown.click()
+        ast.get_typefilter_haystax_link.click()
+        self.assertEqual(ast.get_ast_typefilter_dropdown.text, "Haystax School Safety")
+        ast.get_resetfilter_button.click()
+        self.assertEqual(ast.get_ast_statusfilter_dropdown.text, "Status")
+        self.assertEqual(ast.get_ast_typefilter_dropdown.text, "Type")
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
