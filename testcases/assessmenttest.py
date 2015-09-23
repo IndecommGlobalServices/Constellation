@@ -114,10 +114,16 @@ class AssessmenttPageTest(BaseTestCase):
         ast = AssessmentPage(self.driver)
         ast.get_ast_statusfilter_dropdown.click()
         ast.get_statusfilter_NotStarted_link.click()
-        self.assertEqual(ast.get_ast_statusfilter_dropdown.text, "Not Started")
+        try:
+            self.assertEqual(ast.get_ast_statusfilter_dropdown.text, "Not Started")
+        except:
+            ast.get_resetfilter_button.click()
         ast.get_ast_typefilter_dropdown.click()
         ast.get_typefilter_haystax_link.click()
-        self.assertEqual(ast.get_ast_typefilter_dropdown.text, "Haystax School Safety")
+        try:
+            self.assertEqual(ast.get_ast_typefilter_dropdown.text, "Haystax School Safety")
+        except:
+            ast.get_resetfilter_button.click()
         ast.get_resetfilter_button.click()
         self.assertEqual(ast.get_ast_statusfilter_dropdown.text, "Status")
         self.assertEqual(ast.get_ast_typefilter_dropdown.text, "Type")
@@ -141,7 +147,7 @@ class AssessmenttPageTest(BaseTestCase):
                 sleep(2)
                 expectedAfterSearchFilter = ast.get_list_no_matching_records_found.text
                 searchNames = ast.get_xpath(ast.get_table_tr_index("Asset"))
-                print "Found " + str(len(searchNames)) + " by Name search." + searchText
+                print "Found " + str(len(searchNames)) + " by search." + searchText
                 sleep(2)
                 for searchName in searchNames:
                     if expectedAfterSearchFilter:
@@ -150,6 +156,92 @@ class AssessmenttPageTest(BaseTestCase):
                     else:
                         print searchName.text
                         sleep(2)
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_34_To_Verify_Delete_Assessment(self):
+        ast = AssessmentPage(self.driver)
+        ast.app_sanity_check()
+        countbeforedeletion = ast.get_total_row_count()
+        ast.select_multiple_checkboxes(1)
+        ast.get_action_dropdown.click()
+        ast.get_action_delete_button.click()
+        sleep(2)
+        ast.get_delete_assessment_delete_button.click()
+        sleep(2)
+        countafterdeletion = ast.get_total_row_count()
+        self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete asset")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_35_To_Verify_Delete_MultipleAssessment(self):
+        ast = AssessmentPage(self.driver)
+        ast.app_sanity_check()
+        countbeforedeletion = ast.get_total_row_count()
+        ast.select_multiple_checkboxes(2)
+        sleep(10)
+        ast.get_action_dropdown.click()
+        ast.get_action_delete_button.click()
+        sleep(2)
+        ast.get_delete_assessment_delete_button.click()
+        sleep(2)
+        countafterdeletion = ast.get_total_row_count()
+        self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete assets")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_36_To_Verify_Delete_Assessment_Cancel(self):
+        ast = AssessmentPage(self.driver)
+        ast.app_sanity_check()
+        countbeforedeletion = ast.get_total_row_count()
+        ast.select_multiple_checkboxes(2)
+        sleep(10)
+        ast.get_action_dropdown.click()
+        ast.get_action_delete_button.click()
+        sleep(2)
+        ast.get_delete_assessment_cancel_button.click()
+        sleep(2)
+        countafterdeletion = ast.get_total_row_count()
+        self.assertEqual(countbeforedeletion, countafterdeletion, "Assessment deleted even after cancel is pressed")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_37_To_Verify_Assign_Assessment(self):
+        ast = AssessmentPage(self.driver)
+        emailid = "Email@domain"
+        ast.app_sanity_check()
+        ast.select_multiple_checkboxes(1)
+        sleep(5)
+        ast.get_action_dropdown.click()
+        ast.get_action_assign_button.click()
+        ast.get_ast_assignto_textbox.send_keys(emailid)
+        ast.get_ast_assignto_assign_button.click()
+        sleep(2)
+        assignedto = ast.get_xpath(ast.get_table_tr_index("Assigned to"))
+        self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_38_To_Verify_Assign_MultipleAssessment(self):
+        ast = AssessmentPage(self.driver)
+        emailid = "Email@domain"
+        #noofassessment should not be greater than 10
+        noofassessment = 10
+        ast.app_sanity_check()
+        ast.select_multiple_checkboxes(noofassessment)
+        sleep(5)
+        ast.get_action_dropdown.click()
+        ast.get_action_assign_button.click()
+        ast.get_ast_assignto_textbox.send_keys(emailid)
+        ast.get_ast_assignto_assign_button.click()
+        sleep(2)
+        assignedto = ast.get_xpath(ast.get_table_tr_index("Assigned to"))
+        for num in range(noofassessment):
+             self.assertEqual(assignedto[num].text, emailid, "Assigned Email id is not appearing")
+
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

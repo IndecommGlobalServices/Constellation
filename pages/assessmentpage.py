@@ -32,6 +32,9 @@ class AssessmentPage(BasePageClass):
     _ast_search_text_box_locator = ".//*[@id='search-assessments']"
     _ast_list_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
 
+    # Assessment delete related locators
+    _ast_check_box_locator = ".//*[@id='tblAssessments']/tbody/tr/td[1]/label/span/span[2]"
+
     #Create Assessment related locators
     _ast_main_create_assessment_button_locator = "//img[@alt='Create assessment']"
     _ast_create_assessments_button_locator = "//img[@alt='Create assessments']"
@@ -120,6 +123,41 @@ class AssessmentPage(BasePageClass):
     def get_list_no_matching_records_found(self):
         return  self.driver.find_element_by_xpath(self._ast_list_No_Matching_Records_Found_locator)
 
+    @property
+    def get_action_dropdown(self):
+        return self.driver.find_element_by_xpath(".//*[@id='assessment_actions_dropdown']/button[2]")
+
+    @property
+    def get_delete_assessment_delete_button(self):
+        return self.driver.find_element_by_xpath(".//*[@id='delete_assessment_modal']/div/div/div[3]/button[2]")
+
+    @property
+    def get_delete_assessment_cancel_button(self):
+        return self.driver.find_element_by_xpath(".//*[@id='delete_assessment_modal']/div/div/div[3]/button[1]")
+
+    @property
+    def get_action_delete_button(self):
+        return self.driver.find_element_by_link_text("Delete")
+
+    @property
+    def get_action_assign_button(self):
+        return self.driver.find_element_by_link_text("Assign")
+
+    @property
+    def get_ast_checkbox(self):
+        return self.driver.find_elements_by_xpath(self._ast_check_box_locator)
+
+    @property
+    def get_ast_assignto_textbox(self):
+        return self.driver.find_element_by_xpath(".//*[@id='txt_assessment_assignedto']")
+
+    @property
+    def get_ast_assignto_cancel_button(self):
+        return self.driver.find_element_by_xpath(".//*[@id='assign_assessment_modal']/div/form/div[3]/button[1]")
+
+    @property
+    def get_ast_assignto_assign_button(self):
+        return self.driver.find_element_by_xpath(".//*[@id='assign_assessment_modal']/div/form/div[3]/button[2]")
 
     def get_table_tr_index(self, heading):
         index = 1
@@ -133,6 +171,32 @@ class AssessmentPage(BasePageClass):
     def get_xpath(self, index):
         xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"
         return self.driver.find_elements_by_xpath(xpath)
+
+
+    def get_total_row_count(self):
+        countText = self.driver.find_element_by_id("tblAssessments_info").text
+        splitedText = countText.split(" ")
+        totalCount = splitedText[10]
+        return totalCount
+
+
+    def select_multiple_checkboxes(self, count):
+        checks = self.get_ast_checkbox
+        index=0
+        for check in checks:
+            check.click()
+            index = index+1
+            if index == count:
+                break
+
+
+
+    #This function should be called before any test to see the asset page is displayed
+    def app_sanity_check(self):
+        try:
+            self.driver.find_element_by_xpath(self._ast_create_assessments_button_locator).is_displayed()
+        except:
+            pass
 
 
     def _validate_page(self, driver):

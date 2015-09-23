@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/data/json_SearchAssessments.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assessmentpage.py" afterPath="$PROJECT_DIR$/pages/assessmentpage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmenttest.py" afterPath="$PROJECT_DIR$/testcases/assessmenttest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -31,21 +31,11 @@
       <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.0">
-              <caret line="165" column="24" selection-start-line="165" selection-start-column="24" selection-end-line="165" selection-end-column="24" />
+            <state vertical-scroll-proportion="-4.034483">
+              <caret line="1328" column="16" selection-start-line="1328" selection-start-column="16" selection-end-line="1328" selection-end-column="16" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assessmentpage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.551724">
-              <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -54,7 +44,7 @@
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-4.034483">
-              <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="32" selection-end-column="43" />
+              <caret line="755" column="8" selection-start-line="755" selection-start-column="8" selection-end-line="755" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -63,18 +53,20 @@
       <file leaf-file-name="assessmenttest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6230366">
-              <caret line="114" column="25" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
-              <folding />
+            <state vertical-scroll-proportion="0.91099477">
+              <caret line="248" column="0" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+              <folding>
+                <marker date="1443001057941" expanded="true" signature="6902:6905" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="json_SearchAssessments.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/json_SearchAssessments.json">
+      <file leaf-file-name="mappage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/mappage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.730769">
-              <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -83,8 +75,18 @@
       <file leaf-file-name="json_Schooldata.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.7307692">
-              <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+            <state vertical-scroll-proportion="-3.9230769">
+              <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="assessmentpage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,10 +116,10 @@
         <option value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
         <option value="$PROJECT_DIR$/data/json_Placedata.json" />
         <option value="$PROJECT_DIR$/data/json_Schooldata.json" />
+        <option value="$PROJECT_DIR$/data/json_SearchAssessments.json" />
         <option value="$PROJECT_DIR$/pages/assetpage.py" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
         <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
-        <option value="$PROJECT_DIR$/data/json_SearchAssessments.json" />
         <option value="$PROJECT_DIR$/testcases/assessmenttest.py" />
       </list>
     </option>
@@ -172,6 +174,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testcases" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -185,8 +201,8 @@
     <property name="recentsLimit" value="5" />
     <property name="FullScreen" value="false" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssessmenttPageTest.test_AS_29_To_Verify_The_Search_">
-    <configuration default="false" name="Unittest AssessmenttPageTest.test_AST_26_3_To_Test_Different_filters_on_Assessment_page" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittest AssessmenttPageTest.test_AS_37_To_Verify_Assign_MultipleAssessment">
+    <configuration default="false" name="Unittest AssessmenttPageTest.test_AS_34_To_Verify_Delete_Asset_Should_Be_Deleted" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -198,7 +214,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmenttest.py" />
       <option name="CLASS_NAME" value="AssessmenttPageTest" />
-      <option name="METHOD_NAME" value="test_AST_26_3_To_Test_Different_filters_on_Assessment_page" />
+      <option name="METHOD_NAME" value="test_AS_34_To_Verify_Delete_Asset_Should_Be_Deleted" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -208,7 +224,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssessmenttPageTest.test_AST_27_To_Test_Different_filters_on_Assessment_page" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssessmenttPageTest.test_AS_35_To_Verify_Delete_MultipleAsset" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -220,7 +236,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmenttest.py" />
       <option name="CLASS_NAME" value="AssessmenttPageTest" />
-      <option name="METHOD_NAME" value="test_AST_27_To_Test_Different_filters_on_Assessment_page" />
+      <option name="METHOD_NAME" value="test_AS_35_To_Verify_Delete_MultipleAsset" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -230,7 +246,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssessmenttPageTest.test_AST_28_To_Test_Different_filters_on_Assessment_page" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssessmenttPageTest.test_AS_36_To_Verify_Delete_Asset_Cancel" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -242,7 +258,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmenttest.py" />
       <option name="CLASS_NAME" value="AssessmenttPageTest" />
-      <option name="METHOD_NAME" value="test_AST_28_To_Test_Different_filters_on_Assessment_page" />
+      <option name="METHOD_NAME" value="test_AS_36_To_Verify_Delete_Asset_Cancel" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -252,7 +268,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssessmenttPageTest.test_AS_29_To_Verify_The_Search_" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssessmenttPageTest.test_AS_36_To_Verify_Assign_Assessment" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -264,7 +280,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmenttest.py" />
       <option name="CLASS_NAME" value="AssessmenttPageTest" />
-      <option name="METHOD_NAME" value="test_AS_29_To_Verify_The_Search_" />
+      <option name="METHOD_NAME" value="test_AS_36_To_Verify_Assign_Assessment" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -274,7 +290,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssessmenttPageTest.test_AS_37_To_Verify_Assign_MultipleAssessment" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -284,9 +300,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmenttest.py" />
+      <option name="CLASS_NAME" value="AssessmenttPageTest" />
+      <option name="METHOD_NAME" value="test_AS_37_To_Verify_Assign_MultipleAssessment" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -419,19 +435,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AST_26_3_To_Test_Different_filters_on_Assessment_page" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AST_27_To_Test_Different_filters_on_Assessment_page" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AST_28_To_Test_Different_filters_on_Assessment_page" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_29_To_Verify_The_Search_" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_34_To_Verify_Delete_Asset_Should_Be_Deleted" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_35_To_Verify_Delete_MultipleAsset" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_36_To_Verify_Delete_Asset_Cancel" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_36_To_Verify_Assign_Assessment" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_37_To_Verify_Assign_MultipleAssessment" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_29_To_Verify_The_Search_" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_12_To_Verify_The_Search_For_Asset_Function_Search_By_Name" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AST_28_To_Test_Different_filters_on_Assessment_page" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AST_27_To_Test_Different_filters_on_Assessment_page" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AST_26_3_To_Test_Different_filters_on_Assessment_page" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_37_To_Verify_Assign_MultipleAssessment" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_36_To_Verify_Assign_Assessment" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_36_To_Verify_Delete_Asset_Cancel" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_35_To_Verify_Delete_MultipleAsset" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_AS_34_To_Verify_Delete_Asset_Should_Be_Deleted" />
       </list>
     </recent_temporary>
   </component>
@@ -536,7 +552,13 @@
       <option name="project" value="LOCAL" />
       <updated>1442910527787</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="AST_29_to_32">
+      <created>1442917216721</created>
+      <option name="number" value="00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1442917216721</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -545,7 +567,6 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -556,6 +577,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39869282" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -588,7 +610,8 @@
     <MESSAGE value="Bug fixes" />
     <MESSAGE value="Bug fixes 9/21" />
     <MESSAGE value="AST_26, 27, 28" />
-    <option name="LAST_COMMIT_MESSAGE" value="AST_26, 27, 28" />
+    <MESSAGE value="AST_29_to_32" />
+    <option name="LAST_COMMIT_MESSAGE" value="AST_29_to_32" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -597,30 +620,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="35" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_Placedata.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/json_searchAssets.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -931,10 +930,61 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/json_searchAssets.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.807693">
+          <caret line="15" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/json_SearchAssessments.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.9230769">
+          <caret line="6" column="35" selection-start-line="6" selection-start-column="35" selection-end-line="6" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/mappage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/SmokeTests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#85#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/utils.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#66#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -942,15 +992,7 @@
     <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_searchAssets.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.807693">
-          <caret line="15" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="15" selection-end-column="1" />
+          <caret line="20" column="62" selection-start-line="20" selection-start-column="62" selection-end-line="20" selection-end-column="62" />
           <folding />
         </state>
       </provider>
@@ -958,39 +1000,23 @@
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-4.034483">
-          <caret line="32" column="3" selection-start-line="32" selection-start-column="3" selection-end-line="32" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7307692">
-          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
+          <caret line="755" column="8" selection-start-line="755" selection-start-column="8" selection-end-line="755" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.551724">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_SearchAssessments.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.730769">
-          <caret line="28" column="25" selection-start-line="28" selection-start-column="25" selection-end-line="28" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.0">
-          <caret line="165" column="24" selection-start-line="165" selection-start-column="24" selection-end-line="165" selection-end-column="24" />
+        <state vertical-scroll-proportion="-4.034483">
+          <caret line="1328" column="16" selection-start-line="1328" selection-start-column="16" selection-end-line="1328" selection-end-column="16" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
           </folding>
@@ -999,9 +1025,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6230366">
-          <caret line="114" column="25" selection-start-line="114" selection-start-column="25" selection-end-line="114" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.91099477">
+          <caret line="248" column="0" selection-start-line="248" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
+          <folding>
+            <marker date="1443001057941" expanded="true" signature="6902:6905" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
