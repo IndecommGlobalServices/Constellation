@@ -156,6 +156,7 @@ class AssessmenttPageTest(BaseTestCase):
                     else:
                         print searchName.text
                         sleep(2)
+                ast.get_search_textbox.clear()
 
 
     @attr(priority="high")
@@ -228,9 +229,9 @@ class AssessmenttPageTest(BaseTestCase):
         ast = AssessmentPage(self.driver)
         emailid = "Email@domain"
         #noofassessment should not be greater than 10
-        noofassessment = 10
+        noofassessments = 10
         ast.app_sanity_check()
-        ast.select_multiple_checkboxes(noofassessment)
+        ast.select_multiple_checkboxes(noofassessments)
         sleep(5)
         ast.get_action_dropdown.click()
         ast.get_action_assign_button.click()
@@ -238,9 +239,46 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_ast_assignto_assign_button.click()
         sleep(2)
         assignedto = ast.get_xpath(ast.get_table_tr_index("Assigned to"))
-        for num in range(noofassessment):
+        for num in range(noofassessments):
              self.assertEqual(assignedto[num].text, emailid, "Assigned Email id is not appearing")
 
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_39_To_Verify_Assign_Email_Validation(self):
+        ast = AssessmentPage(self.driver)
+        ast.app_sanity_check()
+        emailid = ['Email', 'Email.', 'email.com', 'email@']
+        #noofassessment should not be greater than 10
+        noofassessments = 1
+        ast.select_multiple_checkboxes(noofassessments)
+        sleep(5)
+        ast.get_action_dropdown.click()
+        ast.get_action_assign_button.click()
+        for item in emailid:
+            ast.get_ast_assignto_textbox.send_keys(item)
+            self.assertFalse(ast.get_ast_assignto_assign_button.is_enabled(), "Email Id validation error")
+            ast.get_ast_assignto_textbox.clear()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_40_To_Verify_Assign_Assessment_cancel(self):
+        ast = AssessmentPage(self.driver)
+        emailid = ['Email1@domain', 'Email2@domain']
+        ast.app_sanity_check()
+        ast.select_multiple_checkboxes(1)
+        sleep(5)
+        ast.get_action_dropdown.click()
+        ast.get_action_assign_button.click()
+        #To check if the assigned email is not already present
+        if emailid[1] == ast.get_xpath(ast.get_table_tr_index("Assigned to")):
+            emailidtoenter = emailid[2]
+        else:
+            emailidtoenter = emailid[1]
+        ast.get_ast_assignto_textbox.send_keys(emailidtoenter)
+        ast.get_ast_assignto_cancel_button.click()
+        sleep(2)
+        assignedto = ast.get_xpath(ast.get_table_tr_index("Assigned to"))
+        self.assertNotEqual(assignedto[0].text, emailidtoenter, "Assigned Email id saved on cancel operation")
 
 
 if __name__ == '__main__':

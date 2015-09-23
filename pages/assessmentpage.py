@@ -36,7 +36,7 @@ class AssessmentPage(BasePageClass):
     _ast_check_box_locator = ".//*[@id='tblAssessments']/tbody/tr/td[1]/label/span/span[2]"
 
     #Create Assessment related locators
-    _ast_main_create_assessment_button_locator = "//img[@alt='Create assessment']"
+    _ast_main_create_assessment_button_locator = ".//*[@id='page_content']/div[2]/img[1]"
     _ast_create_assessments_button_locator = "//img[@alt='Create assessments']"
     _ast_create_templatetype_dropdown_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/button[2]"
     _ast_create_haystax_template_option_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/ul/li/a"
@@ -194,9 +194,9 @@ class AssessmentPage(BasePageClass):
     #This function should be called before any test to see the asset page is displayed
     def app_sanity_check(self):
         try:
-            self.driver.find_element_by_xpath(self._ast_create_assessments_button_locator).is_displayed()
+            self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator).is_displayed()
         except:
-            pass
+            print "Exception at sanity"
 
 
     def _validate_page(self, driver):
