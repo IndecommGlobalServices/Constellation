@@ -41,7 +41,7 @@ class AssessmenttPageTest(BaseTestCase):
             print "Reset filters button not available or text not matching"
 
         try:
-            self.assertTrue(assessmentpage.get_search_textbox)
+            self.assertTrue(assessmentpage.get_search_assessment_textbox)
         except:
             print "Search textbox not available"
 
@@ -70,7 +70,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_ast_statusfilter_dropdown.click()
         ast.get_statusfilter_InProgress_link.click()
         sleep(2)
-        for item in ast.get_xpath(ast.get_table_tr_index("Status")):
+        for item in ast.get_assessment_table("Status"):
             self.assertTrue(item.text, "In Progress")
         ast.get_resetfilter_button.click()
 
@@ -81,7 +81,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_ast_statusfilter_dropdown.click()
         ast.get_statusfilter_Submitted_link.click()
         sleep(2)
-        for item in ast.get_xpath(ast.get_table_tr_index("Status")):
+        for item in ast.get_assessment_table("Status"):
             self.assertTrue(item.text, "Submitted")
         ast.get_resetfilter_button.click()
 
@@ -92,7 +92,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_ast_statusfilter_dropdown.click()
         ast.get_statusfilter_NotStarted_link.click()
         sleep(2)
-        for item in ast.get_xpath(ast.get_table_tr_index("Status")):
+        for item in ast.get_assessment_table("Status"):
             self.assertTrue(item.text, "Not Started")
         ast.get_resetfilter_button.click()
 
@@ -103,7 +103,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_ast_typefilter_dropdown.click()
         ast.get_typefilter_haystax_link.click()
         sleep(2)
-        for item in ast.get_xpath(ast.get_table_tr_index("Assessment")):
+        for item in ast.get_assessment_table("Assessment"):
             self.assertTrue(item.text, "Haystax School Safety")
         ast.get_resetfilter_button.click()
 
@@ -142,11 +142,10 @@ class AssessmenttPageTest(BaseTestCase):
             data_SearchAsset_text = json.load(data_file)
             for each in data_SearchAsset_text:
                 searchText = each["Search_name"]
-                ast.get_search_textbox.clear()
-                ast.get_search_textbox.send_keys(searchText)
+                ast.search_assessment_textbox(searchText)
                 sleep(2)
                 expectedAfterSearchFilter = ast.get_list_no_matching_records_found.text
-                searchNames = ast.get_xpath(ast.get_table_tr_index("Asset"))
+                searchNames = ast.get_assessment_table("Asset")
                 print "Found " + str(len(searchNames)) + " by search." + searchText
                 sleep(2)
                 for searchName in searchNames:
@@ -156,7 +155,7 @@ class AssessmenttPageTest(BaseTestCase):
                     else:
                         print searchName.text
                         sleep(2)
-                ast.get_search_textbox.clear()
+                ast.get_search_assessment_textbox.clear()
 
 
     @attr(priority="high")
@@ -170,7 +169,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_action_delete_button.click()
         sleep(2)
         ast.get_delete_assessment_delete_button.click()
-        sleep(2)
+        sleep(5)
         countafterdeletion = ast.get_total_row_count()
         self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete asset")
 
@@ -220,7 +219,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_ast_assignto_textbox.send_keys(emailid)
         ast.get_ast_assignto_assign_button.click()
         sleep(2)
-        assignedto = ast.get_xpath(ast.get_table_tr_index("Assigned to"))
+        assignedto = ast.get_assessment_table("Assigned to")
         self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
 
     @attr(priority="high")
@@ -238,7 +237,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_ast_assignto_textbox.send_keys(emailid)
         ast.get_ast_assignto_assign_button.click()
         sleep(2)
-        assignedto = ast.get_xpath(ast.get_table_tr_index("Assigned to"))
+        assignedto = ast.get_assessment_table("Assigned to")
         for num in range(noofassessments):
              self.assertEqual(assignedto[num].text, emailid, "Assigned Email id is not appearing")
 
@@ -270,15 +269,43 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_action_dropdown.click()
         ast.get_action_assign_button.click()
         #To check if the assigned email is not already present
-        if emailid[1] == ast.get_xpath(ast.get_table_tr_index("Assigned to")):
+        if emailid[1] == ast.get_assessment_table("Assigned to"):
             emailidtoenter = emailid[2]
         else:
             emailidtoenter = emailid[1]
         ast.get_ast_assignto_textbox.send_keys(emailidtoenter)
         ast.get_ast_assignto_cancel_button.click()
         sleep(2)
-        assignedto = ast.get_xpath(ast.get_table_tr_index("Assigned to"))
+        assignedto = ast.get_assessment_table("Assigned to")
         self.assertNotEqual(assignedto[0].text, emailidtoenter, "Assigned Email id saved on cancel operation")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_41_To_Verify_overview(self):
+        ast = AssessmentPage(self.driver)
+        if ast.select_assessment("september school"):
+            pass
+        else:
+            ast.create_assessment("september school")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_05_To_create_assessment(self):
+        ast = AssessmentPage(self.driver)
+        check = 0
+        assetname = "September school"
+        sleep(8)
+        ast.create_assessment(assetname)
+        sleep(5)
+        ast.search_assessment_textbox(assetname)
+        sleep(2)
+        for item in ast.get_assessment_table("Asset"):
+            if (item.text  == assetname) and (item.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
+                check = 1
+                break
+        ast.get_search_assessment_textbox.clear()
+        self.assertFalse(check == 0, "No assessment is created or is not appearing with yellow background")
 
 
 if __name__ == '__main__':

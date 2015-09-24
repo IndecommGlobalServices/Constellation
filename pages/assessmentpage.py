@@ -20,8 +20,12 @@ class AssessmentPage(BasePageClass):
 
     #Assessment grid locators
     _ast_main_table_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
-    _ast_main_table_header_locator = ".//*[@id='tblAssessments']/thead/tr/th"
+    _ast_assessment_table_header_locator = ".//*[@id='tblAssessments']/thead/tr/th"
     _ast_staus_table_column_locator = ".//*[@id='tblAssessments']/tbody/tr/td[7]"
+
+    #Asset grid locator
+    _ast_asset_table_locator = ".//*[@id='assessmentManager_table']/tbody/tr[1]/td"
+    _ast_asset_table_header_locator = ".//*[@id='assessmentManager_table']/thead/tr/th"
 
     # Assessment filter related locators
     _ast_status_filter_drop_down_locator = "//div[@label='Status']"
@@ -29,7 +33,8 @@ class AssessmentPage(BasePageClass):
     _ast_filter_reset_button = ".//*[@id='span_filters']/button"
 
     # Assessment search related locators
-    _ast_search_text_box_locator = ".//*[@id='search-assessments']"
+    _ast_search_assessment_text_box_locator = ".//*[@id='search-assessments']"
+    _ast_search_asset_text_box_locator = ".//*[@id='search-assessment-manager']"
     _ast_list_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
 
     # Assessment delete related locators
@@ -37,12 +42,12 @@ class AssessmentPage(BasePageClass):
 
     #Create Assessment related locators
     _ast_main_create_assessment_button_locator = ".//*[@id='page_content']/div[2]/img[1]"
-    _ast_create_assessments_button_locator = "//img[@alt='Create assessments']"
+    _ast_create_assessments_button_locator = ".//*[@id='assessmentManager']/div[1]/button"
     _ast_create_templatetype_dropdown_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/button[2]"
     _ast_create_haystax_template_option_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/ul/li/a"
     _ast_create_assignedto_text_box_locator = ".//*[@id='create_multi_assessment_assignedto']"
-    _ast_create_start_date_text_box_locator = ".//*[@id='create_multi_assessment_datepicker-01']"
-    _ast_create_end_date_text_box_locator = ".//*[@id='create_multi_assessment_datepicker-02']"
+    _ast_create_start_date_text_box_locator = ".//*[@id='id']"
+    _ast_create_end_date_text_box_locator = ".//*[@id='id']"
 
 
     def __init__(self, driver):
@@ -84,8 +89,12 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._ast_filter_reset_button)
 
     @property
-    def get_search_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_search_text_box_locator)
+    def get_search_assessment_textbox(self):
+        return self.driver.find_element_by_xpath(self._ast_search_assessment_text_box_locator)
+
+    @property
+    def get_search_asset_textbox(self):
+        return self.driver.find_element_by_xpath(self._ast_search_asset_text_box_locator)
 
     @property
     def get_main_create_assessment_button(self):
@@ -101,11 +110,11 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_create_startdate_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_create_start_date_text_box_locator)
+        return self.driver.find_elements_by_xpath(self._ast_create_start_date_text_box_locator)[0]
 
     @property
     def get_create_enddate_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_create_end_date_text_box_locator)
+        return self.driver.find_elements_by_xpath(self._ast_create_end_date_text_box_locator)[1]
 
     @property
     def get_create_templatetype_dropdown(self):
@@ -159,17 +168,32 @@ class AssessmentPage(BasePageClass):
     def get_ast_assignto_assign_button(self):
         return self.driver.find_element_by_xpath(".//*[@id='assign_assessment_modal']/div/form/div[3]/button[2]")
 
-    def get_table_tr_index(self, heading):
+    @property
+    def get_assessment_table_header_locator(self):
+        return self.driver.find_elements_by_xpath(self._ast_assessment_table_header_locator)
+
+    @property
+    def get_asset_table_header_locator(self):
+        return self.driver.find_elements_by_xpath(self._ast_asset_table_header_locator)
+
+    def get_table_tr_index(self, tablelocator, heading):
         index = 1
-        for item in self.driver.find_elements_by_xpath(self._ast_main_table_header_locator):
+        for item in tablelocator:
             if(item.text == heading):
                 break
             index = index+1
         return index
 
 
-    def get_xpath(self, index):
+    def get_assessment_table(self, heading):
+        index = self.get_table_tr_index(self.get_assessment_table_header_locator, heading)
         xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"
+        return self.driver.find_elements_by_xpath(xpath)
+
+
+    def get_asset_table(self, heading):
+        index = self.get_table_tr_index(self.get_asset_table_header_locator, heading)
+        xpath = ".//*[@id='assessmentManager_table']/tbody/tr/td["+str(index)+"]"
         return self.driver.find_elements_by_xpath(xpath)
 
 
@@ -189,9 +213,55 @@ class AssessmentPage(BasePageClass):
             if index == count:
                 break
 
+    def search_assessment_textbox(self, keyword):
+        self.get_search_assessment_textbox.clear()
+        self.get_search_assessment_textbox.send_keys(keyword)
 
 
-    #This function should be called before any test to see the asset page is displayed
+    def search_asset_textbox(self, keyword):
+        self.get_search_asset_textbox.clear()
+        self.get_search_asset_textbox.send_keys(keyword)
+
+
+    def select_assessment(self, asset_name):
+        sleep(5)
+        self.search_assessment_textbox(asset_name)
+        sleep(6)
+        assessment_list = self.get_assessment_table("Assessment")
+        if len(assessment_list)>=1:
+            assessment_list[0].click()
+        else:
+            self.get_search_assessment_textbox.clear()
+            return False
+
+    def select_asset(self, asset_name):
+        sleep(5)
+        #self.get_search_asset_textbox(asset_name)
+        sleep(6)
+        asset_list = self.get_asset_table("Asset")
+        if len(asset_list)>=1:
+            self.driver.find_element_by_xpath(".//*[@id='assessmentManager_table']/tbody/tr[1]/td[1]/label/span/span[2]").click()
+        else:
+            #self.get_search_asset_textbox.clear()
+            return False
+
+
+    def create_assessment(self, assetname):
+        self.get_main_create_assessment_button.click()
+        self.get_create_templatetype_dropdown.click()
+        self.get_create_haystax_template_option.click()
+        self.select_asset(assetname)
+        self.get_create_assignedto_textbox.send_keys("Dee@deep")
+        self.get_create_startdate_textbox.send_keys("2015-09-10")
+        self.get_create_enddate_textbox.send_keys("2015-09-11")
+        sleep(2)
+        self.get_create_assessments_button.click()
+        sleep(5)
+
+
+
+
+    #This function should be called before any test to see the assessmentt page is displayed
     def app_sanity_check(self):
         try:
             self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator).is_displayed()
