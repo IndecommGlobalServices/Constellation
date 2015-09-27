@@ -166,14 +166,15 @@ class AssetPage(BasePageClass):
 
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_detail_edit_capacity_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[1]/div/span/input"
-    _asset_detail_edit_closed_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[2]/div/span/input"
+    #_asset_detail_edit_closed_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[2]/div/span/input"
+    _asset_detail_edit_closed_textbox_locator = ".//*[@id='id']"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
     #_asset_detail_edit_fax_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[5]/div/span/input"
     _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
     _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
-    _asset_detail_edit_size_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[7]/div/span/input"
+    _asset_detail_edit_size_textbox_locator = "//input[@placeholder='Size_sqfeet']"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
     _asset_detail_edit_website_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
@@ -566,7 +567,11 @@ class AssetPage(BasePageClass):
 
     @property
     def get_asset_detail_edit_closed_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_closed_textbox_locator)
+        return self.driver.find_elements_by_xpath(self._asset_detail_edit_closed_textbox_locator)[0]
+
+    @property
+    def get_asset_detail_edit_detail_opened_number_text_box(self):
+        return self.driver.find_elements_by_xpath(self._asset_detail_edit_closed_textbox_locator)[1]
 
     @property
     def get_asset_detail_edit_description_text_box(self):
@@ -579,10 +584,6 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_detail_edit_detail_fax_text_box(self):
         return self.driver.find_element_by_xpath(self._asset_detail_edit_fax_textbox_locator)
-
-    @property
-    def get_asset_detail_edit_detail_opened_number_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_opened_textbox_locator)
 
     @property
     def get_asset_detail_edit_detail_school_number_text_box(self):
@@ -877,6 +878,7 @@ class AssetPage(BasePageClass):
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
 
+    #This function helps to go back to assets page. inspectstack prints the test name form which this function is called
     def recoverapp(self, inspectstack):
         print ("Application recovering called from " + inspectstack)
         basepage = BasePage(self.driver)
@@ -884,7 +886,7 @@ class AssetPage(BasePageClass):
         iconlistpage = IconListPage(self.driver)
         iconlistpage.click_asset_icon()
 
-
+    #This function should be called before any test to see the asset page is displayed
     def app_sanity_check(self):
         try:
             self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()

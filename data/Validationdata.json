@@ -1,0 +1,11 @@
+[
+    {
+        "email_validation": ["Email", "Email.", "email.com", "email@"],
+        "fax_validation": ["Orlean", "editaddress"]
+    }
+
+
+
+
+]
+
