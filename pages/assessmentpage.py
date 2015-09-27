@@ -213,7 +213,7 @@ class AssessmentPage(BasePageClass):
         countText = self.driver.find_element_by_id("tblAssessments_info").text
         splitedText = countText.split(" ")
         totalCount = splitedText[10]
-        return totalCount
+        return int(totalCount)
 
 
     def select_multiple_checkboxes(self, count):

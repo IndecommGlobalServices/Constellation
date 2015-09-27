@@ -168,7 +168,11 @@ class AssessmenttPageTest(BaseTestCase):
     def test_AST_27_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_typefilter_dropdown.click()
-        ast.get_typefilter_haystax_link.click()
+        try:
+            ast.get_typefilter_haystax_link.click()
+        except:
+            ast.get_ast_typefilter_dropdown.click()
+            self.skipTest("Haystax School safety option not available in the filter")
         sleep(5)
         for item in ast.get_assessment_table("Assessment"):
             self.assertTrue(item.text, "Haystax School Safety")
@@ -248,15 +252,18 @@ class AssessmenttPageTest(BaseTestCase):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
         countbeforedeletion = ast.get_total_row_count()
-        ast.select_multiple_checkboxes(2)
-        sleep(10)
-        ast.get_action_dropdown.click()
-        ast.get_action_delete_button.click()
-        sleep(2)
-        ast.get_delete_assessment_delete_button.click()
-        sleep(2)
-        countafterdeletion = ast.get_total_row_count()
-        self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete assets")
+        if countbeforedeletion >= 1:
+            ast.select_multiple_checkboxes(2)
+            sleep(10)
+            ast.get_action_dropdown.click()
+            ast.get_action_delete_button.click()
+            sleep(2)
+            ast.get_delete_assessment_delete_button.click()
+            sleep(2)
+            countafterdeletion = ast.get_total_row_count()
+            self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete assets")
+        else:
+            self.skipTest("No Assessments listed")
 
     @attr(priority="high")
     #@SkipTest
@@ -264,15 +271,18 @@ class AssessmenttPageTest(BaseTestCase):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
         countbeforedeletion = ast.get_total_row_count()
-        ast.select_multiple_checkboxes(2)
-        sleep(10)
-        ast.get_action_dropdown.click()
-        ast.get_action_delete_button.click()
-        sleep(2)
-        ast.get_delete_assessment_cancel_button.click()
-        sleep(2)
-        countafterdeletion = ast.get_total_row_count()
-        self.assertEqual(countbeforedeletion, countafterdeletion, "Assessment deleted even after cancel is pressed")
+        if countbeforedeletion >= 1:
+            ast.select_multiple_checkboxes(2)
+            sleep(10)
+            ast.get_action_dropdown.click()
+            ast.get_action_delete_button.click()
+            sleep(2)
+            ast.get_delete_assessment_cancel_button.click()
+            sleep(2)
+            countafterdeletion = ast.get_total_row_count()
+            self.assertEqual(countbeforedeletion, countafterdeletion, "Assessment deleted even after cancel is pressed")
+        else:
+            self.skipTest("No Assessments listed")
 
     @attr(priority="high")
     #@SkipTest
@@ -280,15 +290,19 @@ class AssessmenttPageTest(BaseTestCase):
         ast = AssessmentPage(self.driver)
         emailid = "Email@domain"
         ast.app_sanity_check()
-        ast.select_multiple_checkboxes(1)
-        sleep(5)
-        ast.get_action_dropdown.click()
-        ast.get_action_assign_button.click()
-        ast.get_ast_assignto_textbox.send_keys(emailid)
-        ast.get_ast_assignto_assign_button.click()
-        sleep(2)
-        assignedto = ast.get_assessment_table("Assigned to")
-        self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
+        countbeforedeletion = ast.get_total_row_count()
+        if countbeforedeletion >= 1:
+            ast.select_multiple_checkboxes(1)
+            sleep(5)
+            ast.get_action_dropdown.click()
+            ast.get_action_assign_button.click()
+            ast.get_ast_assignto_textbox.send_keys(emailid)
+            ast.get_ast_assignto_assign_button.click()
+            sleep(2)
+            assignedto = ast.get_assessment_table("Assigned to")
+            self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
+        else:
+            self.skipTest("No Assessments listed")
 
     @attr(priority="high")
     #@SkipTest
@@ -298,35 +312,44 @@ class AssessmenttPageTest(BaseTestCase):
         #noofassessment should not be greater than 10
         noofassessments = 10
         ast.app_sanity_check()
-        ast.select_multiple_checkboxes(noofassessments)
-        sleep(5)
-        ast.get_action_dropdown.click()
-        ast.get_action_assign_button.click()
-        ast.get_ast_assignto_textbox.send_keys(emailid)
-        ast.get_ast_assignto_assign_button.click()
-        sleep(2)
-        assignedto = ast.get_assessment_table("Assigned to")
-        if len(assignedto) < noofassessments:
-            noofassessments = len(assignedto)
-        for num in range(noofassessments):
-             self.assertEqual(assignedto[num].text, emailid, "Assigned Email id is not appearing")
+        countbeforedeletion = ast.get_total_row_count()
+        if countbeforedeletion >= 1:
+            ast.select_multiple_checkboxes(noofassessments)
+            sleep(5)
+            ast.get_action_dropdown.click()
+            ast.get_action_assign_button.click()
+            ast.get_ast_assignto_textbox.send_keys(emailid)
+            ast.get_ast_assignto_assign_button.click()
+            sleep(2)
+            assignedto = ast.get_assessment_table("Assigned to")
+            if len(assignedto) < noofassessments:
+                noofassessments = len(assignedto)
+            for num in range(noofassessments):
+                 self.assertEqual(assignedto[num].text, emailid, "Assigned Email id is not appearing")
+        else:
+            self.skipTest("No Assessments listed")
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_39_To_Verify_Assign_Email_Validation(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
-        emailid = ['Email', 'Email.', 'email.com', 'email@']
-        #noofassessment should not be greater than 10
-        noofassessments = 1
-        ast.select_multiple_checkboxes(noofassessments)
-        sleep(5)
-        ast.get_action_dropdown.click()
-        ast.get_action_assign_button.click()
-        for item in emailid:
-            ast.get_ast_assignto_textbox.send_keys(item)
-            self.assertFalse(ast.get_ast_assignto_assign_button.is_enabled(), "Email Id validation error")
-            ast.get_ast_assignto_textbox.clear()
+        countbeforedeletion = ast.get_total_row_count()
+        if countbeforedeletion >= 1:
+            emailid = ['Email', 'Email.', 'email.com', 'email@']
+            #noofassessment should not be greater than 10
+            noofassessments = 1
+            ast.select_multiple_checkboxes(noofassessments)
+            sleep(5)
+            ast.get_action_dropdown.click()
+            ast.get_action_assign_button.click()
+            for item in emailid:
+                ast.get_ast_assignto_textbox.send_keys(item)
+                self.assertFalse(ast.get_ast_assignto_assign_button.is_enabled(), "Email Id validation error")
+                ast.get_ast_assignto_textbox.clear()
+            ast.get_ast_assignto_cancel_button.click()
+        else:
+            self.skipTest("No assessment listed")
 
     @attr(priority="high")
     #@SkipTest
@@ -334,21 +357,26 @@ class AssessmenttPageTest(BaseTestCase):
         ast = AssessmentPage(self.driver)
         emailid = ['Email1@domain', 'Email2@domain']
         ast.app_sanity_check()
-        ast.select_multiple_checkboxes(1)
-        sleep(5)
-        ast.get_action_dropdown.click()
-        ast.get_action_assign_button.click()
-        #To check if the assigned email is not already present
-        if emailid[1] == ast.get_assessment_table("Assigned to"):
-            emailidtoenter = emailid[2]
+        countbeforedeletion = ast.get_total_row_count()
+        if countbeforedeletion >= 1:
+            ast.select_multiple_checkboxes(1)
+            sleep(5)
+            ast.get_action_dropdown.click()
+            sleep(2)
+            ast.get_action_assign_button.click()
+            #To check if the assigned email is not already present
+            if emailid[1] == ast.get_assessment_table("Assigned to"):
+                emailidtoenter = emailid[2]
+            else:
+                emailidtoenter = emailid[1]
+            ast.get_ast_assignto_textbox.send_keys(emailidtoenter)
+            ast.get_ast_assignto_cancel_button.click()
+            sleep(2)
+            assignedto = ast.get_assessment_table("Assigned to")
+            self.assertNotEqual(assignedto[0].text, emailidtoenter, "Assigned Email id saved on cancel operation")
+            sleep(3)
         else:
-            emailidtoenter = emailid[1]
-        ast.get_ast_assignto_textbox.send_keys(emailidtoenter)
-        ast.get_ast_assignto_cancel_button.click()
-        sleep(2)
-        assignedto = ast.get_assessment_table("Assigned to")
-        self.assertNotEqual(assignedto[0].text, emailidtoenter, "Assigned Email id saved on cancel operation")
-
+            self.skipTest("No assessment listed")
 
     @attr(priority="high")
     @SkipTest
