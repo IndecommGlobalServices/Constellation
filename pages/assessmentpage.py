@@ -52,6 +52,7 @@ class AssessmentPage(BasePageClass):
 
     def __init__(self, driver):
         super(AssessmentPage, self).__init__(driver)
+        self.get_schooldata()
         appicon = IconListPage(self.driver)
         appicon.click_assessments_icon()
 
@@ -176,6 +177,17 @@ class AssessmentPage(BasePageClass):
     def get_asset_table_header_locator(self):
         return self.driver.find_elements_by_xpath(self._ast_asset_table_header_locator)
 
+    def get_schooldata(self):
+        cwd = os.getcwd()
+        os.chdir('..')
+        schooldatafile = os.path.join(os.getcwd(), "data\json_Schooldata.json")
+        os.chdir(cwd)
+        with open(schooldatafile) as data_file:
+            school_data = json.load(data_file)
+            for each in school_data:
+                self.asset_school_name = each["asset_name"][0]
+
+
     def get_table_tr_index(self, tablelocator, heading):
         index = 1
         for item in tablelocator:
@@ -213,6 +225,11 @@ class AssessmentPage(BasePageClass):
             if index == count:
                 break
 
+    def deselect_checkboxes(self):
+        checks = self.get_ast_checkbox
+
+
+
     def search_assessment_textbox(self, keyword):
         self.get_search_assessment_textbox.clear()
         self.get_search_assessment_textbox.send_keys(keyword)
@@ -245,14 +262,20 @@ class AssessmentPage(BasePageClass):
             #self.get_search_asset_textbox.clear()
             return False
 
-
-    def create_assessment(self, assetname):
+    def create_assessment_select_haystax_template(self):
         self.get_main_create_assessment_button.click()
         self.get_create_templatetype_dropdown.click()
+        sleep(2)
         self.get_create_haystax_template_option.click()
+
+    def create_assessment(self, assetname):
+        self.create_assessment_select_haystax_template()
         self.select_asset(assetname)
+        self.get_create_assignedto_textbox.clear()
         self.get_create_assignedto_textbox.send_keys("Dee@deep")
+        self.get_create_startdate_textbox.clear()
         self.get_create_startdate_textbox.send_keys("2015-09-10")
+        self.get_create_enddate_textbox.clear()
         self.get_create_enddate_textbox.send_keys("2015-09-11")
         sleep(2)
         self.get_create_assessments_button.click()
