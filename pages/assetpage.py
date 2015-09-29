@@ -1217,10 +1217,13 @@ class AssetPage(BasePageClass):
         except NoSuchElementException:
             pass
 
-    def create_new_contact(self, firstname, lastname, title="Title", phone="111-111-1111", email="test@test.com", prefix="Shri", address1="Indecomm", address2="Brigade South Parade", city="Bangalore", state="KA", zip="56001"):
+    def create_new_contact(self, firstname, lastname, title="Title", phone=r"111-111-1111", email=r"test@test.com", prefix="Shri", address1="Indecomm", address2=r"Brigade South Parade", city="Bangalore", state="KA", zip="56001"):
+        #This function will create new contact.
         self.get_asset_points_of_contact_header.click()
         self.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        #Wait till contact window text appear.
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        # Fill all fields.
         self.get_asset_newcontact_firstname_textbox.clear()
         self.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         self.get_asset_newcontact_lastname_textbox.clear()
@@ -1244,19 +1247,22 @@ class AssetPage(BasePageClass):
         self.get_asset_newcontact_email_textbox.clear()
         self.get_asset_newcontact_email_textbox.send_keys(email)
         sleep(2)
+        #Click on Save Button.
         self.get_asset_newcontact_save_button.click()
-        WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ".//*[@id='header']/div[3]"), "Saved"))
+        #wait until Saved text will appear.
+        WebDriverWait(self.driver,100).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
 
     def multiple_contact_create(self):
         try:
             sleep(2)
+            #delete existing contacts.
             self.delete_existing_contact()
             sleep(2)
-            firstname = ['jkl','vwx', 'def', 'pqr']
-            lastname = ['mno', 'abc','stu', 'ghi']
-            phonelist = ['661-111-1111','222-222-2222', '433-333-3333', '123-444-4444']
-            emaillist = ['stu@vwx', 'abc@def', 'mno@pqr', 'ghi@jkl']
-            titlelist = ['HH', 'ZZ', 'CC', 'PP']
+            firstname = ['jkl','vwx','def','pqr']
+            lastname = ['mno','abc','stu','ghi']
+            phonelist = [r'661-111-1111',r'222-222-2222',r'433-333-3333',r'123-444-4444']
+            emaillist = [r'stu@vwx',r'abc@def',r'mno@pqr',r'ghi@jkl']
+            titlelist = ['HH','ZZ','CC','PP']
             for contact in range(4):
                 self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],emaillist[contact])
                 sleep(2)
@@ -1278,20 +1284,16 @@ class AssetPage(BasePageClass):
             sleep(2)
             image_icons = self.driver.find_elements_by_xpath(".//img[@class='neutron_document_img']")
             num_of_files = len(image_icons)
-            if num_of_files>= 1:
+            if num_of_files >= 1:
                 sleep(2)
                 for count in range(num_of_files, 0, -1):
-                    sleep(5)
                     index = count
-                    #xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
-                    xpath = ".//*[@id='widgets']/div[6]/div[1]/div/div[2]/div/div[" + str(index)+ "]/img[4]"
-                    #image_icons[count-1].click()
+                    xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
                     image_icon_xpath =  self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/div/div[" + str(index)+ "]")
                     Hover = ActionChains(self.driver).move_to_element(image_icon_xpath)
                     Hover.perform()
                     delete_icon = self.driver.find_element_by_xpath(xpath)
                     delete_icon.click()
-                    sleep(3)
                     self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
                     sleep(10)
         except :
@@ -1315,7 +1317,7 @@ class AssetPage(BasePageClass):
             # Click Upload.
             self.get_asset_photos_documents_window_upload_button.click()
             try:
-                WebDriverWait(self.driver,100).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ".//*[@id='header']/div[3]"), "Saved"))
+                WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
             except:
                 pass
         except:
