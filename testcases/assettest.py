@@ -1059,7 +1059,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
+    def test_AS_40_To_Delete_Upload_Image_Place_Asset_Photos_Documents_Field(self):
         #To test delete function.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1103,7 +1103,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case 40 has been failed.")
 
     @attr(priority="high")
-    def test_AS_41_To_Upload_Image_Cancel_Place_Asset_ContactInfo_Field(self):
+    def test_AS_41_To_Upload_Image_Cancel_Place_Asset_Photos_Documents_Field(self):
         #To test Cancel button functionality.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1145,7 +1145,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse(1, error)
 
     @attr(priority="high")
-    def test_AS_42_To_Upload_Image_With_Caption_Place_Asset_ContactInfo_Field(self):
+    def test_AS_42_To_Upload_Image_With_Caption_Place_Asset_Photos_Documents_Field(self):
         #Upload a file with caption.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1171,7 +1171,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed. No Caption Displayed.")
 
     @attr(priority="high")
-    def test_AS_43_To_Upload_Image_With_Max_size_Place_Asset_ContactInfo_Field(self):
+    def test_AS_43_To_Upload_Image_With_Max_size_Place_Asset_Photos_Documents_Field(self):
         #To test max file size.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1195,7 +1195,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue("Test Case has been passed.")
 
     @attr(priority="high")
-    def test_AS_44_1_To_Upload_PDF_With_Caption_Place_Asset_ContactInfo_Field(self):
+    def test_AS_44_1_To_Upload_PDF_With_Caption_Place_Asset_Photos_Documents_Field(self):
         #Test to upload a PDF file.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1221,7 +1221,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed.")
 
     @attr(priority="high")
-    def test_AS_44_2_To_Upload_HTML_With_Caption_Place_Asset_ContactInfo_Field(self):
+    def test_AS_44_2_To_Upload_HTML_With_Caption_Place_Asset_Photos_Documents_Field(self):
         #Test to upload HTML file.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1247,7 +1247,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed.")
 
     @attr(priority="high")
-    def test_AS_44_3_To_Upload_TXT_With_Caption_Place_Asset_ContactInfo_Field(self):
+    def test_AS_44_3_To_Upload_TXT_With_Caption_Place_Asset_Photos_Documents_Field(self):
         #Test to upload a Test file.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1273,7 +1273,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed.")
 
     @attr(priority="high")
-    def test_AS_45_To_Upload_Images_Count_Place_Asset_ContactInfo_Field(self):
+    def test_AS_45_To_Upload_Images_Count_Place_Asset_Photos_Documents_Field(self):
         #To upload multiple files.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1303,7 +1303,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed.")
 
     @attr(priority="high")
-    def test_AS_47_To_Upload_Image_Place_Asset_ContactInfo_Field(self):
+    def test_AS_47_To_Upload_Image_Place_Asset_Photos_Documents_Field(self):
         #To upload a file with out caption.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()

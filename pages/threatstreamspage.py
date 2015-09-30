@@ -7,7 +7,7 @@ from selenium.webdriver.common.keys import Keys
 class ThreatStreamPage(BasePageClass):
 
 
-    _ts_app_name_text = ".//*[@id='header']/span[2]/span"
+    _ts_app_name_text = ".//*[@id='header']/span[@class='ng-scope active']/span"
 
     @property
     def get_ts_app_name(self):
