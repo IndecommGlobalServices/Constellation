@@ -10,11 +10,17 @@ from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from time import sleep
+from datetime import date, timedelta, datetime
 from pages.IconListPage import IconListPage
 import json, os, re
 
 
 class AssessmenttPageTest(BaseTestCase):
+
+    cwd = os.getcwd()
+    os.chdir('..')
+    searchasset_filepath = os.path.join(os.getcwd(), "data\json_SearchAssessments.json")
+    os.chdir(cwd)
 
     @attr(priority="high")
     @SkipTest
@@ -52,12 +58,12 @@ class AssessmenttPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_01_To_verify_noemailid_createassessment(self):
         ast = AssessmentPage(self.driver)
-        sleep(10)
+        WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, ast._ast_main_create_assessment_button_locator)))
         ast.create_assessment_select_haystax_template()
-        ast.select_asset(ast.asset_school_name)
+        ast.select_first_asset()
         ast.get_create_assignedto_textbox.clear()
         ast.get_create_startdate_textbox.send_keys("2015-09-10")
         ast.get_create_enddate_textbox.send_keys("2015-09-11")
@@ -67,12 +73,12 @@ class AssessmenttPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_02_To_verify_nodate_createassessment(self):
         ast = AssessmentPage(self.driver)
         sleep(8)
         ast.create_assessment_select_haystax_template()
-        ast.select_asset(ast.asset_school_name)
+        ast.select_first_asset()
         ast.get_create_assignedto_textbox.clear()
         ast.get_create_assignedto_textbox.send_keys("deep@dee")
         ast.get_create_startdate_textbox.clear()
@@ -81,8 +87,30 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(2)
         ast.get_main_create_assessment_button.click()
 
+
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
+    def test_AST_04_To_verify_datevaidation_createassessment(self):
+        ast = AssessmentPage(self.driver)
+        sleep(8)
+        dateformat = ['date', '23-11-2015', '2015-22-11']
+        ast.create_assessment_select_haystax_template()
+        ast.select_first_asset()
+        for date in dateformat:
+            ast.get_create_startdate_textbox.clear()
+            ast.get_create_startdate_textbox.send_keys(date)
+            ast.get_create_startdate_textbox.send_keys(Keys.TAB)
+            self.assertNotEqual(ast.get_create_startdate_textbox.text, date, "Start date textbox no date format validation")
+        for date in dateformat:
+            ast.get_create_enddate_textbox.clear()
+            ast.get_create_enddate_textbox.send_keys(date)
+            ast.get_create_enddate_textbox.send_keys(Keys.TAB)
+            self.assertNotEqual(ast.get_create_enddate_textbox.text, date, "Start date textbox no date format validation")
+        sleep(2)
+        ast.get_main_create_assessment_button.click()
+
+    @attr(priority="high")
+    @SkipTest
     def test_AST_05_To_create_assessment(self):
         ast = AssessmentPage(self.driver)
         check = 0
@@ -100,7 +128,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.assertFalse(check == 0, "No assessment is created or is not appearing with yellow background")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_06_To_verify_emailid_field_createassessment(self):
         ast = AssessmentPage(self.driver)
         emailid = ['Email', 'Email.', 'email.com', 'email@']
@@ -116,9 +144,65 @@ class AssessmenttPageTest(BaseTestCase):
             ast.get_create_assignedto_textbox.clear()
         ast.get_main_create_assessment_button.click()
 
+    @attr(priority="high")
+    @SkipTest
+    def test_AST_08_to_11_To_Verify_The_Search_(self):
+        ast = AssessmentPage(self.driver)
+        sleep(10)
+        ast.create_assessment_select_haystax_template()
+        ast.select_first_asset()
+        ast.get_create_assignedto_textbox.send_keys("dee@dee")
+        ast.get_create_startdate_textbox.send_keys("2015-09-10")
+        ast.get_create_enddate_textbox.send_keys("2015-09-10")
+        with open(self.searchasset_filepath) as data_file:
+            data_SearchAsset_text = json.load(data_file)
+            for each in data_SearchAsset_text:
+                searchText = each["Search_name"]
+                ast.search_asset_textbox(searchText)
+                sleep(5)
+                expectedAfterSearchFilter = ast.get_list_no_matching_records_found.text
+                searchNames = ast.get_asset_table("Asset")
+                print "Found " + str(len(searchNames)) + " by search." + searchText
+                sleep(2)
+                for searchName in searchNames:
+                    if expectedAfterSearchFilter:
+                        self.assertEqual("No matching records found", expectedAfterSearchFilter, "No records to find asset.")
+                        sleep(2)
+                    else:
+                        print searchName.text
+                        sleep(2)
+                ast.get_search_asset_textbox.clear()
+                ast.get_search_asset_textbox.send_keys(Keys.BACKSPACE)
+                ast.get_main_create_assessment_button.click()
+
+
+    @attr(priority = "high")
+    @SkipTest
+    def test_AST_12_To_Test_Sorting_on_Create_Assessment(self):
+        ast = AssessmentPage(self.driver)
+        sleep(10)
+        ast.create_assessment_select_haystax_template()
+        ast.get_asset_table_column_header("Asset").click()
+        sleep(5)
+        searchNames = ast.get_asset_table("Asset")
+        searchNameslist=[]
+        for name in searchNames:
+            searchNameslist.append(str(name.text))
+        searchNamessorted = sorted(searchNameslist, reverse=True)
+        self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Descending order")
+
+        ast.get_asset_table_column_header("Asset").click()
+        sleep(5)
+        searchNames = ast.get_asset_table("Asset")
+        searchNameslist=[]
+        for name in searchNames:
+            searchNameslist.append(str(name.text))
+        searchNamessorted = sorted(searchNameslist)
+        self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Ascending order")
+
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_26_1_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_statusfilter_dropdown.click()
@@ -134,7 +218,7 @@ class AssessmenttPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_26_2_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_statusfilter_dropdown.click()
@@ -149,7 +233,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_resetfilter_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_26_3_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_statusfilter_dropdown.click()
@@ -164,7 +248,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_resetfilter_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_27_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_typefilter_dropdown.click()
@@ -201,7 +285,7 @@ class AssessmenttPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_29_to_32_To_Verify_The_Search_(self):
         cwd = os.getcwd()
         os.chdir('..')
@@ -231,7 +315,7 @@ class AssessmenttPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_34_To_Verify_Delete_Assessment(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
@@ -247,7 +331,7 @@ class AssessmenttPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_35_To_Verify_Delete_MultipleAssessment(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
@@ -266,7 +350,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No Assessments listed")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_36_To_Verify_Delete_Assessment_Cancel(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
@@ -285,7 +369,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No Assessments listed")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_37_To_Verify_Assign_Assessment(self):
         ast = AssessmentPage(self.driver)
         emailid = "Email@domain"
@@ -305,7 +389,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No Assessments listed")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_38_To_Verify_Assign_MultipleAssessment(self):
         ast = AssessmentPage(self.driver)
         emailid = "Email@domain"
@@ -330,7 +414,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No Assessments listed")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_39_To_Verify_Assign_Email_Validation(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
@@ -352,7 +436,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No assessment listed")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_40_To_Verify_Assign_Assessment_cancel(self):
         ast = AssessmentPage(self.driver)
         emailid = ['Email1@domain', 'Email2@domain']
@@ -379,13 +463,166 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No assessment listed")
 
     @attr(priority="high")
-    @SkipTest
-    def test_AST_41_To_Verify_overview(self):
+    #@SkipTest
+    def test_AST_44_To_Verify_Overview_Add_Notes(self):
         ast = AssessmentPage(self.driver)
-        if ast.select_assessment(ast.asset_school_name):
-            pass
-        else:
-            ast.create_assessment(ast.asset_school_name)
+        note = "New Note"
+        self.get_assessment_page(ast)
+        self.assertEqual(ast.get_ast_overview_text.text, "Overview")
+        # ast.get_overview_startdate_textbox.send_keys("2015-09-10")
+        # ast.get_overview_enddate_textbox.send_keys("2015-09-10")
+        sleep(5)
+        ast.get_overview_notes_textbox.clear()
+        ast.get_overview_notes_textbox.send_keys(note)
+        ast.get_overview_save_button.click()
+        #WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ast._ast_saved_text_locator), "Saved"))
+        sleep(10)
+        self.assertEqual(note, ast.get_overview_notes_textbox.get_attribute("value"), "Entered text not appearing in notes textarea")
+        sleep(10)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_58_To_Verify_Overview_Dates_Change_Day(self):
+        ast = AssessmentPage(self.driver)
+        start_date = datetime.today().date()
+        end_date = start_date + timedelta(days=1)
+        self.get_assessment_page(ast)
+        self.assertEqual(ast.get_ast_overview_text.text, "Overview")
+        ast.get_overview_startdate_textbox.clear()
+        ast.get_overview_startdate_textbox.send_keys(str(start_date))
+        ast.get_overview_enddate_textbox.clear()
+        ast.get_overview_enddate_textbox.send_keys(str(end_date))
+        ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
+        sleep(5)
+        ast.get_overview_save_button.click()
+        #WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ast._ast_saved_text_locator), "Saved"))
+        sleep(10)
+        self.assertEqual(str(start_date), ast.get_overview_startdate_textbox.get_attribute("value"))
+        self.assertEqual(str(end_date), ast.get_overview_enddate_textbox.get_attribute("value"))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_59_To_Verify_Overview_Dates_Change_Month(self):
+        ast = AssessmentPage(self.driver)
+        start_date = datetime.today().date()
+        end_date = start_date + timedelta(days=31)
+        self.get_assessment_page(ast)
+        self.assertEqual(ast.get_ast_overview_text.text, "Overview")
+        ast.get_overview_startdate_textbox.clear()
+        ast.get_overview_startdate_textbox.send_keys(str(start_date))
+        ast.get_overview_enddate_textbox.clear()
+        ast.get_overview_enddate_textbox.send_keys(str(end_date))
+        ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
+        sleep(5)
+        ast.get_overview_save_button.click()
+        #WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ast._ast_saved_text_locator), "Saved"))
+        sleep(10)
+        self.assertEqual(str(start_date), ast.get_overview_startdate_textbox.get_attribute("value"))
+        self.assertEqual(str(end_date), ast.get_overview_enddate_textbox.get_attribute("value"))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_60_To_Verify_Overview_Dates_Change_Year(self):
+        ast = AssessmentPage(self.driver)
+        start_date = datetime.today().date()
+        end_date = start_date + timedelta(days=365)
+        self.get_assessment_page(ast)
+        self.assertEqual(ast.get_ast_overview_text.text, "Overview")
+        ast.get_overview_startdate_textbox.clear()
+        ast.get_overview_startdate_textbox.send_keys(str(start_date))
+        ast.get_overview_enddate_textbox.clear()
+        ast.get_overview_enddate_textbox.send_keys(str(end_date))
+        ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
+        sleep(5)
+        ast.get_overview_save_button.click()
+        #WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ast._ast_saved_text_locator), "Saved"))
+        sleep(10)
+        self.assertEqual(str(start_date), ast.get_overview_startdate_textbox.get_attribute("value"))
+        self.assertEqual(str(end_date), ast.get_overview_enddate_textbox.get_attribute("value"))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_45_To_Verify_Overview_Upload_image_file_without_caption(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file("", "Test_Case_40.jpg")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        self.assertTrue(ast.get_caption_path("Test_Case_40").is_displayed(), "Upload failed")
+        self.assertFalse(ast.get_file_caption_text("Test_Case_40").is_displayed())
+        sleep(5)
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_46_To_Verify_Overview_Upload_pdf_file_without_caption(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file("", "Test_Case_44_1.pdf")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        self.assertTrue(ast.get_caption_path("Test_Case_44_1").is_displayed(), "Upload failed")
+        self.assertFalse(ast.get_file_caption_text("Test_Case_44_").is_displayed())
+        sleep(5)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_47_1_To_Verify_Overview_Upload_image_file_with_caption(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file("Test_Case_40", "Test_Case_40.jpg")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        self.assertTrue(ast.get_caption_path("Test_Case_40").is_displayed(), "Upload failed")
+        self.assertTrue(ast.get_file_caption_text("Test_Case_40").is_displayed(), "Uploaded file doesnt appear with caption specified")
+        sleep(5)
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_47_2_To_Verify_Overview_Upload_pdf_file_with_caption(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file("Test_Case_44_1", "Test_Case_44_1.pdf")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        self.assertTrue(ast.get_caption_path("Test_Case_44_1").is_displayed(), "Upload failed")
+        self.assertTrue(ast.get_file_caption_text("Test_Case_44_").is_displayed(), "Uploaded file doesnt appear with caption specified")
+        sleep(5)
+
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_50_To_Verify_Overview_Upload_File_Cancel(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file_cancel("Test_Case_41", "Test_Case_41.jpg")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertEqual(no_of_images_present_after, no_of_images_present, "Upload cancel failed")
+        self.assertFalse(ast.get_caption_path("Test_Case_41").is_displayed(), "Upload cancel failed")
+        sleep(5)
+
+
+
+
+    def get_assessment_page(self, ast):
+        sleep(5)
+        try:
+            self.assertTrue(ast.get_breadcrumb_assessmentname_text.is_displayed())
+            return True
+        except:
+            if not ast.get_main_create_assessment_button.is_displayed():
+                ast.recoverapp()
+            if ast.select_assessment(ast.asset_school_name) == False:
+                sleep(10)
+                ast.create_assessment(ast.asset_school_name)
+                ast.select_assessment(ast.asset_school_name)
 
 
 if __name__ == '__main__':

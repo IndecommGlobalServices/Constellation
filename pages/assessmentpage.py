@@ -2,10 +2,14 @@ from selenium.webdriver.common.keys import Keys
 from lib.base import BasePageClass
 from lib.base import InvalidPageException
 from pages.IconListPage import IconListPage
+from pages.assetpage import AssetPage
 from basepage import BasePage
 from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 import os, json
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class AssessmentPage(BasePageClass):
@@ -41,14 +45,31 @@ class AssessmentPage(BasePageClass):
     _ast_check_box_locator = ".//*[@id='tblAssessments']/tbody/tr/td[1]/label/span/span[2]"
 
     #Create Assessment related locators
-    _ast_main_create_assessment_button_locator = ".//*[@id='page_content']/div[2]/img[1]"
+
+    _ast_main_create_assessment_button_locator = "//img[@alt='Create assessment']"
     _ast_create_assessments_button_locator = ".//*[@id='assessmentManager']/div[1]/button"
-    _ast_create_templatetype_dropdown_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/button[2]"
+    _ast_create_templatetype_dropdown_locator = "(//div[@model='template']//button[@data-toggle='dropdown'])"
     _ast_create_haystax_template_option_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/ul/li/a"
     _ast_create_assignedto_text_box_locator = ".//*[@id='create_multi_assessment_assignedto']"
     _ast_create_start_date_text_box_locator = ".//*[@id='id']"
     _ast_create_end_date_text_box_locator = ".//*[@id='id']"
 
+    #Assessment Overview related locators
+    _ast_breadcrumb_text_locator = ".//*[@id='header']/div[1]/span[3]/span"
+    _ast_overview_text = ".//*[@id='overview']/div[1]"
+    _ast_overview_notes_textbox_locator = "//*[@id='assessment_notes']"
+    # "//textarea[@placeholder='Notes']"
+    _ast_overview_save_button_locator = ".//*[@id='header']/div[4]/button"
+    _ast_overview_dates_textbox_locator = ".//*[@id='id']"
+    _ast_saved_text_locator = ".//*[@id='header']/div[4]"
+
+    #Assessment Overview Upload related locator
+    _ast_photos_documents_header_locator = "//div[contains(text(),'Photos / Documents')]"
+    _ast_photos_documents_upload_file_button_locator = "//button[contains(text(), 'Upload file')]"
+    _ast_photos_documents_attach_file_button_locator = "upload_document_file_upload"
+    _ast_photos_documents_caption_textbox_locator = "upload_document_caption"
+    _ast_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Upload')]"
+    _ast_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
 
     def __init__(self, driver):
         super(AssessmentPage, self).__init__(driver)
@@ -177,6 +198,55 @@ class AssessmentPage(BasePageClass):
     def get_asset_table_header_locator(self):
         return self.driver.find_elements_by_xpath(self._ast_asset_table_header_locator)
 
+    @property
+    def get_ast_overview_text(self):
+        return self.driver.find_element_by_xpath(self._ast_overview_text)
+
+    @property
+    def get_overview_startdate_textbox(self):
+        return self.driver.find_elements_by_xpath(self._ast_overview_dates_textbox_locator)[0]
+
+    @property
+    def get_overview_enddate_textbox(self):
+        return self.driver.find_elements_by_xpath(self._ast_overview_dates_textbox_locator)[1]
+
+    @property
+    def get_overview_notes_textbox(self):
+        return self.driver.find_element_by_xpath(self._ast_overview_notes_textbox_locator)
+
+    @property
+    def get_overview_save_button(self):
+        return self.driver.find_element_by_xpath(self._ast_overview_save_button_locator)
+
+    @property
+    def get_breadcrumb_assessmentname_text(self):
+        return self.driver.find_element_by_xpath(self._ast_breadcrumb_text_locator)
+
+    @property
+    def get_photos_documents_header_text(self):
+        return self.driver.find_elements_by_xpath(self._ast_photos_documents_header_locator)
+
+    @property
+    def get_file_upload_button(self):
+        return self.driver.find_element_by_xpath(self._ast_photos_documents_upload_file_button_locator)
+
+    @property
+    def get_file_attach_file_button(self):
+        return self.driver.find_element_by_id(self._ast_photos_documents_attach_file_button_locator)
+
+    @property
+    def get_fileupload_caption_textbox(self):
+        return self.driver.find_element_by_id(self._ast_photos_documents_caption_textbox_locator)
+
+    @property
+    def get_fileupload_window_upload_button(self):
+        return self.driver.find_element_by_xpath(self._ast_photos_documents_window_upload_button_locator)
+
+    @property
+    def get_fileupload_window_cancel_button(self):
+        return self.driver.find_element_by_xpath(self._ast_photos_documents_window_cancel_button_locator)
+
+
     def get_schooldata(self):
         cwd = os.getcwd()
         os.chdir('..')
@@ -202,12 +272,15 @@ class AssessmentPage(BasePageClass):
         xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"
         return self.driver.find_elements_by_xpath(xpath)
 
-
     def get_asset_table(self, heading):
         index = self.get_table_tr_index(self.get_asset_table_header_locator, heading)
         xpath = ".//*[@id='assessmentManager_table']/tbody/tr/td["+str(index)+"]"
         return self.driver.find_elements_by_xpath(xpath)
 
+    def get_asset_table_column_header(self, heading):
+        index = self.get_table_tr_index(self.get_asset_table_header_locator, heading)
+        xpath = ".//*[@id='assessmentManager_table']/thead/tr/th["+str(index)+"]"
+        return self.driver.find_element_by_xpath(xpath)
 
     def get_total_row_count(self):
         countText = self.driver.find_element_by_id("tblAssessments_info").text
@@ -247,42 +320,132 @@ class AssessmentPage(BasePageClass):
         assessment_list = self.get_assessment_table("Assessment")
         if len(assessment_list)>=1:
             assessment_list[0].click()
+            return True
         else:
             self.get_search_assessment_textbox.clear()
             return False
 
     def select_asset(self, asset_name):
         sleep(5)
-        #self.get_search_asset_textbox(asset_name)
+        self.get_search_asset_textbox.send_keys(asset_name)
         sleep(6)
         asset_list = self.get_asset_table("Asset")
         if len(asset_list)>=1:
             self.driver.find_element_by_xpath(".//*[@id='assessmentManager_table']/tbody/tr[1]/td[1]/label/span/span[2]").click()
         else:
-            #self.get_search_asset_textbox.clear()
+            self.get_search_asset_textbox.clear()
             return False
 
+    def select_first_asset(self):
+        sleep(5)
+        asset_list = self.get_asset_table("Asset")
+        if len(asset_list)>=1:
+            self.driver.find_element_by_xpath(".//*[@id='assessmentManager_table']/tbody/tr[1]/td[1]/label/span/span[2]").click()
+        else:
+            print "No Assets added yet"
+            return False
+
+
     def create_assessment_select_haystax_template(self):
+        sleep(5)
         self.get_main_create_assessment_button.click()
+        sleep(5)
         self.get_create_templatetype_dropdown.click()
         sleep(2)
         self.get_create_haystax_template_option.click()
 
     def create_assessment(self, assetname):
         self.create_assessment_select_haystax_template()
-        self.select_asset(assetname)
         self.get_create_assignedto_textbox.clear()
         self.get_create_assignedto_textbox.send_keys("Dee@deep")
         self.get_create_startdate_textbox.clear()
         self.get_create_startdate_textbox.send_keys("2015-09-10")
+        sleep(3)
         self.get_create_enddate_textbox.clear()
         self.get_create_enddate_textbox.send_keys("2015-09-11")
+        if self.select_asset(assetname) == False:
+            print "Asset not created yet"
+            return False
+        else:
+            sleep(5)
+            self.get_create_assessments_button.click()
+            sleep(10)
+            self.get_main_create_assessment_button.click()
+
+    def validate_email_textbox(self, textbox):
+        emailid = ['Email', 'Email.', 'email.com', 'email@']
+        textbox.clear()
+        for item in emailid:
+            textbox.send_keys(item)
+            textbox.send_keys(Keys.TAB)
+            sleep(5)
+            self.assertEqual("rgba(192, 57, 43, 1)", textbox.value_of_css_property("border-bottom-color"),  "Email ID validation error in create assessment")
+            textbox.clear()
+
+    def get_assessment_name_from_breadcrumb(self):
+        return (self.get_breadcrumb_assessmentname_text.text.split(' - '))[0].strip()
+
+    def get_caption_path(self, caption):
+        return self.driver.find_element_by_xpath("//div//a[contains(text(),'"+caption+"')]")
+
+    def get_file_caption_text(self, caption):
+        caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption+"')]"
+        return self.driver.find_element_by_xpath(caption_xpath)
+
+    def file_path(self, image_file_name):
+        cur_dir = os.getcwd()
+        os.chdir("..")
+        file_path = "image_file\\"+image_file_name
+        complete_file_path = os.path.join(os.getcwd(), file_path)
+        os.chdir(cur_dir)
+        return complete_file_path
+
+    def upload_a_file(self, image_caption, image_file_name):
+        try:
+            # Click on Photo/Document panel - File Upload button
+            self.get_file_upload_button.click()
+            sleep(2)
+            # Click on Attach file button and attached the file path with the send_keys
+            file_path = self.file_path(image_file_name)
+            self.get_file_attach_file_button.send_keys(file_path)
+            sleep(3)
+            # Enter Caption
+            caption_val = image_caption
+            self.get_fileupload_caption_textbox.send_keys(caption_val)
+            sleep(2)
+            # Click Upload.
+            self.get_fileupload_window_upload_button.click()
+            try:
+                WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._ast_saved_text_locator), "Saved"))
+            except:
+                pass
+        except:
+            print "File uploads failed."
+
+
+
+
+    def upload_a_file_cancel(self, image_caption, image_file_name):
+         # Click on Photo/Document panel - File Upload button
+        self.get_file_upload_button.click()
         sleep(2)
-        self.get_create_assessments_button.click()
-        sleep(5)
+        # Click on Attach file button and attached the file path with the send_keys
+        file_path = self.file_path(image_file_name)
+        self.get_file_attach_file_button.send_keys(file_path)
+        sleep(3)
+        # Enter Caption
+        caption_val = image_caption
+        self.get_fileupload_caption_textbox.send_keys(caption_val)
+        sleep(2)
+        # Click Upload.
+        self.get_fileupload_window_cancel_button_button.click()
 
 
-
+    def recoverapp(self):
+        basepage = BasePage(self.driver)
+        basepage.accessURL()
+        iconlistpage = IconListPage(self.driver)
+        iconlistpage.click_assessments_icon()
 
     #This function should be called before any test to see the assessmentt page is displayed
     def app_sanity_check(self):
