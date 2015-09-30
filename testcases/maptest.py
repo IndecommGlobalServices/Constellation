@@ -211,5 +211,83 @@ class MapPageTest(BaseTestCase):
 
 
 
+    @attr(priority="high")
+    #@SkipTest
+    def test_map_to_verify_Default_Map_View_Based_On_Assets(self):
+        sleep(5)
+        mappage = MapPage(self.driver)
+        sleep(5)
+
+        # mouse hover to 1st icon
+        mouse_hover_field = mappage.get_map_mouse_hover_icon
+        sleep(10)
+
+        ActionChains(self.driver).move_to_element(mouse_hover_field)\
+            .move_to_element(mappage.get_map_base_map_accordian).click()\
+            .move_to_element(mappage.get_map_default_view_radio).click()\
+            .move_to_element(self.driver.find_element_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/label")).click()\
+            .move_to_element(self.driver.find_element_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/article/div[1]/span")).click()\
+            .perform()
+        sleep(10)
+
+        # Click on Zoom out to display the Map status based total no of items which is displayed just above the Longitude and Latitude on Left hand side
+        self.driver.find_element_by_xpath(".//*[@id='mapdiv']/div[2]/div[2]/div[1]/a[2]").click()
+        sleep(5)
+
+        # Verify the map status by items are displayed
+        self.driver.find_element_by_xpath(".//*[@id='map_status']").is_displayed()
+        sleep(5)
+
+        # Extract the integer value displayed "Displaying 5 items"
+        # This will be helpful to assert
+        pcountText = self.driver.find_element_by_xpath(".//*[@id='map_status']").text
+        pparts = pcountText.split(" ")
+        pvalue11 = pparts[1]
+
+        # click on Water fall handle on Right hand side - Vertical - Last Icon
+        self.driver.find_element_by_xpath(".//*[@id='waterfall_handle']").click()
+        #sleep(10)
+
+        # Count the total no. of Assets
+        assetTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
+        items = assetTotal.find_elements_by_tag_name("li")
+
+        print "Found " + str(len(items)) + " assets:"
+
+        print "Printing asset names, no. of days ago..."
+
+        for assetName in items:
+            print assetName.text
+        sleep(5)
+
+        self.assertEqual(pvalue11,str(len(items)),"total assets not matching" )
+
+
+        '''
+        #Click on each asset and get the total images available
+        if len(items) >=1:
+            for item in items:
+                print "clicking on asset"
+
+                # click on each individual asset
+                item.click()
+
+                #Extract the name and type shown
+                asset_name_type = self.driver.find_element_by_xpath(".//*[@id='mapdiv']/div[1]/div[2]/div[4]/div/div[1]/div").text
+                print asset_name_type
+
+                # find the total no. of images available on the map
+                twitterIcon = self.driver.find_elements_by_xpath(".//*[@id='mapdiv']/div[1]/div[2]/div[3]/img")
+                print len(twitterIcon)
+        '''
+        # click on Water fall handle on Right hand side - Vertical - Last Icon
+        self.driver.find_element_by_xpath(".//*[@id='waterfall_handle']").click()
+        sleep(2)
+
+        # Click on Bread crumb - Apps link
+        mappage.get_bread_crumb_apps.click()
+
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)

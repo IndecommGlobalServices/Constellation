@@ -35,22 +35,35 @@ class AssetPage(BasePageClass):
     _asset_list_assets_name_locator = ".//*[@id='assetstable']/tbody/tr/td[2]/a"
     _asset_list_asset_type_locator = ".//*[@id='assetstable']/tbody/tr/td[3]"
     _asset_list_No_Matching_Records_Found_locator = ".//*[@id='assetstable']/tbody/tr/td"
+    _asset_list_asset_name_back_color_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
+
+
+    # Asset name on Breadcrumb
+    _asset_name_breadcrumb = "//*[@id='header']/div[1]/span[3]/span"
 
     # Asset Filter related to place and school
     _asset_filter_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
 
-    _asset_place_type_drop_down_locator = "//div[@label='Type']"
+    #_asset_place_type_drop_down_locator = "//div[@label='Type']"
+    _asset_place_type_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
+    _asset_place_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
+
     #_asset_school_district_drop_down_locator = "//div[@label= 'District']"
     #_asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
     #_asset_school_district_drop_down_locator = "//div[@label= 'District']"
     _asset_school_district_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
+    #_asset_school_district_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
     _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
+    #.//*[@id='span_filters']/div/div/ul/li[2]/a
+    _asset_school_district_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[4]"
 
     _asset_school_grade_drop_down_locator = ".//*[@id='span_filters']/div[3]/div/button[2]"
     _asset_school_grade_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[3]/div/ul/li[1]/a"
+    _asset_school_grade_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[5]"
 
     _asset_school_type_drop_down_locator = ".//*[@id='span_filters']/div[4]/div/button[2]"
     _asset_school_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[4]/div/ul/li[1]/a"
+    _asset_school_type_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[6]"
 
     #asset search textbox
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
@@ -70,6 +83,7 @@ class AssetPage(BasePageClass):
     _asset_type_field_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
     _asset_type_field_owner_text_box_locator = "//input[@placeholder='Owner']"
     _asset_type_field_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
+    _asset_type_Saved_label_locator = ".//*[@id='header']/div[3]"
 
     # Overview panel related
 
@@ -174,7 +188,8 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
     _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
-    _asset_detail_edit_size_textbox_locator = "//input[@placeholder='Size_sqfeet']"
+    _asset_detail_edit_size_textbox_locator = "//input[@placeholder='size (sq ft)']"
+    #_asset_detail_edit_size_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[7]/div/span/input"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
     _asset_detail_edit_website_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
@@ -216,6 +231,8 @@ class AssetPage(BasePageClass):
 
     # Charts related
     _asset_chart_total_Graph_In_Container_xpath_locator = ".//*[@id='graphs_frame']/div/div/div/div[1]"
+    #Chart dashboard
+    _asset_chart_dashboard_img_xpath_locator = "//img[@title='Dashboard']"
 
 
     _asset_count = 0
@@ -236,6 +253,12 @@ class AssetPage(BasePageClass):
             self._assets[assetname] = asset.find_element_by_xpath(self._asset_list_check_box_locator)
             self._assets[assetname] = asset.find_element_by_xpath(self._asset_list_asset_type_locator)
         '''
+
+    #_asset_name_breadcrumb
+
+    @property
+    def get_asset_name_breadcrumb(self):
+        return self.driver.find_element_by_xpath(self._asset_name_breadcrumb)
 
     @property
     def get_assets_name_list(self):
@@ -291,13 +314,43 @@ class AssetPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_locator)
 
     @property
+    def get_asset_place_type_first_element(self):
+        return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_select_first_element_locator)
+
+
+    @property
     def get_asset_school_district_drop_down(self):
         return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
+
+    @property
+    def get_asset_school_district_first_element(self):
+        return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator)
+
+    @property
+    def get_asset_school_grade_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator)
+
+    @property
+    def get_asset_school_grade_first_element(self):
+        return self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator)
+
+    @property
+    def get_asset_school_type_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator)
+
+    @property
+    def get_asset_school_type_first_element(self):
+        return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
 
 
     @property
     def get_asset_list_no_matching_records_found(self):
         return  self.driver.find_element_by_xpath(self._asset_list_No_Matching_Records_Found_locator)
+
+    #_asset_list_asset_name_back_color_locator
+    @property
+    def get_asset_name_list_back_color(self):
+        return  self.driver.find_elements_by_xpath(self._asset_list_asset_name_back_color_locator)
 
     @property
     def enter_asset_type_name(self):
@@ -331,19 +384,23 @@ class AssetPage(BasePageClass):
     def enter_asset_type_phone(self):
         return self.driver.find_element_by_xpath(self._asset_overview_phone_text_box_locator)
 
-    '''
+
+    #_asset_type_Saved_label_locator
     @property
-    def select_asset_type_type(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_type_drop_down_locator)
+    def asset_type_Saved_label(self):
+        return self.driver.find_element_by_xpath(self._asset_type_Saved_label_locator)
 
     @property
-    def select_asset_type_district(self):
-        return self.driver.find_element_by_xpath(self._asset_type_field_district_drop_down_locator)
+    def select_asset_type_type_lists(self):
+        return self.driver.find_elements_by_xpath(self._asset_school_type_lists_locator)
 
     @property
-    def select_asset_type_grade(self):
-        return self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator)
-        return self.driver.find_element_by_xpath(self._asset_type_field_grade_drop_down_locator)'''
+    def select_asset_type_district_lists(self):
+        return self.driver.find_elements_by_xpath(self._asset_school_district_lists_locator)
+
+    @property
+    def select_asset_type_grade_lists(self):
+        return self.driver.find_elements_by_xpath(self._asset_school_grade_lists_locator)
 
     @property
     def get_overview_editname_text_box(self):
@@ -743,6 +800,10 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_location_longitude_error_text(self):
         return self.driver.find_element_by_xpath_selector(self._asset_location_longitude_error_xpath_locator)
+
+    @property
+    def get_asset_chart_dashboard_image(self):
+        return self.driver.find_element_by_xpath(self._asset_chart_dashboard_img_xpath_locator)
 
 
 

@@ -102,7 +102,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.get_asset_school_district()
-        for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[4]"):
+        for item in assetpage.select_asset_type_district_lists:
             self.assertEqual(assetpage.selecteddistrict, item.text)
         assetpage.get_asset_reset_button.click()
 
@@ -112,7 +112,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.get_asset_school_grade()
-        for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[5]"):
+        for item in assetpage.select_asset_type_grade_lists:
             self.assertEqual(assetpage.selectedgrade, item.text)
         assetpage.get_asset_reset_button.click()
 
@@ -123,7 +123,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_type()
-        for item in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[6]"):
+        for item in assetpage.select_asset_type_type_lists:
             self.assertEqual(assetpage.selectedtype, item.text)
         assetpage.get_asset_reset_button.click()
 
@@ -186,12 +186,12 @@ class AssetPageTest(BaseTestCase):
         assetpage.create_asset("Place")
         sleep(10)
         #WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
-        self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
         assetpage.retuntoappmainpage()
         sleep(5)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(5)
-        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+        for i in assetpage.get_asset_name_list_back_color:
             if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
                 check = 1
                 #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
@@ -209,7 +209,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         sleep(10)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
-        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
+        for i in assetpage.get_asset_name_list_back_color:
             if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
                 check = 1
                 #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
@@ -260,7 +260,8 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         assetpage.asset_create_click()
         assetpage.asset_overview_cancel_click()
-        expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
+        # Checking for the string "Asset Type" inside the dropdown after reset or cancel button is clicked
+        expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
@@ -272,7 +273,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.create_place_asset()
         assetpage.asset_overview_cancel_click()
-        expectedAfterResetFilter = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/button[1]").text
+        # Checking for the string "Asset Type" inside the dropdown after reset or cancel button is clicked
+        expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
@@ -294,7 +296,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_overview_save_click()
 
     # Assert on Saved text is displayed
-        self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
+        self.assertTrue(assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
+        #self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
         assetpage.retuntoappmainpage()
 
 
@@ -317,7 +320,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_overview_cancel_click()
 
     # Assert on Asset name is displayed in the breadcrumb
-        self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
         assetpage.retuntoappmainpage()
 
 
@@ -341,7 +344,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
 
     # Assert on Saved text is displayed
-        self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
+        self.assertTrue(assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
         assetpage.retuntoappmainpage()
 
     @attr(priority="high")
@@ -421,7 +424,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_cancel_button.click()
         sleep(10)
     # Assert on Asset name is displayed in the breadcrumb
-        self.assertEqual(assetpage.asset_place_name, self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
+        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
         assetpage.retuntoappmainpage()
 
     @attr(priority="high")
@@ -485,7 +488,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on Add Contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
         #clear first and last name.
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -519,7 +522,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -550,7 +553,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -581,7 +584,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -613,7 +616,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -826,7 +829,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -856,7 +859,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.delete_existing_contact()
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -1056,7 +1059,7 @@ class AssetPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    def test_AS_40_To_Delete_Upload_Image_Place_Asset_ContactInfo_Field(self):
+    def test_AS_40_To_Delete_Upload_Image_Place_Asset_Photos_Documents_Field(self):
         #To test delete function.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1100,7 +1103,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case 40 has been failed.")
 
     @attr(priority="high")
-    def test_AS_41_To_Upload_Image_Cancel_Place_Asset_ContactInfo_Field(self):
+    def test_AS_41_To_Upload_Image_Cancel_Place_Asset_Photos_Documents_Field(self):
         #To test Cancel button functionality.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1142,7 +1145,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse(1, error)
 
     @attr(priority="high")
-    def test_AS_42_To_Upload_Image_With_Caption_Place_Asset_ContactInfo_Field(self):
+    def test_AS_42_To_Upload_Image_With_Caption_Place_Asset_Photos_Documents_Field(self):
         #Upload a file with caption.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1168,7 +1171,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed. No Caption Displayed.")
 
     @attr(priority="high")
-    def test_AS_43_To_Upload_Image_With_Max_size_Place_Asset_ContactInfo_Field(self):
+    def test_AS_43_To_Upload_Image_With_Max_size_Place_Asset_Photos_Documents_Field(self):
         #To test max file size.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1192,7 +1195,7 @@ class AssetPageTest(BaseTestCase):
         self.assertTrue("Test Case has been passed.")
 
     @attr(priority="high")
-    def test_AS_44_1_To_Upload_PDF_With_Caption_Place_Asset_ContactInfo_Field(self):
+    def test_AS_44_1_To_Upload_PDF_With_Caption_Place_Asset_Photos_Documents_Field(self):
         #Test to upload a PDF file.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1218,7 +1221,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed.")
 
     @attr(priority="high")
-    def test_AS_44_2_To_Upload_HTML_With_Caption_Place_Asset_ContactInfo_Field(self):
+    def test_AS_44_2_To_Upload_HTML_With_Caption_Place_Asset_Photos_Documents_Field(self):
         #Test to upload HTML file.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1244,7 +1247,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed.")
 
     @attr(priority="high")
-    def test_AS_44_3_To_Upload_TXT_With_Caption_Place_Asset_ContactInfo_Field(self):
+    def test_AS_44_3_To_Upload_TXT_With_Caption_Place_Asset_Photos_Documents_Field(self):
         #Test to upload a Test file.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1270,7 +1273,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed.")
 
     @attr(priority="high")
-    def test_AS_45_To_Upload_Images_Count_Place_Asset_ContactInfo_Field(self):
+    def test_AS_45_To_Upload_Images_Count_Place_Asset_Photos_Documents_Field(self):
         #To upload multiple files.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1300,7 +1303,7 @@ class AssetPageTest(BaseTestCase):
             self.assertFalse("Test Case has been failed.")
 
     @attr(priority="high")
-    def test_AS_47_To_Upload_Image_Place_Asset_ContactInfo_Field(self):
+    def test_AS_47_To_Upload_Image_Place_Asset_Photos_Documents_Field(self):
         #To upload a file with out caption.
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1612,7 +1615,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         sleep(5)
         # Click on Chart - Dashboard
-        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        assetpage.get_asset_chart_dashboard_image.click()
         sleep(5)
         assetpage.charts_When_No_Asset_Type_Is_Selected()
 
@@ -1624,18 +1627,12 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         sleep(5)
 
-        # Select Asset Type dropdown
-        #assetpage.get_asset_place_type_drop_down.click()
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/button[2]").click()
-        sleep(5)
-
-        # Click on the First element in the Asset Type drop down - Place
-
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/ul/li[1]/a").click()
-        sleep(5)
+        # Select the Place from Asset dropdown
+        assetpage.asset_filter_based_on_place_and_school("Place")
+        sleep(10)
 
         # Click on Chart - Dashboard
-        #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        #assetpage.get_asset_chart_dashboard_image.click()
         sleep(5)
 
         assetpage.place_related_charts_Place_Is_Selected()
@@ -1649,23 +1646,21 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         sleep(5)
 
-        # Select Asset Type dropdown
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/button[2]").click()
-        sleep(5)
 
-        # Click on the First element in the Asset Type drop down - Place
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[1]/div/ul/li[1]/a").click()
-        sleep(5)
+        # Select the Place from Asset dropdown
+        assetpage.asset_filter_based_on_place_and_school("Place")
+        sleep(10)
+
         # Select the Type dropdown
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/button[2]").click()
+        assetpage.get_asset_place_type_drop_down.click()
         sleep(2)
 
         # Click on First element in the Type drop down
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul/li[1]/a").click()
+        assetpage.get_asset_place_type_first_element.click()
         sleep(2)
 
         # Click on Chart - Dashboard
-        #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        #assetpage.get_asset_chart_dashboard_image.click()
         sleep(5)
 
         assetpage.place_related_charts_Place_And_Type_Is_Selected()
@@ -1677,12 +1672,10 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Select the School from Asset dropdown
-        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
-        sleep(5)
-        self.driver.find_element_by_link_text("School").click()
+        assetpage.asset_filter_based_on_place_and_school("School")
         sleep(10)
         # Click on Chart dashboard
-        #self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        #assetpage.get_asset_chart_dashboard_image.click()
         sleep(3)
         assetpage.school_related_charts_School_Is_Selected()
 
@@ -1693,21 +1686,19 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Select the School from Asset dropdown
-        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
-        sleep(5)
-        self.driver.find_element_by_link_text("School").click()
+        assetpage.asset_filter_based_on_place_and_school("School")
         sleep(10)
 
         # Select the District dropdown
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/button[2]").click()
+        assetpage.get_asset_school_district_drop_down.click()
         sleep(2)
 
         # Click on First element in the District drop down
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul/li[1]/a").click()
+        assetpage.get_asset_school_district_first_element.click()
         sleep(2)
-        # Click on Chart dashboard
-        #chartIcon = self.driver.find_element_by_xpath("//img[@title='Dashboard']")
 
+        # Click on Chart dashboard
+        #assetpage.get_asset_chart_dashboard_image.click()
         assetpage.school_related_charts_School_And_District_Is_Selected()
 
     @attr(priority="high")
@@ -1717,20 +1708,18 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Select the School from Asset dropdown
-        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
-        sleep(5)
-        self.driver.find_element_by_link_text("School").click()
+        assetpage.asset_filter_based_on_place_and_school("School")
         sleep(10)
 
         # Select the Grade dropdown
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/button[2]").click()
+        assetpage.get_asset_school_grade_drop_down.click()
         sleep(2)
 
         # Click on First element in the Grade drop down
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul/li[1]/a").click()
+        assetpage.get_asset_school_grade_first_element.click()
         sleep(2)
         # Click on Chart dashboard
-        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
+        #assetpage.get_asset_chart_dashboard_image.click()
         sleep(3)
 
         assetpage.school_related_charts_School_And_Grade_Is_Selected()
@@ -1742,21 +1731,19 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
 
         # Select the School from Asset dropdown
-        self.driver.find_element_by_xpath("//*[@id='span_filters']/div/div/button[2]").click()
-        sleep(5)
-        self.driver.find_element_by_link_text("School").click()
+        assetpage.asset_filter_based_on_place_and_school("School")
         sleep(10)
 
         # Select the Type dropdown
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/button[2]").click()
+        assetpage.get_asset_school_type_drop_down.click()
         sleep(2)
 
         # Click on First element in the Type drop down
-        self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul/li[1]/a").click()
+        assetpage.get_asset_school_type_first_element.click()
         sleep(2)
         # Click on Chart dashboard
-        self.driver.find_element_by_xpath("//img[@title='Dashboard']").click()
-        sleep(3)
+        #assetpage.get_asset_chart_dashboard_image.click()
+        #sleep(3)
 
         assetpage.school_related_charts_School_And_Type_Is_Selected()
 
