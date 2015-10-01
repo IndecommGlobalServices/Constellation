@@ -24,6 +24,7 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
+    @attr(status='smoke')
     def test_smoketest_assessment(self):
         assessmentpage = AssessmentPage(self.driver)
         sleep(2)
@@ -107,10 +108,11 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_05_smoketest_To_create_assessment(self):
+    @attr(status='smoke')
+    def test_AST_05_To_create_assessment(self):
         ast = AssessmentPage(self.driver)
         check = 0
-        sleep(8)
+        print ast.asset_school_name
         ast.create_assessment(ast.asset_school_name)
         sleep(8)
         ast.search_assessment_textbox(ast.asset_school_name)
@@ -128,7 +130,7 @@ class AssessmenttPageTest(BaseTestCase):
     def test_AST_06_To_verify_emailid_field_createassessment(self):
         ast = AssessmentPage(self.driver)
         emailid = ['Email', 'Email.', 'email.com', 'email@']
-        sleep(8)
+        sleep(10)
         ast.create_assessment_select_haystax_template()
         sleep(2)
         ast.get_create_assignedto_textbox.clear()
@@ -147,8 +149,11 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(10)
         ast.create_assessment_select_haystax_template()
         ast.select_first_asset()
+        ast.get_create_assignedto_textbox.clear()
         ast.get_create_assignedto_textbox.send_keys("dee@dee")
+        ast.get_create_startdate_textbox.clear()
         ast.get_create_startdate_textbox.send_keys("2015-09-10")
+        ast.get_create_enddate_textbox.cle()
         ast.get_create_enddate_textbox.send_keys("2015-09-10")
         with open(self.searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)

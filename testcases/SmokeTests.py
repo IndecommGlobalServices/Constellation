@@ -1,4 +1,4 @@
-import unittest, assettest, assessmenttest,maptest, basetestcase, hometest, logintest
+import unittest, assettest, assessmenttest,maptest,threatstreamstest
 import json, os
 
 cwd = os.getcwd()
@@ -6,19 +6,27 @@ os.chdir('..')
 L1 = os.path.join(os.getcwd(), "data\json_testsuite.json")
 os.chdir(cwd)
 
+# loader = unittest.TestLoader()
+# asset_suite = loader.loadTestsFromModule(assettest)
+# assessment_suite = loader.loadTestsFromModule(assessmenttest)
+# map_suite = loader.loadTestsFromModule(maptest)
+# threatstreams_suite = loader.loadTestsFromModule(threatstreamstest)
+# global_suite = unittest.TestSuite()
+# global_suite.addTest(asset_suite)
+# global_suite.addTest(assessment_suite)
+# global_suite.addTest(map_suite)
+# global_suite.addTest(threatstreams_suite)
 
-loader = unittest.TestLoader()
-asset_suite = loader.loadTestsFromModule(assettest)
-assessment_suite = loader.loadTestsFromModule(assessmenttest)
-map_suite = loader.loadTestsFromModule(maptest)
-global_suite = unittest.TestSuite()
-global_suite.addTest(assessment_suite)
-global_suite.addTest(map_suite)
-global_suite.addTest(asset_suite)
-unittest.TextTestRunner(verbosity=3).run(global_suite)
+#if __name__ == "__main__":
+#unittest.TextTestRunner(verbosity=3).run(global_suite)
 
+import  nose
+nose.run(argv=["","assettest", "assessmenttest", "maptest", "threatstreamstest", "--verbosity=3", "-a status=smoke"])
+nose.run(argv=["","assettest", "assessmenttest", "maptest", "threatstreamstest", "--verbosity=3"])
 
 '''
+
+
 
 from testcases.assettest import assettest
 from testcases.hometest import basetestcase

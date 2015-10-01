@@ -69,7 +69,7 @@ class BaseTestCase(unittest.TestCase):
         SaveLocation = os.path.join(path, file_name)
         self.driver.save_screenshot(SaveLocation)
 
-
+        print os.getcwd() + "At the teardown"
         # close the browser
         self.driver.quit()
         #super(BaseTestCase).tearDown()

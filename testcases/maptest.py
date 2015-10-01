@@ -13,8 +13,9 @@ from selenium.webdriver.common.keys import Keys
 class MapPageTest(BaseTestCase):
 
     @attr(priority="high")
-    @SkipTest
-    def test_smoketest_map(self):
+    #@SkipTest
+    @attr(status='smoke')
+    def test_map(self):
         sleep(5)
         mappage = MapPage(self.driver)
         sleep(20)

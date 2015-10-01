@@ -69,6 +69,7 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_AS_04_To_Verify_Delete_Asset_Cancel(self):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -1444,7 +1445,8 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
 
     @attr(priotity = "high")
-    def test_smoketest_AS_49_50_To_Verify_Create_Asset_Function_Create_School_Asset(self):
+#    @attr(status='smoke')
+    def test_AS_49_50_To_Verify_Create_Asset_Function_Create_School_Asset(self):
         check = 0
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
