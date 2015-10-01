@@ -488,7 +488,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on Add Contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         #clear first and last name.
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -522,7 +522,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -553,7 +553,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -584,7 +584,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -616,7 +616,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -829,7 +829,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_points_of_contact_header.click()
         #click on add contact button.
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -859,7 +859,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.delete_existing_contact()
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), "Contact information"))
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         assetpage.get_asset_newcontact_firstname_textbox.clear()
         assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         assetpage.get_asset_newcontact_lastname_textbox.clear()
@@ -1187,7 +1187,7 @@ class AssetPageTest(BaseTestCase):
         #upload a file with more than 12 MB.
         assetpage.upload_a_file_with_caption(caption_val, image_file_name)
         try:
-            WebDriverWait(self.driver, 200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_header_save_text_locator),"415 - UNSUPPORTED MEDIA TYPE"))
+            WebDriverWait(self.driver, 200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_header_save_text_locator),r"415 - UNSUPPORTED MEDIA TYPE"))
         except:
             assetpage.retuntoappmainpage()
             self.assertFalse("Test Case has been failed. No Error message displayed for unsupported media size.")
@@ -1559,7 +1559,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_detail_edit_link.click()
 
     # Modify the values
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300", "http://www.haystax.com")
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2", r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300", "http://www.haystax.com")
         # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
     # Click on Save
         assetpage.get_asset_detail_edit_save_button.click()
@@ -1578,6 +1578,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
         #click on edit link.
         assetpage.get_asset_detail_edit_link.click()
+        WebDriverWait(self.driver,10).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_detail_edit_title_locator), r"Asset details"))
         assetpage.get_asset_detail_edit_email_text_box.clear()
         assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
         #click on save button.
@@ -1596,6 +1597,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(8)
         assetpage.get_asset_detail_edit_link.click()
+        WebDriverWait(self.driver,10).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_detail_edit_title_locator), r"Asset details"))
         assetpage.get_asset_detail_edit_email_text_box.clear()
         assetpage.get_asset_detail_edit_email_text_box.send_keys("testtest")
         #click on save button.
