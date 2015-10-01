@@ -1444,7 +1444,7 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
 
     @attr(priotity = "high")
-    def test_AS_49_50_To_Verify_Create_Asset_Function_Create_School_Asset(self):
+    def test_smoketest_AS_49_50_To_Verify_Create_Asset_Function_Create_School_Asset(self):
         check = 0
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()

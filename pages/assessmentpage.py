@@ -246,7 +246,6 @@ class AssessmentPage(BasePageClass):
     def get_fileupload_window_cancel_button(self):
         return self.driver.find_element_by_xpath(self._ast_photos_documents_window_cancel_button_locator)
 
-
     def get_schooldata(self):
         cwd = os.getcwd()
         os.chdir('..')
@@ -257,7 +256,6 @@ class AssessmentPage(BasePageClass):
             for each in school_data:
                 self.asset_school_name = each["asset_name"][0]
 
-
     def get_table_tr_index(self, tablelocator, heading):
         index = 1
         for item in tablelocator:
@@ -265,7 +263,6 @@ class AssessmentPage(BasePageClass):
                 break
             index = index+1
         return index
-
 
     def get_assessment_table(self, heading):
         index = self.get_table_tr_index(self.get_assessment_table_header_locator, heading)
@@ -288,7 +285,6 @@ class AssessmentPage(BasePageClass):
         totalCount = splitedText[10]
         return int(totalCount)
 
-
     def select_multiple_checkboxes(self, count):
         checks = self.get_ast_checkbox
         index=0
@@ -299,19 +295,19 @@ class AssessmentPage(BasePageClass):
                 break
 
     def deselect_checkboxes(self):
-        checks = self.get_ast_checkbox
-
-
+        checks = self.driver.find_elements_by_xpath(".//*[@id='tblAssessments']/tbody/tr/td[1]/label")
+        for checkbox in checks:
+            if checkbox.get_attribute("class") == "checkbox checked":
+                checkbox.click()
+                sleep(1)
 
     def search_assessment_textbox(self, keyword):
         self.get_search_assessment_textbox.clear()
         self.get_search_assessment_textbox.send_keys(keyword)
 
-
     def search_asset_textbox(self, keyword):
         self.get_search_asset_textbox.clear()
         self.get_search_asset_textbox.send_keys(keyword)
-
 
     def select_assessment(self, asset_name):
         sleep(5)
@@ -345,11 +341,10 @@ class AssessmentPage(BasePageClass):
             print "No Assets added yet"
             return False
 
-
     def create_assessment_select_haystax_template(self):
-        sleep(5)
+        WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, self._ast_main_create_assessment_button_locator)))
         self.get_main_create_assessment_button.click()
-        sleep(5)
+        WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, self._ast_create_templatetype_dropdown_locator)))
         self.get_create_templatetype_dropdown.click()
         sleep(2)
         self.get_create_haystax_template_option.click()
@@ -392,6 +387,11 @@ class AssessmentPage(BasePageClass):
         caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption+"')]"
         return self.driver.find_element_by_xpath(caption_xpath)
 
+    def get_file_caption_text_path(self, caption):
+        caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption+"')]"
+        return caption_xpath
+
+
     def file_path(self, image_file_name):
         cur_dir = os.getcwd()
         os.chdir("..")
@@ -401,29 +401,23 @@ class AssessmentPage(BasePageClass):
         return complete_file_path
 
     def upload_a_file(self, image_caption, image_file_name):
+         # Click on Photo/Document panel - File Upload button
+        self.get_file_upload_button.click()
+        sleep(2)
+        # Click on Attach file button and attached the file path with the send_keys
+        file_path = self.file_path(image_file_name)
+        self.get_file_attach_file_button.send_keys(file_path)
+        sleep(3)
+        # Enter Caption
+        caption_val = image_caption
+        self.get_fileupload_caption_textbox.send_keys(caption_val)
+        sleep(2)
+        # Click Upload.
+        self.get_fileupload_window_upload_button.click()
         try:
-            # Click on Photo/Document panel - File Upload button
-            self.get_file_upload_button.click()
-            sleep(2)
-            # Click on Attach file button and attached the file path with the send_keys
-            file_path = self.file_path(image_file_name)
-            self.get_file_attach_file_button.send_keys(file_path)
-            sleep(3)
-            # Enter Caption
-            caption_val = image_caption
-            self.get_fileupload_caption_textbox.send_keys(caption_val)
-            sleep(2)
-            # Click Upload.
-            self.get_fileupload_window_upload_button.click()
-            try:
-                WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._ast_saved_text_locator), "Saved"))
-            except:
-                pass
+            WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._ast_saved_text_locator), "Saved"))
         except:
-            print "File uploads failed."
-
-
-
+            pass
 
     def upload_a_file_cancel(self, image_caption, image_file_name):
          # Click on Photo/Document panel - File Upload button
@@ -438,8 +432,7 @@ class AssessmentPage(BasePageClass):
         self.get_fileupload_caption_textbox.send_keys(caption_val)
         sleep(2)
         # Click Upload.
-        self.get_fileupload_window_cancel_button_button.click()
-
+        self.get_fileupload_window_cancel_button.click()
 
     def recoverapp(self):
         basepage = BasePage(self.driver)
@@ -453,7 +446,6 @@ class AssessmentPage(BasePageClass):
             self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator).is_displayed()
         except:
             print "Exception at sanity"
-
 
     def _validate_page(self, driver):
         pass

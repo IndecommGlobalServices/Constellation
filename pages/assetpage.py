@@ -1275,7 +1275,7 @@ class AssetPage(BasePageClass):
                 self.get_asset_newcontact_delete_icon.click()
                 sleep(1)
                 self.get_asset_newcontact_delete_popup_delete_button.click()
-        except NoSuchElementException:
+        except NoSuchElementException, ElementNotVisibleException:
             pass
 
     def create_new_contact(self, firstname, lastname, title="Title", phone=r"111-111-1111", email=r"test@test.com", prefix="Shri", address1="Indecomm", address2=r"Brigade South Parade", city="Bangalore", state="KA", zip="56001"):

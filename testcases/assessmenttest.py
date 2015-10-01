@@ -56,12 +56,11 @@ class AssessmenttPageTest(BaseTestCase):
         except:
             print "Create assessment button not present"
 
-
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_01_To_verify_noemailid_createassessment(self):
         ast = AssessmentPage(self.driver)
-        WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, ast._ast_main_create_assessment_button_locator)))
+        sleep(10)
         ast.create_assessment_select_haystax_template()
         ast.select_first_asset()
         ast.get_create_assignedto_textbox.clear()
@@ -71,12 +70,10 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(2)
         ast.get_main_create_assessment_button.click()
 
-
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_02_To_verify_nodate_createassessment(self):
         ast = AssessmentPage(self.driver)
-        sleep(8)
         ast.create_assessment_select_haystax_template()
         ast.select_first_asset()
         ast.get_create_assignedto_textbox.clear()
@@ -87,9 +84,8 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(2)
         ast.get_main_create_assessment_button.click()
 
-
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_04_To_verify_datevaidation_createassessment(self):
         ast = AssessmentPage(self.driver)
         sleep(8)
@@ -110,8 +106,8 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_main_create_assessment_button.click()
 
     @attr(priority="high")
-    @SkipTest
-    def test_AST_05_To_create_assessment(self):
+    #@SkipTest
+    def test_AST_05_smoketest_To_create_assessment(self):
         ast = AssessmentPage(self.driver)
         check = 0
         sleep(8)
@@ -128,7 +124,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.assertFalse(check == 0, "No assessment is created or is not appearing with yellow background")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_06_To_verify_emailid_field_createassessment(self):
         ast = AssessmentPage(self.driver)
         emailid = ['Email', 'Email.', 'email.com', 'email@']
@@ -145,7 +141,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_main_create_assessment_button.click()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_08_to_11_To_Verify_The_Search_(self):
         ast = AssessmentPage(self.driver)
         sleep(10)
@@ -173,11 +169,10 @@ class AssessmenttPageTest(BaseTestCase):
                         sleep(2)
                 ast.get_search_asset_textbox.clear()
                 ast.get_search_asset_textbox.send_keys(Keys.BACKSPACE)
-                ast.get_main_create_assessment_button.click()
-
+        ast.get_main_create_assessment_button.click()
 
     @attr(priority = "high")
-    @SkipTest
+    #@SkipTest
     def test_AST_12_To_Test_Sorting_on_Create_Assessment(self):
         ast = AssessmentPage(self.driver)
         sleep(10)
@@ -200,9 +195,8 @@ class AssessmenttPageTest(BaseTestCase):
         searchNamessorted = sorted(searchNameslist)
         self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Ascending order")
 
-
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_26_1_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_statusfilter_dropdown.click()
@@ -216,9 +210,8 @@ class AssessmenttPageTest(BaseTestCase):
             self.assertTrue(item.text, "In Progress")
         ast.get_resetfilter_button.click()
 
-
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_26_2_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_statusfilter_dropdown.click()
@@ -233,7 +226,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_resetfilter_button.click()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_26_3_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_statusfilter_dropdown.click()
@@ -248,7 +241,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_resetfilter_button.click()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_27_To_Test_Different_filters_on_Assessment_page(self):
         ast = AssessmentPage(self.driver)
         ast.get_ast_typefilter_dropdown.click()
@@ -283,9 +276,8 @@ class AssessmenttPageTest(BaseTestCase):
         self.assertEqual(ast.get_ast_statusfilter_dropdown.text, "Status")
         self.assertEqual(ast.get_ast_typefilter_dropdown.text, "Type")
 
-
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_29_to_32_To_Verify_The_Search_(self):
         cwd = os.getcwd()
         os.chdir('..')
@@ -313,9 +305,8 @@ class AssessmenttPageTest(BaseTestCase):
                 ast.get_search_assessment_textbox.clear()
                 ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
 
-
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_34_To_Verify_Delete_Assessment(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
@@ -329,9 +320,8 @@ class AssessmenttPageTest(BaseTestCase):
         countafterdeletion = ast.get_total_row_count()
         self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete asset")
 
-
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_35_To_Verify_Delete_MultipleAssessment(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
@@ -350,7 +340,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No Assessments listed")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_36_To_Verify_Delete_Assessment_Cancel(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
@@ -365,11 +355,12 @@ class AssessmenttPageTest(BaseTestCase):
             sleep(2)
             countafterdeletion = ast.get_total_row_count()
             self.assertEqual(countbeforedeletion, countafterdeletion, "Assessment deleted even after cancel is pressed")
+            ast.deselect_checkboxes()
         else:
             self.skipTest("No Assessments listed")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_37_To_Verify_Assign_Assessment(self):
         ast = AssessmentPage(self.driver)
         emailid = "Email@domain"
@@ -382,14 +373,14 @@ class AssessmenttPageTest(BaseTestCase):
             ast.get_action_assign_button.click()
             ast.get_ast_assignto_textbox.send_keys(emailid)
             ast.get_ast_assignto_assign_button.click()
-            sleep(2)
+            ast.deselect_checkboxes()
             assignedto = ast.get_assessment_table("Assigned to")
             self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
         else:
             self.skipTest("No Assessments listed")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_38_To_Verify_Assign_MultipleAssessment(self):
         ast = AssessmentPage(self.driver)
         emailid = "Email@domain"
@@ -404,7 +395,7 @@ class AssessmenttPageTest(BaseTestCase):
             ast.get_action_assign_button.click()
             ast.get_ast_assignto_textbox.send_keys(emailid)
             ast.get_ast_assignto_assign_button.click()
-            sleep(2)
+            ast.deselect_checkboxes()
             assignedto = ast.get_assessment_table("Assigned to")
             if len(assignedto) < noofassessments:
                 noofassessments = len(assignedto)
@@ -414,7 +405,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No Assessments listed")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_39_To_Verify_Assign_Email_Validation(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
@@ -436,7 +427,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("No assessment listed")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_40_To_Verify_Assign_Assessment_cancel(self):
         ast = AssessmentPage(self.driver)
         emailid = ['Email1@domain', 'Email2@domain']
@@ -479,6 +470,70 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(10)
         self.assertEqual(note, ast.get_overview_notes_textbox.get_attribute("value"), "Entered text not appearing in notes textarea")
         sleep(10)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_45_To_Verify_Overview_Upload_image_file_without_caption(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file("", "Test_Case_40.jpg")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        self.assertTrue(ast.get_caption_path("Test_Case_40").is_displayed(), "Upload failed")
+        self.assertFalse(self.driver.find_element_by_xpath(ast.get_file_caption_text_path("Test_Case_40")).is_displayed())
+        sleep(5)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_46_To_Verify_Overview_Upload_pdf_file_without_caption(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file("", "Test_Case_44_1.pdf")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        self.assertTrue(ast.get_caption_path("Test_Case_44_1").is_displayed(), "Upload failed")
+        self.assertFalse(self.driver.find_element_by_xpath(ast.get_file_caption_text_path("Test_Case_44_")).is_displayed())
+        sleep(5)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_47_1_To_Verify_Overview_Upload_image_file_with_caption(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file("Test_Case_40", "Test_Case_40.jpg")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        self.assertTrue(ast.get_caption_path("Test_Case_40").is_displayed(), "Upload failed")
+        self.assertTrue(ast.get_file_caption_text("Test_Case_40").is_displayed(), "Uploaded file doesnt appear with caption specified")
+        sleep(5)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_47_2_To_Verify_Overview_Upload_pdf_file_with_caption(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file("Test_Case_44_1", "Test_Case_44_1.pdf")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        self.assertTrue(ast.get_caption_path("Test_Case_44_1").is_displayed(), "Upload failed")
+        self.assertTrue(ast.get_file_caption_text("Test_Case_44_").is_displayed(), "Uploaded file doesnt appear with caption specified")
+        sleep(5)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_50_To_Verify_Overview_Upload_File_Cancel(self):
+        ast = AssessmentPage(self.driver)
+        self.get_assessment_page(ast)
+        no_of_images_present = len(ast.get_photos_documents_header_text)
+        ast.upload_a_file_cancel("Test_Case_41", "Test_Case_41.jpg")
+        no_of_images_present_after = len(ast.get_photos_documents_header_text)
+        self.assertEqual(no_of_images_present_after, no_of_images_present, "Upload cancel failed")
+        self.assertFalse(ast.get_caption_path("Test_Case_41").is_displayed(), "Upload cancel failed")
+        sleep(5)
 
     @attr(priority="high")
     #@SkipTest
@@ -539,77 +594,6 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(10)
         self.assertEqual(str(start_date), ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), ast.get_overview_enddate_textbox.get_attribute("value"))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_45_To_Verify_Overview_Upload_image_file_without_caption(self):
-        ast = AssessmentPage(self.driver)
-        self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
-        ast.upload_a_file("", "Test_Case_40.jpg")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
-        self.assertTrue(ast.get_caption_path("Test_Case_40").is_displayed(), "Upload failed")
-        self.assertFalse(ast.get_file_caption_text("Test_Case_40").is_displayed())
-        sleep(5)
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_46_To_Verify_Overview_Upload_pdf_file_without_caption(self):
-        ast = AssessmentPage(self.driver)
-        self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
-        ast.upload_a_file("", "Test_Case_44_1.pdf")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
-        self.assertTrue(ast.get_caption_path("Test_Case_44_1").is_displayed(), "Upload failed")
-        self.assertFalse(ast.get_file_caption_text("Test_Case_44_").is_displayed())
-        sleep(5)
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_47_1_To_Verify_Overview_Upload_image_file_with_caption(self):
-        ast = AssessmentPage(self.driver)
-        self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
-        ast.upload_a_file("Test_Case_40", "Test_Case_40.jpg")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
-        self.assertTrue(ast.get_caption_path("Test_Case_40").is_displayed(), "Upload failed")
-        self.assertTrue(ast.get_file_caption_text("Test_Case_40").is_displayed(), "Uploaded file doesnt appear with caption specified")
-        sleep(5)
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_47_2_To_Verify_Overview_Upload_pdf_file_with_caption(self):
-        ast = AssessmentPage(self.driver)
-        self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
-        ast.upload_a_file("Test_Case_44_1", "Test_Case_44_1.pdf")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
-        self.assertTrue(ast.get_caption_path("Test_Case_44_1").is_displayed(), "Upload failed")
-        self.assertTrue(ast.get_file_caption_text("Test_Case_44_").is_displayed(), "Uploaded file doesnt appear with caption specified")
-        sleep(5)
-
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_50_To_Verify_Overview_Upload_File_Cancel(self):
-        ast = AssessmentPage(self.driver)
-        self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
-        ast.upload_a_file_cancel("Test_Case_41", "Test_Case_41.jpg")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertEqual(no_of_images_present_after, no_of_images_present, "Upload cancel failed")
-        self.assertFalse(ast.get_caption_path("Test_Case_41").is_displayed(), "Upload cancel failed")
-        sleep(5)
-
-
-
 
     def get_assessment_page(self, ast):
         sleep(5)
