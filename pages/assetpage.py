@@ -255,8 +255,6 @@ class AssetPage(BasePageClass):
             self._assets[assetname] = asset.find_element_by_xpath(self._asset_list_asset_type_locator)
         '''
 
-    #_asset_name_breadcrumb
-
     @property
     def get_asset_name_breadcrumb(self):
         return self.driver.find_element_by_xpath(self._asset_name_breadcrumb)
@@ -317,7 +315,6 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_place_type_first_element(self):
         return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_select_first_element_locator)
-
 
     @property
     def get_asset_school_district_drop_down(self):
@@ -807,7 +804,6 @@ class AssetPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._asset_chart_dashboard_img_xpath_locator)
 
 
-
     def get_asset_photos_documents_image_caption_text(self, caption_val):
         caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption_val+"')]"
         return self.driver.find_element_by_xpath(caption_xpath)
@@ -1126,6 +1122,7 @@ class AssetPage(BasePageClass):
             self.create_school_asset(self.newSchool)
         elif type == "Place":
             self.create_place_asset()
+
         self.asset_overview_save_click()
 
     def edit_asset(self, type):

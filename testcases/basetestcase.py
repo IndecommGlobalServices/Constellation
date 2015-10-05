@@ -24,8 +24,8 @@ class BaseTestCase(unittest.TestCase):
     @classmethod
     
     def setUpClass(self):
-    #    display = Display(visible=0, size=(1024,768))
-    #    display.start()
+        #display = Display(visible=0, size=(1024,768))
+        #display.start()
         # create a new Firefox session
         self.driver = webdriver.Firefox()
         self.driver.implicitly_wait(30)
@@ -69,7 +69,7 @@ class BaseTestCase(unittest.TestCase):
         SaveLocation = os.path.join(path, file_name)
         self.driver.save_screenshot(SaveLocation)
 
-        print os.getcwd() + "At the teardown"
+
         # close the browser
         self.driver.quit()
         #super(BaseTestCase).tearDown()

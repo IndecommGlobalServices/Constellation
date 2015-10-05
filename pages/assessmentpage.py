@@ -56,8 +56,8 @@ class AssessmentPage(BasePageClass):
     _ast_create_templatetype_dropdown_locator = "(//div[@model='template']//button[@data-toggle='dropdown'])"
     _ast_create_haystax_template_option_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/ul/li/a"
     _ast_create_assignedto_text_box_locator = ".//*[@id='create_multi_assessment_assignedto']"
-    _ast_create_start_date_text_box_locator = ".//*[@id='id']"
-    _ast_create_end_date_text_box_locator = ".//*[@id='id']"
+    _ast_create_start_date_text_box_locator = ".//*[@id='create_multi_assessment_datepicker-01']"
+    _ast_create_end_date_text_box_locator = ".//*[@id='create_multi_assessment_datepicker-02']"
 
     #Assessment Overview related locators
     _ast_breadcrumb_text_locator = ".//*[@id='header']/div[1]/span[3]/span"
@@ -137,11 +137,11 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_create_startdate_textbox(self):
-        return self.driver.find_elements_by_xpath(self._ast_create_start_date_text_box_locator)[0]
+        return self.driver.find_element_by_xpath(self._ast_create_start_date_text_box_locator)
 
     @property
     def get_create_enddate_textbox(self):
-        return self.driver.find_elements_by_xpath(self._ast_create_end_date_text_box_locator)[1]
+        return self.driver.find_element_by_xpath(self._ast_create_end_date_text_box_locator)
 
     @property
     def get_create_templatetype_dropdown(self):
@@ -344,22 +344,23 @@ class AssessmentPage(BasePageClass):
             return False
 
     def create_assessment_select_haystax_template(self):
-        sleep(10)
-        WebDriverWait(self.driver, 30, poll_frequency=1, ignored_exceptions=[ElementNotVisibleException, ElementNotSelectableException]).until(expected_conditions.element_to_be_clickable((By.XPATH, self._ast_main_create_assessment_button_locator)))
-        self.get_main_create_assessment_button.click()
-        WebDriverWait(self.driver, 30, poll_frequency=1, ignored_exceptions=ElementNotVisibleException).until(expected_conditions.presence_of_element_located((By.XPATH, self._ast_create_templatetype_dropdown_locator)))
-        self.get_create_templatetype_dropdown.click()
-        sleep(2)
-        self.get_create_haystax_template_option.click()
+        if not self.get_create_assessments_button.is_displayed():
+            WebDriverWait(self.driver, 30, poll_frequency=1, ignored_exceptions=[ElementNotVisibleException, ElementNotSelectableException]).until(expected_conditions.element_to_be_clickable((By.XPATH, self._ast_main_create_assessment_button_locator)))
+            if self.get_main_create_assessment_button.is_enabled():
+                self.get_main_create_assessment_button.click()
+                WebDriverWait(self.driver, 30, poll_frequency=1, ignored_exceptions=ElementNotVisibleException).until(expected_conditions.presence_of_element_located((By.XPATH, self._ast_create_templatetype_dropdown_locator)))
+                self.get_create_templatetype_dropdown.click()
+                sleep(2)
+                self.get_create_haystax_template_option.click()
 
     def create_assessment(self, assetname):
         self.create_assessment_select_haystax_template()
         self.get_create_assignedto_textbox.clear()
         self.get_create_assignedto_textbox.send_keys("Dee@deep")
-        self.get_create_startdate_textbox.clear()
+        self.get_create_startdate_textbox.send_keys("")
         self.get_create_startdate_textbox.send_keys("2015-09-10")
         sleep(3)
-        self.get_create_enddate_textbox.clear()
+        self.get_create_enddate_textbox.send_keys("")
         self.get_create_enddate_textbox.send_keys("2015-09-11")
         if self.select_asset(assetname) == False:
             print "Asset not created yet"

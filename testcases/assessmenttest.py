@@ -79,8 +79,8 @@ class AssessmenttPageTest(BaseTestCase):
         ast.select_first_asset()
         ast.get_create_assignedto_textbox.clear()
         ast.get_create_assignedto_textbox.send_keys("deep@dee")
-        ast.get_create_startdate_textbox.clear()
-        ast.get_create_enddate_textbox.clear()
+        ast.get_create_startdate_textbox.send_keys("")
+        ast.get_create_enddate_textbox.send_keys("")
         self.assertFalse(ast.get_create_assessments_button.is_enabled(),"Create assessment button enabled even without entering start and end date")
         sleep(2)
         ast.get_main_create_assessment_button.click()
@@ -112,7 +112,6 @@ class AssessmenttPageTest(BaseTestCase):
     def test_AST_05_To_create_assessment(self):
         ast = AssessmentPage(self.driver)
         check = 0
-        print ast.asset_school_name
         ast.create_assessment(ast.asset_school_name)
         sleep(8)
         ast.search_assessment_textbox(ast.asset_school_name)
@@ -153,7 +152,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast.get_create_assignedto_textbox.send_keys("dee@dee")
         ast.get_create_startdate_textbox.clear()
         ast.get_create_startdate_textbox.send_keys("2015-09-10")
-        ast.get_create_enddate_textbox.cle()
+        ast.get_create_enddate_textbox.clear()
         ast.get_create_enddate_textbox.send_keys("2015-09-10")
         with open(self.searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
@@ -414,12 +413,10 @@ class AssessmenttPageTest(BaseTestCase):
     def test_AST_39_To_Verify_Assign_Email_Validation(self):
         ast = AssessmentPage(self.driver)
         ast.app_sanity_check()
-        countbeforedeletion = ast.get_total_row_count()
-        if countbeforedeletion >= 1:
+        if ast.get_total_row_count() >= 1:
             emailid = ['Email', 'Email.', 'email.com', 'email@']
             #noofassessment should not be greater than 10
-            noofassessments = 1
-            ast.select_multiple_checkboxes(noofassessments)
+            ast.select_multiple_checkboxes(1)
             sleep(5)
             ast.get_action_dropdown.click()
             ast.get_action_assign_button.click()

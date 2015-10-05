@@ -780,8 +780,7 @@ class AssetPageTest(BaseTestCase):
         #create multiple contacts.
         assetpage.multiple_contact_create()
         exp_email_ascending = r"abc@def, ghi@jkl, mno@pqr, stu@vwx"
-        #click on contact email tab.
-        assetpage.get_asset_point_of_contact_email_tab.click()
+        assetpage.get_asset_point_of_contact_email_tab.click()  #click on contact email tab.
         sleep(2)
         #Reading all contact's email values.
         act_email_list = assetpage.get_asset_point_of_contact_email_text_value
@@ -1445,13 +1444,19 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
 
     @attr(priotity = "high")
-#    @attr(status='smoke')
+    @attr(status='smoke')
+
+    # Description: To verify create adssets functions Create School Asset
+    # arguments: None
+    # Returns: "Param Value"
+    #
     def test_AS_49_50_To_Verify_Create_Asset_Function_Create_School_Asset(self):
         check = 0
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.create_asset("School")
-        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located \
+                                            ((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
         self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         assetpage.retuntoappmainpage()
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
