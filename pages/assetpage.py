@@ -10,10 +10,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 import os, json, inspect
 from selenium.webdriver.common.action_chains import ActionChains
 
+filepathschool = "data" + os.sep + "json_Schooldata.json"
+filepathplace = "data" + os.sep + "json_Placedata.json"
 cwd = os.getcwd()
 os.chdir('..')
-L1 = os.path.join(os.getcwd(), "data", "json_Schooldata.json")
-placeData = os.path.join(os.getcwd(), "data", "json_Placedata.json")
+L1 = os.path.join(os.getcwd(), filepathschool)
+placeData = os.path.join(os.getcwd(), filepathplace)
 os.chdir(cwd)
 
 class AssetPage(BasePageClass):
@@ -313,7 +315,7 @@ class AssetPage(BasePageClass):
 
     #_asset_list_asset_name_back_color_locator
     @property
-    def get_asset_name_list_back_color(self):
+    def get_asset_name_list(self):
         return  self.driver.find_elements_by_xpath(self._asset_list_asset_name_back_color_locator)
 
     @property

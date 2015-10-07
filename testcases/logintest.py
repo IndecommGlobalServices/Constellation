@@ -16,5 +16,3 @@ class LoginPageTest(BaseTestCase):
         #loginpage.email.send_keys()
 
 
-if __name__ =='__main__':
-    unittest.main(verbosity=2)

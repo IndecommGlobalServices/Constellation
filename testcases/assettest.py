@@ -27,8 +27,11 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.get_asset_select_action_drop_down.click()
-        self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(),
+        if len(assetpage.get_asset_name_list)<= 0:
+            self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(),
                          "Delete must be disabled when no assets are available.")
+        else:
+            self.skipTest("Assets are available and test cant be validated")
 
     @attr(priority="high")
     #@SkipTest
@@ -77,7 +80,6 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_04(self):
         """
         Description : To verify delete window cancel button functionality.
@@ -190,7 +192,7 @@ class AssetPageTest(BaseTestCase):
         """
         cwd = os.getcwd()
         os.chdir('..')
-        searchasset_filepath = os.path.join(os.getcwd(), "data\json_searchAssets.json")
+        searchasset_filepath = os.path.join(os.getcwd(), "data", "json_searchAssets.json")
         os.chdir(cwd)
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
@@ -249,7 +251,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(5)
-        for i in assetpage.get_asset_name_list_back_color:
+        for i in assetpage.get_asset_name_list:
             if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") \
                                                                 == "rgba(255, 236, 158, 1)"):
                 check = 1
@@ -1710,6 +1712,4 @@ class AssetPageTest(BaseTestCase):
         sleep(2)
         assetpage.school_related_charts_School_And_Type_Is_Selected()
 
-if __name__ =='__main__':
-    unittest.main(verbosity=2)
 

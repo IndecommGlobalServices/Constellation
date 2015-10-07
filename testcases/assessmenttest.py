@@ -6,20 +6,21 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from pages.assessmentpage import AssessmentPage
+from pages.loginpage import LoginPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from time import sleep
 from datetime import date, timedelta, datetime
-from pages.IconListPage import IconListPage
 import json, os, re
 
 
 class AssessmenttPageTest(BaseTestCase):
 
+    filepath = "data" + os.sep + "json_SearchAssessments.json"
     cwd = os.getcwd()
     os.chdir('..')
-    searchasset_filepath = os.path.join(os.getcwd(), "data\json_SearchAssessments.json")
+    searchasset_filepath = os.path.join(os.getcwd(), filepath)
     os.chdir(cwd)
 
     @attr(priority="high")
@@ -32,9 +33,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.assertEqual(assessmentpage.get_ast_app_name.text, "Assessments")
         except:
             print "The Assessment link text not available"
-
         assessmentpage.get_ast_statusfilter_dropdown.click()
-
         try:
             self.assertTrue(assessmentpage.get_statusfilter_InProgress_link)
             self.assertTrue(assessmentpage.get_statusfilter_NotStarted_link)
@@ -111,18 +110,26 @@ class AssessmenttPageTest(BaseTestCase):
     @attr(status='smoke')
     def test_AST_05_To_create_assessment(self):
         ast = AssessmentPage(self.driver)
-        check = 0
-        ast.create_assessment(ast.asset_school_name)
+        flag = 0
+        count = 0
+        if ast.create_assessment(ast.asset_school_name) == False:
+            self.assertFalse("Assessment creation failed")
         sleep(8)
         ast.search_assessment_textbox(ast.asset_school_name)
         sleep(5)
         for item in ast.get_assessment_table("Asset"):
+            count = count + 1
             if (item.text  == ast.asset_school_name) and (item.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
-                check = 1
-                break
+                flag = 1
+                status = ast.get_assessment_table_row_values(count, "Status").text
+                assignedto = ast.get_assessment_table_row_values(count, "Assigned to").text
+                creationdate = ast.get_assessment_table_row_values(count, "Created").text
         ast.get_search_assessment_textbox.clear()
         ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
-        self.assertFalse(check == 0, "No assessment is created or is not appearing with yellow background")
+        self.assertFalse(flag == 0, "No assessment is created or is not appearing with yellow background")
+        self.assertEqual(status ,"Not Started", "The newly created assessment status is not 'Not Started'")
+        self.assertEqual(creationdate, str(date.today()), "The newly created assessment creation date is not showing todays date")
+        self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
 
     @attr(priority="high")
     #@SkipTest
@@ -359,7 +366,7 @@ class AssessmenttPageTest(BaseTestCase):
             sleep(2)
             countafterdeletion = ast.get_total_row_count()
             self.assertEqual(countbeforedeletion, countafterdeletion, "Assessment deleted even after cancel is pressed")
-            ast.deselect_checkboxes()
+            #ast.deselect_checkboxes()
         else:
             self.skipTest("No Assessments listed")
 
@@ -377,7 +384,7 @@ class AssessmenttPageTest(BaseTestCase):
             ast.get_action_assign_button.click()
             ast.get_ast_assignto_textbox.send_keys(emailid)
             ast.get_ast_assignto_assign_button.click()
-            ast.deselect_checkboxes()
+            #ast.deselect_checkboxes()
             assignedto = ast.get_assessment_table("Assigned to")
             self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
         else:
@@ -389,7 +396,7 @@ class AssessmenttPageTest(BaseTestCase):
         ast = AssessmentPage(self.driver)
         emailid = "Email@domain"
         #noofassessment should not be greater than 10
-        noofassessments = 10
+        noofassessments = 2
         ast.app_sanity_check()
         countbeforedeletion = ast.get_total_row_count()
         if countbeforedeletion >= 1:
@@ -399,7 +406,7 @@ class AssessmenttPageTest(BaseTestCase):
             ast.get_action_assign_button.click()
             ast.get_ast_assignto_textbox.send_keys(emailid)
             ast.get_ast_assignto_assign_button.click()
-            ast.deselect_checkboxes()
+            #ast.deselect_checkboxes()
             assignedto = ast.get_assessment_table("Assigned to")
             if len(assignedto) < noofassessments:
                 noofassessments = len(assignedto)
@@ -422,7 +429,9 @@ class AssessmenttPageTest(BaseTestCase):
             ast.get_action_assign_button.click()
             for item in emailid:
                 ast.get_ast_assignto_textbox.send_keys(item)
-                self.assertFalse(ast.get_ast_assignto_assign_button.is_enabled(), "Email Id validation error")
+                sleep(2)
+                #self.assertFalse(ast.get_ast_assignto_assign_button.is_enabled(), "Email Id validation error")
+                self.assertEqual("rgba(192, 57, 43, 1)", ast.get_ast_assignto_textbox.value_of_css_property("border-bottom-color"),  "Email ID validation error in create assessment")
                 ast.get_ast_assignto_textbox.clear()
             ast.get_ast_assignto_cancel_button.click()
         else:
@@ -478,38 +487,27 @@ class AssessmenttPageTest(BaseTestCase):
     def test_AST_45_To_Verify_Overview_Upload_image_file_without_caption(self):
         ast = AssessmentPage(self.driver)
         self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
         ast.upload_a_file("", "Test_Case_40.jpg")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
         self.assertTrue(ast.get_caption_path("Test_Case_40").is_displayed(), "Upload failed")
-        self.assertFalse(self.driver.find_element_by_xpath(ast.get_file_caption_text_path("Test_Case_40")).is_displayed())
-        sleep(5)
+        self.assertTrue(self.driver.find_element_by_xpath(ast.get_file_header_path("Test_Case_40")).is_displayed(), "Upload failed")
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_46_To_Verify_Overview_Upload_pdf_file_without_caption(self):
         ast = AssessmentPage(self.driver)
         self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
         ast.upload_a_file("", "Test_Case_44_1.pdf")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
         self.assertTrue(ast.get_caption_path("Test_Case_44_1").is_displayed(), "Upload failed")
-        self.assertFalse(self.driver.find_element_by_xpath(ast.get_file_caption_text_path("Test_Case_44_")).is_displayed())
-        sleep(5)
+        self.assertTrue(self.driver.find_element_by_xpath(ast.get_file_header_path("Test_Case_44_1")).is_displayed(), "Upload failed")
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_47_1_To_Verify_Overview_Upload_image_file_with_caption(self):
         ast = AssessmentPage(self.driver)
         self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
-        ast.upload_a_file("Test_Case_40", "Test_Case_40.jpg")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        ast.upload_a_file("File_caption", "Test_Case_40.jpg")
         self.assertTrue(ast.get_caption_path("Test_Case_40").is_displayed(), "Upload failed")
-        self.assertTrue(ast.get_file_caption_text("Test_Case_40").is_displayed(), "Uploaded file doesnt appear with caption specified")
+        self.assertTrue(self.driver.find_element_by_xpath(ast.get_file_header_path("File_caption")).is_displayed(), "Upload failed")
         sleep(5)
 
     @attr(priority="high")
@@ -517,12 +515,9 @@ class AssessmenttPageTest(BaseTestCase):
     def test_AST_47_2_To_Verify_Overview_Upload_pdf_file_with_caption(self):
         ast = AssessmentPage(self.driver)
         self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
-        ast.upload_a_file("Test_Case_44_1", "Test_Case_44_1.pdf")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertGreater(no_of_images_present_after, no_of_images_present, "Upload failed")
+        ast.upload_a_file("File_pdf_caption", "Test_Case_44_1.pdf")
         self.assertTrue(ast.get_caption_path("Test_Case_44_1").is_displayed(), "Upload failed")
-        self.assertTrue(ast.get_file_caption_text("Test_Case_44_").is_displayed(), "Uploaded file doesnt appear with caption specified")
+        self.assertTrue(self.driver.find_element_by_xpath(ast.get_file_header_path("File_pdf_caption")).is_displayed(), "Upload failed")
         sleep(5)
 
     @attr(priority="high")
@@ -530,11 +525,11 @@ class AssessmenttPageTest(BaseTestCase):
     def test_AST_50_To_Verify_Overview_Upload_File_Cancel(self):
         ast = AssessmentPage(self.driver)
         self.get_assessment_page(ast)
-        no_of_images_present = len(ast.get_photos_documents_header_text)
         ast.upload_a_file_cancel("Test_Case_41", "Test_Case_41.jpg")
-        no_of_images_present_after = len(ast.get_photos_documents_header_text)
-        self.assertEqual(no_of_images_present_after, no_of_images_present, "Upload cancel failed")
-        self.assertFalse(ast.get_caption_path("Test_Case_41").is_displayed(), "Upload cancel failed")
+        try:
+            self.assertTrue(self.driver.find_element_by_xpath(ast.get_file_header_path("Test_Case_41")).is_displayed())
+        except NoSuchElementException:
+            pass
         sleep(5)
 
     @attr(priority="high")
@@ -597,6 +592,36 @@ class AssessmenttPageTest(BaseTestCase):
         self.assertEqual(str(start_date), ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), ast.get_overview_enddate_textbox.get_attribute("value"))
 
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_68(self):
+        """
+
+        :return:
+        """
+        ast = AssessmentPage(self.driver)
+        self.get_schooldata_page(ast)
+        for schooltype in ast.get_schooldata_schooltype_radiobuttons:
+            sleep(5)
+            schooltype.click()
+            sleep(5)
+            ast.get_overview_save_button.click()
+            sleep(5)
+            WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, ast._ast_saved_text_locator), "Saved"))
+            # ast.get_overview_button.click()
+            # sleep(2)
+            # ast.get_schooldata_button.click()
+            print schooltype.value_of_css_property("border-bottom-color")
+            sleep(5)
+            break
+
+
+
+    def get_schooldata_page(self, ast):
+        self.get_assessment_page(ast)
+        ast.get_schooldata_button.click()
+
+
     def get_assessment_page(self, ast):
         sleep(5)
         try:
@@ -611,6 +636,4 @@ class AssessmenttPageTest(BaseTestCase):
                 ast.select_assessment(ast.asset_school_name)
 
 
-if __name__ == '__main__':
-    unittest.main(verbosity=2)
 

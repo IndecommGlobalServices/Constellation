@@ -1,28 +1,20 @@
 import unittest
 import os
 from datetime import datetime
-from time import sleep
 from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
-from pages.IconListPage import IconListPage
-from selenium.webdriver.support.events import EventFiringWebDriver
-from selenium.webdriver.support.events import AbstractEventListener
 
-from pyvirtualdisplay import Display
-import json
 
 cwd = os.getcwd()
 os.chdir('..')
 SCREEN_DUMP_LOCATION = os.path.join(os.getcwd(), "Screenshots")
 os.chdir(cwd)
 
-
-
 class BaseTestCase(unittest.TestCase):
+    username = ""
     @classmethod
-    
     def setUpClass(self):
         #display = Display(visible=0, size=(1024,768))
         #display.start()
@@ -40,6 +32,7 @@ class BaseTestCase(unittest.TestCase):
 
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
+        self.username = loginpage.usernameText
 
         #iconlistpage = IconListPage(cls.driver)
         #iconlistpage.click_asset_icon()

@@ -1,5 +1,3 @@
-import unittest
-
 from pages.homepage import HomePage
 from testcases.basetestcase import BaseTestCase
 
@@ -11,7 +9,5 @@ class HomePageTest(BaseTestCase):
     def test_ClickLogin(cls):
         homepage = HomePage(cls.driver)
         homepage.loginlink.click()
-        cls.assertEqual("https://constellation-dev.haystax.com/#/login", self.driver.current_url)
+        cls.assertEqual("https://constellation-dev.haystax.com/#/login", cls.driver.current_url)
 
-if __name__ =='__main__':
-    unittest.main(verbosity=2)
