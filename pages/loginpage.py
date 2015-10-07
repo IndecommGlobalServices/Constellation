@@ -6,8 +6,12 @@ from time import sleep
 
 cwd = os.getcwd()
 os.chdir('..')
-
-L1 = os.path.join(os.getcwd(), "data\json_login.json")
+json_path= "data"+os.sep+"json_login.json"
+#L1 = os.path.join(os.getcwd(), "data\json_login.json")
+#L1 = os.path.join(os.getcwd(),json_path)
+#L1 = os.path.abspath(os.path.join(os.getcwd(),"data","json_login.json"))
+L1 = os.path.join(os.getcwd(),"data","json_login.json")
+print L1
 os.chdir(cwd)
 
 class LoginPage(BasePageClass):

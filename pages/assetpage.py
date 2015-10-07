@@ -12,8 +12,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 cwd = os.getcwd()
 os.chdir('..')
-L1 = os.path.join(os.getcwd(), "data\json_Schooldata.json")
-placeData = os.path.join(os.getcwd(), "data\json_Placedata.json")
+L1 = os.path.join(os.getcwd(), "data", "json_Schooldata.json")
+placeData = os.path.join(os.getcwd(), "data", "json_Placedata.json")
 os.chdir(cwd)
 
 class AssetPage(BasePageClass):
@@ -37,24 +37,15 @@ class AssetPage(BasePageClass):
     _asset_list_No_Matching_Records_Found_locator = ".//*[@id='assetstable']/tbody/tr/td"
     _asset_list_asset_name_back_color_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
 
-
     # Asset name on Breadcrumb
     _asset_name_breadcrumb = "//*[@id='header']/div[1]/span[3]/span"
 
     # Asset Filter related to place and school
     _asset_filter_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
-
-    #_asset_place_type_drop_down_locator = "//div[@label='Type']"
     _asset_place_type_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
     _asset_place_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
-
-    #_asset_school_district_drop_down_locator = "//div[@label= 'District']"
-    #_asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
-    #_asset_school_district_drop_down_locator = "//div[@label= 'District']"
     _asset_school_district_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
-    #_asset_school_district_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
     _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
-    #.//*[@id='span_filters']/div/div/ul/li[2]/a
     _asset_school_district_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[4]"
 
     _asset_school_grade_drop_down_locator = ".//*[@id='span_filters']/div[3]/div/button[2]"
@@ -67,6 +58,7 @@ class AssetPage(BasePageClass):
 
     #asset search textbox
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
+
     # New Asset creation related
     _asset_create_asset = "//img[@alt='Create asset']"
 
@@ -86,10 +78,7 @@ class AssetPage(BasePageClass):
     _asset_type_Saved_label_locator = ".//*[@id='header']/div[3]"
 
     # Overview panel related
-
-
     #Asset Overview dialouge locators
-    #_asset_overview_templatetype_dropdown_locator = "//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]"
     _asset_overview_templatetype_dropdown_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])"
     _asset_overview_name_text_box_locator = "//input[@ng-model='model']"
     _asset_overview_address_text_box_locator = "//input[@ng-model='asset_edit.address.address1']"
@@ -105,7 +94,6 @@ class AssetPage(BasePageClass):
 
     _asset_overview_type_drop_down_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/button[1]"
     _asset_overview_type_drop_down_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
-    #_asset_overview_type_drop_down_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/button[1]"
     _asset_overview_district_drop_down_locator = "//div[@label= 'District']"
     _asset_overview_grade_drop_down_locator = "//div[@label= 'Grade']"
     _asset_overview_add_button_locator = ".//*[@id='newItemButton']"
@@ -116,7 +104,6 @@ class AssetPage(BasePageClass):
     _asset_overview_panel_owner_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[6]/td[2]"
     _asset_overview_panel_district_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[4]/td[2]"
     _asset_overview_panel_grade_text = ".//*[@id='widgets']/div[1]/div/div[2]/table/tbody/tr[5]/td[2]"
-
     _asset_overview_edit_link_locator = "//div[contains(text(),'Overview')]/div/img"
     _asset_overview_edit_name_textbox_locator = "name"
     _asset_overview_window_popup_cross_button_locator = "//*[@id='asset_overview_modal']/div/div/div/button"
@@ -127,6 +114,16 @@ class AssetPage(BasePageClass):
     # Point of Contacts related
     _asset_points_of_contact_header_locator = "//div[contains(text(), 'Points of Contact')]"
     _assets_points_of_contact_title_locator = ".//*[@id='asset_contact_modal_title']"
+    _asset_point_of_contact_name_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Name']"
+    _asset_point_of_contact_title_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Title']"
+    _asset_point_of_contact_phone_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Phone']"
+    _asset_point_of_contact_email_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Email']"
+    _asset_point_of_contact_name_text_value_locator = "//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit']"
+    _asset_point_of_contact_title_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[1]"
+    _asset_point_of_contact_phone_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[2]"
+    _asset_point_of_contact_email_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[3]"
+
+    #New Contact Window
     _asset_add_contact_button_locator = "btn_add_asset_contact"
     _asset_newcontact_firstname_textbox_locator = "first_name"
     _asset_newcontact_lastname_textbox_locator = "last_name"
@@ -157,40 +154,21 @@ class AssetPage(BasePageClass):
     _asset_contact_new_contact_text_locator = "//table[@id='contacts_table']//tbody//tr"
     _asset_main_contact_window_locator = ".//*[@id='form_main_contact']"
     _asset_main_contact_name_locator = ".//*[@id='form_main_contact']/div[2]/table/tbody/tr[1]/td[2]"
-    _asset_point_of_contact_name_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Name']"
-    _asset_point_of_contact_title_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Title']"
-    _asset_point_of_contact_phone_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Phone']"
-    _asset_point_of_contact_email_tab_locator = "//*[@id='contacts_table']/thead/tr/th[text()='Email']"
-    _asset_point_of_contact_name_text_value_locator = "//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit']"
-    _asset_point_of_contact_title_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[1]"
-    _asset_point_of_contact_phone_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[2]"
-    _asset_point_of_contact_email_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[3]"
-
-    #_asset_detail_edit_link_locator = ".//div[contains(text(),'Details')]/div/img"
-    #_asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
-    #_asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
-    #_asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[2]"
-    #_asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
-
 
     _asset_link_locator = "Assets"
     _asset_header_save_text_locator = ".//*[@id='header']/div[contains(@class,'right ng-binding')]"
 
     # Asset Detail panel related
-
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_detail_edit_title_locator = ".//*[@id='H2']"
     _asset_detail_edit_capacity_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[1]/div/span/input"
-    #_asset_detail_edit_closed_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[2]/div/span/input"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='id']"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
-    #_asset_detail_edit_fax_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[5]/div/span/input"
     _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
     _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
     _asset_detail_edit_size_textbox_locator = "//input[@placeholder='size (sq ft)']"
-    #_asset_detail_edit_size_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[7]/div/span/input"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
     _asset_detail_edit_website_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
@@ -200,7 +178,6 @@ class AssetPage(BasePageClass):
 
 
     # Asset Photo/Document Upload Panel
-
     _asset_photos_documents_header_locator = "//div[contains(text(),'Photos / Documents')]"
     _asset_photos_documents_upload_file_button_locator = "//button[contains(text(), 'Upload file')]"
     _asset_photos_documents_attached_file_button_locator = "upload_document_file_upload"
@@ -220,6 +197,7 @@ class AssetPage(BasePageClass):
     _asset_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
     _asset_annotation_delete_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'deleteItem')]"
     _asset_annotation_edit_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'editItem')]"
+
     # Location related
     _asset_location_map_id_locator = "map_control"
     _asset_location_edit_icon_css_locator = "img.widget_edit"
@@ -235,7 +213,6 @@ class AssetPage(BasePageClass):
     #Chart dashboard
     _asset_chart_dashboard_img_xpath_locator = "//img[@title='Dashboard']"
 
-
     _asset_count = 0
     _assets = {}
 
@@ -247,14 +224,6 @@ class AssetPage(BasePageClass):
         appicon = IconListPage(self.driver)
         appicon.click_asset_icon()
 
-        '''
-        assets_results = self.driver.find_elements_by_xpath(self._asset_list_locator)
-        for asset in assets_results:
-            assetname = asset.find_elements_by_xpath(self._asset_list_asset_name_locator).text
-            self._assets[assetname] = asset.find_element_by_xpath(self._asset_list_check_box_locator)
-            self._assets[assetname] = asset.find_element_by_xpath(self._asset_list_asset_type_locator)
-        '''
-
     @property
     def get_asset_name_breadcrumb(self):
         return self.driver.find_element_by_xpath(self._asset_name_breadcrumb)
@@ -262,7 +231,6 @@ class AssetPage(BasePageClass):
     @property
     def get_assets_name_list(self):
         return self.driver.find_elements_by_xpath(self._asset_list_assets_name_locator)
-
 
     @property
     def get_asset_select_action_drop_down(self):
@@ -340,7 +308,6 @@ class AssetPage(BasePageClass):
     def get_asset_school_type_first_element(self):
         return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
 
-
     @property
     def get_asset_list_no_matching_records_found(self):
         return  self.driver.find_element_by_xpath(self._asset_list_No_Matching_Records_Found_locator)
@@ -381,7 +348,6 @@ class AssetPage(BasePageClass):
     @property
     def enter_asset_type_phone(self):
         return self.driver.find_element_by_xpath(self._asset_overview_phone_text_box_locator)
-
 
     #_asset_type_Saved_label_locator
     @property
@@ -428,11 +394,9 @@ class AssetPage(BasePageClass):
     def get_overview_type_add_button(self):
         return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
 
-
     @property
     def get_overview_name_text(self):
         return self.driver.find_element_by_xpath(self._asset_overview_panel_name_text)
-
 
     @property
     def get_overview_address1_text(self):
@@ -611,7 +575,6 @@ class AssetPage(BasePageClass):
         return self.driver.find_elements_by_xpath(self._asset_point_of_contact_email_text_value_locator)
 
     # Asset Details related properties
-
     @property
     def get_asset_detail_edit_link(self):
         return self.driver.find_element_by_xpath(self._asset_detail_edit_link_locator)
@@ -673,7 +636,6 @@ class AssetPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._asset_detail_edit_window_popup_cross_button_locator)
 
     # Asset overview related properties
-
     @property
     def get_asset_overview_edit_link(self):
         return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
@@ -803,7 +765,6 @@ class AssetPage(BasePageClass):
     def get_asset_chart_dashboard_image(self):
         return self.driver.find_element_by_xpath(self._asset_chart_dashboard_img_xpath_locator)
 
-
     def get_asset_photos_documents_image_caption_text(self, caption_val):
         caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption_val+"')]"
         return self.driver.find_element_by_xpath(caption_xpath)
@@ -813,6 +774,11 @@ class AssetPage(BasePageClass):
         return self.driver.find_element_by_xpath(caption_xpath)
 
     def get_select_checkbox_in_grid(self):
+        """
+        Description : This function will select the checkbox from the asset list..
+        Revision:
+        :return: None
+        """
         assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
         sleep(2)
         for asset_checkbox in assets_checkbox:
@@ -822,101 +788,108 @@ class AssetPage(BasePageClass):
         for asset_checkbox in assets_checkbox:
             sleep(1)
             asset_checkbox.click()
-    '''
-    def display_asset_names_in_grid(self):
-        assets_name = self.driver.find_elements_by_xpath(self._asset_list_asset_name_locator)
-        sleep(2)
-        for asset_name in assets_name:
-    '''
 
     def asset_filter_based_on_place_and_school(self, assetType):
+        """
+        Description : This function will select the checkbox from the asset list.
+        Revision:
+        :return: None
+        """
         self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text(assetType).click()
 
-    # This function is to select the school district
     def get_asset_school_district(self):
+        """
+        Description : This function will click on school district drop down menu and will select a value.
+        Revision:
+        :return: None
+        """
         sleep(5)
         self.asset_filter_based_on_place_and_school("School")
-
-        # Click on District dropdown
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
-
-        # Check the values exists inside District dropdown
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(10)
-
+        sleep(3)
         if len(items) > 1:
-            firstelemet =self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator)
+            firstelemet =self.driver.find_element_by_xpath\
+                (self._asset_school_district_drop_down_select_first_element_locator)
             self.selecteddistrict = firstelemet.text
             firstelemet.click()
         else:
             print "No items to select in District drop down."
-        sleep(5)
-        # Click on Reset filter
-        #self.driver.find_element_by_xpath(".//*[@id='span_filters']/button").click()
+        sleep(2)
 
-    # This function is to select the school grade
     def get_asset_school_grade(self):
+        """
+        Description : This function will click on school grade drop down menu and will select a value.
+        Revision:
+        :return: None
+        """
         sleep(5)
         self.asset_filter_based_on_place_and_school("School")
         sleep(10)
-
-        # Click on Grade dropdown
         self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator).click()
-        sleep(5)
-
-        # Check the values exists inside Grade drop down
+        sleep(2)
         chkGradeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
         items = chkGradeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
-
         if len(items) > 1:
-            firstelement =self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator)
+            firstelement =self.driver.find_element_by_xpath\
+                (self._asset_school_grade_drop_down_select_first_element_locator)
             self.selectedgrade = firstelement.text
             firstelement.click()
         else:
             print "No items to select in Grade drop down."
-        sleep(5)
+        sleep(2)
 
-
-    # This function is to select the school type
     def get_asset_school_type(self):
+        """
+        Description : This function will click on school type drop down menu and will select a value.
+        Revision:
+        :return: None
+        """
         sleep(5)
         self.asset_filter_based_on_place_and_school("School")
         sleep(10)
-
-        # Check the values exists inside School dropdown
         self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator).click()
-        sleep(5)
-
-         # Check the values exists inside School dropdown
+        sleep(2)
         chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
         items = chkSchoolTypeDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(5)
-
+        sleep(2)
         if len(items) > 1:
             firstelemet = self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
             self.selectedtype = firstelemet.text
             firstelemet.click()
         else:
             print "No items to select in Type drop down."
-        sleep(5)
-
-        # Click on Reset filter
-        #self.driver.find_element_by_xpath(".//*[@id='span_filters']/button").click()
+        sleep(2)
 
 
     def textbox_clear(self, textboxlocator):
+        """
+        Description : This function will clear search text box.
+        Revision:
+        :return: None
+        """
         textboxlocator.clear()
 
     def asset_search_assetname(self, name):
+        """
+        Description : This function will enter string in search text box.
+        Revision:
+        :return: None
+        """
         sleep(4)
         search_textbox = self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
         self.textbox_clear(search_textbox)
         search_textbox.send_keys(name)
 
     def asset_search_special_characters(self):
+        """
+        Description : This function will enter special characters in search text box.
+        Revision:
+        :return: None
+        """
         sleep(5)
         searchNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
         print len(searchNames)
@@ -927,7 +900,12 @@ class AssetPage(BasePageClass):
         else:
             print "No records found."
 
-    def retuntoappmainpage(self):
+    def return_to_apps_main_page(self):
+        """
+        Description : This function will helps to go back to assets page.
+        Revision:
+        :return: None
+        """
         try:
             sleep(2)
             self.click_on_asset_link.click()
@@ -936,16 +914,25 @@ class AssetPage(BasePageClass):
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
 
-    #This function helps to go back to assets page. inspectstack prints the test name form which this function is called
     def recoverapp(self, inspectstack):
+        """
+        Description : This function helps to go back to assets page. Inspect stack prints the test name from which
+                                 this function is called.
+        Revision:
+        :return: None
+        """
         print ("Application recovering called from " + inspectstack)
         basepage = BasePage(self.driver)
         basepage.accessURL()
         iconlistpage = IconListPage(self.driver)
         iconlistpage.click_asset_icon()
 
-    #This function should be called before any test to see the asset page is displayed
     def app_sanity_check(self):
+        """
+        Description : This function should be called before any test to see the asset page is displayed.
+        Revision:
+        :return: None
+        """
         try:
             self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
         except:
@@ -953,34 +940,35 @@ class AssetPage(BasePageClass):
             self.recoverapp(inspectstack)
 
     def asset_create_click(self):
+        """
+        Description : This function will click on Create Asset Link.
+        Revision:
+        :return: None
+        """
         self.app_sanity_check()
-        # Click on Create asset
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_create_asset).click()
         sleep(10)
-        # switch to new window
         self.driver.switch_to.active_element
-        # Verify title "Asset overview" window
-        #self.driver.find_element_by_xpath("//div[@id='asset_overview_modal']/div/div/div/h4").text
-        #sleep(2)
-        #print("Asset overview", Create_Asset_Title)
 
-    # This function is based on selecting the Template either by Place or School.
-    # We need to pass the parameter from the Testcase
+
     def select_asset_template_type(self, template):
-        # Select Place from the dropdown to create new place asset
+        """
+        Description : This function is based on selecting the Template either by Place or School.
+                      Need to pass the parameter from the Test case.
+        Revision:
+        :return: None
+        """
         self.get_overview_templatetype_drop_down.click()
         self.driver.find_element_by_link_text(template).click()
         sleep(4)
-    '''
-    def select_school_asset_template_type(self):
-        # Select Place from the dropdown to create new place asset
-        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
-        self.driver.find_element_by_link_text("School").click()
-        sleep(4)
-    '''
-    def get_placedata(self):
 
+    def get_placedata(self):
+        """
+        Description : This function will read place data from json file.
+        Revision:
+        :return: None
+        """
         with open(placeData) as data_file:
             place_data = json.load(data_file)
 
@@ -995,9 +983,12 @@ class AssetPage(BasePageClass):
                 self.asset_place_type = each["asset_type"]
 
     def create_place_asset(self):
-        # Select Place from the dropdown to create new place asset
+        """
+        Description : This function will enter place data in asset template.
+        Revision:
+        :return: None
+        """
         sleep(10)
-        #self.get_placedata()
         self.select_asset_template_type("Place")
         sleep(10)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
@@ -1018,10 +1009,13 @@ class AssetPage(BasePageClass):
 
 
     def get_schooldata(self):
-
+        """
+        Description : This function will read school data from json file.
+        Revision:
+        :return: None
+        """
         with open(L1) as data_file:
             school_data = json.load(data_file)
-
             for each in school_data:
                 self.asset_school_name = each["asset_name"]
                 self.asset_school_address = each["asset_address"]
@@ -1039,6 +1033,11 @@ class AssetPage(BasePageClass):
 
 
     def create_school_asset(self, index):
+        """
+        Description : This function will enter school data in asset template.
+        Revision:
+        :return: None
+        """
         sleep(4)
         if(index == 0):
             self.enter_asset_type_name.send_keys(self.asset_school_name[index])
@@ -1072,50 +1071,66 @@ class AssetPage(BasePageClass):
 
 
     def enter_school_district(self, value):
-         sleep(2)
-         self.get_overview_district_drop_down.click()
-         sleep(2)
-         self.get_overview_newdistrict_text_box.send_keys(value)
-         self.get_overview_district_add_button.click()
+        """
+        Description : This function will enter school district info in the text box.
+        Revision:
+        :return: None
+        """
+        sleep(2)
+        self.get_overview_district_drop_down.click()
+        sleep(2)
+        self.get_overview_newdistrict_text_box.send_keys(value)
+        self.get_overview_district_add_button.click()
 
     def enter_school_grade(self, value):
-         sleep(2)
-         self.get_overview_grade_drop_down.click()
-         sleep(2)
-         self.get_overview_newgrade_text_box.send_keys(value)
-         self.get_overview_grade_add_button.click()
+        """
+        Description : This function will enter school grade info in the text box.
+        Revision:
+        :return: None
+        """
+        sleep(2)
+        self.get_overview_grade_drop_down.click()
+        sleep(2)
+        self.get_overview_newgrade_text_box.send_keys(value)
+        self.get_overview_grade_add_button.click()
 
     def enter_asset_type(self, value):
-         self.get_overview_type_drop_down.click()
-         sleep(2)
-         self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
-        # self.get_overview_type_add_button.click()
+        """
+        Description : This function will enter school type info in the text box.
+        Revision:
+        :return: None
+        """
+        self.get_overview_type_drop_down.click()
+        sleep(2)
+        self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
 
     def asset_overview_save_click(self):
+        """
+        Description : This function will click on save button of overview window.
+        Revision:
+        :return: None
+        """
         self.get_asset_overview_save_button.click()
         sleep(2)
 
     def asset_overview_cancel_click(self):
+        """
+        Description : This function will click on cancel button of overview window.
+        Revision:
+        :return: None
+        """
         self.get_asset_overview_cancel_button.click()
         sleep(2)
-        '''
-        # check all fields are enabled
-        self.assertTrue(place_name.is_enabled()
-                        and place_address.is_enabled()
-                        and place_address2.is_enabled()
-                        and place_city.is_enabled()
-                        and place_state.is_enabled()
-                        and place_zip.is_enabled()
-                        and place_owner.is_enabled()
-                        and place_phone.is_enabled()
-                        and place_type.is_enabled()
-                        and place_cancel.is_enabled()
-                        and place_save.is_enabled())
-        '''
+
     newSchool = 0
     editSchool = 1
 
     def create_asset(self, type):
+        """
+        Description : This function will create asset Place/School.
+        Revision:
+        :return: None
+        """
         self.asset_create_click()
         if type == "School":
             self.select_asset_template_type("School")
@@ -1126,6 +1141,11 @@ class AssetPage(BasePageClass):
         self.asset_overview_save_click()
 
     def edit_asset(self, type):
+        """
+        Description : This function will edit asset Place/School.
+        Revision:
+        :return: None
+        """
         self.select_school_or_place_asset(self.asset_school_name[0], type)
         if type == "School":
             sleep(10)
@@ -1136,6 +1156,11 @@ class AssetPage(BasePageClass):
         self.asset_overview_save_click()
 
     def create_asset_cancel(self, type):
+        """
+        Description : This function will cancel asset creation.
+        Revision:
+        :return: None
+        """
         self.asset_create_click()
         if type == "School":
             self.select_asset_template_type("School")
@@ -1145,6 +1170,11 @@ class AssetPage(BasePageClass):
         self.asset_overview_cancel_click()
 
     def select_school_or_place_asset(self, asset_name1,asset_type):
+        """
+        Description : This function will select an asset from asset list.
+        Revision:
+        :return: None
+        """
         sleep(5)
         try:
             self.asset_search_assetname(asset_name1)
@@ -1164,15 +1194,13 @@ class AssetPage(BasePageClass):
         except:
             print "No Asset is existing or Asset Creation has been failed."
 
-    # Place Edit mode - Overview panel
+
     def set_place_overview_fields(self,paddress, paddress1, pcity, pstate, pzip, powner):
-        '''
-        sleep(5)
-        self.get_asset_overview_edit_name_text_box.send_keys("")
-        sleep(2)
-        self.get_asset_overview_edit_name_text_box.send_keys(pname)
-        '''
-        #self.get_asset_overview_edit_name_text_box.send_keys(Keys.TAB)
+        """
+        Description : This function will enter data in all fields of Overview Edit Window.
+        Revision:
+        :return: None
+        """
         sleep(5)
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(paddress)
@@ -1200,73 +1228,65 @@ class AssetPage(BasePageClass):
         self.enter_asset_type_owner.send_keys(powner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(5)
-        #self.select_asset_type_type.click()
-        #sleep(2)
 
-    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite):
-        # fill out the fields
 
+    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened,
+                                 pschoolnumber, psize, pwebsite):
+        """
+        Description : This function will enter data in all fields of Detail Edit Window.
+        Revision:
+        :return: None
+        """
         self.get_asset_detail_edit_capacity_text_box.clear()
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         self.get_asset_detail_edit_closed_text_box.clear()
         self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
         self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
-
         sleep(2)
         if pdistrict is not None:
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
             sleep(2)
-
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         self.get_asset_detail_edit_detail_fax_text_box.clear()
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         self.get_asset_detail_edit_detail_opened_number_text_box.clear()
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         if pschoolnumber is not None:
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
             sleep(2)
-
         self.get_asset_detail_edit_detail_size_text_box.clear()
         self.get_asset_detail_edit_detail_size_text_box.send_keys(psize)
         self.get_asset_detail_edit_detail_size_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         self.get_asset_detail_edit_detail_website_text_box.clear()
         self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
         self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
-
         sleep(2)
 
 
     def delete_existing_contact(self):
+        """
+        Description : This function will delete existing contact.
+        Revision:
+        :return: None
+        """
         try:
             while( self.get_asset_newcontact_delete_icon.is_displayed()):
                 sleep(2)
@@ -1276,14 +1296,19 @@ class AssetPage(BasePageClass):
         except NoSuchElementException, ElementNotVisibleException:
             pass
 
-    def create_new_contact(self, firstname, lastname, title="Title", phone=r"111-111-1111", email=r"test@test.com", prefix="Shri", address1="Indecomm", address2=r"Brigade South Parade", city="Bangalore", state="KA", zip="56001"):
-        #This function will create new contact.
+    def create_new_contact(self, firstname, lastname, title="Title", phone=r"111-111-1111", email=r"test@test.com",
+                                        prefix="Shri", address1="Indecomm", address2=r"Brigade South Parade",
+                                        city="Bangalore", state="KA", zip="56001"):
+        """
+        Description : This function will create new contact.
+        Revision:
+        :return: None
+        """
         self.get_asset_points_of_contact_header.click()
         self.get_asset_add_contact_button.click()
-        #Wait till contact window text appear.
-        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._assets_points_of_contact_title_locator), "Contact information"))
-        # Fill all fields.
-        self.get_asset_newcontact_firstname_textbox.clear()
+        WebDriverWait(self.driver,30).until(expected_conditions.text_to_be_present_in_element((By.XPATH,
+                                                  self._assets_points_of_contact_title_locator), "Contact information"))
+        self.get_asset_newcontact_firstname_textbox.clear()# Fill all fields.
         self.get_asset_newcontact_firstname_textbox.send_keys(firstname)
         self.get_asset_newcontact_lastname_textbox.clear()
         self.get_asset_newcontact_lastname_textbox.send_keys(lastname)
@@ -1306,16 +1331,19 @@ class AssetPage(BasePageClass):
         self.get_asset_newcontact_email_textbox.clear()
         self.get_asset_newcontact_email_textbox.send_keys(email)
         sleep(2)
-        #Click on Save Button.
-        self.get_asset_newcontact_save_button.click()
-        #wait until Saved text will appear.
-        WebDriverWait(self.driver,100).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
+        self.get_asset_newcontact_save_button.click()#Click on Save Button.
+        WebDriverWait(self.driver,100).until(expected_conditions.text_to_be_present_in_element((By.XPATH,
+                                                                        self._asset_header_save_text_locator), "Saved"))
 
     def multiple_contact_create(self):
+        """
+        Description : This function will create multiple contacts.
+        Revision:
+        :return: None
+        """
         try:
             sleep(2)
-            #delete existing contacts.
-            self.delete_existing_contact()
+            self.delete_existing_contact() #delete existing contacts.
             sleep(2)
             firstname = ['jkl','vwx','def','pqr']
             lastname = ['mno','abc','stu','ghi']
@@ -1323,21 +1351,31 @@ class AssetPage(BasePageClass):
             emaillist = [r'stu@vwx',r'abc@def',r'mno@pqr',r'ghi@jkl']
             titlelist = ['HH','ZZ','CC','PP']
             for contact in range(4):
-                self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],emaillist[contact])
+                self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],
+                                        emaillist[contact])
                 sleep(2)
             sleep(2)
         except:
             print "multiple file creation has been failed"
 
     def file_path(self, image_file_name):
+        """
+        Description : This function will generate absolute path and return path.
+        Revision:
+        :return: Absolute path of the file.
+        """
         cur_dir = os.getcwd()
         os.chdir("..")
-        file_path = "image_file\\"+image_file_name
-        complete_file_path = os.path.join(os.getcwd(),file_path)
+        complete_file_path = os.path.join(os.getcwd(), "image_file", image_file_name)
         os.chdir(cur_dir)
         return complete_file_path
 
     def delete_uploaded_files(self):
+        """
+        Description : This function will existing uploaded files.
+        Revision:
+        :return:
+        """
         try:
             self.driver.find_element_by_xpath("(//div[contains(text(),'Photos / Documents')])[1]").click()
             sleep(2)
@@ -1348,35 +1386,38 @@ class AssetPage(BasePageClass):
                 for count in range(num_of_files, 0, -1):
                     index = count
                     xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
-                    image_icon_xpath =  self.driver.find_element_by_xpath(".//*[@id='widgets']/div[6]/div[1]/div/div[2]/div/div[" + str(index)+ "]")
+                    image_icon_xpath =  self.driver.find_element_by_xpath\
+                        (".//*[@id='widgets']/div[6]/div[1]/div/div[2]/div/div[" + str(index)+ "]")
                     Hover = ActionChains(self.driver).move_to_element(image_icon_xpath)
                     Hover.perform()
                     delete_icon = self.driver.find_element_by_xpath(xpath)
                     delete_icon.click()
-                    self.driver.find_element_by_xpath("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
+                    self.driver.find_element_by_xpath\
+                        ("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
                     sleep(10)
         except :
             print "File deletion not done properly or some files could not be deleted."
 
 
     def upload_a_file_with_caption(self, image_caption, image_file_name):
+        """
+        Description : This function will upload a file with caption.
+        Revision:
+        :return:
+        """
         try:
-            # Click on Photo/Document panel - File Upload button
             self.get_asset_photos_documents_upload_file_button.click()
             sleep(2)
-
-            # Click on Attach file button and attached the file path with the send_keys
             file_path = self.file_path(image_file_name)
             self.get_asset_photos_documents_attached_file_button.send_keys(file_path)
             sleep(3)
-            # Enter Caption
-            caption_val = image_caption
+            caption_val = image_caption # Enter Caption
             self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
             sleep(2)
-            # Click Upload.
-            self.get_asset_photos_documents_window_upload_button.click()
+            self.get_asset_photos_documents_window_upload_button.click()# Click Upload.
             try:
-                WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
+                WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH,
+                                                                        self._asset_header_save_text_locator), "Saved"))
             except:
                 pass
         except:
@@ -1384,6 +1425,11 @@ class AssetPage(BasePageClass):
 
 
     def delete_all_annotation(self):
+        """
+        Description : This function will delete all annotation texts.
+        Revision:
+        :return:
+        """
         try:
             sleep(2)
             while(self.get_asset_annotation_delete_image.is_displayed()):
@@ -1391,11 +1437,18 @@ class AssetPage(BasePageClass):
                 self.get_asset_annotation_delete_image.click()
                 sleep(2)
         except:
-            print "Annotation text coulld not deletet or no annotation is available."
+            print "Annotation text coulld not deleted or no annotation text is available."
+
+    svg_path_1 = r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"
+    svg_path_2 = r"/*[name()='text']"
 
     def charts_When_No_Asset_Type_Is_Selected(self):
-
-        # Display available chart names in the container
+        """
+        Description : This function will display available chart names in the container when no asset is selected.
+        Revision:
+        :return:
+        """
+        chart_xpath = r"//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1405,7 +1458,7 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "Asset Type":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath)
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1414,11 +1467,13 @@ class AssetPage(BasePageClass):
             print "No chart found at place level."
 
 
-
-
     def place_related_charts_Place_Is_Selected(self):
-
-        # Display available chart names in the container
+        """
+        Description : This function will display available chart names in the container when place is selected.
+        Revision:
+        :return:
+        """
+        chart_xpath = r"//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1428,7 +1483,7 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "Type":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath)
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1437,8 +1492,12 @@ class AssetPage(BasePageClass):
 
 
     def place_related_charts_Place_And_Type_Is_Selected(self):
-
-        # Display available chart names in the container
+        """
+        Description: This function will display available chart names in the container when place and type are selected.
+        Revision:
+        :return:
+        """
+        chart_xpath = self.svg_path_1+self.svg_path_2+r"/*[name()='tspan']"
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1448,7 +1507,7 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
 
                 print "Printing according to the chart wise data..."
-                assets = totalGraph.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
+                assets = totalGraph.find_elements_by_xpath(chart_xpath)
                 for asset in assets:
                     print asset.text
                     sleep(10)
@@ -1456,12 +1515,15 @@ class AssetPage(BasePageClass):
         else :
             print "No chart found at place and type level."
 
-
-
-
     def school_related_charts_School_Is_Selected(self):
-
-        # Display available chart names in the container
+        """
+        Description: This function will display available chart names in the container when school is selected.
+        Revision:
+        :return:
+        """
+        chart_xpath_1 = "//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
+        chart_xpath_2 = "//div[starts-with(@id,'asset_graph-1')]"+self.svg_path_1+self.svg_path_2
+        chart_xpath_3 = "//div[starts-with(@id,'asset_graph-2')]"+self.svg_path_1+self.svg_path_2
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1470,19 +1532,18 @@ class AssetPage(BasePageClass):
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-1')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-2')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_3)
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1491,8 +1552,14 @@ class AssetPage(BasePageClass):
 
 
     def school_related_charts_School_And_District_Is_Selected(self):
-
-        # Display available chart names in the container
+        """
+        Description: This function will display available chart names in the container when school and district are
+                        selected.
+        Revision:
+        :return:
+        """
+        chart_xpath_1 = "//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
+        chart_xpath_2 = "//div[starts-with(@id,'asset_graph-1')]"+self.svg_path_1+self.svg_path_2
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1501,15 +1568,14 @@ class AssetPage(BasePageClass):
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
 
                 if totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-1')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1518,8 +1584,14 @@ class AssetPage(BasePageClass):
 
 
     def school_related_charts_School_And_Grade_Is_Selected(self):
-
-        # Display available chart names in the container
+        """
+        Description: This function will display available chart names in the container when school and grade are
+                        selected.
+        Revision:
+        :return:
+        """
+        chart_xpath_1 = "//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
+        chart_xpath_2 = "//div[starts-with(@id,'asset_graph-1')]"+self.svg_path_1+self.svg_path_2
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1528,15 +1600,14 @@ class AssetPage(BasePageClass):
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
 
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-1')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1544,8 +1615,14 @@ class AssetPage(BasePageClass):
             print "No chart found at school and grade level."
 
     def school_related_charts_School_And_Type_Is_Selected(self):
-
-        # Display available chart names in the container
+        """
+        Description: This function will display available chart names in the container when school and type are
+                        selected.
+        Revision:
+        :return:
+        """
+        chart_xpath_1 = "//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
+        chart_xpath_2 = "//div[starts-with(@id,'asset_graph-1')]"+self.svg_path_1+self.svg_path_2
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1554,15 +1631,14 @@ class AssetPage(BasePageClass):
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
 
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-1')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1570,10 +1646,4 @@ class AssetPage(BasePageClass):
             print "No chart found at school and type level."
 
     def _validate_page(self, driver):
-        '''
-        try:
-            driver.find_element_by_xpath(self._select_action_delete_click_xpath_locator)
-        except:
-            raise InvalidPageException("Select Action drop down not found.")
-        '''
         pass
