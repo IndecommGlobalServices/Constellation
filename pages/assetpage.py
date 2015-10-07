@@ -197,7 +197,6 @@ class AssetPage(BasePageClass):
     _asset_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
     _asset_annotation_delete_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'deleteItem')]"
     _asset_annotation_edit_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'editItem')]"
-
     # Location related
     _asset_location_map_id_locator = "map_control"
     _asset_location_edit_icon_css_locator = "img.widget_edit"
@@ -806,10 +805,15 @@ class AssetPage(BasePageClass):
         """
         sleep(5)
         self.asset_filter_based_on_place_and_school("School")
+
+        # Click on District dropdown
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
+
+        # Check the values exists inside District dropdown
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(3)
+        sleep(10)
+
         if len(items) > 1:
             firstelemet =self.driver.find_element_by_xpath\
                 (self._asset_school_district_drop_down_select_first_element_locator)
@@ -833,6 +837,7 @@ class AssetPage(BasePageClass):
         chkGradeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
         items = chkGradeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
+
         if len(items) > 1:
             firstelement =self.driver.find_element_by_xpath\
                 (self._asset_school_grade_drop_down_select_first_element_locator)
@@ -855,7 +860,8 @@ class AssetPage(BasePageClass):
         sleep(2)
         chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
         items = chkSchoolTypeDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(2)
+        sleep(5)
+
         if len(items) > 1:
             firstelemet = self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
             self.selectedtype = firstelemet.text
@@ -953,22 +959,19 @@ class AssetPage(BasePageClass):
 
 
     def select_asset_template_type(self, template):
-        """
-        Description : This function is based on selecting the Template either by Place or School.
-                      Need to pass the parameter from the Test case.
-        Revision:
-        :return: None
-        """
+        # Select Place from the dropdown to create new place asset
         self.get_overview_templatetype_drop_down.click()
         self.driver.find_element_by_link_text(template).click()
         sleep(4)
-
+    '''
+    def select_school_asset_template_type(self):
+        # Select Place from the dropdown to create new place asset
+        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
+        self.driver.find_element_by_link_text("School").click()
+        sleep(4)
+    '''
     def get_placedata(self):
-        """
-        Description : This function will read place data from json file.
-        Revision:
-        :return: None
-        """
+
         with open(placeData) as data_file:
             place_data = json.load(data_file)
 
@@ -1121,7 +1124,20 @@ class AssetPage(BasePageClass):
         """
         self.get_asset_overview_cancel_button.click()
         sleep(2)
-
+        '''
+        # check all fields are enabled
+        self.assertTrue(place_name.is_enabled()
+                        and place_address.is_enabled()
+                        and place_address2.is_enabled()
+                        and place_city.is_enabled()
+                        and place_state.is_enabled()
+                        and place_zip.is_enabled()
+                        and place_owner.is_enabled()
+                        and place_phone.is_enabled()
+                        and place_type.is_enabled()
+                        and place_cancel.is_enabled()
+                        and place_save.is_enabled())
+        '''
     newSchool = 0
     editSchool = 1
 
@@ -1240,11 +1256,15 @@ class AssetPage(BasePageClass):
         self.get_asset_detail_edit_capacity_text_box.clear()
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
+
         sleep(2)
+
         self.get_asset_detail_edit_closed_text_box.clear()
         self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
         self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
+
         sleep(2)
+
         self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
@@ -1343,7 +1363,8 @@ class AssetPage(BasePageClass):
         """
         try:
             sleep(2)
-            self.delete_existing_contact() #delete existing contacts.
+            #delete existing contacts.
+            self.delete_existing_contact()
             sleep(2)
             firstname = ['jkl','vwx','def','pqr']
             lastname = ['mno','abc','stu','ghi']
@@ -1406,18 +1427,22 @@ class AssetPage(BasePageClass):
         :return:
         """
         try:
+            # Click on Photo/Document panel - File Upload button
             self.get_asset_photos_documents_upload_file_button.click()
             sleep(2)
+
+            # Click on Attach file button and attached the file path with the send_keys
             file_path = self.file_path(image_file_name)
             self.get_asset_photos_documents_attached_file_button.send_keys(file_path)
             sleep(3)
-            caption_val = image_caption # Enter Caption
+            # Enter Caption
+            caption_val = image_caption
             self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
             sleep(2)
-            self.get_asset_photos_documents_window_upload_button.click()# Click Upload.
+            # Click Upload.
+            self.get_asset_photos_documents_window_upload_button.click()
             try:
-                WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH,
-                                                                        self._asset_header_save_text_locator), "Saved"))
+                WebDriverWait(self.driver,200).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
             except:
                 pass
         except:
@@ -1439,16 +1464,9 @@ class AssetPage(BasePageClass):
         except:
             print "Annotation text coulld not deleted or no annotation text is available."
 
-    svg_path_1 = r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"
-    svg_path_2 = r"/*[name()='text']"
-
     def charts_When_No_Asset_Type_Is_Selected(self):
-        """
-        Description : This function will display available chart names in the container when no asset is selected.
-        Revision:
-        :return:
-        """
-        chart_xpath = r"//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
+
+        # Display available chart names in the container
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1600,9 +1618,10 @@ class AssetPage(BasePageClass):
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
+                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
 
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
+                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
                     for asset in assets:
                         print asset.text
                         sleep(10)
