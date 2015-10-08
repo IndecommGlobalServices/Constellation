@@ -3,16 +3,15 @@ from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from basepage import BasePage
 from time import sleep, time
-import os, json, unittest
+import os, json
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from datetime import date, timedelta, datetime
 
-filepath = "data" + os.sep + "json_Schooldata.json"
 cwd = os.getcwd()
 os.chdir('..')
-schooldatafile = os.path.join(os.getcwd(), filepath)
+schooldatafile = os.path.join(os.getcwd(), "data\json_Schooldata.json")
 os.chdir(cwd)
 
 class AssessmentPage(BasePageClass):
@@ -365,19 +364,23 @@ class AssessmentPage(BasePageClass):
             print "No Assets added yet"
             return False
 
+    def wait_for_element(self, element):
+        timeout = time() + 60*5
+        print timeout
+        while True:
+            if element.is_displayed() or time() > 0:
+                element.select()
+                print "elemtn found"
+                break
+
     def create_assessment_select_haystax_template(self):
         if not self.get_create_assessments_button.is_displayed():
-            try:
-                (self.wait_for_element(self._ast_main_create_assessment_button_locator)).click()
-            except:
-                return (False, "Element found")
-            try:
-                (self.wait_for_element(self._ast_create_templatetype_dropdown_locator)).click()
-            except:
-                return (False,"Template dropdown not found")
+            sleep(10)
+            self.get_main_create_assessment_button.click()
+            self.get_create_templatetype_dropdown.click()
             sleep(2)
             self.get_create_haystax_template_option.click()
-            return True
+            sleep(2)
 
     def create_assessment(self, assetname):
         self.create_assessment_select_haystax_template()
@@ -432,7 +435,7 @@ class AssessmentPage(BasePageClass):
     def file_path(self, image_file_name):
         cur_dir = os.getcwd()
         os.chdir("..")
-        file_path = "image_file"+ os.sep + image_file_name
+        file_path = "image_file\\"+image_file_name
         complete_file_path = os.path.join(os.getcwd(), file_path)
         os.chdir(cur_dir)
         return complete_file_path
@@ -484,19 +487,6 @@ class AssessmentPage(BasePageClass):
             self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator).is_displayed()
         except:
             print "Exception at sanity"
-
-    def wait_for_element(self, path):
-        limit = 10   # waiting limit in seconds
-        inc = 1   # in seconds; sleep for 500ms
-        c = 0
-        while (c < limit):
-            try:
-                print c
-                return self.driver.find_element_by_xpath(path)  # Success
-            except:
-                sleep(inc)
-                c = c + inc
-        raise Exception # Failure
 
     def _validate_page(self, driver):
         pass
