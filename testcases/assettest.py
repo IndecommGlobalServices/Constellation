@@ -399,8 +399,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
         assetpage.get_asset_detail_edit_link.click()
-        assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3", "",
-                r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "", r"6300", r"http://www.haystax.com")
+        assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3",
+                r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
         assetpage.get_asset_detail_edit_save_button.click()
         sleep(10)
         self.assertTrue(assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
@@ -473,8 +473,8 @@ class AssetPageTest(BaseTestCase):
         sleep(15)
         assetpage.get_asset_detail_edit_link.click()
         sleep(10)
-        assetpage.set_place_details_fields("4321", r"2020-05-16", r"Cancelled", "", r"cancel@indecomm.net",
-                                                r"111-111-1111", r"2017-02-23", "", r"10001", r"http://www.haystax.com")
+        assetpage.set_place_details_fields("4321", r"2020-05-16", r"Cancelled",r"cancel@indecomm.net",
+                                                r"111-111-1111", r"2017-02-23", r"10001", r"http://www.haystax.com")
         sleep(10)
         assetpage.get_asset_detail_edit_cancel_button.click()
         sleep(10)
@@ -1543,22 +1543,12 @@ class AssetPageTest(BaseTestCase):
         # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         assetpage.wait_for_element_path(assetpage._asset_detail_edit_link_locator).click()
-        assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
+        assetpage.set_school_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
                        r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "3", "6300", r"http://www.haystax.com")
-        sleep(15)
-
-        # Click on Details panel
-        assetpage.get_asset_detail_edit_link.click()
-
-        # Modify the values
-        assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300", "http://www.haystax.com")
-        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, ssize, pwebsite
-        # Click on Save
         assetpage.get_asset_detail_edit_cancel_button.click()
-        sleep(10)
-        self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/"
-                                                                                           "div[1]/span[3]/span").text)
+        textfrombreadcrumb = assetpage.wait_for_element_path(assetpage._asset_create_asset).text
         assetpage.return_to_apps_main_page()
+        self.assertEqual(assetpage.asset_school_name[0], textfrombreadcrumb, "")
 
     @attr(priority="high")
     #@SkipTest
@@ -1573,7 +1563,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(15)
         assetpage.get_asset_detail_edit_link.click()
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2",
+        assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2",
                                            r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300",
                                            "http://www.haystax.com")
         assetpage.get_asset_detail_edit_save_button.click()
