@@ -10,12 +10,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 import os, json, inspect
 from selenium.webdriver.common.action_chains import ActionChains
 
-filepathschool = "data" + os.sep + "json_Schooldata.json"
-filepathplace = "data" + os.sep + "json_Placedata.json"
 cwd = os.getcwd()
 os.chdir('..')
-L1 = os.path.join(os.getcwd(), filepathschool)
-placeData = os.path.join(os.getcwd(), filepathplace)
+L1 = os.path.join(os.getcwd(), "data", "json_Schooldata.json")
+placeData = os.path.join(os.getcwd(), "data", "json_Placedata.json")
 os.chdir(cwd)
 
 class AssetPage(BasePageClass):
@@ -1467,8 +1465,16 @@ class AssetPage(BasePageClass):
         except:
             print "Annotation text coulld not deleted or no annotation text is available."
 
+    svg_path_1=r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"
+    svg_path_2=r"/*[name()='text']"
+
     def charts_When_No_Asset_Type_Is_Selected(self):
-        # Display available chart names in the container
+        """
+        Description : This function will display available chart names in the container when no asset is selected.
+        Revision:
+        :return:
+        """
+        chart_xpath = r"//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1478,14 +1484,13 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "Asset Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath))
                     for asset in assets:
                         print asset.text
                         sleep(10)
         else :
 
             print "No chart found at place level."
-
 
     def place_related_charts_Place_Is_Selected(self):
         """
@@ -1503,7 +1508,7 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath))
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1527,7 +1532,7 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
 
                 print "Printing according to the chart wise data..."
-                assets = totalGraph.find_elements_by_xpath(chart_xpath)
+                assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
                 for asset in assets:
                     print asset.text
                     sleep(10)
@@ -1553,17 +1558,17 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_3)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_3))
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1590,12 +1595,12 @@ class AssetPage(BasePageClass):
                 print "Printing according to the chart wise data..."
 
                 if totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1620,15 +1625,14 @@ class AssetPage(BasePageClass):
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
 
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1654,12 +1658,12 @@ class AssetPage(BasePageClass):
                 print "Printing according to the chart wise data..."
 
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                         sleep(10)
