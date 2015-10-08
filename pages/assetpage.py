@@ -10,12 +10,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 import os, json, inspect
 from selenium.webdriver.common.action_chains import ActionChains
 
-filepathschool = "data" + os.sep + "json_Schooldata.json"
-filepathplace = "data" + os.sep + "json_Placedata.json"
 cwd = os.getcwd()
 os.chdir('..')
-L1 = os.path.join(os.getcwd(), filepathschool)
-placeData = os.path.join(os.getcwd(), filepathplace)
+L1 = os.path.join(os.getcwd(), "data", "json_Schooldata.json")
+placeData = os.path.join(os.getcwd(), "data", "json_Placedata.json")
 os.chdir(cwd)
 
 class AssetPage(BasePageClass):
@@ -35,6 +33,7 @@ class AssetPage(BasePageClass):
     _asset_list_locator = "//tbody/tr/td/a"
     _asset_list_check_box_locator = ".//*[@id='assetstable']/tbody/tr/td[1]/label/span/span[2]"
     _asset_list_assets_name_locator = ".//*[@id='assetstable']/tbody/tr/td[2]/a"
+    _asset_list_background_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
     _asset_list_asset_type_locator = ".//*[@id='assetstable']/tbody/tr/td[3]"
     _asset_list_No_Matching_Records_Found_locator = ".//*[@id='assetstable']/tbody/tr/td"
     _asset_list_asset_name_back_color_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
@@ -164,7 +163,6 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_detail_edit_title_locator = ".//*[@id='H2']"
     _asset_detail_edit_capacity_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[1]/div/span/input"
-    #_asset_detail_edit_closed_textbox_locator = ".//*[@id='id']"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
@@ -234,6 +232,10 @@ class AssetPage(BasePageClass):
     @property
     def get_assets_name_list(self):
         return self.driver.find_elements_by_xpath(self._asset_list_assets_name_locator)
+
+    @property
+    def get_asset_list_background(self):
+        return self.driver.find_elements_by_xpath(self._asset_list_background_locator)
 
     @property
     def get_asset_select_action_drop_down(self):
@@ -814,15 +816,10 @@ class AssetPage(BasePageClass):
         """
         sleep(5)
         self.asset_filter_based_on_place_and_school("School")
-
-        # Click on District dropdown
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
-
-        # Check the values exists inside District dropdown
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(10)
-
         if len(items) > 1:
             firstelemet =self.driver.find_element_by_xpath\
                 (self._asset_school_district_drop_down_select_first_element_locator)
@@ -949,7 +946,8 @@ class AssetPage(BasePageClass):
         :return: None
         """
         try:
-            self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
+            # self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
+            self.wait_for_element_boolean(self._asset_create_asset)
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
@@ -1336,21 +1334,15 @@ class AssetPage(BasePageClass):
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         self.get_asset_detail_edit_detail_fax_text_box.clear()
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         self.get_asset_detail_edit_detail_opened_number_text_box.clear()
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
-
         sleep(2)
-
         if pschoolnumber is not None:
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
@@ -1532,9 +1524,16 @@ class AssetPage(BasePageClass):
         except:
             print "Annotation text coulld not deleted or no annotation text is available."
 
-    def charts_When_No_Asset_Type_Is_Selected(self):
+    svg_path_1=r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"
+    svg_path_2=r"/*[name()='text']"
 
-        # Display available chart names in the container
+    def charts_When_No_Asset_Type_Is_Selected(self):
+        """
+        Description : This function will display available chart names in the container when no asset is selected.
+        Revision:
+        :return:
+        """
+        chart_xpath = r"//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
         print len(totalGraphInContainer)
@@ -1544,14 +1543,13 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "Asset Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath))
                     for asset in assets:
                         print asset.text
                         sleep(10)
         else :
 
             print "No chart found at place level."
-
 
     def place_related_charts_Place_Is_Selected(self):
         """
@@ -1569,7 +1567,7 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath))
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1593,7 +1591,7 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
 
                 print "Printing according to the chart wise data..."
-                assets = totalGraph.find_elements_by_xpath(chart_xpath)
+                assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
                 for asset in assets:
                     print asset.text
                     sleep(10)
@@ -1619,17 +1617,17 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_3)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_3))
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1656,12 +1654,12 @@ class AssetPage(BasePageClass):
                 print "Printing according to the chart wise data..."
 
                 if totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1686,15 +1684,14 @@ class AssetPage(BasePageClass):
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-                #assets = self.driver.find_elements_by_xpath("//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']/*[name()='tspan']")
 
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath("//div[starts-with(@id,'asset_graph-0')]//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']/*[name()='text']")
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "School Type":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                         sleep(10)
@@ -1720,17 +1717,55 @@ class AssetPage(BasePageClass):
                 print "Printing according to the chart wise data..."
 
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_1)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                         sleep(10)
                 elif totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath(chart_xpath_2)
+                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                         sleep(10)
         else :
             print "No chart found at school and type level."
+
+    def wait_for_element_path(self, locator):
+        limit = 15   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                return self.driver.find_element_by_xpath(locator)  # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        print c
+        raise Exception # Wait for element failed
+
+    def wait_for_list_element_path(self, locator):
+        limit = 20   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                return self.driver.find_elements_by_xpath(locator)  # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        raise Exception # Failure
+
+    def wait_for_element_boolean(self, locator):
+        limit = 10   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                self.driver.find_element_by_xpath(locator)  # Success
+                return True
+            except:
+                sleep(inc)
+                c = c + inc
+        return False# Failure
 
     def _validate_page(self, driver):
         pass

@@ -11,7 +11,6 @@ json_path= "data"+os.sep+"json_login.json"
 #L1 = os.path.join(os.getcwd(),json_path)
 #L1 = os.path.abspath(os.path.join(os.getcwd(),"data","json_login.json"))
 L1 = os.path.join(os.getcwd(),"data","json_login.json")
-print L1
 os.chdir(cwd)
 
 class LoginPage(BasePageClass):
@@ -39,7 +38,6 @@ class LoginPage(BasePageClass):
         #loginpage = LoginPage(self.driver)
         with open(L1) as data_file:
             data_text = json.load(data_file)
-
             for each in data_text:
                 self.usernameText = each["username"]
                 passwordText = each["password"]

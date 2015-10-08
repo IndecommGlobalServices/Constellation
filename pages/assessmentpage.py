@@ -9,10 +9,9 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from datetime import date, timedelta, datetime
 
-filepath = "data" + os.sep + "json_Schooldata.json"
 cwd = os.getcwd()
 os.chdir('..')
-schooldatafile = os.path.join(os.getcwd(), filepath)
+schooldatafile = os.path.join(os.getcwd(), "data\json_Schooldata.json")
 os.chdir(cwd)
 
 class AssessmentPage(BasePageClass):
@@ -436,7 +435,7 @@ class AssessmentPage(BasePageClass):
     def file_path(self, image_file_name):
         cur_dir = os.getcwd()
         os.chdir("..")
-        file_path = "image_file"+ os.sep + image_file_name
+        file_path = "image_file\\"+image_file_name
         complete_file_path = os.path.join(os.getcwd(), file_path)
         os.chdir(cur_dir)
         return complete_file_path
