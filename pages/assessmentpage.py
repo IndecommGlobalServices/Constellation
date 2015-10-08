@@ -365,21 +365,12 @@ class AssessmentPage(BasePageClass):
             print "No Assets added yet"
             return False
 
-    def wait_for_element(self, element):
-        timeout = time() + 60*5
-        print timeout
-        while True:
-            if element.is_displayed() or time() > 0:
-                element.select()
-                print "elemtn found"
-                break
-
     def create_assessment_select_haystax_template(self):
         if not self.get_create_assessments_button.is_displayed():
             try:
                 (self.wait_for_element(self._ast_main_create_assessment_button_locator)).click()
             except:
-                return (False, "Element not found")
+                return (False, "Element found")
             try:
                 (self.wait_for_element(self._ast_create_templatetype_dropdown_locator)).click()
             except:

@@ -937,7 +937,8 @@ class AssetPage(BasePageClass):
         :return: None
         """
         try:
-            self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
+            # self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
+            self.wait_for_element(self._asset_create_asset)
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
@@ -1660,20 +1661,42 @@ class AssetPage(BasePageClass):
         else :
             print "No chart found at school and type level."
 
-    def wait_for_element(self, path):
+    def wait_for_element_path(self, locator):
         limit = 10   # waiting limit in seconds
         inc = 1   # in seconds; sleep for 500ms
         c = 0
         while (c < limit):
             try:
-
-                self.driver.find_element_by_xpath(path)
-                return 1        # Success
+                return self.driver.find_element_by_xpath(locator)  # Success
             except:
                 sleep(inc)
                 c = c + inc
-        return 0 # Failure
+        raise Exception # Failure
 
+    def wait_for_list_element_path(self, locator):
+        limit = 20   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                return self.driver.find_elements_by_xpath(locator)  # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        raise Exception # Failure
+
+    def wait_for_element(self, locator):
+        limit = 10   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                self.driver.find_element_by_xpath(locator)  # Success
+                return True
+            except:
+                sleep(inc)
+                c = c + inc
+        return False# Failure
 
     def _validate_page(self, driver):
         pass

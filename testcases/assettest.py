@@ -34,6 +34,7 @@ class AssetPageTest(BaseTestCase):
         else:
             self.skipTest("Assets are available and test cant be validated")
 
+
     @attr(priority="high")
     #@SkipTest
     def test_AS_02(self):
@@ -150,7 +151,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_09(self):
         """
-        Test :
+        Test : test_AS_09
         Description : To verify filter functionality. Select 'School/Grade' filter.
         Revision:
         :return: None
@@ -166,6 +167,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_10(self):
         """
+        Test : test_AS_10
         Description : To verify filter functionality. Select 'School/School Type' filter.
         Revision:
         :return: None
@@ -182,6 +184,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_11(self):
         """
+        Test : test_AS_11
         Description : To verify Reset Filters buttons functionality. Select 'School/School Type' filter.
         Revision:
         :return: None
@@ -196,6 +199,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_12(self):
         """
+        Test : test_AS_12
         Description : To verify Search text box functionality. Enter multiple string.
         Revision:
         :return: None
@@ -1435,29 +1439,28 @@ class AssetPageTest(BaseTestCase):
         """
         flag = 0
         assetpage = AssetPage(self.driver)
-        assetpage.app_sanity_check()
-        assetpage.create_asset("School")
-        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located \
-                                            ((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
-        self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']"
-                                                                                           "/div[1]/span[3]/span").text)
-        assetpage.return_to_apps_main_page()
+        # assetpage.app_sanity_check()
+        # assetpage.create_asset("School")
+        # self.assertTrue(assetpage.wait_for_element(assetpage._asset_name_breadcrumb),
+        #                  "Added school name doesnt appear on the breadcrumb")
+        # self.assertEqual(assetpage.asset_school_name[0], assetpage.get_asset_name_breadcrumb.text)
+        # assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
-        sleep(5)
-        for i in self.driver.find_elements_by_xpath(".//*[@id='assetstable']/tbody/tr/td[2]"):
-            if (i.text  == assetpage.asset_school_name[0]) and (i.value_of_css_property("background-color") ==
-                                                                    "rgba(255, 236, 158, 1)"):
+        sleep(15)
+        for item in assetpage.get_assets_name_list:
+            if (item.text  == assetpage.asset_school_name[0]) and \
+                    (item.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
                 flag = 1
                 break
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
-        assetpage.return_to_apps_main_page()
-        self.assertFalse(flag == 0, "Newly created asset is not appaering with yellow background")
+        self.assertFalse(flag == 0, "Newly created asset is not appearing with yellow background")
 
 
     @attr(priority="high")
 #    @SkipTest
     def test_AS_51(self):
         """
+        Test : test_AS_51
         Description : To verify asset school Name field.
         Revision:
         :return: None
@@ -1468,13 +1471,13 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_asset_template_type("School")
         self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled())
         assetpage.get_asset_overview_cancel_button.click()
-        sleep(5)
-        self.assertTrue(self.driver.find_element_by_xpath(assetpage._asset_create_asset).is_displayed())
+        self.assertTrue(assetpage.wait_for_element(assetpage._asset_create_asset),"Cancel failed on create assest dialouge")
 
     @attr(priority="high")
 #   @SkipTest
     def test_AS_53(self):
         """
+        Test : test_AS_53
         Description : To verify asset school Grade and District fields.
         Revision:
         :return: None
@@ -1493,6 +1496,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_54(self):
         """
+        Test : test_AS_54
         Description : To verify Cancel Button functionality of Create Asset Window.
         Revision:
         :return: None
@@ -1506,6 +1510,7 @@ class AssetPageTest(BaseTestCase):
     @SkipTest
     def test_AS_55(self):
         """
+        Test : test_AS_55
         Description : To verify Asset edit functionality.
         Revision:
         :return: None
@@ -1522,6 +1527,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_56(self):
         """
+        Test : test_AS_56
         Description : To verify cancel button functionality of Detail Window. Enter data in all required fields.
         Revision:
         :return: None
@@ -1529,15 +1535,14 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(15)
-        assetpage.get_asset_detail_edit_link.click()
+        assetpage.wait_for_element_path(assetpage.get_asset_detail_edit_link).click()
         assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
                        r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "3", "6300", r"http://www.haystax.com")
         assetpage.get_asset_detail_edit_cancel_button.click()
-        sleep(10)
-        self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/"
-                                                                                           "div[1]/span[3]/span").text)
+        textfrombreadcrumb = assetpage.wait_for_element_path(assetpage._asset_create_asset).text
         assetpage.return_to_apps_main_page()
+        self.assertEqual(assetpage.asset_school_name[0], textfrombreadcrumb, "")
+
 
     @attr(priority="high")
     #@SkipTest

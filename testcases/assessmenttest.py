@@ -70,6 +70,7 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(2)
         ast.get_main_create_assessment_button.click()
 
+
     @attr(priority="high")
     #@SkipTest
     def test_AST_02_To_verify_nodate_createassessment(self):
