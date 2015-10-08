@@ -3,7 +3,7 @@ from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from basepage import BasePage
 from time import sleep, time
-import os, json
+import os, json, unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -376,12 +376,17 @@ class AssessmentPage(BasePageClass):
 
     def create_assessment_select_haystax_template(self):
         if not self.get_create_assessments_button.is_displayed():
-            sleep(10)
-            self.get_main_create_assessment_button.click()
-            self.get_create_templatetype_dropdown.click()
+            try:
+                (self.wait_for_element(self._ast_main_create_assessment_button_locator)).click()
+            except:
+                return (False, "Element not found")
+            try:
+                (self.wait_for_element(self._ast_create_templatetype_dropdown_locator)).click()
+            except:
+                return (False,"Template dropdown not found")
             sleep(2)
             self.get_create_haystax_template_option.click()
-            sleep(2)
+            return True
 
     def create_assessment(self, assetname):
         self.create_assessment_select_haystax_template()
@@ -488,6 +493,19 @@ class AssessmentPage(BasePageClass):
             self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator).is_displayed()
         except:
             print "Exception at sanity"
+
+    def wait_for_element(self, path):
+        limit = 10   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                print c
+                return self.driver.find_element_by_xpath(path)  # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        raise Exception # Failure
 
     def _validate_page(self, driver):
         pass

@@ -1,7 +1,7 @@
 from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from basepage import BasePage
-from time import sleep
+from time import sleep, time
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -164,7 +164,7 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_detail_edit_title_locator = ".//*[@id='H2']"
     _asset_detail_edit_capacity_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[1]/div/span/input"
-    _asset_detail_edit_closed_textbox_locator = ".//*[@id='id']"
+    _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
     _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
@@ -807,15 +807,10 @@ class AssetPage(BasePageClass):
         """
         sleep(5)
         self.asset_filter_based_on_place_and_school("School")
-
-        # Click on District dropdown
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
-
-        # Check the values exists inside District dropdown
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(10)
-
         if len(items) > 1:
             firstelemet =self.driver.find_element_by_xpath\
                 (self._asset_school_district_drop_down_select_first_element_locator)
@@ -1467,7 +1462,6 @@ class AssetPage(BasePageClass):
             print "Annotation text coulld not deleted or no annotation text is available."
 
     def charts_When_No_Asset_Type_Is_Selected(self):
-
         # Display available chart names in the container
         totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
         sleep(10)
@@ -1665,6 +1659,21 @@ class AssetPage(BasePageClass):
                         sleep(10)
         else :
             print "No chart found at school and type level."
+
+    def wait_for_element(self, path):
+        limit = 10   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+
+                self.driver.find_element_by_xpath(path)
+                return 1        # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        return 0 # Failure
+
 
     def _validate_page(self, driver):
         pass

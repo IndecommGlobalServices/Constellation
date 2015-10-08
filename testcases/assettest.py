@@ -19,6 +19,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_01(self):
         """
+        Test : test_AS_01
         Description : To verify delete functionality when no assets are available. Delete button should be disabled.
         Revision:
         :return: None
@@ -37,6 +38,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_02(self):
         """
+        Test : test_AS_02
         Description : To verify delete functionality when no asset is selected. Delete button should be disabled.
         Revision:
         :return: None
@@ -53,6 +55,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_03(self):
         """
+        Test : test_AS_03
         Description : To verify delete functionality. User selected asset should be deleted.
         Revision:
         :return: None
@@ -82,6 +85,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_04(self):
         """
+        Test : test_AS_04
         Description : To verify delete window cancel button functionality.
         Revision:
         :return: None
@@ -98,7 +102,8 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_06(self):
         """
-        Description : To verify filter functionality. Check whether filter has 'Place' option or not.
+        Test : test_AS_06
+        Description : To verify filter functionality. Check whether type filter has 'Place' option or not.
         Revision:
         :return: None
         """
@@ -112,7 +117,8 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_07(self):
         """
-        Description : To verify filter functionality. Check whether fileter has 'School' option or not.
+        Test : test_AS_07
+        Description : To verify filter functionality. Check whether type filter has 'School' option or not.
         Revision:
         :return: None
         """
@@ -126,12 +132,15 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_08(self):
         """
+        Test : test_AS_08
         Description : To verify filter functionality. Select 'School/District' filter.
         Revision:
         :return: None
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
+        sleep(5)
+        assetpage.asset_filter_based_on_place_and_school("School")
         assetpage.get_asset_school_district()
         for item in assetpage.select_asset_type_district_lists:
             self.assertEqual(assetpage.selecteddistrict, item.text)
@@ -141,6 +150,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_09(self):
         """
+        Test :
         Description : To verify filter functionality. Select 'School/Grade' filter.
         Revision:
         :return: None
@@ -375,7 +385,8 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_23(self):
+    def \
+            test_AS_23(self):
         """
         Description : To edit overview section. Enter all required fields info and click on save button.
         Revision:
@@ -1417,6 +1428,7 @@ class AssetPageTest(BaseTestCase):
     @attr(status='smoke')
     def test_AS_49_50(self):
         """
+        Test name : test_AS_49_50
         Description : To verify school asset creation and verify that created asset is displayed in the asset list.
         Revision:
         :return: None

@@ -17,7 +17,6 @@ class ThreatStreamTest(BaseTestCase):
     @attr(status='smoke')
     def test_threat_steams(self):
         tstream = ThreatStreamPage(self.driver)
-        print tstream.get_ts_app_name.text
         # WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located(By.XPATH, tstream._ts_app_name_text))
         self.assertEqual(tstream.get_ts_app_name.text, "Threat Streams")
 

@@ -60,8 +60,8 @@ class AssessmenttPageTest(BaseTestCase):
     #@SkipTest
     def test_AST_01_To_verify_noemailid_createassessment(self):
         ast = AssessmentPage(self.driver)
-        sleep(10)
-        ast.create_assessment_select_haystax_template()
+        selecttemplate = ast.create_assessment_select_haystax_template()
+        self.assertTrue(selecttemplate[0], selecttemplate[1])
         ast.select_first_asset()
         ast.get_create_assignedto_textbox.clear()
         ast.get_create_startdate_textbox.send_keys("2015-09-10")
@@ -591,6 +591,15 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(10)
         self.assertEqual(str(start_date), ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), ast.get_overview_enddate_textbox.get_attribute("value"))
+
+    def test_wait(self):
+        ast = AssessmentPage(self.driver)
+        try:
+            ast.wait_for_element(ast._ast_main_create_assessment_button_locator)
+        except:
+            self.assertFalse("Element not found")
+        ast.get_main_create_assessment_button.click()
+
 
     @attr(priority="high")
     #@SkipTest
