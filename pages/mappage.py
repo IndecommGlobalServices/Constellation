@@ -69,3 +69,6 @@ class MapPage(BasePageClass):
         super(MapPage, self).__init__(driver)
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
+
+    #def get_map_based_on_basic_data_layer(self):
+

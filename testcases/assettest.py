@@ -377,19 +377,27 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_23(self):
         """
-        Description : To edit overview section. Enter all required fields info and click on save button.
+        Description : To verify cancel button functionality of Detail Window. Enter data in all required fields.
         Revision:
         :return: None
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
+    # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
+
+    # Click on Details panel
         assetpage.get_asset_detail_edit_link.click()
-        assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3", "",
-                r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "", r"6300", r"http://www.haystax.com")
+
+    # Modify the values
+        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "6300", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite
+    # Click on Save
         assetpage.get_asset_detail_edit_save_button.click()
         sleep(10)
+
+    # Assert on Saved text is displayed
         self.assertTrue(assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
         assetpage.return_to_apps_main_page()
 
@@ -450,21 +458,27 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_26(self):
         """
-        Description : To verify cancel button functionality of the Detail section.
+        Description : To verify cancel button functionality of Detail Window. Enter data in all required fields.
         Revision:
         :return: None
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
+    # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
+
+    # Click on Details panel
         assetpage.get_asset_detail_edit_link.click()
         sleep(10)
-        assetpage.set_place_details_fields("4321", r"2020-05-16", r"Cancelled", "", r"cancel@indecomm.net",
-                                                r"111-111-1111", r"2017-02-23", "", r"10001", r"http://www.haystax.com")
+    # Modify the values
+        assetpage.set_place_details_fields("4321", "2020-05-16", "Cancelled", "cancel@indecomm.net", "111-111-1111", "2017-02-23","10001","http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
         sleep(10)
+    # Click on Cancel
         assetpage.get_asset_detail_edit_cancel_button.click()
         sleep(10)
+    # Assert on Asset name is displayed in the breadcrumb
         self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
         assetpage.return_to_apps_main_page()
 
@@ -1509,44 +1523,56 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AS_56(self):
-        """
+	"""
         Description : To verify cancel button functionality of Detail Window. Enter data in all required fields.
         Revision:
         :return: None
-        """
+    """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
+        # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(15)
+
+        # Click on Details panel
         assetpage.get_asset_detail_edit_link.click()
-        assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
-                       r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "3", "6300", r"http://www.haystax.com")
+
+        # Modify the values
+        assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, ssize, pwebsite
+        # Click on Save
         assetpage.get_asset_detail_edit_cancel_button.click()
         sleep(10)
-        self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/"
-                                                                                           "div[1]/span[3]/span").text)
+
+        self.assertEqual(assetpage.asset_school_name[0], self.driver.find_element_by_xpath("//*[@id='header']/div[1]/span[3]/span").text)
         assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_58(self):
-        """
+	"""
         Description : To verify save button functionality of Detail Window.
         Revision:
         :return: None
-        """
+    """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
+    # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(15)
+
+    # Click on Details panel
         assetpage.get_asset_detail_edit_link.click()
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2",
-                                           r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300",
-                                           "http://www.haystax.com")
+
+    # Modify the values
+        assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2", "ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300", "http://www.haystax.com")
+        # pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, psize, pwebsite
+    # Click on Save
         assetpage.get_asset_detail_edit_save_button.click()
         sleep(10)
-        self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(),
-                        "Saved text is not displayed")
+
+    # Assert on Saved text is displayed
+        self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(), "Saved text is not displayed")
         assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
