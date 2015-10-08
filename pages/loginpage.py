@@ -11,13 +11,13 @@ json_path= "data"+os.sep+"json_login.json"
 #L1 = os.path.join(os.getcwd(),json_path)
 #L1 = os.path.abspath(os.path.join(os.getcwd(),"data","json_login.json"))
 L1 = os.path.join(os.getcwd(),"data","json_login.json")
-print L1
 os.chdir(cwd)
 
 class LoginPage(BasePageClass):
     _email_input_id_locator     = "inputusername"
     _password_input_id_locator  = "inputpassword"
     _login_click_xpath_locator  = "//form[@id='login_form']/li[3]/button"
+    usernameText = ""
 
     def __init__(cls,driver):
         super(LoginPage,cls).__init__(driver)
@@ -40,10 +40,10 @@ class LoginPage(BasePageClass):
             data_text = json.load(data_file)
 
             for each in data_text:
-                usernameText = each["username"]
+                self.usernameText = each["username"]
                 passwordText = each["password"]
                 #loginpage.email.send_keys("Deepa.Sivadas@indecomm.net")
-                self.email.send_keys(usernameText)
+                self.email.send_keys(self.usernameText)
                 #loginpage.password.send_keys("myhaystax")
                 self.password.send_keys(passwordText)
                 #loginpage.password.send_keys(pwd)
