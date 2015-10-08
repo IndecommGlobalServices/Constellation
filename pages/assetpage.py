@@ -35,6 +35,7 @@ class AssetPage(BasePageClass):
     _asset_list_locator = "//tbody/tr/td/a"
     _asset_list_check_box_locator = ".//*[@id='assetstable']/tbody/tr/td[1]/label/span/span[2]"
     _asset_list_assets_name_locator = ".//*[@id='assetstable']/tbody/tr/td[2]/a"
+    _asset_list_background_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
     _asset_list_asset_type_locator = ".//*[@id='assetstable']/tbody/tr/td[3]"
     _asset_list_No_Matching_Records_Found_locator = ".//*[@id='assetstable']/tbody/tr/td"
     _asset_list_asset_name_back_color_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
@@ -232,6 +233,10 @@ class AssetPage(BasePageClass):
     @property
     def get_assets_name_list(self):
         return self.driver.find_elements_by_xpath(self._asset_list_assets_name_locator)
+
+    @property
+    def get_asset_list_background(self):
+        return self.driver.find_elements_by_xpath(self._asset_list_background_locator)
 
     @property
     def get_asset_select_action_drop_down(self):
@@ -938,7 +943,7 @@ class AssetPage(BasePageClass):
         """
         try:
             # self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
-            self.wait_for_element(self._asset_create_asset)
+            self.wait_for_element_boolean(self._asset_create_asset)
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
@@ -1662,7 +1667,7 @@ class AssetPage(BasePageClass):
             print "No chart found at school and type level."
 
     def wait_for_element_path(self, locator):
-        limit = 10   # waiting limit in seconds
+        limit = 15   # waiting limit in seconds
         inc = 1   # in seconds; sleep for 500ms
         c = 0
         while (c < limit):
@@ -1671,7 +1676,8 @@ class AssetPage(BasePageClass):
             except:
                 sleep(inc)
                 c = c + inc
-        raise Exception # Failure
+        print c
+        raise Exception # Wait for element failed
 
     def wait_for_list_element_path(self, locator):
         limit = 20   # waiting limit in seconds
@@ -1685,7 +1691,7 @@ class AssetPage(BasePageClass):
                 c = c + inc
         raise Exception # Failure
 
-    def wait_for_element(self, locator):
+    def wait_for_element_boolean(self, locator):
         limit = 10   # waiting limit in seconds
         inc = 1   # in seconds; sleep for 500ms
         c = 0
