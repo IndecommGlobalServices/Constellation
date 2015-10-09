@@ -1140,7 +1140,7 @@ class AssetPageTest(BaseTestCase):
         except Exception, e:
             error = "Test Case no 41 has been failed. Error message is ::"+str(e)
             assetpage.return_to_apps_main_page()
-            self.assertFalse(1, error)
+            self.assertFalse(False, error)
 
     @attr(priority="high")
     def test_AS_42(self):
