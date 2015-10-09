@@ -325,6 +325,7 @@ class AssessmentPage(BasePageClass):
                 sleep(1)
 
     def search_assessment_textbox(self, keyword):
+        self.wait_for_element_boolean(self._ast_search_assessment_text_box_locator)
         self.get_search_assessment_textbox.clear()
         self.get_search_assessment_textbox.send_keys(keyword)
 
@@ -363,15 +364,6 @@ class AssessmentPage(BasePageClass):
         else:
             print "No Assets added yet"
             return False
-
-    def wait_for_element(self, element):
-        timeout = time() + 60*5
-        print timeout
-        while True:
-            if element.is_displayed() or time() > 0:
-                element.select()
-                print "elemtn found"
-                break
 
     def create_assessment_select_haystax_template(self):
         if not self.get_create_assessments_button.is_displayed():
@@ -488,5 +480,42 @@ class AssessmentPage(BasePageClass):
         except:
             print "Exception at sanity"
 
+    def wait_for_element_path(self, locator):
+        limit = 15   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                return self.driver.find_element_by_xpath(locator)  # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        print c
+        raise Exception # Wait for element failed
+
+    def wait_for_list_element_path(self, locator):
+        limit = 20   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                return self.driver.find_elements_by_xpath(locator)  # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        raise Exception # Failure
+
+    def wait_for_element_boolean(self, locator):
+        limit = 10   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                self.driver.find_element_by_xpath(locator)  # Success
+                return True
+            except:
+                sleep(inc)
+                c = c + inc
+        return False# Failure
     def _validate_page(self, driver):
         pass

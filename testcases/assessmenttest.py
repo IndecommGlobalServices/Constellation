@@ -61,14 +61,14 @@ class AssessmenttPageTest(BaseTestCase):
     def test_AST_01_To_verify_noemailid_createassessment(self):
         ast = AssessmentPage(self.driver)
         selecttemplate = ast.create_assessment_select_haystax_template()
-        self.assertTrue(selecttemplate[0], selecttemplate[1])
+        #self.assertTrue(selecttemplate[0], selecttemplate[1])
         ast.select_first_asset()
         ast.get_create_assignedto_textbox.clear()
         ast.get_create_startdate_textbox.send_keys("2015-09-10")
         ast.get_create_enddate_textbox.send_keys("2015-09-11")
         self.assertFalse(ast.get_create_assessments_button.is_enabled(),"Create assessment button enabled even without entering email")
-        sleep(2)
-        ast.get_main_create_assessment_button.click()
+        ast.wait_for_element_path(ast._ast_main_create_assessment_button_locator).click()
+
 
 
     @attr(priority="high")
@@ -79,17 +79,15 @@ class AssessmenttPageTest(BaseTestCase):
         ast.select_first_asset()
         ast.get_create_assignedto_textbox.clear()
         ast.get_create_assignedto_textbox.send_keys("deep@dee")
-        ast.get_create_startdate_textbox.send_keys("")
-        ast.get_create_enddate_textbox.send_keys("")
+        ast.get_create_startdate_textbox.clear()
+        ast.get_create_enddate_textbox.clear()
         self.assertFalse(ast.get_create_assessments_button.is_enabled(),"Create assessment button enabled even without entering start and end date")
-        sleep(2)
-        ast.get_main_create_assessment_button.click()
+        ast.wait_for_element_path(ast._ast_main_create_assessment_button_locator).click()
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_04_To_verify_datevaidation_createassessment(self):
         ast = AssessmentPage(self.driver)
-        sleep(8)
         dateformat = ['date', '23-11-2015', '2015-22-11']
         ast.create_assessment_select_haystax_template()
         ast.select_first_asset()
@@ -103,8 +101,8 @@ class AssessmenttPageTest(BaseTestCase):
             ast.get_create_enddate_textbox.send_keys(date)
             ast.get_create_enddate_textbox.send_keys(Keys.TAB)
             self.assertNotEqual(ast.get_create_enddate_textbox.text, date, "Start date textbox no date format validation")
-        sleep(2)
-        ast.get_main_create_assessment_button.click()
+        ast.wait_for_element_path(ast._ast_main_create_assessment_button_locator).click()
+
 
     @attr(priority="high")
     #@SkipTest
@@ -115,7 +113,6 @@ class AssessmenttPageTest(BaseTestCase):
         count = 0
         if ast.create_assessment(ast.asset_school_name) == False:
             self.assertFalse("Assessment creation failed")
-        sleep(8)
         ast.search_assessment_textbox(ast.asset_school_name)
         sleep(5)
         for item in ast.get_assessment_table("Asset"):
