@@ -1,7 +1,7 @@
 from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from basepage import BasePage
-from time import sleep, time
+from time import sleep
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -33,6 +33,7 @@ class AssetPage(BasePageClass):
     _asset_list_locator = "//tbody/tr/td/a"
     _asset_list_check_box_locator = ".//*[@id='assetstable']/tbody/tr/td[1]/label/span/span[2]"
     _asset_list_assets_name_locator = ".//*[@id='assetstable']/tbody/tr/td[2]/a"
+    _asset_list_background_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
     _asset_list_asset_type_locator = ".//*[@id='assetstable']/tbody/tr/td[3]"
     _asset_list_No_Matching_Records_Found_locator = ".//*[@id='assetstable']/tbody/tr/td"
     _asset_list_asset_name_back_color_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
@@ -168,7 +169,8 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
     _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
-    _asset_detail_edit_size_textbox_locator = "//input[@placeholder='size (sq ft)']"
+    _asset_detail_edit_place_size_textbox_locator = "//input[@placeholder='size (sq ft)']"
+    _asset_detail_edit_school_size_textbox_locator = "//input[@placeholder='Size_sqfeet']"
     _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
     _asset_detail_edit_website_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
@@ -232,6 +234,10 @@ class AssetPage(BasePageClass):
     @property
     def get_assets_name_list(self):
         return self.driver.find_elements_by_xpath(self._asset_list_assets_name_locator)
+
+    @property
+    def get_asset_list_background(self):
+        return self.driver.find_elements_by_xpath(self._asset_list_background_locator)
 
     @property
     def get_asset_select_action_drop_down(self):
@@ -609,8 +615,13 @@ class AssetPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._asset_detail_edit_school_number_textbox_locator)
 
     @property
-    def get_asset_detail_edit_detail_size_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_size_textbox_locator)
+    def get_asset_detail_edit_detail_place_size_text_box(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_place_size_textbox_locator)
+
+    @property
+    def get_asset_detail_edit_detail_school_size_text_box(self):
+        return self.driver.find_element_by_xpath(self._asset_detail_edit_school_size_textbox_locator)
+
 
     @property
     def get_asset_detail_edit_detail_website_text_box(self):
@@ -946,7 +957,7 @@ class AssetPage(BasePageClass):
         """
         try:
             # self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
-            self.wait_for_element(self._asset_create_asset)
+            self.wait_for_element_boolean(self._asset_create_asset)
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
@@ -1050,9 +1061,11 @@ class AssetPage(BasePageClass):
         sleep(4)
         if(index == 0):
             self.enter_asset_type_name.send_keys(self.asset_school_name[index])
+            sleep(5)
         else:
             self.get_overview_editname_text_box.clear()
             self.get_overview_editname_text_box.send_keys(self.asset_school_name[index])
+            sleep(5)
 
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(self.asset_school_address[index])
@@ -1251,14 +1264,9 @@ class AssetPage(BasePageClass):
         self.enter_asset_type_owner.send_keys(Keys.TAB)
         sleep(5)
 
+    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
+        # fill out the fields
 
-    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened,
-                                 pschoolnumber, psize, pwebsite):
-        """
-        Description : This function will enter data in all fields of Detail Edit Window.
-        Revision:
-        :return: None
-        """
         self.get_asset_detail_edit_capacity_text_box.clear()
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
@@ -1274,12 +1282,65 @@ class AssetPage(BasePageClass):
         self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
+
+        sleep(2)
+
+        self.get_asset_detail_edit_email_text_box.clear()
+        self.get_asset_detail_edit_email_text_box.send_keys(pemail)
+        self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
+
+        sleep(2)
+
+        self.get_asset_detail_edit_detail_fax_text_box.clear()
+        self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
+        self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
+
+        sleep(2)
+
+        self.get_asset_detail_edit_detail_opened_number_text_box.clear()
+        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
+        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
+
+        sleep(2)
+
+        self.get_asset_detail_edit_detail_place_size_text_box.clear()
+        self.get_asset_detail_edit_detail_place_size_text_box.send_keys(psize)
+        self.get_asset_detail_edit_detail_place_size_text_box.send_keys(Keys.TAB)
+
+        sleep(2)
+
+        self.get_asset_detail_edit_detail_website_text_box.clear()
+        self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
+        self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
+
+        sleep(2)
+
+    def set_school_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, ssize, pwebsite):
+        # fill out the fields
+
+        self.get_asset_detail_edit_capacity_text_box.clear()
+        self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
+        self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
+
+        sleep(2)
+
+        self.get_asset_detail_edit_closed_text_box.clear()
+        self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
+        self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
+
+        sleep(2)
+
+        self.get_asset_detail_edit_description_text_box.clear()
+        self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
+        self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
+
         sleep(2)
         if pdistrict is not None:
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
-            sleep(2)
+        sleep(2)
+
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
@@ -1296,11 +1357,14 @@ class AssetPage(BasePageClass):
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
-            sleep(2)
-        self.get_asset_detail_edit_detail_size_text_box.clear()
-        self.get_asset_detail_edit_detail_size_text_box.send_keys(psize)
-        self.get_asset_detail_edit_detail_size_text_box.send_keys(Keys.TAB)
         sleep(2)
+
+        if ssize is not None:
+            self.get_asset_detail_edit_detail_school_size_text_box.send_keys("")
+            self.get_asset_detail_edit_detail_school_size_text_box.send_keys(ssize)
+            self.get_asset_detail_edit_detail_school_size_text_box.send_keys(Keys.TAB)
+        sleep(2)
+
         self.get_asset_detail_edit_detail_website_text_box.clear()
         self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
         self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
@@ -1675,7 +1739,7 @@ class AssetPage(BasePageClass):
             print "No chart found at school and type level."
 
     def wait_for_element_path(self, locator):
-        limit = 10   # waiting limit in seconds
+        limit = 15   # waiting limit in seconds
         inc = 1   # in seconds; sleep for 500ms
         c = 0
         while (c < limit):
@@ -1684,7 +1748,8 @@ class AssetPage(BasePageClass):
             except:
                 sleep(inc)
                 c = c + inc
-        raise Exception # Failure
+        print c
+        raise Exception # Wait for element failed
 
     def wait_for_list_element_path(self, locator):
         limit = 20   # waiting limit in seconds
@@ -1698,7 +1763,7 @@ class AssetPage(BasePageClass):
                 c = c + inc
         raise Exception # Failure
 
-    def wait_for_element(self, locator):
+    def wait_for_element_boolean(self, locator):
         limit = 10   # waiting limit in seconds
         inc = 1   # in seconds; sleep for 500ms
         c = 0

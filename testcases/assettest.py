@@ -34,7 +34,6 @@ class AssetPageTest(BaseTestCase):
         else:
             self.skipTest("Assets are available and test cant be validated")
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_02(self):
@@ -389,8 +388,7 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def \
-            test_AS_23(self):
+    def test_AS_23(self):
         """
         Description : To edit overview section. Enter all required fields info and click on save button.
         Revision:
@@ -401,8 +399,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(15)
         assetpage.get_asset_detail_edit_link.click()
-        assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3", "",
-                r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "", r"6300", r"http://www.haystax.com")
+        assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3",
+                r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
         assetpage.get_asset_detail_edit_save_button.click()
         sleep(10)
         self.assertTrue(assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
@@ -475,8 +473,8 @@ class AssetPageTest(BaseTestCase):
         sleep(15)
         assetpage.get_asset_detail_edit_link.click()
         sleep(10)
-        assetpage.set_place_details_fields("4321", r"2020-05-16", r"Cancelled", "", r"cancel@indecomm.net",
-                                                r"111-111-1111", r"2017-02-23", "", r"10001", r"http://www.haystax.com")
+        assetpage.set_place_details_fields("4321", r"2020-05-16", r"Cancelled",r"cancel@indecomm.net",
+                                                r"111-111-1111", r"2017-02-23", r"10001", r"http://www.haystax.com")
         sleep(10)
         assetpage.get_asset_detail_edit_cancel_button.click()
         sleep(10)
@@ -1434,19 +1432,20 @@ class AssetPageTest(BaseTestCase):
         Test name : test_AS_49_50
         Description : To verify school asset creation and verify that created asset is displayed in the asset list.
         Revision:
+        Author: Deepa Sivadas
         :return: None
         """
         flag = 0
         assetpage = AssetPage(self.driver)
-        # assetpage.app_sanity_check()
-        # assetpage.create_asset("School")
-        # self.assertTrue(assetpage.wait_for_element(assetpage._asset_name_breadcrumb),
-        #                  "Added school name doesnt appear on the breadcrumb")
-        # self.assertEqual(assetpage.asset_school_name[0], assetpage.get_asset_name_breadcrumb.text)
-        # assetpage.return_to_apps_main_page()
+        assetpage.app_sanity_check()
+        assetpage.create_asset("School")
+        self.assertTrue(assetpage.wait_for_element_boolean(assetpage._asset_name_breadcrumb),
+                         "Added school name doesnt appear on the breadcrumb")
+        self.assertEqual(assetpage.asset_school_name[0], assetpage.get_asset_name_breadcrumb.text)
+        assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(15)
-        for item in assetpage.get_assets_name_list:
+        for item in assetpage.get_asset_list_background:
             if (item.text  == assetpage.asset_school_name[0]) and \
                     (item.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
                 flag = 1
@@ -1454,13 +1453,13 @@ class AssetPageTest(BaseTestCase):
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
         self.assertFalse(flag == 0, "Newly created asset is not appearing with yellow background")
 
-
     @attr(priority="high")
 #    @SkipTest
     def test_AS_51(self):
         """
         Test : test_AS_51
         Description : To verify asset school Name field.
+        Author: Deepa Sivadas
         Revision:
         :return: None
         """
@@ -1470,7 +1469,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_asset_template_type("School")
         self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled())
         assetpage.get_asset_overview_cancel_button.click()
-        self.assertTrue(assetpage.wait_for_element(assetpage._asset_create_asset),"Cancel failed on create assest dialouge")
+        self.assertTrue(assetpage.wait_for_element_boolean(assetpage._asset_create_asset),"Cancel failed on create assest dialouge")
 
     @attr(priority="high")
 #   @SkipTest
@@ -1478,6 +1477,7 @@ class AssetPageTest(BaseTestCase):
         """
         Test : test_AS_53
         Description : To verify asset school Grade and District fields.
+        Author: Deepa Sivadas
         Revision:
         :return: None
         """
@@ -1497,6 +1497,7 @@ class AssetPageTest(BaseTestCase):
         """
         Test : test_AS_54
         Description : To verify Cancel Button functionality of Create Asset Window.
+        Author: Deepa Sivadas
         Revision:
         :return: None
         """
@@ -1511,6 +1512,7 @@ class AssetPageTest(BaseTestCase):
         """
         Test : test_AS_55
         Description : To verify Asset edit functionality.
+        Author: Deepa Sivadas
         Revision:
         :return: None
         """
@@ -1527,36 +1529,37 @@ class AssetPageTest(BaseTestCase):
     def test_AS_56(self):
         """
         Test : test_AS_56
+	
         Description : To verify cancel button functionality of Detail Window. Enter data in all required fields.
         Revision:
         :return: None
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
+        # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        assetpage.wait_for_element_path(assetpage.get_asset_detail_edit_link).click()
-        assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
+        assetpage.wait_for_element_path(assetpage._asset_detail_edit_link_locator).click()
+        assetpage.set_school_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
                        r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "3", "6300", r"http://www.haystax.com")
         assetpage.get_asset_detail_edit_cancel_button.click()
         textfrombreadcrumb = assetpage.wait_for_element_path(assetpage._asset_create_asset).text
         assetpage.return_to_apps_main_page()
         self.assertEqual(assetpage.asset_school_name[0], textfrombreadcrumb, "")
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_58(self):
-        """
+	"""
         Description : To verify save button functionality of Detail Window.
         Revision:
         :return: None
-        """
+    """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
         sleep(15)
         assetpage.get_asset_detail_edit_link.click()
-        assetpage.set_place_details_fields("1234", "2017-05-16", "Description of School 3","2",
+        assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2",
                                            r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300",
                                            "http://www.haystax.com")
         assetpage.get_asset_detail_edit_save_button.click()

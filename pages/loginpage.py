@@ -38,7 +38,6 @@ class LoginPage(BasePageClass):
         #loginpage = LoginPage(self.driver)
         with open(L1) as data_file:
             data_text = json.load(data_file)
-
             for each in data_text:
                 self.usernameText = each["username"]
                 passwordText = each["password"]
