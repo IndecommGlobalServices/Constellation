@@ -819,12 +819,12 @@ class AssetPage(BasePageClass):
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(10)
+        sleep(5)
         if len(items) > 1:
-            firstelemet =self.driver.find_element_by_xpath\
+            firstelement = self.driver.find_element_by_xpath\
                 (self._asset_school_district_drop_down_select_first_element_locator)
-            self.selecteddistrict = firstelemet.text
-            firstelemet.click()
+            self.selecteddistrict = firstelement.text
+            firstelement.click()
         else:
             print "No items to select in District drop down."
         sleep(2)
@@ -903,7 +903,7 @@ class AssetPage(BasePageClass):
         :return: None
         """
         sleep(5)
-        searchNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
+        searchNames = self.driver.find_elements_by_xpath(AssetPage(self.driver)._asset_list_locator)
         print len(searchNames)
         sleep(5)
         if len(searchNames) > 0:
@@ -1729,12 +1729,26 @@ class AssetPage(BasePageClass):
         else :
             print "No chart found at school and type level."
 
+    def wait_for_element_path_id(self, locator):
+        limit = 15   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                return self.driver.find_element_by_id(locator)  # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        print c
+        raise Exception # Wait for element failed
+
     def wait_for_element_path(self, locator):
         limit = 15   # waiting limit in seconds
         inc = 1   # in seconds; sleep for 500ms
         c = 0
         while (c < limit):
             try:
+                print c
                 return self.driver.find_element_by_xpath(locator)  # Success
             except:
                 sleep(inc)
@@ -1766,6 +1780,12 @@ class AssetPage(BasePageClass):
                 sleep(inc)
                 c = c + inc
         return False# Failure
+
+    def get_total_row_count(self):
+        countText = self.driver.find_element_by_id("assetstable_info").text
+        splitedText = countText.split(" ")
+        totalCount = splitedText[10]
+        return int(totalCount)
 
     def _validate_page(self, driver):
         pass
