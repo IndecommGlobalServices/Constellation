@@ -1,8 +1,9 @@
+import sys
 from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from basepage import BasePage
 from time import sleep
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import *
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -227,11 +228,19 @@ class AssetPage(BasePageClass):
 
     @property
     def get_asset_name_breadcrumb(self):
-        return self.driver.find_element_by_xpath(self._asset_name_breadcrumb)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_name_breadcrumb)
+        except Exception, err:
+            err.msg = "Asset name not available in breadcrumb - " + err.msg
+            raise
 
     @property
     def get_assets_name_list(self):
-        return self.driver.find_elements_by_xpath(self._asset_list_assets_name_locator)
+        try:
+            return self.driver.find_elements_by_xpath(self._asset_list_assets_name_locator)
+        except Exception, err:
+            err.msg = "Asset name column not available in the assets table - " + err.msg
+            raise
 
     @property
     def get_asset_list_background(self):
@@ -239,83 +248,163 @@ class AssetPage(BasePageClass):
 
     @property
     def get_asset_select_action_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_select_action_delete_select_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_select_action_delete_select_xpath_locator)
+        except Exception, err:
+            err.msg = "Select Action drop down not available - " + err.msg
+            raise
 
     @property
     def get_asset_link_delete_text(self):
-        return self.driver.find_element_by_xpath(self._asset_link_delete_text_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_link_delete_text_xpath_locator)
+        except Exception, err:
+            err.msg = "Delete option not present in the select action dropdown - " + err.msg
+            raise
 
     @property
     def get_asset_delete_button(self):
-        return self.driver.find_element_by_xpath(self._asset_select_action_delete_click_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_select_action_delete_click_xpath_locator)
+        except Exception, err:
+            err.msg = "Delete button not available in Delete Assets popup - " + err.msg
+            raise
 
     @property
     def get_deleteasset_cancel_button(self):
-        return self.driver.find_element_by_xpath(self._asset_deleteasset_cancel_click_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_deleteasset_cancel_click_xpath_locator)
+        except Exception, err:
+            err.msg = "Cancel button not available in Delete Assets popup - " + err.msg
+            raise
 
     @property
     def get_asset_reset_button(self):
-        return self.driver.find_element_by_xpath(self._asset_filter_reset_button_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_filter_reset_button_locator)
+        except Exception, err:
+            err.msg = "Reset filter button not available - " + err.msg
+            raise
 
     @property
     def get_overview_templatetype_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_templatetype_dropdown_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_templatetype_dropdown_locator)
+        except Exception, err:
+            err.msg = "Template type dropdown not available - " + err.msg
+            raise
 
     @property
     def get_overview_type_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_type_drop_down_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_type_drop_down_locator)
+        except Exception, err:
+            err.msg = "Asset type dropdown not available - " + err.msg
+            raise
 
     @property
     def get_overview_district_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_district_drop_down_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_district_drop_down_locator)
+        except Exception, err:
+            err.msg = "District dropdown not available - " + err.msg
+            raise
 
     @property
     def get_overview_grade_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_grade_drop_down_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_grade_drop_down_locator)
+        except Exception, err:
+            err.msg = "Grade dropdown not available - " + err.msg
+            raise
 
     @property
     def get_asset_asset_type_text(self):
-        return self.driver.find_element_by_xpath(self._asset_filter_asset_type_text_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_filter_asset_type_text_locator)
+        except Exception, err:
+            err.msg = "Asset type dropdown not available - " + err.msg
+            raise
 
     @property
     def get_asset_list_first_check_box(self):
-        return self.driver.find_element_by_xpath(self._asset_list_select_first_check_box_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_list_select_first_check_box_xpath_locator)
+        except Exception, err:
+            err.msg = "Asset table checkbox not available - " + err.msg
+            raise
 
     @property
     def get_asset_place_type_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_locator)
+        except Exception, err:
+            err.msg = "Place type dropdown not available - " + err.msg
+            raise
 
     @property
     def get_asset_place_type_first_element(self):
-        return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_select_first_element_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_select_first_element_locator)
+        except Exception, err:
+            err.msg = "Place type dropdown list not available - " + err.msg
+            raise
 
     @property
     def get_asset_school_district_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
+        except Exception, err:
+            err.msg = "District dropdown not available - " + err.msg
+            raise
 
     @property
     def get_asset_school_district_first_element(self):
-        return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator)
+        except Exception, err:
+            err.msg = "District dropdown list not available - " + err.msg
+            raise
 
     @property
     def get_asset_school_grade_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator)
+        except Exception, err:
+            err.msg = "Grade dropdown not available - " + err.msg
+            raise
 
     @property
     def get_asset_school_grade_first_element(self):
-        return self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_select_first_element_locator)
+        except Exception, err:
+            err.msg = "Grade dropdown list not available - " + err.msg
+            raise
 
     @property
     def get_asset_school_type_drop_down(self):
-        return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator)
+        except Exception, err:
+            err.msg = "School type dropdown not available - " + err.msg
+            raise
 
     @property
     def get_asset_school_type_first_element(self):
-        return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
+        except Exception, err:
+            err.msg = "School type dropdown list not available - " + err.msg
+            raise
 
     @property
     def get_asset_list_no_matching_records_found(self):
-        return  self.driver.find_element_by_xpath(self._asset_list_No_Matching_Records_Found_locator)
+        try:
+            return  self.driver.find_element_by_xpath(self._asset_list_No_Matching_Records_Found_locator)
+        except Exception, err:
+            err.msg = "No Matching Records Found message not available - " + err.msg
+            raise
 
     #_asset_list_asset_name_back_color_locator
     @property
@@ -324,104 +413,203 @@ class AssetPage(BasePageClass):
 
     @property
     def enter_asset_type_name(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_name_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_name_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset name textbox not available - " + err.msg
+            raise
 
     @property
     def enter_asset_type_address(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_address_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_address_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset Address textbox not available - " + err.msg
+            raise
 
     @property
     def enter_asset_type_address2(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_address2_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_address2_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset Address2 textbox not available - " + err.msg
+            raise
 
     @property
     def enter_asset_type_city(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_city_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_city_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset City textbox not available - " + err.msg
+            raise
 
     @property
     def enter_asset_type_state(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_state_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_state_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset State textbox not available - " + err.msg
+            raise
 
     @property
     def enter_asset_type_zip(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_zip_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_zip_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset Zip textbox not available - " + err.msg
+            raise
 
     @property
     def enter_asset_type_owner(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_owner_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_owner_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset Owner textbox not available - " + err.msg
+            raise
 
     @property
     def enter_asset_type_phone(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_phone_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_phone_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset Phoneno textbox not available - " + err.msg
+            raise
 
-    #_asset_type_Saved_label_locator
     @property
     def asset_type_Saved_label(self):
-        return self.driver.find_element_by_xpath(self._asset_type_Saved_label_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_type_Saved_label_locator)
+        except Exception, err:
+            err.msg = "'Saved' label not available - " + err.msg
+            raise
 
     @property
-    def select_asset_type_type_lists(self):
-        return self.driver.find_elements_by_xpath(self._asset_school_type_lists_locator)
+    def select_asset_schooltype_column(self):
+        try:
+            return self.driver.find_elements_by_xpath(self._asset_school_type_lists_locator)
+        except Exception, err:
+            err.msg = "School Type column not available - " + err.msg
+            raise
 
     @property
-    def select_asset_type_district_lists(self):
-        return self.driver.find_elements_by_xpath(self._asset_school_district_lists_locator)
+    def select_asset_schooltype_district_column(self):
+        try:
+            return self.driver.find_elements_by_xpath(self._asset_school_district_lists_locator)
+        except Exception, err:
+            err.msg = "School District column not available - " + err.msg
+            raise
 
     @property
-    def select_asset_type_grade_lists(self):
-        return self.driver.find_elements_by_xpath(self._asset_school_grade_lists_locator)
+    def select_asset_schooltype_grade_column(self):
+        try:
+            return self.driver.find_elements_by_xpath(self._asset_school_grade_lists_locator)
+        except Exception, err:
+            err.msg = "School Grade column not available - " + err.msg
+            raise
 
     @property
     def get_overview_editname_text_box(self):
-        return self.driver.find_element_by_name("name")
+        try:
+            return self.driver.find_element_by_name("name")
+        except Exception, err:
+            err.msg = "Asset Name textbox not found with element name 'name' - " + err.msg
+            raise
 
     @property
     def get_overview_newdistrict_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_district_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_district_text_box_locator)
+        except Exception, err:
+            err.msg = "School District textbox not available - " + err.msg
+            raise
 
     @property
     def get_overview_newgrade_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_grade_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_grade_text_box_locator)
+        except Exception, err:
+            err.msg = "School Grade textbox not available - " + err.msg
+            raise
 
     @property
     def get_overview_newtype_text_box(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_type_text_box_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_type_text_box_locator)
+        except Exception, err:
+            err.msg = "Asset Type textbox not available - " + err.msg
+            raise
 
     @property
     def get_overview_district_add_button(self):
-        return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[0]
+        try:
+            return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[0]
+        except Exception, err:
+            err.msg = "School District textbox not available - " + err.msg
+            raise
 
     @property
     def get_overview_grade_add_button(self):
-        return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[1]
+        try:
+            return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[1]
+        except Exception, err:
+            err.msg = "School Grade Add button not available - " + err.msg
+            raise
 
     @property
     def get_overview_type_add_button(self):
-        return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
+        try:
+            return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
+        except Exception, err:
+            err.msg = "Asset Type Add button not available - " + err.msg
+            raise
 
     @property
     def get_overview_name_text(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_panel_name_text)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_panel_name_text)
+        except Exception, err:
+            err.msg = "Asset name not available in overview panel - " + err.msg
+            raise
 
     @property
     def get_overview_address1_text(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_panel_address_text).text
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_panel_address_text).text
+        except Exception, err:
+            err.msg = "Asset Address not available in overview panel - " + err.msg
+            raise
 
     @property
     def get_overview_district_text(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_panel_district_text).text
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_panel_district_text).text
+        except Exception, err:
+            err.msg = "District not available in overview panel - " + err.msg
+            raise
 
     @property
     def get_overview_grade_text(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_panel_grade_text).text
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_panel_grade_text).text
+        except Exception, err:
+            err.msg = "Grade not available in overview panel - " + err.msg
+            raise
 
     @property
     def get_asset_overview_cancel_button(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_cancel_button_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_cancel_button_locator)
+        except Exception, err:
+            err.msg = "Cancel button not available in overview dialog - " + err.msg
+            raise
 
     @property
     def get_asset_overview_save_button(self):
-        return self.driver.find_element_by_xpath(self._asset_overview_save_button_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_save_button_locator)
+        except Exception, err:
+            err.msg = "Save button not available in overview dialog - " + err.msg
+            raise
 
     @property
     def get_asset_points_of_contact_header(self):
