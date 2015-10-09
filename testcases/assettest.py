@@ -1087,7 +1087,7 @@ class AssetPageTest(BaseTestCase):
             assetpage.get_asset_photos_documents_delete_window_delete_button.click()
             sleep(10)
         except NoSuchElementException:
-            self.assertFalse(1,"File could not be deleted.")
+            self.assertFalse(False,"File could not be deleted.")
         number_of_image_after_delete = assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_after_file_delete = len(number_of_image_after_delete)
         if (image_count_after_file_upload == image_count_after_file_delete+1):
