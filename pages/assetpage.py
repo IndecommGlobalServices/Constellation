@@ -182,11 +182,13 @@ class AssetPage(BasePageClass):
 
     # Asset Photo/Document Upload Panel
     _asset_photos_documents_header_locator = "//div[contains(text(),'Photos / Documents')]"
+    _asset_photos_documents_uploaded_file_locator = "//div[contains(@label,'Photos / Documents')]/div[@class='formLayout']/div/div[@class='widgetcontent']/div/div"
     _asset_photos_documents_upload_file_button_locator = "//button[contains(text(), 'Upload file')]"
     _asset_photos_documents_attached_file_button_locator = "upload_document_file_upload"
     _asset_photos_documents_caption_textbox_locator = "upload_document_caption"
     _asset_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Upload')]"
     _asset_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
+    _asset_photos_documents_delete_window_delete_locator = "//div[@id='delete_document_modal']//button[contains(text(),'Delete')]"
 
     # Asset Annotation Panel
     _asset_annotation_plus_image_locator = "//div[contains(text(),'Annotations')]//img"
@@ -863,6 +865,10 @@ class AssetPage(BasePageClass):
         return self.driver.find_elements_by_xpath(self._asset_photos_documents_header_locator)
 
     @property
+    def get_asset_photos_documents_uploaded_file_count(self):
+        return self.driver.find_elements_by_xpath(self._asset_photos_documents_uploaded_file_locator)
+
+    @property
     def get_asset_photos_documents_upload_file_button(self):
         return self.driver.find_element_by_xpath(self._asset_photos_documents_upload_file_button_locator)
 
@@ -881,6 +887,10 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_window_cancel_button(self):
         return self.driver.find_element_by_xpath(self._asset_photos_documents_window_cancel_button_locator)
+
+    @property
+    def get_asset_photos_documents_delete_window_delete_button(self):
+        return self.driver.find_element_by_xpath(self._asset_photos_documents_delete_window_delete_locator)
 
     @property
     def get_asset_annotation_plus_image(self):
@@ -964,7 +974,7 @@ class AssetPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._asset_chart_dashboard_img_xpath_locator)
 
     def get_asset_photos_documents_image_caption_text(self, caption_val):
-        caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//ul//li[contains(text(),'"+caption_val+"')]"
+        caption_xpath = "//div[contains(@label,'Photos / Documents')]/div[@ng-repeat='document in documents']/div/div[contains(text(),'"+caption_val+"')]"
         return self.driver.find_element_by_xpath(caption_xpath)
 
     def get_asset_photos_documents_header_caption_text(self, caption_val):
@@ -1661,8 +1671,7 @@ class AssetPage(BasePageClass):
                     Hover.perform()
                     delete_icon = self.driver.find_element_by_xpath(xpath)
                     delete_icon.click()
-                    self.driver.find_element_by_xpath\
-                        ("//div[@id='delete_document_modal']//button[contains(text(),'Delete')]").click()
+                    self.get_asset_photos_documents_delete_window_delete_button.click()
                     sleep(10)
         except :
             print "File deletion not done properly or some files could not be deleted."
