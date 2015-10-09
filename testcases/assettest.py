@@ -142,7 +142,7 @@ class AssetPageTest(BaseTestCase):
         sleep(5)
         assetpage.asset_filter_based_on_place_and_school("School")
         assetpage.get_asset_school_district()
-        for item in assetpage.select_asset_type_district_lists:
+        for item in assetpage.select_asset_schooltype_district_column:
             self.assertEqual(assetpage.selecteddistrict, item.text)
         assetpage.get_asset_reset_button.click()
 
@@ -158,7 +158,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.get_asset_school_grade()
-        for item in assetpage.select_asset_type_grade_lists:
+        for item in assetpage.select_asset_schooltype_grade_column:
             self.assertEqual(assetpage.selectedgrade, item.text)
         assetpage.get_asset_reset_button.click()
 
@@ -175,7 +175,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         AssetPage(self.driver).get_asset_reset_button.click()
         assetpage.get_asset_school_type()
-        for item in assetpage.select_asset_type_type_lists:
+        for item in assetpage.select_asset_schooltype_column:
             self.assertEqual(assetpage.selectedtype, item.text)
         assetpage.get_asset_reset_button.click()
 
@@ -1426,7 +1426,7 @@ class AssetPageTest(BaseTestCase):
         self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
 
     @attr(priotity = "high")
-    @attr(status='smoke')
+#    @attr(status='smoke')
     def test_AS_49_50(self):
         """
         Test name : test_AS_49_50
