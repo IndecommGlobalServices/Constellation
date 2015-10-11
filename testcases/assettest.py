@@ -953,30 +953,38 @@ class AssetPageTest(BaseTestCase):
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         sleep(8)
         WebDriverWait(self.driver,50).until(expected_conditions.presence_of_element_located((By.ID,"map_control")))
-        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
-        locationEdit.click()
+        #locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
+        assetpage.get_asset_location_edit_icon.click()
+        #locationEdit.click()
         sleep(5)
-        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
+        #locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
+        locationTitle = assetpage.get_asset_location_title.text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         sleep(5)
         lati = "550"
-        latitudeValue = self.driver.find_element_by_name("latitude")
-        latitudeValue.clear()
-        latitudeValue.send_keys(lati)
-        latitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[1]/span/small").text
+        #latitudeValue = self.driver.find_element_by_name("latitude")
+        assetpage.get_asset_location_latitude_textbox.send_keys(lati)
+        #latitudeValue.clear()
+        #latitudeValue.send_keys(lati)
+        #latitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[1]/span/small").text
+        latitudeerrorMessage = assetpage.get_asset_location_latitude_error_text.text
         self.assertEqual("Latitude must be a number between -90 and 90", latitudeerrorMessage, "Latitude error message"
                                                                                                " not displayed")
-        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        #locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        locationSave = assetpage.get_asset_location_save_button
         self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
         longi = "200"
-        longitudeValue = self.driver.find_element_by_name("longitude")
-        longitudeValue.clear()
-        longitudeValue.send_keys(longi)
-        longitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[2]/span/small").text
+        #longitudeValue = self.driver.find_element_by_name("longitude")
+        #longitudeValue.clear()
+        #longitudeValue.send_keys(longi)
+        assetpage.get_asset_location_longitude_textbox.send_keys(longi)
+        #longitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[2]/span/small").text
+        longitudeerrorMessage = assetpage.get_asset_location_longitude_error_text.text
         self.assertEqual("Longitude must be a number between -180 and 180", longitudeerrorMessage,
                          "Longitude error message not displayed")
         sleep(5)
-        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        #locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        locationSave = assetpage.get_asset_location_save_button
         self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
         self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[1]").click()
         assetpage.return_to_apps_main_page()

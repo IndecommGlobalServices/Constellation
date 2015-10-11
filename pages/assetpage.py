@@ -202,15 +202,17 @@ class AssetPage(BasePageClass):
     _asset_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
     _asset_annotation_delete_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'deleteItem')]"
     _asset_annotation_edit_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'editItem')]"
+
     # Location related
     _asset_location_map_id_locator = "map_control"
-    _asset_location_edit_icon_css_locator = "img.widget_edit"
-    _asset_location_title_id_locator = "(H1)[1]"
+    _asset_location_edit_icon_css_locator = ".//*[@id='widgets']/div[4]/div/div[2]/div/img" # xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img"), "img.widget_edit"
+    _asset_location_title_id_locator = ".//*[@id='location_modal']/div/div/div" # xpath(".//*[@id='location_modal']/div/div/div"), "(H1)[1]"
     _asset_location_latitude_name_locator = "latitude"
-    _asset_location_latitude_error_css_locator = "small"
-    _asset_location_save_xpath_locator = "(//button[@type='submit'])[2]"
+    _asset_location_latitude_error_css_locator = ".//*[@id='map_popup']/div[1]/span/small" # xpath(".//*[@id='map_popup']/div[1]/span/small") "small"
+    _asset_location_save_xpath_locator = ".//*[@id='location_modal']/div/div/form/div[2]/button[2]"\
+     # xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]"), "(//button[@type='submit'])[2]"
     _asset_location_longitude_name_locator = "longitude"
-    _asset_location_longitude_error_xpath_locator = "//div[2]/span/small"
+    _asset_location_longitude_error_xpath_locator = ".//*[@id='map_popup']/div[2]/span/small" # xpath(".//*[@id='map_popup']/div[2]/span/small"), "//div[2]/span/small"
 
     # Charts related
     _asset_chart_total_Graph_In_Container_xpath_locator = ".//*[@id='graphs_frame']/div/div/div/div[1]"
