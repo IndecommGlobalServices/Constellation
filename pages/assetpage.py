@@ -418,7 +418,11 @@ class AssetPage(BasePageClass):
     #_asset_list_asset_name_back_color_locator
     @property
     def get_asset_name_list(self):
-        return  self.driver.find_elements_by_xpath(self._asset_list_asset_name_back_color_locator)
+        try:
+            return  self.driver.find_elements_by_xpath(self._asset_list_asset_name_back_color_locator)
+        except Exception, err:
+            err.msg = "Back color in the list not available after insertion - " + err.msg
+            raise
 
     @property
     def enter_asset_type_name(self):
@@ -779,7 +783,11 @@ class AssetPage(BasePageClass):
     # Asset Details related properties
     @property
     def get_asset_detail_edit_link(self):
-        return self.driver.find_element_by_xpath(self._asset_detail_edit_link_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_detail_edit_link_locator)
+        except Exception, err:
+            err.msg = "Asset Details Edit link not available - " + err.msg
+            raise
 
     @property
     def get_asset_detail_edit_capacity_text_box(self):
@@ -1428,33 +1436,33 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(5)
+        #sleep(5)
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(paddress)
         self.enter_asset_type_address.send_keys(Keys.TAB)
-        sleep(5)
+        #sleep(5)
         self.enter_asset_type_address2.clear()
         self.enter_asset_type_address2.send_keys(paddress1)
         self.enter_asset_type_address2.send_keys(Keys.TAB)
-        sleep(5)
+        #sleep(5)
         self.enter_asset_type_city.clear()
         self.enter_asset_type_city.send_keys(pcity)
         self.enter_asset_type_city.send_keys(Keys.TAB)
-        sleep(5)
+        #sleep(5)
         self.enter_asset_type_state.clear()
         self.enter_asset_type_state.send_keys(pstate)
         self.enter_asset_type_state.send_keys(Keys.TAB)
-        sleep(5)
+        #sleep(5)
         self.enter_asset_type_zip.clear()
         self.enter_asset_type_zip.send_keys(pzip)
         self.enter_asset_type_zip.send_keys(Keys.TAB)
-        sleep(5)
+        #sleep(5)
         self.enter_asset_type_phone.send_keys(Keys.TAB)
-        sleep(5)
+        #sleep(5)
         self.enter_asset_type_owner.clear()
         self.enter_asset_type_owner.send_keys(powner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
-        sleep(5)
+        #sleep(5)
 
     def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
         # fill out the fields
@@ -1463,49 +1471,49 @@ class AssetPage(BasePageClass):
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_closed_text_box.clear()
         self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
         self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_detail_fax_text_box.clear()
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_detail_opened_number_text_box.clear()
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_detail_place_size_text_box.clear()
         self.get_asset_detail_edit_detail_place_size_text_box.send_keys(psize)
         self.get_asset_detail_edit_detail_place_size_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_detail_website_text_box.clear()
         self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
         self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
     def set_school_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, ssize, pwebsite):
         # fill out the fields
@@ -1515,53 +1523,53 @@ class AssetPage(BasePageClass):
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_closed_text_box.clear()
         self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
         self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
 
-        sleep(2)
+        #sleep(2)
         if pdistrict is not None:
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-        sleep(2)
+        #sleep(2)
         self.get_asset_detail_edit_detail_fax_text_box.clear()
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-        sleep(2)
+        #sleep(2)
         self.get_asset_detail_edit_detail_opened_number_text_box.clear()
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
-        sleep(2)
+        #sleep(2)
         if pschoolnumber is not None:
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
-        sleep(2)
+        #sleep(2)
 
         if ssize is not None:
             self.get_asset_detail_edit_detail_school_size_text_box.send_keys("")
             self.get_asset_detail_edit_detail_school_size_text_box.send_keys(ssize)
             self.get_asset_detail_edit_detail_school_size_text_box.send_keys(Keys.TAB)
-        sleep(2)
+        #sleep(2)
 
         self.get_asset_detail_edit_detail_website_text_box.clear()
         self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
         self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
-        sleep(2)
+        #sleep(2)
 
 
     def delete_existing_contact(self):
