@@ -139,7 +139,6 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        #sleep(5)
         assetpage.asset_filter_based_on_place_and_school("School")
         assetpage.get_asset_school_district()
         for item in assetpage.select_asset_schooltype_district_column:
@@ -248,7 +247,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.asset_search_assetname("{}")
         assetpage.asset_search_special_characters()
-        sleep(2)
+
+        #sleep(2)
         expectedAfterSearchFilter = assetpage.get_asset_list_no_matching_records_found.text
         self.assertEqual("No matching records found", expectedAfterSearchFilter,
                                          "No records to find asset.")
@@ -261,28 +261,21 @@ class AssetPageTest(BaseTestCase):
         """
         Description : To create place asset and verify that asset is created properly.
         Revision:
+        Author : Kiran
         :return: None
         """
         check = 0
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.create_asset("Place")
-        #sleep(10)
         self.assertTrue(assetpage.wait_for_element_boolean(assetpage._asset_name_breadcrumb),
                          "Added school name doesnt appear on the breadcrumb")
-
-        #self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
         assetpage.return_to_apps_main_page()
-        #sleep(5)
-        #assetpage.asset_search_assetname(assetpage.asset_place_name)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
-        #sleep(5)
-        #for i in assetpage.get_asset_name_list:
         for i in assetpage.wait_for_list_element_path(assetpage._asset_list_asset_name_back_color_locator):
             if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color")\
                                                                 == "rgba(255, 236, 158, 1)"):
                 check = 1
-                #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
                 break
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
         self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
@@ -300,10 +293,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
-        sleep(2)
         aname = ""
         assetpage.enter_asset_type_name.send_keys(aname)
-        sleep(5)
         if aname == '':
             self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
         assetpage.asset_overview_cancel_click()
@@ -321,10 +312,9 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
-        sleep(2)
-        assetpage.enter_asset_type_phone.send_keys("123abc1234")
-        assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
-        sleep(5)
+        asset_phone = assetpage.wait_for_element_path(assetpage._asset_overview_phone_text_box_locator)
+        asset_phone.send_keys("123abc1234")
+        asset_phone.send_keys(Keys.TAB)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches("123abc1234", regex, "Expected and actual value is not matching for EMAIL")
         assetpage.asset_overview_cancel_click()
@@ -340,9 +330,10 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        sleep(5)
+        #sleep(5)
         assetpage.asset_create_click()
         assetpage.asset_overview_cancel_click()
+        #_asset_filter_asset_type_text_locator
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
 
@@ -352,11 +343,11 @@ class AssetPageTest(BaseTestCase):
         """
         Description : To verify cancel button functionality of New asset window. With required date entry.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        sleep(5)
         assetpage.asset_create_click()
         assetpage.create_place_asset()
         assetpage.asset_overview_cancel_click()
@@ -374,7 +365,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        #sleep(8)
         assetpage.get_asset_overview_edit_link.click()
         assetpage.set_place_overview_fields(r"Ind address", r"Ind address 2", r"Ind city", r"KA", r"94821", r"Indecomm")
         assetpage.asset_overview_save_click()# Click on Save

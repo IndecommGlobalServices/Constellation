@@ -291,7 +291,8 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_templatetype_drop_down(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_templatetype_dropdown_locator)
+            #return self.driver.find_element_by_xpath(self._asset_overview_templatetype_dropdown_locator)
+            return self.wait_for_element_path(self._asset_overview_templatetype_dropdown_locator)
         except Exception, err:
             err.msg = "Template type dropdown not available - " + err.msg
             raise
@@ -323,7 +324,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_asset_type_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_filter_asset_type_text_locator)
+            #return self.driver.find_element_by_xpath(self._asset_filter_asset_type_text_locator)
+            return self.wait_for_element_path(self._asset_filter_asset_type_text_locator)
         except Exception, err:
             err.msg = "Asset type dropdown not available - " + err.msg
             raise
@@ -1100,10 +1102,11 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(5)
+
+        #sleep(5)
         searchNames = self.driver.find_elements_by_xpath(AssetPage(self.driver)._asset_list_locator)
         print len(searchNames)
-        sleep(5)
+        #sleep(5)
         if len(searchNames) > 0:
             for searchname in searchNames:
                 print searchname.text
@@ -1159,6 +1162,7 @@ class AssetPage(BasePageClass):
         self.app_sanity_check()
         sleep(5)
         self.driver.find_element_by_xpath(self._asset_create_asset).click()
+        #self.wait_for_element_path(self._asset_create_asset).click()
         sleep(10)
         self.driver.switch_to.active_element
 
@@ -1196,23 +1200,23 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(10)
+        #sleep(10)
         self.select_asset_template_type("Place")
-        sleep(10)
+        #sleep(10)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_address.send_keys(self.asset_place_address)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_address2.send_keys(self.asset_place_address2)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_city.send_keys(self.asset_place_city)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_state.send_keys(self.asset_place_state)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_zip.send_keys(self.asset_place_zip)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_owner.send_keys(self.asset_place_owner)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type(self.asset_place_type)
 
 
