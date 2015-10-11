@@ -65,7 +65,6 @@ class AssetPage(BasePageClass):
     #_asset_create_asset = "//img[@alt='Create asset']"
     _asset_create_asset = "//img[@ng-src='../images/icon_create_item_off.png']"
 
-
     # Reset filter related
     _asset_filter_reset_button_locator = ".//*[@id='span_filters']/button"
     _asset_filter_asset_type_text_locator = ".//*[@id='span_filters']/div/div/button[1]"
@@ -296,7 +295,8 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_templatetype_drop_down(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_templatetype_dropdown_locator)
+            #return self.driver.find_element_by_xpath(self._asset_overview_templatetype_dropdown_locator)
+            return self.wait_for_element_path(self._asset_overview_templatetype_dropdown_locator)
         except Exception, err:
             err.msg = "Template type dropdown not available - " + err.msg
             raise
@@ -328,7 +328,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_asset_type_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_filter_asset_type_text_locator)
+            #return self.driver.find_element_by_xpath(self._asset_filter_asset_type_text_locator)
+            return self.wait_for_element_path(self._asset_filter_asset_type_text_locator)
         except Exception, err:
             err.msg = "Asset type dropdown not available - " + err.msg
             raise
@@ -1022,12 +1023,12 @@ class AssetPage(BasePageClass):
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
-        sleep(10)
+        sleep(5)
         if len(items) > 1:
-            firstelemet =self.driver.find_element_by_xpath\
+            firstelement = self.driver.find_element_by_xpath\
                 (self._asset_school_district_drop_down_select_first_element_locator)
-            self.selecteddistrict = firstelemet.text
-            firstelemet.click()
+            self.selecteddistrict = firstelement.text
+            firstelement.click()
         else:
             print "No items to select in District drop down."
         sleep(2)
@@ -1105,10 +1106,11 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(5)
-        searchNames = self.driver.find_elements_by_xpath(self._asset_list_locator)
+
+        #sleep(5)
+        searchNames = self.driver.find_elements_by_xpath(AssetPage(self.driver)._asset_list_locator)
         print len(searchNames)
-        sleep(5)
+        #sleep(5)
         if len(searchNames) > 0:
             for searchname in searchNames:
                 print searchname.text
@@ -1199,23 +1201,23 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(10)
+        #sleep(10)
         self.select_asset_template_type("Place")
-        sleep(10)
+        #sleep(10)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_address.send_keys(self.asset_place_address)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_address2.send_keys(self.asset_place_address2)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_city.send_keys(self.asset_place_city)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_state.send_keys(self.asset_place_state)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_zip.send_keys(self.asset_place_zip)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type_owner.send_keys(self.asset_place_owner)
-        sleep(2)
+        #sleep(2)
         self.enter_asset_type(self.asset_place_type)
 
 
@@ -1930,6 +1932,19 @@ class AssetPage(BasePageClass):
         else :
             print "No chart found at school and type level."
 
+    def wait_for_element_path_id(self, locator):
+        limit = 15   # waiting limit in seconds
+        inc = 1   # in seconds; sleep for 500ms
+        c = 0
+        while (c < limit):
+            try:
+                return self.driver.find_element_by_id(locator)  # Success
+            except:
+                sleep(inc)
+                c = c + inc
+        print c
+        raise Exception # Wait for element failed
+
     def wait_for_element_path(self, locator):
         limit = 15   # waiting limit in seconds
         inc = 1   # in seconds; sleep for 500ms
@@ -1967,6 +1982,12 @@ class AssetPage(BasePageClass):
                 sleep(inc)
                 c = c + inc
         return False# Failure
+
+    def get_total_row_count(self):
+        countText = self.driver.find_element_by_id("assetstable_info").text
+        splitedText = countText.split(" ")
+        totalCount = splitedText[10]
+        return int(totalCount)
 
     def _validate_page(self, driver):
         pass

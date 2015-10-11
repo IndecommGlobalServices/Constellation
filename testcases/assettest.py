@@ -22,6 +22,7 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_01
         Description : To verify delete functionality when no assets are available. Delete button should be disabled.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
@@ -40,14 +41,18 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_02
         Description : To verify delete functionality when no asset is selected. Delete button should be disabled.
         Revision:
+        AUthor : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.get_select_checkbox_in_grid()
         assetpage.get_asset_select_action_drop_down.click()
-        self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(),
-                         "Delete must be disabled when no assets are selected.")
+        if len(assetpage.get_asset_name_list)<= 0:
+            self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(),
+                         "Delete must be disabled when no assets are available.")
+        else:
+            self.skipTest("Assets are available and test cant be validated")
 
     @attr(priority="high")
     #@SkipTest
@@ -56,27 +61,17 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_03
         Description : To verify delete functionality. User selected asset should be deleted.
         Revision:
+        Author : Kiran
         :return: None
         """
-        AssetPage(self.driver).get_asset_list_first_check_box.click()
-        AssetPage(self.driver).get_asset_select_action_drop_down.click()
-        AssetPage(self.driver).get_asset_link_delete_text.click()
-        sleep(5)
-        pcountText = self.driver.find_element_by_id("assetstable_info").text # get the current count
-        print pcountText
-        pparts = pcountText.split(" ")
-        pvalue11 = pparts[10]
-        print pvalue11
-        sleep(5)
-        AssetPage(self.driver).get_asset_delete_button.click() # Delete
-        sleep(5)
-        afterDeleteCount = self.driver.find_element_by_id("assetstable_info").text # count after delete
-        print afterDeleteCount
-        aparts = afterDeleteCount.split(" ")
-        avalue11 = aparts[10]
-        sleep(5)
-        self.assertNotEqual(pvalue11, avalue11, "Couldn't delete asset")
-        print("Record deleted successfully.")
+        assetpage = AssetPage(self.driver)
+        countbeforedeletion = assetpage.get_total_row_count()
+        assetpage.get_asset_list_first_check_box.click()
+        assetpage.get_asset_select_action_drop_down.click()
+        assetpage.get_asset_link_delete_text.click()
+        assetpage.get_asset_delete_button.click() # Delete
+        countafterdeletion = assetpage.get_total_row_count()
+        self.assertEqual(int(countbeforedeletion), int(countafterdeletion), "Couldn't delete asset")
 
 
     @attr(priority="high")
@@ -86,15 +81,18 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_04
         Description : To verify delete window cancel button functionality.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
-        assetpage.app_sanity_check()
+        countbeforedeletion = assetpage.get_total_row_count()
         assetpage.get_asset_list_first_check_box.click()
         assetpage.get_asset_select_action_drop_down.click()
         assetpage.get_asset_link_delete_text.click()
-        sleep(5)
-        assetpage.get_deleteasset_cancel_button.click()
+        assetpage.get_deleteasset_cancel_button.click() # Cancel
+        countafterdeletion = assetpage.get_total_row_count()
+        self.assertEqual(int(countbeforedeletion), int(countafterdeletion),\
+                         "Asset deleted even after cancel is pressed")
 
     @attr(priority="high")
     #@SkipTest
@@ -103,6 +101,7 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_06
         Description : To verify filter functionality. Check whether type filter has 'Place' option or not.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
@@ -118,6 +117,7 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_07
         Description : To verify filter functionality. Check whether type filter has 'School' option or not.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
@@ -133,6 +133,7 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_08
         Description : To verify filter functionality. Select 'School/District' filter.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
@@ -150,6 +151,7 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_09
         Description : To verify filter functionality. Select 'School/Grade' filter.
         Revision:
+        Author: Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
@@ -165,6 +167,7 @@ class AssetPageTest(BaseTestCase):
         """
         Test : test_AS_10
         Description : To verify filter functionality. Select 'School/School Type' filter.
+        Author: Kiran
         Revision:
         :return: None
         """
@@ -183,6 +186,7 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_11
         Description : To verify Reset Filters buttons functionality. Select 'School/School Type' filter.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
@@ -198,6 +202,7 @@ class AssetPageTest(BaseTestCase):
         Test : test_AS_12
         Description : To verify Search text box functionality. Enter multiple string.
         Revision:
+        Author : Kiran
         :return: None
         """
         cwd = os.getcwd()
@@ -208,25 +213,26 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located(
             (By.XPATH, assetpage._asset_search_textbox_locator)))
+        #sleep(10)
         with open(searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
             for each in data_SearchAsset_text:
                 searchText = each["Search_name"]
                 assetpage.select_asset_search_text_box.clear()
                 assetpage.select_asset_search_text_box.send_keys(searchText)
-                sleep(2)
+                #sleep(2)
                 expectedAfterSearchFilter = assetpage.get_asset_list_no_matching_records_found.text
-                searchNames = self.driver.find_elements_by_xpath(assetpage._asset_list_locator)
-                print "Found " + str(len(searchNames)) + " by Name search."
-                sleep(2)
+                searchNames = self.driver.find_elements_by_xpath(AssetPage(self.driver)._asset_list_locator)
+                #print "Found " + str(len(searchNames)) + " by Name search."
+                #sleep(2)
                 for searchName in searchNames:
                     if expectedAfterSearchFilter:
                         self.assertEqual("No matching records found", expectedAfterSearchFilter,
                                          "No records to find asset.")
-                        sleep(2)
+                        #sleep(2)
                     else:
                         print searchName.text
-                        sleep(2)
+                        #sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -234,13 +240,19 @@ class AssetPageTest(BaseTestCase):
         """
         Description : To verify Search text box functionality. Enter special character.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.asset_search_assetname("{}")
         assetpage.asset_search_special_characters()
-        sleep(2)
+
+        #sleep(2)
+        expectedAfterSearchFilter = assetpage.get_asset_list_no_matching_records_found.text
+        self.assertEqual("No matching records found", expectedAfterSearchFilter,
+                                         "No records to find asset.")
+
         assetpage.asset_search_assetname("")
 
     @attr(priority="high")
@@ -249,6 +261,7 @@ class AssetPageTest(BaseTestCase):
         """
         Description : To create place asset and verify that asset is created properly.
         Revision:
+        Author : Kiran
         :return: None
         """
         check = 0
@@ -259,9 +272,8 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.get_asset_name_breadcrumb.text))
         assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_place_name)
-        sleep(5)
-        for i in assetpage.get_asset_name_list:
-            if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") \
+        for i in assetpage.wait_for_list_element_path(assetpage._asset_list_asset_name_back_color_locator):
+            if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color")\
                                                                 == "rgba(255, 236, 158, 1)"):
                 check = 1
                 break
@@ -281,10 +293,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
-        sleep(2)
         aname = ""
         assetpage.enter_asset_type_name.send_keys(aname)
-        sleep(5)
         if aname == '':
             self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
         assetpage.asset_overview_cancel_click()
@@ -302,10 +312,9 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
-        sleep(2)
-        assetpage.enter_asset_type_phone.send_keys("123abc1234")
-        assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
-        sleep(5)
+        asset_phone = assetpage.wait_for_element_path(assetpage._asset_overview_phone_text_box_locator)
+        asset_phone.send_keys("123abc1234")
+        asset_phone.send_keys(Keys.TAB)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches("123abc1234", regex, "Expected and actual value is not matching for EMAIL")
         assetpage.asset_overview_cancel_click()
@@ -321,9 +330,10 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        sleep(5)
+        #sleep(5)
         assetpage.asset_create_click()
         assetpage.asset_overview_cancel_click()
+        #_asset_filter_asset_type_text_locator
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
 
@@ -333,11 +343,11 @@ class AssetPageTest(BaseTestCase):
         """
         Description : To verify cancel button functionality of New asset window. With required date entry.
         Revision:
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        sleep(5)
         assetpage.asset_create_click()
         assetpage.create_place_asset()
         assetpage.asset_overview_cancel_click()
