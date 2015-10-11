@@ -48,11 +48,11 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.get_select_checkbox_in_grid()
         assetpage.get_asset_select_action_drop_down.click()
-        if len(assetpage.get_asset_name_list)<= 0:
-            self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(),
+        #if len(assetpage.get_asset_name_list)<= 0:
+        self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(),
                          "Delete must be disabled when no assets are available.")
-        else:
-            self.skipTest("Assets are available and test cant be validated")
+        #else:
+        #    self.skipTest("Assets are available and test cant be validated")
 
     @attr(priority="high")
     #@SkipTest
