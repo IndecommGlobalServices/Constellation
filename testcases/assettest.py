@@ -24,7 +24,6 @@ class AssetPageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        sleep(5)
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.get_asset_select_action_drop_down.click()
@@ -43,7 +42,6 @@ class AssetPageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        sleep(5)
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.get_select_checkbox_in_grid()
@@ -139,7 +137,6 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        sleep(5)
         assetpage.asset_filter_based_on_place_and_school("School")
         assetpage.get_asset_school_district()
         for item in assetpage.select_asset_schooltype_district_column:
@@ -209,7 +206,8 @@ class AssetPageTest(BaseTestCase):
         os.chdir(cwd)
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, assetpage._asset_search_textbox_locator)))
         with open(searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
             for each in data_SearchAsset_text:
@@ -257,18 +255,15 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.create_asset("Place")
-        sleep(10)
-        #WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located((By.XPATH,"//*[@id='header']/div[1]/span[3]/span")))
-        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
+        WebDriverWait(self.driver, 30).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.get_asset_name_breadcrumb.text))
         assetpage.return_to_apps_main_page()
-        sleep(5)
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(5)
         for i in assetpage.get_asset_name_list:
             if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color") \
                                                                 == "rgba(255, 236, 158, 1)"):
                 check = 1
-                #self.assertEqual("rgba(255, 236, 158, 1)", i.value_of_css_property("background-color"))
                 break
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
         self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
@@ -360,7 +355,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_details_edit_widget_locator), r"Details"))
         assetpage.get_asset_overview_edit_link.click()
         assetpage.set_place_overview_fields(r"Ind address", r"Ind address 2", r"Ind city", r"KA", r"94821", r"Indecomm")
         assetpage.asset_overview_save_click()# Click on Save
@@ -378,7 +374,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_details_edit_widget_locator), r"Details"))
         assetpage.get_asset_overview_edit_link.click()
         assetpage.set_place_overview_fields("indecomm address cancel", "indecomm address 2 cancel", "Indecomm city",
                                             "KA", "94821", "Indecomm_Cancel")
@@ -397,7 +394,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(15)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_details_edit_widget_locator), r"Details"))
         assetpage.get_asset_detail_edit_link.click()
         assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3",
                 r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
@@ -417,7 +415,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(15)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_details_edit_widget_locator), r"Details"))
         assetpage.get_asset_detail_edit_link.click()
         sleep(10)
         email_add = r"test@email.com"
@@ -444,7 +443,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(15)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_details_edit_widget_locator), r"Details"))
         assetpage.get_asset_detail_edit_link.click()#Click on Details panel
         sleep(10)
         assetpage.get_asset_detail_edit_detail_fax_text_box.clear()
@@ -470,7 +470,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(15)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_details_edit_widget_locator), r"Details"))
         assetpage.get_asset_detail_edit_link.click()
         sleep(10)
         assetpage.set_place_details_fields("4321", r"2020-05-16", r"Cancelled",r"cancel@indecomm.net",
@@ -494,7 +495,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact() #delete existing contacts.
         assetpage.create_new_contact(firstname,lastname)#create new contact.
         act_new_contact_value = assetpage.get_asset_contact_new_contact_value_text.text
@@ -516,7 +518,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact()#delete existing contacts.
         assetpage.create_new_contact(firstname,lastname)#create new contact.
         try:
@@ -540,7 +543,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact()#delete existing contacts.
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()#click on Add Contact button.
@@ -572,7 +576,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact()#delete existing contacts.
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()#click on add contact button.
@@ -603,7 +608,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact()#delete existing contacts.
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()#click on add contact button.
@@ -634,7 +640,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact()#delete existing contacts.
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()#click on add contact button.
@@ -667,7 +674,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact()#delete existing contacts.
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()#click on add contact button
@@ -697,7 +705,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_name_ascending = r"stu, def, mno, jkl, ghi, pqr, abc, vwx"
         assetpage.get_asset_point_of_contact_name_tab.click()#click on contact name tab.
@@ -719,7 +728,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_name_descending = r"abc, vwx, ghi, pqr, mno, jkl, stu, def"
         assetpage.get_asset_point_of_contact_name_tab.click()#click on contact name tab.
@@ -743,7 +753,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_title_ascending = r"CC, HH, PP, ZZ"
         assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab.
@@ -764,7 +775,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_title_descending = r"ZZ, PP, HH, CC"
         assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab.
@@ -788,7 +800,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_phone_ascending = r"123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
         assetpage.get_asset_point_of_contact_phone_tab.click()#click on contact phone tab.
@@ -809,7 +822,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_phone_descending = r"661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
         assetpage.get_asset_point_of_contact_phone_tab.click()#click on contact phone tab.
@@ -833,7 +847,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_email_ascending = r"abc@def, ghi@jkl, mno@pqr, stu@vwx"
         assetpage.get_asset_point_of_contact_email_tab.click()  #click on contact email tab.
@@ -854,7 +869,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(6)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_email_descending = r"stu@vwx, mno@pqr, ghi@jkl, abc@def"
         assetpage.get_asset_point_of_contact_email_tab.click()#click on contact email tab.
@@ -881,7 +897,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact()#delete existing contacts.
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()#click on add contact button.
@@ -913,7 +930,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.delete_existing_contact()#delete existing contacts.
         assetpage.get_asset_points_of_contact_header.click()
         assetpage.get_asset_add_contact_button.click()
@@ -946,7 +964,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
         WebDriverWait(self.driver,50).until(expected_conditions.presence_of_element_located((By.ID,"map_control")))
         locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
         locationEdit.click()
@@ -988,7 +1005,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
         WebDriverWait(self.driver,50).until(expected_conditions.presence_of_element_located((By.ID,"map_control")))
         locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
         locationEdit.click()
@@ -1025,7 +1041,6 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(8)
         WebDriverWait(self.driver,50).until(expected_conditions.presence_of_element_located((By.ID,"map_control")))
         locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
         locationEdit.click()
@@ -1067,7 +1082,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()#Delete all uploaded files.
         caption_val = "Test_Case_40"
@@ -1112,7 +1127,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()#Delete all uploaded files.
         number_of_image_before_upload = assetpage.get_asset_photos_documents_uploaded_file_count
@@ -1150,7 +1165,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
         caption_val = "Test_Case_42"
@@ -1175,7 +1190,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(15)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
         caption_val = "Test_Case_43"
@@ -1200,7 +1215,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
         caption_val = "Test_Case_44_1"
@@ -1226,7 +1241,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
         caption_val = "Test_Case_44_2"
@@ -1252,7 +1267,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(20)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
         caption_val = "Test_Case_44_3"
@@ -1278,7 +1293,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
         number_of_image_before_upload = assetpage.get_asset_photos_documents_uploaded_file_count
@@ -1306,7 +1321,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
         number_of_image_before_upload = assetpage.get_asset_photos_documents_uploaded_file_count
@@ -1334,7 +1349,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_annotation_widget_locator), "Annotations"))
         exp_text_val = "This is Indecomm Testing. Groups."
         assetpage.delete_all_annotation()
         assetpage.get_asset_annotation_plus_image.click()
@@ -1358,7 +1373,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_annotation_widget_locator), "Annotations"))
         exp_text_val = "This is Indecomm Testing. Tenant."
         assetpage.delete_all_annotation()#delete All Annotation.
         assetpage.get_asset_annotation_plus_image.click()#Click on Annotation Plus image.
@@ -1382,7 +1397,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_annotation_widget_locator), "Annotations"))
         exp_text_val = "This is Indecomm Testing. Groups."
         assetpage.delete_all_annotation()#delete All Annotation.
         assetpage.get_asset_annotation_plus_image.click()#Click on Annotation Plus image.
@@ -1406,7 +1421,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_annotation_widget_locator), "Annotations"))
         exp_text_val = "This is Indecomm Testing. Gropus."
         assetpage.delete_all_annotation()#delete All Annotation.
         assetpage.get_asset_annotation_plus_image.click()#Click on Annotation Plus image.
@@ -1538,11 +1553,16 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         # Search and Click on Place in the List for EDIT mode
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        assetpage.wait_for_element_path(assetpage._asset_detail_edit_link_locator).click()
+        #assetpage.wait_for_element_path(assetpage._asset_detail_edit_link_locator).click()
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_details_edit_widget_locator), "Details"))
+        assetpage.get_asset_detail_edit_link.click()
         assetpage.set_school_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
                        r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "3", "6300", r"http://www.haystax.com")
         assetpage.get_asset_detail_edit_cancel_button.click()
-        textfrombreadcrumb = assetpage.wait_for_element_path(assetpage._asset_create_asset).text
+        textfrombreadcrumb = WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, assetpage._asset_name_breadcrumb))).text
+        #assetpage.wait_for_element_path(assetpage._asset_create_asset).text
         assetpage.return_to_apps_main_page()
         self.assertEqual(assetpage.asset_school_name[0], textfrombreadcrumb, "")
 
@@ -1557,7 +1577,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(15)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_details_edit_widget_locator), "Details"))
         assetpage.get_asset_detail_edit_link.click()
         assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2",
                                            r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300",
@@ -1578,7 +1598,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(10)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_details_edit_widget_locator), "Details"))
         assetpage.get_asset_detail_edit_link.click()
         WebDriverWait(self.driver,10).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_detail_edit_title_locator), r"Asset details"))
@@ -1601,7 +1621,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_school_name[0], "School")
-        sleep(8)
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_details_edit_widget_locator), "Details"))
         assetpage.get_asset_detail_edit_link.click()
         WebDriverWait(self.driver,10).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_detail_edit_title_locator), r"Asset details"))
