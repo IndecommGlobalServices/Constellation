@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Constellation.iws" />
@@ -660,7 +658,13 @@
       <option name="project" value="LOCAL" />
       <updated>1444545526999</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="test case 36 modified properties set">
+      <created>1444549373524</created>
+      <option name="number" value="00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1444549373524</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -750,7 +754,8 @@
     <MESSAGE value="adding Wait functions" />
     <MESSAGE value="added try to line 415" />
     <MESSAGE value="removed the IF condition and retained only assert in test case 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed the IF condition and retained only assert in test case 2" />
+    <MESSAGE value="test case 36 modified properties set" />
+    <option name="LAST_COMMIT_MESSAGE" value="test case 36 modified properties set" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
