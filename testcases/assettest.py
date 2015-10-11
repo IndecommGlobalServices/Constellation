@@ -135,7 +135,6 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        assetpage.asset_filter_based_on_place_and_school("School")
         assetpage.get_asset_school_district()
         for item in assetpage.select_asset_schooltype_district_column:
             self.assertEqual(assetpage.selecteddistrict, item.text)
@@ -170,7 +169,7 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        AssetPage(self.driver).get_asset_reset_button.click()
+        assetpage.get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         for item in assetpage.select_asset_schooltype_column:
             self.assertEqual(assetpage.selectedtype, item.text)
@@ -222,6 +221,7 @@ class AssetPageTest(BaseTestCase):
                                          "No records to find asset.")
                     else:
                        print searchName #Should replace with regexp comparison
+        assetpage.select_asset_search_text_box.clear()
 
 
     @attr(priority="high")
@@ -997,7 +997,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()#Delete all uploaded files.
         caption_val = "Test_Case_40"
@@ -1369,9 +1370,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.create_asset("School")
-        self.assertTrue(assetpage.wait_for_element_boolean(assetpage._asset_name_breadcrumb),
-                         "Added school name doesnt appear on the breadcrumb")
-        self.assertEqual(assetpage.asset_school_name[0], assetpage.get_asset_name_breadcrumb.text)
+        WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.asset_school_name[0]))
         assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(15)#necessary sleep to let the app finish searching for the assetname
