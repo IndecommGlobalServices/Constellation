@@ -241,7 +241,7 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.get_asset_name_breadcrumb.text))
         assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_place_name)
-        sleep(2) # Necessary sleep to let the app search for the input string
+        sleep(5) # Necessary sleep to let the app search for the input string
         for item in assetpage.get_asset_list_background:
             if (item.text  == assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
                                                                 == "rgba(255, 236, 158, 1)"):
@@ -695,7 +695,6 @@ class AssetPageTest(BaseTestCase):
         act_name_list_value = []
         for name in act_name_list:
             act_name_list_value.append(name.text)
-        assetpage.return_to_apps_main_page()
         self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value), "Contact name is not sorted ascendingly")
         assetpage.get_asset_point_of_contact_name_tab.click()
         sleep(2)
@@ -1212,14 +1211,12 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
-        number_of_image_before_upload = assetpage.get_asset_photos_documents_uploaded_file_count
-        image_count_before_file_upload = len(number_of_image_before_upload)
+        image_count_before_file_upload = len(assetpage.get_asset_photos_documents_uploaded_file_count)
         caption_val = ["Test_Case_45_1", "Test_Case_45_2", "Test_Case_45_3"]
         image_file_name = ["Test_Case_45_1.jpg", "Test_Case_45_2.jpg", "Test_Case_45_3.jpg"]
         for num in range(3):
             assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_uploaded_file_count
-        image_count_after_file_upload = len(number_of_image_after_upload)
+        image_count_after_file_upload = len(assetpage.get_asset_photos_documents_uploaded_file_count)
         if (image_count_after_file_upload == image_count_before_file_upload+3):
             assetpage.return_to_apps_main_page()
             self.assertTrue("Test Case has been passed.")
@@ -1240,13 +1237,11 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
-        number_of_image_before_upload = assetpage.get_asset_photos_documents_uploaded_file_count
-        image_count_before_file_upload = len(number_of_image_before_upload)
+        image_count_before_file_upload = len(assetpage.get_asset_photos_documents_uploaded_file_count)
         caption_val = ""
         image_file_name = "Test_Case_47.jpg"
         assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_uploaded_file_count
-        image_count_after_file_upload = len(number_of_image_after_upload)
+        image_count_after_file_upload = len(assetpage.get_asset_photos_documents_uploaded_file_count)
         header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(image_file_name)
         if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
             assetpage.return_to_apps_main_page()
@@ -1265,7 +1260,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_annotation_widget_locator), "Annotations"))
+        WebDriverWait(self.driver, 30).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_annotation_widget_locator), "Annotations"))
         exp_text_val = "This is Indecomm Testing. Groups."
         assetpage.delete_all_annotation()
         assetpage.get_asset_annotation_plus_image.click()
@@ -1274,8 +1270,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
         assetpage.get_asset_annotation_edit_window_save_button.click()
         sleep(2)
-        text_val = assetpage.get_asset_annotation_text_value.text#read annotation value.
-        act_text_val = (text_val.split(' - '))[1].strip()
+        act_text_val = ((assetpage.get_asset_annotation_text_value.text).split(' - '))[1].strip()#read annotation value.
         assetpage.return_to_apps_main_page()
         self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
 
@@ -1374,7 +1369,7 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.asset_school_name[0]))
         assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
-        sleep(15)#necessary sleep to let the app finish searching for the assetname
+        sleep(5)#necessary sleep to let the app finish searching for the assetname
         for item in assetpage.get_asset_list_background:
             if (item.text  == assetpage.asset_school_name[0]) and \
                     (item.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
