@@ -50,8 +50,8 @@
       <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.4827585" vertical-offset="16385" max-vertical-offset="34136">
-              <caret line="980" column="47" selection-start-line="980" selection-start-column="8" selection-end-line="980" selection-end-column="47" />
+            <state vertical-scroll-proportion="-10.655172" vertical-offset="16708" max-vertical-offset="34102">
+              <caret line="1001" column="17" selection-start-line="1001" selection-start-column="17" selection-end-line="1001" selection-end-column="17" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.35324675" vertical-offset="16014" max-vertical-offset="29801">
-              <caret line="950" column="42" selection-start-line="950" selection-start-column="42" selection-end-line="950" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.8233766" vertical-offset="601" max-vertical-offset="29665">
+              <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -172,7 +172,31 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_36">
+  <component name="RunManager" selected="Python tests.Unittest AssetPageTest.test_AS_20">
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_15" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+      <option name="METHOD_NAME" value="test_AS_15" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
     <configuration default="false" name="Unittest AssetPageTest.test_AS_16" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -258,30 +282,6 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetPageTest" />
       <option name="METHOD_NAME" value="test_AS_20" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest AssetPageTest.test_AS_36" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetPageTest" />
-      <option name="METHOD_NAME" value="test_AS_36" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -427,19 +427,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_16" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_18" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_19" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_20" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_36" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_15" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_16" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_18" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_19" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_20" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_36" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_20" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_19" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_18" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_16" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_20" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_19" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_18" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_16" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_15" />
       </list>
     </recent_temporary>
   </component>
@@ -652,19 +652,7 @@
       <option name="project" value="LOCAL" />
       <updated>1444545504001</updated>
     </task>
-    <task id="LOCAL-00034" summary="removed the IF condition and retained only assert in test case 2">
-      <created>1444545526999</created>
-      <option name="number" value="00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1444545526999</updated>
-    </task>
-    <task id="LOCAL-00035" summary="test case 36 modified properties set">
-      <created>1444549373524</created>
-      <option name="number" value="00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1444549373524</updated>
-    </task>
-    <option name="localTasksCounter" value="36" />
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -754,8 +742,7 @@
     <MESSAGE value="adding Wait functions" />
     <MESSAGE value="added try to line 415" />
     <MESSAGE value="removed the IF condition and retained only assert in test case 2" />
-    <MESSAGE value="test case 36 modified properties set" />
-    <option name="LAST_COMMIT_MESSAGE" value="test case 36 modified properties set" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed the IF condition and retained only assert in test case 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1159,8 +1146,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.4827585" vertical-offset="16385" max-vertical-offset="34136">
-          <caret line="980" column="47" selection-start-line="980" selection-start-column="8" selection-end-line="980" selection-end-column="47" />
+        <state vertical-scroll-proportion="-10.655172" vertical-offset="16708" max-vertical-offset="34102">
+          <caret line="1001" column="17" selection-start-line="1001" selection-start-column="17" selection-end-line="1001" selection-end-column="17" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -1169,8 +1156,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35324675" vertical-offset="16014" max-vertical-offset="29801">
-          <caret line="950" column="42" selection-start-line="950" selection-start-column="42" selection-end-line="950" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.8233766" vertical-offset="601" max-vertical-offset="29665">
+          <caret line="54" column="9" selection-start-line="54" selection-start-column="9" selection-end-line="54" selection-end-column="9" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>

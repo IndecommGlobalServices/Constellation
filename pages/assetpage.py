@@ -46,8 +46,9 @@ class AssetPage(BasePageClass):
     _asset_filter_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
     _asset_place_type_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
     _asset_place_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
+
+    _asset_school_district_drop_down_firt_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
     _asset_school_district_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
-    _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
     _asset_school_district_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[4]"
 
     _asset_school_grade_drop_down_locator = ".//*[@id='span_filters']/div[3]/div/button[2]"
@@ -62,7 +63,8 @@ class AssetPage(BasePageClass):
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
 
     # New Asset creation related
-    _asset_create_asset = "//img[@alt='Create asset']"
+    #_asset_create_asset = "//img[@alt='Create asset']"
+    _asset_create_asset = "//img[@ng-src='../images/icon_create_item_off.png']"
 
     # Reset filter related
     _asset_filter_reset_button_locator = ".//*[@id='span_filters']/button"
@@ -126,6 +128,7 @@ class AssetPage(BasePageClass):
     _asset_point_of_contact_email_text_value_locator = "(//table[@id='contacts_table']//tbody//tr/td//a[@class='showaslink showaslink-edit'])/../following-sibling::td[3]"
 
     #New Contact Window
+    _asset_main_contct_widget_locator = ".//*[@id='widgets']/div[7]/div/div[1]"
     _asset_add_contact_button_locator = "btn_add_asset_contact"
     _asset_newcontact_firstname_textbox_locator = "first_name"
     _asset_newcontact_lastname_textbox_locator = "last_name"
@@ -162,8 +165,9 @@ class AssetPage(BasePageClass):
 
     # Asset Detail panel related
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
+    _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
     _asset_detail_edit_title_locator = ".//*[@id='H2']"
-    _asset_detail_edit_capacity_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[1]/div/span/input"
+    _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
@@ -191,6 +195,7 @@ class AssetPage(BasePageClass):
     _asset_photos_documents_delete_window_delete_locator = "//div[@id='delete_document_modal']//button[contains(text(),'Delete')]"
 
     # Asset Annotation Panel
+    _asset_annotation_widget_locator = ".//*[@id='widgets']/div[8]/div/div[1]"
     _asset_annotation_plus_image_locator = "//div[contains(text(),'Annotations')]//img"
     _asset_annotation_edit_window_text_area_locator = "//label[text()='Annotation']//following-sibling::textarea"
     _asset_annotation_edit_window_visibility_dropdown_locator = "//label[text()='Visibility']//following-sibling::div//button[@data-toggle='dropdown']"
@@ -367,7 +372,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_school_district_first_element(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator)
+            return self.driver.find_element_by_xpath(self.get_asset_school_district_first_element)
         except Exception, err:
             err.msg = "District dropdown list not available - " + err.msg
             raise
@@ -1031,10 +1036,8 @@ class AssetPage(BasePageClass):
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
         if len(items) > 1:
-            firstelement = self.driver.find_element_by_xpath\
-                (self._asset_school_district_drop_down_select_first_element_locator)
-            self.selecteddistrict = firstelement.text
-            firstelement.click()
+            self.selecteddistrict = self.get_asset_school_district_first_element.text
+            self.get_asset_school_district_first_element.click()
         else:
             print "No items to select in District drop down."
         sleep(2)
@@ -1101,8 +1104,8 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(4)
-        search_textbox = self.driver.find_element_by_xpath(self._asset_search_textbox_locator)
+        search_textbox = WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self._asset_search_textbox_locator)))
         self.textbox_clear(search_textbox)
         search_textbox.send_keys(name)
 
@@ -1132,7 +1135,7 @@ class AssetPage(BasePageClass):
         try:
             sleep(2)
             self.click_on_asset_link.click()
-            WebDriverWait(self.driver,30).until(expected_conditions.presence_of_element_located((By.XPATH, self._asset_create_asset)))
+            WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, self._asset_create_asset)))
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
@@ -1169,12 +1172,9 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        self.app_sanity_check()
-        sleep(5)
-        self.driver.find_element_by_xpath(self._asset_create_asset).click()
-        #self.wait_for_element_path(self._asset_create_asset).click()
-        sleep(10)
-        self.driver.switch_to.active_element
+        WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located((By.XPATH, self._asset_create_asset))).click()
+
+
 
 
     def select_asset_template_type(self, template):
@@ -1278,7 +1278,7 @@ class AssetPage(BasePageClass):
         self.enter_asset_type_city.clear()
         self.enter_asset_type_city.send_keys(self.asset_school_city[index])
         sleep(2)
-        self.enter_asset_type_state.clear
+        self.enter_asset_type_state.clear()
         self.enter_asset_type_state.send_keys(self.asset_school_state[index])
         sleep(2)
         self.enter_asset_type_zip.clear()
@@ -1519,6 +1519,7 @@ class AssetPage(BasePageClass):
 
     def set_school_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, ssize, pwebsite):
         # fill out the fields
+        #WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH, self._asset_detail_edit_capacity_textbox_locator)))
 
         self.get_asset_detail_edit_capacity_text_box.clear()
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
@@ -1959,7 +1960,6 @@ class AssetPage(BasePageClass):
         c = 0
         while (c < limit):
             try:
-                print c
                 return self.driver.find_element_by_xpath(locator)  # Success
             except:
                 sleep(inc)

@@ -165,13 +165,12 @@ class AssessmenttPageTest(BaseTestCase):
                 searchText = each["Search_name"]
                 ast.search_asset_textbox(searchText)
                 sleep(5)
-                expectedAfterSearchFilter = ast.get_list_no_matching_records_found.text
                 searchNames = ast.get_asset_table("Asset")
                 print "Found " + str(len(searchNames)) + " by search." + searchText
                 sleep(2)
                 for searchName in searchNames:
-                    if expectedAfterSearchFilter:
-                        self.assertEqual("No matching records found", expectedAfterSearchFilter, "No records to find asset.")
+                    if ast.get_list_no_matching_records_found.text:
+                        self.assertEqual("No matching records found", ast.get_list_no_matching_records_found.text, "No records to find asset.")
                         sleep(2)
                     else:
                         print searchName.text
