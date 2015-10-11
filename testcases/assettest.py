@@ -48,11 +48,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.get_select_checkbox_in_grid()
         assetpage.get_asset_select_action_drop_down.click()
-        if len(assetpage.get_asset_name_list)<= 0:
-            self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(),
+        self.assertFalse(assetpage.get_asset_link_delete_text.is_enabled(),
                          "Delete must be disabled when no assets are available.")
-        else:
-            self.skipTest("Assets are available and test cant be validated")
 
     @attr(priority="high")
     #@SkipTest
@@ -207,53 +204,25 @@ class AssetPageTest(BaseTestCase):
         """
         cwd = os.getcwd()
         os.chdir('..')
-        searchasset_filepath = os.path.join(os.getcwd(), "data", "json_searchAssets.json")
+        searchasset_filepath = os.path.join(os.getcwd(), "data", "json_SearchAssessments.json")
         os.chdir(cwd)
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located(
             (By.XPATH, assetpage._asset_search_textbox_locator)))
-        #sleep(10)
         with open(searchasset_filepath) as data_file:
-            data_SearchAsset_text = json.load(data_file)
-            for each in data_SearchAsset_text:
+            for each in json.load(data_file):
                 searchText = each["Search_name"]
                 assetpage.select_asset_search_text_box.clear()
                 assetpage.select_asset_search_text_box.send_keys(searchText)
-                #sleep(2)
-                expectedAfterSearchFilter = assetpage.get_asset_list_no_matching_records_found.text
                 searchNames = self.driver.find_elements_by_xpath(AssetPage(self.driver)._asset_list_locator)
-                #print "Found " + str(len(searchNames)) + " by Name search."
-                #sleep(2)
                 for searchName in searchNames:
-                    if expectedAfterSearchFilter:
-                        self.assertEqual("No matching records found", expectedAfterSearchFilter,
+                    if assetpage.get_asset_list_no_matching_records_found.text:
+                        self.assertEqual("No matching records found", assetpage.get_asset_list_no_matching_records_found.text,
                                          "No records to find asset.")
-                        #sleep(2)
                     else:
-                        print searchName.text
-                        #sleep(2)
+                       print searchName #Should replace with regexp comparison
 
-    @attr(priority="high")
-    #@SkipTest
-    def test_AS_13(self):
-        """
-        Description : To verify Search text box functionality. Enter special character.
-        Revision:
-        Author : Kiran
-        :return: None
-        """
-        assetpage = AssetPage(self.driver)
-        assetpage.app_sanity_check()
-        assetpage.asset_search_assetname("{}")
-        assetpage.asset_search_special_characters()
-
-        #sleep(2)
-        expectedAfterSearchFilter = assetpage.get_asset_list_no_matching_records_found.text
-        self.assertEqual("No matching records found", expectedAfterSearchFilter,
-                                         "No records to find asset.")
-
-        assetpage.asset_search_assetname("")
 
     @attr(priority="high")
     #@SkipTest
@@ -272,8 +241,8 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.get_asset_name_breadcrumb.text))
         assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_place_name)
-        for i in assetpage.wait_for_list_element_path(assetpage._asset_list_asset_name_back_color_locator):
-            if (i.text  == assetpage.asset_place_name) and (i.value_of_css_property("background-color")\
+        for item in assetpage.get_asset_list_background:
+            if (item.text  == assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
                                                                 == "rgba(255, 236, 158, 1)"):
                 check = 1
                 break
@@ -293,10 +262,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.asset_create_click()
         assetpage.select_asset_template_type("Place")
-        aname = ""
-        assetpage.enter_asset_type_name.send_keys(aname)
-        if aname == '':
-            self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
+        assetpage.enter_asset_type_name.send_keys("")#Clear the text filed and leave it without any value
+        self.assertFalse(assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
         assetpage.asset_overview_cancel_click()
 
 
@@ -330,10 +297,8 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        #sleep(5)
         assetpage.asset_create_click()
         assetpage.asset_overview_cancel_click()
-        #_asset_filter_asset_type_text_locator
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
 
@@ -425,12 +390,12 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_details_edit_widget_locator), r"Details"))
         assetpage.get_asset_detail_edit_link.click()
-        sleep(10)
         email_add = r"test@email.com"
-        assetpage.get_asset_detail_edit_email_text_box.clear()
+        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, assetpage._asset_detail_edit_email_textbox_locator))).clear()
         sleep(2)
         assetpage.get_asset_detail_edit_email_text_box.send_keys(email_add)
         sleep(2)
@@ -631,8 +596,10 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
         assetpage.get_asset_newcontact_email_textbox.clear()
         assetpage.get_asset_newcontact_email_textbox.send_keys(r"test@test.com")
-        assetpage.get_asset_newcontact_save_button.click()#click on save button.
-        act_email = assetpage.get_asset_contact_email_value_text.text#reading actual email value.
+        assetpage.get_asset_newcontact_save_button.click() #click on save button.
+        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
+        act_email = assetpage.get_asset_contact_email_value_text.text #reading actual email value.
         regex = re.compile(r'[\w.-]+@[\w.-]+')
         assetpage.return_to_apps_main_page()
         self.assertRegexpMatches(act_email, regex, "Expected and actual value is not matching for EMAIL.")

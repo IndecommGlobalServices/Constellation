@@ -46,8 +46,9 @@ class AssetPage(BasePageClass):
     _asset_filter_drop_down_locator = "//*[@id='span_filters']/div/div/button[2]"
     _asset_place_type_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
     _asset_place_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
+
+    _asset_school_district_drop_down_firt_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
     _asset_school_district_drop_down_locator = ".//*[@id='span_filters']/div[2]/div/button[2]"
-    _asset_school_district_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
     _asset_school_district_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[4]"
 
     _asset_school_grade_drop_down_locator = ".//*[@id='span_filters']/div[3]/div/button[2]"
@@ -369,7 +370,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_school_district_first_element(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_select_first_element_locator)
+            return self.driver.find_element_by_xpath(self.get_asset_school_district_first_element)
         except Exception, err:
             err.msg = "District dropdown list not available - " + err.msg
             raise
@@ -1025,10 +1026,8 @@ class AssetPage(BasePageClass):
         items = chkDistrictDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
         if len(items) > 1:
-            firstelement = self.driver.find_element_by_xpath\
-                (self._asset_school_district_drop_down_select_first_element_locator)
-            self.selecteddistrict = firstelement.text
-            firstelement.click()
+            self.selecteddistrict = self.get_asset_school_district_first_element.text
+            self.get_asset_school_district_first_element.click()
         else:
             print "No items to select in District drop down."
         sleep(2)
