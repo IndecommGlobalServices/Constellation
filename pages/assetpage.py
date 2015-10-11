@@ -92,7 +92,7 @@ class AssetPage(BasePageClass):
     _asset_overview_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
     _asset_overview_owner_text_box_locator = "//input[@placeholder='Owner']"
     _asset_overview_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
-    _asset_overview_type_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/ul/li/input"
+    _asset_overview_type_text_box_locator = "//input[@placeholder='Enter new value']"
     _asset_overview_district_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input"
     _asset_overview_grade_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input"
 
@@ -165,7 +165,7 @@ class AssetPage(BasePageClass):
     # Asset Detail panel related
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
-    _asset_detail_edit_title_locator = ".//*[@id='H2']"
+    _asset_detail_edit_title_locator = "//*[@class='modal-title']"
     _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
@@ -571,6 +571,14 @@ class AssetPage(BasePageClass):
     def get_overview_type_add_button(self):
         try:
             return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
+        except Exception, err:
+            err.msg = "Asset Type Add button not available - " + err.msg
+            raise
+
+    @property
+    def get_overview_place_type_add_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_add_button_locator)
         except Exception, err:
             err.msg = "Asset Type Add button not available - " + err.msg
             raise
@@ -1196,7 +1204,10 @@ class AssetPage(BasePageClass):
         self.enter_asset_type_state.send_keys(self.asset_place_state)
         self.enter_asset_type_zip.send_keys(self.asset_place_zip)
         self.enter_asset_type_owner.send_keys(self.asset_place_owner)
-        self.enter_asset_type(self.asset_place_type)
+        self.get_overview_type_drop_down.click()
+        sleep(2)
+        self.get_overview_newtype_text_box.send_keys(self.asset_place_type)
+        self.get_overview_place_type_add_button.click()
 
 
     def get_schooldata(self):
@@ -1248,7 +1259,6 @@ class AssetPage(BasePageClass):
         self.enter_school_district(self.asset_school_district[index])
         self.enter_school_grade(self.asset_school_grade[index])
         self.enter_asset_type(self.asset_school_type[index])
-
 
     def enter_school_district(self, value):
         """
