@@ -370,7 +370,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_school_district_first_element(self):
         try:
-            return self.driver.find_element_by_xpath(self.get_asset_school_district_first_element)
+            return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_firt_element_locator)
         except Exception, err:
             err.msg = "District dropdown list not available - " + err.msg
             raise
