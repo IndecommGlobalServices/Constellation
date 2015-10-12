@@ -1331,7 +1331,6 @@ class AssetPage(BasePageClass):
 
 
     # Charts related
-
     @property
     def get_asset_chart_dashboard_image(self):
         try:
@@ -1341,6 +1340,7 @@ class AssetPage(BasePageClass):
                           + self._asset_chart_dashboard_img_xpath_locator + err.message)
 
     def get_asset_photos_documents_image_caption_text(self, caption_val):
+        caption_xpath = "//div[contains(@label,'Photos / Documents')]/div[@ng-repeat='document in documents']/div/div[contains(text(),'"+caption_val+"')]"
         try:
             caption_xpath = "//div[contains(@label,'Photos / Documents')]/div[@ng-repeat='document in documents']/div/div[contains(text(),'"+caption_val+"')]"
             return self.driver.find_element_by_xpath(caption_xpath)
@@ -1349,6 +1349,7 @@ class AssetPage(BasePageClass):
                           + caption_val + err.message)
 
     def get_asset_photos_documents_header_caption_text(self, caption_val):
+        caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//a[contains(text(),'"+caption_val+"')]"
         try:
             caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//a[contains(text(),'"+caption_val+"')]"
             return self.driver.find_element_by_xpath(caption_xpath)
