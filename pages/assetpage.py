@@ -206,6 +206,7 @@ class AssetPage(BasePageClass):
     _asset_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
     _asset_annotation_delete_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'deleteItem')]"
     _asset_annotation_edit_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'editItem')]"
+
     # Location related
     _asset_location_map_id_locator = "map_control"
     _asset_location_edit_icon_xpath_locator = ".//*[@id='widgets']/div[4]/div/div[2]/div/img" # xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img"), "img.widget_edit"
@@ -917,7 +918,6 @@ class AssetPage(BasePageClass):
             raise type(err)("In Point of Contact widget contacts do not have Title Values - search XPATH - " \
                           + self._asset_point_of_contact_title_text_value_locator + err.message)
 
-
     @property
     def get_asset_point_of_contact_phone_text_value(self):
         try:
@@ -1274,7 +1274,11 @@ class AssetPage(BasePageClass):
 
     @property
     def get_asset_location_edit_icon(self):
-        return self.driver.find_element_by_xpath(self._asset_location_edit_icon_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_location_edit_icon_xpath_locator)
+        except Exception, err:
+            raise type(err)(" - search XPATH - " \
+                          + self._asset_location_edit_icon_xpath_locator + err.message)
 
     @property
     def get_asset_location_title(self):
@@ -1294,7 +1298,11 @@ class AssetPage(BasePageClass):
 
     @property
     def get_asset_location_latitude_error_text(self):
-        return self.driver.find_element_by_xpath(self._asset_location_latitude_error_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_location_latitude_error_xpath_locator)
+        except Exception, err:
+            raise type(err)(" - search XPATH - " \
+                          + self._asset_location_latitude_error_xpath_locator + err.message)
 
     @property
     def get_asset_location_save_button(self):
@@ -1306,7 +1314,12 @@ class AssetPage(BasePageClass):
 
     @property
     def get_asset_location_cancel_button(self):
-        return self.driver.find_element_by_xpath(self._asset_location_cancel_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_location_cancel_xpath_locator)
+        except Exception, err:
+            raise type(err)(" - search XPATH - " \
+                          + self._asset_location_cancel_xpath_locator + err.message)
+
 
     @property
     def get_asset_location_longitude_textbox(self):
@@ -1318,15 +1331,28 @@ class AssetPage(BasePageClass):
 
     @property
     def get_asset_location_longitude_error_text(self):
-        return self.driver.find_element_by_xpath(self._asset_location_longitude_error_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_location_longitude_error_xpath_locator)
+        except Exception, err:
+            raise type(err)(" - search XPATH - " \
+                          + self._asset_location_longitude_error_xpath_locator + err.message)
 
     @property
     def get_asset_location_marker_available_image(self):
-        return self.driver.find_element_by_xpath(self._asset_location_marker_avaliable_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_location_marker_avaliable_xpath_locator)
+        except Exception, err:
+            raise type(err)(" - search XPATH - " \
+                          + self._asset_location_marker_avaliable_xpath_locator + err.message)
+
 
     @property
     def get_asset_location_place_name_text(self):
-        return self.driver.find_element_by_xpath(self._asset_location_place_name_xpath_locator)
+        try:
+            return self.driver.find_element_by_xpath(self._asset_location_place_name_xpath_locator)
+        except Exception, err:
+            raise type(err)(" - search XPATH - " \
+                          + self._asset_location_place_name_xpath_locator + err.message)
 
 
 
