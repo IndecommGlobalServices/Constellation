@@ -192,6 +192,7 @@ class AssetPage(BasePageClass):
     _asset_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Upload')]"
     _asset_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
     _asset_photos_documents_delete_window_delete_locator = "//div[@id='delete_document_modal']//button[contains(text(),'Delete')]"
+    _asset_photos_documents_window_title_locator = ".//*[@id='upload_document_file_heading']"
 
     # Asset Annotation Panel
     _asset_annotation_widget_locator = ".//*[@id='widgets']/div[8]/div/div[1]"
@@ -1968,16 +1969,14 @@ class AssetPage(BasePageClass):
         try:
             # Click on Photo/Document panel - File Upload button
             self.get_asset_photos_documents_upload_file_button.click()
-            sleep(2)
-
             # Click on Attach file button and attached the file path with the send_keys
             file_path = self.file_path(image_file_name)
             self.get_asset_photos_documents_attached_file_button.send_keys(file_path)
-            sleep(3)
+            #sleep(3)
             # Enter Caption
             caption_val = image_caption
             self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
-            sleep(2)
+            #sleep(2)
             # Click Upload.
             self.get_asset_photos_documents_window_upload_button.click()
             try:

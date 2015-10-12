@@ -1,5 +1,5 @@
 import unittest
-import os, logger
+import os
 from datetime import datetime
 from selenium import webdriver
 from pages.homepage import HomePage

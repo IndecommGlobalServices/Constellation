@@ -1230,7 +1230,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH,
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH,
                                                assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
@@ -1258,7 +1258,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH,
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH,
                                                assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
@@ -1286,7 +1286,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH,
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH,
                                                assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
