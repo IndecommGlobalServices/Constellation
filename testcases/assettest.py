@@ -17,6 +17,7 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_AS_01(self):
         """
         Test : test_AS_01
@@ -36,12 +37,13 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_AS_02(self):
         """
         Test : test_AS_02
         Description : To verify delete functionality when no asset is selected. Delete button should be disabled.
         Revision:
-        AUthor : Kiran
+        Author : Kiran
         :return: None
         """
         assetpage = AssetPage(self.driver)
@@ -73,6 +75,7 @@ class AssetPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_AS_04(self):
         """
         Test : test_AS_04
@@ -201,6 +204,7 @@ class AssetPageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
+
         cwd = os.getcwd()
         os.chdir('..')
         searchasset_filepath = os.path.join(os.getcwd(), "data", "json_SearchAssessments.json")
@@ -228,6 +232,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_14_and_17(self):
         """
+        Test : test_AS_14_and_17
         Description : To create place asset and verify that asset is created properly.
         Revision:
         Author : Kiran
@@ -240,6 +245,8 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 30).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.get_asset_name_breadcrumb.text))
         assetpage.return_to_apps_main_page()
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, assetpage._asset_list_assets_name_locator)))
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(5) # Necessary sleep to let the app search for the input string
         for item in assetpage.get_asset_list_background:
@@ -250,11 +257,11 @@ class AssetPageTest(BaseTestCase):
         assetpage.textbox_clear(self.driver.find_element_by_xpath(assetpage._asset_search_textbox_locator))
         self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_15(self):
         """
+        Test : test_AS_15
         Description : To verify New Asset Name field.
         Revision:
         :return: None
@@ -272,6 +279,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_16(self):
         """
+        Test : test_AS_16
         Description : To verify New Asset phone field.
         Revision:
         :return: None
@@ -292,7 +300,8 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_18(self):
         """
-        Description : To verify cancel button functionality of New asset window. Without any data entry.
+        Test : test_AS_18
+        Description : To verify cancel button functionality of New asset window. Without any data entered.
         Revision:
         :return: None
         """
@@ -307,6 +316,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_19(self):
         """
+        Test : test_AS_19
         Description : To verify cancel button functionality of New asset window. With required date entry.
         Revision:
         Author : Kiran
@@ -324,6 +334,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_20(self):
         """
+        Test : test_AS_20
         Description : To edit overview section. Enter all required fields info and click on save button.
         Revision:
         :return: None
@@ -343,6 +354,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_21(self):
         """
+        Test : test_AS_21
         Description : To edit overview section. Enter all required fields info and click on cancel button.
         Revision:
         :return: None
@@ -363,6 +375,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_23(self):
         """
+        Test : test_AS_23
         Description : To edit overview section. Enter all required fields info and click on save button.
         Revision:
         :return: None
@@ -384,6 +397,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_24(self):
         """
+        Test : test_AS_24
         Description : To verify email field of the Detail section.
         Revision:
         :return: None
@@ -412,6 +426,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_25(self):
         """
+        Test : test_AS_25
         Description : To verify FAX field of the Detail section.
         Revision:
         :return: None
@@ -440,6 +455,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_26(self):
         """
+        Test : test_AS_26
         Description : To verify cancel button functionality of the Detail section.
         Revision:
         :return: None
@@ -463,6 +479,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_27(self):
         """
+        Test : test_AS_27
         Description : To verify all mandatory fields in Contact Section.
         Revision:
         :return: None
@@ -486,6 +503,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_28(self):
         """
+        Test : test_AS_28
         Description : To verify that main contact has same info as first contact.
         Revision:
         :return: None
@@ -513,6 +531,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_29(self):
         """
+        Test : test_AS_29
         Description : To verify error message for first and last name.
         Revision:
         :return: None
@@ -544,6 +563,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_30(self):
         """
+        Test : test_AS_30
         Description : To verify phone field of the Contact section.
         Revision:
         :return: None
@@ -576,6 +596,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_31_1(self):
         """
+        Test : test_AS_31_1
         Description : To verify email field of the Contact section.
         Revision:
         :return: None
@@ -610,6 +631,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_31_2(self):
         """
+        Test : test_AS_31_2
         Description : To verify email field of the Contact section. Email address with wrong address.
         Revision:
         :return: None
@@ -644,6 +666,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_32(self):
         """
+        Test : test_AS_32
         Description : To verify cancel button functionality of the Contact window.
         Revision:
         :return: None
@@ -677,6 +700,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_1(self):
         """
+        Test : test_AS_33_1
         Description : To verify contact name in ascending order.
         Revision:
         :return: None
@@ -708,6 +732,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_2(self):
         """
+        Test : test_AS_33_2
         Description : To verify contact title's value in ascending order.
         Revision:
         :return: None
@@ -739,6 +764,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_3(self):
         """
+        Test : test_AS_33_3
         Description : To verify contact phone's value in ascending order.
         Revision:
         :return: None
@@ -770,6 +796,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_33_4(self):
         """
+        Test : test_AS_33_4
         Description : To verify contact email's value in ascending order.
         Revision:
         :return: None
@@ -802,6 +829,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_34(self):
         """
+        Test : test_AS_34
         Description : To verify delete option of contact.
         Revision:
         :return: None
@@ -835,6 +863,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_35(self):
         """
+        Test : test_AS_35
         Description : To verify delete window cancel button functionality.
         Revision:
         :return: None
@@ -871,6 +900,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_36(self):
         """
+        Test : test_AS_36
         Description : To verify Latitude and Longitude boundary values.
         Revision:
         :return: None
@@ -912,6 +942,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_37(self):
         """
+        Test : test_AS_37
         Description : To verify whether Marker is displayed on the map after_setting Latitude and Longitude values.
         Revision:
         :return: None
@@ -948,6 +979,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_38(self):
         """
+        Test : test_AS_38
         Description : To verify Place name once click on Marker.
         Revision:
         :return: None
@@ -989,6 +1021,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_40(self):
         """
+        Test : test_AS_40
         Description : To verify whether uploaded file deleted properly or not.
         Revision:
         :return: None
@@ -1035,6 +1068,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_41(self):
         """
+        Test : test_AS_41
         Description : To verify cancel button functionality of File upload window.
         Revision:
         :return: None
@@ -1073,6 +1107,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_42(self):
         """
+        Test : test_AS_42
         Description : To verify an image file with caption is uploaded properly.
         Revision:
         :return: None
@@ -1098,6 +1133,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_43(self):
         """
+        Test : test_AS_43
         Description : To verify error message when file with more than 12 MB is uploaded.
         Revision:
         :return: None
@@ -1123,6 +1159,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_44_1(self):
         """
+        Test : test_AS_44_1
         Description : To verify a pdf file with caption is uploaded properly.
         Revision:
         :return: None
@@ -1149,6 +1186,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_44_2(self):
         """
+        Test : test_AS_44_2
         Description : To verify a html file with caption is uploaded properly.
         Revision:
         :return: None
@@ -1175,6 +1213,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_44_3(self):
         """
+        Test : test_AS_44_3
         Description : To verify a text file with caption is uploaded properly.
         Revision:
         :return: None
@@ -1201,6 +1240,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_45(self):
         """
+        Test : test_AS_45
         Description : To verify whether multiple files has been uploaded properly or not.
         Revision:
         :return: None
@@ -1227,6 +1267,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_47(self):
         """
+        Test : test_AS_47
         Description : To verify an image file without caption is uploaded properly.
         Revision:
         :return: None
@@ -1253,6 +1294,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_48_1(self):
         """
+        Test : test_AS_48_1
         Description : To verify annotation groups text.
         Revision:
         :return: None
@@ -1277,6 +1319,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_48_2(self):
         """
+        Test : test_AS_48_2
         Description : To verify annotation tenant text.
         Revision:
         :return: None
@@ -1301,6 +1344,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_48_3(self):
         """
+        Test : test_AS_48_3
         Description : To verify annotation users text.
         Revision:
         :return: None
@@ -1325,6 +1369,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_48_4(self):
         """
+        Test : test_AS_48_4
         Description : To verify annotation edit functionality.
         Revision:
         :return: None
@@ -1368,6 +1413,8 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.asset_school_name[0]))
         assetpage.return_to_apps_main_page()
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, assetpage._asset_list_assets_name_locator)))
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(5)#necessary sleep to let the app finish searching for the assetname
         for item in assetpage.get_asset_list_background:
@@ -1454,7 +1501,6 @@ class AssetPageTest(BaseTestCase):
     def test_AS_56(self):
         """
         Test : test_AS_56
-	
         Description : To verify cancel button functionality of Detail Window. Enter data in all required fields.
         Revision:
         :return: None
@@ -1480,6 +1526,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_58(self):
 	"""
+	Test : test_AS_58
         Description : To verify save button functionality of Detail Window.
         Revision:
         :return: None
@@ -1501,6 +1548,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_59_1(self):
         """
+        Test : test_AS_59_1
         Description : To verify email text box functionality of Detail Window.
         Revision:
         :return: None
@@ -1524,6 +1572,7 @@ class AssetPageTest(BaseTestCase):
     @attr(priority="high")
     def test_AS_59_2(self):
         """
+        Test : test_AS_59_2
         Description : To verify email text box functionality of Detail Window. Invalid value. Verify error message.
         Revision:
         :return: None
@@ -1548,6 +1597,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_90(self):
         """
+        Test : test_AS_90
         Description : To verify chart when no asset is selected.
         Revision:
         :return: None
@@ -1563,6 +1613,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_91(self):
         """
+        Test : test_AS_91
         Description : To verify chart when place filter is selected.
         Revision:
         :return: None
@@ -1578,6 +1629,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_92(self):
         """
+        Test : test_AS_92
         Description : To verify chart when place and type filters are selected.
         Revision:
         :return: None
@@ -1597,6 +1649,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_93(self):
         """
+        Test : test_AS_93
         Description : To verify chart when school filter is selected.
         Revision:
         :return: None
@@ -1611,6 +1664,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_94(self):
         """
+        Test : test_AS_94
         Description : To verify chart when school and district filters are selected.
         Revision:
         :return: None
@@ -1629,6 +1683,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_95(self):
         """
+        Test : test_AS_95
         Description : To verify chart when school and grade filters are selected.
         Revision:
         :return: None
@@ -1647,6 +1702,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_96(self):
         """
+        Test : test_AS_96
         Description : To verify chart when school and type filters are selected.
         Revision:
         :return: None
