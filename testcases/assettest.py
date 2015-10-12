@@ -135,7 +135,6 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        assetpage.asset_filter_based_on_place_and_school("School")
         assetpage.get_asset_school_district()
         for item in assetpage.select_asset_schooltype_district_column:
             self.assertEqual(assetpage.selecteddistrict, item.text)
@@ -170,7 +169,7 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        AssetPage(self.driver).get_asset_reset_button.click()
+        assetpage.get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         for item in assetpage.select_asset_schooltype_column:
             self.assertEqual(assetpage.selectedtype, item.text)
@@ -222,6 +221,7 @@ class AssetPageTest(BaseTestCase):
                                          "No records to find asset.")
                     else:
                        print searchName #Should replace with regexp comparison
+        assetpage.select_asset_search_text_box.clear()
 
 
     @attr(priority="high")
@@ -241,6 +241,7 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.get_asset_name_breadcrumb.text))
         assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_place_name)
+        sleep(5) # Necessary sleep to let the app search for the input string
         for item in assetpage.get_asset_list_background:
             if (item.text  == assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
                                                                 == "rgba(255, 236, 158, 1)"):
@@ -421,7 +422,8 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_details_edit_widget_locator), r"Details"))
         assetpage.get_asset_detail_edit_link.click()#Click on Details panel
-        sleep(10)
+        WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, assetpage._asset_detail_edit_title_locator)))
         assetpage.get_asset_detail_edit_detail_fax_text_box.clear()
         sleep(5)
         assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(r"123abc1234") #Enter the value for FAX
@@ -686,31 +688,14 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_name_ascending = r"stu, def, mno, jkl, ghi, pqr, abc, vwx"
+        exp_name_descending = r"abc, vwx, ghi, pqr, mno, jkl, stu, def"
         assetpage.get_asset_point_of_contact_name_tab.click()#click on contact name tab.
         sleep(2)
         act_name_list = assetpage.get_asset_point_of_contact_name_text_value#Reading all contact names.
         act_name_list_value = []
         for name in act_name_list:
             act_name_list_value.append(name.text)
-        assetpage.return_to_apps_main_page()
-        self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value))
-
-    @attr(priority="high")
-    def test_AS_33_2(self):
-        """
-        Description : To verify contact name in descending order.
-        Revision:
-        :return: None
-        """
-        assetpage = AssetPage(self.driver)
-        assetpage.app_sanity_check()
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
-        assetpage.multiple_contact_create()#create multiple contacts.
-        exp_name_descending = r"abc, vwx, ghi, pqr, mno, jkl, stu, def"
-        assetpage.get_asset_point_of_contact_name_tab.click()#click on contact name tab.
-        sleep(2)
+        self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value), "Contact name is not sorted ascendingly")
         assetpage.get_asset_point_of_contact_name_tab.click()
         sleep(2)
         act_name_list = assetpage.get_asset_point_of_contact_name_text_value#Reading all contact's names.
@@ -718,10 +703,10 @@ class AssetPageTest(BaseTestCase):
         for name in act_name_list:
             act_name_list_value.append(name.text)
         assetpage.return_to_apps_main_page()
-        self.assertEqual(exp_name_descending, ", ".join(act_name_list_value))
+        self.assertEqual(exp_name_descending, ", ".join(act_name_list_value),"Contact name is not sorted descendingly")
 
     @attr(priority="high")
-    def test_AS_33_3(self):
+    def test_AS_33_2(self):
         """
         Description : To verify contact title's value in ascending order.
         Revision:
@@ -734,41 +719,25 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_title_ascending = r"CC, HH, PP, ZZ"
-        assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab.
+        exp_title_descending = r"ZZ, PP, HH, CC"
+        assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab to sort ascendingly.
         sleep(2)
         act_title_list = assetpage.get_asset_point_of_contact_title_text_value#Reading all contact's title values.
         act_title_list_value = []
         for title in act_title_list:
             act_title_list_value.append(title.text)
-        self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value))
-
-    @attr(priority="high")
-    def test_AS_33_4(self):
-        """
-        Description : To verify contact title's value in descending order.
-        Revision:
-        :return: None
-        """
-        assetpage = AssetPage(self.driver)
-        assetpage.app_sanity_check()
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
-        assetpage.multiple_contact_create()#create multiple contacts.
-        exp_title_descending = r"ZZ, PP, HH, CC"
-        assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab.
-        sleep(1)
-        assetpage.get_asset_point_of_contact_title_tab.click()
+        self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value), "Contact Title column is not sorted ascendingly")
+        assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab to sort descendingly.
         sleep(2)
         act_title_list = assetpage.get_asset_point_of_contact_title_text_value#Reading all contact's title values.
         act_title_list_value = []
         for title in act_title_list:
             act_title_list_value.append(title.text)
         assetpage.return_to_apps_main_page()
-        self.assertEqual(exp_title_descending, ", ".join(act_title_list_value))
+        self.assertEqual(exp_title_descending, ", ".join(act_title_list_value), "Contact Title column is not sorted descendingly")
 
     @attr(priority="high")
-    def test_AS_33_5(self):
+    def test_AS_33_3(self):
         """
         Description : To verify contact phone's value in ascending order.
         Revision:
@@ -781,30 +750,14 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_phone_ascending = r"123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
+        exp_phone_descending = r"661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
         assetpage.get_asset_point_of_contact_phone_tab.click()#click on contact phone tab.
         sleep(2)
         act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value#Reading all contact's phone values.
         act_phone_list_value = []
         for phone in act_phone_list:
             act_phone_list_value.append(phone.text)
-        self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value))
-
-    @attr(priority="high")
-    def test_AS_33_6(self):
-        """
-        Description : To verify contact phone's value in descending order.
-        Revision:
-        :return: None
-        """
-        assetpage = AssetPage(self.driver)
-        assetpage.app_sanity_check()
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
-        assetpage.multiple_contact_create()#create multiple contacts.
-        exp_phone_descending = r"661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
-        assetpage.get_asset_point_of_contact_phone_tab.click()#click on contact phone tab.
-        sleep(1)
+        self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value),"Contact Phone no is not sorted ascendingly")
         assetpage.get_asset_point_of_contact_phone_tab.click()
         sleep(2)
         act_phone_list = assetpage.get_asset_point_of_contact_phone_text_value#Reading all contact's phone values.
@@ -812,10 +765,10 @@ class AssetPageTest(BaseTestCase):
         for phone in act_phone_list:
             act_phone_list_value.append(phone.text)
         assetpage.return_to_apps_main_page()
-        self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value))
+        self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value),"Contact Phone no is not sorted descendingly")
 
     @attr(priority="high")
-    def test_AS_33_7(self):
+    def test_AS_33_4(self):
         """
         Description : To verify contact email's value in ascending order.
         Revision:
@@ -828,30 +781,14 @@ class AssetPageTest(BaseTestCase):
             (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         assetpage.multiple_contact_create()#create multiple contacts.
         exp_email_ascending = r"abc@def, ghi@jkl, mno@pqr, stu@vwx"
+        exp_email_descending = r"stu@vwx, mno@pqr, ghi@jkl, abc@def"
         assetpage.get_asset_point_of_contact_email_tab.click()  #click on contact email tab.
         sleep(2)
         act_email_list = assetpage.get_asset_point_of_contact_email_text_value#Reading all contact's email values.
         act_email_list_value = []
         for email in act_email_list:
             act_email_list_value.append(email.text)
-        self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value))
-
-    @attr(priority="high")
-    def test_AS_33_8(self):
-        """
-        Description : To verify contact email's value in descending order.
-        Revision:
-        :return: None
-        """
-        assetpage = AssetPage(self.driver)
-        assetpage.app_sanity_check()
-        assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,20).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
-        assetpage.multiple_contact_create()#create multiple contacts.
-        exp_email_descending = r"stu@vwx, mno@pqr, ghi@jkl, abc@def"
-        assetpage.get_asset_point_of_contact_email_tab.click()#click on contact email tab.
-        sleep(1)
+        self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value),"Contact Email column is not sorted ascendingly")
         assetpage.get_asset_point_of_contact_email_tab.click()
         sleep(2)
         act_email_list = assetpage.get_asset_point_of_contact_email_text_value#Reading all contact's email values.
@@ -859,7 +796,7 @@ class AssetPageTest(BaseTestCase):
         for email in act_email_list:
             act_email_list_value.append(email.text)
         assetpage.return_to_apps_main_page()
-        self.assertEqual(exp_email_descending, ", ".join(act_email_list_value))
+        self.assertEqual(exp_email_descending, ", ".join(act_email_list_value),"Contact Email column is not sorted descendingly")
 
     @attr(priority="high")
     #@SkipTest
@@ -1067,7 +1004,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()#Delete all uploaded files.
         caption_val = "Test_Case_40"
@@ -1281,14 +1219,12 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
-        number_of_image_before_upload = assetpage.get_asset_photos_documents_uploaded_file_count
-        image_count_before_file_upload = len(number_of_image_before_upload)
+        image_count_before_file_upload = len(assetpage.get_asset_photos_documents_uploaded_file_count)
         caption_val = ["Test_Case_45_1", "Test_Case_45_2", "Test_Case_45_3"]
         image_file_name = ["Test_Case_45_1.jpg", "Test_Case_45_2.jpg", "Test_Case_45_3.jpg"]
         for num in range(3):
             assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_uploaded_file_count
-        image_count_after_file_upload = len(number_of_image_after_upload)
+        image_count_after_file_upload = len(assetpage.get_asset_photos_documents_uploaded_file_count)
         if (image_count_after_file_upload == image_count_before_file_upload+3):
             assetpage.return_to_apps_main_page()
             self.assertTrue("Test Case has been passed.")
@@ -1309,13 +1245,11 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_photos_documents_header_locator), "Photos / Documents"))
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         assetpage.delete_uploaded_files()
-        number_of_image_before_upload = assetpage.get_asset_photos_documents_uploaded_file_count
-        image_count_before_file_upload = len(number_of_image_before_upload)
+        image_count_before_file_upload = len(assetpage.get_asset_photos_documents_uploaded_file_count)
         caption_val = ""
         image_file_name = "Test_Case_47.jpg"
         assetpage.upload_a_file_with_caption(caption_val, image_file_name)
-        number_of_image_after_upload = assetpage.get_asset_photos_documents_uploaded_file_count
-        image_count_after_file_upload = len(number_of_image_after_upload)
+        image_count_after_file_upload = len(assetpage.get_asset_photos_documents_uploaded_file_count)
         header_caption_text = assetpage.get_asset_photos_documents_header_caption_text(image_file_name)
         if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
             assetpage.return_to_apps_main_page()
@@ -1334,7 +1268,8 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH, assetpage._asset_annotation_widget_locator), "Annotations"))
+        WebDriverWait(self.driver, 30).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_annotation_widget_locator), "Annotations"))
         exp_text_val = "This is Indecomm Testing. Groups."
         assetpage.delete_all_annotation()
         assetpage.get_asset_annotation_plus_image.click()
@@ -1343,8 +1278,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
         assetpage.get_asset_annotation_edit_window_save_button.click()
         sleep(2)
-        text_val = assetpage.get_asset_annotation_text_value.text#read annotation value.
-        act_text_val = (text_val.split(' - '))[1].strip()
+        act_text_val = ((assetpage.get_asset_annotation_text_value.text).split(' - '))[1].strip()#read annotation value.
         assetpage.return_to_apps_main_page()
         self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
 
@@ -1439,12 +1373,11 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.create_asset("School")
-        self.assertTrue(assetpage.wait_for_element_boolean(assetpage._asset_name_breadcrumb),
-                         "Added school name doesnt appear on the breadcrumb")
-        self.assertEqual(assetpage.asset_school_name[0], assetpage.get_asset_name_breadcrumb.text)
+        WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.asset_school_name[0]))
         assetpage.return_to_apps_main_page()
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
-        sleep(15)
+        sleep(5)#necessary sleep to let the app finish searching for the assetname
         for item in assetpage.get_asset_list_background:
             if (item.text  == assetpage.asset_school_name[0]) and \
                     (item.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):

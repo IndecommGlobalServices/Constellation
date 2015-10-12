@@ -92,11 +92,10 @@ class AssetPage(BasePageClass):
     _asset_overview_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
     _asset_overview_owner_text_box_locator = "//input[@placeholder='Owner']"
     _asset_overview_phone_text_box_locator = "//input[@ng-model='asset_edit.phone']"
-    _asset_overview_type_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/ul/li/input"
+    _asset_overview_type_text_box_locator = "//input[@placeholder='Enter new value']"
     _asset_overview_district_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input"
     _asset_overview_grade_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input"
 
-    _asset_overview_type_drop_down_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[5]/div/div/button[1]"
     _asset_overview_type_drop_down_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
     _asset_overview_district_drop_down_locator = "//div[@label= 'District']"
     _asset_overview_grade_drop_down_locator = "//div[@label= 'Grade']"
@@ -166,7 +165,7 @@ class AssetPage(BasePageClass):
     # Asset Detail panel related
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
-    _asset_detail_edit_title_locator = ".//*[@id='H2']"
+    _asset_detail_edit_title_locator = "//*[@class='modal-title']"
     _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
@@ -372,7 +371,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_school_district_first_element(self):
         try:
-            return self.driver.find_element_by_xpath(self.get_asset_school_district_first_element)
+            return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_firt_element_locator)
         except Exception, err:
             err.msg = "District dropdown list not available - " + err.msg
             raise
@@ -574,6 +573,14 @@ class AssetPage(BasePageClass):
     def get_overview_type_add_button(self):
         try:
             return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[2]
+        except Exception, err:
+            err.msg = "Asset Type Add button not available - " + err.msg
+            raise
+
+    @property
+    def get_overview_place_type_add_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_add_button_locator)
         except Exception, err:
             err.msg = "Asset Type Add button not available - " + err.msg
             raise
@@ -1020,7 +1027,8 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator).click()
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self._asset_filter_drop_down_locator))).click()
         self.driver.find_element_by_link_text(assetType).click()
 
     def get_asset_school_district(self):
@@ -1029,7 +1037,6 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(5)
         self.asset_filter_based_on_place_and_school("School")
         self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator).click()
         chkDistrictDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul")
@@ -1048,10 +1055,9 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(5)
         self.asset_filter_based_on_place_and_school("School")
-        sleep(10)
-        self.driver.find_element_by_xpath(self._asset_school_grade_drop_down_locator).click()
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self._asset_school_grade_drop_down_locator))).click()
         sleep(2)
         chkGradeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
         items = chkGradeDropDownValuesExists.find_elements_by_tag_name("li")
@@ -1072,15 +1078,13 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(5)
         self.asset_filter_based_on_place_and_school("School")
-        sleep(10)
-        self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator).click()
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self._asset_school_type_drop_down_locator))).click()
         sleep(2)
         chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
         items = chkSchoolTypeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
-
         if len(items) > 1:
             firstelemet = self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
             self.selectedtype = firstelemet.text
@@ -1115,11 +1119,8 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-
-        #sleep(5)
         searchNames = self.driver.find_elements_by_xpath(AssetPage(self.driver)._asset_list_locator)
         print len(searchNames)
-        #sleep(5)
         if len(searchNames) > 0:
             for searchname in searchNames:
                 print searchname.text
@@ -1133,8 +1134,8 @@ class AssetPage(BasePageClass):
         :return: None
         """
         try:
-            sleep(2)
-            self.click_on_asset_link.click()
+            WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                (By.LINK_TEXT, self._asset_link_locator))).click()
             WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located((By.XPATH, self._asset_create_asset)))
         except:
             inspectstack = inspect.stack()[1][3]
@@ -1160,8 +1161,8 @@ class AssetPage(BasePageClass):
         :return: None
         """
         try:
-            # self.driver.find_element_by_xpath(self._asset_create_asset).is_displayed()
-            self.wait_for_element_boolean(self._asset_create_asset)
+            WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self._asset_create_asset)))
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
@@ -1174,27 +1175,14 @@ class AssetPage(BasePageClass):
         """
         WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located((By.XPATH, self._asset_create_asset))).click()
 
-
-
-
     def select_asset_template_type(self, template):
         # Select Place from the dropdown to create new place asset
         self.get_overview_templatetype_drop_down.click()
         self.driver.find_element_by_link_text(template).click()
-        sleep(4)
-    '''
-    def select_school_asset_template_type(self):
-        # Select Place from the dropdown to create new place asset
-        self.driver.find_element_by_xpath("//*[@id='asset_overview_modal']/div/div/form/div[1]/div/div/button[2]").click()
-        self.driver.find_element_by_link_text("School").click()
-        sleep(4)
-    '''
+
     def get_placedata(self):
-
         with open(placeData) as data_file:
-            place_data = json.load(data_file)
-
-            for each in place_data:
+            for each in json.load(data_file):
                 self.asset_place_name = each["asset_name"]
                 self.asset_place_address = each["asset_address"]
                 self.asset_place_address2 = each["asset_address2"]
@@ -1210,24 +1198,18 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        #sleep(10)
         self.select_asset_template_type("Place")
-        #sleep(10)
         self.enter_asset_type_name.send_keys(self.asset_place_name)
-        #sleep(2)
         self.enter_asset_type_address.send_keys(self.asset_place_address)
-        #sleep(2)
         self.enter_asset_type_address2.send_keys(self.asset_place_address2)
-        #sleep(2)
         self.enter_asset_type_city.send_keys(self.asset_place_city)
-        #sleep(2)
         self.enter_asset_type_state.send_keys(self.asset_place_state)
-        #sleep(2)
         self.enter_asset_type_zip.send_keys(self.asset_place_zip)
-        #sleep(2)
         self.enter_asset_type_owner.send_keys(self.asset_place_owner)
-        #sleep(2)
-        self.enter_asset_type(self.asset_place_type)
+        self.get_overview_type_drop_down.click()
+        sleep(2)
+        self.get_overview_newtype_text_box.send_keys(self.asset_place_type)
+        self.get_overview_place_type_add_button.click()
 
 
     def get_schooldata(self):
@@ -1237,8 +1219,7 @@ class AssetPage(BasePageClass):
         :return: None
         """
         with open(L1) as data_file:
-            school_data = json.load(data_file)
-            for each in school_data:
+            for each in json.load(data_file):
                 self.asset_school_name = each["asset_name"]
                 self.asset_school_address = each["asset_address"]
                 self.asset_school_address2 = each["asset_address2"]
@@ -1260,39 +1241,26 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(4)
         if(index == 0):
             self.enter_asset_type_name.send_keys(self.asset_school_name[index])
-            sleep(5)
         else:
             self.get_overview_editname_text_box.clear()
             self.get_overview_editname_text_box.send_keys(self.asset_school_name[index])
-            sleep(5)
-
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(self.asset_school_address[index])
-        sleep(2)
         self.enter_asset_type_address2.clear()
         self.enter_asset_type_address2.send_keys(self.asset_school_address2[index])
-        sleep(2)
         self.enter_asset_type_city.clear()
         self.enter_asset_type_city.send_keys(self.asset_school_city[index])
-        sleep(2)
         self.enter_asset_type_state.clear()
         self.enter_asset_type_state.send_keys(self.asset_school_state[index])
-        sleep(2)
         self.enter_asset_type_zip.clear()
         self.enter_asset_type_zip.send_keys(self.asset_school_zip[index])
-        sleep(2)
         self.enter_asset_type_owner.clear()
         self.enter_asset_type_owner.send_keys(self.asset_school_owner[index])
-        sleep(2)
         self.enter_school_district(self.asset_school_district[index])
-        sleep(2)
         self.enter_school_grade(self.asset_school_grade[index])
-        sleep(2)
         self.enter_asset_type(self.asset_school_type[index])
-
 
     def enter_school_district(self, value):
         """
@@ -1326,7 +1294,9 @@ class AssetPage(BasePageClass):
         """
         self.get_overview_type_drop_down.click()
         sleep(2)
-        self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
+        self.get_overview_newtype_text_box.send_keys(value)
+        self.get_overview_type_add_button.click()
+        #self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
 
     def asset_overview_save_click(self):
         """
@@ -1374,8 +1344,7 @@ class AssetPage(BasePageClass):
             self.create_school_asset(self.newSchool)
         elif type == "Place":
             self.create_place_asset()
-
-        self.asset_overview_save_click()
+        self.get_asset_overview_save_button.click()
 
     def edit_asset(self, type):
         """
@@ -1385,7 +1354,8 @@ class AssetPage(BasePageClass):
         """
         self.select_school_or_place_asset(self.asset_school_name[0], type)
         if type == "School":
-            sleep(10)
+            WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self._asset_details_edit_widget_locator), "Details"))
             self.get_asset_overview_edit_link.click()
             self.create_school_asset(self.editSchool)
         elif type == "Place":
@@ -1438,141 +1408,89 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        #sleep(5)
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(paddress)
         self.enter_asset_type_address.send_keys(Keys.TAB)
-        #sleep(5)
         self.enter_asset_type_address2.clear()
         self.enter_asset_type_address2.send_keys(paddress1)
         self.enter_asset_type_address2.send_keys(Keys.TAB)
-        #sleep(5)
         self.enter_asset_type_city.clear()
         self.enter_asset_type_city.send_keys(pcity)
         self.enter_asset_type_city.send_keys(Keys.TAB)
-        #sleep(5)
         self.enter_asset_type_state.clear()
         self.enter_asset_type_state.send_keys(pstate)
         self.enter_asset_type_state.send_keys(Keys.TAB)
-        #sleep(5)
         self.enter_asset_type_zip.clear()
         self.enter_asset_type_zip.send_keys(pzip)
         self.enter_asset_type_zip.send_keys(Keys.TAB)
-        #sleep(5)
         self.enter_asset_type_phone.send_keys(Keys.TAB)
-        #sleep(5)
         self.enter_asset_type_owner.clear()
         self.enter_asset_type_owner.send_keys(powner)
         self.enter_asset_type_owner.send_keys(Keys.TAB)
-        #sleep(5)
 
     def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
         # fill out the fields
-
         self.get_asset_detail_edit_capacity_text_box.clear()
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_closed_text_box.clear()
         self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
         self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_detail_fax_text_box.clear()
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_detail_opened_number_text_box.clear()
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_detail_place_size_text_box.clear()
         self.get_asset_detail_edit_detail_place_size_text_box.send_keys(psize)
         self.get_asset_detail_edit_detail_place_size_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_detail_website_text_box.clear()
         self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
         self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
 
     def set_school_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, ssize, pwebsite):
         # fill out the fields
         #WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located((By.XPATH, self._asset_detail_edit_capacity_textbox_locator)))
-
         self.get_asset_detail_edit_capacity_text_box.clear()
         self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
         self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_closed_text_box.clear()
         self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
         self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
-
         self.get_asset_detail_edit_description_text_box.clear()
         self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
         self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
-
-        #sleep(2)
         if pdistrict is not None:
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
             self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
-        #sleep(2)
-
         self.get_asset_detail_edit_email_text_box.clear()
         self.get_asset_detail_edit_email_text_box.send_keys(pemail)
         self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-        #sleep(2)
         self.get_asset_detail_edit_detail_fax_text_box.clear()
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
         self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-        #sleep(2)
         self.get_asset_detail_edit_detail_opened_number_text_box.clear()
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
         self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
-        #sleep(2)
         if pschoolnumber is not None:
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
             self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
-        #sleep(2)
-
         if ssize is not None:
             self.get_asset_detail_edit_detail_school_size_text_box.send_keys("")
             self.get_asset_detail_edit_detail_school_size_text_box.send_keys(ssize)
             self.get_asset_detail_edit_detail_school_size_text_box.send_keys(Keys.TAB)
-        #sleep(2)
-
         self.get_asset_detail_edit_detail_website_text_box.clear()
         self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
         self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
-        #sleep(2)
-
 
     def delete_existing_contact(self):
         """
