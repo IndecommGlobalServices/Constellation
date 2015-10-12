@@ -245,7 +245,7 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.get_asset_name_breadcrumb.text))
         assetpage.return_to_apps_main_page()
-        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
             (By.XPATH, assetpage._asset_list_assets_name_locator)))
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(5) # Necessary sleep to let the app search for the input string
@@ -912,11 +912,13 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,50).until(expected_conditions.presence_of_element_located((By.ID,"map_control")))
-        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
-        locationEdit.click()
+        WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
+        #locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
+        assetpage.get_asset_location_edit_icon.click()
+        #locationEdit.click()
         sleep(5)
-        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
+        #locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
+        locationTitle = assetpage.get_asset_location_title.text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         lati = "550"
         assetpage.get_asset_location_latitude_textbox.clear()
@@ -950,7 +952,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,50).until(expected_conditions.presence_of_element_located((By.ID,"map_control")))
+        WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         assetpage.get_asset_location_edit_icon.click()
         locationTitle = assetpage.get_asset_location_title.text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
@@ -976,7 +978,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,50).until(expected_conditions.presence_of_element_located((By.ID,"map_control")))
+        WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         assetpage.get_asset_location_edit_icon.click()
         locationTitle = assetpage.get_asset_location_title.text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
@@ -1397,7 +1399,7 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.asset_school_name[0]))
         assetpage.return_to_apps_main_page()
-        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
             (By.XPATH, assetpage._asset_list_assets_name_locator)))
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(5)#necessary sleep to let the app finish searching for the assetname
