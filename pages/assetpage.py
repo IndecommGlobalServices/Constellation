@@ -1283,7 +1283,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_location_title(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_location_title_id_locator)
+            return self.driver.find_element_by_xpath(self._asset_location_title_id_locator)
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._asset_location_title_id_locator + err.message)
