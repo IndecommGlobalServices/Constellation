@@ -107,7 +107,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.asset_filter_based_on_place_and_school("Place")
-        self.assertTrue(assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
+        self.assertTrue(assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter selected instead of Place")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -123,7 +123,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.asset_filter_based_on_place_and_school("School")
-        self.assertTrue(assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter")
+        self.assertTrue(assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter selected instead of School")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -140,7 +140,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.get_asset_school_district()
         for item in assetpage.select_asset_schooltype_district_column:
-            self.assertEqual(assetpage.selecteddistrict, item.text)
+            self.assertEqual(assetpage.selecteddistrict, item.text, "No item to check since it has blank value"
+                                                                    " in District dropdown")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -157,7 +158,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.get_asset_school_grade()
         for item in assetpage.select_asset_schooltype_grade_column:
-            self.assertEqual(assetpage.selectedgrade, item.text)
+            self.assertEqual(assetpage.selectedgrade, item.text, "No item to check since it has blank value"
+                                                                    " in Grade dropdown")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -175,7 +177,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         for item in assetpage.select_asset_schooltype_column:
-            self.assertEqual(assetpage.selectedtype, item.text)
+            self.assertEqual(assetpage.selectedtype, item.text, "No item to check since it has blank value"
+                                                                    " in School Type dropdown")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -192,7 +195,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.get_asset_reset_button.click()
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)
+        self.assertEqual("Asset Type",expectedAfterResetFilter, "Asset Type text not visible inside the drop down ")
 
     @attr(priority="high")
     #@SkipTest
@@ -245,7 +248,7 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.get_asset_name_breadcrumb.text))
         assetpage.return_to_apps_main_page()
-        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
             (By.XPATH, assetpage._asset_list_assets_name_locator)))
         assetpage.asset_search_assetname(assetpage.asset_place_name)
         sleep(5) # Necessary sleep to let the app search for the input string
@@ -300,8 +303,7 @@ class AssetPageTest(BaseTestCase):
     #@SkipTest
     def test_AS_18(self):
         """
-        Test : test_AS_18
-        Description : To verify cancel button functionality of New asset window. Without any data entered.
+        Description : To verify cancel button functionality of New asset window. Without any data entry.
         Revision:
         :return: None
         """
@@ -310,13 +312,12 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.asset_overview_cancel_click()
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
+        self.assertEqual("Asset Type",expectedAfterResetFilter, "Asset Type text not visible inside the drop down ")# Checking "Asset Type" displayed after reset
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_19(self):
         """
-        Test : test_AS_19
         Description : To verify cancel button functionality of New asset window. With required date entry.
         Revision:
         Author : Kiran
@@ -328,7 +329,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.create_place_asset()
         assetpage.asset_overview_cancel_click()
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
+        self.assertEqual("Asset Type",expectedAfterResetFilter, "Asset Type text not visible inside the drop down ")# Checking "Asset Type" displayed after reset
 
     @attr(priority="high")
     #@SkipTest
@@ -368,7 +369,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.set_place_overview_fields("indecomm address cancel", "indecomm address 2 cancel", "Indecomm city",
                                             "KA", "94821", "Indecomm_Cancel")
         assetpage.asset_overview_cancel_click()#click on Cancel
-        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
+        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text, "Place name not displayed on Breadcrumb.")
         assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
@@ -472,7 +473,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
         assetpage.get_asset_detail_edit_cancel_button.click()
         sleep(10)
-        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
+        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text, "Place name not displayed on Breadcrumb.")
         assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
@@ -915,32 +916,26 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
-        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
-        locationEdit.click()
-        sleep(5)
-        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
+        assetpage.get_asset_location_edit_icon.click()
+        locationTitle = assetpage.get_asset_location_title.text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
-        sleep(5)
         lati = "550"
-        latitudeValue = self.driver.find_element_by_name("latitude")
-        latitudeValue.clear()
-        latitudeValue.send_keys(lati)
-        latitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[1]/span/small").text
-        self.assertEqual("Latitude must be a number between -90 and 90", latitudeerrorMessage, "Latitude error message"
+        assetpage.get_asset_location_latitude_textbox.clear()
+        assetpage.get_asset_location_latitude_textbox.send_keys(lati)
+        latitudeerrorMessage = assetpage.get_asset_location_latitude_error_text.text
+        self.assertEqual(latitudeerrorMessage, "Latitude must be a number between -90 and 90","Latitude error message"
                                                                                                " not displayed")
-        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        locationSave = assetpage.get_asset_location_save_button
         self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
         longi = "200"
-        longitudeValue = self.driver.find_element_by_name("longitude")
-        longitudeValue.clear()
-        longitudeValue.send_keys(longi)
-        longitudeerrorMessage = self.driver.find_element_by_xpath(".//*[@id='map_popup']/div[2]/span/small").text
+        assetpage.get_asset_location_longitude_textbox.clear()
+        assetpage.get_asset_location_longitude_textbox.send_keys(longi)
+        longitudeerrorMessage = assetpage.get_asset_location_longitude_error_text.text
         self.assertEqual("Longitude must be a number between -180 and 180", longitudeerrorMessage,
                          "Longitude error message not displayed")
-        sleep(5)
-        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
+        locationSave = assetpage.get_asset_location_save_button
         self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
-        self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[1]").click()
+        assetpage.get_asset_location_cancel_button.click()
         assetpage.return_to_apps_main_page()
 
 
@@ -957,28 +952,17 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
-        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
-        locationEdit.click()
-        sleep(5)
-        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
+        assetpage.get_asset_location_edit_icon.click()
+        locationTitle = assetpage.get_asset_location_title.text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
-        sleep(5)
         lati = "40.7127"
-        latitudeValue = self.driver.find_element_by_name("latitude")
-        latitudeValue.clear()
-        latitudeValue.send_keys(lati)
-        sleep(5)
+        assetpage.get_asset_location_latitude_textbox.clear()
+        assetpage.get_asset_location_latitude_textbox.send_keys(lati)
         longi = "74.0059"
-        longitudeValue = self.driver.find_element_by_name("longitude")
-        longitudeValue.clear()
-        longitudeValue.send_keys(longi)
-        sleep(5)
-        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
-        self.assertTrue(locationSave.is_enabled(), "Location Save button is not disabled")
-        locationSave.click()
-        sleep(15)
-        markerAvailable =  self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[3]/img")
-        self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
+        assetpage.get_asset_location_longitude_textbox.clear()
+        assetpage.get_asset_location_longitude_textbox.send_keys(longi)
+        assetpage.get_asset_location_save_button.click()
+        self.assertTrue(assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
         assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
@@ -994,32 +978,21 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
-        locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
-        locationEdit.click()
-        sleep(5)
-        locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
+        assetpage.get_asset_location_edit_icon.click()
+        locationTitle = assetpage.get_asset_location_title.text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
-        sleep(5)
         lati = "40.7127"
-        latitudeValue = self.driver.find_element_by_name("latitude")
-        latitudeValue.clear()
-        latitudeValue.send_keys(lati)
-        sleep(5)
+        assetpage.get_asset_location_latitude_textbox.clear()
+        assetpage.get_asset_location_latitude_textbox.send_keys(lati)
         longi = "74.0059"
-        longitudeValue = self.driver.find_element_by_name("longitude")
-        longitudeValue.clear()
-        longitudeValue.send_keys(longi)
-        sleep(5)
-        locationSave = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/form/div[2]/button[2]")
-        self.assertTrue(locationSave.is_enabled(), "Location Save button is not disabled")
-        locationSave.click()
-        sleep(15)
-        markerAvailable =  self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[3]/img")
-        self.assertTrue(markerAvailable.is_displayed(), "Marker not displayed on Map")
-        sleep(5)
-        markerAvailable.click()
-        sleep(5)
-        placeText = self.driver.find_element_by_xpath(".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b").text
+        assetpage.get_asset_location_longitude_textbox.clear()
+        assetpage.get_asset_location_longitude_textbox.send_keys(longi)
+        assetpage.get_asset_location_save_button.click()
+
+        self.assertTrue(assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
+        assetpage.get_asset_location_marker_available_image.click()
+
+        placeText = assetpage.get_asset_location_place_name_text.text
         self.assertEqual(assetpage.asset_place_name, placeText, "Marker name not displayed.")
         assetpage.return_to_apps_main_page()
 
@@ -1425,7 +1398,7 @@ class AssetPageTest(BaseTestCase):
         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(
             (By.XPATH, assetpage._asset_name_breadcrumb), assetpage.asset_school_name[0]))
         assetpage.return_to_apps_main_page()
-        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
             (By.XPATH, assetpage._asset_list_assets_name_locator)))
         assetpage.asset_search_assetname(assetpage.asset_school_name[0])
         sleep(5)#necessary sleep to let the app finish searching for the assetname
@@ -1616,9 +1589,7 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        sleep(5)
         assetpage.get_asset_chart_dashboard_image.click()
-        sleep(5)
         assetpage.charts_When_No_Asset_Type_Is_Selected()
 
     @attr(priority="high")
