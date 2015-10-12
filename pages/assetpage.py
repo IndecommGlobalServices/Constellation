@@ -926,7 +926,6 @@ class AssetPage(BasePageClass):
             raise type(err)(" - searche XPATH - " \
                           + self._asset_point_of_contact_phone_text_value_locator + err.message)
 
-
     @property
     def get_asset_point_of_contact_email_text_value(self):
         try:

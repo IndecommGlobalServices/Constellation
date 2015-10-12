@@ -910,7 +910,6 @@ class AssetPageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
@@ -936,7 +935,6 @@ class AssetPageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
