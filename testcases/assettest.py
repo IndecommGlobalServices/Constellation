@@ -107,7 +107,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.asset_filter_based_on_place_and_school("Place")
-        self.assertTrue(assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
+        self.assertTrue(assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter selected instead of Place")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -123,7 +123,7 @@ class AssetPageTest(BaseTestCase):
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
         assetpage.asset_filter_based_on_place_and_school("School")
-        self.assertTrue(assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter")
+        self.assertTrue(assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter selected instead of School")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -140,7 +140,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.get_asset_school_district()
         for item in assetpage.select_asset_schooltype_district_column:
-            self.assertEqual(assetpage.selecteddistrict, item.text)
+            self.assertEqual(assetpage.selecteddistrict, item.text, "No item to check since it has blank value"
+                                                                    " in District dropdown")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -157,7 +158,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.get_asset_school_grade()
         for item in assetpage.select_asset_schooltype_grade_column:
-            self.assertEqual(assetpage.selectedgrade, item.text)
+            self.assertEqual(assetpage.selectedgrade, item.text, "No item to check since it has blank value"
+                                                                    " in Grade dropdown")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -175,7 +177,8 @@ class AssetPageTest(BaseTestCase):
         assetpage.get_asset_reset_button.click()
         assetpage.get_asset_school_type()
         for item in assetpage.select_asset_schooltype_column:
-            self.assertEqual(assetpage.selectedtype, item.text)
+            self.assertEqual(assetpage.selectedtype, item.text, "No item to check since it has blank value"
+                                                                    " in School Type dropdown")
         assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -192,7 +195,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.get_asset_reset_button.click()
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)
+        self.assertEqual("Asset Type",expectedAfterResetFilter, "Asset Type text not visible inside the drop down ")
 
     @attr(priority="high")
     #@SkipTest
@@ -309,7 +312,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.asset_create_click()
         assetpage.asset_overview_cancel_click()
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
+        self.assertEqual("Asset Type",expectedAfterResetFilter, "Asset Type text not visible inside the drop down ")# Checking "Asset Type" displayed after reset
 
     @attr(priority="high")
     #@SkipTest
@@ -326,7 +329,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.create_place_asset()
         assetpage.asset_overview_cancel_click()
         expectedAfterResetFilter = assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
+        self.assertEqual("Asset Type",expectedAfterResetFilter, "Asset Type text not visible inside the drop down ")# Checking "Asset Type" displayed after reset
 
     @attr(priority="high")
     #@SkipTest
@@ -366,7 +369,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.set_place_overview_fields("indecomm address cancel", "indecomm address 2 cancel", "Indecomm city",
                                             "KA", "94821", "Indecomm_Cancel")
         assetpage.asset_overview_cancel_click()#click on Cancel
-        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
+        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text, "Place name not displayed on Breadcrumb.")
         assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
@@ -470,7 +473,7 @@ class AssetPageTest(BaseTestCase):
         sleep(10)
         assetpage.get_asset_detail_edit_cancel_button.click()
         sleep(10)
-        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text)
+        self.assertEqual(assetpage.asset_place_name, assetpage.get_asset_name_breadcrumb.text, "Place name not displayed on Breadcrumb.")
         assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
@@ -913,11 +916,7 @@ class AssetPageTest(BaseTestCase):
         assetpage.app_sanity_check()
         assetpage.select_school_or_place_asset(assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
-        #locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
         assetpage.get_asset_location_edit_icon.click()
-        #locationEdit.click()
-        sleep(5)
-        #locationTitle = self.driver.find_element_by_xpath(".//*[@id='location_modal']/div/div/div").text
         locationTitle = assetpage.get_asset_location_title.text
         self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         lati = "550"
@@ -1590,9 +1589,7 @@ class AssetPageTest(BaseTestCase):
         """
         assetpage = AssetPage(self.driver)
         assetpage.app_sanity_check()
-        sleep(5)
         assetpage.get_asset_chart_dashboard_image.click()
-        sleep(5)
         assetpage.charts_When_No_Asset_Type_Is_Selected()
 
     @attr(priority="high")

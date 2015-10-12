@@ -2061,7 +2061,6 @@ class AssetPage(BasePageClass):
                         print asset.text
                         sleep(10)
         else :
-
             print "No chart found at place level."
 
     def place_related_charts_Place_Is_Selected(self):
