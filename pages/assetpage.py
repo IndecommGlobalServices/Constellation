@@ -165,7 +165,7 @@ class AssetPage(BasePageClass):
     # Asset Detail panel related
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
-    _asset_detail_edit_title_locator = ".//*[@id='asset_details_modal']/div/div/div"
+    _asset_detail_edit_title_locator = "//*[@class='modal-title']"
     _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
@@ -192,7 +192,6 @@ class AssetPage(BasePageClass):
     _asset_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Upload')]"
     _asset_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
     _asset_photos_documents_delete_window_delete_locator = "//div[@id='delete_document_modal']//button[contains(text(),'Delete')]"
-    _asset_photos_documents_window_title_locator = ".//*[@id='upload_document_file_heading']"
 
     # Asset Annotation Panel
     _asset_annotation_widget_locator = ".//*[@id='widgets']/div[8]/div/div[1]"
@@ -207,19 +206,15 @@ class AssetPage(BasePageClass):
     _asset_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
     _asset_annotation_delete_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'deleteItem')]"
     _asset_annotation_edit_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'editItem')]"
-
     # Location related
     _asset_location_map_id_locator = "map_control"
-    _asset_location_edit_icon_xpath_locator = ".//*[@id='widgets']/div[4]/div/div[2]/div/img" # xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img"), "img.widget_edit"
-    _asset_location_title_id_locator = ".//*[@id='location_modal']/div/div/div" # xpath(".//*[@id='location_modal']/div/div/div"), "(H1)[1]"
+    _asset_location_edit_icon_css_locator = "img.widget_edit"
+    _asset_location_title_id_locator = "(H1)[1]"
     _asset_location_latitude_name_locator = "latitude"
-    _asset_location_latitude_error_xpath_locator = ".//*[@id='map_popup']/div[1]/span/small" # xpath(".//*[@id='map_popup']/div[1]/span/small") "small"
-    _asset_location_save_xpath_locator = ".//*[@id='location_modal']/div/div/form/div[2]/button[2]"
-    _asset_location_cancel_xpath_locator = ".//*[@id='location_modal']/div/div/form/div[2]/button[1]"
+    _asset_location_latitude_error_css_locator = "small"
+    _asset_location_save_xpath_locator = "(//button[@type='submit'])[2]"
     _asset_location_longitude_name_locator = "longitude"
-    _asset_location_longitude_error_xpath_locator = ".//*[@id='map_popup']/div[2]/span/small" # xpath(".//*[@id='map_popup']/div[2]/span/small"), "//div[2]/span/small"
-    _asset_location_marker_avaliable_xpath_locator = ".//*[@id='map_control']/div[1]/div[2]/div[3]/img"
-    _asset_location_place_name_xpath_locator = ".//*[@id='map_control']/div[1]/div[2]/div[4]/div/div[1]/div/b"
+    _asset_location_longitude_error_xpath_locator = "//div[2]/span/small"
 
     # Charts related
     _asset_chart_total_Graph_In_Container_xpath_locator = ".//*[@id='graphs_frame']/div/div/div/div[1]"
@@ -919,6 +914,7 @@ class AssetPage(BasePageClass):
             raise type(err)("In Point of Contact widget contacts do not have Title Values - search XPATH - " \
                           + self._asset_point_of_contact_title_text_value_locator + err.message)
 
+
     @property
     def get_asset_point_of_contact_phone_text_value(self):
         try:
@@ -1276,15 +1272,15 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_location_edit_icon(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_location_edit_icon_xpath_locator)
+            return self.driver.find_element_by_css_selector(self._asset_location_edit_icon_css_locator)
         except Exception, err:
             raise type(err)(" - search XPATH - " \
-                          + self._asset_location_edit_icon_xpath_locator + err.message)
+                          + self._asset_location_edit_icon_css_locator + err.message)
 
     @property
     def get_asset_location_title(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_location_title_id_locator)
+            return self.driver.find_elements_by_xpath(self._asset_location_title_id_locator)
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._asset_location_title_id_locator + err.message)
@@ -1300,10 +1296,10 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_location_latitude_error_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_location_latitude_error_xpath_locator)
+            return self.driver.find_element_by_css_selector(self._asset_location_latitude_error_css_locator)
         except Exception, err:
             raise type(err)(" - search XPATH - " \
-                          + self._asset_location_latitude_error_xpath_locator + err.message)
+                          + self._asset_location_latitude_error_css_locator + err.message)
 
     @property
     def get_asset_location_save_button(self):
@@ -1312,15 +1308,6 @@ class AssetPage(BasePageClass):
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._asset_location_save_xpath_locator + err.message)
-
-    @property
-    def get_asset_location_cancel_button(self):
-        try:
-            return self.driver.find_element_by_xpath(self._asset_location_cancel_xpath_locator)
-        except Exception, err:
-            raise type(err)(" - search XPATH - " \
-                          + self._asset_location_cancel_xpath_locator + err.message)
-
 
     @property
     def get_asset_location_longitude_textbox(self):
@@ -1333,31 +1320,11 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_location_longitude_error_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_location_longitude_error_xpath_locator)
+            return self.driver.find_element_by_xpath_selector(self._asset_location_longitude_error_xpath_locator)
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._asset_location_longitude_error_xpath_locator + err.message)
 
-    @property
-    def get_asset_location_marker_available_image(self):
-        try:
-            return self.driver.find_element_by_xpath(self._asset_location_marker_avaliable_xpath_locator)
-        except Exception, err:
-            raise type(err)(" - search XPATH - " \
-                          + self._asset_location_marker_avaliable_xpath_locator + err.message)
-
-
-    @property
-    def get_asset_location_place_name_text(self):
-        try:
-            return self.driver.find_element_by_xpath(self._asset_location_place_name_xpath_locator)
-        except Exception, err:
-            raise type(err)(" - search XPATH - " \
-                          + self._asset_location_place_name_xpath_locator + err.message)
-
-
-
-    # Charts related
     @property
     def get_asset_chart_dashboard_image(self):
         try:
@@ -1369,7 +1336,6 @@ class AssetPage(BasePageClass):
     def get_asset_photos_documents_image_caption_text(self, caption_val):
         caption_xpath = "//div[contains(@label,'Photos / Documents')]/div[@ng-repeat='document in documents']/div/div[contains(text(),'"+caption_val+"')]"
         try:
-            caption_xpath = "//div[contains(@label,'Photos / Documents')]/div[@ng-repeat='document in documents']/div/div[contains(text(),'"+caption_val+"')]"
             return self.driver.find_element_by_xpath(caption_xpath)
         except Exception, err:
             raise type(err)("Image caption for uploaded file in new window is not available - search XPATH - " \
@@ -1378,7 +1344,6 @@ class AssetPage(BasePageClass):
     def get_asset_photos_documents_header_caption_text(self, caption_val):
         caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//a[contains(text(),'"+caption_val+"')]"
         try:
-            caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//a[contains(text(),'"+caption_val+"')]"
             return self.driver.find_element_by_xpath(caption_xpath)
         except Exception, err:
             raise type(err)("In Photos / Documents widget Image Caption/File Name is not available - search XPATH - " \
@@ -1512,8 +1477,8 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        if not WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
-            (By.XPATH, self._asset_create_asset))).is_displayed():
+        if not WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
+                (By.XPATH, self._asset_create_asset))).is_displayed:
             try:
                 WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
                     (By.LINK_TEXT, self._asset_link_locator))).click()
@@ -2006,14 +1971,16 @@ class AssetPage(BasePageClass):
         try:
             # Click on Photo/Document panel - File Upload button
             self.get_asset_photos_documents_upload_file_button.click()
+            sleep(2)
+
             # Click on Attach file button and attached the file path with the send_keys
             file_path = self.file_path(image_file_name)
             self.get_asset_photos_documents_attached_file_button.send_keys(file_path)
-            #sleep(3)
+            sleep(3)
             # Enter Caption
             caption_val = image_caption
             self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
-            #sleep(2)
+            sleep(2)
             # Click Upload.
             self.get_asset_photos_documents_window_upload_button.click()
             try:
@@ -2063,6 +2030,7 @@ class AssetPage(BasePageClass):
                         print asset.text
                         sleep(10)
         else :
+
             print "No chart found at place level."
 
     def place_related_charts_Place_Is_Selected(self):

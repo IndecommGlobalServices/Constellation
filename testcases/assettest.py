@@ -300,6 +300,7 @@ class assetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_18(self):
         """
+        Test : test_AS_18
         Description : To verify cancel button functionality of New asset window. Without any data entry.
         Revision:
         :return: None
@@ -315,6 +316,7 @@ class assetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_19(self):
         """
+        test_AS_19
         Description : To verify cancel button functionality of New asset window. With required date entry.
         Revision:
         Author : Kiran
@@ -813,7 +815,6 @@ class assetpageTest(BaseTestCase):
         act_email_list_value = []
         for email in act_email_list:
             act_email_list_value.append(email.text)
-
         self.assertEqual(exp_email_descending, ", ".join(act_email_list_value),
                          "Contact Email column is not sorted descendingly")
 
