@@ -5,6 +5,7 @@ from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
+from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
     username = ""
@@ -37,17 +38,6 @@ class BaseTestCase(unittest.TestCase):
     def tearDownClass(self):
         self.driver.quit()# close the browser
 
-
-    def _test_has_failed(self):
-        for method, error in self._resultForDoCleanups.failures:
-            print error + "failure"
-            if error:
-                return True
-        for method, error in self._resultForDoCleanups.errors:
-            print error + "error"
-            if error:
-                return True
-        return False
 
     def take_screenshot(self):
         cwd = os.getcwd()

@@ -16,7 +16,6 @@ class assetpageTest(BaseTestCase):
 
     def setUp(self):
         self.errors_and_failures = self.tally()
-        print self.errors_and_failures
         self.assetpage = AssetPage(self.driver)
 
     def tearDown(self):
@@ -26,7 +25,7 @@ class assetpageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     @attr(status='smoke')
     def test_AS_01(self):
         """
@@ -269,8 +268,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.asset_create_click()
         self.assetpage.select_asset_template_type("Place")
         asset_phone = self.assetpage.wait_for_element_path(self.assetpage._asset_overview_phone_text_box_locator)
@@ -298,7 +295,7 @@ class assetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_19(self):
         """
-        test_AS_19
+        Test : test_AS_19
         Description : To verify cancel button functionality of New asset window. With required date entry.
         Revision:
         Author : Kiran
@@ -362,7 +359,6 @@ class assetpageTest(BaseTestCase):
         self.assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3",
                 r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
-        sleep(10)
         self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
 
     @attr(priority="high")
@@ -1447,6 +1443,7 @@ class assetpageTest(BaseTestCase):
         """
 
         #self.assetpage.app_sanity_check()
+        sleep(5)
         self.assetpage.get_asset_chart_dashboard_image.click()
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
 
@@ -1459,8 +1456,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         sleep(10)
@@ -1475,8 +1470,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         sleep(10)
@@ -1495,7 +1488,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
         sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
         sleep(10)
@@ -1510,7 +1502,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
         sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
         sleep(10)
@@ -1529,7 +1520,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
         sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
         sleep(10)
@@ -1548,7 +1538,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
         sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
         sleep(10)

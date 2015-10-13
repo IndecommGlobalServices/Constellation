@@ -300,7 +300,7 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_templatetype_drop_down(self):
         try:
-            return self.wait_for_element_path(self._asset_overview_templatetype_dropdown_locator)
+            return self.driver.find_element_by_xpath(self._asset_overview_templatetype_dropdown_locator)
         except Exception, err:
             raise type(err)("Template type dropdown not available - search XPATH - " \
                           + self._asset_overview_templatetype_dropdown_locator + err.message)
@@ -332,7 +332,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_asset_type_text(self):
         try:
-            return self.wait_for_element_path(self._asset_filter_asset_type_text_locator)
+            return self.driver.find_element_by_xpath(self._asset_filter_asset_type_text_locator)
         except Exception, err:
             raise type(err)("Asset type dropdown not available - search XPATH - " \
                           + self._asset_filter_asset_type_text_locator + err.message)
@@ -1561,6 +1561,8 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+            (By.XPATH, self._asset_select_action_delete_select_xpath_locator)))
         WebDriverWait(self.driver, 50).until(EC.presence_of_element_located((By.XPATH, self._asset_create_asset))).click()
 
     def select_asset_template_type(self, template):
@@ -2249,56 +2251,6 @@ class AssetPage(BasePageClass):
                         sleep(10)
         else :
             print "No chart found at school and type level."
-
-    def wait_for_element_path_id(self, locator):
-        limit = 15   # waiting limit in seconds
-        inc = 1   # in seconds; sleep for 500ms
-        c = 0
-        while (c < limit):
-            try:
-                return self.driver.find_element_by_id(locator)  # Success
-            except:
-                sleep(inc)
-                c = c + inc
-        print c
-        raise Exception # Wait for element failed
-
-    def wait_for_element_path(self, locator):
-        limit = 15   # waiting limit in seconds
-        increment = 1   # in seconds; sleep for 500ms
-        count = 0
-        while (count < limit):
-            try:
-                return self.driver.find_element_by_xpath(locator)  # Success
-            except:
-                sleep(increment)
-                count = count + increment
-        raise Exception # Wait for element failed
-
-    def wait_for_list_element_path(self, locator):
-        limit = 20   # waiting limit in seconds
-        increment = 1   # in seconds; sleep for 500ms
-        count = 0
-        while (count < limit):
-            try:
-                return self.driver.find_elements_by_xpath(locator)  # Success
-            except:
-                sleep(increment)
-                count = count + increment
-        raise Exception # Failure
-
-    def wait_for_element_boolean(self, locator):
-        limit = 10   # waiting limit in seconds
-        increment = 1   # in seconds; sleep for 500ms
-        count = 0
-        while (count < limit):
-            try:
-                self.driver.find_element_by_xpath(locator)  # Success
-                return True
-            except:
-                sleep(increment)
-                count = count + increment
-        return False# Failure
 
     def get_total_row_count(self):
         countText = self.driver.find_element_by_id("assetstable_info").text
