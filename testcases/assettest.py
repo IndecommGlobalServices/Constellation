@@ -12,17 +12,21 @@ from time import sleep
 import json, os, re, inspect
 from selenium.webdriver.common.action_chains import ActionChains
 
-
 class assetpageTest(BaseTestCase):
 
     def setUp(self):
+        self.errors_and_failures = self.tally()
+        print self.errors_and_failures
         self.assetpage = AssetPage(self.driver)
 
     def tearDown(self):
+        if self.tally() > self.errors_and_failures:
+            self.take_screenshot()
         self.assetpage.return_to_apps_main_page()
 
+
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     @attr(status='smoke')
     def test_AS_01(self):
         """
@@ -218,7 +222,7 @@ class assetpageTest(BaseTestCase):
                 searchText = each["Search_name"]
                 self.assetpage.select_asset_search_text_box.clear()
                 self.assetpage.select_asset_search_text_box.send_keys(searchText)
-                searchNames = self.driver.find_elements_by_xpath(self.assetpage(self.driver)._asset_list_locator)
+                searchNames = self.driver.find_elements_by_xpath(self.assetpage._asset_list_locator)
                 for searchName in searchNames:
                     if self.assetpage.get_asset_list_no_matching_records_found.text:
                         self.assertEqual("No matching records found", self.assetpage.get_asset_list_no_matching_records_found.text,
@@ -244,7 +248,9 @@ class assetpageTest(BaseTestCase):
         self.assetpage.create_asset("Place")
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_name_breadcrumb), self.assetpage.get_asset_name_breadcrumb.text))
-
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                    (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self.assetpage._asset_create_asset)))
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_list_assets_name_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_place_name)
@@ -322,7 +328,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-
         #self.assetpage.app_sanity_check()
         self.assetpage.asset_create_click()
         self.assetpage.create_place_asset()
@@ -899,14 +904,11 @@ class assetpageTest(BaseTestCase):
         :return: None
         """
 
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
-        #locationEdit = self.driver.find_element_by_xpath(".//*[@id='widgets']/div[4]/div/div[2]/div/img")
         self.assetpage.get_asset_location_edit_icon.click()
-        #locationEdit.click()
-        WebDriverWait(self.driver,20).until(EC.presence_of_element_located(
-            (By.XPATH, self.assetpage._asset_location_title_id_locator)), "Location Title not displayed""Location Title not displayed")
+        locationTitle = self.assetpage.get_asset_location_title.text
+        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
         lati = "550"
         self.assetpage.get_asset_location_latitude_textbox.clear()
         self.assetpage.get_asset_location_latitude_textbox.send_keys(lati)
@@ -936,8 +938,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
@@ -976,13 +976,10 @@ class assetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_longitude_textbox.clear()
         self.assetpage.get_asset_location_longitude_textbox.send_keys(longi)
         self.assetpage.get_asset_location_save_button.click()
-
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
         self.assetpage.get_asset_location_marker_available_image.click()
-
         placeText = self.assetpage.get_asset_location_place_name_text.text
         self.assertEqual(self.assetpage.asset_place_name, placeText, "Marker name not displayed.")
-
 
 
     @attr(priority="high")
@@ -1369,7 +1366,9 @@ class assetpageTest(BaseTestCase):
         self.assetpage.create_asset("School")
         WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_name_breadcrumb), self.assetpage.asset_school_name[0]))
-
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                    (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self.assetpage._asset_create_asset)))
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_list_assets_name_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_school_name[0])
