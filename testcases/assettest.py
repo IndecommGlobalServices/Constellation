@@ -387,7 +387,6 @@ class assetpageTest(BaseTestCase):
         self.assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3",
                 r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
-        sleep(10)
         self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
 
 
@@ -409,13 +408,9 @@ class assetpageTest(BaseTestCase):
         email_add = r"test@email.com"
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_detail_edit_email_textbox_locator))).clear()
-        sleep(2)
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys(email_add)
-        sleep(2)
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-        sleep(2)
         regex = re.compile(r'[\w.-]+@[\w.-]+')
-        sleep(5)
         self.assertRegexpMatches(email_add, regex, "Expected and actual value is not matching for EMAIL")
         self.assetpage.get_asset_detail_edit_cancel_button.click()
 
@@ -438,14 +433,10 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver,20).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_detail_edit_title_locator)))
         self.assetpage.get_asset_detail_edit_detail_fax_text_box.clear()
-        sleep(5)
         self.assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(r"123abc1234") #Enter the value for FAX
-        sleep(5)
         self.assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-        sleep(5)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches(r"123abc1234", regex, "Expected and actual value is not matching for FAX")
-        sleep(5)
         self.assetpage.get_asset_detail_edit_cancel_button.click()
 
 
@@ -464,12 +455,9 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
         self.assetpage.get_asset_detail_edit_link.click()
-        sleep(10)
         self.assetpage.set_place_details_fields("4321", r"2020-05-16", r"Cancelled",r"cancel@indecomm.net",
                                                 r"111-111-1111", r"2017-02-23", r"10001", r"http://www.haystax.com")
-        sleep(10)
         self.assetpage.get_asset_detail_edit_cancel_button.click()
-        sleep(10)
         self.assertEqual(self.assetpage.asset_place_name, self.assetpage.get_asset_name_breadcrumb.text)
 
 
