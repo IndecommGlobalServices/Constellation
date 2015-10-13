@@ -165,7 +165,7 @@ class AssetPage(BasePageClass):
     # Asset Detail panel related
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
-    _asset_detail_edit_title_locator = "//*[@class='modal-title']"
+    _asset_detail_edit_title_locator = ".//h4[@id='H2']"
     _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
