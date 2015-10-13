@@ -6,12 +6,6 @@ from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
 
-
-cwd = os.getcwd()
-os.chdir('..')
-SCREEN_DUMP_LOCATION = os.path.join(os.getcwd(), "Screenshots")
-os.chdir(cwd)
-
 class BaseTestCase(unittest.TestCase):
     username = ""
 
@@ -39,61 +33,33 @@ class BaseTestCase(unittest.TestCase):
         #iconlistpage.click_asset_icon()
 
 
-
-
     @classmethod
     def tearDownClass(self):
-        '''
-        if self._test_has_failed():
-            if not os.path.exists(SCREEN_DUMP_LOCATION):
-                os.makedirs(SCREEN_DUMP_LOCATION)
-            for ix, handle in enumerate(self.driver.window_handles):
-                self._windowid=ix
-                self.driver.switch_to_window(handle)
-                self.take_screenshot()
-                #self.dump_html()
-        # close the browser
-        self.driver.quit()
-        super(BaseTestCase).tearDown()
-        #st = datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
-
-
-        st = datetime.now().isoformat().replace(':', '.')[:19]
-        os.chdir('..')
-        path = os.path.join(os.getcwd(), "Screenshots")
-        file_name = "Screenshot " + st + ".png"
-        SaveLocation = os.path.join(path, file_name)
-        self.driver.save_screenshot(SaveLocation)
-
-        '''
-
-
+        self.driver.quit()# close the browser
 
 
     def _test_has_failed(self):
-        for method, error in self._outcome.errors:
+        for method, error in self._resultForDoCleanups.failures:
+            print error + "failure"
             if error:
-                return  True
-            return False
+                return True
+        for method, error in self._resultForDoCleanups.errors:
+            print error + "error"
+            if error:
+                return True
+        return False
 
     def take_screenshot(self):
-        filename = self._get_filename() + '.png'
-        print "\n{method} SCREENSHOT:\n".format(method=self._testMethodName)
-        print('screenshotting to', filename)
-        self.driver.get_screenshot_as_file(filename)
-    '''
-    def dump_html(self):
-        filename = self._get_filename() + '.html'
-        print('dumping page HTML to', filename)
-        with open(filename, 'w') as f:
-            f.write(self.driver.page_source)
-    '''
-    def _get_filename(self):
-        timestamp = datetime.now().isoformat().replace(':', '.')[:19]
-        return '{folder}/{classname.{method}-{timestamp}'.format(
-                folder=SCREEN_DUMP_LOCATION,
-                classname=self.__class__.__name__,
-                method=self._testMethodName,
-                timestamp=timestamp
-            )
+        cwd = os.getcwd()
+        st = datetime.now().isoformat().replace(':', '.')[:19]
+        os.chdir('..')
+        path = os.path.join(os.getcwd(), "Screenshots")
+        os.chdir(cwd)
+        filename = self._testMethodName + "_Screenshot " + st + ".png"
+        if not os.path.exists(path):
+            os.makedirs(path)
+        SaveLocation = os.path.join(path, filename)
+        self.driver.save_screenshot(SaveLocation)
 
+    def tally(self):
+        return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
