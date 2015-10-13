@@ -12,7 +12,7 @@ from time import sleep
 import json, os, re, inspect
 from selenium.webdriver.common.action_chains import ActionChains
 
-class assetpageTest(BaseTestCase):
+class AssetpageTest(BaseTestCase):
 
     def setUp(self):
         self.errors_and_failures = self.tally()
