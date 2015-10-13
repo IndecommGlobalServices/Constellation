@@ -36,7 +36,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-        #self.assetpage.app_sanity_check()
         self.assetpage.get_asset_select_action_drop_down.click()
         if len(self.assetpage.get_asset_name_list)<= 0:
             self.assertFalse(self.assetpage.get_asset_link_delete_text.is_enabled(),
@@ -55,7 +54,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-        #self.assetpage.app_sanity_check()
         self.assetpage.get_select_checkbox_in_grid()
         self.assetpage.get_asset_select_action_drop_down.click()
         self.assertFalse(self.assetpage.get_asset_link_delete_text.is_enabled(),
@@ -78,7 +76,6 @@ class assetpageTest(BaseTestCase):
         self.assetpage.get_asset_delete_button.click() # Delete
         countafterdeletion = self.assetpage.get_total_row_count()
         self.assertEqual(int(countbeforedeletion), int(countafterdeletion), "Couldn't delete asset")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -110,8 +107,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         self.assertTrue(self.assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
         self.assetpage.get_asset_reset_button.click()
@@ -126,8 +121,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         self.assertTrue(self.assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter")
         self.assetpage.get_asset_reset_button.click()
@@ -142,7 +135,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-        #self.assetpage.app_sanity_check()
         self.assetpage.get_asset_school_district()
         for item in self.assetpage.select_asset_schooltype_district_column:
             self.assertEqual(self.assetpage.selecteddistrict, item.text, "Result doesnt match the filter")
@@ -158,7 +150,6 @@ class assetpageTest(BaseTestCase):
         Author: Kiran
         :return: None
         """
-        #self.assetpage.app_sanity_check()
         self.assetpage.get_asset_school_grade()
         for item in self.assetpage.select_asset_schooltype_grade_column:
             self.assertEqual(self.assetpage.selectedgrade, item.text, "Result doesnt match the filter")
@@ -174,8 +165,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.get_asset_reset_button.click()
         self.assetpage.get_asset_school_type()
         for item in self.assetpage.select_asset_schooltype_column:
@@ -192,8 +181,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.get_asset_reset_button.click()
         expectedAfterResetFilter = self.assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)
@@ -208,13 +195,10 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-
         cwd = os.getcwd()
         os.chdir('..')
         searchasset_filepath = os.path.join(os.getcwd(), "data", "json_SearchAssessments.json")
         os.chdir(cwd)
-
-        #self.assetpage.app_sanity_check()
         WebDriverWait(self.driver,20).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_search_textbox_locator)))
         with open(searchasset_filepath) as data_file:
@@ -231,7 +215,6 @@ class assetpageTest(BaseTestCase):
                         print searchName #Should replace with regexp comparison
         self.assetpage.select_asset_search_text_box.clear()
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_14_and_17(self):
@@ -243,8 +226,6 @@ class assetpageTest(BaseTestCase):
         :return: None
         """
         check = 0
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.create_asset("Place")
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_name_breadcrumb), self.assetpage.get_asset_name_breadcrumb.text))
@@ -272,8 +253,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.asset_create_click()
         self.assetpage.select_asset_template_type("Place")
         self.assetpage.enter_asset_type_name.send_keys("")#Clear the text filed and leave it without any value
@@ -301,7 +280,6 @@ class assetpageTest(BaseTestCase):
         self.assertRegexpMatches("123abc1234", regex, "Expected and actual value is not matching for EMAIL")
         self.assetpage.asset_overview_cancel_click()
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_18(self):
@@ -311,8 +289,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.asset_create_click()
         self.assetpage.asset_overview_cancel_click()
         expectedAfterResetFilter = self.assetpage.get_asset_asset_type_text.text
@@ -328,7 +304,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-        #self.assetpage.app_sanity_check()
         self.assetpage.asset_create_click()
         self.assetpage.create_place_asset()
         self.assetpage.asset_overview_cancel_click()
@@ -344,8 +319,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
@@ -353,7 +326,6 @@ class assetpageTest(BaseTestCase):
         self.assetpage.set_place_overview_fields(r"Ind address", r"Ind address 2", r"Ind city", r"KA", r"94821", r"Indecomm")
         self.assetpage.asset_overview_save_click()# Click on Save
         self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -364,8 +336,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
@@ -385,8 +355,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
@@ -395,7 +363,6 @@ class assetpageTest(BaseTestCase):
                 r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
         self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -406,8 +373,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
@@ -421,7 +386,6 @@ class assetpageTest(BaseTestCase):
         self.assertRegexpMatches(email_add, regex, "Expected and actual value is not matching for EMAIL")
         self.assetpage.get_asset_detail_edit_cancel_button.click()
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_25(self):
@@ -431,8 +395,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
@@ -903,12 +865,11 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
-        locationTitle = self.assetpage.get_asset_location_title.text
-        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"), "Location popup window not displayed")
         lati = "550"
         self.assetpage.get_asset_location_latitude_textbox.clear()
         self.assetpage.get_asset_location_latitude_textbox.send_keys(lati)
@@ -927,8 +888,6 @@ class assetpageTest(BaseTestCase):
         self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
         self.assetpage.get_asset_location_cancel_button.click()
 
-
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_37(self):
@@ -941,8 +900,8 @@ class assetpageTest(BaseTestCase):
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
-        locationTitle = self.assetpage.get_asset_location_title.text
-        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"), "Location popup window not displayed")
         lati = "40.7127"
         self.assetpage.get_asset_location_latitude_textbox.clear()
         self.assetpage.get_asset_location_latitude_textbox.send_keys(lati)
@@ -950,8 +909,8 @@ class assetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_longitude_textbox.clear()
         self.assetpage.get_asset_location_longitude_textbox.send_keys(longi)
         self.assetpage.get_asset_location_save_button.click()
+        self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -962,13 +921,11 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
-        locationTitle = self.assetpage.get_asset_location_title.text
-        self.assertEqual("Asset location", locationTitle, "Location Title not displayed")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"), "Location popup window not displayed")
         lati = "40.7127"
         self.assetpage.get_asset_location_latitude_textbox.clear()
         self.assetpage.get_asset_location_latitude_textbox.send_keys(lati)
@@ -976,11 +933,11 @@ class assetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_longitude_textbox.clear()
         self.assetpage.get_asset_location_longitude_textbox.send_keys(longi)
         self.assetpage.get_asset_location_save_button.click()
+        self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-200);")
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
         self.assetpage.get_asset_location_marker_available_image.click()
         placeText = self.assetpage.get_asset_location_place_name_text.text
         self.assertEqual(self.assetpage.asset_place_name, placeText, "Marker name not displayed.")
-
 
     @attr(priority="high")
     def test_AS_40(self):
@@ -990,8 +947,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()#Delete all uploaded files.
@@ -1564,9 +1519,7 @@ class assetpageTest(BaseTestCase):
         """
 
         #self.assetpage.app_sanity_check()
-        sleep(5)
         self.assetpage.get_asset_chart_dashboard_image.click()
-        sleep(5)
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
 
     @attr(priority="high")
