@@ -2296,7 +2296,7 @@ class AssetPage(BasePageClass):
     def get_total_row_count(self):
         countText = self.driver.find_element_by_id("assetstable_info").text
         splitedText = countText.split(" ")
-        totalCount = splitedText[10]
+        totalCount = splitedText[4]
         return int(totalCount)
 
     def _validate_page(self, driver):
