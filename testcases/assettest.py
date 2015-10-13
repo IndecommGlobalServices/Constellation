@@ -79,7 +79,6 @@ class assetpageTest(BaseTestCase):
         countafterdeletion = self.assetpage.get_total_row_count()
         self.assertEqual(int(countbeforedeletion), int(countafterdeletion), "Couldn't delete asset")
 
-
     @attr(priority="high")
     #@SkipTest
     @attr(status='smoke')
@@ -110,8 +109,6 @@ class assetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         self.assertTrue(self.assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
         self.assetpage.get_asset_reset_button.click()
@@ -394,6 +391,7 @@ class assetpageTest(BaseTestCase):
         self.assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3",
                 r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
+        sleep(10)
         self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
 
 
@@ -456,8 +454,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
@@ -475,22 +471,18 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_27
         Description : To verify all mandatory fields in Contact Section.
         Revision:
+        Author : Bijesh
         :return: None
         """
-        firstname = "FirstName"
-        lastname = "ZLastName"
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         self.assetpage.delete_existing_contact() #delete existing contacts.
-        self.assetpage.create_new_contact(firstname,lastname)#create new contact.
+        self.assetpage.create_new_contact("FirstName","ZLastName")#create new contact.
         act_new_contact_value = self.assetpage.get_asset_contact_new_contact_value_text.text
-        exp_new_contact_value = lastname+", "+firstname+" Title "+"111-111-1111"+" test@test.com"
-
+        exp_new_contact_value = "ZLastName, FirstName"+" Title "+r"111-111-1111 "+r"test@test.com"
         self.assertEqual(act_new_contact_value, exp_new_contact_value,
-                                "Expected and actual values for new contact are not matching.")
+                                                        "Expected and actual values for new contact are not matching.")
 
     @attr(priority="high")
     #@SkipTest
@@ -499,26 +491,21 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_28
         Description : To verify that main contact has same info as first contact.
         Revision:
+        Author : Bijesh
         :return: None
         """
-        firstname = "FirstName"
-        lastname = "ZLastName"
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         self.assetpage.delete_existing_contact()#delete existing contacts.
-        self.assetpage.create_new_contact(firstname,lastname)#create new contact.
+        self.assetpage.create_new_contact("FirstName","ZLastName")#create new contact.
         try:
             if self.assetpage.get_asset_main_contact_window:
                 act_name_value = self.assetpage.get_asset_main_contact_name_text.text
-                exp_name_value = "Shri "+firstname+" "+lastname
-                self.assertEqual(act_name_value,exp_name_value)#verify asset main contact first and last name value.
-
+                exp_name_value = "Shri FirstName ZLastName"
+                self.assertEqual(str(act_name_value), str(exp_name_value))#verify asset main contact first and last name value.
         except NoSuchElementException:
-
-            self.assertFalse(False,"No Main Contact exists.")
+            self.assertFalse(False, "No Main Contact exists.")
 
     @attr(priority="high")
     #@SkipTest
@@ -527,10 +514,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_29
         Description : To verify error message for first and last name.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -548,7 +534,6 @@ class assetpageTest(BaseTestCase):
         sleep(2)
         self.assetpage.get_asset_newcontact_window_cross_button.click()#click on cross button to close window.
         sleep(2)
-
         self.assertTrue(firstname_error, "Error message is not displayed for First Name.")
         self.assertTrue(lastname_error, "Error message is not displayed for Last Name.")
 
@@ -559,12 +544,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_30
         Description : To verify phone field of the Contact section.
         Revision:
+        Author : Bijesh
         :return: None
         """
-        firstname = "FirstName"
-        lastname = "ZLastName"
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -574,16 +556,15 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         self.assetpage.get_asset_newcontact_firstname_textbox.clear()
-        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys("FirstName")
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
-        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys("ZLastName")
         self.assetpage.get_asset_newcontact_phone_textbox.clear()
         self.assetpage.get_asset_newcontact_phone_textbox.send_keys(r"111-222-3343")
         self.assetpage.get_asset_newcontact_save_button.click()#click on save button.
         act_phone = self.assetpage.get_asset_contact_phone_value_text.text#reading act phone value.
         regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
-
-        self.assertRegexpMatches(act_phone, regex, "Expected and actual phone value are not matching.")
+        self.assertRegexpMatches(str(act_phone), regex, "Expected and actual phone value are not matching.")
 
     @attr(priority="high")
     #@SkipTest
@@ -592,12 +573,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_31_1
         Description : To verify email field of the Contact section.
         Revision:
+        Author : Bijesh
         :return: None
         """
-        firstname = "FirstName"
-        lastname = "ZLastName"
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -607,9 +585,9 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         self.assetpage.get_asset_newcontact_firstname_textbox.clear()
-        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys("FirstName")
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
-        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys("ZLastName")
         self.assetpage.get_asset_newcontact_email_textbox.clear()
         self.assetpage.get_asset_newcontact_email_textbox.send_keys(r"test@test.com")
         self.assetpage.get_asset_newcontact_save_button.click() #click on save button.
@@ -617,8 +595,7 @@ class assetpageTest(BaseTestCase):
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         act_email = self.assetpage.get_asset_contact_email_value_text.text #reading actual email value.
         regex = re.compile(r'[\w.-]+@[\w.-]+')
-
-        self.assertRegexpMatches(act_email, regex, "Expected and actual value is not matching for EMAIL.")
+        self.assertRegexpMatches(str(act_email), regex, "Expected and actual value is not matching for EMAIL.")
 
     @attr(priority="high")
     #@SkipTest
@@ -627,12 +604,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_31_2
         Description : To verify email field of the Contact section. Email address with wrong address.
         Revision:
+        Author : Bijesh
         :return: None
         """
-        firstname = "FirstName"
-        lastname = "ZLastName"
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -642,9 +616,9 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         self.assetpage.get_asset_newcontact_firstname_textbox.clear()
-        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys("FirstName")
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
-        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys("ZLastName")
         self.assetpage.get_asset_newcontact_email_textbox.clear()
         self.assetpage.get_asset_newcontact_email_textbox.send_keys(r"testtest.com")
         sleep(2)
@@ -652,7 +626,6 @@ class assetpageTest(BaseTestCase):
         sleep(2)
         exp_error_message = self.assetpage.get_asset_newcontact_email_error_message.is_displayed()
         self.assetpage.get_asset_newcontact_window_cross_button.click()#Click on Cross button to close window.
-
         self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
 
     @attr(priority="high")
@@ -662,12 +635,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_32
         Description : To verify cancel button functionality of the Contact window.
         Revision:
+        Author : Bijesh
         :return: None
         """
-        firstname = "FirstNameDel"
-        lastname = "ZLastNameDel"
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -677,17 +647,15 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         self.assetpage.get_asset_newcontact_firstname_textbox.clear()
-        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys("FirstNameDel")
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
-        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys("ZLastNameDel")
         self.assetpage.get_asset_newcontact_cancel_button.click()#click on cancel button.
         sleep(2)
         try:
             if self.assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
-
                 self.assertFalse(False,"Contact has been created. Cancel button is not working.")
         except:
-
             self.assertTrue(True,"New Contact is not created.")
 
     @attr(priority="high")
@@ -696,10 +664,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_33_1
         Description : To verify contact name in ascending order.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -719,7 +686,6 @@ class assetpageTest(BaseTestCase):
         act_name_list_value =[]
         for name in act_name_list:
             act_name_list_value.append(name.text)
-
         self.assertEqual(exp_name_descending, ", ".join(act_name_list_value),"Contact name is not sorted descendingly")
 
     @attr(priority="high")
@@ -728,10 +694,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_33_2
         Description : To verify contact title's value in ascending order.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -752,7 +717,6 @@ class assetpageTest(BaseTestCase):
         act_title_list_value = []
         for title in act_title_list:
             act_title_list_value.append(title.text)
-
         self.assertEqual(exp_title_descending, ", ".join(act_title_list_value),
                          "Contact Title column is not sorted descendingly")
 
@@ -762,10 +726,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_33_3
         Description : To verify contact phone's value in ascending order.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -786,7 +749,6 @@ class assetpageTest(BaseTestCase):
         act_phone_list_value = []
         for phone in act_phone_list:
             act_phone_list_value.append(phone.text)
-
         self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value),
                          "Contact Phone no is not sorted descendingly")
 
@@ -796,10 +758,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_33_4
         Description : To verify contact email's value in ascending order.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -830,12 +791,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_34
         Description : To verify delete option of contact.
         Revision:
+        Author : Bijesh
         :return: None
         """
-        firstname = "FirstName"
-        lastname = "ZLastName"
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -845,17 +803,17 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         self.assetpage.get_asset_newcontact_firstname_textbox.clear()
-        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys("FirstName")
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
-        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys("ZLastName")
         self.assetpage.get_asset_newcontact_save_button.click()#click on save button.
         self.assetpage.delete_existing_contact()#delete existing contacts.
         try:
             if self.assetpage.get_asset_newcontact_delete_icon.is_displayed():
                 sleep(2)
-                self.assertFalse("New Contact is not Deleted")
+                self.assertFalse(False,"New Contact is not Deleted")
         except NoSuchElementException:
-            self.assertTrue("The Contact has been Deleted")
+            self.assertTrue(True,"The Contact has been Deleted")
 
     @attr(priority="high")
     #@SkipTest
@@ -864,12 +822,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_35
         Description : To verify delete window cancel button functionality.
         Revision:
+        Author : Bijesh
         :return: None
         """
-        firstname = "FirstName"
-        lastname = "ZLastName"
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
@@ -879,9 +834,9 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._assets_points_of_contact_title_locator), r"Contact information"))
         self.assetpage.get_asset_newcontact_firstname_textbox.clear()
-        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys(firstname)
+        self.assetpage.get_asset_newcontact_firstname_textbox.send_keys("FirstName")
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
-        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys(lastname)
+        self.assetpage.get_asset_newcontact_lastname_textbox.send_keys("ZLastName")
         self.assetpage.get_asset_newcontact_save_button.click()
         try:
             if self.assetpage.get_asset_newcontact_delete_icon.is_displayed():
@@ -890,9 +845,9 @@ class assetpageTest(BaseTestCase):
                 sleep(2)
                 self.assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
                 sleep(2)
-                self.assertTrue("Pass. Cancel Button is working properly.")
+                self.assertTrue(True,"Cancel Button is working properly.")
         except NoSuchElementException:
-            self.assertFalse("The Contact has been Deleted.")
+            self.assertFalse(False,"The Contact has been Deleted.")
 
     @attr(priority="high")
     #@SkipTest
@@ -901,9 +856,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_36
         Description : To verify Latitude and Longitude boundary values.
         Revision:
+        Author : Kiran
         :return: None
         """
-
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
@@ -926,8 +881,6 @@ class assetpageTest(BaseTestCase):
         locationSave = self.assetpage.get_asset_location_save_button
         self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
         self.assetpage.get_asset_location_cancel_button.click()
-
-
 
     @attr(priority="high")
     #@SkipTest
@@ -952,7 +905,6 @@ class assetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_save_button.click()
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_38(self):
@@ -962,8 +914,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
@@ -988,10 +938,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_40
         Description : To verify whether uploaded file deleted properly or not.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()#Delete all uploaded files.
@@ -1018,13 +967,10 @@ class assetpageTest(BaseTestCase):
         if (image_count_after_file_upload == image_count_after_file_delete+1):
             try:
                 if (self.assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
-
                     self.assertFalse("Test Case has been failed.")
             except NoSuchElementException:
-
                 self.assertTrue("Test Case 40 has been passed.")
         else:
-
             self.assertFalse("Test Case 40 has been failed.")
 
     @attr(priority="high")
@@ -1033,36 +979,32 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_41
         Description : To verify cancel button functionality of File upload window.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()#Delete all uploaded files.
         number_of_image_before_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_before_file_upload = len(number_of_image_before_upload)
         self.assetpage.get_asset_photos_documents_upload_file_button.click()
-        sleep(2)
+        sleep(1)
         file_path = self.assetpage.file_path("Test_Case_41.jpg")
         self.assetpage.get_asset_photos_documents_attached_file_button.send_keys(file_path)
-        sleep(3)
+        sleep(1)
         caption_val = "Test_Case_41"
         self.assetpage.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
-        sleep(2)
+        sleep(1)
         self.assetpage.get_asset_photos_documents_window_cancel_button.click()
         try:
             number_of_image_after_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
             image_count_after_file_upload = len(number_of_image_after_upload)
             if (image_count_after_file_upload == image_count_before_file_upload):
-
-                self.assertTrue("Test Case 41 has been passed.")
+                self.assertTrue(True,"Test Case 41 has been passed.")
             else:
-
-                self.assertFalse("Test Case 41 has been failed")
+                self.assertFalse(False,"Test Case 41 has been failed")
         except Exception, e:
             error = "Test Case no 41 has been failed. Error message is ::"+str(e)
-
             self.assertFalse(False, error)
 
     @attr(priority="high")
@@ -1071,10 +1013,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_42
         Description : To verify an image file with caption is uploaded properly.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()
@@ -1084,11 +1025,9 @@ class assetpageTest(BaseTestCase):
         image_caption_text = self.assetpage.get_asset_photos_documents_image_caption_text(caption_val)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
-
-            self.assertTrue("Test Case has been passed.")
+            self.assertTrue(True,"Test Case has been passed.")
         else:
-
-            self.assertFalse("Test Case has been failed. No Caption Displayed.")
+            self.assertFalse(False,"Test Case has been failed. No Caption Displayed.")
 
     @attr(priority="high")
     def test_AS_43(self):
@@ -1096,10 +1035,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_43
         Description : To verify error message when file with more than 12 MB is uploaded.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()
@@ -1110,10 +1048,8 @@ class assetpageTest(BaseTestCase):
             WebDriverWait(self.driver, 200).until(EC.text_to_be_present_in_element(
                 (By.XPATH, self.assetpage._asset_header_save_text_locator),r"415 - UNSUPPORTED MEDIA TYPE"))
         except:
-
-            self.assertFalse("Test Case has been failed. No Error message displayed for unsupported media size.")
-
-        self.assertTrue(1,"Test Case has been passed.")
+            self.assertFalse(False,"Test Case has been failed. No Error message displayed for unsupported media size.")
+        self.assertTrue(True,"Test Case has been passed.")
 
     @attr(priority="high")
     def test_AS_44_1(self):
@@ -1121,10 +1057,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_44_1
         Description : To verify a pdf file with caption is uploaded properly.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()
@@ -1135,11 +1070,9 @@ class assetpageTest(BaseTestCase):
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and
                                                         (self.assetpage.get_asset_header_save_text.text == r"Saved")):
-
-            self.assertTrue("Test Case has been passed.")
+            self.assertTrue(True,"Test Case has been passed.")
         else:
-
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse(False,"Test Case has been failed.")
 
     @attr(priority="high")
     def test_AS_44_2(self):
@@ -1147,10 +1080,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_44_2
         Description : To verify a html file with caption is uploaded properly.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()
@@ -1161,11 +1093,9 @@ class assetpageTest(BaseTestCase):
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and
                                                         (self.assetpage.get_asset_header_save_text.text == r"Saved")):
-
-            self.assertTrue("Test Case has been passed.")
+            self.assertTrue(True,"Test Case has been passed.")
         else:
-
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse(False,"Test Case has been failed.")
 
     @attr(priority="high")
     def test_AS_44_3(self):
@@ -1173,10 +1103,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_44_3
         Description : To verify a text file with caption is uploaded properly.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()
@@ -1187,11 +1116,9 @@ class assetpageTest(BaseTestCase):
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and
                                                         (self.assetpage.get_asset_header_save_text.text == r"Saved")):
-
-            self.assertTrue("Test Case has been passed.")
+            self.assertTrue(True,"Test Case has been passed.")
         else:
-
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse(False,"Test Case has been failed.")
 
     @attr(priority="high")
     def test_AS_45(self):
@@ -1199,10 +1126,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_45
         Description : To verify whether multiple files has been uploaded properly or not.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()
@@ -1213,11 +1139,9 @@ class assetpageTest(BaseTestCase):
             self.assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
         image_count_after_file_upload = len(self.assetpage.get_asset_photos_documents_uploaded_file_count)
         if (image_count_after_file_upload == image_count_before_file_upload+3):
-
-            self.assertTrue("Test Case has been passed.")
+            self.assertTrue(True,"Test Case has been passed.")
         else:
-
-            self.assertFalse("Test Case has been failed.")
+            self.assertFalse(False,"Test Case has been failed.")
 
     @attr(priority="high")
     def test_AS_47(self):
@@ -1225,10 +1149,9 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_47
         Description : To verify an image file without caption is uploaded properly.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assetpage.delete_uploaded_files()
@@ -1239,11 +1162,9 @@ class assetpageTest(BaseTestCase):
         image_count_after_file_upload = len(self.assetpage.get_asset_photos_documents_uploaded_file_count)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(image_file_name)
         if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
-
-            self.assertTrue("Test Case has been passed")
+            self.assertTrue(True,"Test Case has been passed")
         else:
-
-            self.assertFalse("Test Case has been failed")
+            self.assertFalse(False,"Test Case has been failed")
 
     @attr(priority="high")
     def test_AS_48_1(self):
@@ -1251,14 +1172,13 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_48_1
         Description : To verify annotation groups text.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self.assetpage._asset_annotation_widget_locator), "Annotations"))
-        exp_text_val = "This is Indecomm Testing. Groups."
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
+                                            (By.XPATH, self.assetpage._asset_annotation_widget_locator), "Annotations"))
+        exp_text_val = r"This is Indecomm Testing. Groups."
         self.assetpage.delete_all_annotation()
         self.assetpage.get_asset_annotation_plus_image.click()
         self.assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)#Enter Annotation text.
@@ -1267,8 +1187,7 @@ class assetpageTest(BaseTestCase):
         self.assetpage.get_asset_annotation_edit_window_save_button.click()
         sleep(2)
         act_text_val = ((self.assetpage.get_asset_annotation_text_value.text).split(' - '))[1].strip()#read annotation value.
-
-        self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        self.assertEqual(str(act_text_val),str(exp_text_val), "The Annotation Texts are not Matching.")
 
     @attr(priority="high")
     def test_AS_48_2(self):
@@ -1276,13 +1195,13 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_48_2
         Description : To verify annotation tenant text.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, self.assetpage._asset_annotation_widget_locator), "Annotations"))
-        exp_text_val = "This is Indecomm Testing. Tenant."
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
+                                           ((By.XPATH, self.assetpage._asset_annotation_widget_locator), "Annotations"))
+        exp_text_val = r"This is Indecomm Testing. Tenant."
         self.assetpage.delete_all_annotation()#delete All Annotation.
         self.assetpage.get_asset_annotation_plus_image.click()#Click on Annotation Plus image.
         self.assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)#Enter Annotation text.
@@ -1292,8 +1211,7 @@ class assetpageTest(BaseTestCase):
         sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text#read annotation value.
         act_text_val = (text_val.split(' - '))[1].strip()
-
-        self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        self.assertEqual(str(act_text_val),str(exp_text_val), "The Annotation Texts are not Matching.")
 
     @attr(priority="high")
     def test_AS_48_3(self):
@@ -1301,13 +1219,13 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_48_3
         Description : To verify annotation users text.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, self.assetpage._asset_annotation_widget_locator), "Annotations"))
-        exp_text_val = "This is Indecomm Testing. Groups."
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
+                                           ((By.XPATH, self.assetpage._asset_annotation_widget_locator), "Annotations"))
+        exp_text_val = r"This is Indecomm Testing. Groups."
         self.assetpage.delete_all_annotation()#delete All Annotation.
         self.assetpage.get_asset_annotation_plus_image.click()#Click on Annotation Plus image.
         self.assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)#Enter Annotation text.
@@ -1317,8 +1235,7 @@ class assetpageTest(BaseTestCase):
         sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text#read annotation value.
         act_text_val = (text_val.split(' - '))[1].strip()
-
-        self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        self.assertEqual(str(act_text_val),str(exp_text_val), "The Annotation Texts are not Matching.")
 
     @attr(priority="high")
     def test_AS_48_4(self):
@@ -1326,13 +1243,13 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_48_4
         Description : To verify annotation edit functionality.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, self.assetpage._asset_annotation_widget_locator), "Annotations"))
-        exp_text_val = "This is Indecomm Testing. Gropus."
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
+                                           ((By.XPATH, self.assetpage._asset_annotation_widget_locator), "Annotations"))
+        exp_text_val = r"This is Indecomm Testing. Gropus."
         self.assetpage.delete_all_annotation()#delete All Annotation.
         self.assetpage.get_asset_annotation_plus_image.click()#Click on Annotation Plus image.
         self.assetpage.get_asset_annotation_edit_window_text_area.send_keys("Random Text Value.")#Enter Annotation text.
@@ -1347,8 +1264,7 @@ class assetpageTest(BaseTestCase):
         sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text
         act_text_val = (text_val.split(' - '))[1].strip()
-
-        self.assertEqual(act_text_val,exp_text_val, "The Annotation Texts are not Matching.")
+        self.assertEqual(str(act_text_val),str(exp_text_val), "The Annotation Texts are not Matching.")
 
     @attr(priotity = "high")
 #    @attr(status='smoke')
@@ -1471,6 +1387,8 @@ class assetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
         self.assetpage.get_asset_detail_edit_link.click()
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+                                         (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
         self.assetpage.set_school_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
                        r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "3", "6300", r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_cancel_button.click()
@@ -1483,25 +1401,25 @@ class assetpageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AS_58(self):
-	"""
-	Test : test_AS_58
+        """
+        Test : test_AS_58
         Description : To verify save button functionality of Detail Window.
         Revision:
         :return: None
-    """
-
-        #self.assetpage.app_sanity_check()
+        """
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_school_name[0], "School")
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH,
+                                                         self.assetpage._asset_details_edit_widget_locator), "Details"))
         self.assetpage.get_asset_detail_edit_link.click()
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+                                         (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
         self.assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2",
                                            r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300",
                                            "http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
-        sleep(10)
+        sleep(5)
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(),
                         "Saved text is not displayed")
-
 
     @attr(priority="high")
     def test_AS_59_1(self):
@@ -1509,24 +1427,24 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_59_1
         Description : To verify email text box functionality of Detail Window.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_school_name[0], "School")
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
+                                              (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
+
         self.assetpage.get_asset_detail_edit_link.click()
+
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
+                                         (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
         self.assetpage.get_asset_detail_edit_email_text_box.clear()
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
         self.assetpage.get_asset_detail_edit_save_button.click()
         sleep(2)
         email = self.assetpage.get_asset_detail_email_value_text.text
         regex = re.compile(r'[\w.-]+@[\w.-]+')
-
-        self.assertRegexpMatches(email, regex, "Expected and actual value is not matching for EMAIL")
+        self.assertRegexpMatches(str(email), regex, "Expected and actual value is not matching for EMAIL")
 
     @attr(priority="high")
     def test_AS_59_2(self):
@@ -1534,23 +1452,22 @@ class assetpageTest(BaseTestCase):
         Test : test_AS_59_2
         Description : To verify email text box functionality of Detail Window. Invalid value. Verify error message.
         Revision:
+        Author : Bijesh
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_school_name[0], "School")
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
+                                              (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
+
         self.assetpage.get_asset_detail_edit_link.click()
+
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
+                                         (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
         self.assetpage.get_asset_detail_edit_email_text_box.clear()
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys("testtest")
         self.assetpage.get_asset_detail_edit_save_button.click()
         state = self.assetpage.get_asset_detail_edit_save_button.is_enabled()
         self.assetpage.get_asset_detail_edit_window_cross_button.click()
-        sleep(2)
-
         self.assertFalse(state, "Save Button is enabled even though EMAIL value is wrong")
 
     @attr(priority="high")
