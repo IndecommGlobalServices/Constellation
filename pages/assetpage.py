@@ -165,7 +165,7 @@ class AssetPage(BasePageClass):
     # Asset Detail panel related
     _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
     _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
-    _asset_detail_edit_title_locator = "//*[@class='modal-title']"
+    _asset_detail_edit_title_locator = ".//*[@id='asset_details_modal']/div/div/div"
     _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
@@ -1511,13 +1511,15 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        try:
-            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
-                (By.LINK_TEXT, self._asset_link_locator))).click()
-            WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self._asset_create_asset)))
-        except:
-            inspectstack = inspect.stack()[1][3]
-            self.recoverapp(inspectstack)
+        if not WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+            (By.XPATH, self._asset_create_asset))).is_displayed():
+            try:
+                WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                    (By.LINK_TEXT, self._asset_link_locator))).click()
+                WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self._asset_create_asset)))
+            except:
+                inspectstack = inspect.stack()[1][3]
+                self.recoverapp(inspectstack)
 
     def recoverapp(self, inspectstack):
         """
