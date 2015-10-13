@@ -14,6 +14,7 @@ os.chdir(cwd)
 
 class BaseTestCase(unittest.TestCase):
     username = ""
+
     @classmethod
     def setUpClass(self):
         #display = Display(visible=0, size=(1024,768))
@@ -50,11 +51,13 @@ class BaseTestCase(unittest.TestCase):
                 self._windowid=ix
                 self.driver.switch_to_window(handle)
                 self.take_screenshot()
-                self.dump_html()
-
+                #self.dump_html()
+        # close the browser
+        self.driver.quit()
+        super(BaseTestCase).tearDown()
         #st = datetime.fromtimestamp(time.time()).strftime('%Y%m%d_%H%M%S')
 
-        '''
+
         st = datetime.now().isoformat().replace(':', '.')[:19]
         os.chdir('..')
         path = os.path.join(os.getcwd(), "Screenshots")
@@ -62,10 +65,9 @@ class BaseTestCase(unittest.TestCase):
         SaveLocation = os.path.join(path, file_name)
         self.driver.save_screenshot(SaveLocation)
 
+        '''
 
-        # close the browser
-        self.driver.quit()
-        #super(BaseTestCase).tearDown()
+
 
 
     def _test_has_failed(self):
@@ -76,22 +78,22 @@ class BaseTestCase(unittest.TestCase):
 
     def take_screenshot(self):
         filename = self._get_filename() + '.png'
+        print "\n{method} SCREENSHOT:\n".format(method=self._testMethodName)
         print('screenshotting to', filename)
         self.driver.get_screenshot_as_file(filename)
-
+    '''
     def dump_html(self):
         filename = self._get_filename() + '.html'
         print('dumping page HTML to', filename)
         with open(filename, 'w') as f:
             f.write(self.driver.page_source)
-
+    '''
     def _get_filename(self):
         timestamp = datetime.now().isoformat().replace(':', '.')[:19]
-        return '{folder}/{classname.{method}-window{window}-{timestamp}'.format(
-            folder=SCREEN_DUMP_LOCATION,
-            classname=self.__class__.__name__,
-            method=self._testMethodName,
-            windowid=self._windowid,
-            timestamp=timestamp
-        )
+        return '{folder}/{classname.{method}-{timestamp}'.format(
+                folder=SCREEN_DUMP_LOCATION,
+                classname=self.__class__.__name__,
+                method=self._testMethodName,
+                timestamp=timestamp
+            )
 
