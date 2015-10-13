@@ -69,7 +69,7 @@ class BaseTestCase(unittest.TestCase):
 
 
 
-
+    '''
     def _test_has_failed(self):
         for method, error in self._outcome.errors:
             if error:
@@ -81,13 +81,13 @@ class BaseTestCase(unittest.TestCase):
         print "\n{method} SCREENSHOT:\n".format(method=self._testMethodName)
         print('screenshotting to', filename)
         self.driver.get_screenshot_as_file(filename)
-    '''
+
     def dump_html(self):
         filename = self._get_filename() + '.html'
         print('dumping page HTML to', filename)
         with open(filename, 'w') as f:
             f.write(self.driver.page_source)
-    '''
+
     def _get_filename(self):
         timestamp = datetime.now().isoformat().replace(':', '.')[:19]
         return '{folder}/{classname.{method}-{timestamp}'.format(
@@ -96,4 +96,4 @@ class BaseTestCase(unittest.TestCase):
                 method=self._testMethodName,
                 timestamp=timestamp
             )
-
+    '''
