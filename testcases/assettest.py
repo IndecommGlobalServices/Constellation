@@ -868,7 +868,7 @@ class assetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_longitude_textbox.clear()
         self.assetpage.get_asset_location_longitude_textbox.send_keys(longi)
         self.assetpage.get_asset_location_save_button.click()
-        self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
+        #self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
 
     @attr(priority="high")
@@ -892,7 +892,7 @@ class assetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_longitude_textbox.clear()
         self.assetpage.get_asset_location_longitude_textbox.send_keys(longi)
         self.assetpage.get_asset_location_save_button.click()
-        self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-200);")
+        #self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-200);")
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
         self.assetpage.get_asset_location_marker_available_image.click()
         placeText = self.assetpage.get_asset_location_place_name_text.text
