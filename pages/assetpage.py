@@ -193,6 +193,7 @@ class AssetPage(BasePageClass):
     _asset_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
     _asset_photos_documents_delete_window_delete_locator = "//div[@id='delete_document_modal']//button[contains(text(),'Delete')]"
     _asset_photos_documents_window_title_locator = ".//*[@id='upload_document_file_heading']"
+    _asset_photos_documents_delete_icon_locator = ".//img[contains(@src,'delete_icon')]"
 
     # Asset Annotation Panel
     _asset_annotation_widget_locator = ".//*[@id='widgets']/div[8]/div/div[1]"
@@ -1179,6 +1180,14 @@ class AssetPage(BasePageClass):
                           + self._asset_photos_documents_delete_window_delete_locator + err.message)
 
     @property
+    def get_asset_photos_documents_delete_icon_image(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_photos_documents_delete_icon_locator)
+        except Exception, err:
+            raise type(err)("Delete icon is not displayed - search XPATH - " \
+                          + self._asset_photos_documents_delete_icon_locator + err.message)
+
+    @property
     def get_asset_annotation_plus_image(self):
         try:
             return self.driver.find_element_by_xpath(self._asset_annotation_plus_image_locator)
@@ -1787,9 +1796,8 @@ class AssetPage(BasePageClass):
                 sleep(2)
                 self.create_asset(asset_type)
                 sleep(2)
-        except:
-            print "No Asset is existing or Asset Creation has been failed."
-
+        except Exception, err:
+            raise type(err)("No Asset is existing or Asset Creation has been failed. "+err.message)
 
     def set_place_overview_fields(self,paddress, paddress1, pcity, pstate, pzip, powner):
         """
@@ -1893,8 +1901,8 @@ class AssetPage(BasePageClass):
                 self.get_asset_newcontact_delete_icon.click()
                 sleep(1)
                 self.get_asset_newcontact_delete_popup_delete_button.click()
-        except NoSuchElementException, ElementNotVisibleException:
-            pass
+        except Exception, err:
+            raise type(err)("Contact Delete Icon not displayed or it is disabled. "+err.message)
 
     def create_new_contact(self, firstname, lastname, title="Title", phone=r"111-111-1111", email=r"test@test.com",
                                         prefix="Shri", address1="Indecomm", address2=r"Brigade South Parade",
@@ -1955,9 +1963,8 @@ class AssetPage(BasePageClass):
                 self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],
                                         emaillist[contact])
                 sleep(2)
-            sleep(2)
-        except:
-            print "multiple file creation has been failed"
+        except Exception, err:
+            raise type(err)("multiple contacts creation has been failed. "+err.message)
 
     def file_path(self, image_file_name):
         """
@@ -1991,18 +1998,16 @@ class AssetPage(BasePageClass):
                     index = count
                     xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
                     image_icon_xpath =  self.driver.find_element_by_xpath\
-                        (".//*[@id='widgets']/div[6]/div[1]/div/div[2]/div/div[" + str(index)+ "]")
+                        ("(.//img[@class='neutron_document_img'])[" + str(index)+ "]")
                     Hover = ActionChains(self.driver).move_to_element(image_icon_xpath)
                     Hover.perform()
-                    delete_icon = self.driver.find_element_by_xpath(xpath)
-                    delete_icon.click()
+                    self.driver.find_element_by_xpath(xpath).click()
                     self.get_asset_photos_documents_delete_window_delete_button.click()
                     WebDriverWait(self.driver,20).until(EC.element_to_be_clickable((By.XPATH,
                                                             self._asset_photos_documents_upload_file_button_locator)))
-                    sleep(10)
-        except :
-            print "File deletion not done properly or some files could not be deleted."
-
+                    sleep(3)
+        except Exception, err:
+            raise type(err)("Delete Icon not displayed. File could not be deleted. "+err.message)
 
     def upload_a_file_with_caption(self, image_caption, image_file_name):
         """
@@ -2016,20 +2021,17 @@ class AssetPage(BasePageClass):
             # Click on Attach file button and attached the file path with the send_keys
             file_path = self.file_path(image_file_name)
             self.get_asset_photos_documents_attached_file_button.send_keys(file_path)
-            #sleep(3)
             # Enter Caption
             caption_val = image_caption
             self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
-            #sleep(2)
             # Click Upload.
             self.get_asset_photos_documents_window_upload_button.click()
             try:
                 WebDriverWait(self.driver,200).until(EC.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
-            except:
-                pass
-        except:
-            print "File uploads failed."
-
+            except Exception, err:
+                raise type(err)("File has been uploaded but could not be saved. "+err.message)
+        except Exception, err:
+            raise type(err)("File could not be uploaded. "+err.message)
 
     def delete_all_annotation(self):
         """
@@ -2043,8 +2045,8 @@ class AssetPage(BasePageClass):
                 sleep(2)
                 self.get_asset_annotation_delete_image.click()
                 sleep(2)
-        except:
-            print "Annotation text coulld not deleted or no annotation text is available."
+        except Exception, err:
+            raise type(err)("Annotation text coulld not deleted or no annotation text is available.. "+err.message)
 
     svg_path_1=r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"
     svg_path_2=r"/*[name()='text']"
