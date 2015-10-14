@@ -226,6 +226,7 @@ class AssetPage(BasePageClass):
     #Chart dashboard
     _asset_chart_dashboard_img_xpath_locator = "//img[@title='Dashboard']"
 
+
     _asset_count = 0
     _assets = {}
 
@@ -1366,6 +1367,14 @@ class AssetPage(BasePageClass):
             raise type(err)(" - search XPATH - " \
                           + self._asset_chart_dashboard_img_xpath_locator + err.message)
 
+    @property
+    def get_asset_chart_total_graph(self):
+        try:
+            return self.driver.find_elements_by_xpath(self._asset_chart_total_Graph_In_Container_xpath_locator)
+        except Exception, err:
+            raise type(err)(" - search XPATH - " \
+                          + self._asset_chart_total_Graph_In_Container_xpath_locator + err.message)
+
     def get_asset_photos_documents_image_caption_text(self, caption_val):
         caption_xpath = "//div[contains(@label,'Photos / Documents')]/div[@ng-repeat='document in documents']/div/div[contains(text(),'"+caption_val+"')]"
         try:
@@ -2046,6 +2055,7 @@ class AssetPage(BasePageClass):
         except:
             print "Annotation text coulld not deleted or no annotation text is available."
 
+    # Charts related functions
     svg_path_1=r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"
     svg_path_2=r"/*[name()='text']"
 
@@ -2056,8 +2066,7 @@ class AssetPage(BasePageClass):
         :return:
         """
         chart_xpath = r"//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
+        totalGraphInContainer = self.get_asset_chart_total_graph
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) >= 1:
             print "Printing chart names..."
@@ -2068,7 +2077,6 @@ class AssetPage(BasePageClass):
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
         else :
             print "No chart found at place level."
 
@@ -2079,19 +2087,16 @@ class AssetPage(BasePageClass):
         :return:
         """
         chart_xpath = r"//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
+        totalGraphInContainer = self.get_asset_chart_total_graph
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) >= 1:
             print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-                if totalGraph.text == "Type":
-                    assets = self.driver.find_elements_by_xpath(str(chart_xpath))
-                    for asset in assets:
-                        print asset.text
-                        sleep(10)
+                assets = self.driver.find_elements_by_xpath(str(chart_xpath))
+                for asset in assets:
+                    print asset.text
         else :
             print "No chart found at place level."
 
@@ -2103,20 +2108,17 @@ class AssetPage(BasePageClass):
         :return:
         """
         chart_xpath = self.svg_path_1+self.svg_path_2+r"/*[name()='tspan']"
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
+        totalGraphInContainer = self.get_asset_chart_total_graph
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) >= 1:
             print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
-
                 print "Printing according to the chart wise data..."
-                assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
-                for asset in assets:
-                    print asset.text
-                    sleep(10)
-
+                if totalGraph.text == "Type":
+                    assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
+                    for asset in assets:
+                        print asset.text
         else :
             print "No chart found at place and type level."
 
@@ -2129,8 +2131,7 @@ class AssetPage(BasePageClass):
         chart_xpath_1 = "//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
         chart_xpath_2 = "//div[starts-with(@id,'asset_graph-1')]"+self.svg_path_1+self.svg_path_2
         chart_xpath_3 = "//div[starts-with(@id,'asset_graph-2')]"+self.svg_path_1+self.svg_path_2
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
+        totalGraphInContainer = self.get_asset_chart_total_graph
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) >= 1:
             print "Printing chart names..."
@@ -2141,17 +2142,14 @@ class AssetPage(BasePageClass):
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
                 elif totalGraph.text == "Grade Level":
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
                 elif totalGraph.text == "School Type":
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_3))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
         else :
             print "No chart found at school level."
 
@@ -2165,28 +2163,23 @@ class AssetPage(BasePageClass):
         """
         chart_xpath_1 = "//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
         chart_xpath_2 = "//div[starts-with(@id,'asset_graph-1')]"+self.svg_path_1+self.svg_path_2
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
+        totalGraphInContainer = self.get_asset_chart_total_graph
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) >= 1:
             print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-
                 if totalGraph.text == "Grade Level":
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
                 elif totalGraph.text == "School Type":
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
         else :
             print "No chart found at school and district level."
-
 
     def school_related_charts_School_And_Grade_Is_Selected(self):
         """
@@ -2197,25 +2190,21 @@ class AssetPage(BasePageClass):
         """
         chart_xpath_1 = "//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
         chart_xpath_2 = "//div[starts-with(@id,'asset_graph-1')]"+self.svg_path_1+self.svg_path_2
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
+        totalGraphInContainer = self.get_asset_chart_total_graph
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) >= 1:
             print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-
                 if totalGraph.text == "District":
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
                 elif totalGraph.text == "School Type":
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
         else :
             print "No chart found at school and grade level."
 
@@ -2228,25 +2217,21 @@ class AssetPage(BasePageClass):
         """
         chart_xpath_1 = "//div[starts-with(@id,'asset_graph-0')]"+self.svg_path_1+self.svg_path_2
         chart_xpath_2 = "//div[starts-with(@id,'asset_graph-1')]"+self.svg_path_1+self.svg_path_2
-        totalGraphInContainer = self.driver.find_elements_by_xpath(".//*[@id='graphs_frame']/div/div/div/div[1]")
-        sleep(10)
+        totalGraphInContainer = self.get_asset_chart_total_graph
         print len(totalGraphInContainer)
         if len(totalGraphInContainer) >= 1:
             print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
-
                 if totalGraph.text == "District":
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
                 elif totalGraph.text == "Grade Level":
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
-                        sleep(10)
         else :
             print "No chart found at school and type level."
 

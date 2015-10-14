@@ -1445,8 +1445,6 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.get_asset_chart_dashboard_image.click()
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
 
@@ -1459,11 +1457,7 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("Place")
-        sleep(10)
         self.assetpage.place_related_charts_Place_Is_Selected()
 
     @attr(priority="high")
@@ -1475,15 +1469,10 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("Place")
-        sleep(10)
         self.assetpage.get_asset_place_type_drop_down.click()
-        sleep(2)
+        sleep(1) # sleep is mandatory here otherwise it will fail
         self.assetpage.get_asset_place_type_first_element.click()
-        sleep(5)
         self.assetpage.place_related_charts_Place_And_Type_Is_Selected()
 
     @attr(priority="high")
@@ -1495,10 +1484,7 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
-        sleep(10)
         self.assetpage.school_related_charts_School_Is_Selected()
 
     @attr(priority="high")
@@ -1510,14 +1496,10 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
-        sleep(10)
         self.assetpage.get_asset_school_district_drop_down.click()
-        sleep(2)
         self.assetpage.get_asset_school_district_first_element.click()
-        sleep(2)
+        sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_District_Is_Selected()
 
     @attr(priority="high")
@@ -1529,14 +1511,10 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
-        sleep(10)
         self.assetpage.get_asset_school_grade_drop_down.click()
-        sleep(2)
         self.assetpage.get_asset_school_grade_first_element.click()
-        sleep(2)
+        sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_Grade_Is_Selected()
 
     @attr(priority="high")
@@ -1548,14 +1526,10 @@ class assetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
-        sleep(10)
         self.assetpage.get_asset_school_type_drop_down.click()
-        sleep(2)
         self.assetpage.get_asset_school_type_first_element.click()
-        sleep(2)
+        sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_Type_Is_Selected()
 
 
