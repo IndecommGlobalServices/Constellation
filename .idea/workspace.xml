@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Constellation.iws" />
@@ -61,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.90909094" vertical-offset="37417" max-vertical-offset="39117">
-              <caret line="2221" column="8" selection-start-line="2221" selection-start-column="8" selection-end-line="2221" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="39066" max-vertical-offset="39372">
+              <caret line="2298" column="32" selection-start-line="2298" selection-start-column="32" selection-end-line="2298" selection-end-column="32" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -73,35 +74,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="25636" max-vertical-offset="26197">
-              <caret line="1522" column="11" selection-start-line="1522" selection-start-column="11" selection-end-line="1522" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.6818182" vertical-offset="14943" max-vertical-offset="26639">
+              <caret line="894" column="9" selection-start-line="894" selection-start-column="9" selection-end-line="894" selection-end-column="9" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="maptest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="e#545#673#0" expanded="false" />
-                <element signature="e#774#1301#0" expanded="false" />
-                <element signature="e#1403#1928#0" expanded="false" />
-                <element signature="e#2025#3361#0" expanded="false" />
-                <element signature="e#3475#4011#0" expanded="false" />
-                <element signature="e#4134#4667#0" expanded="false" />
-                <element signature="e#4797#6164#0" expanded="false" />
-                <element signature="e#6281#7088#0" expanded="false" />
-                <element signature="e#7209#10288#0" expanded="false" />
-                <element signature="e#10411#13472#0" expanded="false" />
-                <element signature="e#13594#16655#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -207,6 +186,48 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pages" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="image_file" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
@@ -243,8 +264,8 @@
       <console-settings />
     </option>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest assetpageTest.test_AS_96">
-    <configuration default="false" name="Unittest assetpageTest.test_AS_92" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittest assetpageTest.test_AS_37">
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_36" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -255,8 +276,8 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="assetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_92" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+      <option name="METHOD_NAME" value="test_AS_36" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -268,7 +289,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest assetpageTest.test_AS_93" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetPageTest.test_AS_90" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -279,8 +300,8 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="assetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_93" />
+      <option name="CLASS_NAME" value="AssetPageTest" />
+      <option name="METHOD_NAME" value="test_AS_90" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -292,7 +313,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest assetpageTest.test_AS_94" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest assetpageTest.test_AS_01" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -304,7 +325,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="assetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_94" />
+      <option name="METHOD_NAME" value="test_AS_01" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -316,7 +337,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest assetpageTest.test_AS_95" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest assetpageTest.test_AS_03" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -328,7 +349,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="assetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_95" />
+      <option name="METHOD_NAME" value="test_AS_03" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -340,7 +361,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest assetpageTest.test_AS_96" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest assetpageTest.test_AS_37" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -352,7 +373,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="assetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_96" />
+      <option name="METHOD_NAME" value="test_AS_37" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -498,19 +519,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_92" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_93" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_94" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_95" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_96" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_36" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_90" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_01" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_03" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_37" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_96" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_95" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_92" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_94" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_93" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_37" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_03" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest assetpageTest.test_AS_01" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_90" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetPageTest.test_AS_36" />
       </list>
     </recent_temporary>
   </component>
@@ -741,13 +762,7 @@
       <option name="project" value="LOCAL" />
       <updated>1444719809997</updated>
     </task>
-    <task id="LOCAL-00037" summary="removed scroll from 36, 37 and 38">
-      <created>1444738543594</created>
-      <option name="number" value="00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1444738543594</updated>
-    </task>
-    <option name="localTasksCounter" value="38" />
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -813,6 +828,7 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Added missing codes" />
     <MESSAGE value="Added returntomainappapage and recoveringapp functions" />
     <MESSAGE value="Clubbed 14 and 17 , 49 and 50" />
     <MESSAGE value="Recheck" />
@@ -837,8 +853,7 @@
     <MESSAGE value="Modified with Try and Except in Properties of Location and also added EC in testcase 36, 37, 38" />
     <MESSAGE value="Changed the Location title xpath find_elements to find_element" />
     <MESSAGE value="Removed the sleep in testcase 23, 24, 25 and 26" />
-    <MESSAGE value="removed scroll from 36, 37 and 38" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed scroll from 36, 37 and 38" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed the sleep in testcase 23, 24, 25 and 26" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1213,6 +1228,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.044155844" vertical-offset="6460" max-vertical-offset="7650">
+          <caret line="381" column="67" selection-start-line="381" selection-start-column="67" selection-end-line="381" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/json_searchAssets.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14206128" vertical-offset="0" max-vertical-offset="359">
@@ -1230,42 +1252,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1020">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="39066" max-vertical-offset="39372">
+          <caret line="2298" column="32" selection-start-line="2298" selection-start-column="32" selection-end-line="2298" selection-end-column="32" />
           <folding>
-            <element signature="e#545#673#0" expanded="false" />
-            <element signature="e#774#1301#0" expanded="false" />
-            <element signature="e#1403#1928#0" expanded="false" />
-            <element signature="e#2025#3361#0" expanded="false" />
-            <element signature="e#3475#4011#0" expanded="false" />
-            <element signature="e#4134#4667#0" expanded="false" />
-            <element signature="e#4797#6164#0" expanded="false" />
-            <element signature="e#6281#7088#0" expanded="false" />
-            <element signature="e#7209#10288#0" expanded="false" />
-            <element signature="e#10411#13472#0" expanded="false" />
-            <element signature="e#13594#16655#0" expanded="false" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="25636" max-vertical-offset="26197">
-          <caret line="1522" column="11" selection-start-line="1522" selection-start-column="11" selection-end-line="1522" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.6818182" vertical-offset="14943" max-vertical-offset="26639">
+          <caret line="894" column="9" selection-start-line="894" selection-start-column="9" selection-end-line="894" selection-end-column="9" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90909094" vertical-offset="37417" max-vertical-offset="39117">
-          <caret line="2221" column="8" selection-start-line="2221" selection-start-column="8" selection-end-line="2221" selection-end-column="8" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
