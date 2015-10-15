@@ -466,7 +466,7 @@ class AssetpageTest(BaseTestCase):
                 exp_name_value = "Shri FirstName ZLastName"
                 self.assertEqual(str(act_name_value), str(exp_name_value))#verify asset main contact first and last name value.
         except NoSuchElementException:
-            self.assertFalse(False, "No Main Contact exists.")
+            self.assertFalse(True, "No Main Contact exists.")
 
     @attr(priority="high")
     #@SkipTest
@@ -489,12 +489,11 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_newcontact_firstname_textbox.clear()#clear first and last name.
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
         self.assetpage.get_asset_newcontact_prefix_textbox.clear()#clear Prefix filed.
-        sleep(2)
+        sleep(2) #required to check Error message.
         firstname_error = self.assetpage.get_asset_newcontact_firstname_error_message.is_displayed()#Verify Error messages.
         lastname_error = self.assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
-        sleep(2)
+        sleep(2) #required to check Error message.
         self.assetpage.get_asset_newcontact_window_cross_button.click()#click on cross button to close window.
-        sleep(2)
         self.assertTrue(firstname_error, "Error message is not displayed for First Name.")
         self.assertTrue(lastname_error, "Error message is not displayed for Last Name.")
 
@@ -615,7 +614,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
         try:
             if self.assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
-                self.assertFalse(False,"Contact has been created. Cancel button is not working.")
+                self.assertFalse(True,"Contact has been created. Cancel button is not working.")
         except:
             self.assertTrue(True,"New Contact is not created.")
 
@@ -808,7 +807,7 @@ class AssetpageTest(BaseTestCase):
                 sleep(2)
                 self.assertTrue(True,"Cancel Button is working properly.")
         except NoSuchElementException:
-            self.assertFalse(False,"The Contact has been Deleted.")
+            self.assertFalse(True,"The Contact has been Deleted. Delete Window Cancel button is not working.")
 
     @attr(priority="high")
     #@SkipTest
@@ -917,23 +916,22 @@ class AssetpageTest(BaseTestCase):
             image_icon = self.driver.find_element_by_xpath(caption_path)
             Hover = ActionChains(self.driver).move_to_element(image_icon)
             Hover.perform()
-            delete_icon = self.driver.find_element_by_xpath(".//img[contains(@src,'delete_icon')]")
-            delete_icon.click()
-            sleep(2)
+            sleep(1) # required. so that Delete icon remain displayed.
+            self.assetpage.get_asset_photos_documents_delete_icon_image.click()
             self.assetpage.get_asset_photos_documents_delete_window_delete_button.click()
-            sleep(10)
+            sleep(3)  # required. Widget should be refreashed.
         except NoSuchElementException:
-            self.assertFalse(False,"File could not be deleted.")
+            self.assertFalse(True, "Delete icon not displayed. File could not be deleted.")
         number_of_image_after_delete = self.assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_after_file_delete = len(number_of_image_after_delete)
         if (image_count_after_file_upload == image_count_after_file_delete+1):
             try:
                 if (self.assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
-                    self.assertFalse("Test Case has been failed.")
+                    self.assertFalse(True,"The uploaded file could not be deleted.")
             except NoSuchElementException:
-                self.assertTrue("Test Case 40 has been passed.")
+                self.assertTrue(True,"The uploaded file has been deleted.")
         else:
-            self.assertFalse("Test Case 40 has been failed.")
+            self.assertFalse(True,"No of files before and after delete operation are same. File could not be deleted.")
 
     @attr(priority="high")
     def test_AS_41(self):
@@ -964,10 +962,10 @@ class AssetpageTest(BaseTestCase):
             if (image_count_after_file_upload == image_count_before_file_upload):
                 self.assertTrue(True,"Test Case 41 has been passed.")
             else:
-                self.assertFalse(False,"Test Case 41 has been failed")
+                self.assertFalse(True,"Test Case 41 has been failed")
         except Exception, e:
             error = "Test Case no 41 has been failed. Error message is ::"+str(e)
-            self.assertFalse(False, error)
+            self.assertFalse(True, error)
 
     @attr(priority="high")
     def test_AS_42(self):
@@ -987,9 +985,9 @@ class AssetpageTest(BaseTestCase):
         image_caption_text = self.assetpage.get_asset_photos_documents_image_caption_text(caption_val)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
-            self.assertTrue(True,"Test Case has been passed.")
+            self.assertTrue(True,"Test Case has been passed. Caption displayed in header and File window")
         else:
-            self.assertFalse(False,"Test Case has been failed. No Caption Displayed.")
+            self.assertFalse(True,"Test Case has been failed. No Caption Displayed.")
 
     @attr(priority="high")
     def test_AS_43(self):
@@ -1010,7 +1008,7 @@ class AssetpageTest(BaseTestCase):
             WebDriverWait(self.driver, 200).until(EC.text_to_be_present_in_element(
                 (By.XPATH, self.assetpage._asset_header_save_text_locator),r"415 - UNSUPPORTED MEDIA TYPE"))
         except:
-            self.assertFalse(False,"Test Case has been failed. No Error message displayed for unsupported media size.")
+            self.assertFalse(True,"Test Case has been failed. No Error message displayed for unsupported media size.")
         self.assertTrue(True,"Test Case has been passed.")
 
     @attr(priority="high")
@@ -1030,11 +1028,10 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.upload_a_file_with_caption(caption_val, image_file_name)
         image_caption_text = self.assetpage.get_asset_photos_documents_image_caption_text(caption_val)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and
-                                                        (self.assetpage.get_asset_header_save_text.text == r"Saved")):
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
             self.assertTrue(True,"Test Case has been passed.")
         else:
-            self.assertFalse(False,"Test Case has been failed.")
+            self.assertFalse(True,"PDF file is not uploaded.")
 
     @attr(priority="high")
     def test_AS_44_2(self):
@@ -1053,11 +1050,10 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.upload_a_file_with_caption(caption_val, image_file_name)
         image_caption_text = self.assetpage.get_asset_photos_documents_image_caption_text(caption_val)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
-        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and
-                                                        (self.assetpage.get_asset_header_save_text.text == r"Saved")):
+        if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
             self.assertTrue(True,"Test Case has been passed.")
         else:
-            self.assertFalse(False,"Test Case has been failed.")
+            self.assertFalse(True,"HTML file is not uploaded.")
 
     @attr(priority="high")
     def test_AS_44_3(self):
@@ -1080,7 +1076,7 @@ class AssetpageTest(BaseTestCase):
                                                         (self.assetpage.get_asset_header_save_text.text == r"Saved")):
             self.assertTrue(True,"Test Case has been passed.")
         else:
-            self.assertFalse(False,"Test Case has been failed.")
+            self.assertFalse(True,"Text file is not uploaded.")
 
     @attr(priority="high")
     def test_AS_45(self):
@@ -1103,7 +1099,7 @@ class AssetpageTest(BaseTestCase):
         if (image_count_after_file_upload == image_count_before_file_upload+3):
             self.assertTrue(True,"Test Case has been passed.")
         else:
-            self.assertFalse(False,"Test Case has been failed.")
+            self.assertFalse(True,"Three files could not be uploaded properly.")
 
     @attr(priority="high")
     def test_AS_47(self):
@@ -1126,7 +1122,7 @@ class AssetpageTest(BaseTestCase):
         if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
             self.assertTrue(True,"Test Case has been passed")
         else:
-            self.assertFalse(False,"Test Case has been failed")
+            self.assertFalse(True,"File could not be uploaded.")
 
     @attr(priority="high")
     def test_AS_48_1(self):
