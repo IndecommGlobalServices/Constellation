@@ -96,9 +96,9 @@ class AssetPage(BasePageClass):
     _asset_overview_district_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input"
     _asset_overview_grade_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input"
 
-    _asset_overview_type_drop_down_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
-    _asset_overview_district_drop_down_locator = "//div[@label= 'District']"
-    _asset_overview_grade_drop_down_locator = "//div[@label= 'Grade']"
+    _asset_overview_type_drop_down_locator = "//div[@class='forminputfields']//div[@label='Type']//button[@data-toggle='dropdown']"
+    _asset_overview_district_drop_down_locator = ".//div[@label='District']/button[@data-toggle='dropdown']"
+    _asset_overview_grade_drop_down_locator = "//div[@label= 'Grade']//button[@data-toggle='dropdown']"
     _asset_overview_add_button_locator = ".//*[@id='newItemButton']"
     _asset_overview_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
     _asset_overview_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
