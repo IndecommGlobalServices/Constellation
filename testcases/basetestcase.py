@@ -12,8 +12,8 @@ class BaseTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        #display = Display(visible=0, size=(1024,768))
-        #display.start()
+        display = Display(visible=0, size=(1024,768))
+        display.start()
         # create a new Firefox session
         self.driver = webdriver.Firefox()
         self.driver.implicitly_wait(30)
