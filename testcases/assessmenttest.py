@@ -39,7 +39,6 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    @attr(status='smoke')
     def test_smoketest_assessment(self):
         sleep(2)
         try:
@@ -72,13 +71,30 @@ class AssessmenttPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_ast_01_To_verify_noemailid_createassessment(self):
-        selecttemplate = self.ast.create_assessment_select_haystax_template()
-        #self.assertTrue(selecttemplate[0], selecttemplate[1])
+        count = 0
+        flag = 0
+        self.ast.create_assessment_select_haystax_template()
         self.ast.select_first_asset()
         self.ast.get_create_assignedto_textbox.clear()
         self.ast.get_create_startdate_textbox.send_keys("2015-09-10")
         self.ast.get_create_enddate_textbox.send_keys("2015-09-11")
-        self.assertFalse(self.ast.get_create_assessments_button.is_enabled(),"Create assessment button enabled even without entering email")
+        self.assertTrue(self.ast.get_create_assessments_button.is_enabled(),"Create assessment button is not enabled")
+        self.ast.get_create_assessments_button.click()
+        sleep(5)
+        self.ast.search_assessment_textbox(self.ast.asset_school_name)
+        sleep(5)
+        for item in self.ast.get_assessment_table("Asset"):
+            count = count + 1
+            print item.text, item.value_of_css_property("background-color")
+            if (item.text == self.ast.asset_school_name) and (item.value_of_css_property("background-color")
+                                                                   == "rgba(255, 236, 158, 1)"):
+                flag = 1
+                assignedto = self.ast.get_assessment_table_row_values(count, r"Assigned to").text
+                print assignedto, flag
+        self.ast.get_search_assessment_textbox.clear()
+        self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
+        if flag == 1:
+            self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
 
 
     @attr(priority="high")

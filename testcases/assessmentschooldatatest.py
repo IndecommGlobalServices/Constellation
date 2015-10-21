@@ -52,9 +52,12 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the add photo to school type section
         :return:
         """
-        self.ast.get_schooldata_schooltype_camera_image.click()
+        if not self.ast.get_schooldata_schooltype_attachphoto_button.is_displayed():
+            self.ast.get_schooldata_schooltype_camera_image.click()
         file = self.ast.file_path("Test_Case_40.jpg")
-        self.ast.get_schooldata_schooltype_attachphoto_button.send_keys(file)
+        self.ast.get_schooldata_schooltype_attachphoto_button.send_keys(file, Keys.TAB, Keys.TAB, Keys.ENTER)
+        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
 
 
     @attr(priority="high")

@@ -35,6 +35,9 @@ class AssessmentPage(BasePageClass):
     _ast_asset_table_locator = ".//*[@id='assessmentManager_table']/tbody/tr[1]/td"
     _ast_asset_table_header_locator = ".//*[@id='assessmentManager_table']/thead/tr/th"
 
+    #Assessment actions locator
+    _ast_action_dropdown_loactor = "//div[@id = 'assessment_actions_dropdown']//button[contains(text(), 'Select action')]"
+
     # Assessment filter related locators
     _ast_status_filter_drop_down_locator = "//div[@label='Status']"
     _ast_type_filter_drop_down_locator = "//div[@label='Type']"
@@ -287,7 +290,7 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_action_dropdown(self):
-        return self.driver.find_element_by_xpath(".//*[@id='assessment_actions_dropdown']/button[2]")
+        return self.driver.find_element_by_xpath(self._ast_action_dropdown_loactor)
 
     @property
     def get_delete_assessment_delete_button(self):
@@ -654,7 +657,7 @@ class AssessmentPage(BasePageClass):
                 sleep(1)
 
     def search_assessment_textbox(self, keyword):
-        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+        WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
             (By.XPATH, self._ast_search_assessment_text_box_locator)))
         self.get_search_assessment_textbox.clear()
         self.get_search_assessment_textbox.send_keys(keyword)
@@ -830,6 +833,8 @@ class AssessmentPage(BasePageClass):
     def open_schooldata_page(self):
         self.select_assessment(self.asset_school_name)
         self.get_schooldata_button.click()
+        WebDriverWait(self.driver,20).until(expected_conditions.presence_of_all_elements_located(
+            (By.XPATH, "//div[@ng-form = 'question_form']")))
 
     def save_schooldata(self):
         self.get_overview_save_button.click()
