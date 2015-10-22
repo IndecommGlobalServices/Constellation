@@ -362,6 +362,8 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_schooldata_button(self):
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_all_elements_located(
+            (By.XPATH, self._ast_schooldata_button_locator)))
         return self.driver.find_element_by_xpath(self._ast_schooldata_button_locator)
 
     @property
