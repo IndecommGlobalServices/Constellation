@@ -12,7 +12,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 cwd = os.getcwd()
 os.chdir('..')
-schooldatafile = os.path.join(os.getcwd(), "data\json_Schooldata.json")
+schooldatafile = os.path.join(os.getcwd(), "data", "json_Schooldata.json")
 os.chdir(cwd)
 
 class AssessmentPage(BasePageClass):
