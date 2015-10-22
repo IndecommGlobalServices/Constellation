@@ -28,7 +28,6 @@ class AssessmenttPageTest(BaseTestCase):
         self.errors_and_failures = self.tally()
         self.ast = AssessmentPage(self.driver)
 
-
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
@@ -90,12 +89,9 @@ class AssessmenttPageTest(BaseTestCase):
                                                                    == "rgba(255, 236, 158, 1)"):
                 flag = 1
                 assignedto = self.ast.get_assessment_table_row_values(count, r"Assigned to").text
-                print assignedto, flag
         self.ast.get_search_assessment_textbox.clear()
         self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
-        if flag == 1:
-            self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
-
+        self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
 
     @attr(priority="high")
     #@SkipTest
@@ -106,7 +102,8 @@ class AssessmenttPageTest(BaseTestCase):
         self.ast.get_create_assignedto_textbox.send_keys("deep@dee")
         self.ast.get_create_startdate_textbox.clear()
         self.ast.get_create_enddate_textbox.clear()
-        self.assertFalse(self.ast.get_create_assessments_button.is_enabled(),"Create assessment button enabled even without entering start and end date")
+        self.assertFalse(self.ast.get_create_assessments_button.is_enabled(),"Create assessment button enabled even "
+                                                                             "without entering start and end date")
 
     @attr(priority="high")
     #@SkipTest
@@ -123,7 +120,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_create_enddate_textbox.clear()
             self.ast.get_create_enddate_textbox.send_keys(date)
             self.ast.get_create_enddate_textbox.send_keys(Keys.TAB)
-            self.assertNotEqual(self.ast.get_create_enddate_textbox.text, date, "Start date textbox no date format validation")
+            self.assertNotEqual(self.ast.get_create_enddate_textbox.text, date, "End date textbox no date format validation")
 
     @attr(priority="high")
     #@SkipTest
@@ -137,18 +134,16 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(5)
         for item in self.ast.get_assessment_table("Asset"):
             count = count + 1
-            if (item.text  == self.ast.asset_school_name) and (item.value_of_css_property("background-color")
+            if (item.text == self.ast.asset_school_name) and (item.value_of_css_property("background-color")
                                                                    == "rgba(255, 236, 158, 1)"):
                 flag = 1
                 status = self.ast.get_assessment_table_row_values(count, "Status").text
-                assignedto = self.ast.get_assessment_table_row_values(count, "Assigned to").text
                 creationdate = self.ast.get_assessment_table_row_values(count, "Created").text
         self.ast.get_search_assessment_textbox.clear()
         self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
         self.assertFalse(flag == 0, "No assessment is created or is not appearing with yellow background")
-        self.assertEqual(status ,"Not Started", "The newly created assessment status is not 'Not Started'")
+        self.assertEqual(status, "Not Started", "The newly created assessment status is not 'Not Started'")
         self.assertEqual(creationdate, str(date.today()), "The newly created assessment creation date is not showing todays date")
-#        self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
 
     @attr(priority="high")
     #@SkipTest
@@ -168,13 +163,6 @@ class AssessmenttPageTest(BaseTestCase):
     #@SkipTest
     def test_ast_08_to_11_To_Verify_The_Search_(self):
         self.ast.create_assessment_select_haystax_template()
-        self.ast.select_first_asset()
-        self.ast.get_create_assignedto_textbox.clear()
-        self.ast.get_create_assignedto_textbox.send_keys("dee@dee")
-        self.ast.get_create_startdate_textbox.clear()
-        self.ast.get_create_startdate_textbox.send_keys("2015-09-10")
-        self.ast.get_create_enddate_textbox.clear()
-        self.ast.get_create_enddate_textbox.send_keys("2015-09-10")
         with open(self.searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
             for each in data_SearchAsset_text:
@@ -188,6 +176,8 @@ class AssessmenttPageTest(BaseTestCase):
                         self.assertEqual("No matching records found", self.ast.get_list_no_matching_records_found.text, "No records to find asset.")
                         sleep(2)
                     else:
+                        if (searchName.text).find(searchText):
+                            print True
                        # print searchName.text
                         sleep(2)
                 self.ast.get_search_asset_textbox.clear()
@@ -235,7 +225,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("In progress option not in the Type filter dropdown available")
         sleep(2)
         for item in self.ast.get_assessment_table("Status"):
-            self.assertTrue(item.text, "In Progress")
+            self.assertEqual(item.text, "In Progress")
         self.ast.get_resetfilter_button.click()
 
     @attr(priority="high")
@@ -249,7 +239,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("Submitted option not available in the Type filter dropdown")
         sleep(2)
         for item in self.ast.get_assessment_table("Status"):
-            self.assertTrue(item.text, "Submitted")
+            self.assertEqual(item.text, "Submitted")
         self.ast.get_resetfilter_button.click()
 
     @attr(priority="high")
@@ -263,7 +253,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("Not Started option not available in Type filter dropdown")
         sleep(2)
         for item in self.ast.get_assessment_table("Status"):
-            self.assertTrue(item.text, "Not Started")
+            self.assertEqual(item.text, "Not Started")
         self.ast.get_resetfilter_button.click()
 
     @attr(priority="high")
@@ -277,7 +267,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.skipTest("Haystax School safety option not available in the filter")
         sleep(5)
         for item in self.ast.get_assessment_table("Assessment"):
-            self.assertTrue(item.text, "Haystax School Safety")
+            self.assertEqual(item.text, "Haystax School Safety")
         self.ast.get_resetfilter_button.click()
 
     #should select the first available link on the dropdown
