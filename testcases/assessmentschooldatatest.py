@@ -62,8 +62,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the add photo to school type section
         :return:
         """
-        self.ast.schooldata_edit_caption_image(r"School type")
-        self.assertEqual(self.ast.get_schooldata_image_caption(r"School type")[0].text, "Hello")
+        self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_SCHOOL_TYPE'))
+        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.section, 'SECTION_SCHOOL_TYPE'))[0].text, "Hello")
 
 
     @attr(priority="high")

@@ -362,8 +362,8 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_schooldata_button(self):
-        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_all_elements_located(
-            (By.XPATH, self._ast_schooldata_button_locator)))
+        WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_all_elements_located(
+            (By.XPATH, self._ast_schooldata_button_locator)), "Timeout")
         return self.driver.find_element_by_xpath(self._ast_schooldata_button_locator)
 
     @property
@@ -488,18 +488,11 @@ class AssessmentPage(BasePageClass):
             if index == count:
                 break
 
-    def deselect_checkboxes(self):
-        checks = self.driver.find_elements_by_xpath(".//*[@id='tblAssessments']/tbody/tr/td[1]/label")
-        for checkbox in checks:
-            if checkbox.get_attribute("class") == "checkbox checked":
-                sleep(2)
-                print "Uncheck"
-                checkbox.click()
-                sleep(1)
-
     def search_assessment_textbox(self, keyword):
         WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
             (By.XPATH, self._ast_search_assessment_text_box_locator)))
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+            (By.XPATH, self._ast_action_dropdown_loactor)))
         self.get_search_assessment_textbox.clear()
         self.get_search_assessment_textbox.send_keys(keyword)
 
@@ -690,8 +683,12 @@ class AssessmentPage(BasePageClass):
     def save_schooldata(self):
         WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self._ast_overview_save_button_locator))).click()
-        WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        try:
+            WebDriverWait(self.driver, 80).until(expected_conditions.text_to_be_present_in_element(
+                (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        except Exception, err:
+            raise type(err)("Save failed and the message displayed is - " \
+                          + self.driver.find_element_by_xpath(self._ast_saved_text_locator).text + err.message)
         self.get_overview_button.click()
         self.get_schooldata_button.click()
 
