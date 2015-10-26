@@ -38,7 +38,9 @@ class MapPage(BasePageClass):
 
     # Basic Data layer
     _map_basic_data_layer = ".//*[@id='leaflet-control-accordion-layers-1']/label"
-    _map_basic_data_layer_asset = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[1]/span"
+    _map_basic_data_layer_asset = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[1]/input"
+    _map_basic_data_layer_assessment = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[2]/input"
+    _map_basic_data_layer_incident = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[3]/input"
 
     # Water fall handle - Right hand side - Last Icon
     _map_water_fall_handle = ".//*[@id='waterfall_handle']"
@@ -83,9 +85,7 @@ class MapPage(BasePageClass):
     def get_map_satelite_grey_view_radio(self):
         return self.driver.find_element_by_xpath(self._map_click_satelite_grey_action_radio_xpath_locator)
 
-
     # Full Screen related
-
     @property
     def get_map_full_screen(self):
         return self.driver.find_element_by_xpath(self._map_mouse_hover_full_screen_icon)
@@ -104,13 +104,11 @@ class MapPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._map_locate_button)
 
     # Zoom out
-
     @property
     def get_map_zoom_out(self):
         return self.driver.find_element_by_xpath(self._map_zoom_out)
 
     # Map status
-    # _map_items_map_status
     @property
     def get_map_items_map_status(self):
         return self.driver.find_element_by_xpath(self._map_items_map_status)
@@ -124,9 +122,15 @@ class MapPage(BasePageClass):
     def get_map_basic_data_layer_asset(self):
         return self.driver.find_element_by_xpath(self._map_basic_data_layer_asset)
 
-    # Water fall handle - Right hand side - Last Icon
-    # _map_water_fall_handle
+    @property
+    def get_map_basic_data_layer_assessment(self):
+        return self.driver.find_element_by_xpath(self._map_basic_data_layer_assessment)
 
+    @property
+    def get_map_basic_data_layer_incident(self):
+        return self.driver.find_element_by_xpath(self._map_basic_data_layer_incident)
+
+    # Water fall handle - Right hand side - Last Icon
     @property
     def get_map_water_fall_handle(self):
         return self.driver.find_element_by_xpath(self._map_water_fall_handle)

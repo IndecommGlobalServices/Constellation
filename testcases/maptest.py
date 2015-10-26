@@ -146,58 +146,58 @@ class MapPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
-        mappage = MapPage(self.driver)
-        mouse_hover_field = mappage.get_map_mouse_hover_icon
+        self.mappage = MapPage(self.driver)
+        mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(mappage.get_map_base_map_accordian).click()\
-            .move_to_element(mappage.get_map_default_view_radio).click()\
-            .move_to_element(self.driver.find_element_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/label")).click()\
-            .move_to_element(self.driver.find_element_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/article/div[1]/span")).click()\
-            .move_to_element(self.driver.find_element_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/article/div[2]/input")).click()\
+            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
+            .move_to_element(self.mappage.get_map_default_view_radio).click()\
+            .move_to_element(self.mappage.get_map_basic_data_layer).click()\
+            .move_to_element(self.mappage.get_map_basic_data_layer_asset).click()\
+            .move_to_element(self.mappage.get_map_basic_data_layer_assessment).click()\
             .perform()
-        self.driver.find_element_by_xpath(".//*[@id='mapdiv']/div[2]/div[2]/div[1]/a[2]").click()
-        self.driver.find_element_by_xpath(".//*[@id='map_status']").is_displayed()
+        self.mappage.get_map_zoom_out.click()
+        self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
         sleep(1)
-        pcountText = self.driver.find_element_by_xpath(".//*[@id='map_status']").text
+        pcountText = self.mappage.get_map_items_map_status.text
         pparts = pcountText.split(" ")
         pvalue11 = pparts[1]
-        self.driver.find_element_by_xpath(".//*[@id='waterfall_handle']").click()
+        self.mappage.get_map_water_fall_handle.click()
         assetTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
         items = assetTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " assets:"
-        print "Printing asset names, no. of days ago..."
-        for assetName in items:
-            print assetName.text
-        self.assertEqual(pvalue11,str(len(items)),"total assets not matching" )
-        self.driver.find_element_by_xpath(".//*[@id='waterfall_handle']").click()
-        mappage.get_bread_crumb_apps.click()
+        print "Found " + str(len(items)) + " assessment"
+        for assessmentName in items:
+            print assessmentName.text
+        self.assertEqual(pvalue11,str(len(items)),"total assessment not matching" )
+        self.mappage.get_map_water_fall_handle.click()
+        self.mappage.get_bread_crumb_apps.click()
 
     @attr(priority="high")
     #@SkipTest
     def test_map_to_verify_Default_Map_View_Based_On_Incidents(self):
-        mappage = MapPage(self.driver)
-        mouse_hover_field = mappage.get_map_mouse_hover_icon
+        self.mappage = MapPage(self.driver)
+        mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(mappage.get_map_base_map_accordian).click()\
-            .move_to_element(mappage.get_map_default_view_radio).click()\
-            .move_to_element(self.driver.find_element_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/label")).click()\
-            .move_to_element(self.driver.find_element_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/article/div[2]/input")).click()\
-            .move_to_element(self.driver.find_element_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/article/div[3]/input")).click()\
+            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
+            .move_to_element(self.mappage.get_map_default_view_radio).click()\
+            .move_to_element(self.mappage.get_map_basic_data_layer).click()\
+            .move_to_element(self.mappage.get_map_basic_data_layer_assessment).click()\
+            .move_to_element(self.mappage.get_map_basic_data_layer_incident).click()\
             .perform()
-        self.driver.find_element_by_xpath(".//*[@id='mapdiv']/div[2]/div[2]/div[1]/a[2]").click()
-        self.driver.find_element_by_xpath(".//*[@id='map_status']").is_displayed()
+
+
+        self.mappage.get_map_zoom_out.click()
+        self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
         sleep(1)
-        pcountText = self.driver.find_element_by_xpath(".//*[@id='map_status']").text
+        pcountText = self.mappage.get_map_items_map_status.text
         pparts = pcountText.split(" ")
         pvalue11 = pparts[1]
-        self.driver.find_element_by_xpath(".//*[@id='waterfall_handle']").click()
-        assetTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
-        items = assetTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " assets:"
-        print "Printing asset names, no. of days ago..."
-        for assetName in items:
-            print assetName.text
-        self.assertEqual(pvalue11,str(len(items)),"total assets not matching" )
-        self.driver.find_element_by_xpath(".//*[@id='waterfall_handle']").click()
-        mappage.get_bread_crumb_apps.click()
+        self.mappage.get_map_water_fall_handle.click()
+        incidentTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
+        items = incidentTotal.find_elements_by_tag_name("li")
+        print "Found " + str(len(items)) + " incident"
+        for incidentName in items:
+            print incidentName.text
+        self.assertEqual(pvalue11,str(len(items)),"total incident not matching" )
+        self.mappage.get_map_water_fall_handle.click()
+        self.mappage.get_bread_crumb_apps.click()
 
