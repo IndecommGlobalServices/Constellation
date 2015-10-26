@@ -1,8 +1,7 @@
 __author__ = 'Deepa.Sivadas'
 import nose,os
 from datetime import date, timedelta, datetime
-
-testfilenamesmoke = "TestResult - Smoketests_" + str(datetime.today().date()) +"_"+ str(datetime.today().time().hour)+"-"+str(datetime.today().time().minute)+".xml"
+testfilenamesmoke = "testresult-smoketest_" + str(datetime.today().strftime('%Y%m%d')) +"_"+ str(datetime.today().time().strftime('%H%M'))+".xml"
 cwd = os.getcwd()
 os.chdir('..')
 filepathsmoke = os.path.join(os.getcwd(), testfilenamesmoke)

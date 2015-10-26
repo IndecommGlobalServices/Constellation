@@ -1,10 +1,10 @@
 [
     {
-        "asset_name": ["September school", "editedname"],
+        "asset_name": ["Peterson School", "editedname"],
         "asset_address": ["Orlean", "editaddress"],
         "asset_address2": ["Street", "editedaddress2"],
         "asset_city": ["Virginia", "editedcity"],
-        "asset_state": ["Nk", "ES"],
+        "asset_state": ["NK", "ES"],
         "asset_zip": ["12345", "editedzip"],
         "asset_owner": ["Deepa", "editedowner"],
         "asset_type": ["TY", "ET"],

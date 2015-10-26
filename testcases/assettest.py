@@ -1291,7 +1291,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.enter_school_grade(self.assetpage.asset_school_district_grade_validation)
         self.assetpage.asset_overview_save_click()
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
-            By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details")
+            By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details")
         self.assertEqual(self.assetpage.asset_school_district_grade_validation, self.assetpage.get_overview_district_text)
         self.assertEqual(self.assetpage.asset_school_district_grade_validation, self.assetpage.get_overview_grade_text)
 
