@@ -19,9 +19,9 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     @attr(status='smoke')
     def test_map(self):
-        sleep(5)
+        #sleep(5)
         mappage = MapPage(self.driver)
-        sleep(20)
+        #sleep(20)
         self.assertEqual(mappage.get_map_app_name.text, "Map")
 
     # Default view
@@ -133,11 +133,9 @@ class MapPageTest(BaseTestCase):
         # click on Water fall handle on Right hand side - Vertical - Last Icon
         self.mappage.get_map_water_fall_handle.click()
         # Count the total no. of Assets displayed in the collection
-        assetTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
+        assetTotal = self.mappage.get_map_water_fall_list
         items = assetTotal.find_elements_by_tag_name("li")
         print "Found " + str(len(items)) + " assets"
-        for assetName in items:
-            print assetName.text
         self.assertEqual(pvalue11,str(len(items)),"total assets not matching" )
         # click on Water fall handle on Right hand side - Vertical - Last Icon
         self.mappage.get_map_water_fall_handle.click()
@@ -163,11 +161,9 @@ class MapPageTest(BaseTestCase):
         pparts = pcountText.split(" ")
         pvalue11 = pparts[1]
         self.mappage.get_map_water_fall_handle.click()
-        assessmentTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
+        assessmentTotal = self.mappage.get_map_water_fall_list
         items = assessmentTotal.find_elements_by_tag_name("li")
         print "Found " + str(len(items)) + " assessment"
-        for assessmentName in items:
-            print assessmentName.text
         self.assertEqual(pvalue11,str(len(items)),"total assessment not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
@@ -191,12 +187,38 @@ class MapPageTest(BaseTestCase):
         pparts = pcountText.split(" ")
         pvalue11 = pparts[1]
         self.mappage.get_map_water_fall_handle.click()
-        incidentTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
+        incidentTotal = self.mappage.get_map_water_fall_list
         items = incidentTotal.find_elements_by_tag_name("li")
         print "Found " + str(len(items)) + " incident"
-        for incidentName in items:
-            print incidentName.text
         self.assertEqual(pvalue11,str(len(items)),"total incident not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
 
+    @attr(priority="high")
+    #@SkipTest
+    def test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
+        self.mappage = MapPage(self.driver)
+        mouse_hover_field = self.mappage.get_map_mouse_hover_icon
+        ActionChains(self.driver).move_to_element(mouse_hover_field)\
+            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
+            .move_to_element(self.mappage.get_map_default_view_radio).click()\
+            .move_to_element(self.mappage.get_map_basic_data_layer).click()\
+            .perform()
+        self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+        self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+        self.mappage.get_checking_and_unchecking_basic_data_layer()
+        self.mappage.get_map_basic_data_layer_threat_streams.click()
+        self.mappage.get_map_zoom_out.click()
+        sleep(5)
+        self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
+        pcountText = self.mappage.get_map_items_map_status.text
+        pparts = pcountText.split(" ")
+        pvalue11 = pparts[1]
+        print pvalue11
+        self.mappage.get_map_water_fall_handle.click()
+        threatstreamsTotal = self.mappage.get_map_water_fall_list
+        items = threatstreamsTotal.find_elements_by_tag_name("li")
+        print "Found " + str(len(items)) + " threat streams"
+        self.assertEqual(pvalue11,str(len(items)),"total threat streams not matching" )
+        self.mappage.get_map_water_fall_handle.click()
+        self.mappage.get_bread_crumb_apps.click()

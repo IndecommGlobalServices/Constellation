@@ -19,6 +19,9 @@ class MapPage(BasePageClass):
     _map_click_satelite_default_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[4]/input"
     _map_click_satelite_grey_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[5]/input"
 
+    # Scroll vertically to view default, Night View, Terrain, Satelite Default, Satelite Grey
+    _map_scroll = ".//*[@id='mapdiv']/div[2]/div[1]/div[1]"
+
     # View Map in Full Screen
     _map_mouse_hover_full_screen_icon = "//html/body/div[8]/div[3]/div[5]/div[2]/div/div[1]/div[2]/div[1]/div[2]"
 
@@ -42,9 +45,12 @@ class MapPage(BasePageClass):
     _map_basic_data_layer_asset = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[1]/input"
     _map_basic_data_layer_assessment = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[2]/input"
     _map_basic_data_layer_incident = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[3]/input"
+    _map_basic_data_layer_threat_streams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[4]/input"
 
     # Water fall handle - Right hand side - Last Icon
     _map_water_fall_handle = ".//*[@id='waterfall_handle']"
+    _map_water_fall_list = ".//*[@id='waterfall_ul']"
+    _map_water_fall_list_items = "li"
 
     @property
     def get_map_app_name(self):
@@ -131,11 +137,30 @@ class MapPage(BasePageClass):
     def get_map_basic_data_layer_incident(self):
         return self.driver.find_element_by_xpath(self._map_basic_data_layer_incident)
 
+    @property
+    def get_map_basic_data_layer_threat_streams(self):
+        return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams)
+
+    # Scroll
+    # _map_scroll
+
+    @property
+    def get_map_scroll(self):
+        return self.driver.find_element_by_xpath(self._map_scroll)
+
     # Water fall handle - Right hand side - Last Icon
     @property
     def get_map_water_fall_handle(self):
         return self.driver.find_element_by_xpath(self._map_water_fall_handle)
 
+    @property
+    def get_map_water_fall_list(self):
+        return self.driver.find_element_by_xpath(self._map_water_fall_list)
+
+
+    @property
+    def get_map_water_fall_list_items(self):
+        return self.driver.find_elements_by_tag_name(self._map_water_fall_list_items)
 
     def __init__(self, driver):
         super(MapPage, self).__init__(driver)
@@ -152,5 +177,9 @@ class MapPage(BasePageClass):
 
         if self.get_map_basic_data_layer_incident.is_selected():
             self.get_map_basic_data_layer_incident.click()
+
+        if self.get_map_basic_data_layer_threat_streams.is_selected():
+            self.get_map_basic_data_layer_threat_streams.click()
+
 
 
