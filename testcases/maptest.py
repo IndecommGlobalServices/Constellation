@@ -173,7 +173,7 @@ class MapPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_map_to_verify_Default_Map_View_Based_On_Incidents(self):
+    def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
         self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
