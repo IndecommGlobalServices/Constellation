@@ -1437,6 +1437,8 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+
+        #self.assetpage.app_sanity_check()
         self.assetpage.get_asset_chart_dashboard_image.click()
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
 
