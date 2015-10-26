@@ -2,6 +2,7 @@ __author__ = 'Deepa.Sivadas'
 
 from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
+from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 
 class MapPage(BasePageClass):
@@ -141,5 +142,15 @@ class MapPage(BasePageClass):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
 
-    #def get_map_based_on_basic_data_layer(self):
+    def get_checking_and_unchecking_basic_data_layer(self):
+
+        if self.get_map_basic_data_layer_asset.is_selected():
+            self.get_map_basic_data_layer_asset.click()
+
+        if self.get_map_basic_data_layer_assessment.is_selected():
+            self.get_map_basic_data_layer_assessment.click()
+
+        if self.get_map_basic_data_layer_incident.is_selected():
+            self.get_map_basic_data_layer_incident.click()
+
 

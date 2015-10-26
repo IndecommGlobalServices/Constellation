@@ -117,8 +117,9 @@ class MapPageTest(BaseTestCase):
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .move_to_element(self.mappage.get_map_default_view_radio).click()\
             .move_to_element(self.mappage.get_map_basic_data_layer).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer_asset).click()\
             .perform()
+        self.mappage.get_checking_and_unchecking_basic_data_layer()
+        self.mappage.get_map_basic_data_layer_asset.click()
         self.mappage.get_map_zoom_out.click()
         # Click on Zoom out to display the Map status based total no of items which is displayed just
         # above the Longitude and Latitude on Left hand side
@@ -152,9 +153,9 @@ class MapPageTest(BaseTestCase):
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .move_to_element(self.mappage.get_map_default_view_radio).click()\
             .move_to_element(self.mappage.get_map_basic_data_layer).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer_asset).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer_assessment).click()\
             .perform()
+        self.mappage.get_checking_and_unchecking_basic_data_layer()
+        self.mappage.get_map_basic_data_layer_assessment.click()
         self.mappage.get_map_zoom_out.click()
         self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
         sleep(1)
@@ -180,11 +181,9 @@ class MapPageTest(BaseTestCase):
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .move_to_element(self.mappage.get_map_default_view_radio).click()\
             .move_to_element(self.mappage.get_map_basic_data_layer).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer_assessment).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer_incident).click()\
             .perform()
-
-
+        self.mappage.get_checking_and_unchecking_basic_data_layer()
+        self.mappage.get_map_basic_data_layer_incident.click()
         self.mappage.get_map_zoom_out.click()
         self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
         sleep(1)
