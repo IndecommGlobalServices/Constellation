@@ -162,8 +162,8 @@ class MapPageTest(BaseTestCase):
         pparts = pcountText.split(" ")
         pvalue11 = pparts[1]
         self.mappage.get_map_water_fall_handle.click()
-        assetTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
-        items = assetTotal.find_elements_by_tag_name("li")
+        assessmentTotal = self.driver.find_element_by_xpath(".//*[@id='waterfall_ul']")
+        items = assessmentTotal.find_elements_by_tag_name("li")
         print "Found " + str(len(items)) + " assessment"
         for assessmentName in items:
             print assessmentName.text
