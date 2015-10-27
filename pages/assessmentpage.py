@@ -86,10 +86,13 @@ class AssessmentPage(BasePageClass):
     _ast_schooldata_schooltype_comments_text_box_locator =  "//div[contains(text(),'School type')]//textarea[@placeholder='Comments']"
     _ast_schooldata_schooltype_comment_image_locator = "//div[contains(text(),'School type')]//img[@src='../images/comment.png']"
     _ast_schooldata_schooltype_camera_image_locator = "//div[contains(text(),'School type')]//img[@src='../images/camera.png']"
+    '''
     _ast_schooldata_schooltype_attachphoto_button_locator = "//div[contains(text(),'School type')]" \
                                                             "//div[@ng-show='question.show_photo_upload']" \
                                                             "//div[@ng-show='assessmentEditable()']" \
                                                             "/div/div/span/span/span[@class='fui-upload']"
+    '''
+    _ast_schooldata_schooltype_attachphoto_button_locator = "//div[contains(text(),'School type')]//div[@ng-show='question.show_photo_upload']//div[@ng-show='assessmentEditable()']//input[@id='upload_document_file_upload']"
     _ast_schooldata_gradelevel_checkbox_locator = ".//*[@id='assessment_section']/div[3]/div[3]/span/span/label"
     _ast_schooldata_gradelevel_comments_text_box_locator =  "//div[contains(text(),'Grade levels')]//textarea[@placeholder='Comments']"
     _ast_schooldata_gradelevel_comment_image_locator = "//div[contains(text(),'Grade levels')]//img[@src='../images/comment.png']"

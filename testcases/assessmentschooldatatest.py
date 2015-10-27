@@ -54,6 +54,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_schooltype_camera_image.click()
         file = self.ast.file_path("Test_Case_40.jpg")
+        print file, "fffffffffffffffff"
         self.ast.get_schooldata_schooltype_attachphoto_button.send_keys(file)
 
 
