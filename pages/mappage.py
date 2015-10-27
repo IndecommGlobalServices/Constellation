@@ -21,6 +21,7 @@ class MapPage(BasePageClass):
 
     # Scroll vertically to view default, Night View, Terrain, Satelite Default, Satelite Grey
     _map_scroll = ".//*[@id='mapdiv']/div[2]/div[1]/div[1]"
+    _map_sub_scroll = ".//*[@id='leaflet-control-accordion-layers-1']/article"
 
     # View Map in Full Screen
     _map_mouse_hover_full_screen_icon = "//html/body/div[8]/div[3]/div[5]/div[2]/div/div[1]/div[2]/div[1]/div[2]"
@@ -46,6 +47,11 @@ class MapPage(BasePageClass):
     _map_basic_data_layer_assessment = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[2]/input"
     _map_basic_data_layer_incident = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[3]/input"
     _map_basic_data_layer_threat_streams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[4]/input"
+    _map_basic_data_layer_indicator_teams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[5]/input"
+    _map_basic_data_layer_annotations = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[6]/input"
+    _map_basic_data_layer_threat_streams_trending_last_day = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[7]/input"
+    _map_basic_data_layer_threat_streams_stream_1 = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[8]/input"
+    _map_basic_data_layer_threat_streams_stream_2 = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[9]/input"
 
     # Water fall handle - Right hand side - Last Icon
     _map_water_fall_handle = ".//*[@id='waterfall_handle']"
@@ -141,12 +147,34 @@ class MapPage(BasePageClass):
     def get_map_basic_data_layer_threat_streams(self):
         return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams)
 
-    # Scroll
-    # _map_scroll
+    @property
+    def get_map_basic_data_layer_indicator_teams(self):
+        return self.driver.find_element_by_xpath(self._map_basic_data_layer_indicator_teams)
 
+    @property
+    def get_map_basic_data_layer_annotations(self):
+        return self.driver.find_element_by_xpath(self._map_basic_data_layer_annotations)
+
+    @property
+    def get_map_basic_data_layer_threat_streams_trending_last_day(self):
+        return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_trending_last_day)
+
+    @property
+    def get_map_basic_data_layer_threat_streams_stream_1(self):
+        return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_stream_1)
+
+    @property
+    def get_map_basic_data_layer_threat_streams_stream_2(self):
+        return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_stream_2)
+
+    # Scroll
     @property
     def get_map_scroll(self):
         return self.driver.find_element_by_xpath(self._map_scroll)
+
+    @property
+    def get_map_sub_scroll(self):
+        return self.driver.find_element_by_xpath(self._map_sub_scroll)
 
     # Water fall handle - Right hand side - Last Icon
     @property
@@ -167,6 +195,7 @@ class MapPage(BasePageClass):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
 
+    # This function is used if check box is selected, it should be unchecked
     def get_checking_and_unchecking_basic_data_layer(self):
 
         if self.get_map_basic_data_layer_asset.is_selected():
@@ -180,6 +209,21 @@ class MapPage(BasePageClass):
 
         if self.get_map_basic_data_layer_threat_streams.is_selected():
             self.get_map_basic_data_layer_threat_streams.click()
+
+        if self.get_map_basic_data_layer_indicator_teams.is_selected():
+            self.get_map_basic_data_layer_indicator_teams.click()
+
+        if self.get_map_basic_data_layer_annotations.is_selected():
+            self.get_map_basic_data_layer_annotations.click()
+
+        if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
+            self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
+
+        if self.get_map_basic_data_layer_threat_streams_stream_1.is_selected():
+            self.get_map_basic_data_layer_threat_streams_stream_1.click()
+
+        if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
+            self.get_map_basic_data_layer_threat_streams_stream_2.click()
 
 
 
