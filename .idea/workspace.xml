@@ -31,8 +31,8 @@
       <file leaf-file-name="maptest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11623932" vertical-offset="0" max-vertical-offset="6290">
-              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.94188035" vertical-offset="2509" max-vertical-offset="6358">
+              <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -687,7 +687,13 @@
       <option name="project" value="LOCAL" />
       <updated>1445934801743</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="removed duplicate class name in maps">
+      <created>1445934910939</created>
+      <option name="number" value="00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1445934910939</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -752,7 +758,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Fixed Bug" />
     <MESSAGE value="Mock" />
     <MESSAGE value="Added sanity check function" />
     <MESSAGE value="Bug fixes" />
@@ -777,7 +782,8 @@
     <MESSAGE value="Screenshots added" />
     <MESSAGE value="BugFIx" />
     <MESSAGE value="added new testcases in maps" />
-    <option name="LAST_COMMIT_MESSAGE" value="added new testcases in maps" />
+    <MESSAGE value="removed duplicate class name in maps" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed duplicate class name in maps" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1156,8 +1162,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11623932" vertical-offset="0" max-vertical-offset="6290">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.94188035" vertical-offset="2509" max-vertical-offset="6358">
+          <caret line="191" column="0" selection-start-line="191" selection-start-column="0" selection-end-line="191" selection-end-column="0" />
           <folding />
         </state>
       </provider>

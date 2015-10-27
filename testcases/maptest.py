@@ -44,6 +44,7 @@ class MapPageTest(BaseTestCase):
             .perform()
         self.mappage.get_map_night_view_radio.click()
         self.mappage.get_bread_crumb_apps.click()# Click on Bread crumb - Apps link
+
     # Terrain
     @attr(priority="high")
     def test_map_03_to_verify_Terrain(self):
@@ -54,6 +55,7 @@ class MapPageTest(BaseTestCase):
             .perform()
         self.mappage.get_map_terrain_radio.click()
         self.mappage.get_bread_crumb_apps.click()# Click on Bread crumb - Apps link
+
     # Satelite Default
     @attr(priority="high")
     def test_map_04_to_verify_Satelite_Default(self):
@@ -64,6 +66,7 @@ class MapPageTest(BaseTestCase):
             .perform()
         self.mappage.get_map_satelite_default_view_radio.click()
         self.mappage.get_bread_crumb_apps.click() # Click on Bread crumb - Apps link
+
     # Satelite Grey
     @attr(priority="high")
     #@SkipTest
@@ -75,6 +78,7 @@ class MapPageTest(BaseTestCase):
             .perform()
         self.mappage.get_map_satelite_grey_view_radio.click()
         self.mappage.get_bread_crumb_apps.click() # Click on Bread crumb - Apps link
+
     # View Full Screen
     @attr(priority="high")
     def test_map_13_to_verify_Map_Can_Be_Viewed_In_Full_Screen(self):
