@@ -4,6 +4,9 @@ from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 class MapPage(BasePageClass):
 
@@ -60,142 +63,345 @@ class MapPage(BasePageClass):
 
     @property
     def get_map_app_name(self):
-        return self.driver.find_element_by_xpath(self._map_name_text)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_name_text)))
+            return self.driver.find_element_by_xpath(self._map_name_text)
+        except Exception, err:
+            raise type(err)("Map App Name - searched XPATH - " + self._map_name_text + err.message)
 
     @property
     def get_map_container(self):
-        return self.driver.find_element_by_id(self._map_container)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.ID, self._map_container)))
+            return self.driver.find_element_by_id(self._map_container)
+        except Exception, err:
+            raise type(err)("Map Container - searched ID - " + self._map_container + err.message)
+
 
     @property
     def get_bread_crumb_apps(self):
-        return self.driver.find_element_by_xpath(self._bread_crumb_click_apps_link_xpath_locator)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._bread_crumb_click_apps_link_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._bread_crumb_click_apps_link_xpath_locator)
+        except Exception, err:
+            raise type(err)("Bread Crumb Apps - searched XPATH - "
+                            + self._bread_crumb_click_apps_link_xpath_locator + err.message)
+
 
     @property
     def get_map_mouse_hover_icon(self):
-        return self.driver.find_element_by_xpath(self._map_mouse_hover_action_icon_xpath_locator)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_mouse_hover_action_icon_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_mouse_hover_action_icon_xpath_locator)
+        except Exception, err:
+            raise type(err)("Mouse Hover Icon - searched XPATH - "
+                            + self._map_mouse_hover_action_icon_xpath_locator + err.message)
+
+
+        '''
+         WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_all_elements_located(
+            (By.XPATH, self._ast_schooldata_button_locator)), "Timeout")
+        return self.driver.find_element_by_xpath(self._ast_schooldata_button_locator)
+
+
+        try:
+            WebDriverWait(self.driver, 0).until(expected_conditions.presence_of_element_located(
+                        (By.XPATH,self._ast_main_create_assessment_button_locator)))
+            return  self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator)
+        except Exception, err:
+            raise type(err)("Create assessment button not available - search XPATH - " \
+                          + self._ast_main_create_assessment_button_locator + err.message)
+
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, self._ast_create_templatetype_dropdown_locator)))
+            return self.driver.find_element_by_xpath(self._ast_create_templatetype_dropdown_locator)
+        except:
+            raise
+
+        '''
+
 
     @property
     def get_map_base_map_accordian(self):
-        return self.driver.find_element_by_xpath(self._map_click_base_map_action_accordion_xpath_locator)
+         try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_base_map_action_accordion_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_base_map_action_accordion_xpath_locator)
+         except Exception, err:
+            raise type(err)("Base Map Accordian - searched XPATH - "
+                            + self._map_click_base_map_action_accordion_xpath_locator + err.message)
+
 
     @property
     def get_map_default_view_radio(self):
-        return self.driver.find_element_by_xpath(self._map_click_default_action_radio_xpath_locator)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_default_action_radio_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_default_action_radio_xpath_locator)
+        except Exception, err:
+            raise type(err)("Default View Radio - searched XPATH - "
+                            + self._map_click_default_action_radio_xpath_locator + err.message)
+
 
     @property
     def get_map_night_view_radio(self):
-        return self.driver.find_element_by_xpath(self._map_click_night_view_action_radio_xpath_locator)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_night_view_action_radio_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_night_view_action_radio_xpath_locator)
+        except Exception, err:
+            raise type(err)("Night View Radio - searched XPATH - "
+                            + self._map_click_night_view_action_radio_xpath_locator + err.message)
+
 
     @property
     def get_map_terrain_radio(self):
-        return self.driver.find_element_by_xpath(self._map_click_terrain_action_radio_xpath_locator)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_terrain_action_radio_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_terrain_action_radio_xpath_locator)
+        except Exception, err:
+            raise type(err)("Terrain Radio - searched XPATH - "
+                            + self._map_click_terrain_action_radio_xpath_locator + err.message)
+
 
     @property
     def get_map_satelite_default_view_radio(self):
-        return self.driver.find_element_by_xpath(self._map_click_satelite_default_action_radio_xpath_locator)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_satelite_default_action_radio_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_satelite_default_action_radio_xpath_locator)
+        except Exception, err:
+            raise type(err)("Satelite Default View Radio - searched XPATH - "
+                            + self._map_click_satelite_default_action_radio_xpath_locator + err.message)
+
 
     @property
     def get_map_satelite_grey_view_radio(self):
-        return self.driver.find_element_by_xpath(self._map_click_satelite_grey_action_radio_xpath_locator)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_satelite_grey_action_radio_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_satelite_grey_action_radio_xpath_locator)
+        except Exception, err:
+            raise type(err)("Satelite Grey View Radio - searched XPATH - "
+                            + self._map_click_satelite_grey_action_radio_xpath_locator + err.message)
+
 
     # Full Screen related
     @property
     def get_map_full_screen(self):
-        return self.driver.find_element_by_xpath(self._map_mouse_hover_full_screen_icon)
+        try:
+            return self.driver.find_element_by_xpath(self._map_mouse_hover_full_screen_icon)
+        except Exception, err:
+            raise type(err)("Full Screen - searched XPATH - " + self._map_mouse_hover_full_screen_icon + err.message)
+
 
     # Search and Locate
     @property
     def get_search_and_locate_on_map(self):
-        return self.driver.find_element_by_xpath(self._mouse_hover_search_and_locate)
+        try:
+            return self.driver.find_element_by_xpath(self._mouse_hover_search_and_locate)
+        except Exception, err:
+            raise type(err)("Search and Locate On Map - searched XPATH - "
+                            + self._mouse_hover_search_and_locate + err.message)
+
 
     @property
     def get_search_on_map(self):
-        return self.driver.find_element_by_xpath(self._map_search_text_box)
+        try:
+            return self.driver.find_element_by_xpath(self._map_search_text_box)
+        except Exception, err:
+            raise type(err)("Search On Map - searched XPATH - " + self._map_search_text_box + err.message)
+
 
     @property
     def get_locate_button_on_map(self):
-        return self.driver.find_element_by_xpath(self._map_locate_button)
+        try:
+            return self.driver.find_element_by_xpath(self._map_locate_button)
+        except Exception, err:
+            raise type(err)("Locate Button On Map - searched XPATH - " + self._map_locate_button + err.message)
+
 
     # Zoom out
     @property
     def get_map_zoom_out(self):
-        return self.driver.find_element_by_xpath(self._map_zoom_out)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_zoom_out)))
+            return self.driver.find_element_by_xpath(self._map_zoom_out)
+        except Exception, err:
+            raise type(err)("Zoom Out - searched XPATH - " + self._map_zoom_out + err.message)
+
 
     # Map status
     @property
     def get_map_items_map_status(self):
-        return self.driver.find_element_by_xpath(self._map_items_map_status)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_items_map_status)))
+            return self.driver.find_element_by_xpath(self._map_items_map_status)
+        except Exception, err:
+            raise type(err)("Map Items Status - searched XPATH - " + self._map_items_map_status + err.message)
+
 
     # Basic data layer
     @property
     def get_map_basic_data_layer(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_basic_data_layer)))
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer)
+        except Exception, err:
+            raise type(err)("Basic Data Layer - searched XPATH - " + self._map_basic_data_layer + err.message)
+
 
     @property
     def get_map_basic_data_layer_asset(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_asset)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_basic_data_layer_asset)))
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_asset)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Asset - searched XPATH - "
+                            + self._map_basic_data_layer_asset + err.message)
+
 
     @property
     def get_map_basic_data_layer_assessment(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_assessment)
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_assessment)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Assessment - searched XPATH - "
+                            + self._map_basic_data_layer_assessment + err.message)
+
 
     @property
     def get_map_basic_data_layer_incident(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_incident)
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_incident)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Incident - searched XPATH - "
+                            + self._map_basic_data_layer_incident + err.message)
+
 
     @property
     def get_map_basic_data_layer_threat_streams(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams)
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Threat Streams - searched XPATH - "
+                            + self._map_basic_data_layer_threat_streams + err.message)
+
 
     @property
     def get_map_basic_data_layer_indicator_teams(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_indicator_teams)
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_indicator_teams)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Indicator Teams - searched XPATH - "
+                            + self._map_basic_data_layer_indicator_teams + err.message)
+
 
     @property
     def get_map_basic_data_layer_annotations(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_annotations)
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_annotations)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Annotations - searched XPATH - "
+                            + self._map_basic_data_layer_annotations + err.message)
+
 
     @property
     def get_map_basic_data_layer_threat_streams_trending_last_day(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_trending_last_day)
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_trending_last_day)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Threat Streams Trending Last Day - searched XPATH - "
+                            + self._map_basic_data_layer_threat_streams_trending_last_day + err.message)
+
 
     @property
     def get_map_basic_data_layer_threat_streams_stream_1(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_stream_1)
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_stream_1)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Threat Streams Stream 1 - searched XPATH - "
+                            + self._map_basic_data_layer_threat_streams_stream_1 + err.message)
+
 
     @property
     def get_map_basic_data_layer_threat_streams_stream_2(self):
-        return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_stream_2)
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_stream_2)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Threat Streams Stream 2 - searched XPATH - "
+                            + self._map_basic_data_layer_threat_streams_stream_2 + err.message)
+
 
     # Scroll
     @property
     def get_map_scroll(self):
-        return self.driver.find_element_by_xpath(self._map_scroll)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_scroll)))
+            return self.driver.find_element_by_xpath(self._map_scroll)
+        except Exception, err:
+            raise type(err)("Accordian main scroll bar - searched XPATH - " + self._map_scroll + err.message)
+
 
     @property
     def get_map_sub_scroll(self):
-        return self.driver.find_element_by_xpath(self._map_sub_scroll)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_sub_scroll)))
+            return self.driver.find_element_by_xpath(self._map_sub_scroll)
+        except Exception, err:
+            raise type(err)("Accordian inside scroll bar - searched XPATH - " + self._map_sub_scroll + err.message)
+
 
     # Water fall handle - Right hand side - Last Icon
     @property
     def get_map_water_fall_handle(self):
-        return self.driver.find_element_by_xpath(self._map_water_fall_handle)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_water_fall_handle)))
+            return self.driver.find_element_by_xpath(self._map_water_fall_handle)
+        except Exception, err:
+            raise type(err)("Water fall handle - Right hand side - Last Icon - searched XPATH - "
+                            + self._map_water_fall_handle + err.message)
+
 
     @property
     def get_map_water_fall_list(self):
-        return self.driver.find_element_by_xpath(self._map_water_fall_list)
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_water_fall_list)))
+            return self.driver.find_element_by_xpath(self._map_water_fall_list)
+        except Exception, err:
+            raise type(err)("Water fall list - searched XPATH - " + self._map_water_fall_list + err.message)
+
 
 
     @property
     def get_map_water_fall_list_items(self):
-        return self.driver.find_elements_by_tag_name(self._map_water_fall_list_items)
+        try:
+            return self.driver.find_elements_by_tag_name(self._map_water_fall_list_items)
+        except Exception, err:
+            raise type(err)("Water fall list items - searched XPATH - "
+                            + self._map_water_fall_list_items + err.message)
+
 
     def __init__(self, driver):
         super(MapPage, self).__init__(driver)
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
 
-    # This function is used if check box is selected, it should be unchecked
+    # This function is used - if check box is selected, it should be unchecked
     def get_checking_and_unchecking_basic_data_layer(self):
 
         if self.get_map_basic_data_layer_asset.is_selected():
