@@ -13,8 +13,6 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 
 class MapPageTest(BaseTestCase):
-
-class MapPageTest(BaseTestCase):
     '''
     @attr(priority="high")
     #@SkipTest
