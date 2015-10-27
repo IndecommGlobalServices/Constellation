@@ -12,6 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 
+class MapPageTest(BaseTestCase):
 
 class MapPageTest(BaseTestCase):
     '''
@@ -21,7 +22,7 @@ class MapPageTest(BaseTestCase):
     def test_map(self):
         #sleep(5)
         mappage = MapPage(self.driver)
-        #sleep(20)
+        sleep(20)
         self.assertEqual(mappage.get_map_app_name.text, "Map")
     '''
     # Default view
