@@ -12,7 +12,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 cwd = os.getcwd()
 os.chdir('..')
-schooldatafile = os.path.join(os.getcwd(), "data\json_Schooldata.json")
+schooldatafile = os.path.join(os.getcwd(), "data", "json_Schooldata.json")
 os.chdir(cwd)
 
 class AssessmentPage(BasePageClass):
@@ -34,6 +34,9 @@ class AssessmentPage(BasePageClass):
     #Asset grid locator
     _ast_asset_table_locator = ".//*[@id='assessmentManager_table']/tbody/tr[1]/td"
     _ast_asset_table_header_locator = ".//*[@id='assessmentManager_table']/thead/tr/th"
+
+    #Assessment actions locator
+    _ast_action_dropdown_loactor = "//div[@id = 'assessment_actions_dropdown']//button[contains(text(), 'Select action')]"
 
     # Assessment filter related locators
     _ast_status_filter_drop_down_locator = "//div[@label='Status']"
@@ -80,83 +83,27 @@ class AssessmentPage(BasePageClass):
                                                          "/div/div/div//button[contains(text(),'Cancel')]"
     _ast_photos_documents_window_delete_button_locator = ".//*[@id='delete_document_modal']/div/div/div[3]/button[2]"
 
+
+    #Assessment edit caption locators
+    _ast_file_edit_caption_text_box_locator = "//div[@class='forminputfields']//input[@id='question_photo_caption']"
+    _ast_file_edit_caption_save_button_locator = "//div[@id='modal_edit_photo']//button[text()='Save']"
+    _ast_file_edit_caption_cancel_button_locator = "//div[@id='modal_edit_photo']//button[text()='Cancel']"
+
     #Assessment school data related locators
     _ast_schooldata_button_locator = "//button[@title='School Data']"
     _ast_schooldata_schooltype_radio_button_locator = ".//*[@id='assessment_section']/div[3]/div[2]/span/label"
-    _ast_schooldata_schooltype_comments_text_box_locator =  "//div[contains(text(),'School type')]//textarea[@placeholder='Comments']"
-    _ast_schooldata_schooltype_comment_image_locator = "//div[contains(text(),'School type')]//img[@src='../images/comment.png']"
-    _ast_schooldata_schooltype_camera_image_locator = "//div[contains(text(),'School type')]//img[@src='../images/camera.png']"
-    '''
-    _ast_schooldata_schooltype_attachphoto_button_locator = "//div[contains(text(),'School type')]" \
-                                                            "//div[@ng-show='question.show_photo_upload']" \
-                                                            "//div[@ng-show='assessmentEditable()']" \
-                                                            "/div/div/span/span/span[@class='fui-upload']"
-    '''
-    _ast_schooldata_schooltype_attachphoto_button_locator = "//div[contains(text(),'School type')]//div[@ng-show='question.show_photo_upload']//div[@ng-show='assessmentEditable()']//input[@id='upload_document_file_upload']"
     _ast_schooldata_gradelevel_checkbox_locator = ".//*[@id='assessment_section']/div[3]/div[3]/span/span/label"
-    _ast_schooldata_gradelevel_comments_text_box_locator =  "//div[contains(text(),'Grade levels')]//textarea[@placeholder='Comments']"
-    _ast_schooldata_gradelevel_comment_image_locator = "//div[contains(text(),'Grade levels')]//img[@src='../images/comment.png']"
-    _ast_schooldata_gradelevel_camera_image_locator = "//div[contains(text(),'Grade levels')]//img[@src='../images/camera.png']"
-    _ast_schooldata_gradelevel_attachphoto_button_locator = "//div[contains(text(),'Grade levels')]" \
-                                                            "//div[@ng-show='question.show_photo_upload']" \
-                                                            "//div[@ng-show='assessmentEditable()']" \
-                                                            "/div/div/span/span/span[@class='fui-upload']"
     _ast_schooldata_schoolhours_text_are_locator = "//div[contains(text(),'School hours')]//input[@ng-model='question.answer.text']"
-    _ast_schooldata_schoolhours_comments_text_box_locator =  "//div[contains(text(),'School hours')]//textarea[@placeholder='Comments']"
-    _ast_schooldata_schoolhours_comment_image_locator = "//div[contains(text(),'School hours')]//img[@src='../images/comment.png']"
-    _ast_schooldata_schoolhours_camera_image_locator = "//div[contains(text(),'School hours')]//img[@src='../images/camera.png']"
     _ast_schooldata_numberofstudents_text_are_locator = "//div[contains(text(),'Number of students')]//input[@ng-model='question.answer.text']"
-    _ast_schooldata_numberofstudents_comments_text_box_locator =  "//div[contains(text(),'Number of students')]//textarea[@placeholder='Comments']"
-    _ast_schooldata_numberofstudents_comment_image_locator = "//div[contains(text(),'Number of students')]//img[@src='../images/comment.png']"
-    _ast_schooldata_numberofstudents_camera_image_locator = "//div[contains(text(),'Number of students')]//img[@src='../images/camera.png']"
     _ast_schooldata_specialneedsstudents_text_area_locator = "//div[contains(text(),'Does the student body " \
                                                         "include students with special needs? If yes, how " \
                                                         "many students with special needs are enrolled')]" \
                                                         "//input[@ng-model='question.answer.text']"
-    _ast_schooldata_specialneedsstudents_comments_text_box_locator =  "//div[contains(text(),'Does the student body" \
-                                                                  " include students with special needs? If yes, how" \
-                                                                  " many students with special needs are enrolled')]" \
-                                                                  "//textarea[@placeholder='Comments']"
-    _ast_schooldata_specialneedsstudents_comment_image_locator = "//div[contains(text(),'Does the student body " \
-                                                             "include students with special needs? If yes, how " \
-                                                             "many students with special needs are enrolled')]" \
-                                                             "//img[@src='../images/comment.png']"
-    _ast_schooldata_specialneedsstudents_camera_image_locator = "//div[contains(text(),'Does the student body " \
-                                                            "include students with special needs? If yes, how" \
-                                                            " many students with special needs are enrolled')]" \
-                                                            "//img[@src='../images/camera.png']"
     _ast_schooldata_numberofstaff_text_area_locator = "//div[contains(text(),'Number of staff')]//input[@ng-model='question.answer.text']"
-    _ast_schooldata_numberofstaff_comments_text_box_locator =  "//div[contains(text(),'Number of staff')]//textarea[@placeholder='Comments']"
-    _ast_schooldata_numberofstaff_comment_image_locator = "//div[contains(text(),'Number of staff')]//img[@src='../images/comment.png']"
-    _ast_schooldata_numberofstaff_camera_image_locator = "//div[contains(text(),'Number of staff')]//img[@src='../images/camera.png']"
-
     _ast_schooldata_numberofvisitors_text_area_locator = "//div[contains(text(),'Average number of visitors (non student/staff) per day')]" \
                                                          "//input[@ng-model='question.answer.text']"
-    _ast_schooldata_numberofvisitors_comments_text_box_locator = "//div[contains(text(),'Average number of visitors (non student/staff) per day')]" \
-                                                                  "//textarea[@placeholder='Comments']"
-    _ast_schooldata_numberofvisitors_comment_image_locator = "//div[contains(text(),'Average number of visitors (non student/staff) per day')]" \
-                                                             "//img[@src='../images/comment.png']"
-    _ast_schooldata_numberofvisitors_camera_image_locator = "//div[contains(text(),'Average number of visitors (non student/staff) per day')]" \
-                                                            "//img[@src='../images/camera.png']"
-
-
     _ast_schooldata_lawenforcement_yes_radio_button_loactor = "//div[contains(text(),'Is there a certified law enforcement officer on campus?')]//label[@label='Yes']"
     _ast_schooldata_lawenforcement_no_radio_button_loactor = "//div[contains(text(),'Is there a certified law enforcement officer on campus?')]//label[@label='No']"
-    _ast_schooldata_lawenforcement_comments_text_box_locator = "//div[contains(text(),'Is there a certified law enforcement officer on campus?')]" \
-                                                                  "//textarea[@placeholder='Comments']"
-    _ast_schooldata_lawenforcement_comment_image_locator = "//div[contains(text(),'Is there a certified law enforcement officer on campus?')]" \
-                                                             "//img[@src='../images/comment.png']"
-    _ast_schooldata_lawenforcement_camera_image_locator = "//div[contains(text(),'Is there a certified law enforcement officer on campus?')]" \
-                                                            "//img[@src='../images/camera.png']"
-
-    _ast_schooldata_numberoflawenforcement_text_area_locator = "//div[contains(text(),'If there is a certified law enforcement officer on campus how many?')]" \
-                                                         "//input[@ng-model='question.answer.text']"
-    _ast_schooldata_numberoflawenforcement_comments_text_box_locator = "//div[contains(text(),'If there is a certified law enforcement officer on campus how many?')]" \
-                                                                  "//textarea[@placeholder='Comments']"
-    _ast_schooldata_numberoflawenforcement_comment_image_locator = "//div[contains(text(),'If there is a certified law enforcement officer on campus how many?')]" \
-                                                             "//img[@src='../images/comment.png']"
-    _ast_schooldata_numberoflawenforcement_camera_image_locator = "//div[contains(text(),'If there is a certified law enforcement officer on campus how many?')]" \
-                                                            "//img[@src='../images/camera.png']"
 
     #Assessment school data related locators
     _ast_schoolInfrastructure_button_locator = "//button[@title='School Infrastructure']"
@@ -290,7 +237,7 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_action_dropdown(self):
-        return self.driver.find_element_by_xpath(".//*[@id='assessment_actions_dropdown']/button[2]")
+        return self.driver.find_element_by_xpath(self._ast_action_dropdown_loactor)
 
     @property
     def get_delete_assessment_delete_button(self):
@@ -402,7 +349,21 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._ast_overview_button_locator)
 
     @property
+    def get_file_edit_caption_textbox(self):
+        return self.driver.find_element_by_xpath(self._ast_file_edit_caption_text_box_locator)
+
+    @property
+    def get_file_edit_caption_save_button(self):
+        return self.driver.find_element_by_xpath(self._ast_file_edit_caption_save_button_locator)
+
+    @property
+    def get_file_edit_caption_cancel_button(self):
+        return self.driver.find_element_by_xpath(self._ast_file_edit_caption_cancel_button_locator)
+
+    @property
     def get_schooldata_button(self):
+        WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_all_elements_located(
+            (By.XPATH, self._ast_schooldata_button_locator)), "Timeout")
         return self.driver.find_element_by_xpath(self._ast_schooldata_button_locator)
 
     @property
@@ -410,121 +371,28 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_elements_by_xpath(self._ast_schooldata_schooltype_radio_button_locator)
 
     @property
-    def get_schooldata_schooltype_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_schooltype_comment_image_locator)
-
-    @property
-    def get_schooldata_schooltype_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_schooltype_comments_text_box_locator)
-
-    @property
-    def get_schooldata_schooltype_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_schooltype_camera_image_locator)
-
-    @property
-    def get_schooldata_schooltype_attachphoto_button(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_schooltype_attachphoto_button_locator)
-
-    @property
     def get_schooldata_gradelevel_checkbox(self):
         return self.driver.find_elements_by_xpath(self._ast_schooldata_gradelevel_checkbox_locator)
-
-    @property
-    def get_schooldata_gradelevel_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_gradelevel_comment_image_locator)
-
-    @property
-    def get_schooldata_gradelevel_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_gradelevel_comments_text_box_locator)
-
-    @property
-    def get_schooldata_gradelevel_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_gradelevel_camera_image_locator)
-
-    @property
-    def get_schooldata_gradelevel_attachphoto_button(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_gradelevel_attachphoto_button_locator)
-
 
     @property
     def get_schooldata_schoolhours_textarea(self):
         return self.driver.find_element_by_xpath(self._ast_schooldata_schoolhours_text_are_locator)
 
     @property
-    def get_schooldata_schoolhours_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_schoolhours_comment_image_locator)
-
-    @property
-    def get_schooldata_schoolhours_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_schoolhours_comments_text_box_locator)
-
-    @property
-    def get_schooldata_schoolhours_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_schoolhours_camera_image_locator)
-
-    @property
     def get_schooldata_noofstudents_textarea(self):
         return self.driver.find_element_by_xpath(self._ast_schooldata_numberofstudents_text_are_locator)
-
-    @property
-    def get_schooldata_noofstudents_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofstudents_comment_image_locator)
-
-    @property
-    def get_schooldata_noofstudents_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofstudents_comments_text_box_locator)
-
-    @property
-    def get_schooldata_noofstudents_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofstudents_camera_image_locator)
 
     @property
     def get_schooldata_specialneedsstudents_textarea(self):
         return self.driver.find_element_by_xpath(self._ast_schooldata_specialneedsstudents_text_area_locator)
 
     @property
-    def get_schooldata_specialneedsstudents_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_specialneedsstudents_comment_image_locator)
-
-    @property
-    def get_schooldata_specialneedsstudents_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_specialneedsstudents_comments_text_box_locator)
-
-    @property
-    def get_schooldata_specialneedsstudents_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_specialneedsstudents_camera_image_locator)
-
-    @property
     def get_schooldata_noofstaff_textarea(self):
         return self.driver.find_element_by_xpath(self._ast_schooldata_numberofstaff_text_area_locator)
 
     @property
-    def get_schooldata_noofstaff_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofstaff_comment_image_locator)
-
-    @property
-    def get_schooldata_noofstaff_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofstaff_comments_text_box_locator)
-
-    @property
-    def get_schooldata_noofstaff_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofstaff_camera_image_locator)
-
-    @property
     def get_schooldata_noofvisitors_textarea(self):
         return self.driver.find_element_by_xpath(self._ast_schooldata_numberofvisitors_text_area_locator)
-
-    @property
-    def get_schooldata_noofvisitors_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofvisitors_comment_image_locator)
-
-    @property
-    def get_schooldata_noofvisitors_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofvisitors_comments_text_box_locator)
-
-    @property
-    def get_schooldata_noofvisitors_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberofvisitors_camera_image_locator)
 
     @property
     def get_schooldata_lawenforcement_Yes_radiobutton(self):
@@ -534,33 +402,6 @@ class AssessmentPage(BasePageClass):
     def get_schooldata_lawenforcement_No_radiobutton(self):
         return self.driver.find_element_by_xpath(self._ast_schooldata_lawenforcement_no_radio_button_loactor)
 
-    @property
-    def get_schooldata_lawenforcement_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_lawenforcement_comment_image_locator)
-
-    @property
-    def get_schooldata_lawenforcement_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_lawenforcement_comments_text_box_locator)
-
-    @property
-    def get_schooldata_lawenforcement_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_lawenforcement_camera_image_locator)
-
-    @property
-    def get_schooldata_nooflawenforcement_textarea(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberoflawenforcement_text_area_locator)
-
-    @property
-    def get_schooldata_nooflawenforcement_comment_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberoflawenforcement_comment_image_locator)
-
-    @property
-    def get_schooldata_nooflawenforcement_comment_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberoflawenforcement_comments_text_box_locator)
-
-    @property
-    def get_schooldata_nooflawenforcement_camera_image(self):
-        return self.driver.find_element_by_xpath(self._ast_schooldata_numberoflawenforcement_camera_image_locator)
 
     ####################School Infrastucture############################################################################
     @property
@@ -647,18 +488,11 @@ class AssessmentPage(BasePageClass):
             if index == count:
                 break
 
-    def deselect_checkboxes(self):
-        checks = self.driver.find_elements_by_xpath(".//*[@id='tblAssessments']/tbody/tr/td[1]/label")
-        for checkbox in checks:
-            if checkbox.get_attribute("class") == "checkbox checked":
-                sleep(2)
-                print "Uncheck"
-                checkbox.click()
-                sleep(1)
-
     def search_assessment_textbox(self, keyword):
-        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+        WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
             (By.XPATH, self._ast_search_assessment_text_box_locator)))
+        WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+            (By.XPATH, self._ast_action_dropdown_loactor)))
         self.get_search_assessment_textbox.clear()
         self.get_search_assessment_textbox.send_keys(keyword)
 
@@ -823,6 +657,16 @@ class AssessmentPage(BasePageClass):
                 WebDriverWait(self.driver,20).until(expected_conditions.element_to_be_clickable((By.XPATH,
                                                         self._ast_photos_documents_upload_file_button_locator)))
 
+    def delete_uploaded_files_assessmentpage(self, section):
+        """
+        Description : This function will existing uploaded files.
+        Revision:
+        :return:
+        """
+        for deleteicon in self.get_schooldata_image_delete_button(section):
+                deleteicon.click()
+
+
 
     def recoverapp(self):
         basepage = BasePage(self.driver)
@@ -833,11 +677,18 @@ class AssessmentPage(BasePageClass):
     def open_schooldata_page(self):
         self.select_assessment(self.asset_school_name)
         self.get_schooldata_button.click()
+        # WebDriverWait(self.driver,20).until(expected_conditions.presence_of_all_elements_located(
+        #     (By.XPATH, "//div[@ng-form = 'question_form']")))
 
     def save_schooldata(self):
-        self.get_overview_save_button.click()
-        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self._ast_overview_save_button_locator))).click()
+        try:
+            WebDriverWait(self.driver, 80).until(expected_conditions.text_to_be_present_in_element(
+                (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        except Exception, err:
+            raise type(err)("Save failed and the message displayed is - " \
+                          + self.driver.find_element_by_xpath(self._ast_saved_text_locator).text + err.message)
         self.get_overview_button.click()
         self.get_schooldata_button.click()
 
@@ -894,6 +745,99 @@ class AssessmentPage(BasePageClass):
 
     def return_to_assessment_main_page(self):
         self.click_on_assessment_link.click()
+
+    def get_schooldata_comment_image(self, section):
+        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']")
+
+    def get_schooldata_comment_textbox(self, section):
+        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//textarea[@placeholder='Comments']")
+
+    def get_schooldata_comment_textbox_locator(self, section):
+        return "//div[contains(text(),'"+section+"')]//textarea[@placeholder='Comments']"
+
+    def get_schooldata_comment_image_locator(self, section):
+        return "//div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']"
+
+    def get_schooldata_camera_image(self, section):
+        return  self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//img[@src='../images/camera.png']")
+
+    def get_schooldata_camera_image_locator(self, section):
+        return "//div[contains(text(),'"+section+"')]//img[@src='../images/camera.png']"
+
+    def get_schooldata_attachphoto_button(self, section):
+        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]" \
+                                                           "//div[@ng-show='question.show_photo_upload']" \
+                                                           "//div[@ng-show='assessmentEditable()']" \
+                                                           "//input[@id='upload_document_file_upload']")
+    def is_attachphoto_button_visible(self, section):
+        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]"
+                                                 "//div[@ng-show='question.show_photo_upload']"
+                                                 "//div[@ng-show='assessmentEditable()']"
+                                                 "//span[@class = 'fileinput-new']").is_displayed()
+
+    def get_schooldata_attachphoto_button_locator(self, section):
+        return "//div[contains(text(),'"+section+"')]//div[@ng-show='question.show_photo_upload']" \
+                                                 "//div[@ng-show='assessmentEditable()']" \
+                                                           "//input[@id='upload_document_file_upload']"
+
+    def get_schooldata_image(self, section):
+        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]" \
+                                                            "//div[@ng-show='question.show_photo_upload']" \
+                                                            "//div[@class= 'assessment_photo_span ng-scope']")
+    def get_schooldata_image_locator(self, section):
+        return "//div[contains(text(),'"+section+"')]//div[@ng-show='question.show_photo_upload']" \
+                                                            "//div[@class= 'assessment_photo_span ng-scope']"
+
+    def get_schooldata_image_delete_button(self, section):
+        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]" \
+                                                             "//div[@ng-show='question.show_photo_upload']" \
+                                                             "//div[@class= 'assessment_photo_span ng-scope']" \
+                                                             "//img[@src='../images/delete_icon.png']")
+    def get_schooldata_image_delete_button_locator(self, section):
+        return "//div[contains(text(),'"+section+"')]//div[@ng-show='question.show_photo_upload']" \
+                                                 "//div[@class= 'assessment_photo_span ng-scope']" \
+                                                             "//img[@src='../images/delete_icon.png']"
+
+    def get_schooldata_image_caption(self, section):
+        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]" \
+                                                      "//div[@ng-show='question.show_photo_upload']" \
+                                                        "//div[@class= 'assessment_photo_span ng-scope']" \
+                                                      "//div[@class = 'assessment_photo_caption ng-binding']")
+
+    def get_schooldata_image_caption_locator(self, section):
+        return "//div[contains(text(),'"+section+"')]//div[@ng-show='question.show_photo_upload']" \
+                                                        "//div[@class= 'assessment_photo_span ng-scope']" \
+                                                      "//div[@class = 'assessment_photo_caption ng-binding']"
+
+
+    def schooldata_upload_file(self, section):
+        if not self.is_attachphoto_button_visible(section):
+            self.get_schooldata_camera_image(section).click()
+        file = self.file_path("Test_Case_40.jpg")
+        self.get_schooldata_attachphoto_button(section).send_keys(file)
+        self.save_schooldata()
+
+    def schooldata_edit_caption_image(self, section):
+        if not self.is_attachphoto_button_visible(section):
+            self.get_schooldata_camera_image(section).click()
+        self.delete_uploaded_files_assessmentpage(section)
+        file = self.file_path("Test_Case_41.jpg")
+        self.get_schooldata_attachphoto_button(section).send_keys(file)
+        self.save_schooldata()
+        self.get_schooldata_image(section)[0].click()
+        self.get_file_edit_caption_textbox.send_keys("Hello")
+        self.get_file_edit_caption_save_button.click()
+
+    def schooldata_edit_comment(self, section):
+        if not self.get_schooldata_comment_textbox(section).is_displayed():
+            self.get_schooldata_comment_image(section).click()
+        self.get_schooldata_comment_textbox(section).clear()
+        self.get_schooldata_comment_textbox(section).send_keys("Comment")
+        self.save_schooldata()
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self.get_schooldata_comment_textbox_locator(section))))
+
+
 
     def _validate_page(self, driver):
         pass

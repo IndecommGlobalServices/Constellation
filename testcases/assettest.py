@@ -11,13 +11,16 @@ from nose.plugins.skip import SkipTest
 from time import sleep
 import json, os, re, inspect
 from selenium.webdriver.common.action_chains import ActionChains
+import ConfigParser
 
 class AssetpageTest(BaseTestCase):
 
     def setUp(self):
         self.errors_and_failures = self.tally()
         self.assetpage = AssetPage(self.driver)
-
+        self.section = 'AssetTests'
+        self.config = ConfigParser.ConfigParser()
+        self.config.readfp(open('baseconfig.cfg'))
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
@@ -38,9 +41,9 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_select_action_drop_down.click()
         if len(self.assetpage.get_asset_name_list)<= 0:
             self.assertFalse(self.assetpage.get_asset_link_delete_text.is_enabled(),
-                         "Delete must be disabled when no assets are available.")
+                             self.config.get(self.section, 'MESSAGE_WHEN_NO_ASSETS_AVAILABLE'))
         else:
-            self.skipTest("Assets are available and test cant be validated")
+            self.skipTest(self.config.get(self.section, 'MESSAGE_TEST_CAN_NOT_BE_VALIDATED'))
 
     @attr(priority="high")
     #@SkipTest
@@ -56,7 +59,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_select_checkbox_in_grid()
         self.assetpage.get_asset_select_action_drop_down.click()
         self.assertFalse(self.assetpage.get_asset_link_delete_text.is_enabled(),
-                         "Delete must be disabled when no assets are available.")
+                         self.config.get(self.section, 'MESSAGE_WHEN_NO_ASSETS_AVAILABLE'))
 
     @attr(priority="high")
     #@SkipTest
@@ -74,7 +77,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_link_delete_text.click()
         self.assetpage.get_asset_delete_button.click() # Delete
         countafterdeletion = self.assetpage.get_total_row_count()
-        self.assertEqual(int(countbeforedeletion), int(countafterdeletion), "Couldn't delete asset")
+        self.assertEqual(int(countbeforedeletion), int(countafterdeletion),
+                         self.config.get(self.section, 'MESSAGE_COULD_NOT_DELETE_ASSET'))
 
     @attr(priority="high")
     #@SkipTest
@@ -93,8 +97,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_link_delete_text.click()
         self.assetpage.get_deleteasset_cancel_button.click() # Cancel
         countafterdeletion = self.assetpage.get_total_row_count()
-        self.assertEqual(int(countbeforedeletion), int(countafterdeletion),\
-                         "Asset deleted even after cancel is pressed")
+        self.assertEqual(int(countbeforedeletion), int(countafterdeletion),
+                         self.config.get(self.section, 'MESSAGE_ASSET_DELETED_ON_CANCEL'))
 
     @attr(priority="high")
     #@SkipTest
@@ -106,8 +110,9 @@ class AssetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-        self.assetpage.asset_filter_based_on_place_and_school("Place")
-        self.assertTrue(self.assetpage.get_asset_place_type_drop_down.is_displayed(), "Invalid filter")
+        self.assetpage.asset_filter_based_on_place_and_school('Place')
+        self.assertTrue(self.assetpage.get_asset_place_type_drop_down.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_INVALID_FILTER'))
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -120,8 +125,9 @@ class AssetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
-        self.assetpage.asset_filter_based_on_place_and_school("School")
-        self.assertTrue(self.assetpage.get_asset_school_district_drop_down.is_displayed(), "Invalid filter")
+        self.assetpage.asset_filter_based_on_place_and_school('School')
+        self.assertTrue(self.assetpage.get_asset_school_district_drop_down.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_INVALID_FILTER'))
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -136,7 +142,8 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.get_asset_school_district()
         for item in self.assetpage.select_asset_schooltype_district_column:
-            self.assertEqual(self.assetpage.selecteddistrict, item.text, "Result doesnt match the filter")
+            self.assertEqual(self.assetpage.selecteddistrict, item.text,
+                             self.config.get(self.section, 'MESSAGE_INVALID_RESULT_ON_FILTER'))
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -151,7 +158,8 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.get_asset_school_grade()
         for item in self.assetpage.select_asset_schooltype_grade_column:
-            self.assertEqual(self.assetpage.selectedgrade, item.text, "Result doesnt match the filter")
+            self.assertEqual(self.assetpage.selectedgrade, item.text,
+                             self.config.get(self.section, 'MESSAGE_INVALID_RESULT_ON_FILTER'))
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -167,7 +175,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_reset_button.click()
         self.assetpage.get_asset_school_type()
         for item in self.assetpage.select_asset_schooltype_column:
-            self.assertEqual(self.assetpage.selectedtype, item.text, "Result doesnt match the filter")
+            self.assertEqual(self.assetpage.selectedtype, item.text,
+                             self.config.get(self.section, 'MESSAGE_INVALID_RESULT_ON_FILTER'))
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -209,7 +218,7 @@ class AssetpageTest(BaseTestCase):
                 for searchName in searchNames:
                     if self.assetpage.get_asset_list_no_matching_records_found.text:
                         self.assertEqual("No matching records found", self.assetpage.get_asset_list_no_matching_records_found.text,
-                                         "No records to find asset.")
+                                         self.config.get(self.section, 'MESSAGE_NO_ASSET_RECORDS'))
                     else:
                         print searchName #Should replace with regexp comparison
         self.assetpage.select_asset_search_text_box.clear()
@@ -241,7 +250,7 @@ class AssetpageTest(BaseTestCase):
                 check = 1
                 break
         self.assetpage.textbox_clear(self.driver.find_element_by_xpath(self.assetpage._asset_search_textbox_locator))
-        self.assertFalse(check == 0, "Newly created asset is not appearing with yellow background")
+        self.assertFalse(check == 0, self.config.get(self.section,'MESSAGE_NEW_ASSET_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
 
     @attr(priority="high")
     #@SkipTest
@@ -255,7 +264,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.asset_create_click()
         self.assetpage.select_asset_template_type("Place")
         self.assetpage.enter_asset_type_name.send_keys("")#Clear the text filed and leave it without any value
-        self.assertFalse(self.assetpage.get_asset_overview_save_button.is_enabled(), "Save button is not disabled.")
+        self.assertFalse(self.assetpage.get_asset_overview_save_button.is_enabled(),
+                         self.config.get(self.section,'MESSAGE_SAVE_BUTTON_IS_NOT_DISABLED'))
         self.assetpage.asset_overview_cancel_click()
 
 
@@ -274,7 +284,8 @@ class AssetpageTest(BaseTestCase):
         asset_phone.send_keys("123abc1234")
         asset_phone.send_keys(Keys.TAB)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
-        self.assertRegexpMatches("123abc1234", regex, "Expected and actual value is not matching for EMAIL")
+        self.assertRegexpMatches("123abc1234", regex,
+                                 self.config.get(self.section, 'MESSAGE_PHONE_VALUE_NOT_MATCHING'))
         self.assetpage.asset_overview_cancel_click()
 
     @attr(priority="high")
@@ -322,7 +333,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_overview_edit_link.click()
         self.assetpage.set_place_overview_fields(r"Ind address", r"Ind address 2", r"Ind city", r"KA", r"94821", r"Indecomm")
         self.assetpage.asset_overview_save_click()# Click on Save
-        self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
+        self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
     #@SkipTest
@@ -359,7 +371,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3",
                 r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
-        self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(), "Saved text is not displayed")
+        self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
     #@SkipTest
@@ -370,7 +383,7 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
+        self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, 'Place')
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
         self.assetpage.get_asset_detail_edit_link.click()
@@ -380,7 +393,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys(email_add)
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
         regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(email_add, regex, "Expected and actual value is not matching for EMAIL")
+        self.assertRegexpMatches(email_add, regex,
+                                 self.config.get(self.section, 'MESSAGE_EMAIL_NOT_MATCHING'))
         self.assetpage.get_asset_detail_edit_cancel_button.click()
 
     @attr(priority="high")
@@ -402,7 +416,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(r"123abc1234") #Enter the value for FAX
         self.assetpage.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
-        self.assertRegexpMatches(r"123abc1234", regex, "Expected and actual value is not matching for FAX")
+        self.assertRegexpMatches(r"123abc1234", regex,
+                                 self.config.get(self.section, 'MESSAGE_FAX_NOT_MATCHING'))
         self.assetpage.get_asset_detail_edit_cancel_button.click()
 
 
@@ -443,7 +458,7 @@ class AssetpageTest(BaseTestCase):
         act_new_contact_value = self.assetpage.get_asset_contact_new_contact_value_text.text
         exp_new_contact_value = "ZLastName, FirstName"+" Title "+r"111-111-1111 "+r"test@test.com"
         self.assertEqual(act_new_contact_value, exp_new_contact_value,
-                                                        "Expected and actual values for new contact are not matching.")
+                                                        self.config.get(self.section, 'MESSAGE_CONTACTS_NOT_MATCHING'))
 
     @attr(priority="high")
     #@SkipTest
@@ -466,7 +481,7 @@ class AssetpageTest(BaseTestCase):
                 exp_name_value = "Shri FirstName ZLastName"
                 self.assertEqual(str(act_name_value), str(exp_name_value))#verify asset main contact first and last name value.
         except NoSuchElementException:
-            self.assertFalse(True, "No Main Contact exists.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_NO_MAIN_CONTACTS'))
 
     @attr(priority="high")
     #@SkipTest
@@ -494,8 +509,8 @@ class AssetpageTest(BaseTestCase):
         lastname_error = self.assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
         sleep(2) #required to check Error message.
         self.assetpage.get_asset_newcontact_window_cross_button.click()#click on cross button to close window.
-        self.assertTrue(firstname_error, "Error message is not displayed for First Name.")
-        self.assertTrue(lastname_error, "Error message is not displayed for Last Name.")
+        self.assertTrue(firstname_error, self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_FIRST_NAME'))
+        self.assertTrue(lastname_error, self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_LAST_NAME'))
 
     @attr(priority="high")
     #@SkipTest
@@ -524,7 +539,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_newcontact_save_button.click()#click on save button.
         act_phone = self.assetpage.get_asset_contact_phone_value_text.text#reading act phone value.
         regex = re.compile(r'^\(?([A-Za-z0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([A-Za-z0-9]{4})$')
-        self.assertRegexpMatches(str(act_phone), regex, "Expected and actual phone value are not matching.")
+        self.assertRegexpMatches(str(act_phone), regex,
+                                 self.config.get(self.section, 'MESSAGE_PHONE_VALUE_NOT_MATCHING'))
 
     @attr(priority="high")
     #@SkipTest
@@ -555,7 +571,8 @@ class AssetpageTest(BaseTestCase):
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         act_email = self.assetpage.get_asset_contact_email_value_text.text #reading actual email value.
         regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(str(act_email), regex, "Expected and actual value is not matching for EMAIL.")
+        self.assertRegexpMatches(str(act_email), regex,
+                                 self.config.get(self.section, 'MESSAGE_EMAIL_NOT_MATCHING'))
 
     @attr(priority="high")
     #@SkipTest
@@ -586,7 +603,8 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
         exp_error_message = self.assetpage.get_asset_newcontact_email_error_message.is_displayed()
         self.assetpage.get_asset_newcontact_window_cross_button.click()#Click on Cross button to close window.
-        self.assertTrue(exp_error_message, "Error message is not displayed for wrong EMAIL address.")
+        self.assertTrue(exp_error_message,
+                        self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_WRONG_EMAIL'))
 
     @attr(priority="high")
     #@SkipTest
@@ -614,9 +632,10 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
         try:
             if self.assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
-                self.assertFalse(True,"Contact has been created. Cancel button is not working.")
+                self.assertFalse(True,
+                                 self.config.get(self.section, 'MESSAGE_ERROR_CANCEL_NOT_WORKING_ON_CONTACT_CREATION'))
         except:
-            self.assertTrue(True,"New Contact is not created.")
+            self.assertTrue(True,self.config.get(self.section, 'MESSAGE_NEW_CONTACT_CREATED'))
 
     @attr(priority="high")
     def test_AS_33_1(self):
@@ -639,14 +658,16 @@ class AssetpageTest(BaseTestCase):
         act_name_list_value = []
         for name in act_name_list:
             act_name_list_value.append(name.text)
-        self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value), "Contact name is not sorted ascendingly")
+        self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value),
+                         self.config.get(self.section, 'MESSAGE_CONTACT_NAMES_IN_ASCENDING_ORDER'))
         self.assetpage.get_asset_point_of_contact_name_tab.click()
         sleep(2)
         act_name_list = self.assetpage.get_asset_point_of_contact_name_text_value#Reading all contact's names.
         act_name_list_value =[]
         for name in act_name_list:
             act_name_list_value.append(name.text)
-        self.assertEqual(exp_name_descending, ", ".join(act_name_list_value),"Contact name is not sorted descendingly")
+        self.assertEqual(exp_name_descending, ", ".join(act_name_list_value),
+                         self.config.get(self.section, 'MESSAGE_CONTACT_NAMES_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
     def test_AS_33_2(self):
@@ -670,7 +691,7 @@ class AssetpageTest(BaseTestCase):
         for title in act_title_list:
             act_title_list_value.append(title.text)
         self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value),
-                         "Contact Title column is not sorted ascendingly")
+                         self.config.get(self.section, 'MESSAGE_CONTACT_TITLES_NOT_IN_ASCENDING_ORDER'))
         self.assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab to sort descendingly.
         sleep(2)
         act_title_list = self.assetpage.get_asset_point_of_contact_title_text_value#Reading all contact's title values.
@@ -678,7 +699,7 @@ class AssetpageTest(BaseTestCase):
         for title in act_title_list:
             act_title_list_value.append(title.text)
         self.assertEqual(exp_title_descending, ", ".join(act_title_list_value),
-                         "Contact Title column is not sorted descendingly")
+                         self.config.get(self.section, 'MESSAGE_CONTACT_TITLES_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
     def test_AS_33_3(self):
@@ -702,7 +723,7 @@ class AssetpageTest(BaseTestCase):
         for phone in act_phone_list:
             act_phone_list_value.append(phone.text)
         self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value),
-                         "Contact Phone no is not sorted ascendingly")
+                         self.config.get(self.section, 'MESSAGE_CONTACT_PHONE_NUMBERS_NOT_IN_ASCENDING_ORDER'))
         self.assetpage.get_asset_point_of_contact_phone_tab.click()
         sleep(2)
         act_phone_list = self.assetpage.get_asset_point_of_contact_phone_text_value#Reading all contact's phone values.
@@ -710,7 +731,7 @@ class AssetpageTest(BaseTestCase):
         for phone in act_phone_list:
             act_phone_list_value.append(phone.text)
         self.assertEqual(exp_phone_descending, ", ".join(act_phone_list_value),
-                         "Contact Phone no is not sorted descendingly")
+                         self.config.get(self.section, 'MESSAGE_CONTACT_PHONE_NUMBERS_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
     def test_AS_33_4(self):
@@ -734,7 +755,7 @@ class AssetpageTest(BaseTestCase):
         for email in act_email_list:
             act_email_list_value.append(email.text)
         self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value),
-                         "Contact Email column is not sorted ascendingly")
+                         self.config.get(self.section, 'MESSAGE_CONTACT_EMAILS_NOT_IN_ASCENDING_ORDER'))
         self.assetpage.get_asset_point_of_contact_email_tab.click()
         sleep(2)
         act_email_list = self.assetpage.get_asset_point_of_contact_email_text_value#Reading all contact's email values.
@@ -742,7 +763,7 @@ class AssetpageTest(BaseTestCase):
         for email in act_email_list:
             act_email_list_value.append(email.text)
         self.assertEqual(exp_email_descending, ", ".join(act_email_list_value),
-                         "Contact Email column is not sorted descendingly")
+                         self.config.get(self.section, 'MESSAGE_CONTACT_EMAILS_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
     #@SkipTest
@@ -771,9 +792,9 @@ class AssetpageTest(BaseTestCase):
         try:
             if self.assetpage.get_asset_newcontact_delete_icon.is_displayed():
                 sleep(2)
-                self.assertFalse(False,"New Contact is not Deleted")
+                self.assertFalse(False, self.config.get(self.section, 'MESSAGE_NEW_CONTACT_NOT_DELETED'))
         except NoSuchElementException:
-            self.assertTrue(True,"The Contact has been Deleted")
+            self.assertTrue(True, self.config.get(self.section, 'MESSAGE_CONTACT_DELETED'))
 
     @attr(priority="high")
     #@SkipTest
@@ -805,9 +826,9 @@ class AssetpageTest(BaseTestCase):
                 sleep(2)
                 self.assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
                 sleep(2)
-                self.assertTrue(True,"Cancel Button is working properly.")
+                self.assertTrue(True, self.config.get(self.section, 'MESSAGE_CANCEL_IS_WORKING'))
         except NoSuchElementException:
-            self.assertFalse(True,"The Contact has been Deleted. Delete Window Cancel button is not working.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_CONTACT_DELETED'))
 
     @attr(priority="high")
     #@SkipTest
@@ -823,23 +844,26 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"), "Location popup window not displayed")
+            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
+            self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "550"
         self.assetpage.get_asset_location_latitude_textbox.clear()
         self.assetpage.get_asset_location_latitude_textbox.send_keys(lati)
         latitudeerrorMessage = self.assetpage.get_asset_location_latitude_error_text.text
-        self.assertEqual(latitudeerrorMessage, "Latitude must be a number between -90 and 90","Latitude error message"
-                                                                                               " not displayed")
+        self.assertEqual(latitudeerrorMessage, self.config.get(self.section, 'MESSAGE_LATITUDE_NUMBER_RANGE'),
+                         self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_LATITUDE'))
+
+
         locationSave = self.assetpage.get_asset_location_save_button
-        self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
+        self.assertFalse(locationSave.is_enabled(), self.config.get(self.section, 'MESSAGE_LOCATION_SAVE_BUTTON_IS_NOT_DISABLED'))
         longi = "200"
         self.assetpage.get_asset_location_longitude_textbox.clear()
         self.assetpage.get_asset_location_longitude_textbox.send_keys(longi)
         longitudeerrorMessage = self.assetpage.get_asset_location_longitude_error_text.text
-        self.assertEqual("Longitude must be a number between -180 and 180", longitudeerrorMessage,
-                         "Longitude error message not displayed")
+        self.assertEqual(self.config.get(self.section, 'MESSAGE_LONGITUDE_NUMBER_RANGE'), longitudeerrorMessage,
+                         self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_LONGITUDE'))
         locationSave = self.assetpage.get_asset_location_save_button
-        self.assertFalse(locationSave.is_enabled(), "Location Save button is not disabled")
+        self.assertFalse(locationSave.is_enabled(), self.config.get(self.section, 'MESSAGE_LOCATION_SAVE_BUTTON_NOT_DISABLED'))
         self.assetpage.get_asset_location_cancel_button.click()
 
     @attr(priority="high")
@@ -855,7 +879,8 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"), "Location popup window not displayed")
+            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
+        self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "40.7127"
         self.assetpage.get_asset_location_latitude_textbox.clear()
         self.assetpage.get_asset_location_latitude_textbox.send_keys(lati)
@@ -864,7 +889,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_longitude_textbox.send_keys(longi)
         self.assetpage.get_asset_location_save_button.click()
         #self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-100);")
-        self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
+        self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
 
     @attr(priority="high")
     #@SkipTest
@@ -879,7 +905,8 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"), "Location popup window not displayed")
+            (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
+        self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "40.7127"
         self.assetpage.get_asset_location_latitude_textbox.clear()
         self.assetpage.get_asset_location_latitude_textbox.send_keys(lati)
@@ -888,10 +915,12 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_longitude_textbox.send_keys(longi)
         self.assetpage.get_asset_location_save_button.click()
         #self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-200);")
-        self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(), "Marker not displayed on Map")
+        self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
         self.assetpage.get_asset_location_marker_available_image.click()
         placeText = self.assetpage.get_asset_location_place_name_text.text
-        self.assertEqual(self.assetpage.asset_place_name, placeText, "Marker name not displayed.")
+        self.assertEqual(self.assetpage.asset_place_name, placeText,
+                         self.config.get(self.section, 'MESSAGE_MARKER_NAME_NOT_DISPLAYED_ON_MAP'))
 
     @attr(priority="high")
     def test_AS_40(self):
@@ -921,17 +950,18 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.get_asset_photos_documents_delete_window_delete_button.click()
             sleep(3)  # required. Widget should be refreashed.
         except NoSuchElementException:
-            self.assertFalse(True, "Delete icon not displayed. File could not be deleted.")
+            self.assertFalse(True,
+                             self.config.get(self.section, 'MESSAGE_DELETE_ICON_NOT_DISPLAYED_FILE_COULD_NOT_BE_DELETED'))
         number_of_image_after_delete = self.assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_after_file_delete = len(number_of_image_after_delete)
         if (image_count_after_file_upload == image_count_after_file_delete+1):
             try:
                 if (self.assetpage.get_asset_photos_documents_header_caption_text(caption_val).is_displayed()):
-                    self.assertFalse(True,"The uploaded file could not be deleted.")
+                    self.assertFalse(True, self.config.get(self.section, 'MESSAGE_UPLOADED_FILE_COULD_NOT_BE_DELETED'))
             except NoSuchElementException:
-                self.assertTrue(True,"The uploaded file has been deleted.")
+                self.assertTrue(True, self.config.get(self.section, 'MESSAGE_UPLOADED_FILE_DELETED'))
         else:
-            self.assertFalse(True,"No of files before and after delete operation are same. File could not be deleted.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_FILES_BEFORE_AFTER_SAME_FILE_COULD_NOT_BE_DELETED'))
 
     @attr(priority="high")
     def test_AS_41(self):
@@ -985,9 +1015,10 @@ class AssetpageTest(BaseTestCase):
         image_caption_text = self.assetpage.get_asset_photos_documents_image_caption_text(caption_val)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
-            self.assertTrue(True,"Test Case has been passed. Caption displayed in header and File window")
+            self.assertTrue(True,
+                            self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED_CAPTION_DISPLAYED_IN_HEADER_FILE_WINDOW'))
         else:
-            self.assertFalse(True,"Test Case has been failed. No Caption Displayed.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_FAILED_FOR_NO_CAPTION'))
 
     @attr(priority="high")
     def test_AS_43(self):
@@ -1008,8 +1039,8 @@ class AssetpageTest(BaseTestCase):
             WebDriverWait(self.driver, 200).until(EC.text_to_be_present_in_element(
                 (By.XPATH, self.assetpage._asset_header_save_text_locator),r"415 - UNSUPPORTED MEDIA TYPE"))
         except:
-            self.assertFalse(True,"Test Case has been failed. No Error message displayed for unsupported media size.")
-        self.assertTrue(True,"Test Case has been passed.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_NO_ERROR_MESSAGE_DISPLAYED_FOR_UNSUPPORTED_MEDIA_SIZE'))
+        self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
 
     @attr(priority="high")
     def test_AS_44_1(self):
@@ -1029,9 +1060,9 @@ class AssetpageTest(BaseTestCase):
         image_caption_text = self.assetpage.get_asset_photos_documents_image_caption_text(caption_val)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
-            self.assertTrue(True,"Test Case has been passed.")
+            self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
         else:
-            self.assertFalse(True,"PDF file is not uploaded.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_PDF_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
     def test_AS_44_2(self):
@@ -1051,9 +1082,9 @@ class AssetpageTest(BaseTestCase):
         image_caption_text = self.assetpage.get_asset_photos_documents_image_caption_text(caption_val)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed()):
-            self.assertTrue(True,"Test Case has been passed.")
+            self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
         else:
-            self.assertFalse(True,"HTML file is not uploaded.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_HTML_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
     def test_AS_44_3(self):
@@ -1074,9 +1105,9 @@ class AssetpageTest(BaseTestCase):
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(caption_val)
         if (image_caption_text.is_displayed()) and (header_caption_text.is_displayed() and
                                                         (self.assetpage.get_asset_header_save_text.text == r"Saved")):
-            self.assertTrue(True,"Test Case has been passed.")
+            self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
         else:
-            self.assertFalse(True,"Text file is not uploaded.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_TEXT_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
     def test_AS_45(self):
@@ -1097,9 +1128,9 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
         image_count_after_file_upload = len(self.assetpage.get_asset_photos_documents_uploaded_file_count)
         if (image_count_after_file_upload == image_count_before_file_upload+3):
-            self.assertTrue(True,"Test Case has been passed.")
+            self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
         else:
-            self.assertFalse(True,"Three files could not be uploaded properly.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_MULTIPLE_FILES_COULD_NOT_BE_UPLOADED'))
 
     @attr(priority="high")
     def test_AS_47(self):
@@ -1120,9 +1151,9 @@ class AssetpageTest(BaseTestCase):
         image_count_after_file_upload = len(self.assetpage.get_asset_photos_documents_uploaded_file_count)
         header_caption_text = self.assetpage.get_asset_photos_documents_header_caption_text(image_file_name)
         if (header_caption_text.is_displayed() and (image_count_after_file_upload == image_count_before_file_upload+1)):
-            self.assertTrue(True,"Test Case has been passed")
+            self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
         else:
-            self.assertFalse(True,"File could not be uploaded.")
+            self.assertFalse(True, self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
 
     @attr(priority="high")
     def test_AS_48_1(self):
@@ -1145,7 +1176,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_annotation_edit_window_save_button.click()
         sleep(2)
         act_text_val = ((self.assetpage.get_asset_annotation_text_value.text).split(' - '))[1].strip()#read annotation value.
-        self.assertEqual(str(act_text_val),str(exp_text_val), "The Annotation Texts are not Matching.")
+        self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
     def test_AS_48_2(self):
@@ -1169,7 +1200,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text#read annotation value.
         act_text_val = (text_val.split(' - '))[1].strip()
-        self.assertEqual(str(act_text_val),str(exp_text_val), "The Annotation Texts are not Matching.")
+        self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
     def test_AS_48_3(self):
@@ -1193,7 +1224,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text#read annotation value.
         act_text_val = (text_val.split(' - '))[1].strip()
-        self.assertEqual(str(act_text_val),str(exp_text_val), "The Annotation Texts are not Matching.")
+        self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
     def test_AS_48_4(self):
@@ -1222,7 +1253,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text
         act_text_val = (text_val.split(' - '))[1].strip()
-        self.assertEqual(str(act_text_val),str(exp_text_val), "The Annotation Texts are not Matching.")
+        self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priotity = "high")
 #    @attr(status='smoke')
@@ -1253,7 +1284,7 @@ class AssetpageTest(BaseTestCase):
                 flag = 1
                 break
         self.assetpage.textbox_clear(self.driver.find_element_by_xpath(self.assetpage._asset_search_textbox_locator))
-        self.assertFalse(flag == 0, "Newly created asset is not appearing with yellow background")
+        self.assertFalse(flag == 0, self.config.get(self.section, 'MESSAGE_NEW_ASSET_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
 
     @attr(priority="high")
 #    @SkipTest
@@ -1271,7 +1302,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_asset_template_type("School")
         self.assertFalse(self.assetpage.get_asset_overview_save_button.is_enabled())
         self.assetpage.get_asset_overview_cancel_button.click()
-        self.assertTrue(self.assetpage.wait_for_element_boolean(self.assetpage._asset_create_asset),"Cancel failed on create assest dialouge")
+        self.assertTrue(self.assetpage.wait_for_element_boolean(self.assetpage._asset_create_asset),
+                        self.config.get(self.section, 'MESSAGE_CANCEL_FAILED_ON_CREATING_ASSET_DIALOGUE'))
 
     @attr(priority="high")
 #   @SkipTest
@@ -1377,7 +1409,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_save_button.click()
         sleep(5)
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(),
-                        "Saved text is not displayed")
+                        self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
     def test_AS_59_1(self):
@@ -1402,7 +1434,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
         email = self.assetpage.get_asset_detail_email_value_text.text
         regex = re.compile(r'[\w.-]+@[\w.-]+')
-        self.assertRegexpMatches(str(email), regex, "Expected and actual value is not matching for EMAIL")
+        self.assertRegexpMatches(str(email), regex, self.config.get(self.section, 'MESSAGE_EMAIL_NOT_MATCHING'))
 
     @attr(priority="high")
     def test_AS_59_2(self):
@@ -1426,7 +1458,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_save_button.click()
         state = self.assetpage.get_asset_detail_edit_save_button.is_enabled()
         self.assetpage.get_asset_detail_edit_window_cross_button.click()
-        self.assertFalse(state, "Save Button is enabled even though EMAIL value is wrong")
+        self.assertFalse(state, self.config.get(self.section, 'MESSAGE_SAVE_BUTTON_ENABLED_ON_WRONG_EMAIL_VALUE'))
 
     @attr(priority="high")
     #@SkipTest
@@ -1439,7 +1471,6 @@ class AssetpageTest(BaseTestCase):
         """
 
         #self.assetpage.app_sanity_check()
-        sleep(5)
         self.assetpage.get_asset_chart_dashboard_image.click()
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
 
@@ -1452,9 +1483,7 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("Place")
-        sleep(10)
         self.assetpage.place_related_charts_Place_Is_Selected()
 
     @attr(priority="high")
@@ -1466,13 +1495,10 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("Place")
-        sleep(10)
         self.assetpage.get_asset_place_type_drop_down.click()
-        sleep(2)
+        sleep(1) # sleep is mandatory here otherwise it will fail
         self.assetpage.get_asset_place_type_first_element.click()
-        sleep(5)
         self.assetpage.place_related_charts_Place_And_Type_Is_Selected()
 
     @attr(priority="high")
@@ -1484,9 +1510,7 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
-        sleep(10)
         self.assetpage.school_related_charts_School_Is_Selected()
 
     @attr(priority="high")
@@ -1498,13 +1522,10 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
-        sleep(10)
         self.assetpage.get_asset_school_district_drop_down.click()
-        sleep(2)
         self.assetpage.get_asset_school_district_first_element.click()
-        sleep(2)
+        sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_District_Is_Selected()
 
     @attr(priority="high")
@@ -1516,13 +1537,10 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
-        sleep(10)
         self.assetpage.get_asset_school_grade_drop_down.click()
-        sleep(2)
         self.assetpage.get_asset_school_grade_first_element.click()
-        sleep(2)
+        sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_Grade_Is_Selected()
 
     @attr(priority="high")
@@ -1534,13 +1552,10 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        sleep(5)
         self.assetpage.asset_filter_based_on_place_and_school("School")
-        sleep(10)
         self.assetpage.get_asset_school_type_drop_down.click()
-        sleep(2)
         self.assetpage.get_asset_school_type_first_element.click()
-        sleep(2)
+        sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_Type_Is_Selected()
 
 
