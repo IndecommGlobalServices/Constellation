@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/IconListPage.py" afterPath="$PROJECT_DIR$/pages/IconListPage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/mappage.py" afterPath="$PROJECT_DIR$/pages/mappage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/maptest.py" afterPath="$PROJECT_DIR$/testcases/maptest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -33,8 +32,8 @@
       <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="26418">
-              <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+            <state vertical-scroll-proportion="-3.9655173" vertical-offset="14794" max-vertical-offset="26418">
+              <caret line="890" column="92" selection-start-line="890" selection-start-column="9" selection-end-line="890" selection-end-column="92" />
               <folding />
             </state>
           </provider>
@@ -43,8 +42,8 @@
       <file leaf-file-name="maptest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41223404" vertical-offset="6050" max-vertical-offset="6494">
-              <caret line="365" column="23" selection-start-line="365" selection-start-column="23" selection-end-line="365" selection-end-column="23" />
+            <state vertical-scroll-proportion="0.2035928" vertical-offset="3298" max-vertical-offset="3910">
+              <caret line="198" column="50" selection-start-line="198" selection-start-column="50" selection-end-line="198" selection-end-column="50" />
               <folding>
                 <element signature="e#29#44#0" expanded="true" />
               </folding>
@@ -52,31 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3697" max-vertical-offset="38386">
-              <caret line="235" column="36" selection-start-line="235" selection-start-column="33" selection-end-line="235" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assessmentpage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="7507" max-vertical-offset="14246">
-              <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="mappage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/mappage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="3143" max-vertical-offset="3995">
-              <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2598" max-vertical-offset="3247">
+              <caret line="161" column="37" selection-start-line="161" selection-start-column="8" selection-end-line="161" selection-end-column="37" />
               <folding>
                 <element signature="e#30#64#0" expanded="true" />
               </folding>
@@ -100,6 +79,7 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/pages/IconListPage.py" />
         <option value="$PROJECT_DIR$/data/json_place_asset.json" />
         <option value="$PROJECT_DIR$/Test Results - Unittests_in_assettest.html" />
         <option value="$PROJECT_DIR$/data/json_searchAssets.json" />
@@ -122,7 +102,6 @@
         <option value="$PROJECT_DIR$/pages/assetpage.py" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
         <option value="$PROJECT_DIR$/pages/mappage.py" />
-        <option value="$PROJECT_DIR$/pages/IconListPage.py" />
         <option value="$PROJECT_DIR$/testcases/maptest.py" />
       </list>
     </option>
@@ -175,7 +154,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -238,6 +216,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -265,8 +244,8 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in maptest">
-    <configuration default="false" name="Unittest MapPageTest.test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittest MapPageTest.test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams">
+    <configuration default="false" name="Unittest MapPageTest.test_map_06_to_verify_Default_Map_View_Based_On_Assets" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -278,7 +257,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
       <option name="CLASS_NAME" value="MapPageTest" />
-      <option name="METHOD_NAME" value="test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2" />
+      <option name="METHOD_NAME" value="test_map_06_to_verify_Default_Map_View_Based_On_Assets" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -290,31 +269,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests in maptest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <RunnerSettings RunnerId="PythonRunner" />
-      <ConfigurationWrapper RunnerId="PythonRunner" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest MapPageTest.test_map_01_to_verify_default" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest MapPageTest.test_map_07_to_verify_Default_Map_View_Based_On_Assessment" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -326,7 +281,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
       <option name="CLASS_NAME" value="MapPageTest" />
-      <option name="METHOD_NAME" value="test_map_01_to_verify_default" />
+      <option name="METHOD_NAME" value="test_map_07_to_verify_Default_Map_View_Based_On_Assessment" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -338,7 +293,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest MapPageTest.test_map_02_to_verify_Night_View" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest MapPageTest.test_map_to_verify_Default_Map_View_Based_On_Incidents" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -350,7 +305,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
       <option name="CLASS_NAME" value="MapPageTest" />
-      <option name="METHOD_NAME" value="test_map_02_to_verify_Night_View" />
+      <option name="METHOD_NAME" value="test_map_to_verify_Default_Map_View_Based_On_Incidents" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -362,7 +317,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest MapPageTest.test_map_03_to_verify_Terrain" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest MapPageTest.test_map_08_to_verify_Default_Map_View_Based_On_Incidents" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -374,7 +329,31 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
       <option name="CLASS_NAME" value="MapPageTest" />
-      <option name="METHOD_NAME" value="test_map_03_to_verify_Terrain" />
+      <option name="METHOD_NAME" value="test_map_08_to_verify_Default_Map_View_Based_On_Incidents" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest MapPageTest.test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="CLASS_NAME" value="MapPageTest" />
+      <option name="METHOD_NAME" value="test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -520,19 +499,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_01_to_verify_default" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_02_to_verify_Night_View" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_03_to_verify_Terrain" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_06_to_verify_Default_Map_View_Based_On_Assets" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_07_to_verify_Default_Map_View_Based_On_Assessment" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_to_verify_Default_Map_View_Based_On_Incidents" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_08_to_verify_Default_Map_View_Based_On_Incidents" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_03_to_verify_Terrain" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_02_to_verify_Night_View" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_01_to_verify_default" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_06_to_verify_Default_Map_View_Based_On_Assets" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_08_to_verify_Default_Map_View_Based_On_Incidents" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_07_to_verify_Default_Map_View_Based_On_Assessment" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_to_verify_Default_Map_View_Based_On_Incidents" />
       </list>
     </recent_temporary>
   </component>
@@ -787,13 +766,7 @@
       <option name="project" value="LOCAL" />
       <updated>1445855347235</updated>
     </task>
-    <task id="LOCAL-00041" summary="taking care of Scroll bar in maps">
-      <created>1445865919746</created>
-      <option name="number" value="00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1445865919746</updated>
-    </task>
-    <option name="localTasksCounter" value="42" />
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -801,19 +774,19 @@
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28869048" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.35332254" sideWeight="0.50296295" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15185784" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34094617" sideWeight="0.49703702" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24851191" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39708266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -858,6 +831,7 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <MESSAGE value="Bug fixes" />
     <MESSAGE value="Bug fixes 9/21" />
     <MESSAGE value="AST_26, 27, 28" />
     <MESSAGE value="AST_29_to_32" />
@@ -882,8 +856,7 @@
     <MESSAGE value="renamed test title to 08 in maps" />
     <MESSAGE value="modified the variable name to assessmentTotal in maps in testcase 07" />
     <MESSAGE value="Created a function for Checking and Unchecking of Basic data layer in maps" />
-    <MESSAGE value="taking care of Scroll bar in maps" />
-    <option name="LAST_COMMIT_MESSAGE" value="taking care of Scroll bar in maps" />
+    <option name="LAST_COMMIT_MESSAGE" value="Created a function for Checking and Unchecking of Basic data layer in maps" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -904,7 +877,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -920,7 +895,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -950,7 +927,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -980,7 +959,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -996,7 +977,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1120,6 +1103,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/data/json_searchAssets.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1202,6 +1192,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1209,6 +1200,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3324468" vertical-offset="11" max-vertical-offset="544">
           <caret line="8" column="8" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3324468" vertical-offset="776" max-vertical-offset="1207">
+          <caret line="55" column="8" selection-start-line="55" selection-start-column="8" selection-end-line="55" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -1221,51 +1220,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
+    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="537" max-vertical-offset="26418">
-          <caret line="63" column="25" selection-start-line="63" selection-start-column="25" selection-end-line="63" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="23900" max-vertical-offset="38386">
+          <caret line="1424" column="8" selection-start-line="1424" selection-start-column="8" selection-end-line="1424" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
+    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.90957445" vertical-offset="831" max-vertical-offset="1275">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="7507" max-vertical-offset="14246">
-          <caret line="330" column="0" selection-start-line="330" selection-start-column="0" selection-end-line="330" selection-end-column="0" />
+        <state vertical-scroll-proportion="-3.9655173" vertical-offset="14794" max-vertical-offset="26418">
+          <caret line="890" column="92" selection-start-line="890" selection-start-column="9" selection-end-line="890" selection-end-column="92" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/mappage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3143" max-vertical-offset="3995">
-          <caret line="205" column="0" selection-start-line="205" selection-start-column="0" selection-end-line="205" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2598" max-vertical-offset="3247">
+          <caret line="161" column="37" selection-start-line="161" selection-start-column="8" selection-end-line="161" selection-end-column="37" />
           <folding>
             <element signature="e#30#64#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="3697" max-vertical-offset="38386">
-          <caret line="235" column="36" selection-start-line="235" selection-start-column="33" selection-end-line="235" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41223404" vertical-offset="6050" max-vertical-offset="6494">
-          <caret line="365" column="23" selection-start-line="365" selection-start-column="23" selection-end-line="365" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.2035928" vertical-offset="3298" max-vertical-offset="3910">
+          <caret line="198" column="50" selection-start-line="198" selection-start-column="50" selection-end-line="198" selection-end-column="50" />
           <folding>
             <element signature="e#29#44#0" expanded="true" />
           </folding>

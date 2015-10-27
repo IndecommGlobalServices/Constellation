@@ -1395,7 +1395,7 @@ class AssetPage(BasePageClass):
             return self.driver.find_element_by_xpath(caption_xpath)
         except Exception, err:
             raise type(err)("Image caption for uploaded file in new window is not available - search XPATH - " \
-                          + caption_val + err.message)
+                          + caption_xpath + err.message)
 
     def get_asset_photos_documents_header_caption_text(self, caption_val):
         caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//a[contains(text(),'"+caption_val+"')]"
