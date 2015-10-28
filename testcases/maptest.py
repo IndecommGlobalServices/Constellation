@@ -18,81 +18,70 @@ class MapPageTest(BaseTestCase):
         self.errors_and_failures = self.tally()
         self.mappage = MapPage(self.driver)
 
+
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
+        self.mappage.get_map_app_name.click()
         #self.mappage.return_to_apps_main_page()
 
     # Default view
     @attr(priority="high")
     def test_map_01_to_verify_default(self):
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .perform()
+        self.mappage.get_map_base_map_accordian.click()
         self.mappage.get_map_default_view_radio.click()
         sleep(2)
-        self.mappage.get_bread_crumb_apps.click() # Click on Bread crumb - Apps link
-        sleep(2)
+
     # Night view
     @attr(priority="high")
     def test_map_02_to_verify_Night_View(self):
         sleep(5)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .perform()
         self.mappage.get_map_night_view_radio.click()
         sleep(2)
-        self.mappage.get_bread_crumb_apps.click()# Click on Bread crumb - Apps link
-        sleep(2)
 
     # Terrain
     @attr(priority="high")
     def test_map_03_to_verify_Terrain(self):
         sleep(5)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .perform()
         self.mappage.get_map_terrain_radio.click()
         sleep(2)
-        self.mappage.get_bread_crumb_apps.click()# Click on Bread crumb - Apps link
-        sleep(2)
 
     # Satelite Default
     @attr(priority="high")
     def test_map_04_to_verify_Satelite_Default(self):
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .perform()
         self.mappage.get_map_satelite_default_view_radio.click()
         sleep(2)
-        self.mappage.get_bread_crumb_apps.click() # Click on Bread crumb - Apps link
-        sleep(2)
 
     # Satelite Grey
     @attr(priority="high")
     #@SkipTest
     def test_map_05_to_verify_Satelite_Grey(self):
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .perform()
         self.mappage.get_map_satelite_grey_view_radio.click()
         sleep(2)
-        self.mappage.get_bread_crumb_apps.click() # Click on Bread crumb - Apps link
-        sleep(2)
+
     # View Full Screen
     @attr(priority="high")
     def test_map_13_to_verify_Map_Can_Be_Viewed_In_Full_Screen(self):
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_full_screen # mouse hover to View Full screen icon
         # below commented is the actual logic but click is not working here...
         '''
@@ -115,13 +104,11 @@ class MapPageTest(BaseTestCase):
         ActionChains(self.driver).move_to_element(mouse_hover_field).perform() #View Full Screen
         ActionChains(self.driver).send_keys(Keys.F11).perform() # to zoom by pressing F11 key on Keyboard
         ActionChains(self.driver).send_keys(Keys.F11).perform() # to zoom out by pressing F11 again on Keyboard
-        self.mappage.get_bread_crumb_apps.click() # Click on Bread crumb - Apps link
 
     @attr(priority="high")
     #@SkipTest
     def test_map_06_to_verify_Default_Map_View_Based_On_Assets(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -150,14 +137,11 @@ class MapPageTest(BaseTestCase):
         # click on Water fall handle on Right hand side - Vertical - Last Icon
         self.mappage.get_map_water_fall_handle.click()
         # Click on Bread crumb - Apps link
-        self.mappage.get_bread_crumb_apps.click()
-        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -178,13 +162,12 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)) + " assessment"
         self.assertEqual(pvalue11,str(len(items)),"total assessment not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.get_bread_crumb_apps.click()
         sleep(2)
+
     @attr(priority="high")
     #@SkipTest
     def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -205,13 +188,12 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)) + " incident"
         self.assertEqual(pvalue11,str(len(items)),"total incident not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.get_bread_crumb_apps.click()
         sleep(2)
+
     @attr(priority="high")
     #@SkipTest
     def test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -235,14 +217,12 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)) + " threat streams"
         self.assertEqual(pvalue11,str(len(items)),"total threat streams not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.get_bread_crumb_apps.click()
         sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_10_to_verify_Default_Map_View_Based_On_Indicator_Teams(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -267,14 +247,12 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)) + " indicator teams"
         self.assertEqual(pvalue11,str(len(items)),"total indicator teams not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.get_bread_crumb_apps.click()
         sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_11_to_verify_Default_Map_View_Based_On_Annotations(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -299,14 +277,12 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)) + " annotations"
         self.assertEqual(pvalue11,str(len(items)),"total annotations not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.get_bread_crumb_apps.click()
         sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_11_to_verify_Default_Map_View_Based_On_Threat_Streams_Trending_Last_Day(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -333,14 +309,12 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)) + " threat streams trending last day"
         self.assertEqual(pvalue11,str(len(items)),"total threat streams trending last day not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.get_bread_crumb_apps.click()
         sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_12_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_1(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -367,14 +341,12 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)) + " threat streams stream 1"
         self.assertEqual(pvalue11,str(len(items)),"total threat streams stream 1 not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.get_bread_crumb_apps.click()
         sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2(self):
         sleep(2)
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -401,5 +373,4 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)) + " threat streams stream 2"
         self.assertEqual(pvalue11,str(len(items)),"total threat streams stream 2 not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.get_bread_crumb_apps.click()
         sleep(2)
