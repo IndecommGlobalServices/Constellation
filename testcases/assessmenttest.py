@@ -68,7 +68,7 @@ class AssessmenttPageTest(BaseTestCase):
             print "Create assessment button not present"
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_ast_01_To_verify_noemailid_createassessment(self):
         count = 0
         flag = 0
@@ -84,7 +84,6 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(5)
         for item in self.ast.get_assessment_table("Asset"):
             count = count + 1
-            print item.text, item.value_of_css_property("background-color")
             if (item.text == self.ast.asset_school_name) and (item.value_of_css_property("background-color")
                                                                    == "rgba(255, 236, 158, 1)"):
                 flag = 1
@@ -125,7 +124,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.assertNotEqual(self.ast.get_create_enddate_textbox.text, date, "End date textbox no date format validation")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     @attr(status='smoke')
     def test_ast_05_To_create_assessment(self):
         flag = 0
@@ -172,22 +171,18 @@ class AssessmenttPageTest(BaseTestCase):
                 searchText = each["Search_name"]
                 self.ast.search_asset_textbox(searchText)
                 sleep(5)
-                search_name_asset_column = self.ast.get_asset_table("Asset")
-                search_name_type_column = self.ast.get_asset_table("Type")
-                sleep(2)
-                for searchName in search_name_asset_column:
-                    if self.ast.get_list_no_matching_records_found.text:
-                        self.assertEqual("No matching records found", self.ast.get_list_no_matching_records_found.text,
+                if len(self.ast.get_asset_table("Asset")) <= 0:
+                    self.assertEqual("No matching records found", self.ast.get_assetlist_no_matching_records_found.text,
                                          "No records to find asset. Searched string is :" + searchText)
-                        flag = 1
-                    else:
+                    flag = 1
+                else:
+                    for searchName in self.ast.get_asset_table("Asset"):
                         if searchText in searchName.text:
                             flag = 1
-                        sleep(5)
-                if flag == 0:
-                    for searchName in search_name_type_column:
-                        if searchText in searchName.text:
-                            flag = 1
+                    if flag == 0:
+                        for searchName in self.ast.get_asset_table("Type"):
+                            if searchText in searchName.text:
+                                flag = 1
                 if flag == 0:
                     self.assertTrue(False, "The search result doesnt contain the text that is searched. Searched string is :" + searchText)
                 self.ast.get_search_asset_textbox.clear()
@@ -199,8 +194,7 @@ class AssessmenttPageTest(BaseTestCase):
     def test_ast_12_To_Test_Sorting_on_Create_Assessment(self):
         self.ast.create_assessment_select_haystax_template()
         self.ast.get_asset_table_column_header("Asset").click()
-        WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
-            (By.XPATH, self.ast._ast_asset_table_header_locator)))
+        sleep(5)
         searchNames = self.ast.get_asset_table("Asset")
         searchNameslist=[]
         for name in searchNames:
@@ -234,7 +228,7 @@ class AssessmenttPageTest(BaseTestCase):
         except:
             self.ast.get_ast_statusfilter_dropdown.click()
             self.skipTest("In progress option not in the Type filter dropdown available")
-        sleep(2)
+        sleep(5)
         for item in self.ast.get_assessment_table("Status"):
             self.assertEqual(item.text, "In Progress")
         self.ast.get_resetfilter_button.click()
@@ -248,7 +242,7 @@ class AssessmenttPageTest(BaseTestCase):
         except:
             self.ast.get_ast_statusfilter_dropdown.click()
             self.skipTest("Submitted option not available in the Type filter dropdown")
-        sleep(2)
+        sleep(5)
         for item in self.ast.get_assessment_table("Status"):
             self.assertEqual(item.text, "Submitted")
         self.ast.get_resetfilter_button.click()
@@ -262,7 +256,7 @@ class AssessmenttPageTest(BaseTestCase):
         except:
             self.ast.get_ast_statusfilter_dropdown.click()
             self.skipTest("Not Started option not available in Type filter dropdown")
-        sleep(2)
+        sleep(5)
         for item in self.ast.get_assessment_table("Status"):
             self.assertEqual(item.text, "Not Started")
         self.ast.get_resetfilter_button.click()
@@ -316,44 +310,37 @@ class AssessmenttPageTest(BaseTestCase):
                 searchText = each["Search_name"]
                 self.ast.search_assessment_textbox(searchText)
                 sleep(5)
-                expectedAfterSearchFilter = self.ast.get_list_no_matching_records_found.text
-                search_name_asset_column = self.ast.get_assessment_table("Asset")
-                search_name_assessment_column = self.ast.get_assessment_table("Assessment")
-                search_name_assignedto_column = self.ast.get_assessment_table("Assigned to")
-                search_name_created_column = self.ast.get_assessment_table("Created")
-                search_name_complete_column = self.ast.get_assessment_table("Complete")
-                search_name_status_column = self.ast.get_assessment_table("Status")
-                sleep(2)
-                for searchName in search_name_asset_column:
-                    if expectedAfterSearchFilter:
-                        self.assertEqual("No matching records found", expectedAfterSearchFilter, "No records to find assessments.")
-                        flag = 1
-                    else:
+                if len(self.ast.get_assessment_table("Asset")) <= 0:
+                    self.assertEqual("No matching records found",
+                                         self.ast.get_assessmentlist_no_matching_records_found.text, "No records to find assessments.")
+                    flag = 1
+                else:
+                    for searchName in self.ast.get_assessment_table("Asset"):
                         if searchText in searchName.text:
                             flag = 1
-                if flag == 0:
-                    for searchName in search_name_assessment_column:
-                        if searchText in searchName.text:
-                            flag = 1
-                if flag == 0:
-                    for searchName in search_name_created_column:
-                        if searchText in searchName.text:
-                            flag = 1
-                if flag == 0:
-                    for searchName in search_name_assignedto_column:
-                        if searchText in searchName.text:
-                            flag = 1
-                if flag == 0:
-                    for searchName in search_name_complete_column:
-                        if searchText in searchName.text:
-                            flag = 1
-                if flag == 0:
-                    for searchName in search_name_status_column:
-                        if searchText in searchName.text:
-                            flag = 1
-                if flag == 0:
-                    self.assertTrue(False, "The search result doesnt contain the text that is searched. "
-                                           "Searched string is :" + searchText)
+                    if flag == 0:
+                        for searchName in self.ast.get_assessment_table("Assessment"):
+                            if searchText in searchName.text:
+                                flag = 1
+                    if flag == 0:
+                        for searchName in self.ast.get_assessment_table("Created"):
+                            if searchText in searchName.text:
+                                flag = 1
+                    if flag == 0:
+                        for searchName in self.ast.get_assessment_table("Assigned to"):
+                            if searchText in searchName.text:
+                                flag = 1
+                    if flag == 0:
+                        for searchName in self.ast.get_assessment_table("Complete"):
+                            if searchText in searchName.text:
+                                flag = 1
+                    if flag == 0:
+                        for searchName in self.ast.get_assessment_table("Status"):
+                            if searchText in searchName.text:
+                                flag = 1
+                    if flag == 0:
+                        self.assertTrue(False, "The search result doesnt contain the text that is searched. "
+                                               "Searched string is :" + searchText)
                 self.ast.get_search_assessment_textbox.clear()
                 self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
 
@@ -411,8 +398,8 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_assign_button.click()
             self.ast.get_ast_assignto_textbox.send_keys(emailid)
             self.ast.get_ast_assignto_assign_button.click()
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, ".//*[@id='assessment_actions_dropdown']/button[2]")))
+            WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, self.ast._ast_search_assessment_text_box_locator)))
             assignedto = self.ast.get_assessment_table("Assigned to")
             self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
         else:
@@ -431,8 +418,8 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_assign_button.click()
             self.ast.get_ast_assignto_textbox.send_keys(emailid)
             self.ast.get_ast_assignto_assign_button.click()
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, ".//*[@id='assessment_actions_dropdown']/button[2]")))
+            WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, self.ast._ast_search_assessment_text_box_locator)))
             assignedto = self.ast.get_assessment_table("Assigned to")
             if len(assignedto) < noofassessments:
                 noofassessments = len(assignedto)
@@ -476,8 +463,8 @@ class AssessmenttPageTest(BaseTestCase):
                 emailidtoenter = emailid[1]
             self.ast.get_ast_assignto_textbox.send_keys(emailidtoenter)
             self.ast.get_ast_assignto_cancel_button.click()
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, ".//*[@id='assessment_actions_dropdown']/button[2]")))
+            WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, self.ast._ast_search_assessment_text_box_locator)))
             assignedto = self.ast.get_assessment_table("Assigned to")
             self.assertNotEqual(assignedto[0].text, emailidtoenter, "Assigned Email id saved on cancel operation")
         else:

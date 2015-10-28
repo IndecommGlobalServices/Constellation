@@ -28,7 +28,6 @@ class IconListPage(BasePageClass, object):
     def get_app_dashboard_icon(self):
         return self.driver.find_element_by_id(self._app_dashboard_icon_locator)
 
-
     @property
     def get_app_threatstreams_icon(self):
         return self.driver.find_element_by_id(self._app_threatstreams_icon_locator)
@@ -61,11 +60,19 @@ class IconListPage(BasePageClass, object):
             pass
 
     def click_dashboard(self):
-        self.get_app_dashboard_icon.click()
+        try:
+            self.get_app_dashboard_icon.click()
+        except:
+            pass
 
     def click_incident(self):
-        self.get_app_incidents_icon.click()
+        try:
+            self.get_app_incidents_icon.click()
+        except:
+            pass
 
     def click_threatstream(self):
-        self.get_app_threatstreams_icon.click()
-
+        try:
+            self.get_app_threatstreams_icon.click()
+        except:
+            pass

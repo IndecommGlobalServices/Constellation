@@ -34,6 +34,7 @@ class AssessmentPage(BasePageClass):
     #Asset grid locator
     _ast_asset_table_locator = ".//*[@id='assessmentManager_table']/tbody/tr[1]/td"
     _ast_asset_table_header_locator = ".//*[@id='assessmentManager_table']/thead/tr/th"
+    _ast_assetlist_No_Matching_Records_Found_locator=".//*[@id='assessmentManager_table']/tbody/tr/td"
 
     #Assessment actions locator
     _ast_action_dropdown_loactor = "(//div[@id='assessment_actions_dropdown']//button[@data-toggle='dropdown'])"
@@ -47,7 +48,7 @@ class AssessmentPage(BasePageClass):
     # Assessment search related locators
     _ast_search_assessment_text_box_locator = ".//*[@id='search-assessments']"
     _ast_search_asset_text_box_locator = ".//*[@id='search-assessment-manager']"
-    _ast_list_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
+    _ast_assessmentlist_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
 
     # Assessment delete related locators
     _ast_check_box_locator = ".//*[@id='tblAssessments']/tbody/tr/td[1]/label/span/span[2]"
@@ -234,8 +235,12 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_elements_by_xpath(self._ast_staus_table_column_locator)
 
     @property
-    def get_list_no_matching_records_found(self):
-        return  self.driver.find_element_by_xpath(self._ast_list_No_Matching_Records_Found_locator)
+    def get_assessmentlist_no_matching_records_found(self):
+        return  self.driver.find_element_by_xpath(self._ast_assessmentlist_No_Matching_Records_Found_locator)
+
+    @property
+    def get_assetlist_no_matching_records_found(self):
+        return  self.driver.find_element_by_xpath(self._ast_assetlist_No_Matching_Records_Found_locator)
 
     @property
     def get_action_dropdown(self):
