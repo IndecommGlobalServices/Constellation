@@ -68,7 +68,7 @@ class AssessmenttPageTest(BaseTestCase):
             print "Create assessment button not present"
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_ast_01_To_verify_noemailid_createassessment(self):
         count = 0
         flag = 0
@@ -91,15 +91,17 @@ class AssessmenttPageTest(BaseTestCase):
                 assignedto = self.ast.get_assessment_table_row_values(count, r"Assigned to").text
         self.ast.get_search_assessment_textbox.clear()
         self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
-        self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
+        if flag == 1:
+            self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
+        else:
+            self.assertTrue(False, "Assessment creation had failed")
+
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_ast_02_To_verify_nodate_createassessment(self):
         self.ast.create_assessment_select_haystax_template()
         self.ast.select_first_asset()
-        self.ast.get_create_assignedto_textbox.clear()
-        self.ast.get_create_assignedto_textbox.send_keys("deep@dee")
         self.ast.get_create_startdate_textbox.clear()
         self.ast.get_create_enddate_textbox.clear()
         self.assertFalse(self.ast.get_create_assessments_button.is_enabled(),"Create assessment button enabled even "
@@ -123,13 +125,13 @@ class AssessmenttPageTest(BaseTestCase):
             self.assertNotEqual(self.ast.get_create_enddate_textbox.text, date, "End date textbox no date format validation")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     @attr(status='smoke')
     def test_ast_05_To_create_assessment(self):
         flag = 0
         count = 0
         if self.ast.create_assessment(self.ast.asset_school_name) == False:
-            self.assertFalse("Assessment creation failed")
+            self.assertFalse(True, "Assessment creation failed")
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
         sleep(5)
         for item in self.ast.get_assessment_table("Asset"):
@@ -162,6 +164,7 @@ class AssessmenttPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_ast_08_to_11_To_Verify_The_Search_(self):
+        flag = 0
         self.ast.create_assessment_select_haystax_template()
         with open(self.searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
@@ -169,19 +172,27 @@ class AssessmenttPageTest(BaseTestCase):
                 searchText = each["Search_name"]
                 self.ast.search_asset_textbox(searchText)
                 sleep(5)
-                searchNames = self.ast.get_asset_table("Asset")
+                search_name_asset_column = self.ast.get_asset_table("Asset")
+                search_name_type_column = self.ast.get_asset_table("Type")
                 sleep(2)
-                for searchName in searchNames:
+                for searchName in search_name_asset_column:
                     if self.ast.get_list_no_matching_records_found.text:
-                        self.assertEqual("No matching records found", self.ast.get_list_no_matching_records_found.text, "No records to find asset.")
-                        sleep(2)
+                        self.assertEqual("No matching records found", self.ast.get_list_no_matching_records_found.text,
+                                         "No records to find asset. Searched string is :" + searchText)
+                        flag = 1
                     else:
-                        if (searchName.text).find(searchText):
-                            print True
-                       # print searchName.text
-                        sleep(2)
+                        if searchText in searchName.text:
+                            flag = 1
+                        sleep(5)
+                if flag == 0:
+                    for searchName in search_name_type_column:
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    self.assertTrue(False, "The search result doesnt contain the text that is searched. Searched string is :" + searchText)
                 self.ast.get_search_asset_textbox.clear()
                 self.ast.get_search_asset_textbox.send_keys(Keys.BACKSPACE)
+                sleep(2)
 
     @attr(priority = "high")
     #@SkipTest
@@ -277,25 +288,27 @@ class AssessmenttPageTest(BaseTestCase):
         self.ast.get_ast_statusfilter_dropdown.click()
         self.ast.get_statusfilter_NotStarted_link.click()
         try:
-            self.assertEqual(self.ast.get_ast_statusfilter_dropdown.text, "Not Started")
+            self.assertEqual(self.ast.get_ast_statusfilter_dropdown.text, "Not Started", "Not Started ooption not available in filter options")
         except:
             self.ast.get_resetfilter_button.click()
         self.ast.get_ast_typefilter_dropdown.click()
         self.ast.get_typefilter_haystax_link.click()
         try:
-            self.assertEqual(self.ast.get_ast_typefilter_dropdown.text, "Haystax School Safety")
+            self.assertEqual(self.ast.get_ast_typefilter_dropdown.text, "Haystax School Safety", "Haystax School Safety"
+                                                                        " option not available in type filter options")
         except:
             self.ast.get_resetfilter_button.click()
         self.ast.get_resetfilter_button.click()
-        self.assertEqual(self.ast.get_ast_statusfilter_dropdown.text, "Status")
-        self.assertEqual(self.ast.get_ast_typefilter_dropdown.text, "Type")
+        self.assertEqual(self.ast.get_ast_statusfilter_dropdown.text, "Status", "Status filter is not reset")
+        self.assertEqual(self.ast.get_ast_typefilter_dropdown.text, "Type", "Type filter is not reset")
 
     @attr(priority="high")
     #@SkipTest
     def test_ast_29_to_32_To_Verify_The_Search_(self):
+        flag = 0
         cwd = os.getcwd()
         os.chdir('..')
-        searchasset_filepath = os.path.join(os.getcwd(), "data\json_SearchAssessments.json")
+        searchasset_filepath = os.path.join(os.getcwd(), "data", "json_SearchAssessments.json")
         os.chdir(cwd)
         with open(searchasset_filepath) as data_file:
             data_SearchAsset_text = json.load(data_file)
@@ -304,15 +317,43 @@ class AssessmenttPageTest(BaseTestCase):
                 self.ast.search_assessment_textbox(searchText)
                 sleep(5)
                 expectedAfterSearchFilter = self.ast.get_list_no_matching_records_found.text
-                searchNames = self.ast.get_assessment_table("Asset")
+                search_name_asset_column = self.ast.get_assessment_table("Asset")
+                search_name_assessment_column = self.ast.get_assessment_table("Assessment")
+                search_name_assignedto_column = self.ast.get_assessment_table("Assigned to")
+                search_name_created_column = self.ast.get_assessment_table("Created")
+                search_name_complete_column = self.ast.get_assessment_table("Complete")
+                search_name_status_column = self.ast.get_assessment_table("Status")
                 sleep(2)
-                for searchName in searchNames:
+                for searchName in search_name_asset_column:
                     if expectedAfterSearchFilter:
-                        self.assertEqual("No matching records found", expectedAfterSearchFilter, "No records to find asset.")
-                        sleep(2)
+                        self.assertEqual("No matching records found", expectedAfterSearchFilter, "No records to find assessments.")
+                        flag = 1
                     else:
-                       # print searchName.text
-                        sleep(2)
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    for searchName in search_name_assessment_column:
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    for searchName in search_name_created_column:
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    for searchName in search_name_assignedto_column:
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    for searchName in search_name_complete_column:
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    for searchName in search_name_status_column:
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    self.assertTrue(False, "The search result doesnt contain the text that is searched. "
+                                           "Searched string is :" + searchText)
                 self.ast.get_search_assessment_textbox.clear()
                 self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
 
@@ -324,7 +365,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.ast.get_action_dropdown.click()
         self.ast.get_action_delete_button.click()
         self.ast.get_delete_assessment_delete_button.click()
-        sleep(2)#Mandatory sleep for the list to refresh
+        sleep(5)#Mandatory sleep for the list to refresh
         countafterdeletion = self.ast.get_total_row_count()
         self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete asset")
 
@@ -337,7 +378,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_dropdown.click()
             self.ast.get_action_delete_button.click()
             self.ast.get_delete_assessment_delete_button.click()
-            sleep(2)#mandatory for the list to refresh
+            sleep(5)#mandatory for the list to refresh
             countafterdeletion = self.ast.get_total_row_count()
             self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete assets")
         else:
@@ -352,7 +393,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_dropdown.click()
             self.ast.get_action_delete_button.click()
             self.ast.get_delete_assessment_cancel_button.click()
-            sleep(2)#mandatory for the list to refresh
+            sleep(5)#mandatory for the list to refresh
             countafterdeletion = self.ast.get_total_row_count()
             self.assertEqual(countbeforedeletion, countafterdeletion, "Assessment deleted even after cancel is pressed")
             #self.ast.deselect_checkboxes()

@@ -36,7 +36,8 @@ class AssessmentPage(BasePageClass):
     _ast_asset_table_header_locator = ".//*[@id='assessmentManager_table']/thead/tr/th"
 
     #Assessment actions locator
-    _ast_action_dropdown_loactor = "//div[@id = 'assessment_actions_dropdown']//button[contains(text(), 'Select action')]"
+    _ast_action_dropdown_loactor = "(//div[@id='assessment_actions_dropdown']//button[@data-toggle='dropdown'])"
+        #"//div[@id = 'assessment_actions_dropdown']//button[contains(text(), 'Select action')]"
 
     # Assessment filter related locators
     _ast_status_filter_drop_down_locator = "//div[@label='Status']"
@@ -141,6 +142,7 @@ class AssessmentPage(BasePageClass):
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._ast_assessment_link_locator + err.message)
+
     @property
     def get_ast_app_name(self):
         return self.driver.find_element_by_xpath(self._ast_name_text)
@@ -684,7 +686,7 @@ class AssessmentPage(BasePageClass):
         WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self._ast_overview_save_button_locator))).click()
         try:
-            WebDriverWait(self.driver, 80).until(expected_conditions.text_to_be_present_in_element(
+            WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
                 (By.XPATH, self._ast_saved_text_locator), "Saved"))
         except Exception, err:
             raise type(err)("Save failed and the message displayed is - " \
