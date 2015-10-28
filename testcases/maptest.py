@@ -183,6 +183,7 @@ class MapPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
+        sleep(2)
         self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
@@ -205,10 +206,11 @@ class MapPageTest(BaseTestCase):
         self.assertEqual(pvalue11,str(len(items)),"total incident not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
-
+        sleep(2)
     @attr(priority="high")
     #@SkipTest
     def test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
+        sleep(2)
         self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
@@ -234,10 +236,12 @@ class MapPageTest(BaseTestCase):
         self.assertEqual(pvalue11,str(len(items)),"total threat streams not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
+        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_10_to_verify_Default_Map_View_Based_On_Indicator_Teams(self):
+        sleep(2)
         self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
@@ -264,10 +268,12 @@ class MapPageTest(BaseTestCase):
         self.assertEqual(pvalue11,str(len(items)),"total indicator teams not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
+        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_11_to_verify_Default_Map_View_Based_On_Annotations(self):
+        sleep(2)
         self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
@@ -294,10 +300,12 @@ class MapPageTest(BaseTestCase):
         self.assertEqual(pvalue11,str(len(items)),"total annotations not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
+        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_11_to_verify_Default_Map_View_Based_On_Threat_Streams_Trending_Last_Day(self):
+        sleep(2)
         self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
@@ -326,10 +334,12 @@ class MapPageTest(BaseTestCase):
         self.assertEqual(pvalue11,str(len(items)),"total threat streams trending last day not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
+        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_12_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_1(self):
+        sleep(2)
         self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
@@ -358,10 +368,12 @@ class MapPageTest(BaseTestCase):
         self.assertEqual(pvalue11,str(len(items)),"total threat streams stream 1 not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
+        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2(self):
+        sleep(2)
         self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
@@ -390,3 +402,4 @@ class MapPageTest(BaseTestCase):
         self.assertEqual(pvalue11,str(len(items)),"total threat streams stream 2 not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.get_bread_crumb_apps.click()
+        sleep(2)

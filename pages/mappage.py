@@ -421,7 +421,7 @@ class MapPage(BasePageClass):
 
         if self.get_map_basic_data_layer_annotations.is_selected():
             self.get_map_basic_data_layer_annotations.click()
-
+        '''
         if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
             self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
 
@@ -430,6 +430,6 @@ class MapPage(BasePageClass):
 
         if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
             self.get_map_basic_data_layer_threat_streams_stream_2.click()
-
+        '''
 
 
