@@ -243,9 +243,8 @@ class AssetpageTest(BaseTestCase):
             (By.XPATH, self.assetpage._asset_name_breadcrumb), self.assetpage.get_asset_name_breadcrumb.text))
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
                     (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
-        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self.assetpage._asset_create_asset)))
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
-            (By.XPATH, self.assetpage._asset_list_assets_name_locator)))
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_place_name)
         sleep(5) # Necessary sleep to let the app search for the input string
         for item in self.assetpage.get_asset_list_background:
@@ -284,10 +283,10 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.asset_create_click()
         self.assetpage.select_asset_template_type("Place")
-        WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
-            (By.XPATH, self.assetpage._asset_overview_phone_text_box_locator)))
-        self.assetpage.enter_asset_type_phone.send_keys("123abc1234")
-        self.assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
+        asset_phone = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH ,self.assetpage._asset_overview_phone_text_box_locator)))
+        asset_phone.send_keys("123abc1234")
+        asset_phone.send_keys(Keys.TAB)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches("123abc1234", regex,
                                  self.config.get(self.section, 'MESSAGE_PHONE_VALUE_NOT_MATCHING'))
@@ -887,7 +886,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
-        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
         self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "40.7127"
@@ -913,7 +912,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
-        WebDriverWait(self.driver,50).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
         self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "40.7127"
@@ -948,13 +947,13 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.upload_a_file_with_caption(caption_val, image_file_name)
         number_of_image_after_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_after_file_upload = len(number_of_image_after_upload)
+        caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img" \
+                                                                "[@class='neutron_document_img']"
+        image_icon = self.driver.find_element_by_xpath(caption_path)
+        Hover = ActionChains(self.driver).move_to_element(image_icon)
+        Hover.perform()
+        sleep(1) # required. so that Delete icon remain displayed.
         try:
-            caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img" \
-                                                                    "[@class='neutron_document_img']"
-            image_icon = self.driver.find_element_by_xpath(caption_path)
-            Hover = ActionChains(self.driver).move_to_element(image_icon)
-            Hover.perform()
-            sleep(1) # required. so that Delete icon remain displayed.
             self.assetpage.get_asset_photos_documents_delete_icon_image.click()
             self.assetpage.get_asset_photos_documents_delete_window_delete_button.click()
             sleep(3)  # required. Widget should be refreashed.
@@ -1281,9 +1280,8 @@ class AssetpageTest(BaseTestCase):
             (By.XPATH, self.assetpage._asset_name_breadcrumb), self.assetpage.asset_school_name[0]))
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
                     (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
-        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self.assetpage._asset_create_asset)))
-        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
-            (By.XPATH, self.assetpage._asset_list_assets_name_locator)))
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_school_name[0])
         sleep(5)#necessary sleep to let the app finish searching for the assetname
         for item in self.assetpage.get_asset_list_background:
@@ -1310,7 +1308,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_asset_template_type("School")
         self.assertFalse(self.assetpage.get_asset_overview_save_button.is_enabled())
         self.assetpage.get_asset_overview_cancel_button.click()
-        self.assertTrue(self.driver.find_element_by_xpath(self.assetpage._asset_create_asset).is_displayed,"Cancel failed on create assest dialouge")
+        self.assertTrue(self.assetpage.wait_for_element_boolean(self.assetpage._asset_create_asset),
+                        self.config.get(self.section, 'MESSAGE_CANCEL_FAILED_ON_CREATING_ASSET_DIALOGUE'))
 
     @attr(priority="high")
 #   @SkipTest
