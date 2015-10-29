@@ -80,7 +80,6 @@ class MapPage(BasePageClass):
         except Exception, err:
             raise type(err)("Map Container - searched ID - " + self._map_container + err.message)
 
-
     @property
     def get_bread_crumb_apps(self):
         try:
@@ -102,31 +101,6 @@ class MapPage(BasePageClass):
             raise type(err)("Mouse Hover Icon - searched XPATH - "
                             + self._map_mouse_hover_action_icon_xpath_locator + err.message)
 
-
-        '''
-         WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_all_elements_located(
-            (By.XPATH, self._ast_schooldata_button_locator)), "Timeout")
-        return self.driver.find_element_by_xpath(self._ast_schooldata_button_locator)
-
-
-        try:
-            WebDriverWait(self.driver, 0).until(expected_conditions.presence_of_element_located(
-                        (By.XPATH,self._ast_main_create_assessment_button_locator)))
-            return  self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator)
-        except Exception, err:
-            raise type(err)("Create assessment button not available - search XPATH - " \
-                          + self._ast_main_create_assessment_button_locator + err.message)
-
-        try:
-            WebDriverWait(self.driver,10).until(expected_conditions.element_to_be_clickable(
-                (By.XPATH, self._ast_create_templatetype_dropdown_locator)))
-            return self.driver.find_element_by_xpath(self._ast_create_templatetype_dropdown_locator)
-        except:
-            raise
-
-        '''
-
-
     @property
     def get_map_base_map_accordian(self):
          try:
@@ -136,7 +110,6 @@ class MapPage(BasePageClass):
          except Exception, err:
             raise type(err)("Base Map Accordian - searched XPATH - "
                             + self._map_click_base_map_action_accordion_xpath_locator + err.message)
-
 
     @property
     def get_map_default_view_radio(self):
@@ -148,7 +121,6 @@ class MapPage(BasePageClass):
             raise type(err)("Default View Radio - searched XPATH - "
                             + self._map_click_default_action_radio_xpath_locator + err.message)
 
-
     @property
     def get_map_night_view_radio(self):
         try:
@@ -158,7 +130,6 @@ class MapPage(BasePageClass):
         except Exception, err:
             raise type(err)("Night View Radio - searched XPATH - "
                             + self._map_click_night_view_action_radio_xpath_locator + err.message)
-
 
     @property
     def get_map_terrain_radio(self):
@@ -170,7 +141,6 @@ class MapPage(BasePageClass):
             raise type(err)("Terrain Radio - searched XPATH - "
                             + self._map_click_terrain_action_radio_xpath_locator + err.message)
 
-
     @property
     def get_map_satelite_default_view_radio(self):
         try:
@@ -180,7 +150,6 @@ class MapPage(BasePageClass):
         except Exception, err:
             raise type(err)("Satelite Default View Radio - searched XPATH - "
                             + self._map_click_satelite_default_action_radio_xpath_locator + err.message)
-
 
     @property
     def get_map_satelite_grey_view_radio(self):

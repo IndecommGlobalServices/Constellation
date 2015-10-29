@@ -6,6 +6,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from selenium.webdriver.common.keys import Keys
+from testcases.assettest import *
 
 class MapPageTest(BaseTestCase):
 
@@ -58,7 +59,6 @@ class MapPageTest(BaseTestCase):
     # Satelite Default
     @attr(priority="high")
     def test_map_04_to_verify_Satelite_Default(self):
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
@@ -72,7 +72,6 @@ class MapPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_map_05_to_verify_Satelite_Grey(self):
-        self.mappage = MapPage(self.driver)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
