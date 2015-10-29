@@ -53,6 +53,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.schooldata_upload_file(self.config.get(self.section, 'SECTION_SCHOOL_TYPE'))
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.section, 'SECTION_SCHOOL_TYPE'))),
                            count_of_image_before_upload, self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_SCHOOL_TYPE'))
 
     @attr(priority="high")
     #@SkipTest
@@ -64,7 +65,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_SCHOOL_TYPE'))
         self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.section, 'SECTION_SCHOOL_TYPE'))[0].text, "Hello")
-
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_SCHOOL_TYPE'))
 
     @attr(priority="high")
     #@SkipTest
@@ -118,6 +119,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.schooldata_upload_file(self.config.get(self.section, 'SECTION_GRADE_LEVELS'))
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.section, 'SECTION_GRADE_LEVELS'))),
                            count_of_image_before_upload, self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_GRADE_LEVELS'))
 
     @attr(priority="high")
     #@SkipTest
@@ -129,6 +131,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_GRADE_LEVELS'))
         self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.section, 'SECTION_GRADE_LEVELS'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_GRADE_LEVELS'))
 
     @attr(priority="high")
     #@SkipTest
@@ -166,6 +169,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.schooldata_upload_file(self.config.get(self.section, 'SECTION_SCHOOL_HOURS'))
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.section, 'SECTION_SCHOOL_HOURS'))),
                            count_of_image_before_upload, self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_SCHOOL_HOURS'))
 
     @attr(priority="high")
     #@SkipTest
@@ -177,6 +181,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_SCHOOL_HOURS'))
         self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.section, 'SECTION_SCHOOL_HOURS'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_SCHOOL_HOURS'))
 
 
     @attr(priority="high")
@@ -217,6 +222,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.assertGreater(len(self.ast.get_schooldata_image(
             self.config.get(self.section, 'SECTION_NUMBER_OF_STUDENTS'))),
             count_of_image_before_upload, self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_NUMBER_OF_STUDENTS'))
 
     @attr(priority="high")
     #@SkipTest
@@ -229,6 +235,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_NUMBER_OF_STUDENTS'))
         self.assertEqual(self.ast.get_schooldata_image_caption(
             self.config.get(self.section, 'SECTION_NUMBER_OF_STUDENTS'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_NUMBER_OF_STUDENTS'))
 
 
     @attr(priority="high")
@@ -279,6 +286,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(
             self.section, 'SECTION_SPECIAL_NEEDS_STUDENT'))), count_of_image_before_upload,
             self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_SPECIAL_NEEDS_STUDENT'))
 
     @attr(priority="high")
     #@SkipTest
@@ -291,6 +299,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_SPECIAL_NEEDS_STUDENT'))
         self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(
             self.section, 'SECTION_SPECIAL_NEEDS_STUDENT'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_SPECIAL_NEEDS_STUDENT'))
 
 
     @attr(priority="high")
@@ -333,6 +342,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.assertGreater(len(self.ast.get_schooldata_image(
             self.config.get(self.section, 'SECTION_NO_OF_STAFF'))), count_of_image_before_upload,
             self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_NO_OF_STAFF'))
+
 
     @attr(priority="high")
     #@SkipTest
@@ -344,7 +355,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_NO_OF_STAFF'))
         self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.section, 'SECTION_NO_OF_STAFF'))[0].text, "Hello")
-
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_NO_OF_STAFF'))
 
     @attr(priority="high")
     #@SkipTest
@@ -386,6 +397,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.assertGreater(len(self.ast.get_schooldata_image(
             self.config.get(self.section, 'SECTION_NO_OF_VISITORS'))), count_of_image_before_upload,
             self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_NO_OF_VISITORS'))
 
     @attr(priority="high")
     #@SkipTest
@@ -398,7 +410,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_NO_OF_VISITORS'))
         self.assertEqual(self.ast.get_schooldata_image_caption(
             self.config.get(self.section, 'SECTION_NO_OF_VISITORS'))[0].text, "Hello")
-
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_NO_OF_VISITORS'))
 
     @attr(priority="high")
     #@SkipTest
@@ -451,6 +463,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(
             self.section, 'SECTION_LAW_ENFORCEMENT_OFFICER'))), count_of_image_before_upload,
             self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_LAW_ENFORCEMENT_OFFICER'))
 
     @attr(priority="high")
     #@SkipTest
@@ -463,6 +476,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_LAW_ENFORCEMENT_OFFICER'))
         self.assertEqual(self.ast.get_schooldata_image_caption(
             self.config.get(self.section, 'SECTION_LAW_ENFORCEMENT_OFFICER'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_LAW_ENFORCEMENT_OFFICER'))
 
     # @attr(priority="high")
     # #@SkipTest
@@ -503,6 +517,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.assertGreater(len(self.ast.get_schooldata_image(
             self.config.get(self.section, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'))), count_of_image_before_upload,
             self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'))
 
     @attr(priority="high")
     #@SkipTest
@@ -515,3 +530,4 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.schooldata_edit_caption_image(self.config.get(self.section, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'))
         self.assertEqual(self.ast.get_schooldata_image_caption(
             self.config.get(self.section, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.section, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'))

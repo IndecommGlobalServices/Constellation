@@ -18,26 +18,26 @@ class MapPageTest(BaseTestCase):
         self.errors_and_failures = self.tally()
         self.mappage = MapPage(self.driver)
 
-
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        self.mappage.get_map_app_name.click()
-        #self.mappage.return_to_apps_main_page()
+        self.mappage.return_to_icon_list_page()
 
     # Default view
     @attr(priority="high")
+    #@SkipTest
+    @attr(status='smoke')
     def test_map_01_to_verify_default(self):
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .perform()
-        self.mappage.get_map_base_map_accordian.click()
         self.mappage.get_map_default_view_radio.click()
         sleep(2)
 
     # Night view
     @attr(priority="high")
+    @SkipTest
     def test_map_02_to_verify_Night_View(self):
         sleep(5)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
@@ -49,6 +49,7 @@ class MapPageTest(BaseTestCase):
 
     # Terrain
     @attr(priority="high")
+    @SkipTest
     def test_map_03_to_verify_Terrain(self):
         sleep(5)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
@@ -60,6 +61,7 @@ class MapPageTest(BaseTestCase):
 
     # Satelite Default
     @attr(priority="high")
+    @SkipTest
     def test_map_04_to_verify_Satelite_Default(self):
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\

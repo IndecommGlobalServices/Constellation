@@ -21,15 +21,14 @@ class AssetpageTest(BaseTestCase):
         self.section = 'AssetTests'
         self.config = ConfigParser.ConfigParser()
         self.config.readfp(open('baseconfig.cfg'))
+
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
         self.assetpage.return_to_apps_main_page()
 
-
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_01(self):
         """
         Test : test_AS_01
@@ -47,7 +46,6 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_02(self):
         """
         Test : test_AS_02
@@ -1256,7 +1254,6 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priotity = "high")
-#    @attr(status='smoke')
     def test_AS_49_50(self):
         """
         Test name : test_AS_49_50

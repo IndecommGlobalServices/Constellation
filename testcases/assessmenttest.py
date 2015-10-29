@@ -36,36 +36,6 @@ class AssessmenttPageTest(BaseTestCase):
         except:
             pass
 
-    @attr(priority="high")
-    @SkipTest
-    def test_smoketest_assessment(self):
-        sleep(2)
-        try:
-            self.assertEqual(self.ast.get_ast_app_name.text, "Assessments")
-        except:
-            print "The Assessment link text not available"
-        self.ast.get_ast_statusfilter_dropdown.click()
-        try:
-            self.assertTrue(self.ast.get_statusfilter_InProgress_link)
-            self.assertTrue(self.ast.get_statusfilter_NotStarted_link)
-            self.assertTrue(self.ast.get_statusfilter_Submitted_link)
-        except:
-            print " One or more filter option for status not present"
-
-        try:
-            self.assertEqual(self.ast.get_resetfilter_button.text, "Reset filters")
-        except:
-            print "Reset filters button not available or text not matching"
-
-        try:
-            self.assertTrue(self.ast.get_search_assessment_textbox)
-        except:
-            print "Search textbox not available"
-
-        try:
-            self.assertTrue(self.ast.get_main_create_assessment_button)
-        except:
-            print "Create assessment button not present"
 
     @attr(priority="high")
     #@SkipTest
@@ -125,7 +95,6 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_ast_05_To_create_assessment(self):
         flag = 0
         count = 0
@@ -346,6 +315,7 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_ast_34_To_Verify_Delete_Assessment(self):
         countbeforedeletion = self.ast.get_total_row_count()
         self.ast.select_multiple_checkboxes(1)
