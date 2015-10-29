@@ -284,10 +284,10 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.asset_create_click()
         self.assetpage.select_asset_template_type("Place")
-        asset_phone = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-            (By.XPATH ,self.assetpage._asset_overview_phone_text_box_locator)))
-        asset_phone.send_keys("123abc1234")
-        asset_phone.send_keys(Keys.TAB)
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_overview_phone_text_box_locator)))
+        self.assetpage.enter_asset_type_phone.send_keys("123abc1234")
+        self.assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches("123abc1234", regex,
                                  self.config.get(self.section, 'MESSAGE_PHONE_VALUE_NOT_MATCHING'))
@@ -643,6 +643,7 @@ class AssetpageTest(BaseTestCase):
             self.assertTrue(True,self.config.get(self.section, 'MESSAGE_NEW_CONTACT_CREATED'))
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_33_1(self):
         """
         Test : test_AS_33_1
@@ -675,6 +676,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_NAMES_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_33_2(self):
         """
         Test : test_AS_33_2
@@ -707,6 +709,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_TITLES_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_33_3(self):
         """
         Test : test_AS_33_3
@@ -739,6 +742,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_PHONE_NUMBERS_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_33_4(self):
         """
         Test : test_AS_33_4
@@ -909,7 +913,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
-        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver,50).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
         self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "40.7127"
@@ -1278,7 +1282,7 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
                     (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self.assetpage._asset_create_asset)))
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_list_assets_name_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_school_name[0])
         sleep(5)#necessary sleep to let the app finish searching for the assetname
@@ -1306,8 +1310,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_asset_template_type("School")
         self.assertFalse(self.assetpage.get_asset_overview_save_button.is_enabled())
         self.assetpage.get_asset_overview_cancel_button.click()
-        self.assertTrue(self.assetpage.wait_for_element_boolean(self.assetpage._asset_create_asset),
-                        self.config.get(self.section, 'MESSAGE_CANCEL_FAILED_ON_CREATING_ASSET_DIALOGUE'))
+        self.assertTrue(self.driver.find_element_by_xpath(self.assetpage._asset_create_asset).is_displayed,"Cancel failed on create assest dialouge")
 
     @attr(priority="high")
 #   @SkipTest
@@ -1326,7 +1329,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.enter_school_district(self.assetpage.asset_school_district_grade_validation)
         self.assetpage.enter_school_grade(self.assetpage.asset_school_district_grade_validation)
         self.assetpage.asset_overview_save_click()
-        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
             By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details")
         self.assertEqual(self.assetpage.asset_school_district_grade_validation, self.assetpage.get_overview_district_text)
         self.assertEqual(self.assetpage.asset_school_district_grade_validation, self.assetpage.get_overview_grade_text)
