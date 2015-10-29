@@ -32,14 +32,14 @@ class AssessmentOverviewPageTest(BaseTestCase):
     #@SkipTest
     def test_AST_44_To_Verify_Overview_Add_Notes(self):
         note = "Newnote"
-        # WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
-        #     (By.XPATH, self.ast._ast_overview_notes_textbox_locator)))
+        WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
+            (By.ID, self.ast._ast_overview_notes_textbox_locator)))
+        sleep(10)
         self.ast.get_overview_notes_textbox.clear()
         self.ast.get_overview_notes_textbox.send_keys(note)
         self.ast.get_overview_save_button.click()
-        # WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
-        #     (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
-        sleep(10)
+        WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
         self.assertEqual(note, self.ast.get_overview_notes_textbox.get_attribute("value"),
                          "Entered text not appearing in notes textarea")
 
@@ -98,7 +98,6 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
-        # sleep(10)
         self.assertEqual(str(start_date), self.ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), self.ast.get_overview_enddate_textbox.get_attribute("value"))
 
@@ -116,7 +115,6 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
-        # sleep(10)
         self.assertEqual(str(start_date), self.ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), self.ast.get_overview_enddate_textbox.get_attribute("value"))
 
@@ -134,7 +132,6 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
-        # sleep(10)
         self.assertEqual(str(start_date), self.ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), self.ast.get_overview_enddate_textbox.get_attribute("value"))
 
