@@ -68,7 +68,7 @@ class AssessmentPage(BasePageClass):
     _ast_overview_button_locator = "//button[@title='Overview']"
     _ast_breadcrumb_text_locator = ".//*[@id='header']/div[1]/span[3]/span"
     _ast_overview_text = ".//*[@id='overview']/div[1]"
-    _ast_overview_notes_textbox_locator = "//*[@id='assessment_notes']"
+    _ast_overview_notes_textbox_locator = "assessment_notes"
     # "//textarea[@placeholder='Notes']"
     _ast_overview_save_button_locator = ".//*[@id='header']/div[4]/button"
     _ast_overview_dates_textbox_locator = ".//*[@id='datetimepicker']/div/input"
@@ -77,13 +77,11 @@ class AssessmentPage(BasePageClass):
     #Assessment Overview Upload related locator
     _ast_photos_documents_header_locator = "//div[contains(text(),'Photos / Documents')]"
     _ast_photos_documents_upload_file_button_locator = "//button[contains(text(), 'Upload file')]"
-    _ast_photos_documents_attach_file_button_locator = "upload_document_file_upload"
-    _ast_photos_documents_caption_textbox_locator = "upload_document_caption"
-    _ast_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']" \
-                                                         "/div/div/div//button[contains(text(),'Upload')]"
-    _ast_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']" \
-                                                         "/div/div/div//button[contains(text(),'Cancel')]"
-    _ast_photos_documents_window_delete_button_locator = ".//*[@id='delete_document_modal']/div/div/div[3]/button[2]"
+    _ast_photos_documents_attach_file_button_locator = "file_upload"
+    _ast_photos_documents_caption_textbox_locator = "file_title"
+    _ast_photos_documents_window_upload_button_locator = ".//*[@id='fileEditModal']/div/div/div//button[contains(text(),'Upload')]"
+    _ast_photos_documents_window_cancel_button_locator = ".//*[@id='fileEditModal']/div/div/div//button[contains(text(),'Cancel')]"
+    _ast_photos_documents_window_delete_button_locator = "//div[@id='fileDeleteModal']//button[contains(text(),'Delete')]"
 
 
     #Assessment edit caption locators
@@ -313,7 +311,7 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_overview_notes_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_overview_notes_textbox_locator)
+        return self.driver.find_element_by_id(self._ast_overview_notes_textbox_locator)
 
     @property
     def get_overview_save_button(self):
