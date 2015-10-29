@@ -187,7 +187,7 @@ class AssessmentPage(BasePageClass):
     @property
     def get_main_create_assessment_button(self):
         try:
-            WebDriverWait(self.driver, 0).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located(
                         (By.XPATH,self._ast_main_create_assessment_button_locator)))
             return  self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator)
         except Exception, err:
