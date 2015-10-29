@@ -7,6 +7,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
+from basepage import BasePage
 
 class MapPage(BasePageClass):
 
@@ -431,5 +432,15 @@ class MapPage(BasePageClass):
         if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
             self.get_map_basic_data_layer_threat_streams_stream_2.click()
         '''
+    def return_to_icon_list_page(self):
+        try:
+            self.get_bread_crumb_apps.click()
+        except:
+            basepage = BasePage(self.driver)
+            basepage.accessURL()
 
-
+    def get_total_map_status_count(self):
+        countText = self.driver.find_element_by_xpath(self._map_items_map_status).text
+        splitedText = countText.split(" ")
+        totalCount = splitedText[1]
+        return int(totalCount)
