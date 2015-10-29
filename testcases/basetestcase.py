@@ -5,6 +5,7 @@ from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
+from pages.IconListPage import IconListPage
 from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
@@ -29,10 +30,6 @@ class BaseTestCase(unittest.TestCase):
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
         self.username = loginpage.usernameText
-
-        #iconlistpage = IconListPage(cls.driver)
-        #iconlistpage.click_asset_icon()
-
 
     @classmethod
     def tearDownClass(self):

@@ -21,15 +21,14 @@ class AssetpageTest(BaseTestCase):
         self.section = 'AssetTests'
         self.config = ConfigParser.ConfigParser()
         self.config.readfp(open('baseconfig.cfg'))
+
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
         self.assetpage.return_to_apps_main_page()
 
-
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_01(self):
         """
         Test : test_AS_01
@@ -47,7 +46,6 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_02(self):
         """
         Test : test_AS_02
@@ -203,25 +201,31 @@ class AssetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
+        flag = 0
         cwd = os.getcwd()
         os.chdir('..')
         searchasset_filepath = os.path.join(os.getcwd(), "data", "json_SearchAssessments.json")
         os.chdir(cwd)
-        WebDriverWait(self.driver,20).until(EC.presence_of_element_located(
-            (By.XPATH, self.assetpage._asset_search_textbox_locator)))
+        WebDriverWait(self.driver,20).until(EC.element_to_be_clickable(
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
         with open(searchasset_filepath) as data_file:
             for each in json.load(data_file):
                 searchText = each["Search_name"]
                 self.assetpage.select_asset_search_text_box.clear()
                 self.assetpage.select_asset_search_text_box.send_keys(searchText)
-                searchNames = self.driver.find_elements_by_xpath(self.assetpage._asset_list_locator)
-                for searchName in searchNames:
-                    if self.assetpage.get_asset_list_no_matching_records_found.text:
-                        self.assertEqual("No matching records found", self.assetpage.get_asset_list_no_matching_records_found.text,
+                sleep(5)
+                if len(self.driver.find_elements_by_xpath(self.assetpage._asset_list_locator)) <= 0:
+                    self.assertEqual("No matching records found", self.assetpage.get_asset_list_no_matching_records_found.text,
                                          self.config.get(self.section, 'MESSAGE_NO_ASSET_RECORDS'))
-                    else:
-                        print searchName #Should replace with regexp comparison
-        self.assetpage.select_asset_search_text_box.clear()
+                    flag = 1
+                else:
+                    for searchName in self.driver.find_elements_by_xpath(self.assetpage._asset_list_locator):
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    self.assertTrue(False, "The search result doesnt contain the text that is searched. "
+                                           "Searched string is :" + searchText)
+            self.assetpage.select_asset_search_text_box.clear()
 
     @attr(priority="high")
     #@SkipTest
@@ -280,9 +284,10 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.asset_create_click()
         self.assetpage.select_asset_template_type("Place")
-        asset_phone = self.assetpage.wait_for_element_path(self.assetpage._asset_overview_phone_text_box_locator)
-        asset_phone.send_keys("123abc1234")
-        asset_phone.send_keys(Keys.TAB)
+        WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_overview_phone_text_box_locator)))
+        self.assetpage.enter_asset_type_phone.send_keys("123abc1234")
+        self.assetpage.enter_asset_type_phone.send_keys(Keys.TAB)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
         self.assertRegexpMatches("123abc1234", regex,
                                  self.config.get(self.section, 'MESSAGE_PHONE_VALUE_NOT_MATCHING'))
@@ -638,6 +643,7 @@ class AssetpageTest(BaseTestCase):
             self.assertTrue(True,self.config.get(self.section, 'MESSAGE_NEW_CONTACT_CREATED'))
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_33_1(self):
         """
         Test : test_AS_33_1
@@ -670,6 +676,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_NAMES_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_33_2(self):
         """
         Test : test_AS_33_2
@@ -702,6 +709,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_TITLES_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_33_3(self):
         """
         Test : test_AS_33_3
@@ -734,6 +742,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_PHONE_NUMBERS_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
+    #@SkipTest
     def test_AS_33_4(self):
         """
         Test : test_AS_33_4
@@ -904,7 +913,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
-        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver,50).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
         self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "40.7127"
@@ -1256,10 +1265,9 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priotity = "high")
-#    @attr(status='smoke')
     def test_AS_49_50(self):
         """
-        Test name : test_AS_49_50
+        Test : test_AS_49_50
         Description : To verify school asset creation and verify that created asset is displayed in the asset list.
         Revision:
         Author: Deepa Sivadas
@@ -1274,7 +1282,7 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
                     (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self.assetpage._asset_create_asset)))
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_list_assets_name_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_school_name[0])
         sleep(5)#necessary sleep to let the app finish searching for the assetname
@@ -1302,8 +1310,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_asset_template_type("School")
         self.assertFalse(self.assetpage.get_asset_overview_save_button.is_enabled())
         self.assetpage.get_asset_overview_cancel_button.click()
-        self.assertTrue(self.assetpage.wait_for_element_boolean(self.assetpage._asset_create_asset),
-                        self.config.get(self.section, 'MESSAGE_CANCEL_FAILED_ON_CREATING_ASSET_DIALOGUE'))
+        self.assertTrue(self.driver.find_element_by_xpath(self.assetpage._asset_create_asset).is_displayed,"Cancel failed on create assest dialouge")
 
     @attr(priority="high")
 #   @SkipTest
@@ -1322,7 +1329,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.enter_school_district(self.assetpage.asset_school_district_grade_validation)
         self.assetpage.enter_school_grade(self.assetpage.asset_school_district_grade_validation)
         self.assetpage.asset_overview_save_click()
-        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
             By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details")
         self.assertEqual(self.assetpage.asset_school_district_grade_validation, self.assetpage.get_overview_district_text)
         self.assertEqual(self.assetpage.asset_school_district_grade_validation, self.assetpage.get_overview_grade_text)

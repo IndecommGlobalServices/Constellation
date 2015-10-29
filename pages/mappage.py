@@ -2,6 +2,7 @@ __author__ = 'Deepa.Sivadas'
 
 from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
+from basepage import BasePage
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -94,7 +95,7 @@ class MapPage(BasePageClass):
     @property
     def get_map_mouse_hover_icon(self):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+            WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable(
                 (By.XPATH, self._map_mouse_hover_action_icon_xpath_locator)))
             return self.driver.find_element_by_xpath(self._map_mouse_hover_action_icon_xpath_locator)
         except Exception, err:
@@ -129,7 +130,7 @@ class MapPage(BasePageClass):
     @property
     def get_map_base_map_accordian(self):
          try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
                 (By.XPATH, self._map_click_base_map_action_accordion_xpath_locator)))
             return self.driver.find_element_by_xpath(self._map_click_base_map_action_accordion_xpath_locator)
          except Exception, err:
@@ -162,7 +163,7 @@ class MapPage(BasePageClass):
     @property
     def get_map_terrain_radio(self):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
                 (By.XPATH, self._map_click_terrain_action_radio_xpath_locator)))
             return self.driver.find_element_by_xpath(self._map_click_terrain_action_radio_xpath_locator)
         except Exception, err:
@@ -421,7 +422,7 @@ class MapPage(BasePageClass):
 
         if self.get_map_basic_data_layer_annotations.is_selected():
             self.get_map_basic_data_layer_annotations.click()
-
+        '''
         if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
             self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
 
@@ -430,6 +431,12 @@ class MapPage(BasePageClass):
 
         if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
             self.get_map_basic_data_layer_threat_streams_stream_2.click()
+        '''
 
 
-
+    def return_to_icon_list_page(self):
+        try:
+            self.get_bread_crumb_apps.click()
+        except:
+            basepage = BasePage(self.driver)
+            basepage.accessURL()
