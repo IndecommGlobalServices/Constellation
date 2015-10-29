@@ -183,17 +183,17 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_cancel_button_locator = ".//*[@id='asset_details_modal']/div/div/form/div[2]/button[1]"
     _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/div/div/div/button"
 
-
     # Asset Photo/Document Upload Panel
     _asset_photos_documents_header_locator = "//div[contains(text(),'Photos / Documents')]"
     _asset_photos_documents_uploaded_file_locator = "//div[contains(@label,'Photos / Documents')]/div[@class='formLayout']/div/div[@class='widgetcontent']/div/div"
     _asset_photos_documents_upload_file_button_locator = "//button[contains(text(), 'Upload file')]"
-    _asset_photos_documents_attached_file_button_locator = "upload_document_file_upload"
-    _asset_photos_documents_caption_textbox_locator = "upload_document_caption"
-    _asset_photos_documents_window_upload_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Upload')]"
-    _asset_photos_documents_window_cancel_button_locator = ".//*[@id='widget_attach_document_modal']/div/div/div//button[contains(text(),'Cancel')]"
-    _asset_photos_documents_delete_window_delete_locator = "//div[@id='delete_document_modal']//button[contains(text(),'Delete')]"
-    _asset_photos_documents_window_title_locator = ".//*[@id='upload_document_file_heading']"
+    _asset_photos_documents_attached_file_button_locator = "file_upload"
+    _asset_photos_documents_caption_textbox_locator = "file_title"
+    _asset_photos_documents_window_upload_button_locator = ".//*[@id='fileEditModal']/div/div/div//button[contains(text(),'Upload')]"
+    _asset_photos_documents_window_cancel_button_locator = ".//*[@id='fileEditModal']/div/div/div//button[contains(text(),'Cancel')]"
+    _asset_photos_documents_delete_window_delete_locator = "//div[@id='fileDeleteModal']//button[contains(text(),'Delete')]"
+    _asset_photos_documents_window_title_locator = ".//*[@id='fileEditModal']"
+    _asset_photos_documents_delete_icon_locator = ".//img[contains(@src,'delete_icon')]"
 
     # Asset Annotation Panel
     _asset_annotation_widget_locator = ".//*[@id='widgets']/div[8]/div/div[1]"
@@ -226,8 +226,6 @@ class AssetPage(BasePageClass):
     _asset_chart_total_Graph_In_Container_xpath_locator = ".//*[@id='graphs_frame']/div/div/div/div[1]"
     #Chart dashboard
     _asset_chart_dashboard_img_xpath_locator = "//img[@title='Dashboard']"
-
-
     _asset_count = 0
     _assets = {}
 
@@ -1183,6 +1181,14 @@ class AssetPage(BasePageClass):
                           + self._asset_photos_documents_window_cancel_button_locator + err.message)
 
     @property
+    def get_asset_photos_documents_delete_icon_image(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_photos_documents_delete_icon_locator)
+        except Exception, err:
+            raise type(err)("Delete icon is not displayed - search XPATH - " \
+                          + self._asset_photos_documents_delete_icon_locator + err.message)
+
+    @property
     def get_asset_photos_documents_delete_window_delete_button(self):
         try:
             return self.driver.find_element_by_xpath(self._asset_photos_documents_delete_window_delete_locator)
@@ -1705,9 +1711,8 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(2)
-        self.get_overview_type_drop_down.click()
-        sleep(2)
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH, self._asset_overview_type_drop_down_locator))).click()
         self.get_overview_school_newtype_text_box.send_keys(value)
         self.get_overview_type_add_button.click()
         #self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
@@ -1813,8 +1818,8 @@ class AssetPage(BasePageClass):
                 sleep(2)
                 self.create_asset(asset_type)
                 sleep(2)
-        except:
-            print "No Asset is existing or Asset Creation has been failed."
+        except Exception, err:
+            raise type(err)("No Asset is existing or Asset Creation has been failed. "+err.message)
 
 
     def set_place_overview_fields(self,paddress, paddress1, pcity, pstate, pzip, powner):
@@ -1920,8 +1925,8 @@ class AssetPage(BasePageClass):
                 self.get_asset_newcontact_delete_icon.click()
                 sleep(1)
                 self.get_asset_newcontact_delete_popup_delete_button.click()
-        except NoSuchElementException, ElementNotVisibleException:
-            pass
+        except Exception, err:
+            raise type(err)("Contact Delete Icon not displayed or it is disabled. "+err.message)
 
     def create_new_contact(self, firstname, lastname, title="Title", phone=r"111-111-1111", email=r"test@test.com",
                                         prefix="Shri", address1="Indecomm", address2=r"Brigade South Parade",
@@ -1968,23 +1973,19 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        try:
+        sleep(2)
+        #delete existing contacts.
+        self.delete_existing_contact()
+        sleep(2)
+        firstname = ['jkl','vwx','def','pqr']
+        lastname = ['mno','abc','stu','ghi']
+        phonelist = [r'661-111-1111',r'222-222-2222',r'433-333-3333',r'123-444-4444']
+        emaillist = [r'stu@vwx',r'abc@def',r'mno@pqr',r'ghi@jkl']
+        titlelist = ['HH','ZZ','CC','PP']
+        for contact in range(4):
+            self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],
+                                    emaillist[contact])
             sleep(2)
-            #delete existing contacts.
-            self.delete_existing_contact()
-            sleep(2)
-            firstname = ['jkl','vwx','def','pqr']
-            lastname = ['mno','abc','stu','ghi']
-            phonelist = [r'661-111-1111',r'222-222-2222',r'433-333-3333',r'123-444-4444']
-            emaillist = [r'stu@vwx',r'abc@def',r'mno@pqr',r'ghi@jkl']
-            titlelist = ['HH','ZZ','CC','PP']
-            for contact in range(4):
-                self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],
-                                        emaillist[contact])
-                sleep(2)
-            sleep(2)
-        except:
-            print "multiple file creation has been failed"
 
     def file_path(self, image_file_name):
         """
@@ -2004,32 +2005,28 @@ class AssetPage(BasePageClass):
         Revision:
         :return:
         """
-        try:
-            WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
-            (By.XPATH, self._asset_photos_documents_header_locator), r"Photos / Documents"))
-
-            self.driver.find_element_by_xpath(self._asset_photos_documents_header_locator).click()
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+        (By.XPATH, self._asset_photos_documents_header_locator), r"Photos / Documents"))
+        self.driver.find_element_by_xpath(self._asset_photos_documents_header_locator).click()
+        sleep(2)
+        image_icons = self.driver.find_elements_by_xpath(".//img[@class='neutron_document_img']")
+        num_of_files = len(image_icons)
+        if num_of_files >= 1:
             sleep(2)
             image_icons = self.driver.find_elements_by_xpath(".//img[@class='neutron_document_img']")
             num_of_files = len(image_icons)
-            if num_of_files >= 1:
-                sleep(2)
-                for count in range(num_of_files, 0, -1):
-                    index = count
-                    xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
-                    image_icon_xpath =  self.driver.find_element_by_xpath\
-                        (".//*[@id='widgets']/div[6]/div[1]/div/div[2]/div/div[" + str(index)+ "]")
-                    Hover = ActionChains(self.driver).move_to_element(image_icon_xpath)
-                    Hover.perform()
-                    delete_icon = self.driver.find_element_by_xpath(xpath)
-                    delete_icon.click()
-                    self.get_asset_photos_documents_delete_window_delete_button.click()
-                    WebDriverWait(self.driver,20).until(EC.element_to_be_clickable((By.XPATH,
-                                                            self._asset_photos_documents_upload_file_button_locator)))
-                    sleep(10)
-        except :
-            print "File deletion not done properly or some files could not be deleted."
-
+            for count in range(num_of_files, 0, -1):
+                index = count
+                xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
+                image_icon_xpath =  self.driver.find_element_by_xpath\
+                    ("(.//img[@class='neutron_document_img'])[" + str(index)+ "]")
+                Hover = ActionChains(self.driver).move_to_element(image_icon_xpath)
+                Hover.perform()
+                self.driver.find_element_by_xpath(xpath).click()
+                self.get_asset_photos_documents_delete_window_delete_button.click()
+                WebDriverWait(self.driver,20).until(EC.element_to_be_clickable((By.XPATH,
+                                                        self._asset_photos_documents_upload_file_button_locator)))
+                sleep(3)
 
     def upload_a_file_with_caption(self, image_caption, image_file_name):
         """
@@ -2037,26 +2034,20 @@ class AssetPage(BasePageClass):
         Revision:
         :return:
         """
+        # Click on Photo/Document panel - File Upload button
+        self.get_asset_photos_documents_upload_file_button.click()
+        # Click on Attach file button and attached the file path with the send_keys
+        file_path = self.file_path(image_file_name)
+        self.get_asset_photos_documents_attached_file_button.send_keys(file_path)
+        # Enter Caption
+        caption_val = image_caption
+        self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
+        # Click Upload.
+        self.get_asset_photos_documents_window_upload_button.click()
         try:
-            # Click on Photo/Document panel - File Upload button
-            self.get_asset_photos_documents_upload_file_button.click()
-            # Click on Attach file button and attached the file path with the send_keys
-            file_path = self.file_path(image_file_name)
-            self.get_asset_photos_documents_attached_file_button.send_keys(file_path)
-            #sleep(3)
-            # Enter Caption
-            caption_val = image_caption
-            self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
-            #sleep(2)
-            # Click Upload.
-            self.get_asset_photos_documents_window_upload_button.click()
-            try:
-                WebDriverWait(self.driver,200).until(EC.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
-            except:
-                pass
-        except:
-            print "File uploads failed."
-
+            WebDriverWait(self.driver,200).until(EC.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
+        except Exception, err:
+            raise type(err)("File has been uploaded but could not be saved. "+err.message)
 
     def delete_all_annotation(self):
         """
@@ -2070,8 +2061,8 @@ class AssetPage(BasePageClass):
                 sleep(2)
                 self.get_asset_annotation_delete_image.click()
                 sleep(2)
-        except:
-            print "Annotation text coulld not deleted or no annotation text is available."
+        except Exception, err:
+            raise type(err)("Annotation text coulld not deleted or no annotation text is available.. "+err.message)
 
     # Charts related functions
     svg_path_1=r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"

@@ -9,6 +9,7 @@ from nose.plugins.skip import SkipTest
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+import ConfigParser
 
 class ThreatStreamTest(BaseTestCase):
 
@@ -16,40 +17,14 @@ class ThreatStreamTest(BaseTestCase):
     def setUp(self):
         self.errors_and_failures = self.tally()
         self.tstream = ThreatStreamPage(self.driver)
+        self.config = ConfigParser.ConfigParser()
+        self.config.readfp(open('baseconfig.cfg'))
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
         #self.tstream.return_to_apps_main_page()
 
-    @attr(priority="high")
-    #@SkipTest
-    def test_TS_099(self):
-        sleep(15)
-        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, self.tstream._ts_app_name_text)))
-        self.tstream.get_ts_app_settingl_ink.click()
-        WebDriverWait(self.driver,10).until(EC.text_to_be_present_in_element((By.XPATH,
-                                                self.tstream._ts_setting_window_locator), "Threat Stream settings"))
-        sleep(10)
-        if not self.tstream.get_ts_setting_window_checkbox.is_selected():
-            self.tstream.get_ts_setting_window_checkbox.click()
-            sleep(2)
-            self.tstream.get_ts_setting_window_save_button.click()
-            sleep(2)
-            print "dddddddddddd"
-        else:
-
-            print "rrrrrrrrrrrrrrrrrrrr"
-        self.tstream.get_ts_setting_link.click()
-        sleep(2)
-        self.tstream.get_ts_setting_window_save_button.click()
-        sleep(2)
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable ((By.XPATH, self.tstream._ts_setting_link_locator)))
-        self.tstream.get_ts_setting_link.click()
-        # sleep(3)
-        # xxx = self.tstream.get_ts_app_setting_window_checkbox.is_selected()
-        # print xxx
-        self.assertTrue(self.tstream.get_ts_setting_window_checkbox.is_selected(), "Check box has been enabled.")
 
     @attr(priority="high")
     #@SkipTest
@@ -204,7 +179,7 @@ class ThreatStreamTest(BaseTestCase):
     def test_TS_11(self):
         """
         Test : test_TS_11
-        Description : To verify share button is working properly or not .
+        Description : To verify share button is working properly or not.
         Revision:
         Author : Bijesh
         :return: None
@@ -220,19 +195,51 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_feed_email_window_email_textbox.send_keys("test@indecomm.net")
         self.tstream.get_ts_feed_email_window_comment_textbox.send_keys("This is a comment.")
         self.tstream.get_ts_feed_email_window_send_button.click()
-        sleep(4)
+        sleep(2)
         try:
             if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
                 self.assertFalse(True, "The Send Button is not working. The window is not closed.")
         except:
-            self.assertTrue(True, "The Email send window is not working properly.")
+            self.assertTrue(True, "In the Email window Save button is not working properly.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_12(self):
+        """
+        Test : test_TS_12
+        Description : To verify share button is working properly or not. Wrong Email value.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
+        detail_links = self.tstream.get_ts_feed_data_details_link
+        detail_links[0].click()
+        email_share_link = self.tstream.get_ts_feed_data_share_button_locator
+        email_share_link[0].click()
+        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH,\
+                                     self.tstream._ts_feed_email_window_title_locator),r"Share via email to..."))
+        self.tstream.get_ts_feed_email_window_email_textbox.send_keys("test#indecomm.net")
+        self.tstream.get_ts_feed_email_window_comment_textbox.send_keys("This is a comment.")
+        send_button_state = self.tstream.get_ts_feed_email_window_send_button.is_enabled()
+        if send_button_state:
+            self.assertFalse(send_button_state, "Email address is invalid but SEND button is enabled.")
+        self.tstream.get_ts_feed_email_window_cancel_button.click()
+        sleep(2)
+        try:
+            if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
+                self.assertFalse(True, "The Cancel Button is not working. The window is not closed.")
+        except:
+            self.assertTrue(True, "In the Email window Cancel button is not working properly.")
 
     @attr(priority="high")
     #@SkipTest
     def test_TS_13_1(self):
         """
         Test : test_TS_13_1
-        Description : To verify New Filter is created and saved. Filter type is RSS/Atom.
+        Description : To verify New Filter is created. Newly created filter name appears on Title window.
+                        Filter type is RSS/Atom.
         Revision:
         Author : Bijesh
         :return: None
@@ -244,6 +251,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_13_1")
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
         self.tstream.get_ts_filter_create_type_dropdown_rss_atom.click()
+        sleep(2) #required to load option properly.
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
         self.tstream.get_ts_filter_create_visibility_groups.click()
         self.tstream.get_ts_filter_create_tags_textbox.send_keys("Fire")
@@ -257,14 +265,15 @@ class ThreatStreamTest(BaseTestCase):
             act_text = self.tstream.get_ts_threat_filter_name_text.text
             self.assertEqual(act_text, "New_Filter_TC_13_1", "New filter name is not appearing in window title")
         except Exception, err:
-            raise type(err)("Newly created filter name is not appearing in window title - search XPATH - " \
-                          + self.tstream._ts_threat_filter_name_text_locator + err.message)
+            raise type(err)("Newly created filter name is not appearing in window title"+ err.message)
 
+    @attr(priority="high")
     #@SkipTest
     def test_TS_13_2(self):
         """
         Test : test_TS_13_2
-        Description : To verify New Filter is created and saved. Filter type is RSS/Atom.
+        Description : To verify New Filter is created. Newly created filter name appears on Title window.
+                        Filter type is Twitter.
         Revision:
         Author : Bijesh
         :return: None
@@ -276,6 +285,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_13_2")
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
+        sleep(2) #required to load option properly.
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
         self.tstream.get_ts_filter_create_visibility_groups.click()
         self.tstream.get_ts_filter_create_tags_textbox.send_keys("Bomb")
@@ -289,6 +299,402 @@ class ThreatStreamTest(BaseTestCase):
             act_text = self.tstream.get_ts_threat_filter_name_text.text
             self.assertEqual(act_text, "New_Filter_TC_13_2", "New filter name is not appearing in window title")
         except Exception, err:
-            raise type(err)("Newly created filter name is not appearing in window title - search XPATH - " \
-                          + self.tstream._ts_threat_filter_name_text_locator + err.message)
+            raise type(err)("Newly created filter name is not appearing in window title" + err.message)
 
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_14(self):
+        """
+        Test : test_TS_14
+        Description : To verify New Filter is created. Newly created filter name appears as one of menu item.
+                        Filter type is Twitter.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_14")
+        self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
+        self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
+        sleep(2) #required to load option properly.
+        self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        self.tstream.get_ts_filter_create_visibility_groups.click()
+        self.tstream.get_ts_filter_create_tags_textbox.send_keys("Bomb")
+        self.tstream.get_ts_filter_create_tags_add_button.click()
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("bomb")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_save_button.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_14"))
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        try:
+            if self.tstream.get_ts_new_filter_name("New_Filter_TC_14").is_displayed():
+                state = self.tstream.get_ts_new_filter_name("New_Filter_TC_14").is_displayed()
+                self.assertTrue(state, "New filter name is not appearing in the dropdown menu.")
+            else:
+                self.assertFalse(True, "New filter is not created or it is not appearing in the dropdown menu.")
+        except Exception, err:
+            raise type(err)("Newly created filter name is not appearing in dropdown menu item list."+ err.message)
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_15(self):
+        """
+        Test : test_TS_15
+        Description : To verify more than one phrases has been added in newly created filter.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_15")
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("gun")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("love")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_save_button.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_15"))
+        sleep(4)
+        feed_text_val = self.tstream.get_ts_feeds_list_text_value
+        counter1 = counter2 = 0
+        if len(feed_text_val)>10:
+            loop_count = 10
+        else:
+            loop_count = len(feed_text_val)
+        for num in range(loop_count):
+            if 'gun' in (feed_text_val[num].text).encode('utf-8'):
+               counter1 = counter1+1
+            elif "love" in (feed_text_val[num].text).encode('utf-8'):
+                counter2 = counter2+1
+        if counter1>=1 and counter2>=1:
+            self.assertTrue(True, "The phrases are not appearing in the feeds.")
+        else:
+            self.assertFalse(True,"The phrases are not appearing in the feeds." )
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_16(self):
+        """
+        Test : test_TS_16
+        Description : To verify Name text box of Create New filter window. No Value has been entered.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("")
+        self.tstream.get_ts_filter_create_save_button.click()
+        state = self.tstream.get_ts_filter_create_save_button.is_enabled()
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        if state:
+            self.assertFalse(True, "The Save button is enabled even though no value entered in Name text box.")
+        else:
+            self.assertTrue(True, "The Save button is enabled even though no value entered in Name text box." )
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_17(self):
+        """
+        Test : test_TS_17
+        Description : To verify that added pharse has been deleted properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_17")
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("gun")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("love")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        phrases_count = self.tstream.get_ts_filter_create_phrases_delete_icon
+        count_before_delete =  len(phrases_count)
+        phrases_count[0].click()
+        sleep(2)
+        phrases_count = self.tstream.get_ts_filter_create_phrases_delete_icon
+        count_after_delete = len(phrases_count)
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        self.assertEqual(count_before_delete, count_after_delete+1, "Phrase could not be deleted.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_18(self):
+        """
+        Test : test_TS_18
+        Description : To verify that added pharses has been deleted properly. Multiple phrases.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_18")
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("test1")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("test2")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("test3")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("test4")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        phrases_count = self.tstream.get_ts_filter_create_phrases_delete_icon
+        count_before_delete = len(phrases_count)
+        sleep(5)
+        for item in phrases_count[::-1]:
+            item.click()
+            sleep(1)
+        phrases_count = self.tstream.get_ts_filter_create_phrases_delete_icon
+        count_after_delete = len(phrases_count)
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        self.assertEqual(count_before_delete, count_after_delete+count_before_delete, "Phrases could not be deleted.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_19(self):
+        """
+        Test : test_TS_19
+        Description : To verify Type Reset button functionality.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_19")
+        self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
+        self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
+        sleep(1) #required to load option properly.
+        text_before_refresh = self.tstream.get_ts_filter_create_type_text.text
+        sleep(4)
+        self.tstream.get_ts_filter_create_type_refresh_button.click()
+        text_after_refresh = self.tstream.get_ts_filter_create_type_text.text
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        if (text_after_refresh == "Type") and (text_after_refresh != text_before_refresh):
+            self.assertTrue(text_after_refresh, "The Type value has not been reset.")
+        else:
+            self.assertFalse(True, "The Type value has not been reset." )
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_21(self):
+        """
+        Test : test_TS_21
+        Description : To verify that Cancel button is working properly in New filter create window.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_21")
+        self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
+        self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
+        sleep(2) #required to load option properly.
+        self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        self.tstream.get_ts_filter_create_visibility_groups.click()
+        self.tstream.get_ts_filter_create_tags_textbox.send_keys("and")
+        self.tstream.get_ts_filter_create_tags_add_button.click()
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("you")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        sleep(2)
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        try:
+            if self.tstream.get_ts_new_filter_name("New_Filter_TC_21").is_displayed():
+                self.assertFalse(True, "New filter has been created and Cancel button is not working.")
+        except:
+            self.assertTrue(True, "New filter has been created and Cancel button is not working.")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_23(self):
+        """
+        Test : test_TS_23
+        Description : To verify that new filter edit window is worlking.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_23")
+        self.tstream.get_ts_filter_create_save_button.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_23"))
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_new_filter_name("New_Filter_TC_23").click()
+        self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.clear()
+        sleep(1)
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_23_edit_name")
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("love")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_save_button.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                        self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_23_edit_name"))
+        try:
+            act_text = self.tstream.get_ts_threat_filter_name_text.text
+            self.assertEqual(act_text, "New_Filter_TC_23_edit_name", "Edited name of filter is not appearing in window title")
+        except Exception, err:
+            raise type(err)("Edited name of filter is not appearing in window title" + err.message)
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_24_1(self):
+        """
+        Test : test_TS_24_1
+        Description : To verify that new filter has been deleted properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_24_1")
+        self.tstream.get_ts_filter_create_save_button.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_24_1"))
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_new_filter_name("New_Filter_TC_24_1").click()
+        self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_delete_button.click()
+        sleep(2)
+        self.tstream.get_ts_filter_create_confirm_delete_button.click()
+        sleep(2)
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        try:
+            if self.tstream.get_ts_new_filter_name("New_Filter_TC_24_1").is_displayed():
+                state = self.tstream.get_ts_new_filter_name("New_Filter_TC_24_1").is_displayed()
+                self.assertFalse(state, "Newly created filter could not be deleted.")
+        except Exception:
+            self.assertTrue(True, "Newly created filter could not be deleted.")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_24_2(self):
+        """
+        Test : test_TS_24_2
+        Description : To verify that in new filter edit window Delete Cancel button working properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_24_2")
+        self.tstream.get_ts_filter_create_save_button.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_24_2"))
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_new_filter_name("New_Filter_TC_24_2").click()
+        self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_delete_button.click()
+        sleep(2)
+        self.tstream.get_ts_filter_create_confirm_cancel_button.click()
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_24_2"))
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        try:
+            if self.tstream.get_ts_new_filter_name("New_Filter_TC_24_2").is_displayed():
+                state = self.tstream.get_ts_new_filter_name("New_Filter_TC_24_2").is_displayed()
+                self.assertTrue(state, "In edit filter window Confirm Cancel button is not working.")
+        except Exception:
+            self.assertFalse(True, "In edit filter window Confirm Cancel button is not working.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_25(self):
+        """
+        Test : test_TS_25
+        Description : To verify that in new filter edit window Cancel button working properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_25")
+        self.tstream.get_ts_filter_create_save_button.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_25"))
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_new_filter_name("New_Filter_TC_25").click()
+        self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.clear()
+        sleep(1)
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_25_edit_name")
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("love")
+        self.tstream.get_ts_filter_create_phrases_add_button.click()
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        sleep(2)
+        act_text = self.tstream.get_ts_threat_filter_name_text.text
+        self.assertNotEqual(act_text, "New_Filter_TC_25_edit_name", "In Edit Filter window Cancel button is not Working.")
+
+    @attr(priority="high")
+    @SkipTest
+    def test_TS_099(self):
+        sleep(15)
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, self.tstream._ts_app_name_text)))
+        self.tstream.get_ts_app_settingl_ink.click()
+        WebDriverWait(self.driver,10).until(EC.text_to_be_present_in_element((By.XPATH,
+                                                self.tstream._ts_setting_window_locator), "Threat Stream settings"))
+        sleep(10)
+        if not self.tstream.get_ts_setting_window_checkbox.is_selected():
+            self.tstream.get_ts_setting_window_checkbox.click()
+            sleep(2)
+            self.tstream.get_ts_setting_window_save_button.click()
+            sleep(2)
+            print "dddddddddddd"
+        else:
+
+            print "rrrrrrrrrrrrrrrrrrrr"
+        self.tstream.get_ts_setting_link.click()
+        sleep(2)
+        self.tstream.get_ts_setting_window_save_button.click()
+        sleep(2)
+        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable ((By.XPATH, self.tstream._ts_setting_link_locator)))
+        self.tstream.get_ts_setting_link.click()
+        # sleep(3)
+        # xxx = self.tstream.get_ts_app_setting_window_checkbox.is_selected()
+        # print xxx
+        self.assertTrue(self.tstream.get_ts_setting_window_checkbox.is_selected(), "Check box has been enabled.")
