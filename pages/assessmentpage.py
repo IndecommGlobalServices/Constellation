@@ -34,9 +34,11 @@ class AssessmentPage(BasePageClass):
     #Asset grid locator
     _ast_asset_table_locator = ".//*[@id='assessmentManager_table']/tbody/tr[1]/td"
     _ast_asset_table_header_locator = ".//*[@id='assessmentManager_table']/thead/tr/th"
+    _ast_assetlist_No_Matching_Records_Found_locator=".//*[@id='assessmentManager_table']/tbody/tr/td"
 
     #Assessment actions locator
-    _ast_action_dropdown_loactor = "//div[@id = 'assessment_actions_dropdown']//button[contains(text(), 'Select action')]"
+    _ast_action_dropdown_loactor = "(//div[@id='assessment_actions_dropdown']//button[@data-toggle='dropdown'])"
+        #"//div[@id = 'assessment_actions_dropdown']//button[contains(text(), 'Select action')]"
 
     # Assessment filter related locators
     _ast_status_filter_drop_down_locator = "//div[@label='Status']"
@@ -46,7 +48,7 @@ class AssessmentPage(BasePageClass):
     # Assessment search related locators
     _ast_search_assessment_text_box_locator = ".//*[@id='search-assessments']"
     _ast_search_asset_text_box_locator = ".//*[@id='search-assessment-manager']"
-    _ast_list_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
+    _ast_assessmentlist_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
 
     # Assessment delete related locators
     _ast_check_box_locator = ".//*[@id='tblAssessments']/tbody/tr/td[1]/label/span/span[2]"
@@ -141,6 +143,7 @@ class AssessmentPage(BasePageClass):
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._ast_assessment_link_locator + err.message)
+
     @property
     def get_ast_app_name(self):
         return self.driver.find_element_by_xpath(self._ast_name_text)
@@ -184,7 +187,7 @@ class AssessmentPage(BasePageClass):
     @property
     def get_main_create_assessment_button(self):
         try:
-            WebDriverWait(self.driver, 0).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located(
                         (By.XPATH,self._ast_main_create_assessment_button_locator)))
             return  self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator)
         except Exception, err:
@@ -232,8 +235,12 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_elements_by_xpath(self._ast_staus_table_column_locator)
 
     @property
-    def get_list_no_matching_records_found(self):
-        return  self.driver.find_element_by_xpath(self._ast_list_No_Matching_Records_Found_locator)
+    def get_assessmentlist_no_matching_records_found(self):
+        return  self.driver.find_element_by_xpath(self._ast_assessmentlist_No_Matching_Records_Found_locator)
+
+    @property
+    def get_assetlist_no_matching_records_found(self):
+        return  self.driver.find_element_by_xpath(self._ast_assetlist_No_Matching_Records_Found_locator)
 
     @property
     def get_action_dropdown(self):
@@ -684,7 +691,7 @@ class AssessmentPage(BasePageClass):
         WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self._ast_overview_save_button_locator))).click()
         try:
-            WebDriverWait(self.driver, 80).until(expected_conditions.text_to_be_present_in_element(
+            WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
                 (By.XPATH, self._ast_saved_text_locator), "Saved"))
         except Exception, err:
             raise type(err)("Save failed and the message displayed is - " \

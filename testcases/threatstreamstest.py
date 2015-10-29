@@ -24,14 +24,6 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
-    def test_threat_steams(self):
-        #tstream = ThreatStreamPage(self.driver)
-        # WebDriverWait(self.driver,20).until(EC.presence_of_element_located(By.XPATH, tstream._ts_app_name_text))
-        self.assertEqual(self.tstream.get_ts_app_name.text, "Threat Streams")
-
-    @attr(priority="high")
-    #@SkipTest
     def test_TS_099(self):
         sleep(15)
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, self.tstream._ts_app_name_text)))
@@ -61,6 +53,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_TS_01(self):
         """
         Test : test_TS_01

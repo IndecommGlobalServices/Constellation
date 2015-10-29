@@ -10,5 +10,5 @@ class BasePage(BasePageClass):
         super(BasePage,cls).__init__(driver)
 
     def accessURL(self):
-        self.driver.get("https://constellation-qa.haystax.com/#/")
+        self.driver.get("https://constellation-dev.haystax.com/#/")
 

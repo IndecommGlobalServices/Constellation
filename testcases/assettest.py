@@ -21,15 +21,14 @@ class AssetpageTest(BaseTestCase):
         self.section = 'AssetTests'
         self.config = ConfigParser.ConfigParser()
         self.config.readfp(open('baseconfig.cfg'))
+
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
         self.assetpage.return_to_apps_main_page()
 
-
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_01(self):
         """
         Test : test_AS_01
@@ -47,7 +46,6 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_02(self):
         """
         Test : test_AS_02
@@ -203,25 +201,31 @@ class AssetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
+        flag = 0
         cwd = os.getcwd()
         os.chdir('..')
         searchasset_filepath = os.path.join(os.getcwd(), "data", "json_SearchAssessments.json")
         os.chdir(cwd)
-        WebDriverWait(self.driver,20).until(EC.presence_of_element_located(
-            (By.XPATH, self.assetpage._asset_search_textbox_locator)))
+        WebDriverWait(self.driver,20).until(EC.element_to_be_clickable(
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
         with open(searchasset_filepath) as data_file:
             for each in json.load(data_file):
                 searchText = each["Search_name"]
                 self.assetpage.select_asset_search_text_box.clear()
                 self.assetpage.select_asset_search_text_box.send_keys(searchText)
-                searchNames = self.driver.find_elements_by_xpath(self.assetpage._asset_list_locator)
-                for searchName in searchNames:
-                    if self.assetpage.get_asset_list_no_matching_records_found.text:
-                        self.assertEqual("No matching records found", self.assetpage.get_asset_list_no_matching_records_found.text,
+                sleep(5)
+                if len(self.driver.find_elements_by_xpath(self.assetpage._asset_list_locator)) <= 0:
+                    self.assertEqual("No matching records found", self.assetpage.get_asset_list_no_matching_records_found.text,
                                          self.config.get(self.section, 'MESSAGE_NO_ASSET_RECORDS'))
-                    else:
-                        print searchName #Should replace with regexp comparison
-        self.assetpage.select_asset_search_text_box.clear()
+                    flag = 1
+                else:
+                    for searchName in self.driver.find_elements_by_xpath(self.assetpage._asset_list_locator):
+                        if searchText in searchName.text:
+                            flag = 1
+                if flag == 0:
+                    self.assertTrue(False, "The search result doesnt contain the text that is searched. "
+                                           "Searched string is :" + searchText)
+            self.assetpage.select_asset_search_text_box.clear()
 
     @attr(priority="high")
     #@SkipTest
@@ -280,7 +284,8 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.asset_create_click()
         self.assetpage.select_asset_template_type("Place")
-        asset_phone = self.assetpage.wait_for_element_path(self.assetpage._asset_overview_phone_text_box_locator)
+        asset_phone = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH ,self.assetpage._asset_overview_phone_text_box_locator)))
         asset_phone.send_keys("123abc1234")
         asset_phone.send_keys(Keys.TAB)
         regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
@@ -1256,10 +1261,9 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priotity = "high")
-#    @attr(status='smoke')
     def test_AS_49_50(self):
         """
-        Test name : test_AS_49_50
+        Test : test_AS_49_50
         Description : To verify school asset creation and verify that created asset is displayed in the asset list.
         Revision:
         Author: Deepa Sivadas

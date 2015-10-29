@@ -1,34 +1,14 @@
 [
 
     {
-        "Search_name": "Klein and Sons School",
-        "id": 1
+        "Search_name": "Email"
     },
-
     {
-        "Search_name": "Haystax",
-        "id": 2
+        "Search_name": "School"
     },
-
-     {
-        "Search_name": "{}",
-        "id": 3
-     },
-
-       {
-        "Search_name": "School",
-        "id": 4
-    },
-
-     {
-        "Search_name": "05",
-        "id": 5
-     },
-
     {
-        "Search_name": "*",
-        "id": 5
-     }
+        "Search_name": "05"
+    }
 
 
 ]
