@@ -671,7 +671,7 @@ class ThreatStreamTest(BaseTestCase):
         self.assertNotEqual(act_text, "New_Filter_TC_25_edit_name", "In Edit Filter window Cancel button is not Working.")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_TS_099(self):
         sleep(15)
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, self.tstream._ts_app_name_text)))

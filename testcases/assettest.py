@@ -222,8 +222,7 @@ class AssetpageTest(BaseTestCase):
                     for searchName in self.driver.find_elements_by_xpath(self.assetpage._asset_list_locator):
                         if searchText in searchName.text:
                             flag = 1
-                if flag == 0:
-                    self.assertTrue(False, "The search result doesnt contain the text that is searched. "
+                self.assertTrue(flag == 1, "The search result doesnt contain the text that is searched. "
                                            "Searched string is :" + searchText)
             self.assetpage.select_asset_search_text_box.clear()
 

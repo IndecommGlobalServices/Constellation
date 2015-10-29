@@ -494,4 +494,4 @@ class ThreatStreamPage(BasePageClass):
         super(ThreatStreamPage, self).__init__(driver)
         appicon = IconListPage(self.driver)
         appicon.click_threatstream()
-        sleep(10)
+        sleep(20)

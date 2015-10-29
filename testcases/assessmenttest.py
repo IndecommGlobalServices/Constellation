@@ -63,7 +63,7 @@ class AssessmenttPageTest(BaseTestCase):
         if flag == 1:
             self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
         else:
-            self.assertTrue(False, "Assessment creation had failed")
+            self.assertTrue(False, "Assessment creation had failed or newly created assessment is not appearing in yellow color background")
 
 
     @attr(priority="high")
@@ -368,8 +368,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_assign_button.click()
             self.ast.get_ast_assignto_textbox.send_keys(emailid)
             self.ast.get_ast_assignto_assign_button.click()
-            WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
-                (By.XPATH, self.ast._ast_search_assessment_text_box_locator)))
+            sleep(5)
             assignedto = self.ast.get_assessment_table("Assigned to")
             self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
         else:
@@ -388,8 +387,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_assign_button.click()
             self.ast.get_ast_assignto_textbox.send_keys(emailid)
             self.ast.get_ast_assignto_assign_button.click()
-            WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
-                (By.XPATH, self.ast._ast_search_assessment_text_box_locator)))
+            sleep(5)
             assignedto = self.ast.get_assessment_table("Assigned to")
             if len(assignedto) < noofassessments:
                 noofassessments = len(assignedto)
@@ -433,8 +431,7 @@ class AssessmenttPageTest(BaseTestCase):
                 emailidtoenter = emailid[1]
             self.ast.get_ast_assignto_textbox.send_keys(emailidtoenter)
             self.ast.get_ast_assignto_cancel_button.click()
-            WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
-                (By.XPATH, self.ast._ast_search_assessment_text_box_locator)))
+            sleep(5)
             assignedto = self.ast.get_assessment_table("Assigned to")
             self.assertNotEqual(assignedto[0].text, emailidtoenter, "Assigned Email id saved on cancel operation")
         else:
