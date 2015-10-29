@@ -4,6 +4,8 @@ from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class ThreatStreamPage(BasePageClass):
@@ -18,6 +20,7 @@ class ThreatStreamPage(BasePageClass):
 
     #Threat Stream dropdown selection
     _ts_threat_dropdown_filter_locator = ".//div[contains(@class,'leftcolumn')]//div[contains(@class,'squintemheader')]//a[@data-toggle='dropdown']/span/span"
+    _ts_threat_filter_edit_cog_wheel_locator = ".//div[contains(@class,'leftcolumn')]//a[contains(@ng-click,'edit_filter')]"
     _ts_threat_dropdown_starred_filter_locator = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'Starred')]"
     _ts_threat_dropdown_stream_filter_locator = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'Stream')]"
     _ts_threat_dropdown_trendinglastday_filter_locator = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'Trending Last Day')]"
@@ -32,6 +35,7 @@ class ThreatStreamPage(BasePageClass):
     #Threat Stream New Filter Window
     _ts_filter_create_title_locator = "//div[contains(@class,'leftcolumn')]//div[@editfilter='editfilter']//div[@class='modal-header']/h4"
     _ts_filter_create_name_textbox_locator = "//div[contains(@class,'leftcolumn')]//input[@placeholder='Name']"
+    _ts_filter_create_type_text_locator = "//div[contains(@class,'leftcolumn')]//div[@label='Type']//button[@type='button']"
     _ts_filter_create_type_dropdown_arrow_locator = "//div[contains(@class,'leftcolumn')]//div[@label='Type']//button[@data-toggle='dropdown']"
     _ts_filter_create_type_dropdown_rss_atom_locator = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'Rss')]"
     _ts_filter_create_type_dropdown_twitter_locator = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'Twitter')]"
@@ -110,6 +114,13 @@ class ThreatStreamPage(BasePageClass):
         except Exception, err:
             raise type(err)("Threat selection drop down filter arrow is not available - " \
                           + self._ts_threat_dropdown_filter_locator + err.message)
+    @property
+    def get_ts_threat_filter_edit_cog_wheel(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_threat_filter_edit_cog_wheel_locator)
+        except Exception, err:
+            raise type(err)("Threat edit cog wheel is not available - " \
+                          + self._ts_threat_filter_edit_cog_wheel_locator + err.message)
 
     @property
     def get_ts_threat_dropdown_starred_filter(self):
@@ -209,6 +220,14 @@ class ThreatStreamPage(BasePageClass):
                           + self._ts_filter_create_name_textbox_locator + err.message)
 
     @property
+    def get_ts_filter_create_type_text(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_type_text_locator)
+        except Exception, err:
+            raise type(err)("Filter create window Type Text is not available - " \
+                          + self._ts_filter_create_type_text_locator + err.message)
+
+    @property
     def get_ts_filter_create_type_dropdown_arrow(self):
         try:
             return self.driver.find_element_by_xpath(self._ts_filter_create_type_dropdown_arrow_locator)
@@ -292,7 +311,7 @@ class ThreatStreamPage(BasePageClass):
     @property
     def get_ts_filter_create_tags_delete_icon(self):
         try:
-            return self.driver.find_element_by_xpath(self._ts_filter_create_tags_delete_icon_locator)
+            return self.driver.find_elements_by_xpath(self._ts_filter_create_tags_delete_icon_locator)
         except Exception, err:
             raise type(err)("Filter create window Tags delete icon is not available - " \
                           + self._ts_filter_create_tags_delete_icon_locator + err.message)
@@ -316,7 +335,7 @@ class ThreatStreamPage(BasePageClass):
     @property
     def get_ts_filter_create_phrases_delete_icon(self):
         try:
-            return self.driver.find_element_by_xpath(self._ts_filter_create_phrases_delete_icon_locator)
+            return self.driver.find_elements_by_xpath(self._ts_filter_create_phrases_delete_icon_locator)
         except Exception, err:
             raise type(err)("Filter create window Phrases delete icon is not available - " \
                           + self._ts_filter_create_phrases_delete_icon_locator  + err.message)
@@ -448,12 +467,26 @@ class ThreatStreamPage(BasePageClass):
 
 
     def get_ts_new_filter_name(self, file_name):
-        xpath = "//div[contains(@class,'leftcolumn')]//input[@ng-model='"+str(file_name)+"']"
+        xpath = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'"+str(file_name)+"')]"
         try:
             return self.driver.find_element_by_xpath(xpath)
         except Exception, err:
             raise type(err)("Newly created filter name is not available - "+ xpath  + err.message)
 
+    def return_to_apps_main_page(self):
+        """
+        Description : This function will helps to go back to threat stream page.
+        Revision:
+        :return: None
+        """
+        # if not self.get_asset_create_asset:
+        #     try:
+        #         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+        #             (By.LINK_TEXT, self._asset_link_locator))).click()
+        #         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self._asset_create_asset)))
+        #     except:
+        #         inspectstack = inspect.stack()[1][3]
+        #         self.recoverapp(inspectstack)
 
 
 
