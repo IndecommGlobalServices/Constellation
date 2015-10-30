@@ -60,9 +60,9 @@ class ThreatStreamPage(BasePageClass):
     _ts_feeds_list_locator = "//div[contains(@class,'leftcolumn')]//ul[contains(@class,'squintems')]//li"
     _ts_feeds_list_text_locator = "//div[contains(@class,'leftcolumn')]//ul[contains(@class,'squintems')]//li/span[@ng-bind-html='squint.header_with_links']"
     _ts_feed_data_details_link_locator = "//div[contains(@class,'leftcolumn')]//a[contains(@ng-click,'expand_squintem')]"
-    _ts_feed_data_important_button_locator = "//div[@class='squintem-details']//span//button[@id='btn-important']"
-    _ts_feed_data_hide_button_locator = "//div[@class='squintem-details']//span//button[contains(@ng-click,'hide')]"
-    _ts_feed_data_share_button_locator = "//div[@class='squintem-details']//span//button[contains(@ng-click,'share')]"
+    _ts_feed_data_important_button_locator = "//div[contains(@class,'leftcolumn')]//div[@class='squintem-details']//span//button[@id='btn-important']"
+    _ts_feed_data_hide_button_locator = "//div[contains(@class,'leftcolumn')]//div[@class='squintem-details']//span//button[contains(@ng-click,'hide')]"
+    _ts_feed_data_share_button_locator = "//div[contains(@class,'leftcolumn')]//div[@class='squintem-details']//span//button[contains(@ng-click,'share')]"
 
     #Email Share Window locator
     _ts_feed_email_window_title_locator = ".//div[contains(@class,'modal in')]//h4[@id='H1']"

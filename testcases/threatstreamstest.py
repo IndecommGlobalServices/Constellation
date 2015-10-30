@@ -139,6 +139,8 @@ class ThreatStreamTest(BaseTestCase):
             sleep(10)
             feeds_list = self.tstream.get_ts_feeds_list
             attri_value =  feeds_list[0].get_attribute("class")
+            self.tstream.get_ts_threat_dropdown_filter.click()
+            self.tstream.get_ts_threat_dropdown_stream_filter.click()
             if str(attri_value) == r"squintem ng-scope importantsquintem":
                 self.assertTrue(True, "The Feed could not be marked as 'Mark important'.")
         else:
@@ -146,6 +148,8 @@ class ThreatStreamTest(BaseTestCase):
             sleep(10)
             feeds_list = self.tstream.get_ts_feeds_list
             attri_value =  feeds_list[0].get_attribute("class")
+            self.tstream.get_ts_threat_dropdown_filter.click()
+            self.tstream.get_ts_threat_dropdown_stream_filter.click()
             if str(attri_value) == r"squintem ng-scope":
                 self.assertTrue(True, "The Feed could not be marked as 'Mark not important'.")
 
@@ -196,6 +200,8 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_feed_email_window_comment_textbox.send_keys("This is a comment.")
         self.tstream.get_ts_feed_email_window_send_button.click()
         sleep(2)
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_stream_filter.click()
         try:
             if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
                 self.assertFalse(True, "The Send Button is not working. The window is not closed.")
@@ -227,6 +233,8 @@ class ThreatStreamTest(BaseTestCase):
             self.assertFalse(send_button_state, "Email address is invalid but SEND button is enabled.")
         self.tstream.get_ts_feed_email_window_cancel_button.click()
         sleep(2)
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_stream_filter.click()
         try:
             if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
                 self.assertFalse(True, "The Cancel Button is not working. The window is not closed.")
@@ -584,6 +592,7 @@ class ThreatStreamTest(BaseTestCase):
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_24_1"))
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_new_filter_name("New_Filter_TC_24_1").click()
+        sleep(2)
         self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -620,6 +629,7 @@ class ThreatStreamTest(BaseTestCase):
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_24_2"))
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_new_filter_name("New_Filter_TC_24_2").click()
+        sleep(2)
         self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))

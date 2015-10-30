@@ -193,7 +193,7 @@ class AssetPage(BasePageClass):
     _asset_photos_documents_window_cancel_button_locator = ".//*[@id='fileEditModal']/div/div/div//button[contains(text(),'Cancel')]"
     _asset_photos_documents_delete_window_delete_locator = "//div[@id='fileDeleteModal']//button[contains(text(),'Delete')]"
     _asset_photos_documents_window_title_locator = ".//*[@id='fileEditModal']"
-    _asset_photos_documents_delete_icon_locator = ".//img[contains(@src,'delete_icon')]"
+    _asset_photos_documents_delete_icon_locator = "//img[@class='neutron_file_delete_icon']"
 
     # Asset Annotation Panel
     _asset_annotation_widget_locator = ".//*[@id='widgets']/div[8]/div/div[1]"
@@ -1395,18 +1395,16 @@ class AssetPage(BasePageClass):
                           + self._asset_chart_total_Graph_In_Container_xpath_locator + err.message)
 
     def get_asset_photos_documents_image_caption_text(self, caption_val):
-        caption_xpath = "//div[contains(@label,'Photos / Documents')]/div[@ng-repeat='document in documents']/div/div[contains(text(),'"+caption_val+"')]"
         try:
-            caption_xpath = "//div[contains(@label,'Photos / Documents')]/div[@ng-repeat='document in documents']/div/div[contains(text(),'"+caption_val+"')]"
+            caption_xpath = " //div[contains(@ng-repeat,'file in files')]//div[contains(text(),'"+caption_val+"')]"
             return self.driver.find_element_by_xpath(caption_xpath)
         except Exception, err:
             raise type(err)("Image caption for uploaded file in new window is not available - search XPATH - " \
                           + caption_xpath + err.message)
 
     def get_asset_photos_documents_header_caption_text(self, caption_val):
-        caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//a[contains(text(),'"+caption_val+"')]"
         try:
-            caption_xpath = "//div[contains(text(),'Photos / Documents')]//following-sibling::div//a[contains(text(),'"+caption_val+"')]"
+            caption_xpath = "//a[contains(text(),'"+caption_val+"')]"
             return self.driver.find_element_by_xpath(caption_xpath)
         except Exception, err:
             raise type(err)("In Photos / Documents widget Image Caption/File Name is not available - search XPATH - " \
@@ -2009,17 +2007,15 @@ class AssetPage(BasePageClass):
         (By.XPATH, self._asset_photos_documents_header_locator), r"Photos / Documents"))
         self.driver.find_element_by_xpath(self._asset_photos_documents_header_locator).click()
         sleep(2)
-        image_icons = self.driver.find_elements_by_xpath(".//img[@class='neutron_document_img']")
+        image_icons = self.driver.find_elements_by_xpath("//div[@class='overview']//div//a")
         num_of_files = len(image_icons)
         if num_of_files >= 1:
             sleep(2)
-            image_icons = self.driver.find_elements_by_xpath(".//img[@class='neutron_document_img']")
-            num_of_files = len(image_icons)
             for count in range(num_of_files, 0, -1):
                 index = count
-                xpath = r"(.//img[contains(@src,'delete_icon')])"+"["+str(index)+"]"
+                xpath = r"(//img[@class='neutron_file_delete_icon'])"+"["+str(index)+"]"
                 image_icon_xpath =  self.driver.find_element_by_xpath\
-                    ("(.//img[@class='neutron_document_img'])[" + str(index)+ "]")
+                    ("(//img[@class='file_list_img'])[" + str(index)+ "]")
                 Hover = ActionChains(self.driver).move_to_element(image_icon_xpath)
                 Hover.perform()
                 self.driver.find_element_by_xpath(xpath).click()
@@ -2044,10 +2040,11 @@ class AssetPage(BasePageClass):
         self.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
         # Click Upload.
         self.get_asset_photos_documents_window_upload_button.click()
+        WebDriverWait(self.driver,100).until(EC.visibility_of_element_located((By.XPATH,self._asset_photos_documents_header_locator)))
         try:
-            WebDriverWait(self.driver,200).until(EC.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
+            WebDriverWait(self.driver,100).until(EC.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
         except Exception, err:
-            raise type(err)("File has been uploaded but could not be saved. "+err.message)
+            raise type(err)("File could not be uploaded or Saved text does not appear."+err.message)
 
     def delete_all_annotation(self):
         """

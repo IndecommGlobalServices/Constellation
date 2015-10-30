@@ -946,8 +946,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.upload_a_file_with_caption(caption_val, image_file_name)
         number_of_image_after_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_after_file_upload = len(number_of_image_after_upload)
-        caption_path = "//div//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img" \
-                                                                "[@class='neutron_document_img']"
+        caption_path = "//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='file_list_img']"
         image_icon = self.driver.find_element_by_xpath(caption_path)
         Hover = ActionChains(self.driver).move_to_element(image_icon)
         Hover.perform()
@@ -1041,7 +1040,11 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.delete_uploaded_files()
         caption_val = "Test_Case_43"
         image_file_name = "Test_Case_43.jpg"
-        self.assetpage.upload_a_file_with_caption(caption_val, image_file_name)
+        self.assetpage.get_asset_photos_documents_upload_file_button.click()
+        file_path = self.assetpage.file_path(image_file_name)
+        self.assetpage.get_asset_photos_documents_attached_file_button.send_keys(file_path)
+        self.assetpage.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
+        self.assetpage.get_asset_photos_documents_window_upload_button.click()
         try:
             WebDriverWait(self.driver, 200).until(EC.text_to_be_present_in_element(
                 (By.XPATH, self.assetpage._asset_header_save_text_locator),r"415 - UNSUPPORTED MEDIA TYPE"))
@@ -1133,6 +1136,7 @@ class AssetpageTest(BaseTestCase):
         image_file_name = ["Test_Case_45_1.jpg", "Test_Case_45_2.jpg", "Test_Case_45_3.jpg"]
         for num in range(3):
             self.assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
+            sleep(2) #required  to update image properly
         image_count_after_file_upload = len(self.assetpage.get_asset_photos_documents_uploaded_file_count)
         if (image_count_after_file_upload == image_count_before_file_upload+3):
             self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
