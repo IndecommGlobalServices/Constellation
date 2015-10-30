@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" afterPath="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assessmentpage.py" afterPath="$PROJECT_DIR$/pages/assessmentpage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" afterPath="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/baseconfig.cfg" afterPath="$PROJECT_DIR$/testcases/baseconfig.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Constellation.iws" />
@@ -54,8 +49,8 @@
       <file leaf-file-name="assessmentpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-10.448276">
-              <caret line="874" column="12" selection-start-line="874" selection-start-column="12" selection-end-line="874" selection-end-column="12" />
+            <state vertical-scroll-proportion="-8.172414">
+              <caret line="521" column="42" selection-start-line="521" selection-start-column="42" selection-end-line="521" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -84,8 +79,8 @@
       <file leaf-file-name="assessmentschooldatatest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assessmentschooldatatest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.2864197">
-              <caret line="581" column="107" selection-start-line="581" selection-start-column="107" selection-end-line="581" selection-end-column="107" />
+            <state vertical-scroll-proportion="0.32839507">
+              <caret line="29" column="102" selection-start-line="29" selection-start-column="102" selection-end-line="29" selection-end-column="102" />
               <folding>
                 <element signature="e#29#44#0" expanded="true" />
               </folding>
@@ -156,9 +151,9 @@
         <option value="$PROJECT_DIR$/testcases/assessmenttest.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationAssessmentTestSuite.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
-        <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
         <option value="$PROJECT_DIR$/testcases/baseconfig.cfg" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
+        <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
       </list>
     </option>
@@ -275,7 +270,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in assessmentschooldatatest">
+  <component name="RunManager" selected="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_1_To_Verify_Fileupload_SchoolType">
     <configuration default="false" name="Unittests in assessmentoverviewtest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -291,28 +286,6 @@
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest AssessmentOverviewPageTest.test_AST_45_To_Verify_Overview_Upload_image_file_without_caption" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
-      <option name="CLASS_NAME" value="AssessmentOverviewPageTest" />
-      <option name="METHOD_NAME" value="test_AST_45_To_Verify_Overview_Upload_image_file_without_caption" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -377,6 +350,28 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
       <option name="CLASS_NAME" value="AssessmentSchoolDataPageTest" />
       <option name="METHOD_NAME" value="test_AST_69_2_To_Verify_Edit_Caption_File_SchoolGrade" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssessmentSchoolDataPageTest.test_AST_69_1_To_Verify_Fileupload_SchoolType" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
+      <option name="CLASS_NAME" value="AssessmentSchoolDataPageTest" />
+      <option name="METHOD_NAME" value="test_AST_69_1_To_Verify_Fileupload_SchoolType" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -510,18 +505,18 @@
     </configuration>
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentoverviewtest" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentOverviewPageTest.test_AST_45_To_Verify_Overview_Upload_image_file_without_caption" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentOverviewPageTest.test_AST_59_To_Verify_Overview_Dates_Change_Month" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentschooldatatest" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_2_To_Verify_Edit_Caption_File_SchoolGrade" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentOverviewPageTest.test_AST_59_To_Verify_Overview_Dates_Change_Month" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentschooldatatest" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_2_To_Verify_Edit_Caption_File_SchoolGrade" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_1_To_Verify_Fileupload_SchoolType" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentschooldatatest" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_2_To_Verify_Edit_Caption_File_SchoolGrade" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentoverviewtest" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentOverviewPageTest.test_AST_59_To_Verify_Overview_Dates_Change_Month" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentOverviewPageTest.test_AST_45_To_Verify_Overview_Upload_image_file_without_caption" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_1_To_Verify_Fileupload_SchoolType" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentschooldatatest" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_2_To_Verify_Edit_Caption_File_SchoolGrade" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentoverviewtest" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentOverviewPageTest.test_AST_59_To_Verify_Overview_Dates_Change_Month" />
       </list>
     </recent_temporary>
   </component>
@@ -824,28 +819,34 @@
       <option name="project" value="LOCAL" />
       <updated>1446117620990</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="Baseconfig">
+      <created>1446201133428</created>
+      <option name="number" value="00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1446201133428</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="0" width="1376" height="744" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24887893" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3425775" sideWeight="0.50595236" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22512235" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24509804" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24509804" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24887893" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39708266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -887,7 +888,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="AST_39, 40" />
     <MESSAGE value="AST_05 and partial 41" />
     <MESSAGE value="Deleted duplicate testcases for school" />
     <MESSAGE value="BUg fix" />
@@ -912,7 +912,8 @@
     <MESSAGE value="Modified AS_16 and AS_12" />
     <MESSAGE value="New file" />
     <MESSAGE value="Assessment Overview" />
-    <option name="LAST_COMMIT_MESSAGE" value="Assessment Overview" />
+    <MESSAGE value="Baseconfig" />
+    <option name="LAST_COMMIT_MESSAGE" value="Baseconfig" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.87" />
   </component>
   <component name="XDebuggerManager">
@@ -1244,14 +1245,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.448276">
-          <caret line="874" column="12" selection-start-line="874" selection-start-column="12" selection-end-line="874" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TestResult - tests_in_Assessments_2015-10-29_12-41.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1278,10 +1271,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.172414">
+          <caret line="521" column="42" selection-start-line="521" selection-start-column="42" selection-end-line="521" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assessmentschooldatatest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.2864197">
-          <caret line="581" column="107" selection-start-line="581" selection-start-column="107" selection-end-line="581" selection-end-column="107" />
+        <state vertical-scroll-proportion="0.32839507">
+          <caret line="29" column="102" selection-start-line="29" selection-start-column="102" selection-end-line="29" selection-end-column="102" />
           <folding>
             <element signature="e#29#44#0" expanded="true" />
           </folding>

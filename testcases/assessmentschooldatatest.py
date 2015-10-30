@@ -27,7 +27,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        self.ast.deleteuploaded_schooldata_images()
+        self.ast.deleteuploaded_schooldata_images(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.ast.return_to_assessment_main_page()
 
     @attr(priority="high")

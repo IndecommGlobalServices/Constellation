@@ -515,6 +515,8 @@ class AssessmentPage(BasePageClass):
 
     def select_assessment(self, asset_name):
         sleep(5)
+        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self._ast_action_dropdown_loactor)))
         self.search_assessment_textbox(asset_name)
         sleep(6)
         assessment_list = self.get_assessment_table("Assessment")
