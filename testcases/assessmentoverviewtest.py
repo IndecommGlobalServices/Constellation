@@ -31,15 +31,16 @@ class AssessmentOverviewPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AST_44_To_Verify_Overview_Add_Notes(self):
-        note = "Newnote"
+        note = "New note"
         WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
             (By.ID, self.ast._ast_overview_notes_textbox_locator)))
         sleep(10)
         self.ast.get_overview_notes_textbox.clear()
         self.ast.get_overview_notes_textbox.send_keys(note)
         self.ast.get_overview_save_button.click()
-        WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
+        WebDriverWait(self.driver, 50).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"),"The message appeared is" +
+                                                                   self.driver.find_element_by_xpath(self.ast._ast_saved_text_locator).text)
         self.assertEqual(note, self.ast.get_overview_notes_textbox.get_attribute("value"),
                          "Entered text not appearing in notes textarea")
 
@@ -96,8 +97,9 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_enddate_textbox.send_keys(str(end_date))
         self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
         self.ast.get_overview_save_button.click()
-        WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
+        WebDriverWait(self.driver, 50).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"),"The message appeared is" +
+                                                                   self.driver.find_element_by_xpath(self.ast._ast_saved_text_locator).text)
         self.assertEqual(str(start_date), self.ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), self.ast.get_overview_enddate_textbox.get_attribute("value"))
 
@@ -106,6 +108,7 @@ class AssessmentOverviewPageTest(BaseTestCase):
     def test_AST_59_To_Verify_Overview_Dates_Change_Month(self):
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=31)
+        print start_date, end_date
         self.ast.get_overview_startdate_textbox.clear()
         self.ast.get_overview_startdate_textbox.send_keys(str(start_date))
         self.ast.get_overview_enddate_textbox.clear()
@@ -113,8 +116,10 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
         sleep(5)
         self.ast.get_overview_save_button.click()
-        WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
+        WebDriverWait(self.driver, 50).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"), "The message appeared is" +
+                                                                    self.driver.find_element_by_xpath(self.ast._ast_saved_text_locator).text)
+
         self.assertEqual(str(start_date), self.ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), self.ast.get_overview_enddate_textbox.get_attribute("value"))
 
@@ -130,8 +135,9 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
         sleep(5)
         self.ast.get_overview_save_button.click()
-        WebDriverWait(self.driver, 10).until(expected_conditions.text_to_be_present_in_element(
-            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"))
+        WebDriverWait(self.driver, 50).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self.ast._ast_saved_text_locator), "Saved"),"The message appeared is" +
+                                                                   self.driver.find_element_by_xpath(self.ast._ast_saved_text_locator).text)
         self.assertEqual(str(start_date), self.ast.get_overview_startdate_textbox.get_attribute("value"))
         self.assertEqual(str(end_date), self.ast.get_overview_enddate_textbox.get_attribute("value"))
 

@@ -70,8 +70,9 @@ class AssessmentPage(BasePageClass):
     _ast_overview_text = ".//*[@id='overview']/div[1]"
     _ast_overview_notes_textbox_locator = "assessment_notes"
     # "//textarea[@placeholder='Notes']"
-    _ast_overview_save_button_locator = ".//*[@id='header']/div[4]/button"
-    _ast_overview_dates_textbox_locator = ".//*[@id='datetimepicker']/div/input"
+    _ast_overview_save_button_locator = "//div[@id='header']//button[contains(text(),'Save')]"
+    _ast_overview_start_date_textbox_locator = "//span[@name= 'started_picker']//input[@type = 'text']"
+    _ast_overview_end_date_textbox_locator="//span[@name= 'ended_picker']//input[@type = 'text']"
     _ast_saved_text_locator = ".//*[@id='header']/div[4]"
 
     #Assessment Overview Upload related locator
@@ -303,11 +304,11 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_overview_startdate_textbox(self):
-        return self.driver.find_elements_by_xpath(self._ast_overview_dates_textbox_locator)[0]
+        return self.driver.find_element_by_xpath(self._ast_overview_start_date_textbox_locator)
 
     @property
     def get_overview_enddate_textbox(self):
-        return self.driver.find_elements_by_xpath(self._ast_overview_dates_textbox_locator)[1]
+        return self.driver.find_element_by_xpath(self._ast_overview_end_date_textbox_locator)
 
     @property
     def get_overview_notes_textbox(self):
@@ -315,7 +316,14 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_overview_save_button(self):
-        return self.driver.find_element_by_xpath(self._ast_overview_save_button_locator)
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._ast_overview_save_button_locator)))
+            return self.driver.find_element_by_xpath(self._ast_overview_save_button_locator)
+        except Exception, err:
+            raise type(err)(" Save button not available - searched XPATH - " \
+                          + self._ast_overview_save_button_locator + err.message)
+
 
     @property
     def get_breadcrumb_assessmentname_text(self):
@@ -460,7 +468,7 @@ class AssessmentPage(BasePageClass):
 
     def get_assessment_table(self, heading):
         index = self.get_table_tr_index(self.get_assessment_table_header_locator, heading)
-        xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"
+        xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"+"/a"
         return self.driver.find_elements_by_xpath(xpath)
 
     def get_assessment_table_row_values(self, row, heading):
@@ -568,15 +576,15 @@ class AssessmentPage(BasePageClass):
             sleep(10)
             #self.get_main_create_assessment_button.click()
 
-    def validate_email_textbox(self, textbox):
-        emailid = ['Email', 'Email.', 'email.com', 'email@']
-        textbox.clear()
-        for item in emailid:
-            textbox.send_keys(item)
-            textbox.send_keys(Keys.TAB)
-            sleep(5)
-            self.assertEqual("rgba(192, 57, 43, 1)", textbox.value_of_css_property("border-bottom-color"),  "Email ID validation error in create assessment")
-            textbox.clear()
+    # def validate_email_textbox(self, textbox):
+    #     emailid = ['Email', 'Email.', 'email.com', 'email@']
+    #     textbox.clear()
+    #     for item in emailid:
+    #         textbox.send_keys(item)
+    #         textbox.send_keys(Keys.TAB)
+    #         sleep(5)
+    #         self.assertEqual("rgba(192, 57, 43, 1)", textbox.value_of_css_property("border-bottom-color"),  "Email ID validation error in create assessment")
+    #         textbox.clear()
 
     def get_assessment_name_from_breadcrumb(self):
         return (self.get_breadcrumb_assessmentname_text.text.split(' - '))[0].strip()
@@ -619,10 +627,11 @@ class AssessmentPage(BasePageClass):
         # Click Upload.
         self.get_fileupload_window_upload_button.click()
         sleep(5)
-        # try:
-        #     WebDriverWait(self.driver,100).until(expected_conditions.text_to_be_present_in_element((By.XPATH, self._ast_saved_text_locator), "Saved"))
-        # except:
-        #     pass
+        try:
+            WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
+                (By.XPATH, self._ast_saved_text_locator), "Saved"),  self.driver.find_element_by_xpath(self._ast_saved_text_locator).text)
+        except:
+            pass
 
     def upload_a_file_cancel(self, image_caption, image_file_name):
          # Click on Photo/Document panel - File Upload button
@@ -645,7 +654,7 @@ class AssessmentPage(BasePageClass):
         Revision:
         :return:
         """
-        image_icons = self.driver.find_elements_by_xpath(".//img[@class='neutron_document_img']")
+        image_icons = self.driver.find_elements_by_xpath(".//img[@class='file_list_img']")
         num_of_files = len(image_icons)
         if num_of_files >= 1:
             sleep(2)
@@ -656,13 +665,12 @@ class AssessmentPage(BasePageClass):
                     (".//*[@id='widgets']/div[4]/div[1]/div/div[2]/div/div[" + str(index)+ "]")
                 Hover = ActionChains(self.driver).move_to_element(image_icon_xpath)
                 Hover.perform()
-                delete_icon = self.driver.find_element_by_xpath(xpath)
-                delete_icon.click()
+                self.driver.find_element_by_xpath(xpath).click()
                 self.get_fileupload_delete_button.click()
                 WebDriverWait(self.driver,20).until(expected_conditions.element_to_be_clickable((By.XPATH,
                                                         self._ast_photos_documents_upload_file_button_locator)))
 
-    def delete_uploaded_files_assessmentpage(self, section):
+    def delete_uploaded_files_assessmentpage(self, section, mainsection):
         """
         Description : This function will existing uploaded files.
         Revision:
@@ -670,6 +678,8 @@ class AssessmentPage(BasePageClass):
         """
         for deleteicon in self.get_schooldata_image_delete_button(section):
                 deleteicon.click()
+        self.save_schooldata(mainsection)
+        self.get_schooldata_camera_image(section).click()
 
 
 
@@ -685,9 +695,9 @@ class AssessmentPage(BasePageClass):
         # WebDriverWait(self.driver,20).until(expected_conditions.presence_of_all_elements_located(
         #     (By.XPATH, "//div[@ng-form = 'question_form']")))
 
-    def save_schooldata(self):
-        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self._ast_overview_save_button_locator))).click()
+    def save_schooldata(self, mainsection):
+        WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
+                    (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
         try:
             WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
                 (By.XPATH, self._ast_saved_text_locator), "Saved"))
@@ -695,7 +705,24 @@ class AssessmentPage(BasePageClass):
             raise type(err)("Save failed and the message displayed is - " \
                           + self.driver.find_element_by_xpath(self._ast_saved_text_locator).text + err.message)
         self.get_overview_button.click()
-        self.get_schooldata_button.click()
+        if mainsection == "schooldata":
+            self.get_schooldata_button.click()
+        elif mainsection == "infrastructure":
+            self.get_schoolinfrastructure_button.click()
+        elif mainsection == "security":
+            self.get_school_physicalsecurity_button.click()
+        elif mainsection == "policies":
+            self.get_school_policiesandplanning_button.click()
+        elif mainsection == "trainning":
+            self.get_school_trainningandexercises_button.click()
+
+
+    def deleteuploaded_schooldata_images(self, mainsection):
+        images = self.driver.find_elements_by_xpath(".//*[@id='assessment_section']/div/div/div/div/div/div/img[2]")
+        if len(images) > 0:
+            for deleteicon in self.driver.find_elements_by_xpath(".//*[@id='assessment_section']/div/div/div/div/div/div/img[2]"):
+                    deleteicon.click()
+            self.save_schooldata(mainsection)
 
     def save_infrastructuredata(self):
         self.get_overview_save_button.click()
@@ -815,30 +842,30 @@ class AssessmentPage(BasePageClass):
                                                       "//div[@class = 'assessment_photo_caption ng-binding']"
 
 
-    def schooldata_upload_file(self, section):
+    def schooldata_upload_file(self, section, mainsection):
         if not self.is_attachphoto_button_visible(section):
             self.get_schooldata_camera_image(section).click()
         file = self.file_path("Test_Case_40.jpg")
         self.get_schooldata_attachphoto_button(section).send_keys(file)
-        self.save_schooldata()
+        self.save_schooldata(mainsection)
 
-    def schooldata_edit_caption_image(self, section):
+    def schooldata_edit_caption_image(self, section, mainsection):
         if not self.is_attachphoto_button_visible(section):
             self.get_schooldata_camera_image(section).click()
-        self.delete_uploaded_files_assessmentpage(section)
-        file = self.file_path("Test_Case_41.jpg")
+        file = self.file_path("Test_Case_40.jpg")
         self.get_schooldata_attachphoto_button(section).send_keys(file)
-        self.save_schooldata()
+        self.save_schooldata(mainsection)
         self.get_schooldata_image(section)[0].click()
         self.get_file_edit_caption_textbox.send_keys("Hello")
         self.get_file_edit_caption_save_button.click()
+        self.save_schooldata(mainsection)
 
-    def schooldata_edit_comment(self, section):
+    def schooldata_edit_comment(self, section, mainsection):
         if not self.get_schooldata_comment_textbox(section).is_displayed():
             self.get_schooldata_comment_image(section).click()
         self.get_schooldata_comment_textbox(section).clear()
         self.get_schooldata_comment_textbox(section).send_keys("Comment")
-        self.save_schooldata()
+        self.save_schooldata(mainsection)
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.get_schooldata_comment_textbox_locator(section))))
 
