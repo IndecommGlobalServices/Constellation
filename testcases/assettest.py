@@ -18,7 +18,7 @@ class AssetpageTest(BaseTestCase):
     def setUp(self):
         self.errors_and_failures = self.tally()
         self.assetpage = AssetPage(self.driver)
-        self.section = 'AssetTests'
+        self.section = 'Messages'
         self.config = ConfigParser.ConfigParser()
         self.config.readfp(open('baseconfig.cfg'))
 
