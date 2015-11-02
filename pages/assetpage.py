@@ -1918,13 +1918,13 @@ class AssetPage(BasePageClass):
         :return: None
         """
         try:
-            while( self.get_asset_newcontact_delete_icon.is_displayed()):
+            while(self.get_asset_newcontact_delete_icon.is_displayed()):
                 sleep(2)
                 self.get_asset_newcontact_delete_icon.click()
                 sleep(1)
                 self.get_asset_newcontact_delete_popup_delete_button.click()
         except Exception, err:
-            raise type(err)("Contact Delete Icon not displayed or it is disabled. "+err.message)
+            pass
 
     def create_new_contact(self, firstname, lastname, title="Title", phone=r"111-111-1111", email=r"test@test.com",
                                         prefix="Shri", address1="Indecomm", address2=r"Brigade South Parade",
@@ -2044,7 +2044,7 @@ class AssetPage(BasePageClass):
         try:
             WebDriverWait(self.driver,100).until(EC.text_to_be_present_in_element((By.XPATH, self._asset_header_save_text_locator), "Saved"))
         except Exception, err:
-            raise type(err)("File could not be uploaded or Saved text does not appear."+err.message)
+            print type(err)("File could not be uploaded or Saved text does not appear."+err.message)
 
     def delete_all_annotation(self):
         """
@@ -2059,7 +2059,7 @@ class AssetPage(BasePageClass):
                 self.get_asset_annotation_delete_image.click()
                 sleep(2)
         except Exception, err:
-            raise type(err)("Annotation text coulld not deleted or no annotation text is available.. "+err.message)
+            print type(err)("Annotation text coulld not deleted or no annotation text is available.. "+err.message)
 
     # Charts related functions
     svg_path_1=r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"

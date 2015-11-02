@@ -133,7 +133,7 @@ class ThreatStreamTest(BaseTestCase):
         detail_links = self.tstream.get_ts_feed_data_details_link
         detail_links[0].click()
         important_list = self.tstream.get_ts_feed_data_important_button
-        button_text = important_list[0].text
+        button_text = (important_list[0].text).encode('utf-8')
         if str(button_text) == r"Mark important":
             important_list[0].click()
             sleep(10)
@@ -166,14 +166,14 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
         feed_text_val = self.tstream.get_ts_feeds_list_text_value
-        before_hide_text = str(feed_text_val[0].text)
+        before_hide_text = (feed_text_val[0].text).encode('utf-8')
         detail_links = self.tstream.get_ts_feed_data_details_link
         detail_links[0].click()
         hide_list = self.tstream.get_ts_feed_data_hide_button_locator
         hide_list[0].click()
         sleep(4)
         feed_text_val = self.tstream.get_ts_feeds_list_text_value
-        after_hide_text = str(feed_text_val[0].text)
+        after_hide_text = (feed_text_val[0].text).encode('utf-8')
         print before_hide_text
         print after_hide_text
         self.assertNotEqual(before_hide_text,after_hide_text, "The Feed can not be hided.")
