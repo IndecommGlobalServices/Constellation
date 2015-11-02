@@ -17,6 +17,26 @@ class MapPageTest(BaseTestCase):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
 
+    # All maps in one test case
+    @attr(priority="high")
+    def test_map_01_05_to_verify_all_maps(self):
+        mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
+        ActionChains(self.driver).move_to_element(mouse_hover_field)\
+            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
+            .perform()
+        self.mappage.get_map_default_view_radio.click()
+        sleep(2)
+        self.mappage.get_map_night_view_radio.click()
+        sleep(2)
+        self.mappage.get_map_terrain_radio.click()
+        sleep(2)
+        self.mappage.get_map_satelite_default_view_radio.click()
+        sleep(2)
+        self.mappage.get_map_satelite_grey_view_radio.click()
+        sleep(2)
+        self.mappage.return_to_icon_list_page()
+        sleep(2)
+
     # Default view
     @attr(priority="high")
     def test_map_01_to_verify_default(self):
@@ -28,6 +48,7 @@ class MapPageTest(BaseTestCase):
         sleep(2)
         self.mappage.return_to_icon_list_page()
         sleep(2)
+
 
     # Night view
     @attr(priority="high")

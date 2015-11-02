@@ -715,7 +715,7 @@ class AssessmentPage(BasePageClass):
             self.get_school_physicalsecurity_button.click()
         elif mainsection == "policies":
             self.get_school_policiesandplanning_button.click()
-        elif mainsection == "trainning":
+        elif mainsection == "training":
             self.get_school_trainningandexercises_button.click()
 
 
