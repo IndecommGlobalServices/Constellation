@@ -719,7 +719,6 @@ class AssessmentPage(BasePageClass):
             self.get_school_trainningandexercises_button.click()
 
     def delete_attchedimage(self, section):
-        print section
         if self.is_attachphoto_button_visible(section):
             for delete_button in self.get_schooldata_image_delete_button(section):
                 self.get_schooldata_image_delete_button(section).click()
