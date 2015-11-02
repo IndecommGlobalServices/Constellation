@@ -41,6 +41,6 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
                 schoolsafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_policiesandplanningdata()
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_POLICIES_PLANNING'))
                 schoolsafetychecked = self.ast.get_policiesandplanning_schoolsafety_radiobutton
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")

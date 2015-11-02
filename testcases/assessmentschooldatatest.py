@@ -27,11 +27,13 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        self.ast.deleteuploaded_schooldata_images(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        for section in self.config.options(self.schooldatasection):
+            self.ast.delete_attchedimage(self.config.get(self.schooldatasection, section))
+        self.ast.get_overview_button.click()
         self.ast.return_to_assessment_main_page()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AST_68_To_Test_SchoolType_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
@@ -41,7 +43,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
             schooltypeoption = self.ast.get_schooldata_schooltype_radiobuttons
             if not schooltypeoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 schooltypeoption[option].click()
-                self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
                 schoolchecked = self.ast.get_schooldata_schooltype_radiobuttons
                 self.assertEqual(schoolchecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
@@ -86,6 +88,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooldatasection,
                                                             'SECTION_SCHOOL_TYPE')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
 
     @attr(priority="high")
@@ -101,7 +105,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                 schoolgradeoption[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
                 schoolgradechecked = self.ast.get_schooldata_gradelevel_checkbox
                 self.assertEqual(schoolgradechecked[option].get_attribute("class"), "checkbox ng-binding checked")
                 schoolgradechecked[option].click()
@@ -117,6 +121,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooldatasection,
                                                         'SECTION_GRADE_LEVELS')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
     @attr(priority="high")
     #@SkipTest
@@ -135,9 +141,9 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_69_2_To_Verify_Edit_Caption_File_SchoolGrade(self):
+    def test_AST_74_3_To_Verify_Edit_Caption_File_SchoolGrade(self):
         """
-        Test : test_AST_69_2
+        Test : test_AST_74_3
         Description : To test the add photo to school grade section
         :return:
         """
@@ -156,7 +162,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_schoolhours_textarea.clear()
         self.ast.get_schooldata_schoolhours_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_schoolhours_text_are_locator)))
         self.assertEqual(self.ast.get_schooldata_schoolhours_textarea.get_attribute("value"), "100")
@@ -172,6 +178,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooldatasection,
                                                         'SECTION_SCHOOL_HOURS')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
     @attr(priority="high")
     #@SkipTest
@@ -192,7 +200,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     #@SkipTest
     def test_AST_75_3_To_Verify_Edit_Caption_File_SchoolHours(self):
         """
-        Test : test_AST_69_2
+        Test : test_AST_75_3
         Description : To test the add photo to school grade section
         :return:
         """
@@ -212,7 +220,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_noofstudents_textarea.clear()
         self.ast.get_schooldata_noofstudents_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_numberofstudents_text_are_locator)))
         self.assertEqual(self.ast.get_schooldata_noofstudents_textarea.get_attribute("value"), "100")
@@ -228,6 +236,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooldatasection,
                                                     'SECTION_NUMBER_OF_STUDENTS')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
     @attr(priority="high")
     #@SkipTest
@@ -280,7 +290,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_specialneedsstudents_textarea.clear()
         self.ast.get_schooldata_specialneedsstudents_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_specialneedsstudents_text_area_locator)))
         self.assertEqual(self.ast.get_schooldata_specialneedsstudents_textarea.get_attribute("value"), "100")
@@ -297,6 +307,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(
             self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
 
     @attr(priority="high")
@@ -340,7 +352,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_noofstaff_textarea.clear()
         self.ast.get_schooldata_noofstaff_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_numberofstaff_text_area_locator)))
         sleep(20)
@@ -358,6 +370,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(
             self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
 
     @attr(priority="high")
@@ -400,7 +414,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_noofvisitors_textarea.clear()
         self.ast.get_schooldata_noofvisitors_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_numberofvisitors_text_area_locator)))
         sleep(20)
@@ -418,6 +432,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(
             self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
 
     @attr(priority="high")
@@ -469,12 +485,12 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.get_schooldata_lawenforcement_Yes_radiobutton.click()
         WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_lawenforcement_Yes_radiobutton.get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
         self.ast.get_schooldata_lawenforcement_No_radiobutton.click()
         WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_lawenforcement_No_radiobutton.get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
@@ -488,6 +504,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(
             self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
 
     @attr(priority="high")
@@ -531,7 +549,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     #     """
     #     self.ast.get_schooldata_nooflawenforcement_textarea.clear()
     #     self.ast.get_schooldata_nooflawenforcement_textarea.send_keys("100")
-    #     self.ast.save_schooldata()
+    #     self.ast.save_editeddata()
     #     WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
     #         (By.XPATH, self.ast._ast_schooldata_numberoflawenforcement_text_area_locator)))
     #     sleep(20)
@@ -548,6 +566,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                          self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(
             self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'),
+                                         self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
 
     @attr(priority="high")
     #@SkipTest

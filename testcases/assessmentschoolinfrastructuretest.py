@@ -9,6 +9,7 @@ from pages.assessmentpage import AssessmentPage
 from pages.loginpage import LoginPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
+import ConfigParser
 from nose.plugins.skip import SkipTest
 from time import sleep
 from datetime import date, timedelta, datetime
@@ -20,6 +21,11 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     def setUp(self):
         self.errors_and_failures = self.tally()
         self.ast = AssessmentPage(self.driver)
+        self.mainsection = 'Sections'
+        self.messages = 'Messages'
+        self.config = ConfigParser.ConfigParser()
+        self.config.readfp(open('baseconfig.cfg'))
+
         self.ast.open_schoolinfrastructure_page()
 
     def tearDown(self):
@@ -41,6 +47,6 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 landacreoption[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_infrastructuredata()
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOL_INFRASTRUCTURE'))
                 landchecked = self.ast.get_school_schoolinfrastructure_land_acre_radiobutton
                 self.assertEqual(landchecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")

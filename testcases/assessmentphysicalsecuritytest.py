@@ -41,6 +41,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                 fencingoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_physicalsecuritydata()
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_PHYSICAL_SECURITY'))
                 fencingchecked = self.ast.get_physicalsecurity_fencing_radiobutton
                 self.assertEqual(fencingchecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
