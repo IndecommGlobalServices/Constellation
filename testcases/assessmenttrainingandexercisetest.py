@@ -25,6 +25,9 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
+        for section in self.config.options(self.schooltrainingsection):
+            self.ast.delete_attchedimage(self.config.get(self.schooltrainingsection, section))
+        self.ast.get_overview_button.click()
         self.ast.return_to_assessment_main_page()
 
 
@@ -41,7 +44,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 schoolsafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_PHYSICAL_SECURITY'))
                 schoolsafetychecked = self.ast.get_trainningandexercises_schoolsafety_radiobutton
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
@@ -60,6 +63,52 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AST_292_3_To_Verify_Fileupload_SchoolType(self):
+        """
+        Test : test_AST_69
+        Description : To test the add photo to school type section
+        :return:
+        """
+        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN')))
+        self.ast.schooldata_upload_file(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
+                                        self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'))),
+                           count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
+                                                      self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_293_1_To_Test_SchoolType_Radio_Button(self):
+        """
+        Description : To test the school type option radio buttons
+        :return:
+        """
+        for option in range(4):
+            schoolsafetyoptions = self.ast.get_trainningandexercises_schoolsafety_radiobutton
+            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+                schoolsafetyoptions[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                schoolsafetychecked = self.ast.get_trainningandexercises_schoolsafety_radiobutton
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_293_2_To_Verfiy_Add_Comment_SchoolType(self):
+        """
+        Description : To test the add comment to school type section
+        :return:
+        """
+        self.ast.schooldata_edit_comment(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
+                                         self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooltrainingsection,
+                                                            'SECTION_SCHOOL_SAFETY_PLAN')).get_attribute("value"), "Comment")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_293_3_To_Verify_Fileupload_SchoolType(self):
         """
         Test : test_AST_69
         Description : To test the add photo to school type section

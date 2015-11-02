@@ -6,6 +6,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from selenium.webdriver.common.keys import Keys
+from pages.basepage import InvalidPageException
+import sys
 
 class MapPageTest(BaseTestCase):
 
@@ -13,9 +15,18 @@ class MapPageTest(BaseTestCase):
         self.errors_and_failures = self.tally()
         self.mappage = MapPage(self.driver)
 
+
+
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
+
+        try:
+            if self.driver.find_element_by_xpath(".//*[@id='error_modal' and @hide-modal='' and @aria-hidden='false']").is_displayed():
+                self.driver.find_element_by_xpath(".//*[@id='error_modal']/div/div/form/div[2]/button").click()
+                print "Server Error 500 - Something has gone terribly wrong."
+        except Exception :
+            pass
 
     # All maps in one test case
     @attr(priority="high")
@@ -37,134 +48,77 @@ class MapPageTest(BaseTestCase):
         self.mappage.return_to_icon_list_page()
         sleep(2)
 
-    # Default view
-    @attr(priority="high")
-    def test_map_01_to_verify_default(self):
-        mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
-        ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .perform()
-        self.mappage.get_map_default_view_radio.click()
-        sleep(2)
-        self.mappage.return_to_icon_list_page()
-        sleep(2)
-
-
-    # Night view
-    @attr(priority="high")
-    def test_map_02_to_verify_Night_View(self):
-        sleep(5)
-        mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
-        ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .perform()
-        self.mappage.get_map_night_view_radio.click()
-        sleep(2)
-        self.mappage.return_to_icon_list_page()
-        sleep(2)
-
-    # Terrain
-    @attr(priority="high")
-    def test_map_03_to_verify_Terrain(self):
-        sleep(5)
-        mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
-        ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .perform()
-        self.mappage.get_map_terrain_radio.click()
-        sleep(2)
-        self.mappage.return_to_icon_list_page()
-        sleep(2)
-
-    # Satelite Default
-    @attr(priority="high")
-    def test_map_04_to_verify_Satelite_Default(self):
-        sleep(5)
-        mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
-        ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .perform()
-        self.mappage.get_map_satelite_default_view_radio.click()
-        sleep(2)
-        self.mappage.return_to_icon_list_page()
-        sleep(2)
-
-    # Satelite Grey
-    @attr(priority="high")
-    #@SkipTest
-    def test_map_05_to_verify_Satelite_Grey(self):
-        sleep(5)
-        mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
-        ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .perform()
-        self.mappage.get_map_satelite_grey_view_radio.click()
-        sleep(2)
-        self.mappage.return_to_icon_list_page()
-        sleep(2)
-
     @attr(priority="high")
     #@SkipTest
     def test_map_06_to_verify_Default_Map_View_Based_On_Assets(self):
-        sleep(5)
-        mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
-        ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .move_to_element(self.mappage.get_map_default_view_radio).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer).click()\
-            .perform()
-        self.mappage.get_checking_and_unchecking_basic_data_layer()
-        self.mappage.get_map_basic_data_layer_asset.click()
-        sleep(5)
-        self.mappage.get_map_zoom_out.click()
-        sleep(10)
-        # Click on Zoom out to display the Map status based total no of items which is displayed just
-        # above the Longitude and Latitude on Left hand side
-        self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
-        sleep(1)
-        # Extract the integer value displayed "Eg : Displaying 5 items"
-        # This will be helpful to assert
-        map_assets_count = self.mappage.get_total_map_status_count()
-        print "Found " + str(map_assets_count) + " map status asset count"
-        # click on Water fall handle on Right hand side - Vertical - Last Icon
-        self.mappage.get_map_water_fall_handle.click()
-        # Count the total no. of Assets displayed in the collection
-        assetTotal = self.mappage.get_map_water_fall_list
-        items = assetTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " assets"
-        self.assertEqual(map_assets_count,len(items),"total assets not matching" )
-        # click on Water fall handle on Right hand side - Vertical - Last Icon
-        self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
-        sleep(2)
+        try:
+
+            sleep(5)
+            mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
+            ActionChains(self.driver).move_to_element(mouse_hover_field)\
+                .move_to_element(self.mappage.get_map_base_map_accordian).click()\
+                .move_to_element(self.mappage.get_map_default_view_radio).click()\
+                .move_to_element(self.mappage.get_map_basic_data_layer).click()\
+                .perform()
+            self.mappage.get_checking_and_unchecking_basic_data_layer()
+            self.mappage.get_map_basic_data_layer_asset.click()
+            sleep(5)
+            self.mappage.get_map_zoom_out.click()
+            sleep(10)
+            # Click on Zoom out to display the Map status based total no of items which is displayed just
+            # above the Longitude and Latitude on Left hand side
+            self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
+            sleep(1)
+            # Extract the integer value displayed "Eg : Displaying 5 items"
+            # This will be helpful to assert
+            map_assets_count = self.mappage.get_total_map_status_count()
+            print "Found " + str(map_assets_count) + " map status asset count"
+            # click on Water fall handle on Right hand side - Vertical - Last Icon
+            self.mappage.get_map_water_fall_handle.click()
+            # Count the total no. of Assets displayed in the collection
+            assetTotal = self.mappage.get_map_water_fall_list
+            items = assetTotal.find_elements_by_tag_name("li")
+            print "Found " + str(len(items)) + " assets"
+            self.assertEqual(map_assets_count,len(items),"total assets not matching" )
+            # click on Water fall handle on Right hand side - Vertical - Last Icon
+            self.mappage.get_map_water_fall_handle.click()
+            self.mappage.return_to_icon_list_page()
+            sleep(2)
+        except Exception as e:
+            print e
+            sys.exit(1)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
-        sleep(2)
-        mouse_hover_field = self.mappage.get_map_mouse_hover_icon
-        ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .move_to_element(self.mappage.get_map_default_view_radio).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer).click()\
-            .perform()
-        self.mappage.get_checking_and_unchecking_basic_data_layer()
-        self.mappage.get_map_basic_data_layer_assessment.click()
-        sleep(5)
-        self.mappage.get_map_zoom_out.click()
-        sleep(10)
-        self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
-        sleep(1)
-        map_assessment_count = self.mappage.get_total_map_status_count()
-        print "Found " + str(map_assessment_count) + " map status assessment count"
-        self.mappage.get_map_water_fall_handle.click()
-        assessmentTotal = self.mappage.get_map_water_fall_list
-        items = assessmentTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " assessment"
-        self.assertEqual(map_assessment_count,len(items),"total assessment not matching" )
-        self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
-        sleep(2)
+        try:
+            sleep(2)
+            mouse_hover_field = self.mappage.get_map_mouse_hover_icon
+            ActionChains(self.driver).move_to_element(mouse_hover_field)\
+                .move_to_element(self.mappage.get_map_base_map_accordian).click()\
+                .move_to_element(self.mappage.get_map_default_view_radio).click()\
+                .move_to_element(self.mappage.get_map_basic_data_layer).click()\
+                .perform()
+            self.mappage.get_checking_and_unchecking_basic_data_layer()
+            self.mappage.get_map_basic_data_layer_assessment.click()
+            sleep(5)
+            self.mappage.get_map_zoom_out.click()
+            sleep(10)
+            self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
+            sleep(1)
+            map_assessment_count = self.mappage.get_total_map_status_count()
+            print "Found " + str(map_assessment_count) + " map status assessment count"
+            self.mappage.get_map_water_fall_handle.click()
+            assessmentTotal = self.mappage.get_map_water_fall_list
+            items = assessmentTotal.find_elements_by_tag_name("li")
+            print "Found " + str(len(items)) + " assessment"
+            self.assertEqual(map_assessment_count,len(items),"total assessment not matching" )
+            self.mappage.get_map_water_fall_handle.click()
+            self.mappage.return_to_icon_list_page()
+            sleep(2)
+        except Exception as e:
+            print e
+            raise
 
     @attr(priority="high")
     #@SkipTest

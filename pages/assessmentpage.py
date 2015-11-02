@@ -680,9 +680,7 @@ class AssessmentPage(BasePageClass):
         for deleteicon in self.get_schooldata_image_delete_button(section):
                 deleteicon.click()
         self.get_schooldata_camera_image(section).click()
-        self.save_editeddata(mainsection)
-
-
+        self.save_schooldata(mainsection)
 
 
     def recoverapp(self):
@@ -697,7 +695,7 @@ class AssessmentPage(BasePageClass):
         # WebDriverWait(self.driver,20).until(expected_conditions.presence_of_all_elements_located(
         #     (By.XPATH, "//div[@ng-form = 'question_form']")))
 
-    def save_editeddata(self, mainsection):
+    def save_schooldata(self, mainsection):
         WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
                     (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
         try:
@@ -715,42 +713,43 @@ class AssessmentPage(BasePageClass):
             self.get_school_physicalsecurity_button.click()
         elif mainsection == "policies":
             self.get_school_policiesandplanning_button.click()
-        elif mainsection == "training":
+        elif mainsection == "trainning":
             self.get_school_trainningandexercises_button.click()
 
-    def delete_attchedimage(self, section):
+    def cleanup(self, section):
+        print section
         if self.is_attachphoto_button_visible(section):
-            for delete_button in self.get_schooldata_image_delete_button(section):
+            if self.get_schooldata_image_delete_button(section).is_displayed():
                 self.get_schooldata_image_delete_button(section).click()
             self.get_schooldata_camera_image(section).click()
 
-    # def save_infrastructuredata(self):
-    #     self.get_overview_save_button.click()
-    #     WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
-    #         (By.XPATH, self._ast_saved_text_locator), "Saved"))
-    #     self.get_overview_button.click()
-    #     self.get_schoolinfrastructure_button.click()
-    #
-    # def save_physicalsecuritydata(self):
-    #     self.get_overview_save_button.click()
-    #     WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
-    #         (By.XPATH, self._ast_saved_text_locator), "Saved"))
-    #     self.get_overview_button.click()
-    #     self.get_school_physicalsecurity_button.click()
-    #
-    # def save_policiesandplanningdata(self):
-    #     self.get_overview_save_button.click()
-    #     WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
-    #         (By.XPATH, self._ast_saved_text_locator), "Saved"))
-    #     self.get_overview_button.click()
-    #     self.get_school_policiesandplanning_button.click()
-    #
-    # def save_trainingandexercisedata(self):
-    #     self.get_overview_save_button.click()
-    #     WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
-    #         (By.XPATH, self._ast_saved_text_locator), "Saved"))
-    #     self.get_overview_button.click()
-    #     self.get_school_trainningandexercises_button.click()
+    def save_infrastructuredata(self):
+        self.get_overview_save_button.click()
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        self.get_overview_button.click()
+        self.get_schoolinfrastructure_button.click()
+
+    def save_physicalsecuritydata(self):
+        self.get_overview_save_button.click()
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        self.get_overview_button.click()
+        self.get_school_physicalsecurity_button.click()
+
+    def save_policiesandplanningdata(self):
+        self.get_overview_save_button.click()
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        self.get_overview_button.click()
+        self.get_school_policiesandplanning_button.click()
+
+    def save_trainingandexercisedata(self):
+        self.get_overview_save_button.click()
+        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element(
+            (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        self.get_overview_button.click()
+        self.get_school_trainningandexercises_button.click()
 
     def open_overview_page(self):
         self.select_assessment(self.asset_school_name)
@@ -847,25 +846,25 @@ class AssessmentPage(BasePageClass):
             self.get_schooldata_camera_image(section).click()
         file = self.file_path("Test_Case_40.jpg")
         self.get_schooldata_attachphoto_button(section).send_keys(file)
-        self.save_editeddata(mainsection)
+        self.save_schooldata(mainsection)
 
     def schooldata_edit_caption_image(self, section, mainsection):
         if not self.is_attachphoto_button_visible(section):
             self.get_schooldata_camera_image(section).click()
         file = self.file_path("Test_Case_40.jpg")
         self.get_schooldata_attachphoto_button(section).send_keys(file)
-        self.save_editeddata(mainsection)
+        self.save_schooldata(mainsection)
         self.get_schooldata_image(section)[0].click()
         self.get_file_edit_caption_textbox.send_keys("Hello")
         self.get_file_edit_caption_save_button.click()
-        self.save_editeddata(mainsection)
+        self.save_schooldata(mainsection)
 
     def schooldata_edit_comment(self, section, mainsection):
         if not self.get_schooldata_comment_textbox(section).is_displayed():
             self.get_schooldata_comment_image(section).click()
         self.get_schooldata_comment_textbox(section).clear()
         self.get_schooldata_comment_textbox(section).send_keys("Comment")
-        self.save_editeddata(mainsection)
+        self.save_schooldata(mainsection)
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.get_schooldata_comment_textbox_locator(section))))
 
