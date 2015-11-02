@@ -2,10 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assessmentpage.py" afterPath="$PROJECT_DIR$/pages/assessmentpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" afterPath="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py" afterPath="$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" afterPath="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/baseconfig.cfg" afterPath="$PROJECT_DIR$/testcases/baseconfig.cfg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Constellation.iws" />
@@ -28,104 +29,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="assessmentschoolinfrastructuretest.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5600707">
-              <caret line="818" column="14" selection-start-line="818" selection-start-column="14" selection-end-line="818" selection-end-column="14" />
-              <folding>
-                <element signature="e#612#979#0" expanded="false" />
-                <element signature="e#1472#2385#0" expanded="false" />
-                <element signature="e#2516#3504#0" expanded="false" />
-                <element signature="e#3637#4383#0" expanded="false" />
-                <element signature="e#4515#5303#0" expanded="false" />
-                <element signature="e#5449#6138#0" expanded="false" />
-                <element signature="e#6273#7158#0" expanded="false" />
-                <element signature="e#7294#7932#0" expanded="false" />
-                <element signature="e#8067#8748#0" expanded="false" />
-                <element signature="e#8865#9674#0" expanded="false" />
-                <element signature="e#9807#11252#0" expanded="false" />
-                <element signature="e#11386#12018#0" expanded="false" />
-                <element signature="e#12151#12826#0" expanded="false" />
-                <element signature="e#12937#13482#0" expanded="false" />
-                <element signature="e#13614#14487#0" expanded="false" />
-                <element signature="e#14620#15249#0" expanded="false" />
-                <element signature="e#15381#16053#0" expanded="false" />
-                <element signature="e#16164#16959#0" expanded="false" />
-                <element signature="e#17088#17953#0" expanded="false" />
-                <element signature="e#18084#18707#0" expanded="false" />
-                <element signature="e#18837#19503#0" expanded="false" />
-                <element signature="e#19621#20456#0" expanded="false" />
-                <element signature="e#20595#21500#0" expanded="false" />
-                <element signature="e#21641#22294#0" expanded="false" />
-                <element signature="e#22434#23130#0" expanded="false" />
-                <element signature="e#23248#24031#0" expanded="false" />
-                <element signature="e#24157#25010#0" expanded="false" />
-                <element signature="e#25138#25752#0" expanded="false" />
-                <element signature="e#25879#26536#0" expanded="false" />
-                <element signature="e#26665#27657#0" expanded="false" />
-                <element signature="e#27789#28666#0" expanded="false" />
-                <element signature="e#28800#29432#0" expanded="false" />
-                <element signature="e#29565#30240#0" expanded="false" />
-                <element signature="e#30370#31346#0" expanded="false" />
-                <element signature="e#31480#32365#0" expanded="false" />
-                <element signature="e#32501#33139#0" expanded="false" />
-                <element signature="e#33274#33955#0" expanded="false" />
-                <element signature="e#34086#35064#0" expanded="false" />
-                <element signature="e#35199#36088#0" expanded="false" />
-                <element signature="e#36225#36866#0" expanded="false" />
-                <element signature="e#37002#37686#0" expanded="false" />
-                <element signature="e#37799#38603#0" expanded="false" />
-                <element signature="e#38733#39594#0" expanded="false" />
-                <element signature="e#39724#40344#0" expanded="false" />
-                <element signature="e#40473#41136#0" expanded="false" />
-                <element signature="e#41245#42237#0" expanded="false" />
-                <element signature="e#42369#43246#0" expanded="false" />
-                <element signature="e#43380#44012#0" expanded="false" />
-                <element signature="e#44145#44820#0" expanded="false" />
-                <element signature="e#44954#45958#0" expanded="false" />
-                <element signature="e#46098#46999#0" expanded="false" />
-                <element signature="e#47139#47789#0" expanded="false" />
-                <element signature="e#47928#48621#0" expanded="false" />
-                <element signature="e#48736#49702#0" expanded="false" />
-                <element signature="e#49822#50647#0" expanded="false" />
-                <element signature="e#50768#51361#0" expanded="false" />
-                <element signature="e#51481#52117#0" expanded="false" />
-                <element signature="e#52231#53203#0" expanded="false" />
-                <element signature="e#53326#54163#0" expanded="false" />
-                <element signature="e#54287#54889#0" expanded="false" />
-                <element signature="e#55012#55657#0" expanded="false" />
-                <element signature="e#55786#56647#0" expanded="false" />
-                <element signature="e#56777#57397#0" expanded="false" />
-                <element signature="e#57526#58189#0" expanded="false" />
-                <element signature="e#58313#59297#0" expanded="false" />
-                <element signature="e#59426#60287#0" expanded="false" />
-                <element signature="e#60417#61037#0" expanded="false" />
-                <element signature="e#61166#61832#0" expanded="false" />
-                <element signature="e#61957#62945#0" expanded="false" />
-                <element signature="e#63076#63945#0" expanded="false" />
-                <element signature="e#64077#64703#0" expanded="false" />
-                <element signature="e#64834#65503#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="json_Schooldata.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
+      <file leaf-file-name="assessmenttest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
+              <caret line="431" column="67" selection-start-line="431" selection-start-column="67" selection-end-line="431" selection-end-column="67" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assessmentpage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
+      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="891" column="0" selection-start-line="876" selection-start-column="4" selection-end-line="891" selection-end-column="0" />
+              <caret line="1365" column="31" selection-start-line="1365" selection-start-column="31" selection-end-line="1365" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="assessmentpage.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3303887">
+              <caret line="684" column="0" selection-start-line="684" selection-start-column="0" selection-end-line="684" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="threatstreamstest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/threatstreamstest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -135,17 +73,17 @@
         <entry file="file://$PROJECT_DIR$/testcases/baseconfig.cfg">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="122" column="28" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="28" />
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assessmenttrainingandexercisetest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py">
+      <file leaf-file-name="ConstellationSmokeTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/ConstellationSmokeTest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="38" column="93" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="93" />
+              <caret line="9" column="85" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="85" />
               <folding />
             </state>
           </provider>
@@ -155,10 +93,8 @@
         <entry file="file://$PROJECT_DIR$/testcases/assessmentschooldatatest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="164" column="59" selection-start-line="164" selection-start-column="59" selection-end-line="164" selection-end-column="59" />
-              <folding>
-                <element signature="e#29#44#0" expanded="true" />
-              </folding>
+              <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -190,6 +126,7 @@
         <option value="$PROJECT_DIR$/pages/loginpage.py" />
         <option value="$PROJECT_DIR$/data/json_login.json" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/data/json_Schooldata.json" />
         <option value="$PROJECT_DIR$/testcases/basetestcase.py" />
         <option value="$PROJECT_DIR$/pages/IconListPage.py" />
         <option value="$PROJECT_DIR$/data/json_SearchAssessments.json" />
@@ -202,18 +139,13 @@
         <option value="$PROJECT_DIR$/testcases/assessmenttest.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
+        <option value="$PROJECT_DIR$/testcases/baseconfig.cfg" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTS.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationMapTest.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationAssessmentTestSuite.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTestSuite.py" />
-        <option value="$PROJECT_DIR$/testcases/assessmentpoliciesandplanningtest.py" />
-        <option value="$PROJECT_DIR$/testcases/assessmentphysicalsecuritytest.py" />
-        <option value="$PROJECT_DIR$/data/json_Schooldata.json" />
         <option value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
-        <option value="$PROJECT_DIR$/testcases/baseconfig.cfg" />
         <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
-        <option value="$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py" />
-        <option value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
       </list>
     </option>
   </component>
@@ -277,6 +209,30 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Constellation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="testcases" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -306,8 +262,8 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssessmentTrainningandExercisePageTest.test_AST_292_1_To_Test_SchoolType_Radio_Button">
-    <configuration default="false" name="Unittest AssessmentSchoolInfrastructurePageTest.test_AST_121_To_Verfiy_perimeter_textbox" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittest AssessmentSchoolDataPageTest.test_test">
+    <configuration default="false" name="Unittests in assessmentschooldatatest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -317,9 +273,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
-      <option name="CLASS_NAME" value="AssessmentSchoolInfrastructurePageTest" />
-      <option name="METHOD_NAME" value="test_AST_121_To_Verfiy_perimeter_textbox" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssessmentSchoolDataPageTest.test_AST_69_1_To_Verify_Fileupload_SchoolType" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
+      <option name="CLASS_NAME" value="AssessmentSchoolDataPageTest" />
+      <option name="METHOD_NAME" value="test_AST_69_1_To_Verify_Fileupload_SchoolType" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -329,7 +307,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssessmentSchoolInfrastructurePageTest.test_AST_125_To_Verfiy_perimeter_textbox" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssessmentSchoolDataPageTest.test_AST_73_To_Verfiy_Add_Comment_SchoolType" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -339,9 +317,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
-      <option name="CLASS_NAME" value="AssessmentSchoolInfrastructurePageTest" />
-      <option name="METHOD_NAME" value="test_AST_125_To_Verfiy_perimeter_textbox" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
+      <option name="CLASS_NAME" value="AssessmentSchoolDataPageTest" />
+      <option name="METHOD_NAME" value="test_AST_73_To_Verfiy_Add_Comment_SchoolType" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -351,7 +329,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssessmentSchoolInfrastructurePageTest.test_AST_129_To_Verfiy_SurroundingParking_Textarea" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssessmentSchoolDataPageTest.test_AST_68_To_Test_SchoolType_Radio_Button" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -361,9 +339,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
-      <option name="CLASS_NAME" value="AssessmentSchoolInfrastructurePageTest" />
-      <option name="METHOD_NAME" value="test_AST_129_To_Verfiy_SurroundingParking_Textarea" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
+      <option name="CLASS_NAME" value="AssessmentSchoolDataPageTest" />
+      <option name="METHOD_NAME" value="test_AST_68_To_Test_SchoolType_Radio_Button" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -373,7 +351,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssessmentSchoolInfrastructurePageTest.test_AST_137_To_Verify_Loss_Of_Utility_RadioButton" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssessmentSchoolDataPageTest.test_test" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -383,31 +361,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
-      <option name="CLASS_NAME" value="AssessmentSchoolInfrastructurePageTest" />
-      <option name="METHOD_NAME" value="test_AST_137_To_Verify_Loss_Of_Utility_RadioButton" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest AssessmentTrainningandExercisePageTest.test_AST_292_1_To_Test_SchoolType_Radio_Button" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py" />
-      <option name="CLASS_NAME" value="AssessmentTrainningandExercisePageTest" />
-      <option name="METHOD_NAME" value="test_AST_292_1_To_Test_SchoolType_Radio_Button" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschooldatatest.py" />
+      <option name="CLASS_NAME" value="AssessmentSchoolDataPageTest" />
+      <option name="METHOD_NAME" value="test_test" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -540,19 +496,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_121_To_Verfiy_perimeter_textbox" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_125_To_Verfiy_perimeter_textbox" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_129_To_Verfiy_SurroundingParking_Textarea" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_137_To_Verify_Loss_Of_Utility_RadioButton" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentTrainningandExercisePageTest.test_AST_292_1_To_Test_SchoolType_Radio_Button" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentschooldatatest" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_1_To_Verify_Fileupload_SchoolType" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_73_To_Verfiy_Add_Comment_SchoolType" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_68_To_Test_SchoolType_Radio_Button" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_test" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentTrainningandExercisePageTest.test_AST_292_1_To_Test_SchoolType_Radio_Button" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_137_To_Verify_Loss_Of_Utility_RadioButton" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_129_To_Verfiy_SurroundingParking_Textarea" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_125_To_Verfiy_perimeter_textbox" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_121_To_Verfiy_perimeter_textbox" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_test" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_68_To_Test_SchoolType_Radio_Button" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentschooldatatest" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_73_To_Verfiy_Add_Comment_SchoolType" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolDataPageTest.test_AST_69_1_To_Verify_Fileupload_SchoolType" />
       </list>
     </recent_temporary>
   </component>
@@ -566,6 +522,18 @@
       <created>1441947410271</created>
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
+    </task>
+    <task id="LOCAL-00002" summary="sleep added">
+      <created>1441960476281</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1441960476281</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Added missing codes">
+      <created>1442031747576</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1442031747576</updated>
     </task>
     <task id="LOCAL-00004" summary="Added returntomainappapage and recoveringapp functions">
       <created>1442208146553</created>
@@ -849,31 +817,19 @@
       <option name="project" value="LOCAL" />
       <updated>1446203177695</updated>
     </task>
-    <task id="LOCAL-00051" summary="Baseconfig">
-      <created>1446445270837</created>
-      <option name="number" value="00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1446445270839</updated>
-    </task>
-    <task id="LOCAL-00052" summary="Baseconfig">
-      <created>1446447505908</created>
-      <option name="number" value="00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1446447505908</updated>
-    </task>
-    <option name="localTasksCounter" value="53" />
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="1" y="1" width="1364" height="726" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962293" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3425775" sideWeight="0.50595236" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22390573" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22512235" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -883,11 +839,11 @@
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34848484" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34848484" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3956229" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39708266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -900,10 +856,10 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22390573" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34848484" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2254902" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24509804" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24962293" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24887893" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32843137" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -959,6 +915,29 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/testcases/assessmentschooldatatest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1064,6 +1043,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/utrunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7258065">
+          <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://C:/Python27/Lib/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.044386424">
@@ -1092,10 +1078,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/mappage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="118" column="0" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.764977">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1120,6 +1120,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1138,6 +1145,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="496" column="17" selection-start-line="496" selection-start-column="17" selection-end-line="496" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="431" column="67" selection-start-line="431" selection-start-column="67" selection-end-line="431" selection-end-column="67" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1166,6 +1181,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="9" column="85" selection-start-line="9" selection-start-column="49" selection-end-line="9" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1180,6 +1196,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.21428572">
           <caret line="39" column="49" selection-start-line="39" selection-start-column="49" selection-end-line="39" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1365" column="31" selection-start-line="1365" selection-start-column="31" selection-end-line="1365" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/baseconfig.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1211,6 +1243,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/ConstellationTestSuite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.09470752">
+          <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1222,62 +1261,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1365" column="31" selection-start-line="1365" selection-start-column="31" selection-end-line="1365" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5795053">
-          <caret line="431" column="67" selection-start-line="431" selection-start-column="67" selection-end-line="431" selection-end-column="67" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assessmentpoliciesandplanningtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assessmentphysicalsecuritytest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="43" column="16" selection-start-line="43" selection-start-column="16" selection-end-line="43" selection-end-column="101" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/ConstellationTestSuite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66295266">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pycharm/utrunner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66295266">
-          <caret line="126" column="33" selection-start-line="126" selection-start-column="33" selection-end-line="126" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://C:/Python27/Lib/site-packages/selenium/webdriver/remote/errorhandler.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="169" column="0" selection-start-line="169" selection-start-column="0" selection-end-line="169" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="2" column="39" selection-start-line="2" selection-start-column="39" selection-end-line="2" selection-end-column="39" />
           <folding />
         </state>
       </provider>
@@ -1285,115 +1268,16 @@
     <entry file="file://$PROJECT_DIR$/testcases/assessmentschooldatatest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="164" column="59" selection-start-line="164" selection-start-column="59" selection-end-line="164" selection-end-column="59" />
-          <folding>
-            <element signature="e#29#44#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="93" selection-start-line="38" selection-start-column="34" selection-end-line="38" selection-end-column="93" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/baseconfig.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="122" column="28" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="28" />
+          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="891" column="0" selection-start-line="876" selection-start-column="4" selection-end-line="891" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.3303887">
+          <caret line="684" column="0" selection-start-line="684" selection-start-column="0" selection-end-line="684" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5600707">
-          <caret line="818" column="14" selection-start-line="818" selection-start-column="14" selection-end-line="818" selection-end-column="14" />
-          <folding>
-            <element signature="e#612#979#0" expanded="false" />
-            <element signature="e#1472#2385#0" expanded="false" />
-            <element signature="e#2516#3504#0" expanded="false" />
-            <element signature="e#3637#4383#0" expanded="false" />
-            <element signature="e#4515#5303#0" expanded="false" />
-            <element signature="e#5449#6138#0" expanded="false" />
-            <element signature="e#6273#7158#0" expanded="false" />
-            <element signature="e#7294#7932#0" expanded="false" />
-            <element signature="e#8067#8748#0" expanded="false" />
-            <element signature="e#8865#9674#0" expanded="false" />
-            <element signature="e#9807#11252#0" expanded="false" />
-            <element signature="e#11386#12018#0" expanded="false" />
-            <element signature="e#12151#12826#0" expanded="false" />
-            <element signature="e#12937#13482#0" expanded="false" />
-            <element signature="e#13614#14487#0" expanded="false" />
-            <element signature="e#14620#15249#0" expanded="false" />
-            <element signature="e#15381#16053#0" expanded="false" />
-            <element signature="e#16164#16959#0" expanded="false" />
-            <element signature="e#17088#17953#0" expanded="false" />
-            <element signature="e#18084#18707#0" expanded="false" />
-            <element signature="e#18837#19503#0" expanded="false" />
-            <element signature="e#19621#20456#0" expanded="false" />
-            <element signature="e#20595#21500#0" expanded="false" />
-            <element signature="e#21641#22294#0" expanded="false" />
-            <element signature="e#22434#23130#0" expanded="false" />
-            <element signature="e#23248#24031#0" expanded="false" />
-            <element signature="e#24157#25010#0" expanded="false" />
-            <element signature="e#25138#25752#0" expanded="false" />
-            <element signature="e#25879#26536#0" expanded="false" />
-            <element signature="e#26665#27657#0" expanded="false" />
-            <element signature="e#27789#28666#0" expanded="false" />
-            <element signature="e#28800#29432#0" expanded="false" />
-            <element signature="e#29565#30240#0" expanded="false" />
-            <element signature="e#30370#31346#0" expanded="false" />
-            <element signature="e#31480#32365#0" expanded="false" />
-            <element signature="e#32501#33139#0" expanded="false" />
-            <element signature="e#33274#33955#0" expanded="false" />
-            <element signature="e#34086#35064#0" expanded="false" />
-            <element signature="e#35199#36088#0" expanded="false" />
-            <element signature="e#36225#36866#0" expanded="false" />
-            <element signature="e#37002#37686#0" expanded="false" />
-            <element signature="e#37799#38603#0" expanded="false" />
-            <element signature="e#38733#39594#0" expanded="false" />
-            <element signature="e#39724#40344#0" expanded="false" />
-            <element signature="e#40473#41136#0" expanded="false" />
-            <element signature="e#41245#42237#0" expanded="false" />
-            <element signature="e#42369#43246#0" expanded="false" />
-            <element signature="e#43380#44012#0" expanded="false" />
-            <element signature="e#44145#44820#0" expanded="false" />
-            <element signature="e#44954#45958#0" expanded="false" />
-            <element signature="e#46098#46999#0" expanded="false" />
-            <element signature="e#47139#47789#0" expanded="false" />
-            <element signature="e#47928#48621#0" expanded="false" />
-            <element signature="e#48736#49702#0" expanded="false" />
-            <element signature="e#49822#50647#0" expanded="false" />
-            <element signature="e#50768#51361#0" expanded="false" />
-            <element signature="e#51481#52117#0" expanded="false" />
-            <element signature="e#52231#53203#0" expanded="false" />
-            <element signature="e#53326#54163#0" expanded="false" />
-            <element signature="e#54287#54889#0" expanded="false" />
-            <element signature="e#55012#55657#0" expanded="false" />
-            <element signature="e#55786#56647#0" expanded="false" />
-            <element signature="e#56777#57397#0" expanded="false" />
-            <element signature="e#57526#58189#0" expanded="false" />
-            <element signature="e#58313#59297#0" expanded="false" />
-            <element signature="e#59426#60287#0" expanded="false" />
-            <element signature="e#60417#61037#0" expanded="false" />
-            <element signature="e#61166#61832#0" expanded="false" />
-            <element signature="e#61957#62945#0" expanded="false" />
-            <element signature="e#63076#63945#0" expanded="false" />
-            <element signature="e#64077#64703#0" expanded="false" />
-            <element signature="e#64834#65503#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
