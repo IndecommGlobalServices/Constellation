@@ -28,7 +28,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
         for section in self.config.options(self.schooldatasection):
-            self.ast.cleanup(self.config.get(self.schooldatasection, section))
+            self.ast.delete_attchedimage(self.config.get(self.schooldatasection, section))
         self.ast.get_overview_button.click()
         self.ast.return_to_assessment_main_page()
 

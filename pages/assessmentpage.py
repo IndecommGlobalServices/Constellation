@@ -889,6 +889,18 @@ class AssessmentPage(BasePageClass):
     def get_schoolinfrastructure_textbox_locator(self, section):
         return ("//div[contains(text(),'"+section+"')]//input[@name = 'integer_input']")
 
+    def schooldata_delete_comment(self, section, mainsection):
+        if self.get_schooldata_comment_textbox(section).is_displayed():
+            self.get_schooldata_comment_textbox(section).clear()
+            self.get_schooldata_comment_image(section).click()
+            WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
+                    (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
+            try:
+                WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
+                    (By.XPATH, self._ast_saved_text_locator), "Saved"))
+            except Exception, err:
+                raise type(err)("Save failed and the message displayed is - " \
+                              + self.driver.find_element_by_xpath(self._ast_saved_text_locator).text + err.message)
 
     def _validate_page(self, driver):
         pass
