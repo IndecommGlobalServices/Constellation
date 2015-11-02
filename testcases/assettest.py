@@ -996,11 +996,9 @@ class AssetpageTest(BaseTestCase):
             number_of_image_after_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
             image_count_after_file_upload = len(number_of_image_after_upload)
             if (image_count_after_file_upload == image_count_before_file_upload):
-                self.assertTrue(True,"Test Case 41 has been passed.")
-            else:
-                self.assertFalse(True,"Test Case 41 has been failed")
+                self.assertTrue(True,"The Cancel Button is not workking. New file has been uploaded.")
         except Exception, e:
-            error = "Test Case no 41 has been failed. Error message is ::"+str(e)
+            error = "The Cancel Button is not workking. New file has been uploaded. ::"+str(e)
             self.assertFalse(True, error)
 
     @attr(priority="high")
