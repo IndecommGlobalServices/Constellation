@@ -534,7 +534,7 @@ class AssessmentPage(BasePageClass):
 
     def select_assessment(self, asset_name):
         sleep(5)
-        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+        WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self._ast_action_dropdown_loactor)))
         self.search_assessment_textbox(asset_name)
         sleep(6)
@@ -677,6 +677,8 @@ class AssessmentPage(BasePageClass):
         """
         image_icons = self.driver.find_elements_by_xpath(".//img[@class='file_list_img']")
         num_of_files = len(image_icons)
+        print "*****************"
+        print num_of_files
         if num_of_files >= 1:
             sleep(2)
             for count in range(num_of_files, 0, -1):

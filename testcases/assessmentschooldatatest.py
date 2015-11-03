@@ -46,7 +46,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
             schooltypeoption = self.ast.get_schooldata_schooltype_radiobuttons
             if not schooltypeoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 schooltypeoption[option].click()
-                self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
                 schoolchecked = self.ast.get_schooldata_schooltype_radiobuttons
                 self.assertEqual(schoolchecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
@@ -166,7 +166,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_schoolhours_textarea.clear()
         self.ast.get_schooldata_schoolhours_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_schoolhours_text_are_locator)))
         self.assertEqual(self.ast.get_schooldata_schoolhours_textarea.get_attribute("value"), "100")
@@ -224,7 +224,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_noofstudents_textarea.clear()
         self.ast.get_schooldata_noofstudents_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_numberofstudents_text_are_locator)))
         self.assertEqual(self.ast.get_schooldata_noofstudents_textarea.get_attribute("value"), "100")
@@ -294,7 +294,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_specialneedsstudents_textarea.clear()
         self.ast.get_schooldata_specialneedsstudents_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_specialneedsstudents_text_area_locator)))
         self.assertEqual(self.ast.get_schooldata_specialneedsstudents_textarea.get_attribute("value"), "100")
@@ -356,7 +356,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_noofstaff_textarea.clear()
         self.ast.get_schooldata_noofstaff_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_numberofstaff_text_area_locator)))
         sleep(20)
@@ -418,7 +418,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         self.ast.get_schooldata_noofvisitors_textarea.clear()
         self.ast.get_schooldata_noofvisitors_textarea.send_keys("100")
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_schooldata_numberofvisitors_text_area_locator)))
         sleep(20)
@@ -494,7 +494,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         self.ast.get_schooldata_lawenforcement_No_radiobutton.click()
         WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-        self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+        self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
         self.assertEqual(self.ast.get_schooldata_lawenforcement_No_radiobutton.get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
