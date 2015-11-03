@@ -1476,10 +1476,16 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
-        self.assetpage.get_asset_chart_dashboard_image.click()
+        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
+            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
+        countafterfilter = self.assetpage.get_total_row_count_filter()
+        if countafterfilter == countbeforefilter:
+            self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
+        else:
+            self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
+        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -1490,8 +1496,18 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
+            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         self.assetpage.place_related_charts_Place_Is_Selected()
+        countafterfilter = self.assetpage.get_total_row_count_filter()
+
+        if countafterfilter == countbeforefilter:
+            self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
+        else:
+            self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
+        sleep(2) # sleep is mandatory here otherwise it will fail
 
     @attr(priority="high")
     #@SkipTest
@@ -1502,11 +1518,21 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
+            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         self.assetpage.get_asset_place_type_drop_down.click()
         sleep(1) # sleep is mandatory here otherwise it will fail
         self.assetpage.get_asset_place_type_first_element.click()
         self.assetpage.place_related_charts_Place_And_Type_Is_Selected()
+        countafterfilter = self.assetpage.get_total_row_count_filter()
+
+        if countafterfilter == countbeforefilter:
+            self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
+        else:
+            self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
+        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -1517,8 +1543,19 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
+            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         self.assetpage.school_related_charts_School_Is_Selected()
+        countafterfilter = self.assetpage.get_total_row_count_filter()
+
+        if countafterfilter == countbeforefilter:
+            self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
+        else:
+            self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
+        sleep(2) # sleep is mandatory here otherwise it will fail
+
 
     @attr(priority="high")
     #@SkipTest
@@ -1529,12 +1566,21 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
+            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         self.assetpage.get_asset_school_district_drop_down.click()
         self.assetpage.get_asset_school_district_first_element.click()
         sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_District_Is_Selected()
+        countafterfilter = self.assetpage.get_total_row_count_filter()
 
+        if countafterfilter == countbeforefilter:
+            self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
+        else:
+            self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
+        sleep(2)
     @attr(priority="high")
     #@SkipTest
     def test_AS_95(self):
@@ -1544,11 +1590,21 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
+            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         self.assetpage.get_asset_school_grade_drop_down.click()
         self.assetpage.get_asset_school_grade_first_element.click()
         sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_Grade_Is_Selected()
+        countafterfilter = self.assetpage.get_total_row_count_filter()
+
+        if countafterfilter == countbeforefilter:
+            self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
+        else:
+            self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
+        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -1559,10 +1615,19 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
+            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         self.assetpage.get_asset_school_type_drop_down.click()
         self.assetpage.get_asset_school_type_first_element.click()
         sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_Type_Is_Selected()
+        countafterfilter = self.assetpage.get_total_row_count_filter()
+
+        if countafterfilter == countbeforefilter:
+            self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
+        else:
+            self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
 
 
