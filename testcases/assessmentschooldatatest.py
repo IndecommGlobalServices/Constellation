@@ -103,12 +103,13 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         :return:
         """
         for option in range(6):
+            print option
             schoolgradeoption = self.ast.get_schooldata_gradelevel_checkbox
             if not schoolgradeoption[option].get_attribute("class") == "checkbox ng-binding checked":
                 schoolgradeoption[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_schooldata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
+                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_SCHOOLDATA'))
                 schoolgradechecked = self.ast.get_schooldata_gradelevel_checkbox
                 self.assertEqual(schoolgradechecked[option].get_attribute("class"), "checkbox ng-binding checked")
                 schoolgradechecked[option].click()
