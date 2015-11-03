@@ -1303,13 +1303,14 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.asset_create_click()
         self.assetpage.select_asset_template_type("School")
         self.assertFalse(self.assetpage.get_asset_overview_save_button.is_enabled())
         self.assetpage.get_asset_overview_cancel_button.click()
-        self.assertTrue(self.assetpage.wait_for_element_boolean(self.assetpage._asset_create_asset),
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_create_asset)),
+            self.config.get(self.section, 'MESSAGE_CREATE_ASSET_BUTTON_NOT_DISPALYED'))
+        self.assertTrue(self.assetpage.get_asset_create_asset,
                         self.config.get(self.section, 'MESSAGE_CANCEL_FAILED_ON_CREATING_ASSET_DIALOGUE'))
 
     @attr(priority="high")
@@ -1329,8 +1330,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.enter_school_district(self.assetpage.asset_school_district_grade_validation)
         self.assetpage.enter_school_grade(self.assetpage.asset_school_district_grade_validation)
         self.assetpage.asset_overview_save_click()
-        WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element(
-            By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details")
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
         self.assertEqual(self.assetpage.asset_school_district_grade_validation, self.assetpage.get_overview_district_text)
         self.assertEqual(self.assetpage.asset_school_district_grade_validation, self.assetpage.get_overview_grade_text)
 
@@ -1344,8 +1345,6 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
-        #self.assetpage.app_sanity_check()
         self.assetpage.create_asset_cancel("School")
         self.assertTrue(self.driver.find_element_by_xpath(self.assetpage._asset_create_asset).is_displayed())
 
@@ -1430,9 +1429,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_school_name[0], "School")
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
                                               (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
-
         self.assetpage.get_asset_detail_edit_link.click()
-
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
                                          (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
         self.assetpage.get_asset_detail_edit_email_text_box.clear()
