@@ -23,6 +23,7 @@ class AssessmentPage(BasePageClass):
 
     #Assessment app name locator
     _ast_assessment_link_locator = "Assessments"
+    _ast_assessment_header_locator = ".//*[@id='header']/div[1]/span[2]/span/a"
     _ast_name_text = ".//*[@id='header']/span[2]/span"
 
     #Assessment grid locators
@@ -151,6 +152,16 @@ class AssessmentPage(BasePageClass):
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._ast_assessment_link_locator + err.message)
+
+    @property
+    def click_on_assessment_header(self):
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, self._ast_assessment_header_locator )))
+            return self.driver.find_element_by_xpath(self._ast_assessment_header_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._ast_assessment_header_locator + err.message)
 
     @property
     def get_ast_app_name(self):
@@ -776,7 +787,7 @@ class AssessmentPage(BasePageClass):
         self.get_school_trainningandexercises_button.click()
 
     def return_to_assessment_main_page(self):
-        self.click_on_assessment_link.click()
+        self.click_on_assessment_header.click()
 
 
     def get_schooldata_comment_image(self, section):
