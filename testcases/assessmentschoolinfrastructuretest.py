@@ -34,6 +34,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.ast.return_to_assessment_main_page()
 
 
+    def test_test(self):
+        pass
+
     @attr(priority="high")
     #@SkipTest
     def test_AST_109_To_Test_LandandBuildings_Acres_Radio_Button(self):

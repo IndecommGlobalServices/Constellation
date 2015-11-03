@@ -145,9 +145,11 @@ class AssessmentPage(BasePageClass):
     @property
     def click_on_assessment_link(self):
         try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable(
+                (By.LINK_TEXT, self._ast_assessment_link_locator )))
             return self.driver.find_element_by_link_text(self._ast_assessment_link_locator)
         except Exception, err:
-            raise type(err)(" - search XPATH - " \
+            raise type(err)(" - searched XPATH - " \
                           + self._ast_assessment_link_locator + err.message)
 
     @property
@@ -342,7 +344,14 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_file_upload_button(self):
-        return self.driver.find_element_by_xpath(self._ast_photos_documents_upload_file_button_locator)
+        try:
+            WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
+                (By.XPATH, self._ast_photos_documents_upload_file_button_locator )))
+            return self.driver.find_element_by_xpath(self._ast_photos_documents_upload_file_button_locator)
+        except Exception, err:
+            raise type(err)("Upload file button not visible - searched XPATH - " \
+                          + self._ast_photos_documents_upload_file_button_locator + err.message)
+
 
     @property
     def get_file_attach_file_button(self):
@@ -635,7 +644,7 @@ class AssessmentPage(BasePageClass):
 
     def upload_a_file(self, image_caption, image_file_name):
         self.get_file_upload_button.click()# Click on Photo/Document panel - File Upload button
-        WebDriverWait(self.driver,20).until(expected_conditions.presence_of_element_located(
+        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
             (By.ID, self._ast_photos_documents_attach_file_button_locator)))
         # Click on Attach file button and attached the file path with the send_keys
         file_path = self.file_path(image_file_name)
@@ -677,8 +686,6 @@ class AssessmentPage(BasePageClass):
         """
         image_icons = self.driver.find_elements_by_xpath(".//img[@class='file_list_img']")
         num_of_files = len(image_icons)
-        print "*****************"
-        print num_of_files
         if num_of_files >= 1:
             sleep(2)
             for count in range(num_of_files, 0, -1):
@@ -690,8 +697,7 @@ class AssessmentPage(BasePageClass):
                 Hover.perform()
                 self.driver.find_element_by_xpath(xpath).click()
                 self.get_fileupload_delete_button.click()
-                WebDriverWait(self.driver,20).until(expected_conditions.element_to_be_clickable((By.XPATH,
-                                                        self._ast_photos_documents_upload_file_button_locator)))
+                sleep(5)
 
     def delete_uploaded_files_assessmentpage(self, section, mainsection):
         """
@@ -743,7 +749,7 @@ class AssessmentPage(BasePageClass):
     def delete_attchedimage(self, section):
         if self.is_attachphoto_button_visible(section):
             for delete_button in self.get_schooldata_image_delete_button(section):
-                self.get_schooldata_image_delete_button(section).click()
+                delete_button.click()
             self.get_schooldata_camera_image(section).click()
 
     def open_overview_page(self):
@@ -771,6 +777,7 @@ class AssessmentPage(BasePageClass):
 
     def return_to_assessment_main_page(self):
         self.click_on_assessment_link.click()
+
 
     def get_schooldata_comment_image(self, section):
         return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']")
