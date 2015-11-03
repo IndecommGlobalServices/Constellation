@@ -7,8 +7,9 @@ cwd = os.getcwd()
 os.chdir('..')
 assetfilepath = os.path.join(os.getcwd(), assettestfilename)
 os.chdir(cwd)
-nose.run(argv=["", "assettest", "--verbosity=3","--with-xunit", "--xunit-file="+assetfilepath+"", "--nologcapture","-s",
-               "--nocapture"])
+nose.run(argv=["", "assettest", "maptest", "threatstreamtest", "assessmenttest", "assessmentoverviewtest",
+               "assessmentschooldatatest.py", "assessmentschoolinfrastructuretest.py", "--verbosity=3","--with-xunit",
+               "--xunit-file="+assetfilepath+"", "--nologcapture","-s", "--nocapture"])
 
 
 
