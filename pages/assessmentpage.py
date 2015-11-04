@@ -487,9 +487,8 @@ class AssessmentPage(BasePageClass):
     def get_school_trainningandexercises_button(self):
         return self.driver.find_element_by_xpath(self._ast_trainningandexercises_button_locator)
 
-    @property
-    def get_trainningandexercises_schoolsafety_radiobutton(self):
-        return self.driver.find_elements_by_xpath(self._ast_trainningandexercises_safetyplan_radio_button_locator)
+    def get_schooltrainingandexercise_radiobutton(self, section):
+        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]//label[@model='question.answer.text']")
 
     def get_schooldata(self):
         with open(schooldatafile) as data_file:
@@ -788,7 +787,6 @@ class AssessmentPage(BasePageClass):
 
     def return_to_assessment_main_page(self):
         self.click_on_assessment_header.click()
-
 
     def get_schooldata_comment_image(self, section):
         return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']")
