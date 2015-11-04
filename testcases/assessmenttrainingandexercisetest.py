@@ -31,8 +31,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         self.ast.return_to_assessment_main_page()
 
 
-
-
     @attr(priority="high")
     #@SkipTest
     def test_AST_292_1_To_Test_SchoolType_Radio_Button_SECTION_SCHOOL_SAFETY_PLAN(self):
@@ -50,6 +48,8 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
                 schoolsafetychecked = self.ast.get_schoolInfrastucture_radiobutton(
                     self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'))
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+                schoolsafetychecked = self.ast.get_trainningandexercises_schoolsafety_radiobutton
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
@@ -76,11 +76,11 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
         count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN')))
         self.ast.schooldata_upload_file(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
-                                        self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                                        self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'))),
                            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
         self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
-                                                      self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                                                      self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
     @attr(priority="high")
     #@SkipTest
@@ -98,11 +98,9 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 schoolsafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schoolInfrastucture_radiobutton(
-                    self.config.get(self.schooltrainingsection, 'SECTION_EXERCISE_DISTRICT_WIDE'))
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+                schoolsafetychecked = self.ast.get_trainningandexercises_schoolsafety_radiobutton
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -111,8 +109,8 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         Description : To test the add comment to school type section
         :return:
         """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooltrainingsection, 'SECTION_EXERCISE_DISTRICT_WIDE'),
-                                         self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+        self.ast.schooldata_edit_comment(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
+                                         self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooltrainingsection,
                                                             'SECTION_EXERCISE_DISTRICT_WIDE')).get_attribute("value"), "Comment")
         self.ast.schooldata_delete_comment(self.config.get(self.schooltrainingsection, 'SECTION_EXERCISE_DISTRICT_WIDE'),
@@ -126,12 +124,17 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         Description : To test the add photo to school type section
         :return:
         """
+        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN')))
+        self.ast.schooldata_upload_file(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
+                                        self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'))),
         count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_EXERCISE_DISTRICT_WIDE')))
         self.ast.schooldata_upload_file(self.config.get(self.schooltrainingsection, 'SECTION_EXERCISE_DISTRICT_WIDE'),
                                         self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_EXERCISE_DISTRICT_WIDE'))),
                            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooltrainingsection, 'SECTION_EXERCISE_DISTRICT_WIDE'),
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
+                                                      self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooltrainingsection, 'SECTION_EXERCISE_DISTRICT_WIDE'),
                                                       self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
 
     @attr(priority="high")
