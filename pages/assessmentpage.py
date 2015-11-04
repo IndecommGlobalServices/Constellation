@@ -782,17 +782,19 @@ class AssessmentPage(BasePageClass):
     def return_to_assessment_main_page(self):
         self.click_on_assessment_header.click()
 
-    def get_schooldata_comment_image(self, section):
-        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']")
+    def get_schooldata_comment_image(self, section, subsection):
+        return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                "[contains(text(),'"+subsection+"')]//img[@src='../images/comment.png']")
 
-    def get_schooldata_comment_textbox(self, section):
-        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//textarea[@placeholder='Comments']")
+    def get_schooldata_comment_textbox(self, section, subsection):
+        return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                "[contains(text(), '"+subsection+"')]//textarea[@placeholder='Comments']")
 
-    def get_schooldata_comment_textbox_locator(self, section):
-        return "//div[contains(text(),'"+section+"')]//textarea[@placeholder='Comments']"
+    def get_schooldata_comment_textbox_locator(self, section, subsection):
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+subsection+"')]//textarea[@placeholder='Comments']"
 
-    def get_schooldata_comment_image_locator(self, section):
-        return "//div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']"
+    def get_schooldata_comment_image_locator(self, section, subsection):
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']"
 
     def get_schooldata_camera_image(self, section, subsection):
         return  self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
@@ -891,19 +893,19 @@ class AssessmentPage(BasePageClass):
         self.get_file_edit_caption_save_button.click()
         self.save_editeddata(assessmentsection)
 
-    def schooldata_edit_comment(self, section, mainsection):
-        if not self.get_schooldata_comment_textbox(section).is_displayed():
-            self.get_schooldata_comment_image(section).click()
-        self.get_schooldata_comment_textbox(section).clear()
-        self.get_schooldata_comment_textbox(section).send_keys("Comment")
-        self.save_editeddata(mainsection)
+    def schooldata_edit_comment(self, section, subsection, assessmentsection):
+        if not self.get_schooldata_comment_textbox(section, subsection).is_displayed():
+            self.get_schooldata_comment_image(section, subsection).click()
+        self.get_schooldata_comment_textbox(section, subsection).clear()
+        self.get_schooldata_comment_textbox(section, subsection).send_keys("Comment")
+        self.save_editeddata(assessmentsection)
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.get_schooldata_comment_textbox_locator(section))))
+            (By.XPATH, self.get_schooldata_comment_textbox_locator(section, subsection))))
 
-    def schooldata_delete_comment(self, section, mainsection):
-        if self.get_schooldata_comment_textbox(section).is_displayed():
-            self.get_schooldata_comment_textbox(section).clear()
-            self.get_schooldata_comment_image(section).click()
+    def schooldata_delete_comment(self, section, subsection, assessmentsection):
+        if self.get_schooldata_comment_textbox(section, subsection).is_displayed():
+            self.get_schooldata_comment_textbox(section, subsection).clear()
+            self.get_schooldata_comment_image(section, subsection).click()
             WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
                     (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
             try:

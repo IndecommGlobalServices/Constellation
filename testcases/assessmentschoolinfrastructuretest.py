@@ -96,11 +96,13 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         Description : To test add comment in SECTION_LANDANDBUILDING_ACRES
         :return:
         """
-        self.ast.schooldata_edit_comment(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_ACRES'),
+        self.ast.schooldata_edit_comment(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                         self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_ACRES'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.subsection,
-                                                            'SECTION_LANDANDBUILDING_ACRES')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_ACRES'),
+        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_ACRES')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                         self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_ACRES'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
 
@@ -111,58 +113,71 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         Description : To test no of building textbox in SECTION_LANDANDBUILDING_BUILDING
         :return:
         """
-        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).clear()
-        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).send_keys("100")
+        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                  self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).clear()
+        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                  self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textbox_locator(
+            (By.XPATH, self.ast.get_schoolinfrastructure_textbox_locator(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
                 self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')))))
-        self.assertEqual(self.ast.get_schoolinfrastructure_textbox(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).get_attribute("value"), "100")
+        self.assertEqual(self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                    self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).get_attribute("value"), "100")
 
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_114_To_Verify_Fileupload_SECTION_LANDANDBUILDING_BUILDING(self):
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')))
-        self.ast.schooldata_upload_file(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
+        count_of_image_before_upload = len(self.ast.get_schooldata_image(
+                                                self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')))
+        self.ast.schooldata_upload_file(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                        self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'))),
+        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                             self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'))),
                            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                      self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_115_To_Verify_Edit_Caption_SECTION_LANDANDBUILDING_BUILDING(self):
-        self.ast.schooldata_edit_caption_image(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
+        self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                               self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
                                                self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
+        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                    self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                      self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_116_To_Verfiy_Add_Comment_SECTION_LANDANDBUILDING_BUILDING(self):
-        self.ast.schooldata_edit_comment(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
+        self.ast.schooldata_edit_comment(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                         self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.subsection,
-                                                            'SECTION_LANDANDBUILDING_BUILDING')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
+        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                           self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_117_To_Verfiy_BuildingNumber_RadioButton(self):
         for option in range(2):
-            noofbuilding = self.ast.get_schoolInfrastucture_radiobutton(
+            noofbuilding = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
             self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))
             if not noofbuilding[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 noofbuilding[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-                noofbuilding = self.ast.get_schoolInfrastucture_radiobutton(
-                self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))
+                noofbuilding = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                        self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))
                 self.assertEqual(noofbuilding[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
@@ -170,93 +185,111 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AST_118_To_Verify_Fileupload_SECTION_LANDANDBUILDING_MARKED(self):
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED')))
-        self.ast.schooldata_upload_file(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
+        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                    self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED')))
+        self.ast.schooldata_upload_file(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                        self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))),
+        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                             self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))),
                            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                      self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.ast.get_school_schoolinfrastructure_noofbuilding_textbox.clear()
-        self.ast.get_school_schoolinfrastructure_noofbuilding_textbox.send_keys("100")
-        self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast._ast_schoolInfrastructure_no_of_building_text_box_locator)))
-        self.assertEqual(self.ast.get_school_schoolinfrastructure_noofbuilding_textbox.get_attribute("value"), "100")
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_119_To_Verify_Edit_Caption_SECTION_LANDANDBUILDING_MARKED(self):
-        self.ast.schooldata_edit_caption_image(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
+        self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                               self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
                                                self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
+        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                               self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                      self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_120_To_Verfiy_Add_Comment_SECTION_LANDANDBUILDING_MARKED(self):
-        self.ast.schooldata_edit_comment(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
+        self.ast.schooldata_edit_comment(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                         self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.subsection,
-                                                            'SECTION_LANDANDBUILDING_MARKED')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
+        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                    self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                           self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
 
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_121_To_Verfiy_perimeter_textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).send_keys("100")
+        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                   self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).clear()
+        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                                                   self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(
+            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).get_attribute("value"), "100")
+        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+                        self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).get_attribute("value"), "100")
 
 
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_122_To_Verify_Fileupload_SECTION_SURROUNDING_PERIMETER(self):
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')))
-        self.ast.schooldata_upload_file(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
+        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')))
+        self.ast.schooldata_upload_file(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                        self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'))),
+        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                                             self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'))),
                            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                                      self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_123_To_Verify_Edit_Caption_SECTION_SURROUNDING_PERIMETER(self):
-        self.ast.schooldata_edit_caption_image(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
+        self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                               self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
                                                self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
+        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                                               self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'))[0].text, "Hello")
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                                      self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_124_To_Verfiy_Add_Comment_SECTION_SURROUNDING_PERIMETER(self):
-        self.ast.schooldata_edit_comment(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
+        self.ast.schooldata_edit_comment(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                         self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.subsection,
-                                                            'SECTION_SURROUNDING_PERIMETER')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
+        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).get_attribute("value"), "Comment")
+        self.ast.schooldata_delete_comment(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                           self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_125_To_Verfiy_Parking_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).send_keys("100")
+        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                                   self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).clear()
+        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                                                   self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(
+            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).get_attribute("value"), "100")
+        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                        self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).get_attribute("value"), "100")
 
     @attr(priority="high")
     #@SkipTest
