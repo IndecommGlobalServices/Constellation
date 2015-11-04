@@ -38,7 +38,6 @@ class AssessmentPage(BasePageClass):
 
     #Assessment actions locator
     _ast_action_dropdown_loactor = "(//div[@id='assessment_actions_dropdown']//button[@data-toggle='dropdown'])"
-        #"//div[@id = 'assessment_actions_dropdown']//button[contains(text(), 'Select action')]"
 
     # Assessment filter related locators
     _ast_status_filter_drop_down_locator = "//div[@label='Status']"
@@ -54,7 +53,6 @@ class AssessmentPage(BasePageClass):
     _ast_check_box_locator = ".//*[@id='tblAssessments']/tbody/tr/td[1]/label/span/span[2]"
 
     #Create Assessment related locators
-
     _ast_main_create_assessment_button_locator = "//img[@ng-src='../images/icon_create_item_off.png']"
     _ast_main_create_assessment_button_on_locator = "//img[@ng-src='../images/icon_create_item_on.png']"
     _ast_create_assessments_button_locator = ".//*[@id='assessmentManager']/div[1]/button"
@@ -69,7 +67,6 @@ class AssessmentPage(BasePageClass):
     _ast_breadcrumb_text_locator = ".//*[@id='header']/div[1]/span[3]/span"
     _ast_overview_text = ".//*[@id='overview']/div[1]"
     _ast_overview_notes_textbox_locator = "assessment_notes"
-    # "//textarea[@placeholder='Notes']"
     _ast_overview_save_button_locator = "//div[@id='header']//button[contains(text(),'Save')]"
     _ast_overview_start_date_textbox_locator = "//span[@name= 'started_picker']//input[@type = 'text']"
     _ast_overview_end_date_textbox_locator="//span[@name= 'ended_picker']//input[@type = 'text']"
@@ -83,7 +80,6 @@ class AssessmentPage(BasePageClass):
     _ast_photos_documents_window_upload_button_locator = ".//*[@id='fileEditModal']/div/div/div//button[contains(text(),'Upload')]"
     _ast_photos_documents_window_cancel_button_locator = ".//*[@id='fileEditModal']/div/div/div//button[contains(text(),'Cancel')]"
     _ast_photos_documents_window_delete_button_locator = "//div[@id='fileDeleteModal']//button[contains(text(),'Delete')]"
-
 
     #Assessment edit caption locators
     _ast_file_edit_caption_text_box_locator = "//div[@class='forminputfields']//input[@id='question_photo_caption']"
@@ -118,7 +114,6 @@ class AssessmentPage(BasePageClass):
                         "//label[@model='question.answer.text']"
     _ast_schoolInfrastructure_perimeter_text_box_locator = "//div[contains(text(), " \
                                     "'Describe the outside perimeter.')]//input[@name = 'integer_input']"
-
 
     #Assessment physical security related locators
     _ast_physicalsecurity_button_locator = "//button[@title='Physical Security']"
@@ -710,16 +705,16 @@ class AssessmentPage(BasePageClass):
                 self.get_fileupload_delete_button.click()
                 sleep(5)
 
-    def delete_uploaded_files_assessmentpage(self, section, mainsection):
+    def delete_uploaded_files_assessmentpage(self, section, subsection, assessmentsection):
         """
         Description : This function will existing uploaded files.
         Revision:
         :return:
         """
-        for deleteicon in self.get_schooldata_image_delete_button(section):
+        for deleteicon in self.get_schooldata_image_delete_button(section, subsection):
                 deleteicon.click()
-        self.get_schooldata_camera_image(section).click()
-        self.save_editeddata(mainsection)
+        self.get_schooldata_camera_image(section, subsection).click()
+        self.save_editeddata(assessmentsection)
 
 
 
@@ -757,16 +752,14 @@ class AssessmentPage(BasePageClass):
         elif mainsection == "training":
             self.get_school_trainningandexercises_button.click()
 
-    def delete_attchedimage(self, section):
-        if self.is_attachphoto_button_visible(section):
-            for delete_button in self.get_schooldata_image_delete_button(section):
+    def delete_attchedimage(self, subsection):
+        if self.is_all_attachphoto_button_visible(subsection):
+            for delete_button in self.get_all_schooldata_image_delete_button(subsection):
                 delete_button.click()
-            self.get_schooldata_camera_image(section).click()
+            self.get_all_schooldata_camera_image(subsection).click()
 
     def open_overview_page(self):
         self.select_assessment(self.asset_school_name)
-        # WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_all_elements_located(
-        #     (By.XPATH, self._ast_overview_button_locator)))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_all_elements_located(
             (By.CLASS_NAME, "widgetcontent")))
 
@@ -789,7 +782,6 @@ class AssessmentPage(BasePageClass):
     def return_to_assessment_main_page(self):
         self.click_on_assessment_header.click()
 
-
     def get_schooldata_comment_image(self, section):
         return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']")
 
@@ -802,19 +794,34 @@ class AssessmentPage(BasePageClass):
     def get_schooldata_comment_image_locator(self, section):
         return "//div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']"
 
-    def get_schooldata_camera_image(self, section):
-        return  self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//img[@src='../images/camera.png']")
+    def get_schooldata_camera_image(self, section, subsection):
+        return  self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                "[contains(text(),'"+subsection+"')]//img[@src='../images/camera.png']")
 
-    def get_schooldata_camera_image_locator(self, section):
-        return "//div[contains(text(),'"+section+"')]//img[@src='../images/camera.png']"
+    def get_all_schooldata_camera_image(self, subsection):
+        return  self.driver.find_element_by_xpath("//div[contains(text(),'"+subsection+"')]//img[@src='../images/camera.png']")
 
-    def get_schooldata_attachphoto_button(self, section):
-        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]" \
+    def get_schooldata_camera_image_locator(self, section, subsection):
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
+                                                  "[contains(text(),'"+subsection+"')]//img[@src='../images/camera.png']"
+
+    def get_schooldata_attachphoto_button(self, section, subsection):
+        return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                            "[contains(text(),'"+subsection+"')]" \
                                                            "//div[@ng-show='question.show_photo_upload']" \
                                                            "//div[@ng-show='assessmentEditable()']" \
                                                            "//input[@id='upload_document_file_upload']")
-    def is_attachphoto_button_visible(self, section):
-        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]"
+
+
+    def is_attachphoto_button_visible(self, section, subsection):
+        return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                 "[contains(text(),'"+subsection+"')]"
+                                                 "//div[@ng-show='question.show_photo_upload']"
+                                                 "//div[@ng-show='assessmentEditable()']"
+                                                 "//span[@class = 'fileinput-new']").is_displayed()
+
+    def is_all_attachphoto_button_visible(self, subsection):
+        return self.driver.find_element_by_xpath("//div[contains(text(),'"+subsection+"')]"
                                                  "//div[@ng-show='question.show_photo_upload']"
                                                  "//div[@ng-show='assessmentEditable()']"
                                                  "//span[@class = 'fileinput-new']").is_displayed()
@@ -824,26 +831,38 @@ class AssessmentPage(BasePageClass):
                                                  "//div[@ng-show='assessmentEditable()']" \
                                                            "//input[@id='upload_document_file_upload']"
 
-    def get_schooldata_image(self, section):
-        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]" \
+    def get_schooldata_image(self, section, subsection):
+        return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                                        "[contains(text(),'"+subsection+"')]" \
                                                             "//div[@ng-show='question.show_photo_upload']" \
                                                             "//div[@class= 'assessment_photo_span ng-scope']")
-    def get_schooldata_image_locator(self, section):
-        return "//div[contains(text(),'"+section+"')]//div[@ng-show='question.show_photo_upload']" \
+
+    def get_schooldata_image_locator(self, section, subsection):
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
+                                        "[contains(text(),'"+subsection+"')]//div[@ng-show='question.show_photo_upload']" \
                                                             "//div[@class= 'assessment_photo_span ng-scope']"
 
-    def get_schooldata_image_delete_button(self, section):
-        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]" \
+    def get_schooldata_image_delete_button(self, section, subsection):
+        return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                                "[contains(text(),'"+subsection+"')]" \
                                                              "//div[@ng-show='question.show_photo_upload']" \
                                                              "//div[@class= 'assessment_photo_span ng-scope']" \
                                                              "//img[@src='../images/delete_icon.png']")
-    def get_schooldata_image_delete_button_locator(self, section):
-        return "//div[contains(text(),'"+section+"')]//div[@ng-show='question.show_photo_upload']" \
+
+    def get_all_schooldata_image_delete_button(self, subsection):
+        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+subsection+"')]" \
+                                                             "//div[@ng-show='question.show_photo_upload']" \
+                                                             "//div[@class= 'assessment_photo_span ng-scope']" \
+                                                             "//img[@src='../images/delete_icon.png']")
+    def get_schooldata_image_delete_button_locator(self, section, subsection):
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
+                                    "[contains(text(),'"+subsection+"')]//div[@ng-show='question.show_photo_upload']" \
                                                  "//div[@class= 'assessment_photo_span ng-scope']" \
                                                              "//img[@src='../images/delete_icon.png']"
 
-    def get_schooldata_image_caption(self, section):
-        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]" \
+    def get_schooldata_image_caption(self, section, subsection):
+        return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                            "[contains(text(),'"+subsection+"')]" \
                                                       "//div[@ng-show='question.show_photo_upload']" \
                                                         "//div[@class= 'assessment_photo_span ng-scope']" \
                                                       "//div[@class = 'assessment_photo_caption ng-binding']")
@@ -854,23 +873,23 @@ class AssessmentPage(BasePageClass):
                                                       "//div[@class = 'assessment_photo_caption ng-binding']"
 
 
-    def schooldata_upload_file(self, section, mainsection):
-        if not self.is_attachphoto_button_visible(section):
-            self.get_schooldata_camera_image(section).click()
+    def schooldata_upload_file(self, section, subsection, assessmentsection):
+        if not self.is_attachphoto_button_visible(section, subsection):
+            self.get_schooldata_camera_image(section, subsection).click()
         file = self.file_path("Test_Case_40.jpg")
-        self.get_schooldata_attachphoto_button(section).send_keys(file)
-        self.save_editeddata(mainsection)
+        self.get_schooldata_attachphoto_button(section, subsection).send_keys(file)
+        self.save_editeddata(assessmentsection)
 
-    def schooldata_edit_caption_image(self, section, mainsection):
-        if not self.is_attachphoto_button_visible(section):
-            self.get_schooldata_camera_image(section).click()
+    def schooldata_edit_caption_image(self, section, subsection, assessmentsection):
+        if not self.is_attachphoto_button_visible(section, subsection):
+            self.get_schooldata_camera_image(section, subsection).click()
         file = self.file_path("Test_Case_40.jpg")
-        self.get_schooldata_attachphoto_button(section).send_keys(file)
-        self.save_editeddata(mainsection)
-        self.get_schooldata_image(section)[0].click()
+        self.get_schooldata_attachphoto_button(section, subsection).send_keys(file)
+        self.save_editeddata(assessmentsection)
+        self.get_schooldata_image(section, subsection)[0].click()
         self.get_file_edit_caption_textbox.send_keys("Hello")
         self.get_file_edit_caption_save_button.click()
-        self.save_editeddata(mainsection)
+        self.save_editeddata(assessmentsection)
 
     def schooldata_edit_comment(self, section, mainsection):
         if not self.get_schooldata_comment_textbox(section).is_displayed():
@@ -894,27 +913,32 @@ class AssessmentPage(BasePageClass):
                 raise type(err)("Save failed and the message displayed is - " \
                               + self.driver.find_element_by_xpath(self._ast_saved_text_locator).text + err.message)
 
-    def get_schoolInfrastucture_radiobutton(self, section):
-        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]//label[@model='question.answer.text']")
+    def get_schooldata_radiobutton(self, section, subsectionsection):
+        return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                "[contains(text(),'"+subsectionsection+"')]//label[@model='question.answer.text']")
 
-    def get_schoolinfrasturcture_textarea(self, section):
-        return  self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//textarea[@ng-model='question.answer.text']")
+    def get_schoolinfrasturcture_textarea(self, section, subsectionsection):
+        return  self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                             "[contains(text(),'"+subsectionsection+"')]//textarea[@ng-model='question.answer.text']")
 
-    def get_schoolinfrastructure_textarea_locator(self, section):
-        return "//div[contains(text(),'"+section+"')]//textarea[@ng-model='question.answer.text']"
+    def get_schoolinfrastructure_textarea_locator(self, section, subsectionsection):
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
+                                "[contains(text(),'"+subsectionsection+"')]//textarea[@ng-model='question.answer.text']"
 
-    def get_schoolinfrastructure_textbox(self, section):
-        return self.driver.find_element_by_xpath("//div[contains(text(),'"+section+"')]//input[@name = 'integer_input']")
+    def get_schoolinfrastructure_textbox(self, section, subsectionsection):
+        return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                        "[contains(text(),'"+subsectionsection+"')]//input[@name = 'integer_input']")
 
-    def get_schoolinfrastructure_textbox_locator(self, section):
-        return ("//div[contains(text(),'"+section+"')]//input[@name = 'integer_input']")
+    def get_schoolinfrastructure_textbox_locator(self, section, subsectionsection):
+        return ("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                         "[contains(text(),'"+subsectionsection+"')]//input[@name = 'integer_input']")
 
+    def get_schoolinfrastructure_checkbox(self, section, subsectionsection):
+        return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                                "[contains(text(),'"+subsectionsection+"')] //label")
 
-    def get_schoolinfrastructure_checkbox(self, section):
-        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')] //label")
-
-    def get_schoolinfrastructure_checkbox_locator(self, section):
-        return ("//div[contains(text(),'"+section+"')] //label")
+    def get_schoolinfrastructure_checkbox_locator(self, section, subsectionsection):
+        return ("//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+subsectionsection+"')] //label")
 
     # def schooldata_delete_comment(self, section, mainsection):
     #     if self.get_schooldata_comment_textbox(section).is_displayed():

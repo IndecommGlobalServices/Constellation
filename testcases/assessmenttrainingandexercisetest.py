@@ -44,7 +44,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 schoolsafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_PHYSICAL_SECURITY'))
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 schoolsafetychecked = self.ast.get_trainningandexercises_schoolsafety_radiobutton
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
@@ -56,7 +56,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         :return:
         """
         self.ast.schooldata_edit_comment(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
-                                         self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                                         self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooltrainingsection,
                                                             'SECTION_SCHOOL_SAFETY_PLAN')).get_attribute("value"), "Comment")
 
@@ -70,11 +70,11 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
         count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN')))
         self.ast.schooldata_upload_file(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
-                                        self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                                        self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'))),
                            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
         self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
-                                                      self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                                                      self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
 
     @attr(priority="high")
@@ -90,7 +90,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 schoolsafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_editeddata(self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
                 schoolsafetychecked = self.ast.get_trainningandexercises_schoolsafety_radiobutton
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
@@ -102,7 +102,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         :return:
         """
         self.ast.schooldata_edit_comment(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
-                                         self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                                         self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
         self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooltrainingsection,
                                                             'SECTION_SCHOOL_SAFETY_PLAN')).get_attribute("value"), "Comment")
 
@@ -116,8 +116,8 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
         count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN')))
         self.ast.schooldata_upload_file(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
-                                        self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                                        self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
         self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'))),
                            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
         self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooltrainingsection, 'SECTION_SCHOOL_SAFETY_PLAN'),
-                                                      self.config.get(self.mainsection, 'MAIN_TRAINING_EXERCISE'))
+                                                      self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
