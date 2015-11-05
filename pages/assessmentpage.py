@@ -794,7 +794,7 @@ class AssessmentPage(BasePageClass):
         return "//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+subsection+"')]//textarea[@placeholder='Comments']"
 
     def get_schooldata_comment_image_locator(self, section, subsection):
-        return "//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']"
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+subsection+"')]//img[@src='../images/comment.png']"
 
     def get_schooldata_camera_image(self, section, subsection):
         return  self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
