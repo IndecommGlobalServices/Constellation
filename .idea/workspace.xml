@@ -30,8 +30,8 @@
       <file leaf-file-name="assessmentschoolinfrastructuretest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.41379312">
-              <caret line="282" column="51" selection-start-line="282" selection-start-column="51" selection-end-line="282" selection-end-column="51" />
+            <state vertical-scroll-proportion="0.331565">
+              <caret line="694" column="8" selection-start-line="694" selection-start-column="8" selection-end-line="694" selection-end-column="8" />
               <folding>
                 <element signature="e#29#72#0" expanded="true" />
               </folding>
@@ -52,8 +52,8 @@
       <file leaf-file-name="assessmentpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.0">
-              <caret line="933" column="8" selection-start-line="933" selection-start-column="8" selection-end-line="933" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="790" column="0" selection-start-line="790" selection-start-column="0" selection-end-line="790" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -63,7 +63,7 @@
         <entry file="file://$PROJECT_DIR$/testcases/baseconfig.cfg">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="106" column="19" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="19" />
+              <caret line="108" column="17" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -116,8 +116,8 @@
         <option value="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentphysicalsecuritytest.py" />
         <option value="$PROJECT_DIR$/testcases/baseconfig.cfg" />
-        <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
+        <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
       </list>
     </option>
   </component>
@@ -172,7 +172,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -221,6 +220,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
@@ -248,29 +248,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="ChangesBrowser.SHOW_FLATTEN" value="true" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_112_To_Verfiy_Add_Comment_SECTION_LANDANDBUILDING_ACRES">
-    <configuration default="false" name="Unittests in assessmentoverviewtest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittests in assessmentschoolinfrastructuretest">
     <configuration default="false" name="Unittest AssessmentSchoolInfrastructurePageTest.test_AST_109_To_Test_LandandBuildings_Acres_Radio_Button" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -352,6 +330,28 @@
       <option name="METHOD_NAME" value="test_AST_112_To_Verfiy_Add_Comment_SECTION_LANDANDBUILDING_ACRES" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in assessmentschoolinfrastructuretest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -482,19 +482,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentoverviewtest" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_109_To_Test_LandandBuildings_Acres_Radio_Button" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_110_To_Verify_Fileupload_SECTION_LANDANDBUILDING_ACRES" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_111_To_Verify_Edit_Caption_SECTION_LANDANDBUILDING_ACRES" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_112_To_Verfiy_Add_Comment_SECTION_LANDANDBUILDING_ACRES" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_109_To_Test_LandandBuildings_Acres_Radio_Button" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_110_To_Verify_Fileupload_SECTION_LANDANDBUILDING_ACRES" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_111_To_Verify_Edit_Caption_SECTION_LANDANDBUILDING_ACRES" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_112_To_Verfiy_Add_Comment_SECTION_LANDANDBUILDING_ACRES" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentschoolinfrastructuretest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_112_To_Verfiy_Add_Comment_SECTION_LANDANDBUILDING_ACRES" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_111_To_Verify_Edit_Caption_SECTION_LANDANDBUILDING_ACRES" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_110_To_Verify_Fileupload_SECTION_LANDANDBUILDING_ACRES" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_109_To_Test_LandandBuildings_Acres_Radio_Button" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentoverviewtest" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in assessmentschoolinfrastructuretest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_112_To_Verfiy_Add_Comment_SECTION_LANDANDBUILDING_ACRES" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_111_To_Verify_Edit_Caption_SECTION_LANDANDBUILDING_ACRES" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_110_To_Verify_Fileupload_SECTION_LANDANDBUILDING_ACRES" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssessmentSchoolInfrastructurePageTest.test_AST_109_To_Test_LandandBuildings_Acres_Radio_Button" />
       </list>
     </recent_temporary>
   </component>
@@ -508,12 +508,6 @@
       <created>1441947410271</created>
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Added sanity check function">
-      <created>1442307070383</created>
-      <option name="number" value="00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1442307070383</updated>
     </task>
     <task id="LOCAL-00012" summary="Added sanity check function">
       <created>1442377940132</created>
@@ -803,32 +797,38 @@
       <option name="project" value="LOCAL" />
       <updated>1446631124996</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Added Mainsection in XPATH">
+      <created>1446634081855</created>
+      <option name="number" value="00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1446634081855</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24627976" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3425775" sideWeight="0.50595236" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22390573" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3382353" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24627976" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33169934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3382353" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39708266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33169934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1157,7 +1157,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6866841">
           <caret line="170" column="98" selection-start-line="170" selection-start-column="87" selection-end-line="170" selection-end-column="98" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1165,7 +1164,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.8031496">
           <caret line="125" column="14" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1173,7 +1171,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3076923">
           <caret line="2" column="48" selection-start-line="2" selection-start-column="48" selection-end-line="2" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1181,7 +1178,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="597" column="52" selection-start-line="597" selection-start-column="52" selection-end-line="597" selection-end-column="52" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1189,7 +1185,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="194" column="0" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1197,7 +1192,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="35" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1205,7 +1199,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="10" column="63" selection-start-line="10" selection-start-column="63" selection-end-line="10" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1213,7 +1206,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1221,7 +1213,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.60477453">
           <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1229,7 +1220,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.14323607">
           <caret line="1813" column="34" selection-start-line="1813" selection-start-column="34" selection-end-line="1813" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1237,7 +1227,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33333334">
           <caret line="1451" column="47" selection-start-line="1451" selection-start-column="47" selection-end-line="1451" selection-end-column="47" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1249,26 +1238,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
+    <entry file="file://$PROJECT_DIR$/testcases/baseconfig.cfg">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.0">
-          <caret line="933" column="8" selection-start-line="933" selection-start-column="8" selection-end-line="933" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="108" column="17" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/baseconfig.cfg">
+    <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="106" column="19" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="19" />
+          <caret line="790" column="0" selection-start-line="790" selection-start-column="0" selection-end-line="790" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.41379312">
-          <caret line="282" column="51" selection-start-line="282" selection-start-column="51" selection-end-line="282" selection-end-column="51" />
+        <state vertical-scroll-proportion="0.331565">
+          <caret line="694" column="8" selection-start-line="694" selection-start-column="8" selection-end-line="694" selection-end-column="8" />
           <folding>
             <element signature="e#29#72#0" expanded="true" />
           </folding>
