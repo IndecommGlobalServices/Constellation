@@ -1,0 +1,171 @@
+[
+
+    {
+        "main_section": "SECTION_PERIMETER",
+        "sub_section" : "SECTION_PERIMETER_TYPE_OF_WALL"
+    },
+    {
+        "main_section": "SECTION_PERIMETER",
+        "sub_section" : "SECTION_PERIMETER_FENCING"
+    },
+    {
+        "main_section": "SECTION_PERIMETER",
+        "sub_section" : "SECTION_PERIMETER_GATES_LOCKED"
+    },
+    {
+        "main_section": "SECTION_PERIMETER",
+        "sub_section" : "SECTION_PERIMETER_SAME_KEY"
+    },
+    {
+        "main_section": "SECTION_PERIMETER",
+        "sub_section" : "SECTION_PERIMETER_ADDITIONAL_FENCING"
+    },
+    {
+        "main_section": "SECTION_CCTV",
+        "sub_section" : "SECTION_CCTV"
+    },
+    {
+        "main_section": "SECTION_CCTV",
+        "sub_section" : "SECTION_CCTC_NO_OF_CAMERAS"
+    },
+    {
+        "main_section": "SECTION_CCTV",
+        "sub_section" : "SECTION_CCTV_ADDITIONAL_CAMERAS"
+    },
+    {
+        "main_section": "SECTION_CCTV",
+        "sub_section" : "SECTION_CCTV_NO_OF_ADDITIONAL_CAMERAS"
+    },
+    {
+        "main_section": "SECTION_LOCK",
+        "sub_section" : "SECTION_LOCKS_AVAILABILITY"
+    },
+    {
+        "main_section": "SECTION_LOCK",
+        "sub_section" : "SECTION_LOCK_MAIN_ENTRANCE"
+    },
+    {
+        "main_section": "SECTION_LOCK",
+        "sub_section" : "SECTION_LOCK_OTHER_PARTS"
+    },
+    {
+        "main_section": "SECTION_IDENTIFICATION",
+        "sub_section" : "SECTION_IDENTIFICATION_CARDS"
+    },
+  {
+        "main_section": "SECTION_IDENTIFICATION",
+        "sub_section" : "SECTION_IDENTIFICATION_PHOTOGRAPH"
+    },
+  {
+        "main_section": "SECTION_IDENTIFICATION",
+        "sub_section" : "SECTION_IDENTIFICATION_STUDENT_PHOTOGRAPH"
+    },
+  {
+        "main_section": "SECTION_IDENTIFICATION",
+        "sub_section" : "SECTION_IDENTIFICATION_VISITOR_SIGN"
+    },
+  {
+        "main_section": "SECTION_IDENTIFICATION",
+        "sub_section" : "SECTION_IDENTIFICATION_TEMPORARY_ID"
+    },
+  {
+        "main_section": "SECTION_IDENTIFICATION",
+        "sub_section" : "SECTION_IDENTIFICATION_VISITOR_CHECKOUT"
+    },
+  {
+        "main_section": "SECTION_IDENTIFICATION",
+        "sub_section" : "SECTION_IDENTIFICATION_DISTRICT_STAFF_CHECKIN"
+    },
+  {
+        "main_section": "SECTION_IDENTIFICATION",
+        "sub_section" : "SECTION_IDENTIFICATION_DISTRICT_STAFF_PHOTOGRAPH"
+    },
+    {
+        "main_section": "SECTION_LIGHTING",
+        "sub_section" : "SECTION_LIGHTING_DARK"
+    },
+  {
+        "main_section": "SECTION_LIGHTING",
+        "sub_section" : "SECTION_LIGHTING_CONTROL"
+    },
+  {
+        "main_section": "SECTION_LIGHTING",
+        "sub_section" : "SECTION_LIGHTING_ADDITIONAL"
+    },
+    {
+        "main_section": "SECTION_ALARMS",
+        "sub_section" : "SECTION_ALARMS_ACCESSALARMS"
+    },
+    {
+        "main_section": "SECTION_ALARMS",
+        "sub_section" : "SECTION_ALARM_MONITORS"
+    },
+  {
+        "main_section": "SECTION_ALARMS",
+        "sub_section" : "SECTION_ALARMS_PANICALARMS"
+    },
+  {
+        "main_section": "SECTION_ALARMS",
+        "sub_section" : "SECTION_ALARMS_KEYINDIVIDUAL_PANICALARM"
+    },
+      {
+        "main_section": "SECTION_BIOMETRIC",
+        "sub_section" : "SECTION_BIOMETRIC_AVAILABILITY"
+    },
+    {
+        "main_section": "SECTION_BIOMETRIC",
+        "sub_section" : "SECTION_BIOMETRIC_CHARACTERESTICS"
+    },
+  {
+        "main_section": "SECTION_BIOMETRIC",
+        "sub_section" : "SECTION_BIOMETRIC_LOCK"
+    },
+  {
+        "main_section": "SECTION_BIOMETRIC",
+        "sub_section" : "SECTION_BIOMETRIC_OTHERPARTS"
+    },
+      {
+        "main_section": "SECTION_SECURITY",
+        "sub_section" : "SECTION_SECURITY_SWORN"
+    },
+  {
+        "main_section": "SECTION_SECURITY",
+        "sub_section" : "SECTION_SECURITY_SRO"
+    },
+  {
+        "main_section": "SECTION_SECURITY",
+        "sub_section" : "SECTION_SECURITY_SECTION"
+    },
+      {
+        "main_section": "SECTION_SECURITY",
+        "sub_section" : "SECTION_SECURITY_CHARACTERISTICS"
+    },
+    {
+        "main_section": "SECTION_SECURITY",
+        "sub_section" : "SECTION_SECURITY_ADDITIONAL"
+    },
+  {
+        "main_section": "SECTION_SECURITY",
+        "sub_section" : "SECTION_SECURITY_ADDITIONAL_HOWMANY"
+    },
+      {
+        "main_section": "SECTION_ROOFACCESS",
+        "sub_section" : "SECTION_ROOFACCESS_DESCRIPTION"
+    },
+  {
+        "main_section": "SECTION_ROOFACCESS",
+        "sub_section" : "SECTION_ROOFACCESS_ACCESS"
+    },
+    {
+        "main_section": "SECTION_PHYSICALKEY",
+        "sub_section" : "SECTION_PHYSICALKEY_AREA"
+    },
+      {
+        "main_section": "SECTION_PHYSICALKEY",
+        "sub_section" : "SECTION_PHYSICALKEY_POSITION"
+    },
+    {
+        "main_section": "SECTION_PHYSICALKEY",
+        "sub_section" : "SECTION_PHYSICALKEY_PoC"
+    }
+]

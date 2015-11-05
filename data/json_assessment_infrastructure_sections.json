@@ -1,0 +1,163 @@
+[
+
+    {
+        "main_section": "SECTION_LANDANDBUILDING",
+        "sub_section" : "SECTION_LANDANDBUILDING_ACRES"
+    },
+    {
+        "main_section": "SECTION_LANDANDBUILDING",
+        "sub_section" : "SECTION_LANDANDBUILDING_BUILDING"
+    },
+    {
+        "main_section": "SECTION_LANDANDBUILDING",
+        "sub_section" : "SECTION_LANDANDBUILDING_MARKED"
+    },
+    {
+        "main_section": "SECTION_LANDANDBUILDING",
+        "sub_section" : "SECTION_SURROUNDING_PERIMETER"
+    },
+    {
+        "main_section": "SECTION_SURROUNDING",
+        "sub_section" : "SECTION_SURROUNDING_PARKING"
+    },
+    {
+        "main_section": "SECTION_SURROUNDING",
+        "sub_section" : "SECTION_SURROUNDING_ADJACENTBUILDINGS"
+    },
+    {
+        "main_section": "SECTION_SURROUNDING",
+        "sub_section" : "SECTION_SURROUNDING_TOXIC"
+    },
+    {
+        "main_section": "SECTION_ELECTRIC",
+        "sub_section" : "SECTION_ELECTRIC_UTILITY"
+    },
+    {
+        "main_section": "SECTION_ELECTRIC",
+        "sub_section" : "SECTION_ELECTRIC_LOSSOFUTILITY"
+    },
+    {
+        "main_section": "SECTION_ELECTRIC",
+        "sub_section" : "SECTION_ELECTRIC_BACKUPGENERATOR"
+    },
+    {
+        "main_section": "SECTION_ELECTRIC",
+        "sub_section" : "SECTION_ELECTRIC_GENERATORPOWERED"
+    },
+    {
+        "main_section": "SECTION_TELEPHONE",
+        "sub_section" : "SECTION_TELEPHONE_PROVIDER"
+    },
+    {
+        "main_section": "SECTION_TELEPHONE",
+        "sub_section" : "SECTION_TELEPHONE_911PROCEDURE"
+    },
+  {
+        "main_section": "SECTION_BUSES",
+        "sub_section" : "SECTION_BUSES_DISTRICTTRANSPORTATION"
+    },
+  {
+        "main_section": "SECTION_BUSES",
+        "sub_section" : "SECTION_BUSES_GPS"
+    },
+  {
+        "main_section": "SECTION_BUSES",
+        "sub_section" : "SECTION_BUSES_CAMERA"
+    },
+  {
+        "main_section": "SECTION_BUSES",
+        "sub_section" : "SECTION_BUSES_TYPEOFCAMERA"
+    },
+  {
+        "main_section": "SECTION_BUSES",
+        "sub_section" : "SECTION_BUSES_TWOWAYRADIOS"
+    },
+    {
+        "main_section": "SECTION_BUSES",
+        "sub_section" : "SECTION_BUSES_DISPATCHSYSTEM"
+    },
+  {
+        "main_section": "SECTION_BUSES",
+        "sub_section" : "SECTION_BUSES_HOUSED"
+    },
+  {
+        "main_section": "SECTION_BUSES",
+        "sub_section" : "SECTION_BUSES_ACCESS"
+    },
+    {
+        "main_section": "SECTION_WATER",
+        "sub_section" : "SECTION_WATER_UTILITY"
+    },
+    {
+        "main_section": "SECTION_WATER",
+        "sub_section" : "SECTION_WATER_LOSSOFUTILITY"
+    },
+  {
+        "main_section": "SECTION_ISP",
+        "sub_section" : "SECTION_ISP_NAME"
+    },
+  {
+        "main_section": "SECTION_ISP",
+        "sub_section" : "SECTION_ISP_LOSSOFUTILITY"
+    },
+      {
+        "main_section": "SECTION_BIOMETRIC",
+        "sub_section" : "SECTION_NATURALGAS_AVAILABILITY"
+    },
+    {
+        "main_section": "SECTION_NATURALGAS",
+        "sub_section" : "SECTION_NATURALGAS_UTILITY"
+    },
+  {
+        "main_section": "SECTION_NATURALGAS",
+        "sub_section" : "SECTION_NATURALGAS_REQUIRES"
+    },
+  {
+        "main_section": "SECTION_NATURALGAS",
+        "sub_section" : "SECTION_NATURALGAS_LOSSOFUTILITY"
+    },
+      {
+        "main_section": "SECTION_COMMUNICATION",
+        "sub_section" : "SECTION_COMMUNICATION_RADIO"
+    },
+  {
+        "main_section": "SECTION_COMMUNICATION",
+        "sub_section" : "SECTION_COMMUNICATION_ALERT"
+    },
+  {
+        "main_section": "SECTION_COMMUNICATION",
+        "sub_section" : "SECTION_COMMUNICATION_ENS"
+    },
+      {
+        "main_section": "SECTION_COMMUNICATION",
+        "sub_section" : "SECTION_COMMUNICATION_PA"
+    },
+    {
+        "main_section": "SECTION_LP",
+        "sub_section" : "SECTION_LP_AVAILABILITY"
+    },
+  {
+        "main_section": "SECTION_LP",
+        "sub_section" : "SECTION_LP_COMPANY"
+    },
+      {
+        "main_section": "SECTION_LP",
+        "sub_section" : "SECTION_LP_TANKSIZE"
+    },
+  {
+        "main_section": "SECTION_LP",
+        "sub_section" : "SECTION_LP_TANKLOCATION"
+    },
+    {
+        "main_section": "SECTION_LP",
+        "sub_section" : "SECTION_LP_SERVICES"
+    },
+      {
+        "main_section": "SECTION_LP",
+        "sub_section" : "SECTION_LP_POWERDURATION"
+    },
+    {
+        "main_section": "SECTION_LP",
+        "sub_section" : "SECTION_LP_LOSSOFUTILITY"
+    }
+]
