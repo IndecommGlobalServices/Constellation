@@ -895,11 +895,20 @@ class AssessmentPage(BasePageClass):
         self.get_file_edit_caption_save_button.click()
         self.save_editeddata(assessmentsection)
 
+    @property
+    def get_assessment_scroll(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._assessment_scroll)))
+            return self.driver.find_element_by_xpath(self._assessment_scroll)
+        except Exception, err:
+            raise type(err)("Accordian main scroll bar - searched XPATH - " + self._assessment_scroll + err.message)
+
     def schooldata_edit_comment(self, section, subsection, assessmentsection):
         if not self.get_schooldata_comment_textbox(section, subsection).is_displayed():
             self.get_schooldata_comment_image(section, subsection).click()
-        # self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-        # self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+        self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+        self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
         self.get_schooldata_comment_textbox(section, subsection).clear()
         self.get_schooldata_comment_textbox(section, subsection).send_keys("Comment")
         self.save_editeddata(assessmentsection)

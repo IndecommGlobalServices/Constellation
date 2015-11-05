@@ -13,7 +13,7 @@
         "sub_section" : "SECTION_LANDANDBUILDING_MARKED"
     },
     {
-        "main_section": "SECTION_LANDANDBUILDING",
+        "main_section": "SECTION_SURROUNDING",
         "sub_section" : "SECTION_SURROUNDING_PERIMETER"
     },
     {
@@ -101,7 +101,7 @@
         "sub_section" : "SECTION_ISP_LOSSOFUTILITY"
     },
       {
-        "main_section": "SECTION_BIOMETRIC",
+        "main_section": "SECTION_NATURALGAS",
         "sub_section" : "SECTION_NATURALGAS_AVAILABILITY"
     },
     {
