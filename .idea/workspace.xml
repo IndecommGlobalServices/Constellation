@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assessmentpage.py" afterPath="$PROJECT_DIR$/pages/assessmentpage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" afterPath="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Constellation.iws" />
@@ -29,7 +29,7 @@
         <entry file="file://$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="2181" column="8" selection-start-line="2181" selection-start-column="8" selection-end-line="2181" selection-end-column="8" />
+              <caret line="1286" column="8" selection-start-line="1286" selection-start-column="8" selection-end-line="1286" selection-end-column="8" />
               <folding>
                 <element signature="e#29#72#0" expanded="true" />
               </folding>
@@ -37,21 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assessmenttrainingandexercisetest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="assessmenttrainingandexercisetest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assessmentpage.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9098143">
-              <caret line="916" column="0" selection-start-line="916" selection-start-column="0" selection-end-line="916" selection-end-column="0" />
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -61,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/testcases/baseconfig.cfg">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="108" column="17" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="17" />
+              <caret line="106" column="19" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="19" />
               <folding />
             </state>
           </provider>
@@ -114,8 +104,8 @@
         <option value="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentphysicalsecuritytest.py" />
         <option value="$PROJECT_DIR$/testcases/baseconfig.cfg" />
-        <option value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
         <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
+        <option value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
       </list>
     </option>
   </component>
@@ -493,12 +483,6 @@
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
     </task>
-    <task id="LOCAL-00013" summary="Bug fixes">
-      <created>1442393897474</created>
-      <option name="number" value="00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1442393897474</updated>
-    </task>
     <task id="LOCAL-00014" summary="Bug fixes 9/21">
       <created>1442832844592</created>
       <option name="number" value="00014" />
@@ -787,7 +771,13 @@
       <option name="project" value="LOCAL" />
       <updated>1446684213130</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="infrasdtructure updates">
+      <created>1446684370059</created>
+      <option name="number" value="00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1446684370060</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -1218,7 +1208,7 @@
     <entry file="file://$PROJECT_DIR$/testcases/baseconfig.cfg">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="108" column="17" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="17" />
+          <caret line="106" column="19" selection-start-line="106" selection-start-column="0" selection-end-line="106" selection-end-column="19" />
           <folding />
         </state>
       </provider>
@@ -1226,25 +1216,25 @@
     <entry file="file://$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="2181" column="8" selection-start-line="2181" selection-start-column="8" selection-end-line="2181" selection-end-column="8" />
+          <caret line="1286" column="8" selection-start-line="1286" selection-start-column="8" selection-end-line="1286" selection-end-column="8" />
           <folding>
             <element signature="e#29#72#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py">
+    <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+        <state vertical-scroll-proportion="0.331565">
+          <caret line="767" column="0" selection-start-line="767" selection-start-column="0" selection-end-line="767" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assessmentpage.py">
+    <entry file="file://$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9098143">
-          <caret line="916" column="0" selection-start-line="916" selection-start-column="0" selection-end-line="916" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

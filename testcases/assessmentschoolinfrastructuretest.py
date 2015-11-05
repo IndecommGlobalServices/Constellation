@@ -225,15 +225,15 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_121_To_Verfiy_perimeter_textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                         self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).get_attribute("value"), "100")
 
 
@@ -1055,53 +1055,53 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     #@SkipTest
     def test_AST_180_To_Verify_Surrounding_Toxic_RadioButton(self):
         for option in range(2):
-            toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
+            toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'))
             if not toxicoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 toxicoption[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-                toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
+                toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_181_To_Verify_Fileupload_SECTION_SURROUNDING_TOXIC(self):
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                                          self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC')))
-        self.ast.schooldata_upload_file(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.ast.schooldata_upload_file(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                         self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'),
                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                              self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'))),
                            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                       self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'),
                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_182_To_Verify_Edit_Caption_SECTION_SURROUNDING_TOXIC(self):
-        self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'),
                                                self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                       self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'),
                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_183_To_Verfiy_Add_Comment_SECTION_SURROUNDING_TOXIC(self):
-        self.ast.schooldata_edit_comment(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.ast.schooldata_edit_comment(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                          self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                     self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.mainsection, 'SECTION_BUSES'),
+        self.ast.schooldata_delete_comment(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                            self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
@@ -1247,7 +1247,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     #@SkipTest
     def test_AST_194_To_Verify_Edit_Caption_SECTION_WATER_UTILITY(self):
         self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, 'SECTION_WATER'),
-                                               self.config.get(self.subsection, 'SECTISECTION_WATER_UTILITYON_TELEPHONE_PROVIDER'),
+                                               self.config.get(self.subsection, 'SECTION_WATER_UTILITY'),
                                                self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, 'SECTION_WATER'),
                                                                self.config.get(self.subsection, 'SECTION_WATER_UTILITY'))[0].text, "Hello")
