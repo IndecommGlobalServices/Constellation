@@ -38,6 +38,7 @@ class AssessmentPage(BasePageClass):
 
     #Assessment actions locator
     _ast_action_dropdown_loactor = "(//div[@id='assessment_actions_dropdown']//button[@data-toggle='dropdown'])"
+        #"//div[@id = 'assessment_actions_dropdown']//button[contains(text(), 'Select action')]"
 
     # Assessment filter related locators
     _ast_status_filter_drop_down_locator = "//div[@label='Status']"
@@ -131,6 +132,8 @@ class AssessmentPage(BasePageClass):
     _ast_trainningandexercises_safetyplan_radio_button_locator="//div[contains(text(),'Has the staff of your school been trained in the comprehensive school safety plan?')]" \
                                                          "//label[@model='question.answer.text']"
 
+    # Scroll
+    _assessment_scroll = ".//*[@id='main_content']"
 
     def __init__(self, driver):
         super(AssessmentPage, self).__init__(driver)
@@ -482,9 +485,8 @@ class AssessmentPage(BasePageClass):
     def get_school_trainningandexercises_button(self):
         return self.driver.find_element_by_xpath(self._ast_trainningandexercises_button_locator)
 
-    @property
-    def get_trainningandexercises_schoolsafety_radiobutton(self):
-        return self.driver.find_elements_by_xpath(self._ast_trainningandexercises_safetyplan_radio_button_locator)
+    def get_schooltrainingandexercise_radiobutton(self, section):
+        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]//label[@model='question.answer.text']")
 
     def get_schooldata(self):
         with open(schooldatafile) as data_file:
@@ -893,11 +895,20 @@ class AssessmentPage(BasePageClass):
         self.get_file_edit_caption_save_button.click()
         self.save_editeddata(assessmentsection)
 
+    @property
+    def get_assessment_scroll(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._assessment_scroll)))
+            return self.driver.find_element_by_xpath(self._assessment_scroll)
+        except Exception, err:
+            raise type(err)("Accordian main scroll bar - searched XPATH - " + self._assessment_scroll + err.message)
+
     def schooldata_edit_comment(self, section, subsection, assessmentsection):
         if not self.get_schooldata_comment_textbox(section, subsection).is_displayed():
             self.get_schooldata_comment_image(section, subsection).click()
-        # self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-        # self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+        self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+        self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
         self.get_schooldata_comment_textbox(section, subsection).clear()
         self.get_schooldata_comment_textbox(section, subsection).send_keys("Comment")
         self.save_editeddata(assessmentsection)
@@ -921,9 +932,9 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
                                 "[contains(text(),'"+subsectionsection+"')]//label[@model='question.answer.text']")
 
-    def get_schoolinfrasturcture_textarea(self, section, subsection):
+    def get_schoolinfrasturcture_textarea(self, section, subsectionsection):
         return  self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
-                             "[contains(text(),'"+subsection+"')]//textarea[@ng-model='question.answer.text']")
+                             "[contains(text(),'"+subsectionsection+"')]//textarea[@ng-model='question.answer.text']")
 
     def get_schoolinfrastructure_textarea_locator(self, section, subsectionsection):
         return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
@@ -947,6 +958,8 @@ class AssessmentPage(BasePageClass):
     # def schooldata_delete_comment(self, section, mainsection):
     #     if self.get_schooldata_comment_textbox(section).is_displayed():
     #         self.get_schooldata_comment_textbox(section).clear()
+    #         self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+    #         self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
     #         self.get_schooldata_comment_image(section).click()
     #         WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
     #                 (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
@@ -956,6 +969,17 @@ class AssessmentPage(BasePageClass):
     #         except Exception, err:
     #             raise type(err)("Save failed and the message displayed is - " \
     #                           + self.driver.find_element_by_xpath(self._ast_saved_text_locator).text + err.message)
+    
+    # Scroll
+    @property
+    def get_assessment_scroll(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._assessment_scroll)))
+            return self.driver.find_element_by_xpath(self._assessment_scroll)
+        except Exception, err:
+            raise type(err)("Accordian main scroll bar - searched XPATH - " + self._assessment_scroll + err.message)
+
 
     def _validate_page(self, driver):
         pass
