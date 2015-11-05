@@ -735,7 +735,7 @@ class AssessmentPage(BasePageClass):
         WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
                     (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
         try:
-            WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
+            WebDriverWait(self.driver, 150).until(expected_conditions.text_to_be_present_in_element(
                 (By.XPATH, self._ast_saved_text_locator), "Saved"))
         except Exception, err:
             raise type(err)("Save failed and the message displayed is - " \
@@ -794,7 +794,7 @@ class AssessmentPage(BasePageClass):
         return "//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+subsection+"')]//textarea[@placeholder='Comments']"
 
     def get_schooldata_comment_image_locator(self, section, subsection):
-        return "//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+section+"')]//img[@src='../images/comment.png']"
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+subsection+"')]//img[@src='../images/comment.png']"
 
     def get_schooldata_camera_image(self, section, subsection):
         return  self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
@@ -896,6 +896,8 @@ class AssessmentPage(BasePageClass):
     def schooldata_edit_comment(self, section, subsection, assessmentsection):
         if not self.get_schooldata_comment_textbox(section, subsection).is_displayed():
             self.get_schooldata_comment_image(section, subsection).click()
+        # self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+        # self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
         self.get_schooldata_comment_textbox(section, subsection).clear()
         self.get_schooldata_comment_textbox(section, subsection).send_keys("Comment")
         self.save_editeddata(assessmentsection)
@@ -919,9 +921,9 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
                                 "[contains(text(),'"+subsectionsection+"')]//label[@model='question.answer.text']")
 
-    def get_schoolinfrasturcture_textarea(self, section, subsectionsection):
+    def get_schoolinfrasturcture_textarea(self, section, subsection):
         return  self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
-                             "[contains(text(),'"+subsectionsection+"')]//textarea[@ng-model='question.answer.text']")
+                             "[contains(text(),'"+subsection+"')]//textarea[@ng-model='question.answer.text']")
 
     def get_schoolinfrastructure_textarea_locator(self, section, subsectionsection):
         return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
