@@ -7,7 +7,12 @@ from pages.assessmentpage import AssessmentPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 import ConfigParser
+import os, json
 
+cwd = os.getcwd()
+os.chdir('..')
+sectionfile = os.path.join(os.getcwd(), "data", "json_assessment_infrastructure_sections.json")
+os.chdir(cwd)
 
 class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
@@ -2242,3 +2247,25 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.ast.schooldata_delete_comment(self.config.get(self.mainsection, 'SECTION_LP'),
                                            self.config.get(self.subsection, 'SECTION_LP_LOSSOFUTILITY'),
                                          self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_To_Verfiy_Add_Comment(self):
+        """
+        Description : To test add comment in
+        :return:
+        """
+        with open(sectionfile) as data_file:
+            for section in json.load(data_file):
+                self.ast.schooldata_edit_comment(self.config.get(self.mainsection, section["main_section"]),
+                                                 self.config.get(self.subsection, section["sub_section"]),
+                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
+                try:
+                    self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, section["main_section"]),
+                            self.config.get(self.subsection, section["sub_section"])).get_attribute("value"), "Comment")
+                except Exception, err:
+                    print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
+                          +" - " +self.config.get(self.subsection, section["sub_section"])
+                self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
+                                                 self.config.get(self.subsection, section["sub_section"]),
+                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))

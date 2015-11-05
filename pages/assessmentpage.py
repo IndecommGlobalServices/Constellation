@@ -896,6 +896,8 @@ class AssessmentPage(BasePageClass):
     def schooldata_edit_comment(self, section, subsection, assessmentsection):
         if not self.get_schooldata_comment_textbox(section, subsection).is_displayed():
             self.get_schooldata_comment_image(section, subsection).click()
+        # self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+        # self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
         self.get_schooldata_comment_textbox(section, subsection).clear()
         self.get_schooldata_comment_textbox(section, subsection).send_keys("Comment")
         self.save_editeddata(assessmentsection)
