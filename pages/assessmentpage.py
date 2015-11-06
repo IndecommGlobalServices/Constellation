@@ -839,7 +839,8 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
                                                                         "[contains(text(),'"+subsection+"')]" \
                                                             "//div[@ng-show='question.show_photo_upload']" \
-                                                            "//div[@class= 'assessment_photo_span ng-scope']")
+                                                            "//div[@class= 'assessment_photo_span ng-scope']"
+                                                            "//img[@class= 'assessment_photo showaslink']")
 
     def get_schooldata_image_locator(self, section, subsection):
         return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
@@ -889,7 +890,14 @@ class AssessmentPage(BasePageClass):
             self.get_schooldata_camera_image(section, subsection).click()
         file = self.file_path("Test_Case_40.jpg")
         self.get_schooldata_attachphoto_button(section, subsection).send_keys(file)
-        self.save_editeddata(assessmentsection)
+        WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
+                    (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
+        try:
+            WebDriverWait(self.driver, 150).until(expected_conditions.text_to_be_present_in_element(
+                (By.XPATH, self._ast_saved_text_locator), "Saved"))
+        except Exception, err:
+            raise type(err)("Save failed and the message displayed is - " \
+                          + self.driver.find_element_by_xpath(self._ast_saved_text_locator).text + err.message)
         self.get_schooldata_image(section, subsection)[0].click()
         self.get_file_edit_caption_textbox.send_keys("Hello")
         self.get_file_edit_caption_save_button.click()

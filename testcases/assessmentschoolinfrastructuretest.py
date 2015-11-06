@@ -6,7 +6,7 @@ from pages.assessmentpage import AssessmentPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 import ConfigParser
-import os, json
+import os,json
 
 cwd = os.getcwd()
 os.chdir('..')

@@ -1,0 +1,63 @@
+[
+
+    {
+        "main_section": "SECTION_SCHOOL",
+        "sub_section" : "SECTION_SCHOOL_SAFETY_PLAN"
+    },
+    {
+        "main_section": "SECTION_EXERCISE",
+        "sub_section" : "SECTION_EXERCISE_DISTRICT_WIDE"
+    },
+    {
+        "main_section": "SECTION_EXERCISE",
+        "sub_section" : "SECTION_EXERCISE_COUNTYS_MASS_CASUALTY_DRILL"
+    },
+    {
+        "main_section": "SECTION_EXERCISE",
+        "sub_section" : "SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT"
+    },
+    {
+        "main_section": "SECTION_EXERCISE",
+        "sub_section" : "SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT_OCCUR"
+    },
+    {
+        "main_section": "SECTION_EXERCISE",
+        "sub_section" : "SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT"
+    },
+    {
+        "main_section": "SECTION_EXERCISE",
+        "sub_section" : "SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT_OCCUR"
+    },
+    {
+        "main_section": "SECTION_EXERCISE",
+        "sub_section" : "SECTION_EXERCISE_CRISIS_INCIDENT_MANAGEMENT_EXERCISED"
+    },
+    {
+        "main_section": "SECTION_EMERGENCY_CHECKLIST",
+        "sub_section" : "SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS"
+    },
+    {
+        "main_section": "SECTION_EMERGENCY_CHECKLIST",
+        "sub_section" : "SECTION_EMERGENCY_CHECKLIST_TRAINED_IN_THE_REUNIFICATION_PLAN"
+    },
+    {
+        "main_section": "SECTION_EXERCISES_OR_DRILLS",
+        "sub_section" : "SECTION_EXERCISES_OR_DRILLS_CONDUCTED"
+    },
+    {
+        "main_section": "SECTION_EXERCISES_OR_DRILLS",
+        "sub_section" : "SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS"
+    },
+    {
+        "main_section": "SECTION_CRISIS_INCIDENT_MANAGEMENT",
+        "sub_section" : "SECTION_CRISIS_INCIDENT_MANAGEMENT_COMMAND_TEAM_TRAINED_REGULARLY"
+    },
+  {
+        "main_section": "SECTION_CRISIS_INCIDENT_MANAGEMENT",
+        "sub_section" : "SECTION_CRISIS_INCIDENT_MANAGEMENT_STAFF_WOULD_NEED_LIST"
+    },
+  {
+        "main_section": "SECTION_CRISIS_INCIDENT_MANAGEMENT",
+        "sub_section" : "SECTION_CRISIS_INCIDENT_MANAGEMENT_IMPACT_YOUR_SCHOOL_SAFETY"
+    }
+]
