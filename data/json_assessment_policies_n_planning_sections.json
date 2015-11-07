@@ -1,0 +1,123 @@
+[
+
+    {
+        "main_section": "SECTION_SCHOOL_SAFETY",
+        "sub_section" : "SECTION_SCHOOL_SAFETY_COMPREHENSIVE_PLAN"
+    },
+    {
+        "main_section": "SECTION_SCHOOL_SAFETY",
+        "sub_section" : "SECTION_SCHOOL_SAFETY_PLAN_SHARED"
+    },
+    {
+        "main_section": "SECTION_SCHOOL_SAFETY",
+        "sub_section" : "SECTION_SCHOOL_SAFETY_PLAN_REVIEW"
+    },
+    {
+        "main_section": "SECTION_FIRE_SAFETY",
+        "sub_section" : "SECTION_FIRE_SAFETY_CERTIFIED_INSPECTOR"
+    },
+    {
+        "main_section": "SECTION_FIRE_SAFETY",
+        "sub_section" : "SECTION_FIRE_SAFETY_INSPECTION"
+    },
+    {
+        "main_section": "SECTION_PHYSICAL_ACCESS",
+        "sub_section" : "SECTION_PHYSICAL_ACCESS_REVIEW"
+    },
+    {
+        "main_section": "SECTION_PHYSICAL_ACCESS",
+        "sub_section" : "SECTION_PHYSICAL_ACCESS_KEYS_RETURN"
+    },
+    {
+        "main_section": "SECTION_PHYSICAL_ACCESS",
+        "sub_section" : "SECTION_PHYSICAL_ACCESS_ANNUAL_INVENTORY"
+    },
+    {
+        "main_section": "SECTION_METAL_DETECTOR",
+        "sub_section" : "SECTION_METAL_DETECTOR_SCREEN_WEAPONS"
+    },
+    {
+        "main_section": "SECTION_METAL_DETECTOR",
+        "sub_section" : "SECTION_METAL_DETECTOR_AIRPORT_STYLE"
+    },
+    {
+        "main_section": "SECTION_METAL_DETECTOR",
+        "sub_section" : "SECTION_METAL_DETECTOR_EXTRA_SCREEN"
+    },
+    {
+        "main_section": "SECTION_HANDHELD_RADIO",
+        "sub_section" : "SECTION_HANDHELD_RADIO_POLICY"
+    },
+    {
+        "main_section": "SECTION_HANDHELD_RADIO",
+        "sub_section" : "SECTION_HANDHELD_RADIO_LIST"
+    },
+  {
+        "main_section": "SECTION_EMERGENCY_CHECKLIST",
+        "sub_section" : "SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACK"
+    },
+  {
+        "main_section": "SECTION_EMERGENCY_CHECKLIST",
+        "sub_section" : "SECTION_EMERGENCY_CHECKLIST_PROCEDURES"
+    },
+  {
+        "main_section": "SECTION_EMERGENCY_CHECKLIST",
+        "sub_section" : "SECTION_EMERGENCY_CHECKLIST_SHARED"
+    },
+  {
+        "main_section": "SECTION_EMERGENCY_CHECKLIST",
+        "sub_section" : "SECTION_EMERGENCY_CHECKLIST_REUNIFICATION_PLAN"
+    },
+  {
+        "main_section": "SECTION_EMERGENCY_CHECKLIST",
+        "sub_section" : "SECTION_EMERGENCY_CHECKLIST_REUNIFICATION_UPDATE"
+    },
+  {
+        "main_section": "SECTION_SAFETY_HAZARDS",
+        "sub_section" : "SECTION_SAFETY_HAZARDS_ASSESSMENT"
+    },
+  {
+        "main_section": "SECTION_ELECTRONIC_LOCKS",
+        "sub_section" : "SECTION_ELECTRONIC_LOCKS_ACCESS_REVIEWED"
+    },
+  {
+        "main_section": "SECTION_ELECTRONIC_LOCKS",
+        "sub_section" : "SECTION_ELECTRONIC_LOCKS_ACCESS_SUSPENDED"
+    },
+  {
+        "main_section": "SECTION_PA_SYSTEM",
+        "sub_section" : "SECTION_PA_SYSTEM_POLICY"
+    },
+  {
+        "main_section": "SECTION_PA_SYSTEM",
+        "sub_section" : "SECTION_PA_SYSTEM_ANNOUNCEMENTS"
+    },
+  {
+        "main_section": "SECTION_CRISIS_INCIDENT_TEAM",
+        "sub_section" : "SECTION_CRISIS_INCIDENT_TEAM_COMPOSITION"
+    },
+  {
+        "main_section": "SECTION_CRISIS_INCIDENT_TEAM",
+        "sub_section" : "SECTION_CRISIS_INCIDENT_TEAM_TRAINED_IS700"
+    },
+  {
+        "main_section": "SECTION_CRISIS_INCIDENT_TEAM",
+        "sub_section" : "SECTION_CRISIS_INCIDENT_TEAM_TRAINED_ICS100"
+    },
+  {
+        "main_section": "SECTION_CRISIS_INCIDENT_TEAM",
+        "sub_section" : "SECTION_CRISIS_INCIDENT_TEAM_TRAINED_ICS_200"
+    },
+  {
+        "main_section": "SECTION_GENERAL_POLICIES",
+        "sub_section" : "SECTION_GENERAL_POLICIES_TO_ADDRESS"
+    },
+  {
+        "main_section": "SECTION_EMERGENCY_NOTIFICATION_SYSTEM",
+        "sub_section" : "SECTION_EMERGENCY_NOTIFICATION_SYSTEM_POLICY"
+    },
+  {
+        "main_section": "SECTION_ALERT_NOTIFICATION_SYSTEM",
+        "sub_section" : "SECTION_ALERT_NOTIFICATION_SYSTEM_POLICY"
+    }
+]
