@@ -28,7 +28,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_01(self):
         """
         Test : test_AS_01

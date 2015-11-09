@@ -9,16 +9,21 @@ from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from time import sleep
 import ConfigParser
-from nose.plugins.skip import SkipTest
+import os, json
 
+cwd = os.getcwd()
+os.chdir('..')
+sectionfile = os.path.join(os.getcwd(), "data", "json_assessment_schooldata_section.json")
+os.chdir(cwd)
 
 class AssessmentSchoolDataPageTest(BaseTestCase):
 
     def setUp(self):
         self.errors_and_failures = self.tally()
         self.ast = AssessmentPage(self.driver)
-        self.schooldatasection = 'AssessmentSchoolData'
-        self.mainsection = 'Sections'
+        self.mainsection = 'SchoolDataMainSection'
+        self.subsection = 'SchoolDataSubSection'
+        self.AssessmentSections = 'AssessmentSections'
         self.messages = 'Messages'
         self.config = ConfigParser.ConfigParser()
         self.config.readfp(open('baseconfig.cfg'))
@@ -27,13 +32,10 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        for section in self.config.options(self.schooldatasection):
-            self.ast.delete_attchedimage(self.config.get(self.schooldatasection, section))
+        for section in self.config.options(self.subsection):
+            self.ast.delete_attchedimage(self.config.get(self.subsection, section))
         self.ast.get_overview_button.click()
         self.ast.return_to_assessment_main_page()
-
-    def test_test(self):
-        pass
 
     @attr(priority="high")
     #@SkipTest
@@ -43,56 +45,16 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         :return:
         """
         for option in range(4):
-            schooltypeoption = self.ast.get_schooldata_schooltype_radiobuttons
+            schooltypeoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                    self.config.get(self.subsection, 'SECTION_SCHOOL_TYPE'))
             if not schooltypeoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 schooltypeoption[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-                schoolchecked = self.ast.get_schooldata_schooltype_radiobuttons
-                self.assertEqual(schoolchecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_69_1_To_Verify_Fileupload_SchoolType(self):
-        """
-        Test : test_AST_69
-        Description : To test the add photo to school type section
-        :return:
-        """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'))),
-                           count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_69_2_To_Verify_Edit_Caption_File_SchoolType(self):
-        """
-        Test : test_AST_69_2
-        Description : To test the add photo to school type section
-        :return:
-        """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_73_To_Verfiy_Add_Comment_SchoolType(self):
-        """
-        Description : To test the add comment to school type section
-        :return:
-        """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooldatasection,
-                                                            'SECTION_SCHOOL_TYPE')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_TYPE'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+                schooltypeoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                self.config.get(self.subsection, 'SECTION_SCHOOL_TYPE'))
+                self.assertEqual(schooltypeoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
     @attr(priority="high")
@@ -103,59 +65,17 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         :return:
         """
         for option in range(6):
-            print option
-            schoolgradeoption = self.ast.get_schooldata_gradelevel_checkbox
+            schoolgradeoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                    self.config.get(self.subsection, 'SECTION_GRADE_LEVELS'))
             if not schoolgradeoption[option].get_attribute("class") == "checkbox ng-binding checked":
                 schoolgradeoption[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-                schoolgradechecked = self.ast.get_schooldata_gradelevel_checkbox
-                self.assertEqual(schoolgradechecked[option].get_attribute("class"), "checkbox ng-binding checked")
-                schoolgradechecked[option].click()
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_74_1_To_Verify_Add_Comment_SchoolGrade(self):
-        """
-        Description : To test the add comment to school grade section
-        :return:
-        """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooldatasection,
-                                                        'SECTION_GRADE_LEVELS')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_74_2_To_Verify_Fileupload_SchoolGrade(self):
-        """
-        Description : To test the add file to school grade section
-        :return:
-        """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'))),
-                           count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_74_3_To_Verify_Edit_Caption_File_SchoolGrade(self):
-        """
-        Test : test_AST_74_3
-        Description : To test the add photo to school grade section
-        :return:
-        """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_GRADE_LEVELS'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+                schoolgradeoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                    self.config.get(self.subsection, 'SECTION_GRADE_LEVELS'))
+                self.assertEqual(schoolgradeoption[option].get_attribute("class"), "checkbox ng-binding checked")
+                schoolgradeoption[option].click()
 
     @attr(priority="high")
     #@SkipTest
@@ -164,56 +84,16 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the school hours section
         :return:
         """
-        self.ast.get_schooldata_schoolhours_textarea.clear()
-        self.ast.get_schooldata_schoolhours_textarea.send_keys("100")
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_SCHOOL_HOURS')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_SCHOOL_HOURS')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast._ast_schooldata_schoolhours_text_are_locator)))
-        self.assertEqual(self.ast.get_schooldata_schoolhours_textarea.get_attribute("value"), "100")
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_75_1_To_Verify_Add_Comment_SchoolHours(self):
-        """
-        Description : To test the add comment to school hours section
-        :return:
-        """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooldatasection,
-                                                        'SECTION_SCHOOL_HOURS')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_75_2_To_Verify_Fileupload_SchoolHours(self):
-        """
-        Description : To test the add file to school hours section
-        :return:
-        """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'))),
-                           count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_75_3_To_Verify_Edit_Caption_File_SchoolHours(self):
-        """
-        Test : test_AST_75_3
-        Description : To test the add photo to school grade section
-        :return:
-        """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_SCHOOL_HOURS'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                self.config.get(self.subsection, 'SECTION_SCHOOL_HOURS')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                            self.config.get(self.subsection, 'SECTION_SCHOOL_HOURS')).get_attribute("value"), "100")
 
     @attr(priority="high")
     #@SkipTest
@@ -222,58 +102,16 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the No of students section
         :return:
         """
-        self.ast.get_schooldata_noofstudents_textarea.clear()
-        self.ast.get_schooldata_noofstudents_textarea.send_keys("100")
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_NUMBER_OF_STUDENTS')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_NUMBER_OF_STUDENTS')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast._ast_schooldata_numberofstudents_text_are_locator)))
-        self.assertEqual(self.ast.get_schooldata_noofstudents_textarea.get_attribute("value"), "100")
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_78_1_To_Verify_Add_Comment_Number_Of_Students(self):
-        """
-        Description : To test the add comment to no of students section
-        :return:
-        """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.schooldatasection,
-                                                    'SECTION_NUMBER_OF_STUDENTS')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_78_2_To_Verify_Fileupload_Number_Of_Students(self):
-        """
-        Test : test_AST_78_2
-        Description : To test the add file to no of students section
-        :return:
-        """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(
-            self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'))),
-            count_of_image_before_upload, self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_78_3_To_Verify_Edit_Caption_File_Number_Of_Students(self):
-        """
-        Test : test_AST_78_3
-        Description : To test the add photo to no of students section
-        :return:
-        """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(
-            self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_NUMBER_OF_STUDENTS'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                self.config.get(self.subsection, 'SECTION_NUMBER_OF_STUDENTS')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                            self.config.get(self.subsection, 'SECTION_NUMBER_OF_STUDENTS')).get_attribute("value"), "100")
 
 
     @attr(priority="high")
@@ -283,7 +121,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test validations of no of students text area
         :return:
         """
-        self.ast.get_schooldata_noofstudents_textarea.click()
+        pass
 
     @attr(priority="high")
     #@SkipTest
@@ -292,60 +130,16 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test Special students section
         :return:
         """
-        self.ast.get_schooldata_specialneedsstudents_textarea.clear()
-        self.ast.get_schooldata_specialneedsstudents_textarea.send_keys("100")
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_SPECIAL_NEEDS_STUDENT')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_SPECIAL_NEEDS_STUDENT')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast._ast_schooldata_specialneedsstudents_text_area_locator)))
-        self.assertEqual(self.ast.get_schooldata_specialneedsstudents_textarea.get_attribute("value"), "100")
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_81_1_To_Verify_Add_Comment_Special_Students(self):
-        """
-        Description : To test the add comment to special students section
-        :return:
-        """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(
-            self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_81_2_To_Verify_Fileupload_Special_Students(self):
-        """
-        Description : To test the add file to special students section
-        :return:
-        """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(
-            self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'))), count_of_image_before_upload,
-            self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_81_3_To_Verify_Edit_Caption_File_Special_Students(self):
-        """
-        Test : test_AST_81_3
-        Description : To test the add photo to no of special students section
-        :return:
-        """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(
-            self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_SPECIAL_NEEDS_STUDENT'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                self.config.get(self.subsection, 'SECTION_SPECIAL_NEEDS_STUDENT')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                            self.config.get(self.subsection, 'SECTION_SPECIAL_NEEDS_STUDENT')).get_attribute("value"), "100")
 
     @attr(priority="high")
     #@SkipTest
@@ -354,60 +148,16 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the no of staff section
         :return:
         """
-        self.ast.get_schooldata_noofstaff_textarea.clear()
-        self.ast.get_schooldata_noofstaff_textarea.send_keys("100")
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_NO_OF_STAFF')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_NO_OF_STAFF')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast._ast_schooldata_numberofstaff_text_area_locator)))
-        sleep(20)
-        self.assertEqual(self.ast.get_schooldata_noofstaff_textarea.get_attribute("value"), "100")
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_84_1_To_Verify_Add_Comment_No_of_Staff(self):
-        """
-        Description : To test the add comment to no of staff section
-        :return:
-        """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_84_2_To_Verify_fileupload_No_of_Staff(self):
-        """
-        Description : To test the add file to no of staff section
-        :return:
-        """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'))), count_of_image_before_upload,
-            self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_84_3_To_Verify_Edit_Caption_File_Number_Of_Staff(self):
-        """
-        Test : test_AST_78_3
-        Description : To test the add photo to no of staff section
-        :return:
-        """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_NO_OF_STAFF'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                self.config.get(self.subsection, 'SECTION_NO_OF_STAFF')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                            self.config.get(self.subsection, 'SECTION_NO_OF_STAFF')).get_attribute("value"), "100")
 
     @attr(priority="high")
     #@SkipTest
@@ -416,60 +166,16 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the no of visitors section
         :return:
         """
-        self.ast.get_schooldata_noofvisitors_textarea.clear()
-        self.ast.get_schooldata_noofvisitors_textarea.send_keys("100")
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_NO_OF_VISITORS')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                                                  self.config.get(self.subsection, 'SECTION_NO_OF_VISITORS')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast._ast_schooldata_numberofvisitors_text_area_locator)))
-        sleep(20)
-        self.assertEqual(self.ast.get_schooldata_noofvisitors_textarea.get_attribute("value"), "100")
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_87_1_To_Verify_Add_Comment_No_of_Visitors(self):
-        """
-        Description : To test the add comment to no of staff section
-        :return:
-        """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_87_2_To_Verify_fileupload_No_of_Visitors(self):
-        """
-        Description : To test the add file to no of staff section
-        :return:
-        """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'))), count_of_image_before_upload,
-            self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_87_3_To_Verify_Edit_Caption_File_Number_Of_Visitors(self):
-        """
-        Test : test_AST_87_3
-        Description : To test the add photo to no of visitors section
-        :return:
-        """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_NO_OF_VISITORS'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                self.config.get(self.subsection, 'SECTION_NO_OF_VISITORS')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+                            self.config.get(self.subsection, 'SECTION_NO_OF_VISITORS')).get_attribute("value"), "100")
 
     @attr(priority="high")
     #@SkipTest
@@ -486,121 +192,90 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the add file to no of staff section
         :return:
         """
-        self.ast.get_schooldata_lawenforcement_Yes_radiobutton.click()
-        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-        self.ast.save_schooldata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_lawenforcement_Yes_radiobutton.get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
-        self.ast.get_schooldata_lawenforcement_No_radiobutton.click()
-        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-        self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_lawenforcement_No_radiobutton.get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_89_2_To_Verify_Add_Comment_LawEnforcement(self):
-        """
-        Description : To test the add comment to LawEnforcement section
-        :return:
-        """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(
-            self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+        for option in range(2):
+            policeoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_POLICE'),
+                                    self.config.get(self.subsection, 'SECTION_LAW_ENFORCEMENT_OFFICER'))
+            if not policeoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+                policeoption[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+                policeoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_POLICE'),
+                                self.config.get(self.subsection, 'SECTION_LAW_ENFORCEMENT_OFFICER'))
+                self.assertEqual(policeoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_89_3_To_Verify_fileupload_LawEnforcement(self):
+    def test_AST_To_Verify_Fileupload(self):
         """
-        Description : To test the add file to no of staff section
+        Description : To test fileupload in SECTION_PERIMETER_TYPE_OF_WALL
         :return:
         """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(
-            self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(
-            self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'))), count_of_image_before_upload,
-            self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+        with open(sectionfile) as data_file:
+            for section in json.load(data_file):
+                count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(
+                                        self.mainsection, section["main_section"]),
+                                        self.config.get(self.subsection, section["sub_section"])))
+                self.ast.schooldata_upload_file(self.config.get(self.mainsection, section["main_section"]),
+                                                self.config.get(self.subsection, section["sub_section"]),
+                                                self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+                try:
+                    self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(
+                                                    self.mainsection, section["main_section"]),
+                                                    self.config.get(self.subsection, section["sub_section"]))),
+                                                    count_of_image_before_upload, self.config.get(
+                                                    self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
+                except Exception, err:
+                    print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
+                          +" - " +self.config.get(self.subsection, section["sub_section"])
+                self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
+                                                self.config.get(self.subsection, section["sub_section"]),
+                                                self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_89_3_To_Verify_Edit_Caption_File_LawEnforcement(self):
+    def test_AST_To_Verify_Edit_Caption(self):
         """
-        Test : test_AST_87_3
-        Description : To test the add photo to no of visitors section
+        Description : To test edit caption
         :return:
         """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(
-            self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_LAW_ENFORCEMENT_OFFICER'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    # @attr(priority="high")
-    # #@SkipTest
-    # def test_AST_91_1_To_Verify_No_of_Visitors_TextBox(self):
-    #     """
-    #     Description : To test the no of visitors section
-    #     :return:
-    #     """
-    #     self.ast.get_schooldata_nooflawenforcement_textarea.clear()
-    #     self.ast.get_schooldata_nooflawenforcement_textarea.send_keys("100")
-    #     self.ast.save_schooldata()
-    #     WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-    #         (By.XPATH, self.ast._ast_schooldata_numberoflawenforcement_text_area_locator)))
-    #     sleep(20)
-    #     self.assertEqual(self.ast.get_schooldata_nooflawenforcement_textarea.get_attribute("value"), "100")
+        with open(sectionfile) as data_file:
+            for section in json.load(data_file):
+                self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, section["main_section"]),
+                                                       self.config.get(self.subsection, section["sub_section"]),
+                                                       self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+                try:
+                    self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, section["main_section"]),
+                                                self.config.get(self.subsection, section["sub_section"]))[0].text, "Hello")
+                except Exception, err:
+                    print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
+                          +" - " +self.config.get(self.subsection, section["sub_section"])
+                self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
+                                                              self.config.get(self.subsection, section["sub_section"]),
+                                                              self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_91_2_To_Verify_Add_Comment_No_of_LawEnforcement(self):
+    def test_AST_To_Verfiy_Add_Comment(self):
         """
-        Description : To test the add comment to no of staff section
+        Description : To test add comment in
         :return:
         """
-        self.ast.schooldata_edit_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_comment_textbox(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER')).get_attribute("value"), "Comment")
-        self.ast.schooldata_delete_comment(self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'),
-                                         self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_91_3_To_Verify_fileupload_No_of_LawEnforcement(self):
-        """
-        Description : To test the add file to no of staff section
-        :return:
-        """
-        count_of_image_before_upload = len(self.ast.get_schooldata_image(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER')))
-        self.ast.schooldata_upload_file(self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'),
-                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertGreater(len(self.ast.get_schooldata_image(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'))), count_of_image_before_upload,
-            self.config.get(self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_89_3_To_Verify_Edit_Caption_File_No_Of_LawEnforcement(self):
-        """
-        Test : test_AST_87_3
-        Description : To test the add photo to no of visitors section
-        :return:
-        """
-        self.ast.schooldata_edit_caption_image(self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'),
-                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        self.assertEqual(self.ast.get_schooldata_image_caption(
-            self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'))[0].text, "Hello")
-        self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.schooldatasection, 'SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER'),
-                                                      self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+        flag = 0
+        with open(sectionfile) as data_file:
+            for section in json.load(data_file):
+                self.ast.schooldata_edit_comment(self.config.get(self.mainsection, section["main_section"]),
+                                                 self.config.get(self.subsection, section["sub_section"]),
+                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+                try:
+                    self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, section["main_section"]),
+                            self.config.get(self.subsection, section["sub_section"])).get_attribute("value"), "Comment")
+                except Exception, err:
+                    flag = 1
+                    print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
+                          +" - " +self.config.get(self.subsection, section["sub_section"])
+                self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
+                                                 self.config.get(self.subsection, section["sub_section"]))
+        if flag == 1:
+            self.fail("Test has failed")

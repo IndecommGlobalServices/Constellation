@@ -43,7 +43,8 @@ class AssessmentPage(BasePageClass):
     # Assessment filter related locators
     _ast_status_filter_drop_down_locator = "//div[@label='Status']"
     _ast_type_filter_drop_down_locator = "//div[@label='Type']"
-    _ast_filter_reset_button = ".//*[@id='span_filters']/button"
+    _ast_filter_reset_button = "//button[contains(text(), 'Reset filters')]"
+
 
     # Assessment search related locators
     _ast_search_assessment_text_box_locator = ".//*[@id='search-assessments']"
@@ -105,32 +106,15 @@ class AssessmentPage(BasePageClass):
 
     #Assessment school Infrastructure related locators
     _ast_schoolInfrastructure_button_locator = "//button[@title='School Infrastructure']"
-    _ast_schoolInfrastructure_land_acres_radio_button_locator="//div[contains(text()," \
-                    "'How many acres is this school site, rounded to the nearest acre?')]" \
-                        "//label[@model='question.answer.text']"
-    _ast_schoolInfrastructure_no_of_building_text_box_locator = "//div[contains(text(), " \
-                                    "'How many buildings are part of this facility?')]//input[@name = 'integer_input']"
-    _ast_schoolInfrastructure_buildingno_radio_button_locator = "//div[contains(text()," \
-                    "'Are all buildings clearly marked with: building number, hallway numbers, and room numbers? In the comments section please give the naming/numbering convention. ')]" \
-                        "//label[@model='question.answer.text']"
-    _ast_schoolInfrastructure_perimeter_text_box_locator = "//div[contains(text(), " \
-                                    "'Describe the outside perimeter.')]//input[@name = 'integer_input']"
 
     #Assessment physical security related locators
     _ast_physicalsecurity_button_locator = "//button[@title='Physical Security']"
-    _ast_physicalsecurity_perimeter_radio_button_locator="//div[contains(text()," \
-                                                         "'Select the type of walls/fencing used on the perimeter of the campus.')]" \
-                                                         "//label[@model='question.answer.text']"
 
     #Assessment physical security related locators
     _ast_policiesandplanning_button_locator = "//button[@title='Policies & Planning']"
-    _ast_policiesandplanning_safetyplan_radio_button_locator="//div[contains(text(),'Does the school have a comprehensive school safety plan that establishes emergency and safety procedures for school employees and students to follow. If the plan is not complete document in the comments section the expected date of completion.')]" \
-                                                         "//label[@model='question.answer.text']"
 
-    #Assessment physical security related locators
+    #Assessment trainning and exercises related locators
     _ast_trainningandexercises_button_locator = "//button[@title='Training & Exercises']"
-    _ast_trainningandexercises_safetyplan_radio_button_locator="//div[contains(text(),'Has the staff of your school been trained in the comprehensive school safety plan?')]" \
-                                                         "//label[@model='question.answer.text']"
 
     # Scroll
     _assessment_scroll = ".//*[@id='main_content']"
@@ -187,7 +171,7 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_typefilter_haystax_link(self):
-        return self.driver.find_element_by_link_text("Haystax School Safety")
+        return self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[2]/div/ul/li/a")
 
     @property
     def get_resetfilter_button(self):
@@ -299,8 +283,6 @@ class AssessmentPage(BasePageClass):
             raise type(err)("Cancel button not available - searched XPATH - " \
                           + ".//*[@id='assign_assessment_modal']/div/form/div[3]/button[1]" + err.message)
 
-
-
     @property
     def get_ast_assignto_assign_button(self):
         return self.driver.find_element_by_xpath(".//*[@id='assign_assessment_modal']/div/form/div[3]/button[2]")
@@ -342,7 +324,6 @@ class AssessmentPage(BasePageClass):
             raise type(err)(" Save button not available - searched XPATH - " \
                           + self._ast_overview_save_button_locator + err.message)
 
-
     @property
     def get_breadcrumb_assessmentname_text(self):
         return self.driver.find_element_by_xpath(self._ast_breadcrumb_text_locator)
@@ -361,10 +342,15 @@ class AssessmentPage(BasePageClass):
             raise type(err)("Upload file button not visible - searched XPATH - " \
                           + self._ast_photos_documents_upload_file_button_locator + err.message)
 
-
     @property
     def get_file_attach_file_button(self):
-        return self.driver.find_element_by_id(self._ast_photos_documents_attach_file_button_locator)
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                (By.ID, self._ast_photos_documents_attach_file_button_locator )))
+            return self.driver.find_element_by_id(self._ast_photos_documents_attach_file_button_locator)
+        except Exception, err:
+            raise type(err)("Upload file button not visible - searched XPATH - " \
+                          + self._ast_photos_documents_attach_file_button_locator + err.message)
 
     @property
     def get_fileupload_caption_textbox(self):
@@ -440,53 +426,25 @@ class AssessmentPage(BasePageClass):
     def get_schooldata_lawenforcement_No_radiobutton(self):
         return self.driver.find_element_by_xpath(self._ast_schooldata_lawenforcement_no_radio_button_loactor)
 
-
     ####################School Infrastucture############################################################################
     @property
     def get_schoolinfrastructure_button(self):
         return self.driver.find_element_by_xpath(self._ast_schoolInfrastructure_button_locator)
-
-    @property
-    def get_school_schoolinfrastructure_land_acre_radiobutton (self):
-        return self.driver.find_elements_by_xpath(self._ast_schoolInfrastructure_land_acres_radio_button_locator)
-
-    @property
-    def get_school_schoolinfrastructure_noofbuilding_textbox(self):
-        return self.driver.find_element_by_xpath(self._ast_schoolInfrastructure_no_of_building_text_box_locator)
-
-    @property
-    def get_school_schoolinfrastructure_buildingno_radiobutton(self):
-        return self.driver.find_elements_by_xpath(self._ast_schoolInfrastructure_buildingno_radio_button_locator)
-
-    @property
-    def get_school_schoolinfrastructure_perimeter_textbox(self):
-        return self.driver.find_elements_by_xpath(self._ast_schoolInfrastructure_perimeter_text_box_locator)
 
     ####################School Physical Security########################################################################
     @property
     def get_school_physicalsecurity_button(self):
         return self.driver.find_element_by_xpath(self._ast_physicalsecurity_button_locator)
 
-    @property
-    def get_physicalsecurity_fencing_radiobutton(self):
-        return self.driver.find_elements_by_xpath(self._ast_physicalsecurity_perimeter_radio_button_locator)
-
     ####################School Policies and Planning####################################################################
     @property
     def get_school_policiesandplanning_button(self):
         return self.driver.find_element_by_xpath(self._ast_policiesandplanning_button_locator)
 
-    @property
-    def get_policiesandplanning_schoolsafety_radiobutton(self):
-        return self.driver.find_elements_by_xpath(self._ast_policiesandplanning_safetyplan_radio_button_locator)
-
     ####################School Training and Exercises####################################################################
     @property
     def get_school_trainningandexercises_button(self):
         return self.driver.find_element_by_xpath(self._ast_trainningandexercises_button_locator)
-
-    def get_schooltrainingandexercise_radiobutton(self, section):
-        return self.driver.find_elements_by_xpath("//div[contains(text(),'"+section+"')]//label[@model='question.answer.text']")
 
     def get_schooldata(self):
         with open(schooldatafile) as data_file:
@@ -504,7 +462,10 @@ class AssessmentPage(BasePageClass):
 
     def get_assessment_table(self, heading):
         index = self.get_table_tr_index(self.get_assessment_table_header_locator, heading)
-        xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"+"/a"
+        if heading == "Assessment":
+            xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"+"/a"
+        else:
+            xpath = ".//*[@id='tblAssessments']/tbody/tr/td["+str(index)+"]"
         return self.driver.find_elements_by_xpath(xpath)
 
     def get_assessment_table_row_values(self, row, heading):
@@ -539,7 +500,7 @@ class AssessmentPage(BasePageClass):
 
     def search_assessment_textbox(self, keyword):
         WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
-            (By.XPATH, self._ast_search_assessment_text_box_locator)))
+            (By.XPATH, self._ast_search_assessment_text_box_locator)), "Assessment search text box not available")
         WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
             (By.XPATH, self._ast_action_dropdown_loactor)))
         self.get_search_assessment_textbox.clear()
@@ -652,8 +613,6 @@ class AssessmentPage(BasePageClass):
 
     def upload_a_file(self, image_caption, image_file_name):
         self.get_file_upload_button.click()# Click on Photo/Document panel - File Upload button
-        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-            (By.ID, self._ast_photos_documents_attach_file_button_locator)))
         # Click on Attach file button and attached the file path with the send_keys
         file_path = self.file_path(image_file_name)
         self.get_file_attach_file_button.send_keys(file_path)
@@ -877,7 +836,6 @@ class AssessmentPage(BasePageClass):
                                                         "//div[@class= 'assessment_photo_span ng-scope']" \
                                                       "//div[@class = 'assessment_photo_caption ng-binding']"
 
-
     def schooldata_upload_file(self, section, subsection, assessmentsection):
         if not self.is_attachphoto_button_visible(section, subsection):
             self.get_schooldata_camera_image(section, subsection).click()
@@ -923,7 +881,7 @@ class AssessmentPage(BasePageClass):
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self.get_schooldata_comment_textbox_locator(section, subsection))))
 
-    def schooldata_delete_comment(self, section, subsection, assessmentsection):
+    def schooldata_delete_comment(self, section, subsection):
         if self.get_schooldata_comment_textbox(section, subsection).is_displayed():
             self.get_schooldata_comment_textbox(section, subsection).clear()
             self.get_schooldata_comment_image(section, subsection).click()
@@ -940,45 +898,37 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
                                 "[contains(text(),'"+subsectionsection+"')]//label[@model='question.answer.text']")
 
-    def get_schoolinfrasturcture_textarea(self, section, subsectionsection):
+    def get_schooldata_textarea(self, section, subsectionsection):
         return  self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
                              "[contains(text(),'"+subsectionsection+"')]//textarea[@ng-model='question.answer.text']")
 
-    def get_schoolinfrastructure_textarea_locator(self, section, subsectionsection):
+    def get_schooldata_textarea_locator(self, section, subsectionsection):
         return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
                                 "[contains(text(),'"+subsectionsection+"')]//textarea[@ng-model='question.answer.text']"
 
-    def get_schoolinfrastructure_textbox(self, section, subsectionsection):
+    def get_schooldata_textbox(self, section, subsectionsection):
         return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
                                         "[contains(text(),'"+subsectionsection+"')]//input[@name = 'integer_input']")
 
-    def get_schoolinfrastructure_textbox_locator(self, section, subsectionsection):
+    def get_schooldata_textbox_error(self, section, subsectionsection):
+        return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                                 "[contains(text(),'"+subsectionsection+"')]//span[@class = 'error']")
+
+    def get_schooldata_textbox_error_locator(self, section, subsectionsection):
+        return "//div[contains(text(), '"+section+"')]/following-sibling::div" \
+                                                  "[contains(text(),'"+subsectionsection+"')]//span[@class = 'error']"
+
+    def get_schooldata_textbox_locator(self, section, subsectionsection):
         return ("//div[contains(text(), '"+section+"')]/following-sibling::div"
                                          "[contains(text(),'"+subsectionsection+"')]//input[@name = 'integer_input']")
 
-    def get_schoolinfrastructure_checkbox(self, section, subsectionsection):
+    def get_schooldata_checkbox(self, section, subsectionsection):
         return self.driver.find_elements_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
                                                                 "[contains(text(),'"+subsectionsection+"')] //label")
 
-    def get_schoolinfrastructure_checkbox_locator(self, section, subsectionsection):
+    def get_schooldata_checkbox_locator(self, section, subsectionsection):
         return ("//div[contains(text(), '"+section+"')]/following-sibling::div[contains(text(),'"+subsectionsection+"')] //label")
 
-    # def schooldata_delete_comment(self, section, mainsection):
-    #     if self.get_schooldata_comment_textbox(section).is_displayed():
-    #         self.get_schooldata_comment_textbox(section).clear()
-    #         self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-    #         self.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-    #         self.get_schooldata_comment_image(section).click()
-    #         WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
-    #                 (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
-    #         try:
-    #             WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
-    #                 (By.XPATH, self._ast_saved_text_locator), "Saved"))
-    #         except Exception, err:
-    #             raise type(err)("Save failed and the message displayed is - " \
-    #                           + self.driver.find_element_by_xpath(self._ast_saved_text_locator).text + err.message)
-    
-    # Scroll
     @property
     def get_assessment_scroll(self):
         try:

@@ -8,6 +8,8 @@ from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 import ConfigParser
 import os, json
+from time import sleep
+
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -25,7 +27,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         self.subsection = 'PhysicalSecuritySubSection'
         self.config = ConfigParser.ConfigParser()
         self.config.readfp(open('baseconfig.cfg'))
-
         self.ast.open_physicalsecurity_page()
 
     def tearDown(self):
@@ -35,7 +36,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.ast.delete_attchedimage(self.config.get(self.subsection, subsection))
         self.ast.get_overview_button.click()
         self.ast.return_to_assessment_main_page()
-
 
     @attr(priority="high")
     #@SkipTest
@@ -158,7 +158,35 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         Description :
         :return:
         """
-        pass
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                  self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                  self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).send_keys("100")
+        self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                            self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).get_attribute("value"), "100")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_173_1_SECTION_CCTV_Text_Box_Validation(self):
+        """
+        Description :
+        :return:
+        """
+        validation_input = ['abc', 'ABC', '@#', 'aB1@']
+        for item in validation_input:
+            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).send_keys("")
+            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).send_keys(item)
+            self.assertEqual(self.ast.get_schooldata_textbox_error(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).text, "Enter a number",
+                             self.config.get(self.messages, 'MESSAGE_VALIDATION_ERROR'))
+            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).clear()
 
     @attr(priority="high")
     #@SkipTest
@@ -186,7 +214,17 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         Description :
         :return:
         """
-        pass
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                  self.config.get(self.subsection, 'SECTION_CCTV_NO_OF_ADDITIONAL_CAMERAS')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                  self.config.get(self.subsection, 'SECTION_CCTV_NO_OF_ADDITIONAL_CAMERAS')).send_keys("100")
+        self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                self.config.get(self.subsection, 'SECTION_CCTV_NO_OF_ADDITIONAL_CAMERAS')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                            self.config.get(self.subsection, 'SECTION_CCTV_NO_OF_ADDITIONAL_CAMERAS')).get_attribute("value"), "100")
+
 
     @attr(priority="high")
     #@SkipTest
@@ -233,7 +271,19 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         Description :
         :return:
         """
-        pass
+        for option in range(13):
+            locksoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_LOCK'),
+                                                    self.config.get(self.subsection, 'SECTION_LOCK_OTHER_PARTS'))
+            if not locksoption[option].get_attribute("class") == "checkbox ng-binding checked":
+                locksoption[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+                locksoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_LOCK'),
+                                                    self.config.get(self.subsection, 'SECTION_LOCK_OTHER_PARTS'))
+                self.assertEqual(locksoption[option].get_attribute("class"), "checkbox ng-binding checked")
+                locksoption[option].click()
+
 
     @attr(priority="high")
     #@SkipTest
@@ -585,7 +635,20 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         Description :
         :return:
         """
-        pass
+        for option in range(13):
+            biometricoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_BIOMETRIC'),
+                                                    self.config.get(self.subsection, 'SECTION_BIOMETRIC_OTHERPARTS'))
+            if not biometricoption[option].get_attribute("class") == "checkbox ng-binding checked":
+                biometricoption[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+                biometricoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_BIOMETRIC'),
+                                                    self.config.get(self.subsection, 'SECTION_BIOMETRIC_OTHERPARTS'))
+                self.assertEqual(biometricoption[option].get_attribute("class"), "checkbox ng-binding checked")
+                biometricoption[option].click()
+
+
 
     @attr(priority="high")
     #@SkipTest
@@ -633,7 +696,17 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         Description :
         :return:
         """
-        pass
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                                                  self.config.get(self.subsection, 'SECTION_SECUTITY_GUARD')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                                                  self.config.get(self.subsection, 'SECTION_SECUTITY_GUARD')).send_keys("100")
+        self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                self.config.get(self.subsection, 'SECTION_SECUTITY_GUARD')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                            self.config.get(self.subsection, 'SECTION_SECUTITY_GUARD')).get_attribute("value"), "100")
+
 
     @attr(priority="high")
     #@SkipTest
@@ -661,7 +734,18 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         Description :
         :return:
         """
-        pass
+        for option in range(6):
+            characteristicsoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                                                    self.config.get(self.subsection, 'SECTION_SECURITY_CHARACTERISTICS'))
+            if not characteristicsoption[option].get_attribute("class") == "checkbox ng-binding checked":
+                characteristicsoption[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+                characteristicsoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                                                    self.config.get(self.subsection, 'SECTION_SECURITY_CHARACTERISTICS'))
+                self.assertEqual(characteristicsoption[option].get_attribute("class"), "checkbox ng-binding checked")
+                characteristicsoption[option].click()
 
     @attr(priority="high")
     #@SkipTest
@@ -689,7 +773,18 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         Description :
         :return:
         """
-        pass
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                                                  self.config.get(self.subsection, 'SECTION_SECURITY_ADDITIONAL_HOWMANY')).clear()
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                                                  self.config.get(self.subsection, 'SECTION_SECURITY_ADDITIONAL_HOWMANY')).send_keys("100")
+        self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                self.config.get(self.subsection, 'SECTION_SECURITY_ADDITIONAL_HOWMANY')))))
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
+                            self.config.get(self.subsection, 'SECTION_SECURITY_ADDITIONAL_HOWMANY')).get_attribute("value"), "100")
+
+
 
     @attr(priority="high")
     #@SkipTest
@@ -848,7 +943,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                                                  self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 try:
                     self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, section["main_section"]),
-                            self.config.get(self.subsection, section["sub_section"])).get_attribute("value"), "nComment")
+                            self.config.get(self.subsection, section["sub_section"])).get_attribute("value"), "Comment")
                 except Exception, err:
                     flag = 1
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \

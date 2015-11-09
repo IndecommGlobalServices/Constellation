@@ -1,12 +1,6 @@
 __author__ = 'Deepa.Sivadas'
-import unittest
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from pages.assessmentpage import AssessmentPage
-from pages.loginpage import LoginPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
@@ -22,7 +16,6 @@ class AssessmenttPageTest(BaseTestCase):
     os.chdir('..')
     searchasset_filepath = os.path.join(os.getcwd(), filepath)
     os.chdir(cwd)
-
 
     def setUp(self):
         self.errors_and_failures = self.tally()
@@ -42,16 +35,20 @@ class AssessmenttPageTest(BaseTestCase):
     def test_ast_01_To_verify_noemailid_createassessment(self):
         count = 0
         flag = 0
+        assignedto = ""
+        start_date = datetime.today().date()
+        end_date = start_date + timedelta(days=31)
         self.ast.create_assessment_select_haystax_template()
         self.ast.select_first_asset()
         self.ast.get_create_assignedto_textbox.clear()
-        self.ast.get_create_startdate_textbox.send_keys("2015-09-10")
-        self.ast.get_create_enddate_textbox.send_keys("2015-09-11")
-        self.assertTrue(self.ast.get_create_assessments_button.is_enabled(),"Create assessment button is not enabled")
+        sleep(1)
+        self.ast.get_create_startdate_textbox.send_keys(str(start_date))
+        self.ast.get_create_enddate_textbox.send_keys(str(end_date))
+        self.assertTrue(self.ast.get_create_assessments_button.is_enabled(), "Create assessment button is not enabled")
         self.ast.get_create_assessments_button.click()
-        sleep(5)
+        sleep(8)
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
-        sleep(5)
+        sleep(8)
         for item in self.ast.get_assessment_table("Asset"):
             count = count + 1
             if (item.text == self.ast.asset_school_name) and (item.value_of_css_property("background-color")
@@ -101,7 +98,7 @@ class AssessmenttPageTest(BaseTestCase):
         if self.ast.create_assessment(self.ast.asset_school_name) == False:
             self.assertFalse(True, "Assessment creation failed")
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
-        sleep(5)
+        sleep(8)
         for item in self.ast.get_assessment_table("Asset"):
             count = count + 1
             if (item.text == self.ast.asset_school_name) and (item.value_of_css_property("background-color")
@@ -368,7 +365,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_assign_button.click()
             self.ast.get_ast_assignto_textbox.send_keys(emailid)
             self.ast.get_ast_assignto_assign_button.click()
-            sleep(5)
+            sleep(8)
             assignedto = self.ast.get_assessment_table("Assigned to")
             self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
         else:

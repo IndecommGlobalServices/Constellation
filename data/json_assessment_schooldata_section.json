@@ -1,0 +1,72 @@
+[
+
+    {
+        "main_section": "SECTION_SCHOOL_INFORMATION",
+        "sub_section" : "SECTION_SCHOOL_TYPE"
+    },
+    {
+        "main_section": "SECTION_SCHOOL_INFORMATION",
+        "sub_section" : "SECTION_GRADE_LEVELS"
+    },
+    {
+        "main_section": "SECTION_SCHOOL_INFORMATION",
+        "sub_section" : "SECTION_SCHOOL_HOURS"
+    },
+{
+        "main_section": "SECTION_SCHOOL_INFORMATION",
+        "sub_section" : "SECTION_NUMBER_OF_STUDENTS"
+    },
+    {
+        "main_section": "SECTION_SCHOOL_INFORMATION",
+        "sub_section" : "SECTION_SPECIAL_NEEDS_STUDENT"
+    },
+    {
+        "main_section": "SECTION_SCHOOL_INFORMATION",
+        "sub_section" : "SECTION_NO_OF_STAFF"
+    },
+  {
+        "main_section": "SECTION_SCHOOL_INFORMATION",
+        "sub_section" : "SECTION_NO_OF_VISITORS"
+   },
+  {
+        "main_section": "SECTION_POLICE",
+        "sub_section" : "SECTION_LAW_ENFORCEMENT_OFFICER"
+    },
+  {
+        "main_section": "SECTION_POLICE",
+        "sub_section" : "SECTION_NO_OF_LAW_ENFORCEMENT_OFFICER"
+   },
+  {
+        "main_section": "SECTION_POLICE",
+        "sub_section" : "SECTION_POLICE_JURIDISTICATION"
+    },
+  {
+        "main_section": "SECTION_POLICE",
+        "sub_section" : "SECTION_RESPOSNE_TIME_POLICE"
+   },
+  {
+        "main_section": "SECTION_FIRE",
+        "sub_section" : "SECTION_FIRE_JURIDISTICATION"
+    },
+  {
+        "main_section": "SECTION_FIRE",
+        "sub_section" : "SECTION_FIRESTATION_ADDRESS"
+   },
+  {
+        "main_section": "SECTION_FIRE",
+        "sub_section" : "SECTION_RESPONSE_TIME_FIRE"
+    },
+  {
+        "main_section": "SECTION_EMS",
+        "sub_section" : "SECTION_FIR_EMS_LOCATION"
+   },
+  {
+        "main_section": "SECTION_EMS",
+        "sub_section" : "SECTION_WHAT_EMS"
+   },
+  {
+        "main_section": "SECTION_EMS",
+        "sub_section" : "SECTION_RESPOSNE_TIME_EMS"
+   }
+
+  ]

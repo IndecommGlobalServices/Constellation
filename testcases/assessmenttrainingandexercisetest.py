@@ -263,13 +263,13 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_303_1_To_Verfiy_textarea_SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).send_keys("100")
+        self.ast.get_schooldata_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).clear()
+        self.ast.get_schooldata_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(
                 self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).get_attribute("value"), "100")
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).get_attribute("value"), "100")
 
 
 

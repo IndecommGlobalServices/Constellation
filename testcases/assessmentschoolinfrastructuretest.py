@@ -61,15 +61,15 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         Description : To test no of building textbox in SECTION_LANDANDBUILDING_BUILDING
         :return:
         """
-        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
                                                   self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).clear()
-        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
                                                   self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textbox_locator(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
                 self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')))))
-        self.assertEqual(self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
                     self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_BUILDING')).get_attribute("value"), "100")
 
     @attr(priority="high")
@@ -90,57 +90,57 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_121_To_Verfiy_perimeter_textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                         self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_125_To_Verfiy_Parking_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                         self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_129_To_Verfiy_AdjusantBuilding_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_ADJACENTBUILDINGS')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_ADJACENTBUILDINGS')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_ADJACENTBUILDINGS')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_ADJACENTBUILDINGS')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_133_To_Verfiy_ElectricUtility_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                                                    self.config.get(self.subsection, 'SECTION_ELECTRIC_UTILITY')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                                                    self.config.get(self.subsection, 'SECTION_ELECTRIC_UTILITY')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                 self.config.get(self.subsection, 'SECTION_ELECTRIC_UTILITY')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                             self.config.get(self.subsection, 'SECTION_ELECTRIC_UTILITY')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
@@ -191,15 +191,15 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_148_To_Verfiy_Telephone_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
                                         self.config.get(self.subsection, 'SECTION_TELEPHONE_PROVIDER')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
                                                    self.config.get(self.subsection, 'SECTION_TELEPHONE_PROVIDER')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
                 self.config.get(self.subsection, 'SECTION_TELEPHONE_PROVIDER')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
                         self.config.get(self.subsection, 'SECTION_TELEPHONE_PROVIDER')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
@@ -266,14 +266,14 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     # #@SkipTest
     # def test_AST_168_To_Verify_typeofcamers_Checkbox(self):
     #     for option in range(3):
-    #         typeofcamera = self.ast.get_schoolinfrastructure_checkbox('SECTION_BUSES_TYPEOFCAMERA')
+    #         typeofcamera = self.ast.get_schooldata_checkbox('SECTION_BUSES_TYPEOFCAMERA')
     #         print typeofcamera[option].get_attribute("value")
     #         if not typeofcamera[option].get_attribute("class") == "checkbox ng-binding checked":
     #             typeofcamera[option].click()
     #             WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
     #                 (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
     #             self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-    #             typeofcamera = self.ast.get_schoolinfrastructure_checkbox('SECTION_BUSES_TYPEOFCAMERA')
+    #             typeofcamera = self.ast.get_schooldata_checkbox('SECTION_BUSES_TYPEOFCAMERA')
     #             self.assertEqual(typeofcamera[option].get_attribute("class"), "checkbox ng-binding checked")
     #             typeofcamera[option].click()
 
@@ -355,15 +355,15 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_192_To_Verfiy_Water_Utility_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_WATER'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_WATER'),
                                                    self.config.get(self.subsection, 'SECTION_WATER_UTILITY')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_WATER'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_WATER'),
                                                    self.config.get(self.subsection, 'SECTION_WATER_UTILITY')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_WATER'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_WATER'),
                 self.config.get(self.subsection, 'SECTION_WATER_UTILITY')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_WATER'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_WATER'),
                                 self.config.get(self.subsection, 'SECTION_WATER_UTILITY')).get_attribute("value"), "100")
 
 
@@ -385,15 +385,15 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_200_To_Verfiy_ISP_Name_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
                                                    self.config.get(self.subsection, 'SECTION_ISP_NAME')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
                                                    self.config.get(self.subsection, 'SECTION_ISP_NAME')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_ISP'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_ISP'),
                 self.config.get(self.subsection, 'SECTION_ISP_NAME')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
                                     self.config.get(self.subsection, 'SECTION_ISP_NAME')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
@@ -429,30 +429,30 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_212_To_Verfiy_Gas_Utility_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                                                    self.config.get(self.subsection, 'SECTION_NATURALGAS_UTILITY')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                                                    self.config.get(self.subsection, 'SECTION_NATURALGAS_UTILITY')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                 self.config.get(self.subsection, 'SECTION_NATURALGAS_UTILITY')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                         self.config.get(self.subsection, 'SECTION_NATURALGAS_UTILITY')).get_attribute("value"), "100")
 
 
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_216_To_Verfiy_Gas_Service_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                                                    self.config.get(self.subsection, 'SECTION_NATURALGAS_REQUIRES')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                                                    self.config.get(self.subsection, 'SECTION_NATURALGAS_REQUIRES')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                 self.config.get(self.subsection, 'SECTION_NATURALGAS_REQUIRES')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                             self.config.get(self.subsection, 'SECTION_NATURALGAS_REQUIRES')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
@@ -548,30 +548,30 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_244_To_Verfiy_LP_Provider_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
                                                    self.config.get(self.subsection, 'SECTION_LP_COMPANY')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
                                                    self.config.get(self.subsection, 'SECTION_LP_COMPANY')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_LP'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_LP'),
                 self.config.get(self.subsection, 'SECTION_LP_COMPANY')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
                                 self.config.get(self.subsection, 'SECTION_LP_COMPANY')).get_attribute("value"), "100")
 
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_248_To_Verfiy_LP_TankSize_Text_Box(self):
-        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                                                   self.config.get(self.subsection, 'SECTION_LP_TANKSIZE')).clear()
-        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                                                   self.config.get(self.subsection, 'SECTION_LP_TANKSIZE')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textbox_locator(self.config.get(self.mainsection, 'SECTION_LP'),
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_LP'),
                 self.config.get(self.subsection, 'SECTION_LP_TANKSIZE')))))
-        self.assertEqual(self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                                     self.config.get(self.subsection, 'SECTION_LP_TANKSIZE')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
@@ -592,29 +592,29 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_256_To_Verfiy_LP_Service_Textarea(self):
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
                                                    self.config.get(self.subsection, 'SECTION_LP_SERVICES')).clear()
-        self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
                                                    self.config.get(self.subsection, 'SECTION_LP_SERVICES')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator(self.config.get(self.mainsection, 'SECTION_LP'),
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(self.config.get(self.mainsection, 'SECTION_LP'),
                 self.config.get(self.subsection, 'SECTION_LP_SERVICES')))))
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
                                 self.config.get(self.subsection, 'SECTION_LP_SERVICES')).get_attribute("value"), "100")
 
     @attr(priority="high")
     #@SkipTest
     def test_AST_260_To_Verfiy_LP_Duration_Text_Box(self):
-        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                                                   self.config.get(self.subsection, 'SECTION_LP_POWERDURATION')).clear()
-        self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                                                   self.config.get(self.subsection, 'SECTION_LP_POWERDURATION')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textbox_locator(self.config.get(self.mainsection, 'SECTION_LP'),
+            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_LP'),
                 self.config.get(self.subsection, 'SECTION_LP_POWERDURATION')))))
-        self.assertEqual(self.ast.get_schoolinfrastructure_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
+        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                             self.config.get(self.subsection, 'SECTION_LP_POWERDURATION')).get_attribute("value"), "100")
 
     @attr(priority = 'high')
@@ -703,7 +703,6 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
                 self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
-                                                 self.config.get(self.subsection, section["sub_section"]),
-                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
+                                                 self.config.get(self.subsection, section["sub_section"]))
         if flag == 1:
             self.fail("Test has failed")
