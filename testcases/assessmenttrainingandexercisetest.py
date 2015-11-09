@@ -46,16 +46,26 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         :return:
         """
         for option in range(4):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SCHOOL'),
-                self.config.get(self.subsection, 'SECTION_SCHOOL_SAFETY_PLAN'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_SCHOOL'),
+                 self.config.get(self.subsection, 'SECTION_SCHOOL_SAFETY_PLAN'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
                 schoolsafetyoptions[option].click()
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SCHOOL'),
-                    self.config.get(self.subsection, 'SECTION_SCHOOL_SAFETY_PLAN'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_SCHOOL'),
+                     self.config.get(self.subsection, 'SECTION_SCHOOL_SAFETY_PLAN'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
     #@SkipTest
@@ -67,16 +77,26 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         self.ast.get_assessment_scroll.send_keys(Keys.ARROW_DOWN)
         self.ast.get_assessment_scroll.send_keys(Keys.ARROW_DOWN)
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                self.config.get(self.subsection, 'SECTION_EXERCISE_DISTRICT_WIDE'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                 self.config.get(self.subsection, 'SECTION_EXERCISE_DISTRICT_WIDE'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                    self.config.get(self.subsection, 'SECTION_EXERCISE_DISTRICT_WIDE'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                     self.config.get(self.subsection, 'SECTION_EXERCISE_DISTRICT_WIDE'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
     #@SkipTest
@@ -88,18 +108,27 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         self.ast.get_assessment_scroll.send_keys(Keys.ARROW_DOWN)
         self.ast.get_assessment_scroll.send_keys(Keys.ARROW_DOWN)
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                self.config.get(self.subsection, 'SECTION_EXERCISE_COUNTYS_MASS_CASUALTY_DRILL'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                 self.config.get(self.subsection, 'SECTION_EXERCISE_COUNTYS_MASS_CASUALTY_DRILL'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
                 schoolsafetyoptions[option].click()
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                    self.config.get(self.subsection, 'SECTION_EXERCISE_COUNTYS_MASS_CASUALTY_DRILL'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                     self.config.get(self.subsection, 'SECTION_EXERCISE_COUNTYS_MASS_CASUALTY_DRILL'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
     @attr(priority="high")
@@ -111,18 +140,29 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
 
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                 self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                    self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                     self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
     @attr(priority="high")
@@ -134,18 +174,29 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
 
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT_OCCUR'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                 self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT_OCCUR'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                    self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT_OCCUR'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                     self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT_OCCUR'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
     #@SkipTest
@@ -156,18 +207,29 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
 
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                 self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                    self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                     self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
     #@SkipTest
@@ -178,18 +240,29 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
 
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT_OCCUR'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                 self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT_OCCUR'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                    self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT_OCCUR'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                     self.config.get(self.subsection, 'SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT_OCCUR'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
     @attr(priority="high")
@@ -201,99 +274,158 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
 
         for option in range(4):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                self.config.get(self.subsection, 'SECTION_EXERCISE_CRISIS_INCIDENT_MANAGEMENT_EXERCISED'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                 self.config.get(self.subsection, 'SECTION_EXERCISE_CRISIS_INCIDENT_MANAGEMENT_EXERCISED'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EXERCISE'),
-                    self.config.get(self.subsection, 'SECTION_EXERCISE_CRISIS_INCIDENT_MANAGEMENT_EXERCISED'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EXERCISE'),
+                     self.config.get(self.subsection, 'SECTION_EXERCISE_CRISIS_INCIDENT_MANAGEMENT_EXERCISED'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_300_1_To_Test_SchoolType_Radio_Button_SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS(self):
+    def test_AST_300_1_Radio_Button_SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS(self):
         """
         Description : To test the school type option radio buttons
         :return:
         """
 
         for option in range(4):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
-                self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
+                 self.config.get(self.subsection,
+                                 'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
-                    self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
+                     self.config.get(self.subsection,
+                                     'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_301_1_To_Test_SchoolType_Radio_Button_SECTION_EMERGENCY_CHECKLIST_TRAINED_IN_THE_REUNIFICATION_PLAN(self):
+    def test_AST_301_1_Radio_Button_SECTION_EMERGENCY_CHECKLIST_TRAINED_IN_THE_REUNIFICATION_PLAN(self):
         """
         Description : To test the school type option radio buttons
         :return:
         """
 
         for option in range(4):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
-                self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_TRAINED_IN_THE_REUNIFICATION_PLAN'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
+                 self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_TRAINED_IN_THE_REUNIFICATION_PLAN'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
-                    self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_TRAINED_IN_THE_REUNIFICATION_PLAN'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
+                     self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_TRAINED_IN_THE_REUNIFICATION_PLAN'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority = 'high')
     #@SkipTest
     def test_AST_303_1_To_Verfiy_textarea_SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS(self):
-        self.ast.get_schooldata_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).clear()
-        self.ast.get_schooldata_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).send_keys("100")
+
+        self.ast.get_schoolinfrasturcture_textarea\
+            (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
+             self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).clear()
+
+        self.ast.get_schoolinfrasturcture_textarea\
+            (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
+             self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).send_keys("100")
+
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schooldata_textarea_locator(
+            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator
+            (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
                 self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')))))
-        self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).get_attribute("value"), "100")
+
+        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea
+                         (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
+                          self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS'))
+                         .get_attribute("value"), "100")
 
 
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_304_1_To_Test_SchoolType_Radio_Button_SECTION_CRISIS_INCIDENT_MANAGEMENT_COMMAND_TEAM_TRAINED_REGULARLY(self):
+    def test_AST_304_1_Radio_Button_SECTION_CRISIS_INCIDENT_MANAGEMENT_COMMAND_TEAM_TRAINED_REGULARLY(self):
         """
         Description : To test the school type option radio buttons
         :return:
         """
 
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
-                self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_COMMAND_TEAM_TRAINED_REGULARLY'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
+                 self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_COMMAND_TEAM_TRAINED_REGULARLY'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
-                    self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_COMMAND_TEAM_TRAINED_REGULARLY'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
+                     self.config.get(self.subsection,
+                                     'SECTION_CRISIS_INCIDENT_MANAGEMENT_COMMAND_TEAM_TRAINED_REGULARLY'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
     #@SkipTest
@@ -304,42 +436,64 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
 
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
-                self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_STAFF_WOULD_NEED_LIST'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
+                 self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_STAFF_WOULD_NEED_LIST'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
-                    self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_STAFF_WOULD_NEED_LIST'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
+                     self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_STAFF_WOULD_NEED_LIST'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_306_1_To_Test_SchoolType_Radio_Button_SECTION_CRISIS_INCIDENT_MANAGEMENT_IMPACT_YOUR_SCHOOL_SAFETY(self):
+    def test_AST_306_1_Radio_Button_SECTION_CRISIS_INCIDENT_MANAGEMENT_IMPACT_YOUR_SCHOOL_SAFETY(self):
         """
         Description : To test the school type option radio buttons
         :return:
         """
 
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
-                self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_IMPACT_YOUR_SCHOOL_SAFETY'))
-            if not schoolsafetyoptions[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+            schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
+                (self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
+                 self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_IMPACT_YOUR_SCHOOL_SAFETY'))
+
+            if not schoolsafetyoptions[option].get_attribute("class") == \
+                    "answer_choice radio ng-binding ng-isolate-scope checked":
+
                 schoolsafetyoptions[option].click()
+
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
+
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
-                    self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_IMPACT_YOUR_SCHOOL_SAFETY'))
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+                schoolsafetychecked = self.ast.get_schooldata_radiobutton\
+                    (self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT'),
+                     self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_MANAGEMENT_IMPACT_YOUR_SCHOOL_SAFETY'))
+
+                self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
+                                 "answer_choice radio ng-binding ng-isolate-scope checked")
 
 
     @attr(priority="high")
@@ -367,9 +521,10 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
 
-                self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
-                                                self.config.get(self.subsection, section["sub_section"]),
-                                                self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+                self.ast.delete_uploaded_files_assessmentpage\
+                    (self.config.get(self.mainsection, section["main_section"]),
+                     self.config.get(self.subsection, section["sub_section"]),
+                     self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
 
     @attr(priority="high")
@@ -381,18 +536,21 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         """
         with open(sectionfile) as data_file:
             for section in json.load(data_file):
-                self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, section["main_section"]),
-                                                       self.config.get(self.subsection, section["sub_section"]),
-                                                       self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+                self.ast.schooldata_edit_caption_image\
+                    (self.config.get(self.mainsection, section["main_section"]),
+                     self.config.get(self.subsection, section["sub_section"]),
+                     self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
                 try:
-                    self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, section["main_section"]),
-                                                self.config.get(self.subsection, section["sub_section"]))[0].text, "Hello")
+                    self.assertEqual(self.ast.get_schooldata_image_caption
+                                     (self.config.get(self.mainsection, section["main_section"]),
+                                      self.config.get(self.subsection, section["sub_section"]))[0].text, "Hello")
                 except Exception, err:
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
-                self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
-                                                              self.config.get(self.subsection, section["sub_section"]),
-                                                              self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+                self.ast.delete_uploaded_files_assessmentpage\
+                    (self.config.get(self.mainsection, section["main_section"]),
+                     self.config.get(self.subsection, section["sub_section"]),
+                     self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
     @attr(priority="high")
     #@SkipTest
@@ -408,8 +566,11 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                                                  self.config.get(self.subsection, section["sub_section"]),
                                                  self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
                 try:
-                    self.assertEqual(self.ast.get_schooldata_comment_textbox(self.config.get(self.mainsection, section["main_section"]),
-                            self.config.get(self.subsection, section["sub_section"])).get_attribute("value"), "Comment")
+                    self.assertEqual(self.ast.get_schooldata_comment_textbox
+                                     (self.config.get(self.mainsection, section["main_section"]),
+                                      self.config.get(self.subsection, section["sub_section"]))
+                                     .get_attribute("value"), "Comment")
+
                 except Exception, err:
                     flag = 1
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
