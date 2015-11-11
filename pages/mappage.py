@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from basepage import BasePage
+from time import sleep
 
 class MapPage(BasePageClass):
 
@@ -61,6 +62,7 @@ class MapPage(BasePageClass):
     _map_water_fall_handle = ".//*[@id='waterfall_handle']"
     _map_water_fall_list = ".//*[@id='waterfall_ul']"
     _map_water_fall_list_items = "li"
+    _map_water_fall_scrollable = ".//*[@id='waterfall_scrollable']"
 
     @property
     def get_map_app_name(self):
@@ -345,6 +347,15 @@ class MapPage(BasePageClass):
             raise type(err)("Water fall handle - Right hand side - Last Icon - searched XPATH - "
                             + self._map_water_fall_handle + err.message)
 
+    @property
+    def get_map_water_fall_scrollable(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_water_fall_scrollable)))
+            return self.driver.find_element_by_xpath(self._map_water_fall_scrollable)
+        except Exception, err:
+            raise type(err)("Water fall Scrollable - Right hand side - Last Icon - searched XPATH - "
+                            + self._map_water_fall_scrollable + err.message)
 
     @property
     def get_map_water_fall_list(self):
@@ -373,10 +384,10 @@ class MapPage(BasePageClass):
 
     # This function is used - if check box is selected, it should be unchecked
     def get_checking_and_unchecking_basic_data_layer(self):
-
+        sleep(2)
         if self.get_map_basic_data_layer_asset.is_selected():
             self.get_map_basic_data_layer_asset.click()
-
+        sleep(2)
         if self.get_map_basic_data_layer_assessment.is_selected():
             self.get_map_basic_data_layer_assessment.click()
 

@@ -54,13 +54,21 @@ class MapPageTest(BaseTestCase):
         try:
 
             sleep(5)
+            if self.mappage.get_map_water_fall_scrollable.is_displayed():
+                self.mappage.get_map_water_fall_handle.click()
+            sleep(5)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-                .move_to_element(self.mappage.get_map_default_view_radio).click()\
-                .move_to_element(self.mappage.get_map_basic_data_layer).click()\
                 .perform()
+
+            self.mappage.get_map_default_view_radio.click()
+            sleep(1)
+            self.mappage.get_map_basic_data_layer.click()
+            sleep(1)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
+            sleep(5)
+
             self.mappage.get_map_basic_data_layer_asset.click()
             sleep(5)
             self.mappage.get_map_zoom_out.click()
@@ -78,28 +86,37 @@ class MapPageTest(BaseTestCase):
             # Count the total no. of Assets displayed in the collection
             assetTotal = self.mappage.get_map_water_fall_list
             items = assetTotal.find_elements_by_tag_name("li")
-            print "Found " + str(len(items)) + " assets"
-            self.assertEqual(map_assets_count,len(items),"total assets not matching" )
+            print "Found " + str(len(items)-1) + " assets"
+            self.assertEqual(map_assets_count,len(items)-1,"total assets not matching" )
             # click on Water fall handle on Right hand side - Vertical - Last Icon
             self.mappage.get_map_water_fall_handle.click()
             self.mappage.return_to_icon_list_page()
             sleep(2)
         except Exception as e:
             print e
-            sys.exit(1)
+            raise
 
     @attr(priority="high")
     #@SkipTest
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
         try:
-            sleep(2)
+            sleep(5)
+            if self.mappage.get_map_water_fall_scrollable.is_displayed():
+                sleep(2)
+                self.mappage.get_map_water_fall_handle.click()
+            sleep(5)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-                .move_to_element(self.mappage.get_map_default_view_radio).click()\
-                .move_to_element(self.mappage.get_map_basic_data_layer).click()\
                 .perform()
+
+            self.mappage.get_map_default_view_radio.click()
+            sleep(1)
+            self.mappage.get_map_basic_data_layer.click()
+            sleep(1)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
+            sleep(5)
+
             self.mappage.get_map_basic_data_layer_assessment.click()
             sleep(5)
             self.mappage.get_map_zoom_out.click()
@@ -111,8 +128,8 @@ class MapPageTest(BaseTestCase):
             self.mappage.get_map_water_fall_handle.click()
             assessmentTotal = self.mappage.get_map_water_fall_list
             items = assessmentTotal.find_elements_by_tag_name("li")
-            print "Found " + str(len(items)) + " assessment"
-            self.assertEqual(map_assessment_count,len(items),"total assessment not matching" )
+            print "Found " + str(len(items)-1) + " assessment"
+            self.assertEqual(map_assessment_count,len(items)-1,"total assessment not matching" )
             self.mappage.get_map_water_fall_handle.click()
             self.mappage.return_to_icon_list_page()
             sleep(2)
@@ -123,14 +140,22 @@ class MapPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
-        sleep(2)
+        sleep(5)
+        if self.mappage.get_map_water_fall_scrollable.is_displayed():
+            self.mappage.get_map_water_fall_handle.click()
+        sleep(5)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .move_to_element(self.mappage.get_map_default_view_radio).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer).click()\
             .perform()
+
+        self.mappage.get_map_default_view_radio.click()
+        sleep(1)
+        self.mappage.get_map_basic_data_layer.click()
+        sleep(1)
         self.mappage.get_checking_and_unchecking_basic_data_layer()
+        sleep(5)
+
         self.mappage.get_map_basic_data_layer_incident.click()
         sleep(5)
         self.mappage.get_map_zoom_out.click()
@@ -142,8 +167,8 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_water_fall_handle.click()
         incidentTotal = self.mappage.get_map_water_fall_list
         items = incidentTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " incident"
-        self.assertEqual(map_incident_count,len(items),"total incident not matching" )
+        print "Found " + str(len(items)-1) + " incident"
+        self.assertEqual(map_incident_count,len(items)-1,"total incident not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.return_to_icon_list_page()
         sleep(2)
@@ -151,16 +176,23 @@ class MapPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
-        sleep(2)
+        sleep(5)
+        if self.mappage.get_map_water_fall_scrollable.is_displayed():
+            self.mappage.get_map_water_fall_handle.click()
+        sleep(5)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .move_to_element(self.mappage.get_map_default_view_radio).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer).click()\
             .perform()
+
+        self.mappage.get_map_default_view_radio.click()
+        sleep(1)
+        self.mappage.get_map_basic_data_layer.click()
+        sleep(1)
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_checking_and_unchecking_basic_data_layer()
+        sleep(5)
         self.mappage.get_map_basic_data_layer_threat_streams.click()
         sleep(5)
         self.mappage.get_map_zoom_out.click()
@@ -172,8 +204,8 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_water_fall_handle.click()
         threatstreamsTotal = self.mappage.get_map_water_fall_list
         items = threatstreamsTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " threat streams"
-        self.assertEqual(map_threat_streams_count,len(items),"total threat streams not matching" )
+        print "Found " + str(len(items)-1) + " threat streams"
+        self.assertEqual(map_threat_streams_count,len(items)-1,"total threat streams not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.return_to_icon_list_page()
         sleep(2)
@@ -181,13 +213,19 @@ class MapPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_map_10_to_verify_Default_Map_View_Based_On_Indicator_Teams(self):
-        sleep(2)
+        sleep(5)
+        if self.mappage.get_map_water_fall_scrollable.is_displayed():
+            self.mappage.get_map_water_fall_handle.click()
+        sleep(5)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .move_to_element(self.mappage.get_map_default_view_radio).click()\
-            .move_to_element(self.mappage.get_map_basic_data_layer).click()\
             .perform()
+
+        self.mappage.get_map_default_view_radio.click()
+        sleep(1)
+        self.mappage.get_map_basic_data_layer.click()
+        sleep(1)
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
@@ -203,8 +241,8 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_water_fall_handle.click()
         indicatorteamsTotal = self.mappage.get_map_water_fall_list
         items = indicatorteamsTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " indicator teams"
-        self.assertEqual(map_indicator_teams_streams_count,len(items),"total indicator teams not matching" )
+        print "Found " + str(len(items)-1) + " indicator teams"
+        self.assertEqual(map_indicator_teams_streams_count,len(items)-1,"total indicator teams not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.return_to_icon_list_page()
         sleep(2)
@@ -234,8 +272,8 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_water_fall_handle.click()
         annotationsTotal = self.mappage.get_map_water_fall_list
         items = annotationsTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " annotations"
-        self.assertEqual(map_annotations_count,len(items),"total annotations not matching" )
+        print "Found " + str(len(items)-1) + " annotations"
+        self.assertEqual(map_annotations_count,len(items)-1,"total annotations not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.return_to_icon_list_page()
         sleep(2)
@@ -268,8 +306,8 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_water_fall_handle.click()
         threatstreamstrendinglastdayTotal = self.mappage.get_map_water_fall_list
         items = threatstreamstrendinglastdayTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " threat streams trending last day"
-        self.assertEqual(map_threat_streams_trending_last_day_count,len(items),
+        print "Found " + str(len(items)-1) + " threat streams trending last day"
+        self.assertEqual(map_threat_streams_trending_last_day_count,len(items)-1,
                          "total threat streams trending last day not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.return_to_icon_list_page()
@@ -302,8 +340,8 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_water_fall_handle.click()
         threatstreamsstream1Total = self.mappage.get_map_water_fall_list
         items = threatstreamsstream1Total.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " threat streams stream 1"
-        self.assertEqual(map_threat_streams_stream_1_count,len(items),"total threat streams stream 1 not matching" )
+        print "Found " + str(len(items)-1) + " threat streams stream 1"
+        self.assertEqual(map_threat_streams_stream_1_count,len(items)-1,"total threat streams stream 1 not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.return_to_icon_list_page()
         sleep(2)
@@ -335,8 +373,8 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_water_fall_handle.click()
         threatstreamsstream2Total = self.mappage.get_map_water_fall_list
         items = threatstreamsstream2Total.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)) + " threat streams stream 2"
-        self.assertEqual(map_threat_streams_stream_2_count,len(items),"total threat streams stream 2 not matching" )
+        print "Found " + str(len(items)-1) + " threat streams stream 2"
+        self.assertEqual(map_threat_streams_stream_2_count,len(items)-1,"total threat streams stream 2 not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.return_to_icon_list_page()
         sleep(2)
