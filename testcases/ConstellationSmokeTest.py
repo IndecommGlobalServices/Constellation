@@ -6,7 +6,7 @@ cwd = os.getcwd()
 os.chdir('..')
 filepathsmoke = os.path.join(os.getcwd(), testfilenamesmoke)
 os.chdir(cwd)
-nose.run(argv=["","assettest", "--verbosity=3", "-a status=smoke", "--with-xunit",
+nose.run(argv=["","assettest","assessmenttest", "maptest", "threatstreamstest", "--verbosity=3", "-a status=smoke", "--with-xunit",
                "--xunit-file="+filepathsmoke+"", "--nologcapture","-s", "--nocapture"])
 
 

@@ -1780,7 +1780,7 @@ class AssetPage(BasePageClass):
         """
         self.select_school_or_place_asset(self.asset_school_name[0], type)
         if type == "School":
-            WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
+            WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self._asset_details_edit_widget_locator), "Details"))
             self.get_asset_overview_edit_link.click()
             self.create_school_asset(self.editSchool)

@@ -32,8 +32,8 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        for section in self.config.options(self.subsection):
-            self.ast.delete_attchedimage(self.config.get(self.subsection, section))
+        # for section in self.config.options(self.subsection):
+        #     self.ast.delete_attchedimage(self.config.get(self.subsection, section))
         self.ast.get_overview_button.click()
         self.ast.return_to_assessment_main_page()
 
@@ -84,15 +84,15 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the school hours section
         :return:
         """
-        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+        self.ast.get_schooldata_textbox_textinput(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
                                                   self.config.get(self.subsection, 'SECTION_SCHOOL_HOURS')).clear()
-        self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+        self.ast.get_schooldata_textbox_textinput(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
                                                   self.config.get(self.subsection, 'SECTION_SCHOOL_HOURS')).send_keys("100")
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schooldata_textbox_locator(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+            (By.XPATH, self.ast.get_schooldata_textbox_textinput_locator(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
                 self.config.get(self.subsection, 'SECTION_SCHOOL_HOURS')))))
-        self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
+        self.assertEqual(self.ast.get_schooldata_textbox_textinput(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
                             self.config.get(self.subsection, 'SECTION_SCHOOL_HOURS')).get_attribute("value"), "100")
 
     @attr(priority="high")
@@ -217,10 +217,10 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                 count_of_image_before_upload = len(self.ast.get_schooldata_image(self.config.get(
                                         self.mainsection, section["main_section"]),
                                         self.config.get(self.subsection, section["sub_section"])))
-                self.ast.schooldata_upload_file(self.config.get(self.mainsection, section["main_section"]),
+                try:
+                    self.ast.schooldata_upload_file(self.config.get(self.mainsection, section["main_section"]),
                                                 self.config.get(self.subsection, section["sub_section"]),
                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-                try:
                     self.assertGreater(len(self.ast.get_schooldata_image(self.config.get(
                                                     self.mainsection, section["main_section"]),
                                                     self.config.get(self.subsection, section["sub_section"]))),
@@ -242,10 +242,10 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         """
         with open(sectionfile) as data_file:
             for section in json.load(data_file):
-                self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, section["main_section"]),
+                try:
+                    self.ast.schooldata_edit_caption_image(self.config.get(self.mainsection, section["main_section"]),
                                                        self.config.get(self.subsection, section["sub_section"]),
                                                        self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
-                try:
                     self.assertEqual(self.ast.get_schooldata_image_caption(self.config.get(self.mainsection, section["main_section"]),
                                                 self.config.get(self.subsection, section["sub_section"]))[0].text, "Hello")
                 except Exception, err:
