@@ -884,7 +884,6 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
                 self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
-                                                 self.config.get(self.subsection, section["sub_section"]),
-                                                 self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
+                                                 self.config.get(self.subsection, section["sub_section"]))
         if flag == 1:
             self.fail("Test has failed")
