@@ -1,18 +1,15 @@
-__author__ = 'Deepa.Sivadas'
-import unittest
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from pages.assessmentpage import AssessmentPage
-from pages.loginpage import LoginPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
-from nose.plugins.skip import SkipTest
 from time import sleep
 from datetime import date, timedelta, datetime
-import json, os, re
+
 
 
 class AssessmentOverviewPageTest(BaseTestCase):
@@ -25,7 +22,10 @@ class AssessmentOverviewPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        self.ast.delete_uploaded_files()
+        try:
+            self.ast.delete_uploaded_files()
+        except:
+            pass
         self.ast.return_to_assessment_main_page()
 
     @attr(priority="high")

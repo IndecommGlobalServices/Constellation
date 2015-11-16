@@ -138,7 +138,7 @@ class AssessmentPage(BasePageClass):
     @property
     def click_on_assessment_header(self):
         try:
-            WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable(
+            WebDriverWait(self.driver, 20).until(expected_conditions.visibility_of_element_located(
                 (By.XPATH, self._ast_assessment_header_locator )))
             return self.driver.find_element_by_xpath(self._ast_assessment_header_locator)
         except Exception, err:
@@ -200,12 +200,15 @@ class AssessmentPage(BasePageClass):
         try:
             return  self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_on_locator)
         except Exception, err:
-            raise type(err)("Create assessment button not available - search XPATH - " \
+            raise type(err)("Create assessment button not available - searched XPATH - " \
                           + self._ast_main_create_assessment_button_on_locator + err.message)
     @property
     def get_create_assessments_button(self):
-        return self.driver.find_element_by_xpath(self._ast_create_assessments_button_locator)
-
+        try:
+            return self.driver.find_element_by_xpath(self._ast_create_assessments_button_locator)
+        except Exception, err:
+            raise type(err)("Create assessment button not available - searched XPATH - " \
+                          + self._ast_create_assessments_button_locator + err.message)
     @property
     def get_create_assignedto_textbox(self):
         return self.driver.find_element_by_xpath(self._ast_create_assignedto_text_box_locator)
@@ -335,7 +338,7 @@ class AssessmentPage(BasePageClass):
     @property
     def get_file_upload_button(self):
         try:
-            WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
+            WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
                 (By.XPATH, self._ast_photos_documents_upload_file_button_locator )))
             return self.driver.find_element_by_xpath(self._ast_photos_documents_upload_file_button_locator)
         except Exception, err:
@@ -589,7 +592,14 @@ class AssessmentPage(BasePageClass):
         return (self.get_breadcrumb_assessmentname_text.text.split(' - '))[0].strip()
 
     def get_caption_path(self, caption):
-        return self.driver.find_element_by_xpath("//div//a[contains(text(),'"+caption+"')]")
+        try:
+            return self.driver.find_element_by_xpath("//div[@class = 'file_list_container showaslink ng-scope']"
+                                                     "//a[contains(text(),'"+caption+"')]")
+        except Exception, err:
+             raise type(err)("File caption not visible - searched XPATH - " \
+                          + "//div[@class = 'file_list_container showaslink ng-scope']"
+                                                     "//a[contains(text(),'"+caption+"')]" + err.message)
+
 
     def get_file_header_path(self, filename):
         path = "//div[contains(text(), '" + filename + "')]"
@@ -612,23 +622,27 @@ class AssessmentPage(BasePageClass):
         return complete_file_path
 
     def upload_a_file(self, image_caption, image_file_name):
+        sleep(2)
         self.get_file_upload_button.click()# Click on Photo/Document panel - File Upload button
         # Click on Attach file button and attached the file path with the send_keys
         file_path = self.file_path(image_file_name)
         self.get_file_attach_file_button.send_keys(file_path)
         sleep(3)
         # Enter Caption
-        caption_val = image_caption
-        self.get_fileupload_caption_textbox.send_keys(caption_val)
-        sleep(2)
+        if not image_caption == "":
+            caption_val = image_caption
+            self.get_fileupload_caption_textbox.send_keys(caption_val)
+            sleep(2)
         # Click Upload.
         self.get_fileupload_window_upload_button.click()
         sleep(5)
         try:
             WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
                 (By.XPATH, self._ast_saved_text_locator), "Saved"),  self.driver.find_element_by_xpath(self._ast_saved_text_locator).text)
-        except:
-            pass
+        except Exception, err:
+            raise type(err)("File upload failed- Message displayed is -  " + self.driver.find_element_by_xpath(
+                self._ast_saved_text_locator).text + err.message)
+
 
     def upload_a_file_cancel(self, image_caption, image_file_name):
          # Click on Photo/Document panel - File Upload button
@@ -742,6 +756,13 @@ class AssessmentPage(BasePageClass):
 
     def return_to_assessment_main_page(self):
         self.click_on_assessment_header.click()
+        try:
+            WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located(
+                        (By.XPATH,self._ast_main_create_assessment_button_locator)))
+        except:
+            BasePage(self.driver).accessURL()
+            IconListPage(self.driver).click_assessments_icon()
+
 
     def get_schooldata_comment_image(self, section, subsection):
         return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
@@ -909,6 +930,13 @@ class AssessmentPage(BasePageClass):
     def get_schooldata_textbox(self, section, subsectionsection):
         return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
                                         "[contains(text(),'"+subsectionsection+"')]//input[@name = 'integer_input']")
+
+    def get_schooldata_textbox_textinput(self, section, subsectionsection):
+        return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                        "[contains(text(),'"+subsectionsection+"')]//input[@type = 'text']")
+    def get_schooldata_textbox_textinput_locator(self, section, subsectionsection):
+        return ("//div[contains(text(), '"+section+"')]/following-sibling::div"
+                                        "[contains(text(),'"+subsectionsection+"')]//input[@type = 'text']")
 
     def get_schooldata_textbox_error(self, section, subsectionsection):
         return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"

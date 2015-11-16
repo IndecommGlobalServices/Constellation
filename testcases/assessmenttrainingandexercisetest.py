@@ -310,7 +310,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
             schoolsafetyoptions = self.ast.get_schooldata_radiobutton\
                 (self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
                  self.config.get(self.subsection,
-                                 'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS'))
+                                 'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS'))
 
             if not schoolsafetyoptions[option].get_attribute("class") == \
                     "answer_choice radio ng-binding ng-isolate-scope checked":
@@ -328,7 +328,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 schoolsafetychecked = self.ast.get_schooldata_radiobutton\
                     (self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST'),
                      self.config.get(self.subsection,
-                                     'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS'))
+                                     'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS'))
 
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
                                  "answer_choice radio ng-binding ng-isolate-scope checked")
@@ -371,22 +371,22 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
     #@SkipTest
     def test_AST_303_1_To_Verfiy_textarea_SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS(self):
 
-        self.ast.get_schoolinfrasturcture_textarea\
+        self.ast.get_schooldata_textarea\
             (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
              self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).clear()
 
-        self.ast.get_schoolinfrasturcture_textarea\
+        self.ast.get_schooldata_textarea\
             (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
              self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')).send_keys("100")
 
         self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
         WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
-            (By.XPATH, self.ast.get_schoolinfrastructure_textarea_locator
+            (By.XPATH, self.ast.get_schooldata_textarea_locator
             (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
                 self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS')))))
 
-        self.assertEqual(self.ast.get_schoolinfrasturcture_textarea
+        self.assertEqual(self.ast.get_schooldata_textarea
                          (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
                           self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS'))
                          .get_attribute("value"), "100")
@@ -576,7 +576,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
                 self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
-                                                 self.config.get(self.subsection, section["sub_section"]),
-                                                 self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+                                                 self.config.get(self.subsection, section["sub_section"]))
         if flag == 1:
             self.fail("Test has failed")
