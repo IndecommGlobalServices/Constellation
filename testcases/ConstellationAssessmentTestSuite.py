@@ -11,3 +11,7 @@ os.chdir(cwd)
 nose.run(argv=["","assessmentoverviewtest",
                "--verbosity=3","--with-xunit", "--xunit-file="+filepath+"", "--nologcapture","-s", "--nocapture"])
 
+
+
+
+
