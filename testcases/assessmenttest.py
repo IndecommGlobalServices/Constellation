@@ -6,7 +6,7 @@ from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from time import sleep
 from datetime import date, timedelta, datetime
-import json, os, re
+import json, os
 
 
 class AssessmenttPageTest(BaseTestCase):
@@ -39,14 +39,14 @@ class AssessmenttPageTest(BaseTestCase):
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=31)
         self.ast.create_assessment_select_haystax_template()
-        self.ast.select_first_asset()
-        self.ast.get_create_assignedto_textbox.clear()
-        sleep(1)
         self.ast.get_create_startdate_textbox.send_keys(str(start_date))
         self.ast.get_create_enddate_textbox.send_keys(str(end_date))
-        self.assertTrue(self.ast.get_create_assessments_button.is_enabled(), "Create assessment button is not enabled")
-        self.ast.get_create_assessments_button.click()
-        sleep(8)
+        self.ast.get_create_assignedto_textbox.clear()
+        self.ast.get_create_assets_textbox.clear()
+        self.ast.get_create_assets_textbox.send_keys(self.ast.asset_school_name)
+        self.ast.get_create_assets_option(self.ast.asset_school_name).click()
+        self.ast.get_create_assets_add_button.click()
+        self.ast.get_create_assessment_save_button.click()
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
         sleep(8)
         for item in self.ast.get_assessment_table("Asset"):
@@ -64,21 +64,11 @@ class AssessmenttPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    @SkipTest
-    def test_ast_02_To_verify_nodate_createassessment(self):
-        self.ast.create_assessment_select_haystax_template()
-        self.ast.select_first_asset()
-        self.ast.get_create_startdate_textbox.clear()
-        self.ast.get_create_enddate_textbox.clear()
-        self.assertFalse(self.ast.get_create_assessments_button.is_enabled(),"Create assessment button enabled even "
-                                                                             "without entering start and end date")
-
-    @attr(priority="high")
     #@SkipTest
-    def test_ast_04_To_verify_datevaidation_createassessment(self):
+    def test_ast_04_To_verify_datevalidation_createassessment(self):
+
         dateformat = ['date', '23-11-2015', '2015-22-11']
         self.ast.create_assessment_select_haystax_template()
-        self.ast.select_first_asset()
         for date in dateformat:
             self.ast.get_create_startdate_textbox.clear()
             self.ast.get_create_startdate_textbox.send_keys(date)
@@ -95,8 +85,18 @@ class AssessmenttPageTest(BaseTestCase):
     def test_ast_05_To_create_assessment(self):
         flag = 0
         count = 0
-        if self.ast.create_assessment(self.ast.asset_school_name) == False:
-            self.assertFalse(True, "Assessment creation failed")
+        start_date = datetime.today().date()
+        end_date = start_date + timedelta(days=31)
+        self.ast.create_assessment_select_haystax_template()
+        self.ast.get_create_startdate_textbox.send_keys(str(start_date))
+        self.ast.get_create_enddate_textbox.send_keys(str(end_date))
+        self.ast.get_create_assignedto_textbox.clear()
+        self.ast.get_create_assignedto_textbox.send_keys("dee@dee")
+        self.ast.get_create_assets_textbox.clear()
+        self.ast.get_create_assets_textbox.send_keys(self.ast.asset_school_name)
+        self.ast.get_create_assets_option(self.ast.asset_school_name).click()
+        self.ast.get_create_assets_add_button.click()
+        self.ast.get_create_assessment_save_button.click()
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
         sleep(8)
         for item in self.ast.get_assessment_table("Asset"):

@@ -45,7 +45,7 @@ class AssetpageTest(BaseTestCase):
             self.skipTest(self.config.get(self.section, 'MESSAGE_TEST_CAN_NOT_BE_VALIDATED'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_02(self):
         """
         Test : test_AS_02
@@ -60,7 +60,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_WHEN_NO_ASSETS_AVAILABLE'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_03(self):
         """
         Test : test_AS_03
@@ -79,7 +79,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_COULD_NOT_DELETE_ASSET'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     @attr(status='smoke')
     def test_AS_04(self):
         """
@@ -99,7 +99,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_ASSET_DELETED_ON_CANCEL'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_06(self):
         """
         Test : test_AS_06
@@ -114,7 +114,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_07(self):
         """
         Test : test_AS_07
@@ -129,7 +129,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_08(self):
         """
         Test : test_AS_08
@@ -145,7 +145,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_09(self):
         """
         Test : test_AS_09
@@ -161,7 +161,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_10(self):
         """
         Test : test_AS_10
@@ -178,7 +178,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_11(self):
         """
         Test : test_AS_11
@@ -192,7 +192,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_12(self):
         """
         Test : test_AS_12
@@ -227,7 +227,7 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.select_asset_search_text_box.clear()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_14_and_17(self):
         """
         Test : test_AS_14_and_17
@@ -255,7 +255,7 @@ class AssetpageTest(BaseTestCase):
         self.assertFalse(check == 0, self.config.get(self.section,'MESSAGE_NEW_ASSET_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_15(self):
         """
         Test : test_AS_15
@@ -272,7 +272,7 @@ class AssetpageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_16(self):
         """
         Test : test_AS_16
@@ -292,7 +292,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.asset_overview_cancel_click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_18(self):
         """
         Test : test_AS_18
@@ -306,7 +306,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_19(self):
         """
         Test : test_AS_19
@@ -322,7 +322,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_20(self):
         """
         Test : test_AS_20
@@ -340,7 +340,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_21(self):
         """
         Test : test_AS_21
@@ -359,7 +359,7 @@ class AssetpageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_23(self):
         """
         Test : test_AS_23
@@ -378,7 +378,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_24(self):
         """
         Test : test_AS_24
@@ -401,7 +401,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_cancel_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_25(self):
         """
         Test : test_AS_25
@@ -425,7 +425,7 @@ class AssetpageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_26(self):
         """
         Test : test_AS_26
@@ -444,7 +444,7 @@ class AssetpageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_27(self):
         """
         Test : test_AS_27
@@ -464,7 +464,7 @@ class AssetpageTest(BaseTestCase):
                                                         self.config.get(self.section, 'MESSAGE_CONTACTS_NOT_MATCHING'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_28(self):
         """
         Test : test_AS_28
@@ -487,7 +487,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_NO_MAIN_CONTACTS'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_29(self):
         """
         Test : test_AS_29
@@ -516,7 +516,7 @@ class AssetpageTest(BaseTestCase):
         self.assertTrue(lastname_error, self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_LAST_NAME'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_30(self):
         """
         Test : test_AS_30
@@ -546,7 +546,7 @@ class AssetpageTest(BaseTestCase):
                                  self.config.get(self.section, 'MESSAGE_PHONE_VALUE_NOT_MATCHING'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_31_1(self):
         """
         Test : test_AS_31_1
@@ -578,7 +578,7 @@ class AssetpageTest(BaseTestCase):
                                  self.config.get(self.section, 'MESSAGE_EMAIL_NOT_MATCHING'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_31_2(self):
         """
         Test : test_AS_31_2
@@ -610,7 +610,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_WRONG_EMAIL'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_32(self):
         """
         Test : test_AS_32
@@ -641,7 +641,7 @@ class AssetpageTest(BaseTestCase):
             self.assertTrue(True,self.config.get(self.section, 'MESSAGE_NEW_CONTACT_CREATED'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_33_1(self):
         """
         Test : test_AS_33_1
@@ -674,7 +674,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_NAMES_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_33_2(self):
         """
         Test : test_AS_33_2
@@ -707,7 +707,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_TITLES_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_33_3(self):
         """
         Test : test_AS_33_3
@@ -740,7 +740,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_PHONE_NUMBERS_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_33_4(self):
         """
         Test : test_AS_33_4
@@ -773,7 +773,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_CONTACT_EMAILS_NOT_IN_DESCENDING_ORDER'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_34(self):
         """
         Test : test_AS_34
@@ -804,7 +804,7 @@ class AssetpageTest(BaseTestCase):
             self.assertTrue(True, self.config.get(self.section, 'MESSAGE_CONTACT_DELETED'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_35(self):
         """
         Test : test_AS_35
@@ -838,7 +838,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_CONTACT_DELETED'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_36(self):
         """
         Test : test_AS_36
@@ -874,7 +874,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_location_cancel_button.click()
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_37(self):
         """
         Test : test_AS_37
@@ -1278,7 +1278,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priotity = "high")
-    #@SkipTest
+    @SkipTest
     def test_AS_49_50(self):
         """
         Test : test_AS_49_50
@@ -1308,7 +1308,7 @@ class AssetpageTest(BaseTestCase):
         self.assertFalse(flag == 0, self.config.get(self.section, 'MESSAGE_NEW_ASSET_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_51(self):
         """
         Test : test_AS_51
@@ -1364,7 +1364,7 @@ class AssetpageTest(BaseTestCase):
         self.assertTrue(self.driver.find_element_by_xpath(self.assetpage._asset_create_asset).is_displayed())
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_55(self):
         """
         Test : test_AS_55
@@ -1373,16 +1373,16 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        self.assetpage.edit_asset("School")
-        sleep(5)
-        self.assertEqual(self.assetpage.asset_school_name[self.assetpage.editSchool], self.assetpage.
-                         get_overview_name_text.text)
-        self.assertEqual(self.assetpage.asset_school_district[1], self.assetpage.get_overview_district_text.text)
-        self.assertEqual(self.assetpage.asset_school_grade[1], self.assetpage.get_overview_grade_text.text)
 
+        #self.assetpage.app_sanity_check()
+        self.assetpage.edit_asset("School")
+        self.assertEqual(self.assetpage.asset_school_name[self.assetpage.editSchool], self.assetpage.
+                         get_asset_overview_edit_name_text_box)
+        self.assertEqual(self.assetpage.asset_school_district[1], self.assetpage.get_overview_district_text)
+        self.assertEqual(self.assetpage.asset_school_grade[1], self.assetpage.get_overview_grade_text)
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_56(self):
         """
         Test : test_AS_56
@@ -1410,7 +1410,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(self.assetpage.asset_school_name[0], textfrombreadcrumb, "")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_58(self):
         """
         Test : test_AS_58
@@ -1433,7 +1433,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_59_1(self):
         """
         Test : test_AS_59_1
@@ -1446,7 +1446,7 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
                                               (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
         self.assetpage.get_asset_detail_edit_link.click()
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
                                          (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
         self.assetpage.get_asset_detail_edit_email_text_box.clear()
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
@@ -1457,7 +1457,7 @@ class AssetpageTest(BaseTestCase):
         self.assertRegexpMatches(str(email), regex, self.config.get(self.section, 'MESSAGE_EMAIL_NOT_MATCHING'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_59_2(self):
         """
         Test : test_AS_59_2
@@ -1482,7 +1482,7 @@ class AssetpageTest(BaseTestCase):
         self.assertFalse(state, self.config.get(self.section, 'MESSAGE_SAVE_BUTTON_ENABLED_ON_WRONG_EMAIL_VALUE'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_90(self):
         """
         Test : test_AS_90
@@ -1502,7 +1502,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_91(self):
         """
         Test : test_AS_91
@@ -1524,7 +1524,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2) # sleep is mandatory here otherwise it will fail
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_92(self):
         """
         Test : test_AS_92
@@ -1549,7 +1549,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_93(self):
         """
         Test : test_AS_93
@@ -1572,7 +1572,7 @@ class AssetpageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_94(self):
         """
         Test : test_AS_94
@@ -1596,7 +1596,7 @@ class AssetpageTest(BaseTestCase):
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
         sleep(2)
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_95(self):
         """
         Test : test_AS_95
@@ -1621,7 +1621,7 @@ class AssetpageTest(BaseTestCase):
         sleep(2)
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_96(self):
         """
         Test : test_AS_96
