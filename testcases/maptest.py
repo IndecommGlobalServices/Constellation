@@ -58,9 +58,9 @@ class MapPageTest(BaseTestCase):
                 self.mappage.get_map_water_fall_handle.click()
             sleep(5)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
-            ActionChains(self.driver).move_to_element(mouse_hover_field)\
-                .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-                .perform()
+            ActionChains(self.driver).move_to_element(mouse_hover_field).perform()
+
+            self.mappage.get_map_base_map_accordian.click()
 
             self.mappage.get_map_default_view_radio.click()
             sleep(1)

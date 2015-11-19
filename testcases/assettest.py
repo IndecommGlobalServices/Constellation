@@ -18,6 +18,7 @@ class AssetpageTest(BaseTestCase):
     def setUp(self):
         self.errors_and_failures = self.tally()
         self.assetpage = AssetPage(self.driver)
+        self.assetpage.open_asset_app()
         self.section = 'Messages'
         self.config = ConfigParser.ConfigParser()
         self.config.readfp(open('baseconfig.cfg'))
@@ -956,7 +957,7 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.get_asset_photos_documents_delete_icon_image.click()
             self.assetpage.get_asset_photos_documents_delete_window_delete_button.click()
             sleep(3)  # required. Widget should be refreshed.
-        except NoSuchElementException,ElementNotVisibleException:
+        except NoSuchElementException, ElementNotVisibleException:
             self.assertFalse(True,
                              self.config.get(self.section, 'MESSAGE_DELETE_ICON_NOT_DISPLAYED_FILE_COULD_NOT_BE_DELETED'))
         number_of_image_after_delete = self.assetpage.get_asset_photos_documents_uploaded_file_count

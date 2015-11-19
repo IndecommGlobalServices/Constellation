@@ -17,9 +17,14 @@ class AssessmenttPageTest(BaseTestCase):
     searchasset_filepath = os.path.join(os.getcwd(), filepath)
     os.chdir(cwd)
 
+    @classmethod
+    def setUpClass(cls):
+        super(AssessmenttPageTest, cls).setUpClass()
+        cls.ast = AssessmentPage(cls.driver)
+        cls.ast.get_asset_avilability("")
+
     def setUp(self):
         self.errors_and_failures = self.tally()
-        self.ast = AssessmentPage(self.driver)
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
@@ -28,7 +33,6 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_main_create_assessment_red_button.click()
         except:
             pass
-
 
     @attr(priority="high")
     #@SkipTest
@@ -87,16 +91,7 @@ class AssessmenttPageTest(BaseTestCase):
         count = 0
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=31)
-        self.ast.create_assessment_select_haystax_template()
-        self.ast.get_create_startdate_textbox.send_keys(str(start_date))
-        self.ast.get_create_enddate_textbox.send_keys(str(end_date))
-        self.ast.get_create_assignedto_textbox.clear()
-        self.ast.get_create_assignedto_textbox.send_keys("dee@dee")
-        self.ast.get_create_assets_textbox.clear()
-        self.ast.get_create_assets_textbox.send_keys(self.ast.asset_school_name)
-        self.ast.get_create_assets_option(self.ast.asset_school_name).click()
-        self.ast.get_create_assets_add_button.click()
-        self.ast.get_create_assessment_save_button.click()
+        self.ast.create_assessment(str(start_date), str(end_date), "dee@dee")
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
         sleep(8)
         for item in self.ast.get_assessment_table("Asset"):

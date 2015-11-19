@@ -1,4 +1,4 @@
-
+import ConfigParser
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -14,9 +14,17 @@ from datetime import date, timedelta, datetime
 
 class AssessmentOverviewPageTest(BaseTestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super(AssessmentOverviewPageTest, cls).setUpClass()
+        cls.AssessmentSections = 'AssessmentSections'
+        cls.config = ConfigParser.ConfigParser()
+        cls.config.readfp(open('baseconfig.cfg'))
+        cls.ast = AssessmentPage(cls.driver)
+        cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_OVERVIEW'))
+
     def setUp(self):
         self.errors_and_failures = self.tally()
-        self.ast = AssessmentPage(self.driver)
         self.ast.open_overview_page()
 
     def tearDown(self):

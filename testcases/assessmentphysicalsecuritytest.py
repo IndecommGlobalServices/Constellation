@@ -18,16 +18,21 @@ os.chdir(cwd)
 
 class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super(AssessmentPhysicalSecuritiesPageTest, cls).setUpClass()
+        cls.AssessmentSections = 'AssessmentSections'
+        cls.messages = 'Messages'
+        cls.mainsection = 'PhysicalSecurityMainSection'
+        cls.subsection = 'PhysicalSecuritySubSection'
+        cls.config = ConfigParser.ConfigParser()
+        cls.config.readfp(open('baseconfig.cfg'))
+        cls.ast = AssessmentPage(cls.driver)
+        cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
+
     def setUp(self):
         self.errors_and_failures = self.tally()
-        self.ast = AssessmentPage(self.driver)
-        self.AssessmentSections = 'AssessmentSections'
-        self.messages = 'Messages'
-        self.mainsection = 'PhysicalSecurityMainSection'
-        self.subsection = 'PhysicalSecuritySubSection'
-        self.config = ConfigParser.ConfigParser()
-        self.config.readfp(open('baseconfig.cfg'))
-        self.ast.open_physicalsecurity_page()
+        self.ast.open_main_section(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:

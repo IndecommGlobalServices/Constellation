@@ -1,3 +1,5 @@
+import inspect
+from pages.assetpage import AssetPage
 from selenium.webdriver.common.keys import Keys
 from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
@@ -8,7 +10,9 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from datetime import date, timedelta, datetime
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
+import ConfigParser
 
 cwd = os.getcwd()
 os.chdir('..')
@@ -16,6 +20,10 @@ schooldatafile = os.path.join(os.getcwd(), "data", "json_Schooldata.json")
 os.chdir(cwd)
 
 class AssessmentPage(BasePageClass):
+
+    schoolnames = 'SchoolNames'
+    config = ConfigParser.ConfigParser()
+    config.readfp(open('baseconfig.cfg'))
 
     ast_status_Inprogress = "In Progress"
     ast_status_Not_Started = "Not Started"
@@ -132,7 +140,10 @@ class AssessmentPage(BasePageClass):
 
     def __init__(self, driver):
         super(AssessmentPage, self).__init__(driver)
-        self.get_schooldata()
+        # self.get_schooldata()
+        self.get_assessment_app()
+
+    def get_assessment_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_assessments_icon()
 
@@ -488,14 +499,28 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_element_by_xpath(self._ast_trainningandexercises_button_locator)
 
 
+
     def get_create_assets_option(self, assetname):
         return self.driver.find_element_by_xpath("//li[contains(text(), '"+assetname+"')]")
 
-    def get_schooldata(self):
+    def get_school_name(self, relevance):
         with open(schooldatafile) as data_file:
             school_data = json.load(data_file)
             for each in school_data:
-                self.asset_school_name = each["asset_name"][0]
+                if relevance == "" or relevance == 'schooldata':
+                    self.asset_school_name = each["asset_name"][0]
+                elif relevance == 'overview':
+                    self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "OVERVIEW_SCHOOL"))]
+                elif relevance == 'infrastructure':
+                     self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "INFRASTRUCUTURE_SCHOOL"))]
+                elif relevance == 'security':
+                     self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "PHYSICAL_School"))]
+                elif relevance == 'policies':
+                     self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "POLICIES_School"))]
+                elif relevance == 'training':
+                     self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "TRAINING_School"))]
+
+
 
     def get_table_tr_index(self, tablelocator, heading):
         index = 1
@@ -562,59 +587,41 @@ class AssessmentPage(BasePageClass):
         self.search_assessment_textbox(asset_name)
         sleep(6)
         assessment_list = self.get_assessment_table("Assessment")
-        if len(assessment_list)>=1:
-            assessment_list[0].click()
-            return True
-        else:
-            self.get_search_assessment_textbox.clear()
-            return False
-
-    def select_asset(self, asset_name):
-        sleep(5)
-        self.get_search_asset_textbox.send_keys(asset_name)
-        sleep(6)
-        asset_list = self.get_asset_table("Asset")
-        if len(asset_list)>=1:
-            self.driver.find_element_by_xpath(".//*[@id='assessmentManager_table']/tbody/tr[1]/td[1]/label/span/span[2]").click()
-        else:
-            self.get_search_asset_textbox.clear()
-            return False
-
-    def select_first_asset(self):
-        sleep(5)
-        asset_list = self.get_asset_table("Asset")
-        if len(asset_list)>=1:
-            self.driver.find_element_by_xpath(".//*[@id='assessmentManager_table']/tbody/tr[1]/td[1]/label/span/span[2]").click()
-        else:
-            print "No Assets added yet"
-            return False
+        if len(assessment_list)<=0:
+            start_date = datetime.today().date()
+            end_date = start_date + timedelta(days=31)
+            self.create_assessment(str(start_date), str(end_date), "dee@dee")
+        assessment_list = self.get_assessment_table("Assessment")
+        assessment_list[0].click()
 
     def create_assessment_select_haystax_template(self):
         self.get_main_create_assessment_button.click()
         self.get_create_templatetype_dropdown.click()
         self.get_create_haystax_template_option.click()
 
-
-
-    def create_assessment(self, assetname):
+    def get_asset_avilability(self, relevance):
+        self.get_school_name(relevance)
         self.create_assessment_select_haystax_template()
-        start_date = datetime.today().date()
-        end_date = start_date + timedelta(days=1)
+        self.get_create_assets_textbox.send_keys(self.asset_school_name)
+        try:
+            self.driver.find_element_by_xpath("//li[contains(text(), '"+self.asset_school_name+"')]")
+        except NoSuchElementException:
+            AssetPage(self.driver).create_school_asset_for_assessmentapp(self.asset_school_name)
+        BasePage(self.driver).accessURL()
+        self.get_assessment_app()
+
+    def create_assessment(self, startdate, enddate, assignedto):
+        self.create_assessment_select_haystax_template()
+        self.get_create_startdate_textbox.send_keys(startdate)
+        self.get_create_enddate_textbox.send_keys(enddate)
         self.get_create_assignedto_textbox.clear()
-        self.get_create_assignedto_textbox.send_keys("Dee@deep")
-        self.get_create_startdate_textbox.clear()
-        self.get_create_startdate_textbox.send_keys(str(start_date))
-        self.get_create_enddate_textbox.clear()
-        self.get_create_enddate_textbox.send_keys(str(end_date))
-        if self.select_asset(assetname) == False:
-            print "Asset not created yet"
-            return False
-        else:
-            sleep(5)
-            self.get_search_asset_textbox.clear()
-            self.get_create_assessments_button.click()
-            sleep(10)
-            #self.get_main_create_assessment_button.click()
+        self.get_create_assignedto_textbox.send_keys(assignedto)
+        self.get_create_assets_textbox.clear()
+        self.get_create_assets_textbox.send_keys(self.asset_school_name)
+        self.driver.find_element_by_xpath("//li[contains(text(), '"+self.asset_school_name+"')]").click()
+        self.get_create_assets_add_button.click()
+        self.get_create_assessment_save_button.click()
+
 
     # def validate_email_textbox(self, textbox):
     #     emailid = ['Email', 'Email.', 'email.com', 'email@']
@@ -637,7 +644,6 @@ class AssessmentPage(BasePageClass):
              raise type(err)("File caption not visible - searched XPATH - " \
                           + "//div[@class = 'file_list_container showaslink ng-scope']"
                                                      "//a[contains(text(),'"+caption+"')]" + err.message)
-
 
     def get_file_header_path(self, filename):
         path = "//div[contains(text(), '" + filename + "')]"
@@ -729,21 +735,6 @@ class AssessmentPage(BasePageClass):
         self.get_schooldata_camera_image(section, subsection).click()
         self.save_editeddata(assessmentsection)
 
-
-
-
-    def recoverapp(self):
-        basepage = BasePage(self.driver)
-        basepage.accessURL()
-        iconlistpage = IconListPage(self.driver)
-        iconlistpage.click_assessments_icon()
-
-    def open_schooldata_page(self):
-        self.select_assessment(self.asset_school_name)
-        self.get_schooldata_button.click()
-        # WebDriverWait(self.driver,20).until(expected_conditions.presence_of_all_elements_located(
-        #     (By.XPATH, "//div[@ng-form = 'question_form']")))
-
     def save_editeddata(self, mainsection):
         WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
                     (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
@@ -771,26 +762,29 @@ class AssessmentPage(BasePageClass):
                 delete_button.click()
             self.get_all_schooldata_camera_image(subsection).click()
 
+    def get_assessment_availablity(self):
+        if not self.select_assessment(self.asset_school_name):
+            start_date = datetime.today().date()
+            end_date = start_date + timedelta(days=31)
+            self.create_assessment(str(start_date), str(end_date), "dee@dee")
+
     def open_overview_page(self):
-        self.select_assessment(self.asset_school_name)
-        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_all_elements_located(
-            (By.CLASS_NAME, "widgetcontent")))
+        if self.select_assessment(self.asset_school_name):
+            WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_all_elements_located(
+                (By.CLASS_NAME, "widgetcontent")))
 
-    def open_schoolinfrastructure_page(self):
+    def open_main_section(self, mainsection):
         self.select_assessment(self.asset_school_name)
-        self.get_schoolinfrastructure_button.click()
-
-    def open_physicalsecurity_page(self):
-        self.select_assessment(self.asset_school_name)
-        self.get_school_physicalsecurity_button.click()
-
-    def open_policiesandplanning_page(self):
-        self.select_assessment(self.asset_school_name)
-        self.get_school_policiesandplanning_button.click()
-
-    def open_trainingandexercise_page(self):
-        self.select_assessment(self.asset_school_name)
-        self.get_school_trainningandexercises_button.click()
+        if mainsection == "schooldata":
+            self.get_schooldata_button.click()
+        elif mainsection == "infrastructure":
+            self.get_schoolinfrastructure_button.click()
+        elif mainsection == "security":
+            self.get_school_physicalsecurity_button.click()
+        elif mainsection == "policies":
+            self.get_school_policiesandplanning_button.click()
+        elif mainsection == "training":
+            self.get_school_trainningandexercises_button.click()
 
     def return_to_assessment_main_page(self):
         self.click_on_assessment_header.click()
@@ -798,9 +792,11 @@ class AssessmentPage(BasePageClass):
             WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located(
                         (By.XPATH,self._ast_main_create_assessment_button_locator)))
         except:
+            self.open_assessment_app()
+
+    def open_assessment_app(self):
             BasePage(self.driver).accessURL()
             IconListPage(self.driver).click_assessments_icon()
-
 
     def get_schooldata_comment_image(self, section, subsection):
         return self.driver.find_element_by_xpath("//div[contains(text(), '"+section+"')]/following-sibling::div"

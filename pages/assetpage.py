@@ -235,6 +235,8 @@ class AssetPage(BasePageClass):
         super(AssetPage, self).__init__(driver)
         self.get_schooldata()
         self.get_placedata()
+
+    def open_asset_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_asset_icon()
 
@@ -1661,17 +1663,17 @@ class AssetPage(BasePageClass):
                 self.asset_contact_lastname = each["contact_firstname"]
 
 
-    def create_school_asset(self, index):
+    def create_school_asset(self, index, schoolname):
         """
         Description : This function will enter school data in asset template.
         Revision:
         :return: None
         """
         if(index == 0):
-            self.enter_asset_type_name.send_keys(self.asset_school_name[index])
+            self.enter_asset_type_name.send_keys(schoolname)
         else:
             self.get_overview_editname_text_box.clear()
-            self.get_overview_editname_text_box.send_keys(self.asset_school_name[index])
+            self.get_overview_editname_text_box.send_keys(schoolname)
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(self.asset_school_address[index])
         self.enter_asset_type_address2.clear()
@@ -1687,6 +1689,9 @@ class AssetPage(BasePageClass):
         self.enter_school_district(self.asset_school_district[index])
         self.enter_school_grade(self.asset_school_grade[index])
         self.enter_asset_type(self.asset_school_type[index])
+        self.get_asset_overview_save_button.click()
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self._asset_name_breadcrumb), self.get_asset_name_breadcrumb.text))
 
     def enter_school_district(self, value):
         """
@@ -1767,10 +1772,16 @@ class AssetPage(BasePageClass):
         self.asset_create_click()
         if type == "School":
             self.select_asset_template_type("School")
-            self.create_school_asset(self.newSchool)
+            self.create_school_asset(self.newSchool, self.asset_school_name[self.newSchool])
         elif type == "Place":
             self.create_place_asset()
         self.get_asset_overview_save_button.click()
+
+    def create_school_asset_for_assessmentapp(self, schoolname):
+        self.recoverapp(inspect.stack()[1][3])
+        self.asset_create_click()
+        self.select_asset_template_type("School")
+        self.create_school_asset(self.newSchool, schoolname)
 
     def edit_asset(self, type):
         """
@@ -1783,7 +1794,7 @@ class AssetPage(BasePageClass):
             WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self._asset_details_edit_widget_locator), "Details"))
             self.get_asset_overview_edit_link.click()
-            self.create_school_asset(self.editSchool)
+            self.create_school_asset(self.editSchool, self.asset_school_name[self.editSchool])
         elif type == "Place":
             self.create_place_asset()
         self.asset_overview_save_click()
@@ -1797,7 +1808,7 @@ class AssetPage(BasePageClass):
         self.asset_create_click()
         if type == "School":
             self.select_asset_template_type("School")
-            self.create_school_asset(self.newSchool)
+            self.create_school_asset(self.newSchool, self.asset_school_name[self.newSchool])
         elif type == "Place":
             self.create_place_asset()
         self.asset_overview_cancel_click()

@@ -9,15 +9,17 @@ from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
     username = ""
+    driver = ""
 
     @classmethod
     def setUpClass(self):
         #display = Display(visible=0, size=(1024,768))
         #display.start()
         # create a new Firefox session
-        self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(30)
-        self.driver.maximize_window()
+        driver = webdriver.Firefox()
+        self.driver = driver
+        driver.implicitly_wait(30)
+        driver.maximize_window()
 
         # navigate to the application home page
         basepage = BasePage(self.driver)
