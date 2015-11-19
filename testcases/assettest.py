@@ -924,6 +924,7 @@ class AssetpageTest(BaseTestCase):
         #self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-200);")
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(),
                         self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
+        sleep(1)
         self.assetpage.get_asset_location_marker_available_image.click()
         placeText = self.assetpage.get_asset_location_place_name_text.text
         self.assertEqual(self.assetpage.asset_place_name, placeText,
@@ -1561,6 +1562,7 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
+        sleep(1)
         self.assetpage.school_related_charts_School_Is_Selected()
         countafterfilter = self.assetpage.get_total_row_count_filter()
 
