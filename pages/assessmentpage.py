@@ -57,12 +57,23 @@ class AssessmentPage(BasePageClass):
     #Create Assessment related locators
     _ast_main_create_assessment_button_locator = "//img[@ng-src='../images/icon_create_item_off.png']"
     _ast_main_create_assessment_button_on_locator = "//img[@ng-src='../images/icon_create_item_on.png']"
-    _ast_create_assessments_button_locator = ".//*[@id='assessmentManager']/div[1]/button"
-    _ast_create_templatetype_dropdown_locator = "(//div[@model='template']//button[@data-toggle='dropdown'])"
-    _ast_create_haystax_template_option_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/ul/li/a"
-    _ast_create_assignedto_text_box_locator = ".//*[@id='create_multi_assessment_assignedto']"
+    _ast_create_templatetype_dropdown_locator = "(//div[@id='assessment_create_modal']//button[@data-toggle='dropdown'])"
+    _ast_create_haystax_template_option_locator = ".//*[@id='assessment_create_modal']/div/div/form/div[1]/div[1]/div/ul/li/a"
     _ast_create_start_date_text_box_locator = ".//*[@id='datetimepicker']//div//input[@id='create_multi_assessment_datepicker-01']"
     _ast_create_end_date_text_box_locator = ".//*[@id='datetimepicker']//div//input[@id='create_multi_assessment_datepicker-02']"
+    _ast_create_assignedto_text_box_locator = "//span//input[contains(@placeholder,'Email address')]"
+    _ast_create_assignedto_button_locator = "//button[contains(text(), 'Assign')]"
+    _ast_create_asset_text_box_locator = "//input[@placeholder= 'Name']"
+    _ast_create_asset_add_button_locator = "//button[contains(text(), 'Add')]"
+    _ast_create_assessments_cancel_button_locator = "//div[@id='assessment_create_modal']/descendant::button[contains(text(), 'Cancel')]"
+    _ast_create_assessments_save_button_locator = "//div[@id='assessment_create_modal']/descendant::button[contains(text(), 'Save')]"
+
+
+    #_ast_create_assessments_button_locator = ".//*[@id='assessmentManager']/div[1]/button"
+    #_ast_create_templatetype_dropdown_locator = "(//div[@model='template']//button[@data-toggle='dropdown'])"
+    #_ast_create_haystax_template_option_locator = ".//*[@id='assessmentManager']/div[2]/p[1]/span/div/ul/li/a"
+    #_ast_create_assignedto_text_box_locator = ".//*[@id='create_multi_assessment_assignedto']"
+
 
     #Assessment Overview related locators
     _ast_overview_button_locator = "//button[@title='Overview']"
@@ -202,16 +213,43 @@ class AssessmentPage(BasePageClass):
         except Exception, err:
             raise type(err)("Create assessment button not available - searched XPATH - " \
                           + self._ast_main_create_assessment_button_on_locator + err.message)
-    @property
-    def get_create_assessments_button(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ast_create_assessments_button_locator)
-        except Exception, err:
-            raise type(err)("Create assessment button not available - searched XPATH - " \
-                          + self._ast_create_assessments_button_locator + err.message)
+    # @property
+    # def get_create_assessments_button(self):
+    #     try:
+    #         return self.driver.find_element_by_xpath(self._ast_create_assessments_button_locator)
+    #     except Exception, err:
+    #         raise type(err)("Create assessment button not available - searched XPATH - " \
+    #                       + self._ast_create_assessments_button_locator + err.message)
     @property
     def get_create_assignedto_textbox(self):
         return self.driver.find_element_by_xpath(self._ast_create_assignedto_text_box_locator)
+
+    @property
+    def get_create_assignedto_button(self):
+        return self.driver.find_element_by_xpath(self._ast_create_assignedto_button_locator)
+
+    @property
+    def get_create_assets_textbox(self):
+        return self.driver.find_element_by_xpath(self._ast_create_asset_text_box_locator)
+
+    @property
+    def get_create_assets_add_button(self):
+        return self.driver.find_element_by_xpath(self._ast_create_asset_add_button_locator)
+
+    @property
+    def get_create_assessment_cancel_button(self):
+        return self.driver.find_element_by_xpath(self._ast_create_assessments_cancel_button_locator)
+
+    @property
+    def get_create_assessment_save_button(self):
+        try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.visibility_of_element_located(
+                (By.XPATH, self._ast_create_assessments_save_button_locator)), "Save button not visible")
+            return self.driver.find_element_by_xpath(self._ast_create_assessments_save_button_locator)
+        except Exception, err:
+            raise type(err)("Create assessment Save button not available - searched XPATH - " \
+                          + self._ast_create_assessments_save_button_locator + err.message)
+
 
     @property
     def get_create_startdate_textbox(self):
@@ -449,6 +487,10 @@ class AssessmentPage(BasePageClass):
     def get_school_trainningandexercises_button(self):
         return self.driver.find_element_by_xpath(self._ast_trainningandexercises_button_locator)
 
+
+    def get_create_assets_option(self, assetname):
+        return self.driver.find_element_by_xpath("//li[contains(text(), '"+assetname+"')]")
+
     def get_schooldata(self):
         with open(schooldatafile) as data_file:
             school_data = json.load(data_file)
@@ -548,14 +590,10 @@ class AssessmentPage(BasePageClass):
             return False
 
     def create_assessment_select_haystax_template(self):
-        if not self.get_create_assessments_button.is_displayed():
-            self.get_main_create_assessment_button.click()
-            sleep(1)
-            self.get_create_templatetype_dropdown.click()
-            sleep(2)
-            self.get_create_haystax_template_option.click()
-            WebDriverWait(self.driver,10).until(expected_conditions.element_to_be_clickable(
-                (By.XPATH, self._ast_asset_table_header_locator)))
+        self.get_main_create_assessment_button.click()
+        self.get_create_templatetype_dropdown.click()
+        self.get_create_haystax_template_option.click()
+
 
 
     def create_assessment(self, assetname):

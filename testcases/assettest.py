@@ -28,7 +28,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_01(self):
         """
         Test : test_AS_01
@@ -900,7 +900,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_38(self):
         """
         Test : test_AS_38
@@ -924,13 +924,14 @@ class AssetpageTest(BaseTestCase):
         #self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-200);")
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(),
                         self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
+        sleep(1)
         self.assetpage.get_asset_location_marker_available_image.click()
         placeText = self.assetpage.get_asset_location_place_name_text.text
         self.assertEqual(self.assetpage.asset_place_name, placeText,
                          self.config.get(self.section, 'MESSAGE_MARKER_NAME_NOT_DISPLAYED_ON_MAP'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_40(self):
         """
         Test : test_AS_40
@@ -971,7 +972,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_FILES_BEFORE_AFTER_SAME_FILE_COULD_NOT_BE_DELETED'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_41(self):
         """
         Test : test_AS_41
@@ -1004,7 +1005,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, error)
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_42(self):
         """
         Test : test_AS_42
@@ -1028,7 +1029,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_FAILED_FOR_NO_CAPTION'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_43(self):
         """
         Test : test_AS_43
@@ -1055,7 +1056,7 @@ class AssetpageTest(BaseTestCase):
         self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_44_1(self):
         """
         Test : test_AS_44_1
@@ -1078,7 +1079,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_PDF_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_44_2(self):
         """
         Test : test_AS_44_2
@@ -1101,7 +1102,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_HTML_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_44_3(self):
         """
         Test : test_AS_44_3
@@ -1125,7 +1126,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_TEXT_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_45(self):
         """
         Test : test_AS_45
@@ -1150,7 +1151,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_MULTIPLE_FILES_COULD_NOT_BE_UPLOADED'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_47(self):
         """
         Test : test_AS_47
@@ -1174,7 +1175,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_48_1(self):
         """
         Test : test_AS_48_1
@@ -1198,7 +1199,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_48_2(self):
         """
         Test : test_AS_48_2
@@ -1223,7 +1224,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_48_3(self):
         """
         Test : test_AS_48_3
@@ -1248,7 +1249,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_48_4(self):
         """
         Test : test_AS_48_4
@@ -1328,7 +1329,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_CANCEL_FAILED_ON_CREATING_ASSET_DIALOGUE'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_53(self):
         """
         Test : test_AS_53
@@ -1351,7 +1352,7 @@ class AssetpageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_54(self):
         """
         Test : test_AS_54
@@ -1373,13 +1374,13 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        self.assetpage.edit_asset("School")
-        sleep(5)
-        self.assertEqual(self.assetpage.asset_school_name[self.assetpage.editSchool], self.assetpage.
-                         get_overview_name_text.text)
-        self.assertEqual(self.assetpage.asset_school_district[1], self.assetpage.get_overview_district_text.text)
-        self.assertEqual(self.assetpage.asset_school_grade[1], self.assetpage.get_overview_grade_text.text)
 
+        #self.assetpage.app_sanity_check()
+        self.assetpage.edit_asset("School")
+        self.assertEqual(self.assetpage.asset_school_name[self.assetpage.editSchool], self.assetpage.
+                         get_asset_overview_edit_name_text_box)
+        self.assertEqual(self.assetpage.asset_school_district[1], self.assetpage.get_overview_district_text)
+        self.assertEqual(self.assetpage.asset_school_grade[1], self.assetpage.get_overview_grade_text)
 
     @attr(priority="high")
     #@SkipTest
@@ -1446,7 +1447,7 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
                                               (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
         self.assetpage.get_asset_detail_edit_link.click()
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
                                          (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
         self.assetpage.get_asset_detail_edit_email_text_box.clear()
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
@@ -1561,6 +1562,7 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
+        sleep(1)
         self.assetpage.school_related_charts_School_Is_Selected()
         countafterfilter = self.assetpage.get_total_row_count_filter()
 
