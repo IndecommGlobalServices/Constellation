@@ -128,6 +128,7 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_ast_08_to_11_To_Verify_The_Search_(self):
         flag = 0
         self.ast.create_assessment_select_haystax_template()
@@ -312,7 +313,6 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_ast_34_To_Verify_Delete_Assessment(self):
         countbeforedeletion = self.ast.get_total_row_count()
         self.ast.select_multiple_checkboxes(1)

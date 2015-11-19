@@ -57,36 +57,49 @@ class MapPageTest(BaseTestCase):
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             sleep(5)
-            mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
-            ActionChains(self.driver).move_to_element(mouse_hover_field)\
-                .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-                .perform()
 
+            mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
+            sleep(5)
+            ActionChains(self.driver).move_to_element(mouse_hover_field)\
+                .perform()
+            # .move_to_element(self.mappage.get_map_base_map_accordian).click()\
+            '''
+            self.mappage.get_map_mouse_hover_icon.click()  # mouse hover to 1st icon on Left hand side
+
+            '''
+            self.mappage.get_map_base_map_accordian.click()
+            sleep(2)
             self.mappage.get_map_default_view_radio.click()
             sleep(1)
             self.mappage.get_map_basic_data_layer.click()
             sleep(1)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
             sleep(5)
-
+            self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_basic_data_layer_asset.click()
             sleep(5)
+
             self.mappage.get_map_zoom_out.click()
             sleep(10)
             # Click on Zoom out to display the Map status based total no of items which is displayed just
             # above the Longitude and Latitude on Left hand side
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
             sleep(1)
-            # Extract the integer value displayed "Eg : Displaying 5 items"
-            # This will be helpful to assert
-            map_assets_count = self.mappage.get_total_map_status_count()
-            print "Found " + str(map_assets_count) + " map status asset count"
             # click on Water fall handle on Right hand side - Vertical - Last Icon
             self.mappage.get_map_water_fall_handle.click()
             # Count the total no. of Assets displayed in the collection
             assetTotal = self.mappage.get_map_water_fall_list
             items = assetTotal.find_elements_by_tag_name("li")
             print "Found " + str(len(items)-1) + " assets"
+
+            # Extract the integer value displayed "Eg : Displaying 5 items"
+            # This will be helpful to assert
+            map_assets_count = self.mappage.get_total_map_status_count()
+            print "Found " + str(map_assets_count) + " map status asset count"
+
             self.assertEqual(map_assets_count,len(items)-1,"total assets not matching" )
             # click on Water fall handle on Right hand side - Vertical - Last Icon
             self.mappage.get_map_water_fall_handle.click()
@@ -107,16 +120,18 @@ class MapPageTest(BaseTestCase):
             sleep(5)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
-                .move_to_element(self.mappage.get_map_base_map_accordian).click()\
                 .perform()
-
+            self.mappage.get_map_base_map_accordian.click()
             self.mappage.get_map_default_view_radio.click()
             sleep(1)
             self.mappage.get_map_basic_data_layer.click()
             sleep(1)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
             sleep(5)
-
+            self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_basic_data_layer_assessment.click()
             sleep(5)
             self.mappage.get_map_zoom_out.click()
@@ -146,8 +161,8 @@ class MapPageTest(BaseTestCase):
         sleep(5)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
-            .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            .perform()
+                .perform()
+        self.mappage.get_map_base_map_accordian.click()
 
         self.mappage.get_map_default_view_radio.click()
         sleep(1)
@@ -155,7 +170,10 @@ class MapPageTest(BaseTestCase):
         sleep(1)
         self.mappage.get_checking_and_unchecking_basic_data_layer()
         sleep(5)
-
+        self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+        self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+        self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+        self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
         self.mappage.get_map_basic_data_layer_incident.click()
         sleep(5)
         self.mappage.get_map_zoom_out.click()
@@ -181,6 +199,7 @@ class MapPageTest(BaseTestCase):
             self.mappage.get_map_water_fall_handle.click()
         sleep(5)
         mouse_hover_field = self.mappage.get_map_mouse_hover_icon
+
         ActionChains(self.driver).move_to_element(mouse_hover_field)\
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .perform()
@@ -193,18 +212,22 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_checking_and_unchecking_basic_data_layer()
         sleep(5)
+        self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+        self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+        self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+        self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
         self.mappage.get_map_basic_data_layer_threat_streams.click()
         sleep(5)
         self.mappage.get_map_zoom_out.click()
         sleep(10)
-        self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
-        sleep(1)
-        map_threat_streams_count = self.mappage.get_total_map_status_count()
-        print "Found " + str(map_threat_streams_count) + " map status threat streams count"
         self.mappage.get_map_water_fall_handle.click()
         threatstreamsTotal = self.mappage.get_map_water_fall_list
         items = threatstreamsTotal.find_elements_by_tag_name("li")
         print "Found " + str(len(items)-1) + " threat streams"
+        self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
+        sleep(1)
+        map_threat_streams_count = self.mappage.get_total_map_status_count()
+        print "Found " + str(map_threat_streams_count) + " map status threat streams count"
         self.assertEqual(map_threat_streams_count,len(items)-1,"total threat streams not matching" )
         self.mappage.get_map_water_fall_handle.click()
         self.mappage.return_to_icon_list_page()
@@ -230,6 +253,9 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_checking_and_unchecking_basic_data_layer()
+        self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+        self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+
         self.mappage.get_map_basic_data_layer_indicator_teams.click()
         sleep(5)
         self.mappage.get_map_zoom_out.click()
@@ -261,6 +287,9 @@ class MapPageTest(BaseTestCase):
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.mappage.get_checking_and_unchecking_basic_data_layer()
+        self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+        self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+
         self.mappage.get_map_basic_data_layer_annotations.click()
         sleep(5)
         self.mappage.get_map_zoom_out.click()

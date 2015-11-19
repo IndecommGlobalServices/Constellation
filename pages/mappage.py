@@ -383,35 +383,83 @@ class MapPage(BasePageClass):
         appicon.click_map_icon()
 
     # This function is used - if check box is selected, it should be unchecked
+    '''
+    # .//*[@id='leaflet-control-accordion-layers-1']/article/div[1]/input
+
+    checkboxes = self.browser.find_elements_by_xpath("//input[@name='arr[]']")
+    for checkbox in checkboxes:
+    if not checkbox.isSelected():
+        checkbox.click()
+
+    def get_checking_and_unchecking_basic_data_layer(self):
+        checkboxes = self.driver.find_elements_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/article/div")
+        for checkbox in checkboxes:
+            if checkbox.is_selected():
+                checkbox.click()
+
+    '''
     def get_checking_and_unchecking_basic_data_layer(self):
         sleep(2)
-        if self.get_map_basic_data_layer_asset.is_selected():
-            self.get_map_basic_data_layer_asset.click()
+        if self.get_map_basic_data_layer_asset.is_displayed():
+            if self.get_map_basic_data_layer_asset.is_selected():
+                self.get_map_basic_data_layer_asset.click()
         sleep(2)
-        if self.get_map_basic_data_layer_assessment.is_selected():
-            self.get_map_basic_data_layer_assessment.click()
+        if self.get_map_basic_data_layer_assessment.is_displayed():
+            if self.get_map_basic_data_layer_assessment.is_selected():
+                self.get_map_basic_data_layer_assessment.click()
 
-        if self.get_map_basic_data_layer_incident.is_selected():
-            self.get_map_basic_data_layer_incident.click()
+        if self.get_map_basic_data_layer_incident.is_displayed():
+            if self.get_map_basic_data_layer_incident.is_selected():
+                self.get_map_basic_data_layer_incident.click()
 
-        if self.get_map_basic_data_layer_threat_streams.is_selected():
-            self.get_map_basic_data_layer_threat_streams.click()
+        if self.get_map_basic_data_layer_threat_streams.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_threat_streams.is_selected():
+                self.get_map_basic_data_layer_threat_streams.click()
 
-        if self.get_map_basic_data_layer_indicator_teams.is_selected():
-            self.get_map_basic_data_layer_indicator_teams.click()
+        if self.get_map_basic_data_layer_indicator_teams.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_indicator_teams.is_selected():
+                self.get_map_basic_data_layer_indicator_teams.click()
 
-        if self.get_map_basic_data_layer_annotations.is_selected():
-            self.get_map_basic_data_layer_annotations.click()
-        '''
-        if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
-            self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
+        if self.get_map_basic_data_layer_annotations.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_annotations.is_selected():
+                self.get_map_basic_data_layer_annotations.click()
 
-        if self.get_map_basic_data_layer_threat_streams_stream_1.is_selected():
-            self.get_map_basic_data_layer_threat_streams_stream_1.click()
+        if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
+                self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
 
-        if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
-            self.get_map_basic_data_layer_threat_streams_stream_2.click()
-        '''
+        if self.get_map_basic_data_layer_threat_streams_stream_1.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_threat_streams_stream_1.is_selected():
+                self.get_map_basic_data_layer_threat_streams_stream_1.click()
+
+        if self.get_map_basic_data_layer_threat_streams_stream_2.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
+                self.get_map_basic_data_layer_threat_streams_stream_2.click()
+
     def return_to_icon_list_page(self):
         try:
             self.get_bread_crumb_apps.click()

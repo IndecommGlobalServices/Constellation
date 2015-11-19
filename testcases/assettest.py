@@ -80,7 +80,6 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_04(self):
         """
         Test : test_AS_04
@@ -115,6 +114,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_AS_07(self):
         """
         Test : test_AS_07
