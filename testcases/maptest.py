@@ -43,60 +43,37 @@ class MapPageTest(BaseTestCase):
             .move_to_element(self.mappage.get_map_base_map_accordian).click()\
             .perform()
         self.mappage.get_map_default_view_radio.click()
-        sleep(2)
         self.mappage.get_map_night_view_radio.click()
-        sleep(2)
         self.mappage.get_map_terrain_radio.click()
-        sleep(2)
         self.mappage.get_map_satelite_default_view_radio.click()
-        sleep(2)
         self.mappage.get_map_satelite_grey_view_radio.click()
-        sleep(2)
-        #self.mappage.return_to_icon_list_page()
-        # return_to_apps_main_page
-        #self.mappage.return_to_apps_main_page()
-        sleep(2)
 
     @attr(priority="high")
     #@SkipTest
     def test_map_06_to_verify_Default_Map_View_Based_On_Assets(self):
         try:
-
             sleep(5)
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
-            sleep(5)
-
+            sleep(1)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
-            sleep(5)
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
-            # .move_to_element(self.mappage.get_map_base_map_accordian).click()\
-            '''
-            self.mappage.get_map_mouse_hover_icon.click()  # mouse hover to 1st icon on Left hand side
-
-            '''
-            self.mappage.get_map_base_map_accordian.click()
-            sleep(2)
-            self.mappage.get_map_default_view_radio.click()
-            sleep(1)
-            self.mappage.get_map_basic_data_layer.click()
-            sleep(1)
-            self.mappage.get_checking_and_unchecking_basic_data_layer()
             sleep(5)
+            self.mappage.get_map_base_map_accordian.click()
+            self.mappage.get_map_default_view_radio.click()
+            self.mappage.get_map_basic_data_layer.click()
+            self.mappage.get_checking_and_unchecking_basic_data_layer()
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_basic_data_layer_asset.click()
-            sleep(5)
-
             self.mappage.get_map_zoom_out.click()
             sleep(10)
             # Click on Zoom out to display the Map status based total no of items which is displayed just
             # above the Longitude and Latitude on Left hand side
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
-            sleep(1)
             # click on Water fall handle on Right hand side - Vertical - Last Icon
             self.mappage.get_map_water_fall_handle.click()
             # Count the total no. of Assets displayed in the collection
@@ -112,9 +89,6 @@ class MapPageTest(BaseTestCase):
             self.assertEqual(map_assets_count,len(items)-1,"total assets not matching" )
             # click on Water fall handle on Right hand side - Vertical - Last Icon
             self.mappage.get_map_water_fall_handle.click()
-            #self.mappage.return_to_icon_list_page()
-            #self.mappage.return_to_apps_main_page()
-            sleep(2)
         except Exception as e:
             print e
             raise
@@ -125,29 +99,22 @@ class MapPageTest(BaseTestCase):
         try:
             sleep(5)
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
-                sleep(2)
                 self.mappage.get_map_water_fall_handle.click()
-            sleep(5)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
             self.mappage.get_map_base_map_accordian.click()
             self.mappage.get_map_default_view_radio.click()
-            sleep(1)
             self.mappage.get_map_basic_data_layer.click()
-            sleep(1)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
-            sleep(5)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_basic_data_layer_assessment.click()
-            sleep(5)
             self.mappage.get_map_zoom_out.click()
             sleep(10)
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
-            sleep(1)
             map_assessment_count = self.mappage.get_total_map_status_count()
             print "Found " + str(map_assessment_count) + " map status assessment count"
             self.mappage.get_map_water_fall_handle.click()
@@ -156,9 +123,6 @@ class MapPageTest(BaseTestCase):
             print "Found " + str(len(items)-1) + " assessment"
             self.assertEqual(map_assessment_count,len(items)-1,"total assessment not matching" )
             self.mappage.get_map_water_fall_handle.click()
-            #self.mappage.return_to_icon_list_page()
-            #self.mappage.return_to_apps_main_page()
-            sleep(2)
         except Exception as e:
             print e
             raise
