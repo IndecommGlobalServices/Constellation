@@ -12,29 +12,29 @@ class BaseTestCase(unittest.TestCase):
     driver = ""
 
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         #display = Display(visible=0, size=(1024,768))
         #display.start()
         # create a new Firefox session
         driver = webdriver.Firefox()
-        self.driver = driver
+        cls.driver = driver
         driver.implicitly_wait(30)
         driver.maximize_window()
 
         # navigate to the application home page
-        basepage = BasePage(self.driver)
+        basepage = BasePage(cls.driver)
         basepage.accessURL()
 
-        homepage = HomePage(self.driver)
+        homepage = HomePage(cls.driver)
         homepage.loginlink.click()
 
-        loginpage = LoginPage(self.driver)
+        loginpage = LoginPage(cls.driver)
         loginpage.loginDashboard()
-        self.username = loginpage.usernameText
+        cls.username = loginpage.usernameText
 
     @classmethod
-    def tearDownClass(self):
-        self.driver.quit()# close the browser
+    def tearDownClass(cls):
+        cls.driver.quit()# close the browser
 
 
     def take_screenshot(self):

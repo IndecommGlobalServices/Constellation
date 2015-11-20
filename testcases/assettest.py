@@ -15,13 +15,19 @@ import ConfigParser
 
 class AssetpageTest(BaseTestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super(AssetpageTest, cls).setUpClass()
+        cls.assetpage = AssetPage(cls.driver)
+        cls.assetpage.open_asset_app()
+        cls.section = 'Messages'
+        cls.config = ConfigParser.ConfigParser()
+        cls.config.readfp(open('baseconfig.cfg'))
+
     def setUp(self):
         self.errors_and_failures = self.tally()
-        self.assetpage = AssetPage(self.driver)
-        self.assetpage.open_asset_app()
-        self.section = 'Messages'
-        self.config = ConfigParser.ConfigParser()
-        self.config.readfp(open('baseconfig.cfg'))
+        WebDriverWait(self.driver, 10). until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
@@ -80,7 +86,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_COULD_NOT_DELETE_ASSET'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     @attr(status='smoke')
     def test_AS_04(self):
         """
