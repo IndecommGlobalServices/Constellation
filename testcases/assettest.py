@@ -2,7 +2,7 @@ import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 from selenium.webdriver.common.keys import Keys
 from pages.assetpage import AssetPage
 from testcases.basetestcase import BaseTestCase
@@ -955,7 +955,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.upload_a_file_with_caption(caption_val, image_file_name)
         number_of_image_after_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_after_file_upload = len(number_of_image_after_upload)
-        caption_path = "//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='file_list_img']"
+        caption_path = "//a[contains(text(),'"+caption_val+"')]"
         image_icon = self.driver.find_element_by_xpath(caption_path)
         Hover = ActionChains(self.driver).move_to_element(image_icon)
         Hover.perform()
@@ -964,7 +964,10 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.get_asset_photos_documents_delete_icon_image.click()
             self.assetpage.get_asset_photos_documents_delete_window_delete_button.click()
             sleep(3)  # required. Widget should be refreshed.
-        except NoSuchElementException,ElementNotVisibleException:
+        except NoSuchElementException:
+            self.assertFalse(True,
+                             self.config.get(self.section, 'MESSAGE_DELETE_ICON_NOT_DISPLAYED_FILE_COULD_NOT_BE_DELETED'))
+        except ElementNotVisibleException:
             self.assertFalse(True,
                              self.config.get(self.section, 'MESSAGE_DELETE_ICON_NOT_DISPLAYED_FILE_COULD_NOT_BE_DELETED'))
         number_of_image_after_delete = self.assetpage.get_asset_photos_documents_uploaded_file_count

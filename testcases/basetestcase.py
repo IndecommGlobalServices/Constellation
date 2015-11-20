@@ -2,20 +2,24 @@ import unittest
 import os
 from datetime import datetime
 from selenium import webdriver
+from selenose.cases import SeleniumTestCase
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
+import nose
+
 from pyvirtualdisplay import Display
 
-class BaseTestCase(unittest.TestCase):
+class BaseTestCase(SeleniumTestCase):
     username = ""
-    driver = ""
+    # driver = ""
 
     @classmethod
     def setUpClass(cls):
         #display = Display(visible=0, size=(1024,768))
         #display.start()
         # create a new Firefox session
+
         driver = webdriver.Firefox()
         cls.driver = driver
         driver.implicitly_wait(30)
