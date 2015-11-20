@@ -1,3 +1,7 @@
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
 __author__ = 'Deepa.Sivadas'
 from testcases.basetestcase import BaseTestCase
 from pages.mappage import MapPage
@@ -11,22 +15,25 @@ import sys
 
 class MapPageTest(BaseTestCase):
 
-    def setUp(self):
-        self.errors_and_failures = self.tally()
+    @classmethod
+    def setUpClass(self):
+        super(MapPageTest, self).setUpClass()
         self.mappage = MapPage(self.driver)
 
-
+    def setUp(self):
+        self.errors_and_failures = self.tally()
+        self.mappage.open_map_app()
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-
         try:
             if self.driver.find_element_by_xpath(".//*[@id='error_modal' and @hide-modal='' and @aria-hidden='false']").is_displayed():
                 self.driver.find_element_by_xpath(".//*[@id='error_modal']/div/div/form/div[2]/button").click()
                 print "Server Error 500 - Something has gone terribly wrong."
         except Exception :
             pass
+        self.mappage.return_to_apps_main_page()
 
     # All maps in one test case
     @attr(priority="high")
@@ -45,7 +52,9 @@ class MapPageTest(BaseTestCase):
         sleep(2)
         self.mappage.get_map_satelite_grey_view_radio.click()
         sleep(2)
-        self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_icon_list_page()
+        # return_to_apps_main_page
+        #self.mappage.return_to_apps_main_page()
         sleep(2)
 
     @attr(priority="high")
@@ -103,7 +112,8 @@ class MapPageTest(BaseTestCase):
             self.assertEqual(map_assets_count,len(items)-1,"total assets not matching" )
             # click on Water fall handle on Right hand side - Vertical - Last Icon
             self.mappage.get_map_water_fall_handle.click()
-            self.mappage.return_to_icon_list_page()
+            #self.mappage.return_to_icon_list_page()
+            #self.mappage.return_to_apps_main_page()
             sleep(2)
         except Exception as e:
             print e
@@ -146,7 +156,8 @@ class MapPageTest(BaseTestCase):
             print "Found " + str(len(items)-1) + " assessment"
             self.assertEqual(map_assessment_count,len(items)-1,"total assessment not matching" )
             self.mappage.get_map_water_fall_handle.click()
-            self.mappage.return_to_icon_list_page()
+            #self.mappage.return_to_icon_list_page()
+            #self.mappage.return_to_apps_main_page()
             sleep(2)
         except Exception as e:
             print e
@@ -188,7 +199,8 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)-1) + " incident"
         self.assertEqual(map_incident_count,len(items)-1,"total incident not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_apps_main_page()
         sleep(2)
 
     @attr(priority="high")
@@ -230,7 +242,8 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(map_threat_streams_count) + " map status threat streams count"
         self.assertEqual(map_threat_streams_count,len(items)-1,"total threat streams not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_apps_main_page()
         sleep(2)
 
     @attr(priority="high")
@@ -270,7 +283,8 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)-1) + " indicator teams"
         self.assertEqual(map_indicator_teams_streams_count,len(items)-1,"total indicator teams not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_apps_main_page()
         sleep(2)
 
     @attr(priority="high")
@@ -304,7 +318,8 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)-1) + " annotations"
         self.assertEqual(map_annotations_count,len(items)-1,"total annotations not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_apps_main_page()
         sleep(2)
 
     @attr(priority="high")
@@ -339,7 +354,8 @@ class MapPageTest(BaseTestCase):
         self.assertEqual(map_threat_streams_trending_last_day_count,len(items)-1,
                          "total threat streams trending last day not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_apps_main_page()
         sleep(2)
 
     @attr(priority="high")
@@ -372,7 +388,8 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)-1) + " threat streams stream 1"
         self.assertEqual(map_threat_streams_stream_1_count,len(items)-1,"total threat streams stream 1 not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_apps_main_page()
         sleep(2)
 
     @attr(priority="high")
@@ -405,5 +422,6 @@ class MapPageTest(BaseTestCase):
         print "Found " + str(len(items)-1) + " threat streams stream 2"
         self.assertEqual(map_threat_streams_stream_2_count,len(items)-1,"total threat streams stream 2 not matching" )
         self.mappage.get_map_water_fall_handle.click()
-        self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_icon_list_page()
+        #self.mappage.return_to_apps_main_page()
         sleep(2)

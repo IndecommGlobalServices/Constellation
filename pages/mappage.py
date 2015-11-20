@@ -9,6 +9,8 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from basepage import BasePage
 from time import sleep
+import inspect
+from selenium.webdriver.support import expected_conditions as EC
 
 class MapPage(BasePageClass):
 
@@ -379,8 +381,12 @@ class MapPage(BasePageClass):
 
     def __init__(self, driver):
         super(MapPage, self).__init__(driver)
+
+    def open_map_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
+        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, " //div[@id='mapdiv']//div[@class = 'leaflet-overlay-pane']")))
 
     # This function is used - if check box is selected, it should be unchecked
     '''
@@ -472,3 +478,35 @@ class MapPage(BasePageClass):
         splitedText = countText.split(" ")
         totalCount = splitedText[1]
         return int(totalCount)
+
+    '''
+    def return_to_map_main_page(self):
+        self.get_map_app_name.click()
+        BasePage(self.driver).accessURL()
+        IconListPage(self.driver).click_map_icon()
+    '''
+    def return_to_apps_main_page(self):
+        """
+        Description : This function will helps to go back to assets page.
+        Revision:
+        :return: None
+        """
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._bread_crumb_click_apps_link_xpath_locator))).click()
+        except:
+            inspectstack = inspect.stack()[1][3]
+            self.recoverapp(inspectstack)
+
+    def recoverapp(self, inspectstack):
+        """
+        Description : This function helps to go back to assets page. Inspect stack prints the test name from which
+                                 this function is called.
+        Revision:
+        :return: None
+        """
+        print ("Application recovering called from " + inspectstack)
+        basepage = BasePage(self.driver)
+        basepage.accessURL()
+        iconlistpage = IconListPage(self.driver)
+        iconlistpage.click_map_icon()
