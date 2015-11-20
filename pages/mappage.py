@@ -385,25 +385,10 @@ class MapPage(BasePageClass):
     def open_map_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
-        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, " //div[@id='mapdiv']//div[@class = 'leaflet-overlay-pane']")))
+        WebDriverWait(self.driver, 50).until(EC.text_to_be_present_in_element((By.XPATH,
+                                                                        "//a[contains(text(),'Leaflet')]"), "Leaflet"))
 
     # This function is used - if check box is selected, it should be unchecked
-    '''
-    # .//*[@id='leaflet-control-accordion-layers-1']/article/div[1]/input
-
-    checkboxes = self.browser.find_elements_by_xpath("//input[@name='arr[]']")
-    for checkbox in checkboxes:
-    if not checkbox.isSelected():
-        checkbox.click()
-
-    def get_checking_and_unchecking_basic_data_layer(self):
-        checkboxes = self.driver.find_elements_by_xpath(".//*[@id='leaflet-control-accordion-layers-1']/article/div")
-        for checkbox in checkboxes:
-            if checkbox.is_selected():
-                checkbox.click()
-
-    '''
     def get_checking_and_unchecking_basic_data_layer(self):
         sleep(2)
         if self.get_map_basic_data_layer_asset.is_displayed():
@@ -492,8 +477,12 @@ class MapPage(BasePageClass):
         :return: None
         """
         try:
-            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+            WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, self._bread_crumb_click_apps_link_xpath_locator))).click()
+
+            WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
+
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
