@@ -5,66 +5,36 @@ from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
-import ConfigParser
 from pyvirtualdisplay import Display
-import sys
-
 
 class BaseTestCase(unittest.TestCase):
     username = ""
+    driver = ""
 
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         #display = Display(visible=0, size=(1024,768))
         #display.start()
         # create a new Firefox session
-        #self.driver = webdriver.Firefox()
-
-        '''
-        browser_list = ['Firefox', 'Ie', 'Chrome']
-
-        for browser in browser_list:
-            print "Running tests with", browser
-            os.environ['BROWSER'] = browser
-
-            if os.environ['BROWSER'] == 'Firefox':
-                self.driver = webdriver.Firefox()
-            elif os.environ['BROWSER'] == 'Ie':
-                self.driver = webdriver.Ie("D:\\Project\\10OCT15\\Constellation\\IEDriverServer.exe")
-            elif os.environ['BROWSER'] == 'Chrome':
-                self.driver = webdriver.Chrome("D:\\Project\\10OCT15\\Constellation\\chromedriver.exe")
-        '''
-        self.config = ConfigParser.ConfigParser()
-        self.config.readfp(open('baseconfig.cfg'))
-        self.seleniumDriver = 'Selenium'
-        config_browser_type = self.config.get('Selenium', 'browser')
-        config_chrome_path = self.config.get('Selenium', 'chromedriver_path')
-        config_ie_path = self.config.get('Selenium', 'iedriver_path')
-
-        if config_browser_type.lower() == 'firefox':
-            self.driver = webdriver.Firefox()
-        elif config_browser_type.lower() == 'chrome':
-            self.driver = webdriver.Chrome(config_chrome_path)
-        elif config_browser_type.lower() == 'ie':
-            self.driver = webdriver.Ie(config_ie_path)
-
-        self.driver.implicitly_wait(30)
-        self.driver.maximize_window()
+        driver = webdriver.Firefox()
+        cls.driver = driver
+        driver.implicitly_wait(30)
+        driver.maximize_window()
 
         # navigate to the application home page
-        basepage = BasePage(self.driver)
+        basepage = BasePage(cls.driver)
         basepage.accessURL()
 
-        homepage = HomePage(self.driver)
+        homepage = HomePage(cls.driver)
         homepage.loginlink.click()
 
-        loginpage = LoginPage(self.driver)
+        loginpage = LoginPage(cls.driver)
         loginpage.loginDashboard()
-        self.username = loginpage.usernameText
+        cls.username = loginpage.usernameText
 
     @classmethod
-    def tearDownClass(self):
-        self.driver.quit()# close the browser
+    def tearDownClass(cls):
+        cls.driver.quit()# close the browser
 
 
     def take_screenshot(self):

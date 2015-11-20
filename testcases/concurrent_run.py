@@ -7,10 +7,10 @@ from datetime import datetime
 start = time.time()
 cwd = os.getcwd()
 os.chdir('..')
-asset_filepath = os.path.join(os.getcwd(), r"testresult-asset_" + str(datetime.today().strftime('%Y%m%d'))
-                              +"_"+str(datetime.today().time().strftime('%H%M'))+".xml")
-assessment_filepath = os.path.join(os.getcwd(), r"TestResult-Assessments_" + str(datetime.today().date()) +"_"+
-                                   str(datetime.today().time().hour)+"-"+str(datetime.today().time().minute)+".xml")
+asset_filepath = os.path.join(os.getcwd(), r"testresult-asset_" + str(datetime.today().strftime('%Y%m%d'))+"_"+
+                              str(datetime.today().time().strftime('%H%M'))+".xml")
+assessment_filepath = os.path.join(os.getcwd(), r"TestResult-Assessments_" + str(datetime.today().strftime('%Y%m%d')) +"_"+
+                                   str(datetime.today().time().strftime('%H%M'))+".xml")
 map_filepath = os.path.join(os.getcwd(), r"testresult-maps_" + str(datetime.today().strftime('%Y%m%d')) +"_"+
                             str(datetime.today().time().strftime('%H%M'))+".xml")
 threatstream_filepath = os.path.join(os.getcwd(), r"testresult-threatstreams_" + str(datetime.today().strftime('%Y%m%d'))+"_"+
@@ -28,7 +28,6 @@ processes = []
 
 for test in tests:
     processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1],  shell=True))
-    break
 
 for process in processes:
     process.wait()

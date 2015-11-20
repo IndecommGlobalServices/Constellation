@@ -18,16 +18,21 @@ os.chdir(cwd)
 
 class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super(AssessmentTrainningandExercisePageTest, cls).setUpClass()
+        cls.AssessmentSections = 'AssessmentSections'
+        cls.messages = 'Messages'
+        cls.mainsection = 'TrainingExercisesMainSections'
+        cls.subsection = 'TrainingExercisesSubSections'
+        cls.config = ConfigParser.ConfigParser()
+        cls.config.readfp(open('baseconfig.cfg'))
+        cls.ast = AssessmentPage(cls.driver)
+        cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
+
     def setUp(self):
         self.errors_and_failures = self.tally()
-        self.ast = AssessmentPage(self.driver)
-        self.AssessmentSections = 'AssessmentSections'
-        self.mainsection = 'TrainingExercisesMainSections'
-        self.subsection = 'TrainingExercisesSubSections'
-        self.messages = 'Messages'
-        self.config = ConfigParser.ConfigParser()
-        self.config.readfp(open('baseconfig.cfg'))
-        self.ast.open_trainingandexercise_page()
+        self.ast.open_main_section(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:

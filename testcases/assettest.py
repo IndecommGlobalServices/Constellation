@@ -15,12 +15,19 @@ import ConfigParser
 
 class AssetpageTest(BaseTestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super(AssetpageTest, cls).setUpClass()
+        cls.assetpage = AssetPage(cls.driver)
+        cls.assetpage.open_asset_app()
+        cls.section = 'Messages'
+        cls.config = ConfigParser.ConfigParser()
+        cls.config.readfp(open('baseconfig.cfg'))
+
     def setUp(self):
         self.errors_and_failures = self.tally()
-        self.assetpage = AssetPage(self.driver)
-        self.section = 'Messages'
-        self.config = ConfigParser.ConfigParser()
-        self.config.readfp(open('baseconfig.cfg'))
+        WebDriverWait(self.driver, 10). until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
@@ -28,7 +35,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.return_to_apps_main_page()
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_01(self):
         """
         Test : test_AS_01
@@ -80,6 +87,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_AS_04(self):
         """
         Test : test_AS_04
@@ -1005,7 +1013,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, error)
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_42(self):
         """
         Test : test_AS_42
@@ -1029,7 +1037,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_FAILED_FOR_NO_CAPTION'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_43(self):
         """
         Test : test_AS_43
@@ -1056,7 +1064,7 @@ class AssetpageTest(BaseTestCase):
         self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_44_1(self):
         """
         Test : test_AS_44_1
@@ -1079,7 +1087,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_PDF_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_44_2(self):
         """
         Test : test_AS_44_2
@@ -1102,7 +1110,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_HTML_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_44_3(self):
         """
         Test : test_AS_44_3
@@ -1126,7 +1134,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_TEXT_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_45(self):
         """
         Test : test_AS_45
@@ -1151,7 +1159,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_MULTIPLE_FILES_COULD_NOT_BE_UPLOADED'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_47(self):
         """
         Test : test_AS_47
@@ -1175,7 +1183,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_48_1(self):
         """
         Test : test_AS_48_1
@@ -1199,7 +1207,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_48_2(self):
         """
         Test : test_AS_48_2
@@ -1224,7 +1232,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_48_3(self):
         """
         Test : test_AS_48_3
@@ -1249,7 +1257,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_48_4(self):
         """
         Test : test_AS_48_4
@@ -1329,7 +1337,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_CANCEL_FAILED_ON_CREATING_ASSET_DIALOGUE'))
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_53(self):
         """
         Test : test_AS_53
@@ -1352,7 +1360,7 @@ class AssetpageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    ##@SkipTest
+    #@SkipTest
     def test_AS_54(self):
         """
         Test : test_AS_54
