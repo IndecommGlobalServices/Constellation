@@ -59,7 +59,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_74_To_Verify_SchooGrade_Checkbox(self):
+    def test_AST_69_To_Verify_SchooGrade_Checkbox(self):
         """
         Description : To test the school grade option checkbox
         :return:
@@ -79,7 +79,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_75_To_Verify_SchoolHours_TextBox(self):
+    def test_AST_70_To_Verify_SchoolHours_TextBox(self):
         """
         Description : To test the school hours section
         :return:
@@ -97,7 +97,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_78_To_Verify_Number_Of_Students_TextBox(self):
+    def test_AST_73_To_Verify_Number_Of_Students_TextBox(self):
         """
         Description : To test the No of students section
         :return:
@@ -116,7 +116,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_79_To_Verify_Validation_No_Of_Students_TextBox(self):
+    def test_AST_74_To_Verify_Validation_No_Of_Students_TextBox(self):
         """
         Description : To test validations of no of students text area
         :return:
@@ -125,7 +125,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_81_To_Verify_Special_Students_Text_Box(self):
+    def test_AST_76_To_Verify_Special_Students_Text_Box(self):
         """
         Description : To test Special students section
         :return:
@@ -143,7 +143,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_84_To_Verify_No_of_Staff_Text_Box(self):
+    def test_AST_78_To_Verify_No_of_Staff_Text_Box(self):
         """
         Description : To test the no of staff section
         :return:
@@ -161,7 +161,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_87_To_Verify_No_of_Visitors_TextBox(self):
+    def test_AST_81_To_Verify_No_of_Visitors_TextBox(self):
         """
         Description : To test the no of visitors section
         :return:
@@ -179,7 +179,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_88_To_Verify_validation_No_of_Visitors(self):
+    def test_AST_82_To_Verify_validation_No_of_Visitors(self):
         """
         Description : To test the validation of no of staff section
         :return:
@@ -187,9 +187,9 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_89_1_To_Verify_Police_RadioButton(self):
+    def test_AST_83_To_Verify_Police_RadioButton(self):
         """
-        Description : To test the add file to no of staff section
+        Description : To test a certified law enforcement officer option radio buttons
         :return:
         """
         for option in range(2):
@@ -207,9 +207,9 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Fileupload(self):
+    def test_AST_103_Verify_File_Upload_For_All_Sections(self):
         """
-        Description : To test fileupload in SECTION_PERIMETER_TYPE_OF_WALL
+        Description : To test file upload in All the sections under School Data Tab.
         :return:
         """
         with open(sectionfile) as data_file:
@@ -235,9 +235,9 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Edit_Caption(self):
+    def test_AST_104_To_Verify_Edit_Caption_For_All_Sections(self):
         """
-        Description : To test edit caption
+        Description : To test file upload with caption in All the sections under School Data Tab.
         :return:
         """
         with open(sectionfile) as data_file:
@@ -257,9 +257,9 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verfiy_Add_Comment(self):
+    def test_AST_105_To_Verify_Add_Comment_For_All_Sections(self):
         """
-        Description : To test add comment in
+        Description : To test add comment in in All the sections under School Data Tab.
         :return:
         """
         flag = 0

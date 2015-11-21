@@ -5,7 +5,7 @@ from selenium import webdriver
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
-from pyvirtualdisplay import Display
+#from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
     username = ""

@@ -130,28 +130,33 @@ class ThreatStreamTest(BaseTestCase):
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
         detail_links = self.tstream.get_ts_feed_data_details_link
-        detail_links[0].click()
-        important_list = self.tstream.get_ts_feed_data_important_button
-        button_text = (important_list[0].text).encode('utf-8')
-        if str(button_text) == r"Mark important":
-            important_list[0].click()
-            sleep(10)
-            feeds_list = self.tstream.get_ts_feeds_list
-            attri_value =  feeds_list[0].get_attribute("class")
-            self.tstream.get_ts_threat_dropdown_filter.click()
-            self.tstream.get_ts_threat_dropdown_stream_filter.click()
-            if str(attri_value) == r"squintem ng-scope importantsquintem":
-                self.assertTrue(True, "The Feed could not be marked as 'Mark important'.")
+        if len(detail_links)>=1:
+            detail_links[0].click()
+            important_list = self.tstream.get_ts_feed_data_important_button
+            button_text = (important_list[0].text).encode('utf-8')
+            if str(button_text) == r"Mark important":
+                important_list[0].click()
+                sleep(10)
+                feeds_list = self.tstream.get_ts_feeds_list
+                attri_value =  feeds_list[0].get_attribute("class")
+                self.tstream.get_ts_threat_dropdown_filter.click()
+                self.tstream.get_ts_threat_dropdown_stream_filter.click()
+                if str(attri_value) == r"squintem ng-scope importantsquintem":
+                    self.assertTrue(True, "The Feed could not be marked as 'Mark important'.")
+            else:
+                important_list[0].click()
+                sleep(10)
+                feeds_list = self.tstream.get_ts_feeds_list
+                attri_value =  feeds_list[0].get_attribute("class")
+                self.tstream.get_ts_threat_dropdown_filter.click()
+                self.tstream.get_ts_threat_dropdown_stream_filter.click()
+                if str(attri_value) == r"squintem ng-scope":
+                    self.assertTrue(True, "The Feed could not be marked as 'Mark not important'.")
         else:
-            important_list[0].click()
-            sleep(10)
-            feeds_list = self.tstream.get_ts_feeds_list
-            attri_value =  feeds_list[0].get_attribute("class")
-            self.tstream.get_ts_threat_dropdown_filter.click()
-            self.tstream.get_ts_threat_dropdown_stream_filter.click()
-            if str(attri_value) == r"squintem ng-scope":
-                self.assertTrue(True, "The Feed could not be marked as 'Mark not important'.")
+            self.skipTest("Trending Last Day filter does not have any feeds. Mark Important Button could not be tested")
 
     @attr(priority="high")
     #@SkipTest
@@ -165,18 +170,23 @@ class ThreatStreamTest(BaseTestCase):
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
         feed_text_val = self.tstream.get_ts_feeds_list_text_value
-        before_hide_text = (feed_text_val[0].text).encode('utf-8')
-        detail_links = self.tstream.get_ts_feed_data_details_link
-        detail_links[0].click()
-        hide_list = self.tstream.get_ts_feed_data_hide_button_locator
-        hide_list[0].click()
-        sleep(4)
-        feed_text_val = self.tstream.get_ts_feeds_list_text_value
-        after_hide_text = (feed_text_val[0].text).encode('utf-8')
-        print before_hide_text
-        print after_hide_text
-        self.assertNotEqual(before_hide_text,after_hide_text, "The Feed can not be hided.")
+        if len(feed_text_val)>=1:
+            before_hide_text = (feed_text_val[0].text).encode('utf-8')
+            detail_links = self.tstream.get_ts_feed_data_details_link
+            detail_links[0].click()
+            hide_list = self.tstream.get_ts_feed_data_hide_button_locator
+            hide_list[0].click()
+            sleep(4)
+            feed_text_val = self.tstream.get_ts_feeds_list_text_value
+            after_hide_text = (feed_text_val[0].text).encode('utf-8')
+            print before_hide_text
+            print after_hide_text
+            self.assertNotEqual(before_hide_text,after_hide_text, "The Feed can not be hided.")
+        else:
+            self.skipTest("Trending Last Day filter does not have any feeds. Hide Button could not be tested.")
 
     @attr(priority="high")
     #@SkipTest
@@ -190,23 +200,28 @@ class ThreatStreamTest(BaseTestCase):
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
         detail_links = self.tstream.get_ts_feed_data_details_link
-        detail_links[0].click()
-        email_share_link = self.tstream.get_ts_feed_data_share_button_locator
-        email_share_link[0].click()
-        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH,\
-                                     self.tstream._ts_feed_email_window_title_locator),r"Share via email to..."))
-        self.tstream.get_ts_feed_email_window_email_textbox.send_keys("test@indecomm.net")
-        self.tstream.get_ts_feed_email_window_comment_textbox.send_keys("This is a comment.")
-        self.tstream.get_ts_feed_email_window_send_button.click()
-        sleep(2)
-        self.tstream.get_ts_threat_dropdown_filter.click()
-        self.tstream.get_ts_threat_dropdown_stream_filter.click()
-        try:
-            if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
-                self.assertFalse(True, "The Send Button is not working. The window is not closed.")
-        except:
-            self.assertTrue(True, "In the Email window Save button is not working properly.")
+        if len(detail_links)>=1:
+            detail_links[0].click()
+            email_share_link = self.tstream.get_ts_feed_data_share_button_locator
+            email_share_link[0].click()
+            WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH,\
+                                         self.tstream._ts_feed_email_window_title_locator),r"Share via email to..."))
+            self.tstream.get_ts_feed_email_window_email_textbox.send_keys("test@indecomm.net")
+            self.tstream.get_ts_feed_email_window_comment_textbox.send_keys("This is a comment.")
+            self.tstream.get_ts_feed_email_window_send_button.click()
+            sleep(2)
+            self.tstream.get_ts_threat_dropdown_filter.click()
+            self.tstream.get_ts_threat_dropdown_stream_filter.click()
+            try:
+                if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
+                    self.assertFalse(True, "The Send Button is not working. The window is not closed.")
+            except:
+                self.assertTrue(True, "In the Email window Save button is not working properly.")
+        else:
+            self.skipTest("Trending Last Day filter does not have any feeds. Share Button could not be tested.")
 
     @attr(priority="high")
     #@SkipTest
@@ -220,26 +235,31 @@ class ThreatStreamTest(BaseTestCase):
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
         detail_links = self.tstream.get_ts_feed_data_details_link
-        detail_links[0].click()
-        email_share_link = self.tstream.get_ts_feed_data_share_button_locator
-        email_share_link[0].click()
-        WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH,\
-                                     self.tstream._ts_feed_email_window_title_locator),r"Share via email to..."))
-        self.tstream.get_ts_feed_email_window_email_textbox.send_keys("test#indecomm.net")
-        self.tstream.get_ts_feed_email_window_comment_textbox.send_keys("This is a comment.")
-        send_button_state = self.tstream.get_ts_feed_email_window_send_button.is_enabled()
-        if send_button_state:
-            self.assertFalse(send_button_state, "Email address is invalid but SEND button is enabled.")
-        self.tstream.get_ts_feed_email_window_cancel_button.click()
-        sleep(2)
-        self.tstream.get_ts_threat_dropdown_filter.click()
-        self.tstream.get_ts_threat_dropdown_stream_filter.click()
-        try:
-            if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
-                self.assertFalse(True, "The Cancel Button is not working. The window is not closed.")
-        except:
-            self.assertTrue(True, "In the Email window Cancel button is not working properly.")
+        if len(detail_links)>=1:
+            detail_links[0].click()
+            email_share_link = self.tstream.get_ts_feed_data_share_button_locator
+            email_share_link[0].click()
+            WebDriverWait(self.driver, 10).until(EC.text_to_be_present_in_element((By.XPATH,\
+                                         self.tstream._ts_feed_email_window_title_locator),r"Share via email to..."))
+            self.tstream.get_ts_feed_email_window_email_textbox.send_keys("test#indecomm.net")
+            self.tstream.get_ts_feed_email_window_comment_textbox.send_keys("This is a comment.")
+            send_button_state = self.tstream.get_ts_feed_email_window_send_button.is_enabled()
+            if send_button_state:
+                self.assertFalse(send_button_state, "Email address is invalid but SEND button is enabled.")
+            self.tstream.get_ts_feed_email_window_cancel_button.click()
+            sleep(2)
+            self.tstream.get_ts_threat_dropdown_filter.click()
+            self.tstream.get_ts_threat_dropdown_stream_filter.click()
+            try:
+                if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
+                    self.assertFalse(True, "The Cancel Button is not working. The window is not closed.")
+            except:
+                self.assertTrue(True, "In the Email window Cancel button is not working properly.")
+        else:
+            self.skipTest("Trending Last Day filter does not have any feeds. Share Button could not be tested.")
 
     @attr(priority="high")
     #@SkipTest
@@ -347,7 +367,6 @@ class ThreatStreamTest(BaseTestCase):
         except Exception, err:
             raise type(err)("Newly created filter name is not appearing in dropdown menu item list."+ err.message)
 
-
     @attr(priority="high")
     #@SkipTest
     def test_TS_15(self):
@@ -370,7 +389,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_filter_create_save_button.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_15"))
-        sleep(4)
+        sleep(20) #Required to update feeds in new filter window.
         feed_text_val = self.tstream.get_ts_feeds_list_text_value
         counter1 = counter2 = 0
         if len(feed_text_val)>10:
@@ -540,7 +559,7 @@ class ThreatStreamTest(BaseTestCase):
     def test_TS_23(self):
         """
         Test : test_TS_23
-        Description : To verify that new filter edit window is worlking.
+        Description : To verify that new filter edit window is working.
         Revision:
         Author : Bijesh
         :return: None

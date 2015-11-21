@@ -39,7 +39,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_167(self):
+    def test_AST_164_To_Verify_Type_Of_Wall_Fencing_RadioButton(self):
         """
         Description :
         :return:
@@ -58,7 +58,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_168_SECTION_PERIMETER_FENCING_Radio_Button(self):
+    def test_AST_165_To_Test_Site_Secured_By_Fencing_Radio_Button(self):
         """
         Description :
         :return:
@@ -77,7 +77,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_169_SECTION_PERIMETER_GATES_LOCKED_Radio_Button(self):
+    def test_AST_166_To_Test_Gate_Locked_Nightly_Radio_Button(self):
         """
         Description :
         :return:
@@ -96,7 +96,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_170_SECTION_SECTION_PERIMETER_SAME_KEY_Radio_Button(self):
+    def test_AST_167_To_Test_Gate_Same_Key_Radio_Button(self):
         """
         Description :
         :return:
@@ -115,7 +115,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_171_SECTION_PERIMETER_ADDITIONAL_FENCING_Radio_Button(self):
+    def test_AST_168_To_Test_Additional_Fencing_Required_Radio_Button(self):
         """
         Description :
         :return:
@@ -134,7 +134,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_172_SECTION_CCTV_Radio_Button(self):
+    def test_AST_170_To_Test_CCTV_System_Radio_Button(self):
         """
         Description :
         :return:
@@ -153,7 +153,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_173_SECTION_CCTV_Text_Box(self):
+    def test_AST_171_To_Test_CCTV_Cameras_On_Campus_Text_Box(self):
         """
         Description :
         :return:
@@ -171,26 +171,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_173_1_SECTION_CCTV_Text_Box_Validation(self):
-        """
-        Description :
-        :return:
-        """
-        validation_input = ['abc', 'ABC', '@#', 'aB1@']
-        for item in validation_input:
-            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
-                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).send_keys("")
-            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
-                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).send_keys(item)
-            self.assertEqual(self.ast.get_schooldata_textbox_error(self.config.get(self.mainsection, 'SECTION_CCTV'),
-                                self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).text, "Enter a number",
-                             self.config.get(self.messages, 'MESSAGE_VALIDATION_ERROR'))
-            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
-                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).clear()
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_174_SECTION_CCTV_ADDITIONAL_CAMERAS_Radio_Button(self):
+    def test_AST_173_SECTION_CCTV_ADDITIONAL_CAMERAS_Radio_Button(self):
         """
         Description :
         :return:
@@ -209,7 +190,27 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_175_SECTION_CCTV_NO_OF_ADDITIONAL_CAMERAS_Text_Box(self):
+    def test_AST_174_1_To_Test_No_Of_CCTV_Additional_Cameras_Text_Box(self):
+        """
+        Description :
+        :return:
+        """
+        validation_input = ['abc', 'ABC', '@#', 'aB1@']
+        for item in validation_input:
+            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).send_keys("")
+            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).send_keys(item)
+            self.assertEqual(self.ast.get_schooldata_textbox_error(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).text, "Enter a number",
+                             self.config.get(self.messages, 'MESSAGE_VALIDATION_ERROR'))
+            self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_CCTV'),
+                                                      self.config.get(self.subsection, 'SECTION_CCTC_NO_OF_CAMERAS')).clear()
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_174_2_To_Test_No_Of_CCTV_Additional_Cameras_Text_Box(self):
         """
         Description :
         :return:
@@ -228,7 +229,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_176_SECTION_LOCKS_AVAILABILITY_Radio_Button(self):
+    def test_AST_176_To_Test_Electronics_Locks_Radio_Button(self):
         """
         Description :
         :return:
@@ -247,7 +248,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_177_SECTION_LOCK_MAIN_ENTRANCE_Radio_Button(self):
+    def test_AST_178_To_Test_Main_Entrance_Electronics_Lock_Radio_Button(self):
         """
         Description :
         :return:
@@ -266,7 +267,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_178_SECTION_LOCK_OTHER_PARTS_Check_Box(self):
+    def test_AST_179_To_Test_Electronics_Lock_Other_Parts_Check_Box(self):
         """
         Description :
         :return:
@@ -287,7 +288,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_179_SECTION_IDENTIFICATION_CARDS_Radio_Button(self):
+    def test_AST_182_To_Test_Identification_Card_Radio_Button(self):
         """
         Description :
         :return:
@@ -306,7 +307,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_180_SECTION_IDENTIFICATION_PHOTOGRAPH_Radio_Button(self):
+    def test_AST_183_To_Test_Employee_Identification_Photograph_Radio_Button(self):
         """
         Description :
         :return:
@@ -325,7 +326,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_181_SECTION_IDENTIFICATION_STUDENT_PHOTOGRAPH_Radio_Button(self):
+    def test_AST_184_To_Test_Student_Identification_Photograph_Radio_Button(self):
         """
         Description :
         :return:
@@ -344,7 +345,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_182_SECTION_IDENTIFICATION_VISITOR_SIGN_Radio_Button(self):
+    def test_AST_185_To_Test_Identification_Visitor_Sign_Radio_Button(self):
         """
         Description :
         :return:
@@ -363,7 +364,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_182_SECTION_IDENTIFICATION_TEMPORARY_ID_Radio_Button(self):
+    def test_AST_186_To_Test_Identification_Temporary_Id_For_Visitor_Radio_Button(self):
         """
         Description :
         :return:
@@ -382,7 +383,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_183_SECTION_IDENTIFICATION_VISITOR_CHECKOUT_Radio_Button(self):
+    def test_AST_187_To_Test_Identification_Visitor_Sign_Checkout_Radio_Button(self):
         """
         Description :
         :return:
@@ -401,7 +402,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_184_SECTION_IDENTIFICATION_DISTRICT_STAFF_CHECKIN_Radio_Button(self):
+    def test_AST_188_To_Test_Identification_District_Staff_Check_In_Radio_Button(self):
         """
         Description :
         :return:
@@ -420,7 +421,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_185_SECTION_IDENTIFICATION_DISTRICT_STAFF_PHOTOGRAPH_Radio_Button(self):
+    def test_AST_190_To_Test_Identification_District_Staff_Photograph_Radio_Button(self):
         """
         Description :
         :return:
@@ -439,7 +440,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_186_SECTION_LIGHTING_DARK_Radio_Button(self):
+    def test_AST_191_To_Test_Lighting_Dark_Campus_Radio_Button(self):
         """
         Description :
         :return:
@@ -458,7 +459,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_187_SECTION_LIGHTING_CONTROL_Radio_Button(self):
+    def test_AST_192_To_Test_Lighting_Control_Radio_Button(self):
         """
         Description :
         :return:
@@ -477,7 +478,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_188_SECTION_LIGHTING_ADDITIONAL_Radio_Button(self):
+    def test_AST_193_To_Test_Lighting_Additional_Radio_Button(self):
         """
         Description :
         :return:
@@ -497,7 +498,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_189_SECTION_ALARMS_ACCESSALARMS_Radio_Button(self):
+    def test_AST_195_To_Test_Alarms_Access_Radio_Button(self):
         """
         Description :
         :return:
@@ -516,7 +517,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_190_SECTION_ALARM_MONITORS_Radio_Button(self):
+    def test_AST_197_To_Test_Alarms_Monitors_Radio_Button(self):
         """
         Description :
         :return:
@@ -535,7 +536,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_191_SECTION_ALARMS_PANICALARMS_Radio_Button(self):
+    def test_AST_199_To_Test_Alarms_Panic_Radio_Button(self):
         """
         Description :
         :return:
@@ -554,7 +555,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_192_SECTION_ALARMS_KEYINDIVIDUAL_PANICALARM_Radio_Button(self):
+    def test_AST_201_To_Test_Alarms_Key_Individual_Panic_Radio_Button(self):
         """
         Description :
         :return:
@@ -573,7 +574,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_193_SECTION_BIOMETRIC_AVAILABILITY_Radio_Button(self):
+    def test_AST_203_To_Test_Biometric_Locks_Availability_Radio_Button(self):
         """
         Description :
         :return:
@@ -592,7 +593,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_194_SECTION_BIOMETRIC_CHARACTERESTICS_Radio_Button(self):
+    def test_AST_205_To_Test_Biometric_Locks_Characteristic_Radio_Button(self):
         """
         Description :
         :return:
@@ -611,7 +612,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_195_SECTION_BIOMETRIC_LOCK_Radio_Button(self):
+    def test_AST_206_To_Test_Biometric_Locks_Main_Entrance_Radio_Button(self):
         """
         Description :
         :return:
@@ -630,7 +631,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_196_SECTION_BIOMETRIC_OTHERPARTS_Check_box(self):
+    def test_AST_207_To_Test_Biometric_Locks_School_Other_Parts_Check_box(self):
         """
         Description :
         :return:
@@ -652,7 +653,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_197_SECTION_SECURITY_SWORN_Radio_Button(self):
+    def test_AST_210_To_Test_Security_Law_Enforcement_Officer_Radio_Button(self):
         """
         Description :
         :return:
@@ -672,7 +673,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_198_SECTION_SECURITY_SRO_Radio_Button(self):
+    def test_AST_212_To_Test_Security_SRO_Radio_Button(self):
         """
         Description :
         :return:
@@ -691,7 +692,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_199_SECTION_SECUTITY_GUARD_Text_box(self):
+    def test_AST_214_To_Test_Security_Guards_Count_Text_box(self):
         """
         Description :
         :return:
@@ -710,7 +711,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_200_SECTION_SECURITY_SECTION_Radio_Button(self):
+    def test_AST_217_To_Test_Security_School_District_Radio_Button(self):
         """
         Description :
         :return:
@@ -729,7 +730,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_201_SECTION_SECURITY_CHARACTERISTICS_Check_box(self):
+    def test_AST_218_To_Test_Security_Characteristics_Check_box(self):
         """
         Description :
         :return:
@@ -749,7 +750,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_202_SECTION_SECURITY_ADDITIONAL_Radio_Button(self):
+    def test_AST_220_To_Test_Security_Additional_Guards_Radio_Button(self):
         """
         Description :
         :return:
@@ -768,7 +769,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_203_SECTION_SECURITY_ADDITIONAL_HOWMANY_Text_box(self):
+    def test_AST_222_To_Test_Security_How_Many_Additional_Guards_Text_box(self):
         """
         Description :
         :return:
@@ -784,11 +785,9 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
                             self.config.get(self.subsection, 'SECTION_SECURITY_ADDITIONAL_HOWMANY')).get_attribute("value"), "100")
 
-
-
     @attr(priority="high")
     #@SkipTest
-    def test_AST_204_SECTION_ROOFACCESS_DESCRIPTION_Radio_Button(self):
+    def test_AST_226_To_Test_Roof_Access_Description_Radio_Button(self):
         """
         Description :
         :return:
@@ -804,9 +803,10 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ROOFACCESS'),
                                                     self.config.get(self.subsection, 'SECTION_ROOFACCESS_DESCRIPTION'))
                 self.assertEqual(landoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
     @attr(priority="high")
     #@SkipTest
-    def test_AST_205_SECTION_ROOFACCESS_ACCESS_Radio_Button(self):
+    def test_AST_227_To_Test_Roof_Access_Who_Can_Radio_Button(self):
         """
         Description :
         :return:
@@ -824,7 +824,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                 self.assertEqual(landoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
     @attr(priority="high")
     #@SkipTest
-    def test_AST_206_SECTION_PHYSICALKEY_AREA_Radio_Button(self):
+    def test_AST_228_To_Test_Physical_Key_Area_Secured_Radio_Button(self):
         """
         Description :
         :return:
@@ -842,7 +842,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                 self.assertEqual(landoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
     @attr(priority="high")
     #@SkipTest
-    def test_AST_207_SECTION_PHYSICALKEY_POSITION_Radio_Button(self):
+    def test_AST_229_To_Test_Physical_Key_Management_Radio_Button(self):
         """
         Description :
         :return:
@@ -860,7 +860,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                 self.assertEqual(landoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
     @attr(priority="high")
     #@SkipTest
-    def test_AST_208_SECTION_PHYSICALKEY_PoC_Radio_Button(self):
+    def test_AST_231_To_Test_Physical_Key_Point_Of_Contact_Radio_Button(self):
         """
         Description :
         :return:
@@ -879,7 +879,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Fileupload(self):
+    def test_AST_232_To_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test fileupload in SECTION_PERIMETER_TYPE_OF_WALL
         :return:
@@ -907,7 +907,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Edit_Caption(self):
+    def test_AST_233_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test edit caption
         :return:
@@ -927,10 +927,9 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                                                               self.config.get(self.subsection, section["sub_section"]),
                                                               self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
 
-
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verfiy_Add_Comment(self):
+    def test_AST_234_To_Verify_Add_Comment_For_All_Sections(self):
         """
         Description : To test add comment in
         :return:

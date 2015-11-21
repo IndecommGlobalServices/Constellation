@@ -40,7 +40,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_292_1_To_Test_SchoolType_Radio_Button_SECTION_SCHOOL_SAFETY_PLAN(self):
+    def test_AST_288_To_Test_Comprehensive_School_Safety_Plan_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -69,7 +69,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_293_1_To_Test_SchoolType_Radio_Button_SECTION_EXERCISE_DISTRICT_WIDE(self):
+    def test_AST_289_To_Test_School_Participated_In_Exercise_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -100,7 +100,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_294_1_To_Test_SchoolType_Radio_Button_SECTION_EXERCISE_COUNTYS_MASS_CASUALTY_DRILL(self):
+    def test_AST_290_To_Test_Exercise_County_Mass_Casualty_Drill_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -133,7 +133,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_295_1_To_Test_SchoolType_Radio_Button_SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT(self):
+    def test_AST_292_To_Test_Exercise_Drill_With_Local_Fire_Department_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -167,7 +167,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_296_1_To_Test_SchoolType_Radio_Button_SECTION_EXERCISE_DRILLS_WITH_THE_LOCAL_FIRE_DEPARTMENT_OCCUR(self):
+    def test_AST_293_To_Test_Exercise_Drill_With_Local_Fire_Department_Occurrence_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -200,7 +200,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_297_1_To_Test_SchoolType_Radio_Button_SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT(self):
+    def test_AST_294_To_Test_Exercise_Drill_With_Local_Law_Enforcement_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -233,7 +233,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_298_1_To_Test_SchoolType_Radio_Button_SECTION_EXERCISE_DRILLS_WITH_LOCAL_LAW_ENFORCEMENT_OCCUR(self):
+    def test_AST_295_To_Test_Exercise_Drill_With_Local_Law_Enforcement_Occurrence_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -264,10 +264,9 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
                                  "answer_choice radio ng-binding ng-isolate-scope checked")
 
-
     @attr(priority="high")
     #@SkipTest
-    def test_AST_299_1_To_Test_SchoolType_Radio_Button_SECTION_EXERCISE_CRISIS_INCIDENT_MANAGEMENT_EXERCISED(self):
+    def test_AST_296_To_Test_Crisis_Incident_Management_Exercised_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -300,7 +299,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_300_1_Radio_Button_SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACKS_AGAINST_THE_SCHOOL_OR_STUDENTS(self):
+    def test_AST_297_Emergency_Checklist_Potential_Attacks_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -336,7 +335,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_301_1_Radio_Button_SECTION_EMERGENCY_CHECKLIST_TRAINED_IN_THE_REUNIFICATION_PLAN(self):
+    def test_AST_298_Emergency_Checklist_Reunification_plan_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -369,7 +368,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority = 'high')
     #@SkipTest
-    def test_AST_303_1_To_Verfiy_textarea_SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS(self):
+    def test_AST_301_To_Test_Type_Exercises_Drills_School_Participated_Text_Area(self):
 
         self.ast.get_schooldata_textarea\
             (self.config.get(self.mainsection, 'SECTION_EXERCISES_OR_DRILLS'),
@@ -391,11 +390,9 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                           self.config.get(self.subsection, 'SECTION_EXERCISES_OR_DRILLS_LIST_OTHER_DRILLS'))
                          .get_attribute("value"), "100")
 
-
-
     @attr(priority="high")
     #@SkipTest
-    def test_AST_304_1_Radio_Button_SECTION_CRISIS_INCIDENT_MANAGEMENT_COMMAND_TEAM_TRAINED_REGULARLY(self):
+    def test_AST_303_To_Test_Crisis_Incident_Management_Team_Trained_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -429,7 +426,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_305_1_To_Test_SchoolType_Radio_Button_SECTION_CRISIS_INCIDENT_MANAGEMENT_STAFF_WOULD_NEED_LIST(self):
+    def test_AST_304_To_Test_Crisis_Incident_Management_Training_Required_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -460,11 +457,9 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.assertEqual(schoolsafetychecked[option].get_attribute("class"),
                                  "answer_choice radio ng-binding ng-isolate-scope checked")
 
-
-
     @attr(priority="high")
     #@SkipTest
-    def test_AST_306_1_Radio_Button_SECTION_CRISIS_INCIDENT_MANAGEMENT_IMPACT_YOUR_SCHOOL_SAFETY(self):
+    def test_AST_306_To_Test_Crisis_Incident_Management_Training_Impact_Safety_Radio_Button(self):
         """
         Description : To test the school type option radio buttons
         :return:
@@ -498,7 +493,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Fileupload(self):
+    def test_AST_308_To_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test fileupload in SECTION_PERIMETER_TYPE_OF_WALL
         :return:
@@ -529,7 +524,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Edit_Caption(self):
+    def test_AST_309_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test edit caption
         :return:
@@ -554,7 +549,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verfiy_Add_Comment(self):
+    def test_AST_310_To_Verify_Add_Comment_For_All_Sections(self):
         """
         Description : To test add comment in
         :return:

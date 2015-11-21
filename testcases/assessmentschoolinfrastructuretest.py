@@ -36,7 +36,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_109_To_Test_LandandBuildings_Acres_Radio_Button(self):
+    def test_AST_106_To_Test_Land_And_Buildings_Acres_Radio_Button(self):
         """
         Description : To test the acres option radio buttons
         :return:
@@ -56,7 +56,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_113_To_Verfiy_noofbuilding_textbox(self):
+    def test_AST_108_To_Verify_No_Of_Building_Textbox(self):
         """
         Description : To test no of building textbox in SECTION_LANDANDBUILDING_BUILDING
         :return:
@@ -74,7 +74,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_117_To_Verfiy_BuildingNumber_RadioButton(self):
+    def test_AST_110_To_Verify_Building_Number_Radio_Button(self):
         for option in range(2):
             noofbuilding = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LANDANDBUILDING'),
             self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))
@@ -87,9 +87,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                                                         self.config.get(self.subsection, 'SECTION_LANDANDBUILDING_MARKED'))
                 self.assertEqual(noofbuilding[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_121_To_Verfiy_perimeter_textarea(self):
+    def test_AST_112_To_Verify_Perimeter_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
@@ -101,9 +101,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                         self.config.get(self.subsection, 'SECTION_SURROUNDING_PERIMETER')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_125_To_Verfiy_Parking_Textarea(self):
+    def test_AST_114_To_Verify_Parking_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
@@ -115,9 +115,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                         self.config.get(self.subsection, 'SECTION_SURROUNDING_PARKING')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_129_To_Verfiy_AdjusantBuilding_Textarea(self):
+    def test_AST_115_To_Verify_Adjacent_Building_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                                                    self.config.get(self.subsection, 'SECTION_SURROUNDING_ADJACENTBUILDINGS')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
@@ -129,9 +129,26 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
                 self.config.get(self.subsection, 'SECTION_SURROUNDING_ADJACENTBUILDINGS')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
+
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_133_To_Verfiy_ElectricUtility_Textarea(self):
+    def test_AST_117_To_Verify_Surrounding_Toxic_RadioButton(self):
+        for option in range(2):
+            toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'))
+            if not toxicoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
+                toxicoption[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
+                toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
+                self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'))
+                self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
+
+
+    @attr(priority='high')
+    #@SkipTest
+    def test_AST_118_To_Verify_Electric_Utility_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                                                    self.config.get(self.subsection, 'SECTION_ELECTRIC_UTILITY')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
@@ -143,9 +160,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                             self.config.get(self.subsection, 'SECTION_ELECTRIC_UTILITY')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
-    #@SkipTest
-    def test_AST_137_To_Verify_Electric_Loss_Of_Utility_RadioButton(self):
+    @attr(priority='high')
+    # @SkipTest
+    def test_AST_119_To_Verify_Electric_Loss_Of_Utility_Radio_Button(self):
         for option in range(2):
             lossofutilityoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                 self.config.get(self.subsection, 'SECTION_ELECTRIC_LOSSOFUTILITY'))
@@ -158,9 +175,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_ELECTRIC_LOSSOFUTILITY'))
                 self.assertEqual(lossofutilityoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_141_To_Verify_Electric_BackUp_Generator_RadioButton(self):
+    def test_AST_120_To_Verify_Electric_BackUp_Generator_RadioButton(self):
         for option in range(2):
             backupgenerator = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                 self.config.get(self.subsection, 'SECTION_ELECTRIC_BACKUPGENERATOR'))
@@ -173,9 +190,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_ELECTRIC_BACKUPGENERATOR'))
                 self.assertEqual(backupgenerator[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_144_To_Verify_Electric_Generator_Powered_RadioButton(self):
+    def test_AST_121_To_Verify_Electric_Generator_Powered_RadioButton(self):
         for option in range(4):
             backupgenerator = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ELECTRIC'),
                 self.config.get(self.subsection, 'SECTION_ELECTRIC_GENERATORPOWERED'))
@@ -188,9 +205,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_ELECTRIC_GENERATORPOWERED'))
                 self.assertEqual(backupgenerator[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_148_To_Verfiy_Telephone_Textarea(self):
+    def test_AST_122_To_Verify_Telephone_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
                                         self.config.get(self.subsection, 'SECTION_TELEPHONE_PROVIDER')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
@@ -202,9 +219,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
                         self.config.get(self.subsection, 'SECTION_TELEPHONE_PROVIDER')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_152_To_Verify_911_RadioButton(self):
+    def test_AST_123_To_Verify_911_RadioButton(self):
         for option in range(2):
             lossofutilityoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_TELEPHONE'),
                 self.config.get(self.subsection, 'SECTION_TELEPHONE_911PROCEDURE'))
@@ -217,9 +234,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_TELEPHONE_911PROCEDURE'))
                 self.assertEqual(lossofutilityoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_156_To_Verify_Buses_DistrictTransportation_RadioButton(self):
+    def test_AST_124_To_Verify_Buses_District_Transportation_RadioButton(self):
         for option in range(3):
             lossofutilityoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
                 self.config.get(self.subsection, 'SECTION_BUSES_DISTRICTTRANSPORTATION'))
@@ -232,9 +249,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_BUSES_DISTRICTTRANSPORTATION'))
                 self.assertEqual(lossofutilityoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_160_To_Verify_Buses_GPS_RadioButton(self):
+    def test_AST_125_To_Verify_Buses_GPS_RadioButton(self):
         for option in range(2):
             lossofutilityoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
                 self.config.get(self.subsection, 'SECTION_BUSES_GPS'))
@@ -247,9 +264,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_BUSES_GPS'))
                 self.assertEqual(lossofutilityoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_164_To_Verify_Buses_GPS_RadioButton(self):
+    def test_AST_126_To_Verify_Buses_Camera_RadioButton(self):
         for option in range(2):
             lossofutilityoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
                 self.config.get(self.subsection, 'SECTION_BUSES_CAMERA'))
@@ -277,9 +294,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
     #             self.assertEqual(typeofcamera[option].get_attribute("class"), "checkbox ng-binding checked")
     #             typeofcamera[option].click()
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_172_To_Verify_Buses_TwowayRadios_RadioButton(self):
+    def test_AST_129_To_Verify_Buses_Two_Way_Radios_RadioButton(self):
         for option in range(3):
             lossofutilityoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
                 self.config.get(self.subsection, 'SECTION_BUSES_TWOWAYRADIOS'))
@@ -292,9 +309,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_BUSES_TWOWAYRADIOS'))
                 self.assertEqual(lossofutilityoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_176_To_Verify_Buses_DispatchSystem_RadioButton(self):
+    def test_AST_130_To_Verify_Buses_Dispatch_System_RadioButton(self):
         for option in range(3):
             lossofutilityoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
                 self.config.get(self.subsection, 'SECTION_BUSES_DISPATCHSYSTEM'))
@@ -307,24 +324,10 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_BUSES_DISPATCHSYSTEM'))
                 self.assertEqual(lossofutilityoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
-    #@SkipTest
-    def test_AST_180_To_Verify_Surrounding_Toxic_RadioButton(self):
-        for option in range(2):
-            toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
-                self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'))
-            if not toxicoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
-                toxicoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
-                toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SURROUNDING'),
-                self.config.get(self.subsection, 'SECTION_SURROUNDING_TOXIC'))
-                self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_184_To_Verify_Buses_Housed_Overnight_RadioButton(self):
+    def test_AST_131_To_Verify_Buses_Housed_Overnight_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
                 self.config.get(self.subsection, 'SECTION_BUSES_HOUSED'))
@@ -337,9 +340,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_BUSES_HOUSED'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_188_To_Verify_Buses_Parked_Onsite_RadioButton(self):
+    def test_AST_132_To_Verify_Buses_Parked_On_Site_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BUSES'),
                 self.config.get(self.subsection, 'SECTION_BUSES_ACCESS'))
@@ -352,9 +355,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_BUSES_ACCESS'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_192_To_Verfiy_Water_Utility_Textarea(self):
+    def test_AST_134_To_Verify_Water_Utility_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_WATER'),
                                                    self.config.get(self.subsection, 'SECTION_WATER_UTILITY')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_WATER'),
@@ -367,9 +370,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                                 self.config.get(self.subsection, 'SECTION_WATER_UTILITY')).get_attribute("value"), "100")
 
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_196_To_Verify_Water_Loss_Utility_RadioButton(self):
+    def test_AST_135_To_Verify_Water_Loss_Utility_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_WATER'),
                 self.config.get(self.subsection, 'SECTION_WATER_LOSSOFUTILITY'))
@@ -382,9 +385,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_WATER_LOSSOFUTILITY'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_200_To_Verfiy_ISP_Name_Textarea(self):
+    def test_AST_136_To_Verify_ISP_Name_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
                                                    self.config.get(self.subsection, 'SECTION_ISP_NAME')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
@@ -396,9 +399,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_ISP'),
                                     self.config.get(self.subsection, 'SECTION_ISP_NAME')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_204_To_Verify_ISP_Loss_Utility_RadioButton(self):
+    def test_AST_137_To_Verify_ISP_Loss_Utility_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ISP'),
                 self.config.get(self.subsection, 'SECTION_ISP_LOSSOFUTILITY'))
@@ -411,9 +414,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_ISP_LOSSOFUTILITY'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_208_To_Verify_Gas_Availablity_RadioButton(self):
+    def test_AST_138_To_Verify_Gas_Availability_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                 self.config.get(self.subsection, 'SECTION_NATURALGAS_AVAILABILITY'))
@@ -426,9 +429,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_NATURALGAS_AVAILABILITY'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_212_To_Verfiy_Gas_Utility_Textarea(self):
+    def test_AST_140_To_Verify_Gas_Utility_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                                                    self.config.get(self.subsection, 'SECTION_NATURALGAS_UTILITY')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
@@ -441,9 +444,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                         self.config.get(self.subsection, 'SECTION_NATURALGAS_UTILITY')).get_attribute("value"), "100")
 
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_216_To_Verfiy_Gas_Service_Textarea(self):
+    def test_AST_141_To_Verify_Gas_Service_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                                                    self.config.get(self.subsection, 'SECTION_NATURALGAS_REQUIRES')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
@@ -455,9 +458,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                             self.config.get(self.subsection, 'SECTION_NATURALGAS_REQUIRES')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_220_To_Verify_Gas_Loss_Utility_RadioButton(self):
+    def test_AST_143_To_Verify_Gas_Loss_Utility_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_NATURALGAS'),
                 self.config.get(self.subsection, 'SECTION_NATURALGAS_LOSSOFUTILITY'))
@@ -470,9 +473,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_NATURALGAS_LOSSOFUTILITY'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_224_To_Verify_Communication_Radio_RadioButton(self):
+    def test_AST_144_To_Verify_Communication_Radio_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_COMMUNICATION'),
                 self.config.get(self.subsection, 'SECTION_COMMUNICATION_RADIO'))
@@ -485,9 +488,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_COMMUNICATION_RADIO'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_228_To_Verify_Communication_Alert_RadioButton(self):
+    def test_AST_145_To_Verify_Communication_Alert_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_COMMUNICATION'),
                 self.config.get(self.subsection, 'SECTION_COMMUNICATION_ALERT'))
@@ -500,9 +503,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_COMMUNICATION_ALERT'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_232_To_Verify_Communication_ENS_RadioButton(self):
+    def test_AST_146_To_Verify_Communication_ENS_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_COMMUNICATION'),
                 self.config.get(self.subsection, 'SECTION_COMMUNICATION_ENS'))
@@ -515,9 +518,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_COMMUNICATION_ENS'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_236_To_Verify_Communication_PS_RadioButton(self):
+    def test_AST_147_To_Verify_Communication_PS_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_COMMUNICATION'),
                 self.config.get(self.subsection, 'SECTION_COMMUNICATION_PA'))
@@ -530,9 +533,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_COMMUNICATION_PA'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_240_To_Verify_LPGas_Availability_RadioButton(self):
+    def test_AST_148_To_Verify_LPGas_Availability_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LP'),
                 self.config.get(self.subsection, 'SECTION_LP_AVAILABILITY'))
@@ -545,9 +548,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_LP_AVAILABILITY'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_244_To_Verfiy_LP_Provider_Textarea(self):
+    def test_AST_150_To_Verify_LP_Provider_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
                                                    self.config.get(self.subsection, 'SECTION_LP_COMPANY')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
@@ -562,7 +565,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_248_To_Verfiy_LP_TankSize_Text_Box(self):
+    def test_AST_151_To_Verify_LP_Tank_Size_Text_Box(self):
         self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                                                   self.config.get(self.subsection, 'SECTION_LP_TANKSIZE')).clear()
         self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
@@ -574,9 +577,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                                     self.config.get(self.subsection, 'SECTION_LP_TANKSIZE')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_252_To_Verify_LPGas_Location_RadioButton(self):
+    def test_AST_154_To_Verify_LPGas_Location_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LP'),
                 self.config.get(self.subsection, 'SECTION_LP_TANKLOCATION'))
@@ -589,9 +592,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.config.get(self.subsection, 'SECTION_LP_TANKLOCATION'))
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_256_To_Verfiy_LP_Service_Textarea(self):
+    def test_AST_156_To_Verify_LP_Service_Text_Area(self):
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
                                                    self.config.get(self.subsection, 'SECTION_LP_SERVICES')).clear()
         self.ast.get_schooldata_textarea(self.config.get(self.mainsection, 'SECTION_LP'),
@@ -605,7 +608,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_260_To_Verfiy_LP_Duration_Text_Box(self):
+    def test_AST_158_To_Verify_LP_Duration_Text_Box(self):
         self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                                                   self.config.get(self.subsection, 'SECTION_LP_POWERDURATION')).clear()
         self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
@@ -617,9 +620,9 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         self.assertEqual(self.ast.get_schooldata_textbox(self.config.get(self.mainsection, 'SECTION_LP'),
                             self.config.get(self.subsection, 'SECTION_LP_POWERDURATION')).get_attribute("value"), "100")
 
-    @attr(priority = 'high')
+    @attr(priority='high')
     #@SkipTest
-    def test_AST_264_To_Verify_LPGas_Loss_Utility_RadioButton(self):
+    def test_AST_160_To_Verify_LPGas_Loss_Utility_RadioButton(self):
         for option in range(2):
             toxicoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LP'),
                 self.config.get(self.subsection, 'SECTION_LP_LOSSOFUTILITY'))
@@ -634,7 +637,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Fileupload(self):
+    def test_AST_161_To_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test fileupload in SECTION_PERIMETER_TYPE_OF_WALL
         :return:
@@ -662,7 +665,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Edit_Caption(self):
+    def test_AST_162_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test edit caption
         :return:
@@ -684,7 +687,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verfiy_Add_Comment(self):
+    def test_AST_163_To_Verify_Add_Comment_For_All_Sections(self):
         """
         Description : To test add comment in
         :return:

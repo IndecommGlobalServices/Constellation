@@ -46,85 +46,116 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_242_To_Verify_Radio_Buttons_Of_School_Safety_Plan(self):
+    def test_AST_235_To_Verify_Radio_Buttons_Of_School_Safety_Plan(self):
         """
         Description : To test the school type option radio buttons
-        :return:
+        Author : Bijesh
+        :return: None
         """
         config_main_var = self.config.get(self.mainsection, 'SECTION_SCHOOL_SAFETY')
         config_sub_var = self.config.get(self.subsection, 'SECTION_SCHOOL_SAFETY_COMPREHENSIVE_PLAN')
         for option in range(4):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_247_To_Verify_Radio_Buttons_Of_School_Safety_Plan_Review(self):
+    def test_AST_237_To_Test_Check_Box_Of_School_Safety_Plan_Shared(self):
+        """
+        Description : To test the school safety plan share option check box
+        Author : Bijesh
+        :return:
+        """
+        config_main_var = self.config.get(self.mainsection, 'SECTION_SCHOOL_SAFETY')
+        config_sub_var = self.config.get(self.subsection, 'SECTION_SCHOOL_SAFETY_PLAN_SHARED')
+        for option in range(6):
+            schoolsafetyplanshare = self.ast.get_schooldata_checkbox(config_main_var, config_sub_var)
+            if not schoolsafetyplanshare[option].get_attribute("class") == "checkbox ng-binding checked":
+                schoolsafetyplanshare[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
+                planshare = self.ast.get_schooldata_checkbox(config_main_var, config_sub_var)
+                self.assertEqual(planshare[option].get_attribute("class"), "checkbox ng-binding checked")
+                planshare[option].click()
+            else:
+                schoolsafetyplanshare[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
+                planshare = self.ast.get_schooldata_checkbox(config_main_var, config_sub_var)
+                self.assertEqual(planshare[option].get_attribute("class"), "checkbox ng-binding")
+                planshare[option].click()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_240_To_Verify_Radio_Buttons_Of_School_Safety_Plan_Review(self):
         """
         Description : To test the radio buttons of school Safety Plan Review option
-        :return:
+        Author : Bijesh
         """
         config_main_var = self.config.get(self.mainsection, 'SECTION_SCHOOL_SAFETY')
         config_sub_var = self.config.get(self.subsection, 'SECTION_SCHOOL_SAFETY_PLAN_REVIEW')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_248_To_Verify_Radio_Buttons_Of_Fire_Safety_Inspector(self):
+    def test_AST_241_To_Verify_Radio_Buttons_Of_Fire_Safety_Inspector(self):
         """
         Description : To test the radio buttons of Fire Safety Certified Inspector option
+        Author : Bijesh
         :return:
         """
         config_main_var = self.config.get(self.mainsection, 'SECTION_FIRE_SAFETY')
         config_sub_var = self.config.get(self.subsection, 'SECTION_FIRE_SAFETY_CERTIFIED_INSPECTOR')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            firesafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not firesafetyoptions[option].get_attribute("class") == self.checked_var:
+                firesafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                firesafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(firesafetychecked[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                firesafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                firesafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(firesafetychecked[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_249_To_Verify_Radio_Buttons_Of_Fire_Safety_Inspection(self):
+    def test_AST_242_To_Verify_Radio_Buttons_Of_Fire_Safety_Inspection(self):
         """
         Description : To test the radio buttons of Fire Safety Certified Inspection option
         :return:
@@ -132,51 +163,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_FIRE_SAFETY')
         config_sub_var = self.config.get(self.subsection, 'SECTION_FIRE_SAFETY_INSPECTION')
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            firesafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not firesafetyoptions[option].get_attribute("class") == self.checked_var:
+                firesafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                firesafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(firesafetychecked[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                firesafetyoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                firesafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(firesafetychecked[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_250_To_Verify_Radio_Buttons_Of_Fire_Safety_Inspection(self):
-        """
-        Description : To test the radio buttons of Fire Safety Certified Inspection option
-        :return:
-        """
-        config_main_var = self.config.get(self.mainsection, 'SECTION_FIRE_SAFETY')
-        config_sub_var = self.config.get(self.subsection, 'SECTION_FIRE_SAFETY_INSPECTION')
-        for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
-            else:
-                schoolsafetyoptions[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
-
-    @attr(priority="high")
-    #@SkipTest
-    def test_AST_254_To_Verify_Radio_Buttons_Of_Physical_Access_Review(self):
+    def test_AST_243_To_Verify_Radio_Buttons_Of_Physical_Key_Access_Review(self):
         """
         Description : To test the radio buttons of Physical Access Review option
         :return:
@@ -184,25 +189,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_PHYSICAL_ACCESS')
         config_sub_var = self.config.get(self.subsection, 'SECTION_PHYSICAL_ACCESS_REVIEW')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_256_To_Verify_Radio_Buttons_Of_Physical_Access_Key_Return(self):
+    def test_AST_245_To_Verify_Radio_Buttons_Of_Physical_Access_Key_Return(self):
         """
         Description : To test the radio buttons of Physical Access Keys Return option
         :return:
@@ -210,25 +215,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_PHYSICAL_ACCESS')
         config_sub_var = self.config.get(self.subsection, 'SECTION_PHYSICAL_ACCESS_KEYS_RETURN')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_258_To_Verify_Radio_Buttons_Of_Physical_Access_Annual_Inventory(self):
+    def test_AST_247_To_Verify_Radio_Buttons_Of_Physical_Access_Annual_Inventory(self):
         """
         Description : To test the radio buttons of Physical Access Annual Inventory option
         :return:
@@ -236,25 +241,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_PHYSICAL_ACCESS')
         config_sub_var = self.config.get(self.subsection, 'SECTION_PHYSICAL_ACCESS_ANNUAL_INVENTORY')
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_259_To_Verify_Radio_Buttons_Of_Metal_Detector_Screen_Weapons(self):
+    def test_AST_248_To_Verify_Radio_Buttons_Of_Metal_Detector_Screen_Weapons(self):
         """
         Description : To test the radio buttons of Metal Detector Screen Weapons option
         Revision:
@@ -264,25 +269,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_METAL_DETECTOR')
         config_sub_var = self.config.get(self.subsection, 'SECTION_METAL_DETECTOR_SCREEN_WEAPONS')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_260_To_Verify_Radio_Buttons_Of_Metal_Detector_Airport_Style(self):
+    def test_AST_249_To_Verify_Radio_Buttons_Of_Metal_Detector_Airport_Style(self):
         """
         Description : To test the radio buttons of Metal Detector Airport Style option
         Revision:
@@ -292,25 +297,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_METAL_DETECTOR')
         config_sub_var = self.config.get(self.subsection, 'SECTION_METAL_DETECTOR_AIRPORT_STYLE')
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_262_To_Verify_Radio_Buttons_Of_Metal_Detector_Extra_Screen(self):
+    def test_AST_251_To_Verify_Radio_Buttons_Of_Metal_Detector_Extra_Screen(self):
         """
         Description : To test the radio buttons of Metal Detector Extra Screen option
         Revision:
@@ -320,25 +325,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_METAL_DETECTOR')
         config_sub_var = self.config.get(self.subsection, 'SECTION_METAL_DETECTOR_EXTRA_SCREEN')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_250_To_Verify_Radio_Buttons_Of_Hand_Held_Radio_Policy(self):
+    def test_AST_252_To_Verify_Radio_Buttons_Of_Hand_Held_Radio_Policy(self):
         """
         Description : To test the radio buttons of Hand Held Radio Policy option
         Revision:
@@ -348,25 +353,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_HANDHELD_RADIO')
         config_sub_var = self.config.get(self.subsection, 'SECTION_HANDHELD_RADIO_POLICY')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_252_To_Verify_Radio_Buttons_Of_Hand_Held_Radio_List(self):
+    def test_AST_254_To_Verify_Radio_Buttons_Of_Hand_Held_Radio_List(self):
         """
         Description : To test the radio buttons of Hand Held Radio List option
         Revision:
@@ -376,25 +381,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_HANDHELD_RADIO')
         config_sub_var = self.config.get(self.subsection, 'SECTION_HANDHELD_RADIO_LIST')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_267_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Potential_Attack(self):
+    def test_AST_256_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Potential_Attack(self):
         """
         Description : To test the radio buttons of Emergency Checklist Potential Attack option
         Revision:
@@ -404,25 +409,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST')
         config_sub_var = self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_POTENTIAL_ATTACK')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_269_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Procedures(self):
+    def test_AST_258_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Procedures(self):
         """
         Description : To test the radio buttons of Emergency Checklist Procedures option
         Revision:
@@ -432,25 +437,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST')
         config_sub_var = self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_PROCEDURES')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_271_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Shared(self):
+    def test_AST_260_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Shared(self):
         """
         Description : To test the radio buttons of Emergency Checklist Shared option
         Revision:
@@ -460,25 +465,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST')
         config_sub_var = self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_SHARED')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_272_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Reunification_Plan(self):
+    def test_AST_261_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Reunification_Plan(self):
         """
         Description : To test the radio buttons of Emergency Checklist Reunification Plan option
         Revision:
@@ -488,25 +493,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST')
         config_sub_var = self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_REUNIFICATION_PLAN')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_274_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Reunification_Update(self):
+    def test_AST_263_To_Verify_Radio_Buttons_Of_Emergency_Checklist_Reunification_Update(self):
         """
         Description : To test the radio buttons of Emergency Checklist Reunification Update option
         Revision:
@@ -516,25 +521,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_EMERGENCY_CHECKLIST')
         config_sub_var = self.config.get(self.subsection, 'SECTION_EMERGENCY_CHECKLIST_REUNIFICATION_UPDATE')
         for option in range(4):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_278_To_Verify_Radio_Buttons_Of_Safety_hazards_Assessment(self):
+    def test_AST_264_To_Verify_Radio_Buttons_Of_Safety_hazards_Assessment(self):
         """
         Description : To test the radio buttons of Safety hazards Assessment option
         Revision:
@@ -544,25 +549,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_SAFETY_HAZARDS')
         config_sub_var = self.config.get(self.subsection, 'SECTION_SAFETY_HAZARDS_ASSESSMENT')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_263_To_Verify_Radio_Buttons_Of_Electronics_locks_Access_Reviewed(self):
+    def test_AST_265_To_Verify_Radio_Buttons_Of_Electronics_locks_Access_Reviewed(self):
         """
         Description : To test the radio buttons of Electronics locks Access Reviewed option
         Revision:
@@ -572,25 +577,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_ELECTRONIC_LOCKS')
         config_sub_var = self.config.get(self.subsection, 'SECTION_ELECTRONIC_LOCKS_ACCESS_REVIEWED')
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_265_To_Verify_Radio_Buttons_Of_Electronics_locks_Access_Suspended(self):
+    def test_AST_267_To_Verify_Radio_Buttons_Of_Electronics_locks_Access_Suspended(self):
         """
         Description : To test the radio buttons of Electronics locks Access Suspended option
         Revision:
@@ -600,25 +605,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_ELECTRONIC_LOCKS')
         config_sub_var = self.config.get(self.subsection, 'SECTION_ELECTRONIC_LOCKS_ACCESS_SUSPENDED')
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_275_To_Verify_Radio_Buttons_Of_PA_System_Policy(self):
+    def test_AST_269_To_Verify_Radio_Buttons_Of_PA_System_Policy(self):
         """
         Description : To test the radio buttons of PA System Policy option
         Revision:
@@ -628,25 +633,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_PA_SYSTEM')
         config_sub_var = self.config.get(self.subsection, 'SECTION_PA_SYSTEM_POLICY')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_283_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Composition(self):
+    def test_AST_272_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Composition(self):
         """
         Description : To test the radio buttons of Crisis Incident Team Composition option
         Revision:
@@ -656,25 +661,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_TEAM')
         config_sub_var = self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_TEAM_COMPOSITION')
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_284_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Trained_IS700(self):
+    def test_AST_273_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Trained_IS700(self):
         """
         Description : To test the radio buttons of Crisis Incident Team Trained IS700 option
         Revision:
@@ -684,25 +689,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_TEAM')
         config_sub_var = self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_TEAM_TRAINED_IS700')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_286_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Trained_ICS100(self):
+    def test_AST_275_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Trained_ICS100(self):
         """
         Description : To test the radio buttons of Crisis Incident Team Trained IS100 option
         Revision:
@@ -712,25 +717,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_TEAM')
         config_sub_var = self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_TEAM_TRAINED_ICS100')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_288_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Trained_ICS200(self):
+    def test_AST_277_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Trained_ICS200(self):
         """
         Description : To test the radio buttons of Crisis Incident Team Trained IS200 option
         Revision:
@@ -740,26 +745,54 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_CRISIS_INCIDENT_TEAM')
         config_sub_var = self.config.get(self.subsection, 'SECTION_CRISIS_INCIDENT_TEAM_TRAINED_ICS_200')
         for option in range(2):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
-
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_279_To_Verify_Radio_Buttons_Of_Emergency_Notification_System(self):
+    def test_AST_279_To_Test_Check_Box_Of_General_Policies(self):
+        """
+        Description : To test the school safety plan share option check box
+        Author : Bijesh
+        :return:
+        """
+        config_main_var = self.config.get(self.mainsection, 'SECTION_GENERAL_POLICIES')
+        config_sub_var = self.config.get(self.subsection, 'SECTION_GENERAL_POLICIES_TO_ADDRESS')
+        for option in range(6):
+            schoolsafetyplanshare = self.ast.get_schooldata_checkbox(config_main_var, config_sub_var)
+            if not schoolsafetyplanshare[option].get_attribute("class") == "checkbox ng-binding checked":
+                schoolsafetyplanshare[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
+                planshare = self.ast.get_schooldata_checkbox(config_main_var, config_sub_var)
+                self.assertEqual(planshare[option].get_attribute("class"), "checkbox ng-binding checked")
+                planshare[option].click()
+            else:
+                schoolsafetyplanshare[option].click()
+                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
+                self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
+                planshare = self.ast.get_schooldata_checkbox(config_main_var, config_sub_var)
+                self.assertEqual(planshare[option].get_attribute("class"), "checkbox ng-binding")
+                planshare[option].click()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AST_281_To_Verify_Radio_Buttons_Of_Emergency_Notification_System(self):
         """
         Description : To test the radio buttons of Emergency Notification System option
         Revision:
@@ -769,25 +802,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_EMERGENCY_NOTIFICATION_SYSTEM')
         config_sub_var = self.config.get(self.subsection, 'SECTION_EMERGENCY_NOTIFICATION_SYSTEM_POLICY')
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_290_To_Verify_Radio_Buttons_Of_Alert_Notification_System(self):
+    def test_AST_283_To_Verify_Radio_Buttons_Of_Alert_Notification_System(self):
         """
         Description : To test the radio buttons of Alert Notification System option
         Revision:
@@ -797,25 +830,25 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         config_main_var = self.config.get(self.mainsection, 'SECTION_ALERT_NOTIFICATION_SYSTEM')
         config_sub_var = self.config.get(self.subsection, 'SECTION_ALERT_NOTIFICATION_SYSTEM_POLICY')
         for option in range(3):
-            schoolsafetyoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-            if not schoolsafetyoptions[option].get_attribute("class") == self.checked_var:
-                schoolsafetyoptions[option].click()
+            radiobuttonoptions = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+            if not radiobuttonoptions[option].get_attribute("class") == self.checked_var:
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.checked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.checked_var)
             else:
-                schoolsafetyoptions[option].click()
+                radiobuttonoptions[option].click()
                 WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
                     (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
-                schoolsafetychecked = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
-                self.assertEqual(schoolsafetychecked[option].get_attribute("class"), self.unchecked_var)
+                radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
+                self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Fileupload(self):
+    def test_AST_285_To_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test file upload in all sections.
         :return:
@@ -843,7 +876,7 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verify_Edit_Caption(self):
+    def test_AST_286_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test edit caption for all the sections.
         :return:
@@ -865,7 +898,7 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_To_Verfiy_Add_Comment(self):
+    def test_AST_287_To_Verify_Add_Comment_For_All_Sections(self):
         """
         Description : To test add comment in all the sections.
         :return:

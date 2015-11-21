@@ -95,7 +95,7 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_startdate_textbox.send_keys(str(start_date))
         self.ast.get_overview_enddate_textbox.clear()
         self.ast.get_overview_enddate_textbox.send_keys(str(end_date))
-        self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
+        #self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 80).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, self.ast._ast_saved_text_locator), "Saved"), "The message appeared is" +
@@ -112,7 +112,7 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_startdate_textbox.send_keys(str(start_date))
         self.ast.get_overview_enddate_textbox.clear()
         self.ast.get_overview_enddate_textbox.send_keys(str(end_date))
-        self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
+        #self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
         sleep(5)
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 50).until(expected_conditions.text_to_be_present_in_element(

@@ -1404,16 +1404,16 @@ class AssetPage(BasePageClass):
                           + self._asset_chart_total_Graph_In_Container_xpath_locator + err.message)
 
     def get_asset_photos_documents_image_caption_text(self, caption_val):
+        caption_xpath = " //div[contains(@ng-repeat,'file in files')]//div[contains(text(),'"+caption_val+"')]"
         try:
-            caption_xpath = " //div[contains(@ng-repeat,'file in files')]//div[contains(text(),'"+caption_val+"')]"
             return self.driver.find_element_by_xpath(caption_xpath)
         except Exception, err:
             raise type(err)("Image caption for uploaded file in new window is not available - search XPATH - " \
                           + caption_xpath + err.message)
 
     def get_asset_photos_documents_header_caption_text(self, caption_val):
+        caption_xpath = "//a[contains(text(),'"+caption_val+"')]"
         try:
-            caption_xpath = "//a[contains(text(),'"+caption_val+"')]"
             return self.driver.find_element_by_xpath(caption_xpath)
         except Exception, err:
             raise type(err)("In Photos / Documents widget Image Caption/File Name is not available - search XPATH - " \
@@ -2247,8 +2247,14 @@ class AssetPage(BasePageClass):
 
     def get_total_row_count(self):
         countText = self.driver.find_element_by_id("assetstable_info").text
-        splitedText = countText.split(" ")
-        totalCount = splitedText[10]
+
+        splitedText = countText.split("of")
+        while '' in splitedText:
+            splitedText.remove('')
+        print splitedText, "xxxxxxxxxx"
+        totalCount = splitedText[1].replace(" entries", "")
+        print totalCount, "xrrrrr"
+
         return int(totalCount)
 
     def get_total_row_count_filter(self):
