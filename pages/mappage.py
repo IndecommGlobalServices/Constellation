@@ -9,6 +9,8 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from basepage import BasePage
 from time import sleep
+import inspect
+from selenium.webdriver.support import expected_conditions as EC
 
 class MapPage(BasePageClass):
 
@@ -379,39 +381,76 @@ class MapPage(BasePageClass):
 
     def __init__(self, driver):
         super(MapPage, self).__init__(driver)
+
+    def open_map_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
+        WebDriverWait(self.driver, 50).until(EC.text_to_be_present_in_element((By.XPATH,
+                                                                        "//a[contains(text(),'Leaflet')]"), "Leaflet"))
 
     # This function is used - if check box is selected, it should be unchecked
     def get_checking_and_unchecking_basic_data_layer(self):
         sleep(2)
-        if self.get_map_basic_data_layer_asset.is_selected():
-            self.get_map_basic_data_layer_asset.click()
+        if self.get_map_basic_data_layer_asset.is_displayed():
+            if self.get_map_basic_data_layer_asset.is_selected():
+                self.get_map_basic_data_layer_asset.click()
         sleep(2)
-        if self.get_map_basic_data_layer_assessment.is_selected():
-            self.get_map_basic_data_layer_assessment.click()
+        if self.get_map_basic_data_layer_assessment.is_displayed():
+            if self.get_map_basic_data_layer_assessment.is_selected():
+                self.get_map_basic_data_layer_assessment.click()
 
-        if self.get_map_basic_data_layer_incident.is_selected():
-            self.get_map_basic_data_layer_incident.click()
+        if self.get_map_basic_data_layer_incident.is_displayed():
+            if self.get_map_basic_data_layer_incident.is_selected():
+                self.get_map_basic_data_layer_incident.click()
 
-        if self.get_map_basic_data_layer_threat_streams.is_selected():
-            self.get_map_basic_data_layer_threat_streams.click()
+        if self.get_map_basic_data_layer_threat_streams.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_threat_streams.is_selected():
+                self.get_map_basic_data_layer_threat_streams.click()
 
-        if self.get_map_basic_data_layer_indicator_teams.is_selected():
-            self.get_map_basic_data_layer_indicator_teams.click()
+        if self.get_map_basic_data_layer_indicator_teams.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_indicator_teams.is_selected():
+                self.get_map_basic_data_layer_indicator_teams.click()
 
-        if self.get_map_basic_data_layer_annotations.is_selected():
-            self.get_map_basic_data_layer_annotations.click()
-        '''
-        if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
-            self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
+        if self.get_map_basic_data_layer_annotations.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_annotations.is_selected():
+                self.get_map_basic_data_layer_annotations.click()
 
-        if self.get_map_basic_data_layer_threat_streams_stream_1.is_selected():
-            self.get_map_basic_data_layer_threat_streams_stream_1.click()
+        if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
+                self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
 
-        if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
-            self.get_map_basic_data_layer_threat_streams_stream_2.click()
-        '''
+        if self.get_map_basic_data_layer_threat_streams_stream_1.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_threat_streams_stream_1.is_selected():
+                self.get_map_basic_data_layer_threat_streams_stream_1.click()
+
+        if self.get_map_basic_data_layer_threat_streams_stream_2.is_displayed():
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
+                self.get_map_basic_data_layer_threat_streams_stream_2.click()
+
     def return_to_icon_list_page(self):
         try:
             self.get_bread_crumb_apps.click()
@@ -424,3 +463,39 @@ class MapPage(BasePageClass):
         splitedText = countText.split(" ")
         totalCount = splitedText[1]
         return int(totalCount)
+
+    '''
+    def return_to_map_main_page(self):
+        self.get_map_app_name.click()
+        BasePage(self.driver).accessURL()
+        IconListPage(self.driver).click_map_icon()
+    '''
+    def return_to_apps_main_page(self):
+        """
+        Description : This function will helps to go back to assets page.
+        Revision:
+        :return: None
+        """
+        try:
+            WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, self._bread_crumb_click_apps_link_xpath_locator))).click()
+
+            WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
+
+        except:
+            inspectstack = inspect.stack()[1][3]
+            self.recoverapp(inspectstack)
+
+    def recoverapp(self, inspectstack):
+        """
+        Description : This function helps to go back to assets page. Inspect stack prints the test name from which
+                                 this function is called.
+        Revision:
+        :return: None
+        """
+        print ("Application recovering called from " + inspectstack)
+        basepage = BasePage(self.driver)
+        basepage.accessURL()
+        iconlistpage = IconListPage(self.driver)
+        iconlistpage.click_map_icon()

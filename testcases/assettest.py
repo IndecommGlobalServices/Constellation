@@ -2,7 +2,7 @@ import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 from selenium.webdriver.common.keys import Keys
 from pages.assetpage import AssetPage
 from testcases.basetestcase import BaseTestCase
@@ -15,12 +15,19 @@ import ConfigParser
 
 class AssetpageTest(BaseTestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super(AssetpageTest, cls).setUpClass()
+        cls.assetpage = AssetPage(cls.driver)
+        cls.assetpage.open_asset_app()
+        cls.section = 'Messages'
+        cls.config = ConfigParser.ConfigParser()
+        cls.config.readfp(open('baseconfig.cfg'))
+
     def setUp(self):
         self.errors_and_failures = self.tally()
-        self.assetpage = AssetPage(self.driver)
-        self.section = 'Messages'
-        self.config = ConfigParser.ConfigParser()
-        self.config.readfp(open('baseconfig.cfg'))
+        WebDriverWait(self.driver, 10). until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
@@ -80,7 +87,6 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_04(self):
         """
         Test : test_AS_04
@@ -115,6 +121,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
     def test_AS_07(self):
         """
         Test : test_AS_07
@@ -900,7 +907,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_38(self):
         """
         Test : test_AS_38
@@ -924,13 +931,14 @@ class AssetpageTest(BaseTestCase):
         #self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-200);")
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(),
                         self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
+        sleep(1)
         self.assetpage.get_asset_location_marker_available_image.click()
         placeText = self.assetpage.get_asset_location_place_name_text.text
         self.assertEqual(self.assetpage.asset_place_name, placeText,
                          self.config.get(self.section, 'MESSAGE_MARKER_NAME_NOT_DISPLAYED_ON_MAP'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_40(self):
         """
         Test : test_AS_40
@@ -947,7 +955,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.upload_a_file_with_caption(caption_val, image_file_name)
         number_of_image_after_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_after_file_upload = len(number_of_image_after_upload)
-        caption_path = "//a[contains(text(),'"+caption_val+"')]//preceding-sibling::img[@class='file_list_img']"
+        caption_path = "//a[contains(text(),'"+caption_val+"')]"
         image_icon = self.driver.find_element_by_xpath(caption_path)
         Hover = ActionChains(self.driver).move_to_element(image_icon)
         Hover.perform()
@@ -956,7 +964,10 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.get_asset_photos_documents_delete_icon_image.click()
             self.assetpage.get_asset_photos_documents_delete_window_delete_button.click()
             sleep(3)  # required. Widget should be refreshed.
-        except NoSuchElementException,ElementNotVisibleException:
+        except NoSuchElementException:
+            self.assertFalse(True,
+                             self.config.get(self.section, 'MESSAGE_DELETE_ICON_NOT_DISPLAYED_FILE_COULD_NOT_BE_DELETED'))
+        except ElementNotVisibleException:
             self.assertFalse(True,
                              self.config.get(self.section, 'MESSAGE_DELETE_ICON_NOT_DISPLAYED_FILE_COULD_NOT_BE_DELETED'))
         number_of_image_after_delete = self.assetpage.get_asset_photos_documents_uploaded_file_count
@@ -971,7 +982,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_FILES_BEFORE_AFTER_SAME_FILE_COULD_NOT_BE_DELETED'))
 
     @attr(priority="high")
-    #@SkipTest
+    ##@SkipTest
     def test_AS_41(self):
         """
         Test : test_AS_41
@@ -1373,13 +1384,13 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-        self.assetpage.edit_asset("School")
-        sleep(5)
-        self.assertEqual(self.assetpage.asset_school_name[self.assetpage.editSchool], self.assetpage.
-                         get_overview_name_text.text)
-        self.assertEqual(self.assetpage.asset_school_district[1], self.assetpage.get_overview_district_text.text)
-        self.assertEqual(self.assetpage.asset_school_grade[1], self.assetpage.get_overview_grade_text.text)
 
+        #self.assetpage.app_sanity_check()
+        self.assetpage.edit_asset("School")
+        self.assertEqual(self.assetpage.asset_school_name[self.assetpage.editSchool], self.assetpage.
+                         get_asset_overview_edit_name_text_box)
+        self.assertEqual(self.assetpage.asset_school_district[1], self.assetpage.get_overview_district_text)
+        self.assertEqual(self.assetpage.asset_school_grade[1], self.assetpage.get_overview_grade_text)
 
     @attr(priority="high")
     #@SkipTest
@@ -1446,7 +1457,7 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
                                               (By.XPATH, self.assetpage._asset_details_edit_widget_locator), "Details"))
         self.assetpage.get_asset_detail_edit_link.click()
-        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
                                          (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
         self.assetpage.get_asset_detail_edit_email_text_box.clear()
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
@@ -1561,6 +1572,7 @@ class AssetpageTest(BaseTestCase):
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
+        sleep(1)
         self.assetpage.school_related_charts_School_Is_Selected()
         countafterfilter = self.assetpage.get_total_row_count_filter()
 

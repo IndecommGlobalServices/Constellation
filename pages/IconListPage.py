@@ -2,12 +2,17 @@ __author__ = 'Deepa.Sivadas'
 from lib.base import BasePageClass
 from lib.base import InvalidPageException
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
 
 class IconListPage(BasePageClass, object):
     _app_asset_icon_locator  = "app_assets"
     #_app_assessments_icon_locator = "app_assessments"
     _app_assessments_icon_locator = ".//*[@id='app_assessments']/div/img"
-    _app_map_icon_locator = "//img[@src = '../images/app_icon_map.png']"
+    # _app_map_icon_locator = "//img[@src = '../images/app_icon_map.png']"
+    _app_map_icon_locator = "//div[@id='app_map']"
     _app_dashboard_icon_locator = "app_dashboard"
     _app_threatstreams_icon_locator = "app_threatstreams"
     _app_incidents_icon_locator = "app_incidents"
@@ -55,6 +60,8 @@ class IconListPage(BasePageClass, object):
 
     def click_map_icon(self):
         try:
+            WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._app_map_icon_locator)),"Map Icon")
             self.get_app_map_icon.click()
         except:
             pass

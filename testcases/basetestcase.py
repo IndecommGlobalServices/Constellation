@@ -2,37 +2,43 @@ import unittest
 import os
 from datetime import datetime
 from selenium import webdriver
+from selenose.cases import SeleniumTestCase
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
-#from pyvirtualdisplay import Display
+import nose
 
-class BaseTestCase(unittest.TestCase):
+from pyvirtualdisplay import Display
+
+class BaseTestCase(SeleniumTestCase):
     username = ""
+    # driver = ""
 
     @classmethod
-    def setUpClass(self):
+    def setUpClass(cls):
         #display = Display(visible=0, size=(1024,768))
         #display.start()
         # create a new Firefox session
-        self.driver = webdriver.Firefox()
-        self.driver.implicitly_wait(30)
-        self.driver.maximize_window()
+
+        driver = webdriver.Firefox()
+        cls.driver = driver
+        driver.implicitly_wait(30)
+        driver.maximize_window()
 
         # navigate to the application home page
-        basepage = BasePage(self.driver)
+        basepage = BasePage(cls.driver)
         basepage.accessURL()
 
-        homepage = HomePage(self.driver)
+        homepage = HomePage(cls.driver)
         homepage.loginlink.click()
 
-        loginpage = LoginPage(self.driver)
+        loginpage = LoginPage(cls.driver)
         loginpage.loginDashboard()
-        self.username = loginpage.usernameText
+        cls.username = loginpage.usernameText
 
     @classmethod
-    def tearDownClass(self):
-        self.driver.quit()# close the browser
+    def tearDownClass(cls):
+        cls.driver.quit()# close the browser
 
 
     def take_screenshot(self):

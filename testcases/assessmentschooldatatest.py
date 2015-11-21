@@ -18,16 +18,21 @@ os.chdir(cwd)
 
 class AssessmentSchoolDataPageTest(BaseTestCase):
 
+    @classmethod
+    def setUpClass(cls):
+        super(AssessmentSchoolDataPageTest, cls).setUpClass()
+        cls.AssessmentSections = 'AssessmentSections'
+        cls.messages = 'Messages'
+        cls.mainsection = 'SchoolDataMainSection'
+        cls.subsection = 'SchoolDataSubSection'
+        cls.config = ConfigParser.ConfigParser()
+        cls.config.readfp(open('baseconfig.cfg'))
+        cls.ast = AssessmentPage(cls.driver)
+        cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_SCHOOLDATA'))
+
     def setUp(self):
         self.errors_and_failures = self.tally()
-        self.ast = AssessmentPage(self.driver)
-        self.mainsection = 'SchoolDataMainSection'
-        self.subsection = 'SchoolDataSubSection'
-        self.AssessmentSections = 'AssessmentSections'
-        self.messages = 'Messages'
-        self.config = ConfigParser.ConfigParser()
-        self.config.readfp(open('baseconfig.cfg'))
-        self.ast.open_schooldata_page()
+        self.ast.open_main_section(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
