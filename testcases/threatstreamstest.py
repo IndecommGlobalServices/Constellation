@@ -25,11 +25,10 @@ class ThreatStreamTest(BaseTestCase):
             self.take_screenshot()
         #self.tstream.return_to_apps_main_page()
 
-
     @attr(priority="high")
     #@SkipTest
     @attr(status='smoke')
-    def test_TS_01(self):
+    def test_TS_01_To_Verify_Starred_Filter_Is_Selected(self):
         """
         Test : test_TS_01
         Description : To verify that filter type is selected as Starred.
@@ -45,7 +44,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_02(self):
+    def test_TS_02_To_Verify_Stream_Filter_Is_Selected(self):
         """
         Test : test_TS_02
         Description : To verify that filter type is selected as Stream.
@@ -60,7 +59,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_03(self):
+    def test_TS_03_To_Verify_Trending_Last_Day_Filter_Is_Selected(self):
         """
         Test : test_TS_03
         Description : To verify that filter type is selected as Trending Last Day.
@@ -75,7 +74,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_04(self):
+    def test_TS_04_To_Verify_Trending_Last_Hour_Filter_Is_Selected(self):
         """
         Test : test_TS_04
         Description : To verify that filter type is selected as Trending Last Hour.
@@ -90,7 +89,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_05(self):
+    def test_TS_05_To_Verify_Selected_Filter_Type_Is_Relevance(self):
         """
         Test : test_TS_05
         Description : To verify that filter type is selected as Relevance.
@@ -105,7 +104,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_06(self):
+    def test_TS_06_To_Verify_Selected_Filter_Type_Is_Time(self):
         """
         Test : test_TS_06
         Description : To verify that filter type is selected as Time.
@@ -120,7 +119,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_09(self):
+    def test_TS_09_To_Test_Mark_Important_Button(self):
         """
         Test : test_TS_09
         Description : To verify mark important button is working properly or not .
@@ -160,7 +159,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_10(self):
+    def test_TS_10_To_Test_Hide_Button(self):
         """
         Test : test_TS_10
         Description : To verify Hide button is working properly or not .
@@ -190,7 +189,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_11(self):
+    def test_TS_11_To_Test_Share_Button_With_Valid_Email_ID(self):
         """
         Test : test_TS_11
         Description : To verify share button is working properly or not.
@@ -225,7 +224,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_12(self):
+    def test_TS_12_To_Test_Share_Button_With_Invalid_Email_ID(self):
         """
         Test : test_TS_12
         Description : To verify share button is working properly or not. Wrong Email value.
@@ -263,7 +262,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_13_1(self):
+    def test_TS_13_1_To_Verify_New_RSS_Filter_Type_Appears_On_Window_Title(self):
         """
         Test : test_TS_13_1
         Description : To verify New Filter is created. Newly created filter name appears on Title window.
@@ -297,7 +296,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_13_2(self):
+    def test_TS_13_2_To_Verify_New_Twitter_Filter_Type_Appears_On_Window_Title(self):
         """
         Test : test_TS_13_2
         Description : To verify New Filter is created. Newly created filter name appears on Title window.
@@ -331,7 +330,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_14(self):
+    def test_TS_14_To_Verify_New_Twitter_Filter_Type_Appears_In_Filter_Dropdown_Menu(self):
         """
         Test : test_TS_14
         Description : To verify New Filter is created. Newly created filter name appears as one of menu item.
@@ -369,7 +368,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_15(self):
+    def test_TS_15_To_Verify_Phrases_Appears_In_New_Filter_Feeds(self):
         """
         Test : test_TS_15
         Description : To verify more than one phrases has been added in newly created filter.
@@ -408,7 +407,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_16(self):
+    def test_TS_16_To_Test_New_Filter_Menu_Save_Buton(self):
         """
         Test : test_TS_16
         Description : To verify Name text box of Create New filter window. No Value has been entered.
@@ -432,10 +431,10 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_17(self):
+    def test_TS_17_To_Verify_Phrase_Deleted_Properly(self):
         """
         Test : test_TS_17
-        Description : To verify that added pharse has been deleted properly.
+        Description : To verify that added phrase has been deleted properly.
         Revision:
         Author : Bijesh
         :return: None
@@ -460,10 +459,10 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_18(self):
+    def test_TS_18_To_Verify_Multiple_Phrases_Deleted_Properly(self):
         """
         Test : test_TS_18
-        Description : To verify that added pharses has been deleted properly. Multiple phrases.
+        Description : To verify that added phrases has been deleted properly. Multiple phrases.
         Revision:
         Author : Bijesh
         :return: None
@@ -494,7 +493,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_19(self):
+    def test_TS_19_To_Test_New_Filter_Window_Reset_Button(self):
         """
         Test : test_TS_19
         Description : To verify Type Reset button functionality.
@@ -522,7 +521,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_21(self):
+    def test_TS_21_To_Test_New_Filter_Window_Cancel_Button(self):
         """
         Test : test_TS_21
         Description : To verify that Cancel button is working properly in New filter create window.
@@ -556,7 +555,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_23(self):
+    def test_TS_23_To_Verify_Edit_Window_Of_New_Filter(self):
         """
         Test : test_TS_23
         Description : To verify that new filter edit window is working.
@@ -593,7 +592,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_24_1(self):
+    def test_TS_24_1_To_Verify_New_Filter_Deleted_Properly(self):
         """
         Test : test_TS_24_1
         Description : To verify that new filter has been deleted properly.
@@ -630,7 +629,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_24_2(self):
+    def test_TS_24_2_To_Test_Cancel_Button_In_Delete_Fileter_Window(self):
         """
         Test : test_TS_24_2
         Description : To verify that in new filter edit window Delete Cancel button working properly.
@@ -668,7 +667,7 @@ class ThreatStreamTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_TS_25(self):
+    def test_TS_25_To_Test_Cancel_Button_Of_Filter_Edit_Window(self):
         """
         Test : test_TS_25
         Description : To verify that in new filter edit window Cancel button working properly.

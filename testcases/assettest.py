@@ -36,6 +36,16 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
+    def test_asset_smoke(self):
+        self.assertTrue(self.assetpage.get_asset_create_asset, "Create assest button not available")
+        self.assertTrue(self.assetpage.get_filter_drop_down.is_displayed(), "Type filter dropdown not available")
+        self.assertTrue(self.assetpage.get_asset_select_action_drop_down.is_displayed(), "Select action dropdown not available")
+        self.assertTrue(self.assetpage.get_asset_reset_button.is_displayed(), "Reset button not available")
+        self.assetpage.get_asset_reset_button.click()
+
+    @attr(priority="high")
+    #@SkipTest
     def test_AS_01(self):
         """
         Test : test_AS_01
@@ -121,7 +131,6 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_AS_07(self):
         """
         Test : test_AS_07
@@ -1650,7 +1659,6 @@ class AssetpageTest(BaseTestCase):
         sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_Type_Is_Selected()
         countafterfilter = self.assetpage.get_total_row_count_filter()
-
         if countafterfilter == countbeforefilter:
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
