@@ -20,10 +20,10 @@ class BaseTestCase(SeleniumTestCase):
         #display.start()
         # create a new Firefox session
 
-        driver = webdriver.Firefox()
-        cls.driver = driver
-        driver.implicitly_wait(30)
-        driver.maximize_window()
+        cls.driver = webdriver.Firefox()
+        # cls.driver = driver
+        cls.driver.implicitly_wait(30)
+        cls.driver.maximize_window()
 
         # navigate to the application home page
         basepage = BasePage(cls.driver)

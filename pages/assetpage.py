@@ -262,6 +262,10 @@ class AssetPage(BasePageClass):
         return self.driver.find_elements_by_xpath(self._asset_list_background_locator)
 
     @property
+    def get_filter_drop_down(self):
+        return self.driver.find_element_by_xpath(self._asset_filter_drop_down_locator)
+
+    @property
     def get_asset_select_action_drop_down(self):
         try:
             return self.driver.find_element_by_xpath(self._asset_select_action_delete_select_xpath_locator)
