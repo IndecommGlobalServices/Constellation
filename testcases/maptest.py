@@ -39,7 +39,6 @@ class MapPageTest(BaseTestCase):
     @attr(priority="high")
     def test_map_01_05_to_verify_all_maps(self):
         try:
-            sleep(5)
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             sleep(1)
@@ -60,7 +59,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_06_to_verify_Default_Map_View_Based_On_Assets(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
@@ -103,7 +102,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -137,7 +136,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -171,7 +170,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -207,7 +206,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_10_to_verify_Default_Map_View_Based_On_Indicator_Teams(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -241,7 +240,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_11_to_verify_Default_Map_View_Based_On_Annotations(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -273,7 +272,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_12_to_verify_Default_Map_View_Based_On_Threat_Streams_Trending_Last_Day(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                            .perform()
@@ -308,7 +307,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_1(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -341,7 +340,7 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_14_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2(self):
         try:
-            sleep(20)
+            self.driver.refresh()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .move_to_element(self.mappage.get_map_base_map_accordian).click()\

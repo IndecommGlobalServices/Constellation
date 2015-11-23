@@ -409,8 +409,8 @@ class MapPage(BasePageClass):
     def open_map_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
-        #WebDriverWait(self.driver, 1).until(EC.text_to_be_present_in_element((By.XPATH,
-        #                                                                "//a[contains(text(),'Leaflet')]"), "Leaflet"))
+        WebDriverWait(self.driver, 1).until(EC.text_to_be_present_in_element((By.XPATH,
+                                                                        "//a[contains(text(),'Leaflet')]"), "Leaflet"))
 
     # This function is used - if check box is selected, it should be unchecked
     def get_checking_and_unchecking_basic_data_layer(self):
