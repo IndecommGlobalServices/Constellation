@@ -66,6 +66,30 @@ class MapPage(BasePageClass):
     _map_water_fall_list_items = "li"
     _map_water_fall_scrollable = ".//*[@id='waterfall_scrollable']"
 
+    # Error handling
+    _map_404 = ".//*[@id='error_modal' and @hide-modal='' and @aria-hidden='false']"
+    _map_404_close = ".//*[@id='error_modal']/div/div/form/div[2]/button"
+
+
+
+    @property
+    def get_map_404(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_404)))
+            return self.driver.find_element_by_xpath(self._map_404)
+        except Exception, err:
+            raise type(err)("Map 404 - searched XPATH - " + self._map_404 + err.message)
+
+    @property
+    def get_map_404_close(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_404_close)))
+            return self.driver.find_element_by_xpath(self._map_404_close)
+        except Exception, err:
+            raise type(err)("Map 404 close btn - searched XPATH - " + self._map_404_close + err.message)
+
     @property
     def get_map_app_name(self):
         try:
@@ -385,8 +409,8 @@ class MapPage(BasePageClass):
     def open_map_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
-        WebDriverWait(self.driver, 50).until(EC.text_to_be_present_in_element((By.XPATH,
-                                                                        "//a[contains(text(),'Leaflet')]"), "Leaflet"))
+        #WebDriverWait(self.driver, 1).until(EC.text_to_be_present_in_element((By.XPATH,
+        #                                                                "//a[contains(text(),'Leaflet')]"), "Leaflet"))
 
     # This function is used - if check box is selected, it should be unchecked
     def get_checking_and_unchecking_basic_data_layer(self):
@@ -464,12 +488,6 @@ class MapPage(BasePageClass):
         totalCount = splitedText[1]
         return int(totalCount)
 
-    '''
-    def return_to_map_main_page(self):
-        self.get_map_app_name.click()
-        BasePage(self.driver).accessURL()
-        IconListPage(self.driver).click_map_icon()
-    '''
     def return_to_apps_main_page(self):
         """
         Description : This function will helps to go back to assets page.
@@ -477,10 +495,10 @@ class MapPage(BasePageClass):
         :return: None
         """
         try:
-            WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+            WebDriverWait(self.driver, 100).until(EC.presence_of_element_located(
                 (By.XPATH, self._bread_crumb_click_apps_link_xpath_locator))).click()
 
-            WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver, 100).until(expected_conditions.presence_of_element_located(
                 (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
 
         except:
