@@ -60,8 +60,8 @@ class IconListPage(BasePageClass, object):
 
     def click_map_icon(self):
         try:
-            WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, self._app_map_icon_locator)),"Map Icon")
+            WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._app_map_icon_locator)))
             self.get_app_map_icon.click()
         except:
             pass
