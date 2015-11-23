@@ -103,6 +103,7 @@ class MapPageTest(BaseTestCase):
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
         try:
             self.driver.refresh()
+
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -137,6 +138,7 @@ class MapPageTest(BaseTestCase):
     def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
         try:
             self.driver.refresh()
+
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
