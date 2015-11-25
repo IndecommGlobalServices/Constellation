@@ -2265,12 +2265,10 @@ class AssetPage(BasePageClass):
 
     def get_total_row_count(self):
         countText = self.driver.find_element_by_id("assetstable_info").text
-
         splitedText = countText.split("of")
         while '' in splitedText:
             splitedText.remove('')
         totalCount = splitedText[1].replace(" entries", "")
-
         return int(totalCount)
 
     def get_total_row_count_filter(self):

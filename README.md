@@ -31,15 +31,34 @@ $ sudo pip install -U nose        #Unittest framework
 
 
 Execution:
+
 1.To run the smoke test:
 $ cd testing
 $ bash smoketest.sh
 
-1.To run the test suite:
+2.To create smoketest.sh file
+$mv smoketest.sh smoketest_old.sh
+$vi smoketest.sh
+    (enter the following lines to the smoketest.sh)
+    #!/bin/bash
+
+    cd testcases
+    python ConstellationSmokeTest.py
+
+3.To run the test suite:
 $ cd testing
 $ bash constellationLinux.sh
 
-2.To run individual asset test cases:
+4.To create smoketest.sh file
+$mv constellationLinux.sh constellationLinux_old.sh
+$vi constellationLinux.sh
+    (enter the following lines to the constellationLinux.sh)
+    #!/bin/bash
+
+    cd testcases
+    python concurrent_run.py
+
+5.To run individual asset test cases:
 $ cd testing
 $ cd testcases
 $ nosetests --tests assettest.py --verbosity=3 --with-xunit --nologcapture -s --nocapture

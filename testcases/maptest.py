@@ -60,7 +60,6 @@ class MapPageTest(BaseTestCase):
     def test_map_06_to_verify_Default_Map_View_Based_On_Assets(self):
         try:
             self.driver.refresh()
-            sleep(10)
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
@@ -103,8 +102,8 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
         try:
-            self.driver.refresh()
-            sleep(10)
+            #self.driver.refresh()
+            self.driver.find_element_by_xpath(".//*[@id='toplogo']/span").send_keys(Keys.F5)
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -139,7 +138,7 @@ class MapPageTest(BaseTestCase):
     def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
         try:
             self.driver.refresh()
-            sleep(10)
+
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -174,7 +173,6 @@ class MapPageTest(BaseTestCase):
     def test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
         try:
             self.driver.refresh()
-            sleep(10)
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -211,7 +209,6 @@ class MapPageTest(BaseTestCase):
     def test_map_10_to_verify_Default_Map_View_Based_On_Indicator_Teams(self):
         try:
             self.driver.refresh()
-            sleep(10)
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
@@ -246,7 +243,6 @@ class MapPageTest(BaseTestCase):
     def test_map_11_to_verify_Default_Map_View_Based_On_Annotations(self):
         try:
             self.driver.refresh()
-            sleep(10)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -279,7 +275,6 @@ class MapPageTest(BaseTestCase):
     def test_map_12_to_verify_Default_Map_View_Based_On_Threat_Streams_Trending_Last_Day(self):
         try:
             self.driver.refresh()
-            sleep(10)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                            .perform()
@@ -315,7 +310,6 @@ class MapPageTest(BaseTestCase):
     def test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_1(self):
         try:
             self.driver.refresh()
-            sleep(10)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -349,7 +343,6 @@ class MapPageTest(BaseTestCase):
     def test_map_14_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2(self):
         try:
             self.driver.refresh()
-            sleep(10)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .move_to_element(self.mappage.get_map_base_map_accordian).click()\

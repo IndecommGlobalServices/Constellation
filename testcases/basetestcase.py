@@ -2,26 +2,20 @@ import unittest
 import os
 from datetime import datetime
 from selenium import webdriver
-from selenose.cases import SeleniumTestCase
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
-import nose
-
 from pyvirtualdisplay import Display
 
-class BaseTestCase(SeleniumTestCase):
+class BaseTestCase(unittest.TestCase):
     username = ""
-    # driver = ""
 
     @classmethod
     def setUpClass(cls):
         #display = Display(visible=0, size=(1024,768))
         #display.start()
         # create a new Firefox session
-
         cls.driver = webdriver.Firefox()
-        # cls.driver = driver
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -37,8 +31,8 @@ class BaseTestCase(SeleniumTestCase):
         cls.username = loginpage.usernameText
 
     @classmethod
-    def tearDownClass(cls):
-        cls.driver.quit()# close the browser
+    def tearDownClass(self):
+        self.driver.quit()# close the browser
 
 
     def take_screenshot(self):

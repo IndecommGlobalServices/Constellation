@@ -10,7 +10,6 @@ import json, os
 
 
 class AssessmenttPageTest(BaseTestCase):
-
     filepath = "data" + os.sep + "json_SearchAssessments.json"
     cwd = os.getcwd()
     os.chdir('..')
@@ -36,21 +35,23 @@ class AssessmenttPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
+    @attr(status='smoke')
+    def test_assessment_smoke(self):
+        self.assertTrue(self.ast.get_main_create_assessment_button, "Create assessment button not available")
+        self.assertTrue(self.ast.get_ast_typefilter_dropdown.is_displayed(), "Type filter dropdown not available")
+        self.assertTrue(self.ast.get_ast_statusfilter_dropdown.is_displayed(), "Status filter dropdown not available")
+        self.assertTrue(self.ast.get_resetfilter_button.is_displayed(), "Reset button not available")
+        self.ast.get_resetfilter_button.click()
+
+    @attr(priority="high")
+    #@SkipTest
     def test_ast_01_To_verify_noemailid_createassessment(self):
         count = 0
         flag = 0
         assignedto = ""
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=31)
-        self.ast.create_assessment_select_haystax_template()
-        self.ast.get_create_startdate_textbox.send_keys(str(start_date))
-        self.ast.get_create_enddate_textbox.send_keys(str(end_date))
-        self.ast.get_create_assignedto_textbox.clear()
-        self.ast.get_create_assets_textbox.clear()
-        self.ast.get_create_assets_textbox.send_keys(self.ast.asset_school_name)
-        self.ast.get_create_assets_option(self.ast.asset_school_name).click()
-        self.ast.get_create_assets_add_button.click()
-        self.ast.get_create_assessment_save_button.click()
+        self.ast.create_assessment(str(start_date), str(end_date), "")
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
         sleep(8)
         for item in self.ast.get_assessment_table("Asset"):
@@ -91,7 +92,7 @@ class AssessmenttPageTest(BaseTestCase):
         count = 0
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=31)
-        self.ast.create_assessment(str(start_date), str(end_date), "dee@dee")
+        self.ast.create_assessment(str(start_date), str(end_date), "Bijesh.Gupta@Indecomm.net")
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
         sleep(8)
         for item in self.ast.get_assessment_table("Asset"):
@@ -108,7 +109,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.assertEqual(creationdate, str(date.today()), "The newly created assessment creation date is not showing todays date")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_ast_06_To_verify_emailid_field_createassessment(self):
         emailid = ['Email', 'Email.', 'email.com', 'email@']
         self.ast.create_assessment_select_haystax_template()
@@ -121,65 +122,65 @@ class AssessmenttPageTest(BaseTestCase):
             self.assertEqual("rgba(192, 57, 43, 1)", self.ast.get_create_assignedto_textbox.value_of_css_property("border-bottom-color"),  "Email ID validation error in create assessment")
             self.ast.get_create_assignedto_textbox.clear()
 
-    @attr(priority="high")
-    #@SkipTest
-    @attr(status='smoke')
-    def test_ast_08_to_11_To_Verify_The_Search_(self):
-        flag = 0
-        self.ast.create_assessment_select_haystax_template()
-        with open(self.searchasset_filepath) as data_file:
-            data_SearchAsset_text = json.load(data_file)
-            for each in data_SearchAsset_text:
-                searchText = each["Search_name"]
-                self.ast.search_asset_textbox(searchText)
-                sleep(5)
-                if len(self.ast.get_asset_table("Asset")) <= 0:
-                    self.assertEqual("No matching records found", self.ast.get_assetlist_no_matching_records_found.text,
-                                         "No records to find asset. Searched string is :" + searchText)
-                    flag = 1
-                else:
-                    for searchName in self.ast.get_asset_table("Asset"):
-                        if searchText in searchName.text:
-                            flag = 1
-                    if flag == 0:
-                        for searchName in self.ast.get_asset_table("Type"):
-                            if searchText in searchName.text:
-                                flag = 1
-                if flag == 0:
-                    self.assertTrue(False, "The search result doesnt contain the text that is searched. Searched string is :" + searchText)
-                self.ast.get_search_asset_textbox.clear()
-                self.ast.get_search_asset_textbox.send_keys(Keys.BACKSPACE)
-                sleep(2)
+    # @attr(priority="high")
+    # @SkipTest
+    # @attr(status='smoke')
+    # def test_ast_08_to_11_To_Verify_The_Search_(self):
+    #     flag = 0
+    #     self.ast.create_assessment_select_haystax_template()
+    #     with open(self.searchasset_filepath) as data_file:
+    #         data_SearchAsset_text = json.load(data_file)
+    #         for each in data_SearchAsset_text:
+    #             searchText = each["Search_name"]
+    #             self.ast.search_asset_textbox(searchText)
+    #             sleep(5)
+    #             if len(self.ast.get_asset_table("Asset")) <= 0:
+    #                 self.assertEqual("No matching records found", self.ast.get_assetlist_no_matching_records_found.text,
+    #                                      "No records to find asset. Searched string is :" + searchText)
+    #                 flag = 1
+    #             else:
+    #                 for searchName in self.ast.get_asset_table("Asset"):
+    #                     if searchText in searchName.text:
+    #                         flag = 1
+    #                 if flag == 0:
+    #                     for searchName in self.ast.get_asset_table("Type"):
+    #                         if searchText in searchName.text:
+    #                             flag = 1
+    #             if flag == 0:
+    #                 self.assertTrue(False, "The search result doesnt contain the text that is searched. Searched string is :" + searchText)
+    #             self.ast.get_search_asset_textbox.clear()
+    #             self.ast.get_search_asset_textbox.send_keys(Keys.BACKSPACE)
+    #             sleep(2)
 
-    @attr(priority = "high")
-    #@SkipTest
-    def test_ast_12_To_Test_Sorting_on_Create_Assessment(self):
-        self.ast.create_assessment_select_haystax_template()
-        self.ast.get_asset_table_column_header("Asset").click()
-        sleep(5)
-        searchNames = self.ast.get_asset_table("Asset")
-        searchNameslist=[]
-        for name in searchNames:
-            searchNameslist.append(str(name.text))
-        if self.ast.get_asset_table_column_header("Asset").get_attribute("class") == "sorting_desc":
-            searchNamessorted = sorted(searchNameslist, reverse=True)
-            self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Descending order")
-        else:
-            searchNamessorted = sorted(searchNameslist)
-            self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Ascending order")
-        sleep(10)
-        self.ast.get_asset_table_column_header("Asset").click()
-        sleep(10)
-        searchNames = self.ast.get_asset_table("Asset")
-        searchNameslist=[]
-        for name in searchNames:
-            searchNameslist.append(str(name.text))
-        if self.ast.get_asset_table_column_header("Asset").get_attribute("class") == "sorting_desc":
-            searchNamessorted = sorted(searchNameslist,reverse=True)
-            self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Descending order")
-        else:
-            searchNamessorted = sorted(searchNameslist)
-            self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Ascending order")
+    # @attr(priority = "high")
+    # @SkipTest
+    # def test_ast_12_To_Test_Sorting_on_Create_Assessment(self):
+    #     self.ast.create_assessment_select_haystax_template()
+    #     self.ast.get_asset_table_column_header("Asset").click()
+    #     sleep(5)
+    #     searchNames = self.ast.get_asset_table("Asset")
+    #     searchNameslist=[]
+    #     for name in searchNames:
+    #         searchNameslist.append(str(name.text))
+    #     if self.ast.get_asset_table_column_header("Asset").get_attribute("class") == "sorting_desc":
+    #         searchNamessorted = sorted(searchNameslist, reverse=True)
+    #         self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Descending order")
+    #     else:
+    #         searchNamessorted = sorted(searchNameslist)
+    #         self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Ascending order")
+    #     sleep(10)
+    #     self.ast.get_asset_table_column_header("Asset").click()
+    #     sleep(10)
+    #     searchNames = self.ast.get_asset_table("Asset")
+    #     searchNameslist=[]
+    #     for name in searchNames:
+    #         searchNameslist.append(str(name.text))
+    #     if self.ast.get_asset_table_column_header("Asset").get_attribute("class") == "sorting_desc":
+    #         searchNamessorted = sorted(searchNameslist,reverse=True)
+    #         self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Descending order")
+    #     else:
+    #         searchNamessorted = sorted(searchNameslist)
+    #         self.assertListEqual(searchNameslist, searchNamessorted, "List is not sorted in Ascending order")
 
     @attr(priority="high")
     #@SkipTest

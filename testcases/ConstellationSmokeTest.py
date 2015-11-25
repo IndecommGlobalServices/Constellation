@@ -9,4 +9,3 @@ os.chdir(cwd)
 nose.run(argv=["","assettest","assessmenttest", "maptest", "threatstreamstest", "-a status=smoke",
                "--xunit-file="+smoketest_filepath+""])
 
-

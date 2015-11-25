@@ -9,9 +9,9 @@ start = time.time()
 cwd = os.getcwd()
 os.chdir('..')
 path = os.path.join(os.getcwd(), "testresults"+str(datetime.today().strftime('%Y%m%d'))+"_"+str(datetime.today().time().strftime('%H%M')))
-if not os.path.exists(path):
-   os.makedirs(path)
-os.chdir(path)
+# if not os.path.exists(path):
+#    os.makedirs(path)
+# os.chdir(path)
 
 testresult = os.path.join(os.getcwd(), r"Testresult_" + str(datetime.today().strftime('%Y%m%d'))+"_"+
                               str(datetime.today().time().strftime('%H%M'))+".xml")
@@ -40,15 +40,16 @@ os.chdir(cwd)
 # assessmenttests = glob.glob('assessment*.py')
 
 tests = (['assettest', str(asset_filepath), 'Assetest'],
-         ['maptest', str(map_filepath), 'Maptest'],
-         ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
          ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
-         ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'],
-         ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
-         ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'],
-         ['assessmentschoolinfrastructuretest', str(assessmentinfra_filepath), 'AssessmentSchoolInfrastructuretest'],
-         ['assessmentphysicalsecuritytest', str(assessmentphysical_filepath), 'AssessmentPhysicalSecuritytest'],
-         ['assessmenttrainingandexercisetest', str(assessmenttrainning_filepath), 'AssessmentTrainingandExercisetest'])
+         ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
+         ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'])
+         # ['maptest', str(map_filepath), 'Maptest'],
+         # ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
+         # ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'],
+         # ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'],
+         # ['assessmentschoolinfrastructuretest', str(assessmentinfra_filepath), 'AssessmentSchoolInfrastructuretest'],
+         # ['assessmentphysicalsecuritytest', str(assessmentphysical_filepath), 'AssessmentPhysicalSecuritytest'],
+         # ['assessmenttrainingandexercisetest', str(assessmenttrainning_filepath), 'AssessmentTrainingandExercisetest'])
 
 processes = []
 
@@ -61,16 +62,16 @@ for process in processes:
 print "*" * 50
 print "Time taken: %s minutes" % ((time.time() - start) /60)
 
-xml_files = glob.glob("..//"+path+"//*.xml")
-xml_element_tree = None
-for xml_file in xml_files:
-    print xml_file
-    # get root
-    data = ET.parse(xml_file).getroot()
-    for result in data.iter('testsuite'):
-        if xml_element_tree is None:
-            xml_element_tree = result
-        else:
-            xml_element_tree.append(result)
-if xml_element_tree is not None:
-    ET.ElementTree(xml_element_tree).write(testresult)
+# xml_files = glob.glob("..\\"+path+"\\*.xml")
+# xml_element_tree = None
+# for xml_file in xml_files:
+#     print xml_file
+#     # get root
+#     data = ET.parse(xml_file).getroot()
+#     for result in data.iter('testsuite'):
+#         if xml_element_tree is None:
+#             xml_element_tree = result
+#         else:
+#             xml_element_tree.append(result)
+# if xml_element_tree is not None:
+#     ET.ElementTree(xml_element_tree).write(testresult)

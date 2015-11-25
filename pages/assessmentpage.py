@@ -210,9 +210,9 @@ class AssessmentPage(BasePageClass):
     @property
     def get_main_create_assessment_button(self):
         try:
-            WebDriverWait(self.driver, 30).until(expected_conditions.presence_of_element_located(
-                        (By.XPATH,self._ast_main_create_assessment_button_locator)))
-            return  self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator)
+            WebDriverWait(self.driver, 30).until(expected_conditions.element_to_be_clickable(
+                        (By.XPATH, self._ast_main_create_assessment_button_locator)))
+            return self.driver.find_element_by_xpath(self._ast_main_create_assessment_button_locator)
         except Exception, err:
             raise type(err)("Create assessment button not available - search XPATH - " \
                           + self._ast_main_create_assessment_button_locator + err.message)
@@ -555,8 +555,10 @@ class AssessmentPage(BasePageClass):
 
     def get_total_row_count(self):
         countText = self.driver.find_element_by_id("tblAssessments_info").text
-        splitedText = countText.split(" ")
-        totalCount = splitedText[10]
+        splitedText = countText.split("of")
+        while '' in splitedText:
+            splitedText.remove('')
+        totalCount = splitedText[1].replace(" entries", "")
         return int(totalCount)
 
     def select_multiple_checkboxes(self, count):
@@ -595,6 +597,8 @@ class AssessmentPage(BasePageClass):
         assessment_list[0].click()
 
     def create_assessment_select_haystax_template(self):
+        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self._ast_action_dropdown_loactor)))
         self.get_main_create_assessment_button.click()
         self.get_create_templatetype_dropdown.click()
         self.get_create_haystax_template_option.click()
