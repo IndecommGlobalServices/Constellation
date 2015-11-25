@@ -654,6 +654,24 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
                 radiobuttonstatus = self.ast.get_schooldata_radiobutton(config_main_var,config_sub_var)
                 self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
+    @attr(priority='high')
+    #@SkipTest
+    def test_AST_271_To_Verify_PA_System_Announcements_Text_Area(self):
+        """
+        Description : To test the radio buttons of PA System Policy option
+        Revision:
+        Author : Bijesh
+        :return:
+        """
+        config_main_var = self.config.get(self.mainsection, 'SECTION_PA_SYSTEM')
+        config_sub_var = self.config.get(self.subsection, 'SECTION_PA_SYSTEM_ANNOUNCEMENTS')
+        self.ast.get_schooldata_textarea(config_main_var,config_sub_var).clear()
+        self.ast.get_schooldata_textarea(config_main_var,config_sub_var).send_keys("100")
+        self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self.ast.get_schooldata_textarea_locator(config_main_var,config_sub_var))))
+        self.assertEqual(self.ast.get_schooldata_textarea(config_main_var,config_sub_var).get_attribute("value"), "100")
+
     @attr(priority="high")
     #@SkipTest
     def test_AST_272_To_Verify_Radio_Buttons_Of_Crisis_Incident_Team_Composition(self):

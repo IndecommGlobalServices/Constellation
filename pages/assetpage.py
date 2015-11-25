@@ -2085,8 +2085,10 @@ class AssetPage(BasePageClass):
                 sleep(2)
                 self.get_asset_annotation_delete_image.click()
                 sleep(2)
+            else:
+                pass
         except Exception, err:
-            print type(err)("Annotation text coulld not deleted or no annotation text is available.. "+err.message)
+            print type(err)("Annotation text could not deleted or no annotation text is available.. "+err.message)
 
     # Charts related functions
     svg_path_1=r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"
