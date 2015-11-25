@@ -409,6 +409,10 @@ class MapPage(BasePageClass):
     def open_map_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
+        feedbackformIcon = self.driver.find_element_by_xpath(".//*[@id='H1']/img")
+        if feedbackformIcon.is_displayed():
+            self.driver.find_element_by_xpath(".//*[@id='submit_feedback_modal']/div/div/form/div[2]/button[1]").click()
+            print "Closed Feedback form..."
         WebDriverWait(self.driver, 1).until(EC.text_to_be_present_in_element((By.XPATH,
                                                                         "//a[contains(text(),'Leaflet')]"), "Leaflet"))
 
@@ -495,10 +499,10 @@ class MapPage(BasePageClass):
         :return: None
         """
         try:
-            WebDriverWait(self.driver, 100).until(EC.presence_of_element_located(
+            WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, self._bread_crumb_click_apps_link_xpath_locator))).click()
 
-            WebDriverWait(self.driver, 100).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
                 (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
 
         except:

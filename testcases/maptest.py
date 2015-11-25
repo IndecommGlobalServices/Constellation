@@ -102,8 +102,8 @@ class MapPageTest(BaseTestCase):
     #@SkipTest
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
         try:
-            self.driver.refresh()
-
+            #self.driver.refresh()
+            self.driver.find_element_by_xpath(".//*[@id='toplogo']/span").send_keys(Keys.F5)
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
