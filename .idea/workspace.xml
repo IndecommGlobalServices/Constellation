@@ -5,10 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/mappage.py" afterPath="$PROJECT_DIR$/pages/mappage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/maptest.py" afterPath="$PROJECT_DIR$/testcases/maptest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Constellation.iws" />
@@ -34,11 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="maptest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="maptest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="6426">
-              <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.58082193" vertical-offset="9" max-vertical-offset="6545">
+              <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -46,21 +45,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mappage.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mappage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/mappage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6031746" vertical-offset="6640" max-vertical-offset="8823">
-              <caret line="414" column="42" selection-start-line="414" selection-start-column="42" selection-end-line="414" selection-end-column="42" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="6640" max-vertical-offset="8857">
+              <caret line="419" column="0" selection-start-line="419" selection-start-column="0" selection-end-line="419" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IconListPage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
+      <file leaf-file-name="basetestcase.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="1462">
-              <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+              <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -96,7 +95,6 @@
         <option value="$PROJECT_DIR$/pages/IconListPage.py" />
         <option value="$PROJECT_DIR$/data/json_SearchAssessments.json" />
         <option value="$PROJECT_DIR$/pages/basepage.py" />
-        <option value="$PROJECT_DIR$/pages/assetpage.py" />
         <option value="$PROJECT_DIR$/pages/threatstreamspage.py" />
         <option value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTS.py" />
@@ -114,7 +112,6 @@
         <option value="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
         <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
-        <option value="$PROJECT_DIR$/testcases/basetestcase.py" />
         <option value="$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentpoliciesandplanningtest.py" />
         <option value="$PROJECT_DIR$/testcases/concurrent_run.py" />
@@ -122,8 +119,10 @@
         <option value="$PROJECT_DIR$/testcases/ConstellationTestMap.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTestThreatStreams.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTestSuite.py" />
-        <option value="$PROJECT_DIR$/testcases/maptest.py" />
+        <option value="$PROJECT_DIR$/pages/assetpage.py" />
+        <option value="$PROJECT_DIR$/testcases/basetestcase.py" />
         <option value="$PROJECT_DIR$/pages/mappage.py" />
+        <option value="$PROJECT_DIR$/testcases/maptest.py" />
       </list>
     </option>
   </component>
@@ -251,40 +250,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python tests.Unittests in maptest">
-    <configuration default="false" name="concurrent_run (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/concurrent_run.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="ordered_run" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Python" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python/ordered_run.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="Unittests in maptest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -309,7 +274,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest MapPageTest.test_map_07_to_verify_Default_Map_View_Based_On_Assessment" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_03" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -319,9 +284,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
-      <option name="CLASS_NAME" value="MapPageTest" />
-      <option name="METHOD_NAME" value="test_map_07_to_verify_Default_Map_View_Based_On_Assessment" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_03" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -333,7 +298,7 @@
       <ConfigurationWrapper RunnerId="PythonRunner" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest MapPageTest.test_map_06_to_verify_Default_Map_View_Based_On_Assets" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_04" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -343,9 +308,57 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
-      <option name="CLASS_NAME" value="MapPageTest" />
-      <option name="METHOD_NAME" value="test_map_06_to_verify_Default_Map_View_Based_On_Assets" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_04" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_90" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_90" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <RunnerSettings RunnerId="PythonRunner" />
+      <ConfigurationWrapper RunnerId="PythonRunner" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_91" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_91" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -491,19 +504,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.concurrent_run (1)" />
-      <item index="1" class="java.lang.String" itemvalue="Python.ordered_run" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_07_to_verify_Default_Map_View_Based_On_Assessment" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_06_to_verify_Default_Map_View_Based_On_Assets" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_03" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_04" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_90" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_91" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_06_to_verify_Default_Map_View_Based_On_Assets" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_07_to_verify_Default_Map_View_Based_On_Assessment" />
-        <item index="3" class="java.lang.String" itemvalue="Python.concurrent_run (1)" />
-        <item index="4" class="java.lang.String" itemvalue="Python.ordered_run" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_91" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_90" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_04" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_03" />
       </list>
     </recent_temporary>
   </component>
@@ -517,12 +530,6 @@
       <created>1441947410271</created>
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
-    </task>
-    <task id="LOCAL-00025" summary="Removed lengthy test name and comments">
-      <created>1444026384670</created>
-      <option name="number" value="00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1444026384670</updated>
     </task>
     <task id="LOCAL-00026" summary="RAssetpage updated">
       <created>1444027451869</created>
@@ -812,27 +819,33 @@
       <option name="project" value="LOCAL" />
       <updated>1448277538129</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="map - added the code in setup to close the feedback form, when run on headless">
+      <created>1448431053439</created>
+      <option name="number" value="00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1448431053468</updated>
+    </task>
+    <option name="localTasksCounter" value="75" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24627976" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3425775" sideWeight="0.50595236" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22385621" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33768353" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3139881" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24627976" sideWeight="0.50864196" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39708266" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -852,9 +865,9 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22385621" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3382353" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.33768353" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24627976" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24627976" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33169934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -878,7 +891,6 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
-    <MESSAGE value="Smoketest" />
     <MESSAGE value="Timeout" />
     <MESSAGE value="Modified AS_16 and AS_12" />
     <MESSAGE value="New file" />
@@ -903,7 +915,8 @@
     <MESSAGE value="policiesandplanning" />
     <MESSAGE value="map test" />
     <MESSAGE value="map - added refresh" />
-    <option name="LAST_COMMIT_MESSAGE" value="map - added refresh" />
+    <MESSAGE value="map - added the code in setup to close the feedback form, when run on headless" />
+    <option name="LAST_COMMIT_MESSAGE" value="map - added the code in setup to close the feedback form, when run on headless" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.87" />
   </component>
   <component name="XDebuggerManager">
@@ -1115,13 +1128,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/data/json_Schooldata.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3076923" vertical-offset="0" max-vertical-offset="0">
@@ -1168,21 +1174,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="98" column="30" selection-start-line="98" selection-start-column="30" selection-end-line="98" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="49" column="11" selection-start-line="49" selection-start-column="11" selection-end-line="49" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="18" column="25" selection-start-line="18" selection-start-column="25" selection-end-line="18" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1244,21 +1235,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="6426">
-          <caret line="24" column="28" selection-start-line="24" selection-start-column="28" selection-end-line="24" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.73015875" vertical-offset="25428" max-vertical-offset="28220">
+          <caret line="1525" column="14" selection-start-line="1525" selection-start-column="14" selection-end-line="1525" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8465753" vertical-offset="38128" max-vertical-offset="38726">
+          <caret line="2272" column="0" selection-start-line="2272" selection-start-column="0" selection-end-line="2272" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="901">
+          <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/mappage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6031746" vertical-offset="6640" max-vertical-offset="8823">
-          <caret line="414" column="42" selection-start-line="414" selection-start-column="42" selection-end-line="414" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="6640" max-vertical-offset="8857">
+          <caret line="419" column="0" selection-start-line="419" selection-start-column="0" selection-end-line="419" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.58082193" vertical-offset="9" max-vertical-offset="6545">
+          <caret line="13" column="10" selection-start-line="13" selection-start-column="10" selection-end-line="13" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

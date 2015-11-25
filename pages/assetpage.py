@@ -2269,9 +2269,7 @@ class AssetPage(BasePageClass):
         splitedText = countText.split("of")
         while '' in splitedText:
             splitedText.remove('')
-        print splitedText, "xxxxxxxxxx"
         totalCount = splitedText[1].replace(" entries", "")
-        print totalCount, "xrrrrr"
 
         return int(totalCount)
 
