@@ -9,7 +9,7 @@ import nose
 
 #from pyvirtualdisplay import Display
 
-class BaseTestCase(unittest.TestSuite):
+class BaseTestCase(unittest.TestCase):
     username = ""
     # driver = ""
 
