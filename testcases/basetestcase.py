@@ -10,7 +10,7 @@ import nose
 
 from pyvirtualdisplay import Display
 
-class BaseTestCase(SeleniumTestCase):
+class BaseTestCase(unittest.TestSuite):
     username = ""
     # driver = ""
 
