@@ -528,12 +528,6 @@
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
     </task>
-    <task id="LOCAL-00027" summary="Element wait">
-      <created>1444295411856</created>
-      <option name="number" value="00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1444295411856</updated>
-    </task>
     <task id="LOCAL-00028" summary="Search to get input from jason&#10;">
       <created>1444548646191</created>
       <option name="number" value="00028" />
@@ -822,7 +816,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448444898794</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Test">
+      <created>1448444920757</created>
+      <option name="number" value="00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1448444920757</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="ToolWindowManager">
