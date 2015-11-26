@@ -70,14 +70,14 @@ class MapPageTest(BaseTestCase):
                 self.mappage.get_map_water_fall_handle.click()
             '''
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
-            #sleep(10)
+            sleep(10)
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
-            #sleep(10)
+            sleep(10)
             self.mappage.get_map_base_map_accordian.click()
-            #sleep(10)
+            sleep(10)
             self.mappage.get_map_default_view_radio.click()
-            #sleep(10)
+            sleep(10)
             self.mappage.get_map_basic_data_layer.click()
 
             self.mappage.get_checking_and_unchecking_basic_data_layer()
@@ -85,9 +85,9 @@ class MapPageTest(BaseTestCase):
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
-            #sleep(10)
+            sleep(10)
             self.mappage.get_map_basic_data_layer_asset.click()
-            #sleep(2)
+            sleep(2)
             self.mappage.get_map_zoom_out.click()
             sleep(10)
             # Click on Zoom out to display the Map status based total no of items which is displayed just

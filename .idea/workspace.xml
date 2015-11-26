@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/maptest.py" afterPath="$PROJECT_DIR$/testcases/maptest.py" />
     </list>
     <ignored path="Constellation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +31,8 @@
       <file leaf-file-name="maptest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.69174755">
-              <caret line="406" column="76" selection-start-line="406" selection-start-column="76" selection-end-line="406" selection-end-column="76" />
+            <state vertical-scroll-proportion="0.92718446">
+              <caret line="108" column="12" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -46,10 +45,7 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="424" column="8" selection-start-line="424" selection-start-column="8" selection-end-line="424" selection-end-column="8" />
-              <folding>
-                <marker date="1448521171185" expanded="true" signature="546:25129" placeholder="..." />
-                <marker date="1448521171185" expanded="true" signature="24666:25129" placeholder="..." />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -517,12 +513,6 @@
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
     </task>
-    <task id="LOCAL-00026" summary="RAssetpage updated">
-      <created>1444027451869</created>
-      <option name="number" value="00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1444027451869</updated>
-    </task>
     <task id="LOCAL-00027" summary="Element wait">
       <created>1444295411856</created>
       <option name="number" value="00027" />
@@ -811,7 +801,13 @@
       <option name="project" value="LOCAL" />
       <updated>1448520786051</updated>
     </task>
-    <option name="localTasksCounter" value="75" />
+    <task id="LOCAL-00075" summary="map - testcases">
+      <created>1448521288928</created>
+      <option name="number" value="00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1448521288928</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -821,14 +817,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1301" height="640" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31821677" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3425775" sideWeight="0.50595236" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22222222" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22222222" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33686066" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
@@ -918,10 +914,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1448521171185" expanded="true" signature="546:25129" placeholder="..." />
-            <marker date="1448521171185" expanded="true" signature="24666:25129" placeholder="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1148,14 +1141,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Screenshots/test_map_01_05_to_verify_all_maps_Screenshot 2015-11-25T12.07.07.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -1206,28 +1191,9 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/mappage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="424" column="8" selection-start-line="424" selection-start-column="8" selection-end-line="424" selection-end-column="8" />
-          <folding>
-            <marker date="1448521171185" expanded="true" signature="546:25129" placeholder="..." />
-            <marker date="1448521171185" expanded="true" signature="24666:25129" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Screenshots/test_map_06_to_verify_Default_Map_View_Based_On_Assets_Screenshot 2015-11-25T16.53.24.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Screenshots/test_map_06_to_verify_Default_Map_View_Based_On_Assets_Screenshot 2015-11-25T16.45.34.png">
@@ -1245,10 +1211,34 @@
         <state />
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/mappage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="424" column="8" selection-start-line="424" selection-start-column="8" selection-end-line="424" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="17" column="51" selection-start-line="17" selection-start-column="51" selection-end-line="17" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="60" column="8" selection-start-line="60" selection-start-column="8" selection-end-line="60" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.69174755">
-          <caret line="406" column="76" selection-start-line="406" selection-start-column="76" selection-end-line="406" selection-end-column="76" />
+        <state vertical-scroll-proportion="0.92718446">
+          <caret line="108" column="12" selection-start-line="108" selection-start-column="12" selection-end-line="108" selection-end-column="12" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
