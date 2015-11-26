@@ -2,15 +2,14 @@ import unittest
 import os
 from datetime import datetime
 from selenium import webdriver
-from selenose.cases import SeleniumTestCase
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
 import nose
 
-from pyvirtualdisplay import Display
+#from pyvirtualdisplay import Display
 
-class BaseTestCase(SeleniumTestCase):
+class BaseTestCase(unittest.TestCase):
     username = ""
     # driver = ""
 

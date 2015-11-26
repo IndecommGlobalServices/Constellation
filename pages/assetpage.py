@@ -2086,7 +2086,7 @@ class AssetPage(BasePageClass):
                 self.get_asset_annotation_delete_image.click()
                 sleep(2)
         except Exception, err:
-            print type(err)("Annotation text coulld not deleted or no annotation text is available.. "+err.message)
+            pass
 
     # Charts related functions
     svg_path_1=r"//*[name()='svg' and namespace-uri()='http://www.w3.org/2000/svg']"
@@ -2265,14 +2265,10 @@ class AssetPage(BasePageClass):
 
     def get_total_row_count(self):
         countText = self.driver.find_element_by_id("assetstable_info").text
-
         splitedText = countText.split("of")
         while '' in splitedText:
             splitedText.remove('')
-        print splitedText, "xxxxxxxxxx"
         totalCount = splitedText[1].replace(" entries", "")
-        print totalCount, "xrrrrr"
-
         return int(totalCount)
 
     def get_total_row_count_filter(self):
