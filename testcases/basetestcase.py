@@ -7,7 +7,7 @@ from pages.loginpage import LoginPage
 from pages.basepage import BasePage
 import nose
 
-#from pyvirtualdisplay import Display
+from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
     username = ""
@@ -15,7 +15,7 @@ class BaseTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        display = Display(visible=0, size=(1280,800))
+        display = Display(visible=0, size=(1280,1024))
         display.start()
         # create a new Firefox session
 
