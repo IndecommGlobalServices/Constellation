@@ -16,8 +16,8 @@ class BaseTestCase(SeleniumTestCase):
 
     @classmethod
     def setUpClass(cls):
-        #display = Display(visible=0, size=(1024,768))
-        #display.start()
+        display = Display(visible=0, size=(1280,800))
+        display.start()
         # create a new Firefox session
 
         cls.driver = webdriver.Firefox()

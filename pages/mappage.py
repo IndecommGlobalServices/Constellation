@@ -409,12 +409,17 @@ class MapPage(BasePageClass):
     def open_map_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
+        '''
         feedbackformIcon = self.driver.find_element_by_xpath(".//*[@id='H1']/img")
+        sleep(5)
         if feedbackformIcon.is_displayed():
+            sleep(5)
             self.driver.find_element_by_xpath(".//*[@id='submit_feedback_modal']/div/div/form/div[2]/button[1]").click()
             print "Closed Feedback form..."
-        WebDriverWait(self.driver, 1).until(EC.text_to_be_present_in_element((By.XPATH,
-                                                                        "//a[contains(text(),'Leaflet')]"), "Leaflet"))
+        '''
+        #WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH,
+        #                                                                "//a[contains(text(),'Leaflet')]"), "Leaflet"))
+
 
     # This function is used - if check box is selected, it should be unchecked
     def get_checking_and_unchecking_basic_data_layer(self):

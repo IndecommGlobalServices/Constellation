@@ -23,6 +23,7 @@ class MapPageTest(BaseTestCase):
     def setUp(self):
         self.errors_and_failures = self.tally()
         self.mappage.open_map_app()
+        #self.driver.refresh()
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
@@ -35,13 +36,16 @@ class MapPageTest(BaseTestCase):
             pass
         self.mappage.return_to_apps_main_page()
 
+
     # All maps in one test case
     @attr(priority="high")
     def test_map_01_05_to_verify_all_maps(self):
         try:
+
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
-            sleep(1)
+
+            sleep(2)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon # mouse hover to 1st icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -60,20 +64,30 @@ class MapPageTest(BaseTestCase):
     def test_map_06_to_verify_Default_Map_View_Based_On_Assets(self):
         try:
             self.driver.refresh()
+            sleep(10)
+            '''
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
+            '''
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon   # mouse hover to 1st icon on Left hand side
+            #sleep(10)
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
+            #sleep(10)
             self.mappage.get_map_base_map_accordian.click()
+            #sleep(10)
             self.mappage.get_map_default_view_radio.click()
+            #sleep(10)
             self.mappage.get_map_basic_data_layer.click()
+
             self.mappage.get_checking_and_unchecking_basic_data_layer()
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            #sleep(10)
             self.mappage.get_map_basic_data_layer_asset.click()
+            #sleep(2)
             self.mappage.get_map_zoom_out.click()
             sleep(10)
             # Click on Zoom out to display the Map status based total no of items which is displayed just
@@ -98,14 +112,17 @@ class MapPageTest(BaseTestCase):
             print e
             raise
 
+
     @attr(priority="high")
     #@SkipTest
     def test_map_07_to_verify_Default_Map_View_Based_On_Assessment(self):
         try:
-            #self.driver.refresh()
-            self.driver.find_element_by_xpath(".//*[@id='toplogo']/span").send_keys(Keys.F5)
+            self.driver.refresh()
+            sleep(10)
+            '''
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
+            '''
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -138,21 +155,30 @@ class MapPageTest(BaseTestCase):
     def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
         try:
             self.driver.refresh()
-
+            sleep(10)
+            '''
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
+            '''
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
+            sleep(5)
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                     .perform()
+            sleep(5)
             self.mappage.get_map_base_map_accordian.click()
+            sleep(5)
             self.mappage.get_map_default_view_radio.click()
+            sleep(5)
             self.mappage.get_map_basic_data_layer.click()
+            sleep(5)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            sleep(5)
             self.mappage.get_map_basic_data_layer_incident.click()
+            sleep(5)
             self.mappage.get_map_zoom_out.click()
             sleep(10)
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
@@ -173,8 +199,11 @@ class MapPageTest(BaseTestCase):
     def test_map_09_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
         try:
             self.driver.refresh()
+            sleep(10)
+            '''
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
+            '''
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -209,8 +238,11 @@ class MapPageTest(BaseTestCase):
     def test_map_10_to_verify_Default_Map_View_Based_On_Indicator_Teams(self):
         try:
             self.driver.refresh()
+            sleep(10)
+            '''
             if self.mappage.get_map_water_fall_scrollable.is_displayed():
                 self.mappage.get_map_water_fall_handle.click()
+            '''
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -243,6 +275,8 @@ class MapPageTest(BaseTestCase):
     def test_map_11_to_verify_Default_Map_View_Based_On_Annotations(self):
         try:
             self.driver.refresh()
+            sleep(10)
+
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -275,6 +309,7 @@ class MapPageTest(BaseTestCase):
     def test_map_12_to_verify_Default_Map_View_Based_On_Threat_Streams_Trending_Last_Day(self):
         try:
             self.driver.refresh()
+            sleep(10)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                            .perform()
@@ -310,6 +345,7 @@ class MapPageTest(BaseTestCase):
     def test_map_13_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_1(self):
         try:
             self.driver.refresh()
+            sleep(10)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
@@ -343,20 +379,27 @@ class MapPageTest(BaseTestCase):
     def test_map_14_to_verify_Default_Map_View_Based_On_Threat_Streams_Stream_2(self):
         try:
             self.driver.refresh()
+            sleep(10)
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
+            sleep(5)
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .move_to_element(self.mappage.get_map_base_map_accordian).click()\
                 .move_to_element(self.mappage.get_map_default_view_radio).click()\
                 .move_to_element(self.mappage.get_map_basic_data_layer).click()\
                 .perform()
+            sleep(5)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            sleep(5)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
+            sleep(5)
             self.mappage.get_map_basic_data_layer_threat_streams_stream_2.click()
+            sleep(5)
             self.mappage.get_map_zoom_out.click()
+            sleep(10)
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
             map_threat_streams_stream_2_count = self.mappage.get_total_map_status_count()
             print "Found " + str(map_threat_streams_stream_2_count) + " map status threat streams stream 2 count"
@@ -370,3 +413,4 @@ class MapPageTest(BaseTestCase):
             print e
             raise
 
+    
