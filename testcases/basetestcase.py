@@ -15,6 +15,7 @@ class BaseTestCase(unittest.TestCase):
         #display = Display(visible=0, size=(1024,768))
         #display.start()
         # create a new Firefox session
+
         cls.driver = webdriver.Firefox()
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
