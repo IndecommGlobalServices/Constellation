@@ -12,11 +12,12 @@ class BaseTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        display = Display(visible=0, size=(1280,800))
+        display = Display(visible=0, size=(1280,1024))
         display.start()
         # create a new Firefox session
 
         cls.driver = webdriver.Firefox()
+        # cls.driver = driver
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -32,8 +33,8 @@ class BaseTestCase(unittest.TestCase):
         cls.username = loginpage.usernameText
 
     @classmethod
-    def tearDownClass(self):
-        self.driver.quit()# close the browser
+    def tearDownClass(cls):
+        cls.driver.quit()# close the browser
 
 
     def take_screenshot(self):
