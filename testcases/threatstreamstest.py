@@ -28,6 +28,12 @@ class ThreatStreamTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     @attr(status='smoke')
+    def test_threatsstream_smoke(self):
+        self.assertTrue(self.tstream.get_ts_threat_dropdown_filter.is_displayed(), "Dropdown filter not available")
+
+
+    @attr(priority="high")
+    #@SkipTest
     def test_TS_01_To_Verify_Starred_Filter_Is_Selected(self):
         """
         Test : test_TS_01
@@ -39,7 +45,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_threat_dropdown_starred_filter.click()
         act_text = self.tstream.get_ts_threat_filter_name_text.text
-        self.assertEqual('Starred', act_text, "Selected filter name is not same as 'Starred'.")
+        self.assertEqual('Starn red', act_text, "Selected filter name is not same as 'Starred'.")
 
 
     @attr(priority="high")

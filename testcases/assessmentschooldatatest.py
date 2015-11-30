@@ -21,6 +21,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     @classmethod
     def setUpClass(cls):
         super(AssessmentSchoolDataPageTest, cls).setUpClass()
+
         cls.AssessmentSections = 'AssessmentSections'
         cls.messages = 'Messages'
         cls.mainsection = 'SchoolDataMainSection'
@@ -49,6 +50,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         Description : To test the school type option radio buttons
         :return:
         """
+
         for option in range(4):
             schooltypeoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
                                     self.config.get(self.subsection, 'SECTION_SCHOOL_TYPE'))
@@ -186,7 +188,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     #@SkipTest
     def test_AST_82_To_Verify_validation_No_of_Visitors(self):
         """
-        Description : To test the validation of no of staff section
+        Description : To test the validation of no of visitors section
         :return:
         """
 
@@ -212,7 +214,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_103_Verify_File_Upload_For_All_Sections(self):
+    def test_AST_84_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test file upload in All the sections under School Data Tab.
         :return:
@@ -232,6 +234,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                                     count_of_image_before_upload, self.config.get(
                                                     self.messages, 'MESSAGE_FILE_COULD_NOT_BE_UPLOADED'))
                 except Exception, err:
+                    # self.defaultTestResult()
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
                 self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
@@ -240,7 +243,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_104_To_Verify_Edit_Caption_For_All_Sections(self):
+    def test_AST_85_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test file upload with caption in All the sections under School Data Tab.
         :return:
@@ -262,9 +265,9 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_105_To_Verify_Add_Comment_For_All_Sections(self):
+    def test_AST_86_To_Verify_Add_Comment_For_All_Sections(self):
         """
-        Description : To test add comment in in All the sections under School Data Tab.
+        Description : To test add comment in All the sections under School Data Tab.
         :return:
         """
         flag = 0

@@ -1644,6 +1644,7 @@ class AssetPage(BasePageClass):
         sleep(2)
         self.get_overview_newtype_text_box.send_keys(self.asset_place_type)
         self.get_overview_place_type_add_button.click()
+        self.get_asset_overview_save_button.click()
 
 
     def get_schooldata(self):
@@ -1782,7 +1783,7 @@ class AssetPage(BasePageClass):
             self.create_school_asset(self.newSchool, self.asset_school_name[self.newSchool])
         elif type == "Place":
             self.create_place_asset()
-        self.get_asset_overview_save_button.click()
+
 
     def create_school_asset_for_assessmentapp(self, schoolname):
         self.recoverapp(inspect.stack()[1][3])
@@ -2264,6 +2265,8 @@ class AssetPage(BasePageClass):
             print "No chart found at school and type level."
 
     def get_total_row_count(self):
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+            (By.XPATH, self._asset_select_action_delete_select_xpath_locator)))
         countText = self.driver.find_element_by_id("assetstable_info").text
         splitedText = countText.split("of")
         while '' in splitedText:

@@ -22,6 +22,7 @@ class AssessmenttPageTest(BaseTestCase):
         cls.ast = AssessmentPage(cls.driver)
         cls.ast.get_asset_avilability("")
 
+
     def setUp(self):
         self.errors_and_failures = self.tally()
 
@@ -53,7 +54,7 @@ class AssessmenttPageTest(BaseTestCase):
         end_date = start_date + timedelta(days=31)
         self.ast.create_assessment(str(start_date), str(end_date), "")
         self.ast.search_assessment_textbox(self.ast.asset_school_name)
-        sleep(8)
+        sleep(10)
         for item in self.ast.get_assessment_table("Asset"):
             count = count + 1
             if (item.text == self.ast.asset_school_name) and (item.value_of_css_property("background-color")

@@ -554,11 +554,11 @@ class AssessmentPage(BasePageClass):
         return self.driver.find_element_by_xpath(xpath)
 
     def get_total_row_count(self):
+        WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+            (By.XPATH, self._ast_action_dropdown_loactor)))
         countText = self.driver.find_element_by_id("tblAssessments_info").text
-        splitedText = countText.split("of")
-        while '' in splitedText:
-            splitedText.remove('')
-        totalCount = splitedText[1].replace(" entries", "")
+        splitedText = countText.split(" ")
+        totalCount = splitedText[10]
         return int(totalCount)
 
     def select_multiple_checkboxes(self, count):
@@ -609,10 +609,22 @@ class AssessmentPage(BasePageClass):
         self.get_create_assets_textbox.send_keys(self.asset_school_name)
         try:
             self.driver.find_element_by_xpath("//li[contains(text(), '"+self.asset_school_name+"')]")
+            self.get_create_assessment_cancel_button.click()
         except NoSuchElementException:
             AssetPage(self.driver).create_school_asset_for_assessmentapp(self.asset_school_name)
-        BasePage(self.driver).accessURL()
-        self.get_assessment_app()
+            BasePage(self.driver).accessURL()
+            self.get_assessment_app()
+
+
+    def delete_existing_assessments(self):
+        self.search_assessment_textbox(self.asset_school_name)
+        sleep(5)
+        if len(self.get_assessment_table("Asset")) >= 0:
+            self.select_multiple_checkboxes(self.get_total_row_count())
+            self.get_action_dropdown.click()
+            self.get_action_delete_button.click()
+            self.get_delete_assessment_delete_button.click()
+
 
     def create_assessment(self, startdate, enddate, assignedto):
         self.create_assessment_select_haystax_template()
