@@ -10,7 +10,6 @@ from selenium.webdriver.common.action_chains import ActionChains
 from nose.plugins.attrib import attr
 from nose.plugins.skip import SkipTest
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.remote.webdriver import ErrorHandler
 from pages.basepage import InvalidPageException
 import sys
 
@@ -37,13 +36,6 @@ class MapPageTest(BaseTestCase):
             pass
         self.mappage.return_to_apps_main_page()
 
-
-    @attr(priority="high")
-    #@SkipTest
-    @attr(status='smoke')
-    def test_map_smoke(self):
-        WebDriverWait(self.driver, 20).until(expected_conditions.text_to_be_present_in_element((By.XPATH,
-                                                                       "//a[contains(text(),'Leaflet')]"), "Leaflet"), "Map not loaded")
 
     # All maps in one test case
     @attr(priority="high")
@@ -89,11 +81,14 @@ class MapPageTest(BaseTestCase):
             self.mappage.get_map_basic_data_layer.click()
 
             self.mappage.get_checking_and_unchecking_basic_data_layer()
+            '''
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             sleep(10)
+            '''
+            sleep(2)
             self.mappage.get_map_basic_data_layer_asset.click()
             sleep(2)
             self.mappage.get_map_zoom_out.click()
@@ -134,15 +129,23 @@ class MapPageTest(BaseTestCase):
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
+            sleep(10)
             self.mappage.get_map_base_map_accordian.click()
+            sleep(10)
             self.mappage.get_map_default_view_radio.click()
+            sleep(2)
             self.mappage.get_map_basic_data_layer.click()
+            sleep(2)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
+            sleep(2)
+            '''
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            '''
             self.mappage.get_map_basic_data_layer_assessment.click()
+            sleep(2)
             self.mappage.get_map_zoom_out.click()
             sleep(10)
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
@@ -161,42 +164,48 @@ class MapPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_map_08_to_verify_Default_Map_View_Based_On_Incidents(self):
-        self.driver.refresh()
-        sleep(10)
-        '''
-        if self.mappage.get_map_water_fall_scrollable.is_displayed():
+        try:
+            self.driver.refresh()
+            sleep(10)
+            '''
+            if self.mappage.get_map_water_fall_scrollable.is_displayed():
+                self.mappage.get_map_water_fall_handle.click()
+            '''
+            mouse_hover_field = self.mappage.get_map_mouse_hover_icon
+            sleep(5)
+            ActionChains(self.driver).move_to_element(mouse_hover_field)\
+                    .perform()
+            sleep(5)
+            self.mappage.get_map_base_map_accordian.click()
+            sleep(5)
+            self.mappage.get_map_default_view_radio.click()
+            sleep(5)
+            self.mappage.get_map_basic_data_layer.click()
+            sleep(5)
+            self.mappage.get_checking_and_unchecking_basic_data_layer()
+            '''
+            self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            '''
+            sleep(5)
+            self.mappage.get_map_basic_data_layer_incident.click()
+            sleep(5)
+            self.mappage.get_map_zoom_out.click()
+            sleep(10)
+            self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
+            map_incident_count = self.mappage.get_total_map_status_count()
+            print "Found " + str(map_incident_count) + " map status incident count"
             self.mappage.get_map_water_fall_handle.click()
-        '''
-        mouse_hover_field = self.mappage.get_map_mouse_hover_icon
-        sleep(5)
-        ActionChains(self.driver).move_to_element(mouse_hover_field)\
-                .perform()
-        sleep(5)
-        self.mappage.get_map_base_map_accordian.click()
-        sleep(5)
-        self.mappage.get_map_default_view_radio.click()
-        sleep(5)
-        self.mappage.get_map_basic_data_layer.click()
-        sleep(5)
-        self.mappage.get_checking_and_unchecking_basic_data_layer()
-        self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
-        self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
-        self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
-        self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
-        sleep(5)
-        self.mappage.get_map_basic_data_layer_incident.click()
-        sleep(5)
-        self.mappage.get_map_zoom_out.click()
-        sleep(10)
-        self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
-        map_incident_count = self.mappage.get_total_map_status_count()
-        print "Found " + str(map_incident_count) + " map status incident count"
-        self.mappage.get_map_water_fall_handle.click()
-        incidentTotal = self.mappage.get_map_water_fall_list
-        items = incidentTotal.find_elements_by_tag_name("li")
-        print "Found " + str(len(items)-1) + " incident"
-        self.assertEqual(map_incident_count,len(items)-1, "total incident not matching")
-        self.mappage.get_map_water_fall_handle.click()
+            incidentTotal = self.mappage.get_map_water_fall_list
+            items = incidentTotal.find_elements_by_tag_name("li")
+            print "Found " + str(len(items)-1) + " incident"
+            self.assertEqual(map_incident_count,len(items)-1,"total incident not matching" )
+            self.mappage.get_map_water_fall_handle.click()
+        except Exception as e:
+            print e
+            raise
 
     @attr(priority="high")
     #@SkipTest

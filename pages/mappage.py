@@ -28,6 +28,7 @@ class MapPage(BasePageClass):
 
     # Scroll vertically to view default, Night View, Terrain, Satelite Default, Satelite Grey
     _map_scroll = ".//*[@id='mapdiv']/div[2]/div[1]/div[1]"
+    #              .//*[@id='mapdiv']/div[2]/div[1]/div[1]
     _map_sub_scroll = ".//*[@id='leaflet-control-accordion-layers-1']/article"
 
     # View Map in Full Screen
@@ -437,50 +438,62 @@ class MapPage(BasePageClass):
                 self.get_map_basic_data_layer_incident.click()
 
         if self.get_map_basic_data_layer_threat_streams.is_displayed():
+            '''
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            '''
             if self.get_map_basic_data_layer_threat_streams.is_selected():
                 self.get_map_basic_data_layer_threat_streams.click()
 
         if self.get_map_basic_data_layer_indicator_teams.is_displayed():
+            '''
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            '''
             if self.get_map_basic_data_layer_indicator_teams.is_selected():
                 self.get_map_basic_data_layer_indicator_teams.click()
 
         if self.get_map_basic_data_layer_annotations.is_displayed():
+            '''
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+            '''
             if self.get_map_basic_data_layer_annotations.is_selected():
                 self.get_map_basic_data_layer_annotations.click()
 
         if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_displayed():
+            '''
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            '''
             if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
                 self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
 
         if self.get_map_basic_data_layer_threat_streams_stream_1.is_displayed():
+            '''
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            '''
             if self.get_map_basic_data_layer_threat_streams_stream_1.is_selected():
                 self.get_map_basic_data_layer_threat_streams_stream_1.click()
 
         if self.get_map_basic_data_layer_threat_streams_stream_2.is_displayed():
+            '''
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
             self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+            '''
             if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
                 self.get_map_basic_data_layer_threat_streams_stream_2.click()
 

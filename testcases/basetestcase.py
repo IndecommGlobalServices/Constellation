@@ -2,17 +2,15 @@ import unittest
 import os
 from datetime import datetime
 from selenium import webdriver
-import sys
 from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pyvirtualdisplay import Display
 
-
-
 class BaseTestCase(unittest.TestCase):
     username = ""
+    # driver = ""
 
     @classmethod
     def setUpClass(cls):
@@ -23,6 +21,14 @@ class BaseTestCase(unittest.TestCase):
 
         # create a new Firefox session
         cls.driver = webdriver.Firefox(capabilities = DesiredCapabilities().FIREFOX)
+      
+
+        '''
+        chromedriver = "../drivers/windows/chromedriver.exe"
+        os.environ["webdriver.chrome.driver"] = chromedriver
+        cls.driver = webdriver.Chrome(chromedriver)
+        '''
+
         cls.driver.implicitly_wait(30)
         cls.driver.set_window_size(1280, 1024)
         cls.driver.maximize_window()
@@ -34,10 +40,7 @@ class BaseTestCase(unittest.TestCase):
         homepage = HomePage(cls.driver)
         homepage.loginlink.click()
 
-        loginpage = LoginPage(cls.driver)
-        loginpage.loginDashboard()
-        cls.username = loginpage.usernameText
-
+       
 
     @classmethod
     def tearDownClass(cls):

@@ -9,5 +9,5 @@ class HomePageTest(BaseTestCase):
     def test_ClickLogin(cls):
         homepage = HomePage(cls.driver)
         homepage.loginlink.click()
-        cls.assertEqual("https://constellation-dev.haystax.com/#/login", cls.driver.current_url)
+        cls.assertEqual("https://constellation-qa.haystax.com/apps/#/", cls.driver.current_url)
 

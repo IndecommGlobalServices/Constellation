@@ -76,6 +76,7 @@ class AssetpageTest(BaseTestCase):
         self.assertFalse(self.assetpage.get_asset_link_delete_text.is_enabled(),
                          self.config.get(self.section, 'MESSAGE_WHEN_NO_ASSETS_AVAILABLE'))
 
+
     @attr(priority="high")
     #@SkipTest
     def test_AS_03(self):
@@ -320,6 +321,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.asset_overview_cancel_click()
         expectedAfterResetFilter = self.assetpage.get_asset_asset_type_text.text
         self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
+
 
     @attr(priority="high")
     #@SkipTest
@@ -1510,7 +1512,10 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        self.assetpage.get_asset_reset_button.click()
+        sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
+            sleep(2)
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
@@ -1530,6 +1535,8 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        self.assetpage.get_asset_reset_button.click()
+        sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1552,6 +1559,8 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        self.assetpage.get_asset_reset_button.click()
+        sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1577,6 +1586,8 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        self.assetpage.get_asset_reset_button.click()
+        sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1601,6 +1612,8 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        self.assetpage.get_asset_reset_button.click()
+        sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1625,6 +1638,8 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        self.assetpage.get_asset_reset_button.click()
+        sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1650,6 +1665,8 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
+        self.assetpage.get_asset_reset_button.click()
+        sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
