@@ -3,6 +3,7 @@ from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from basepage import BasePage
 from time import sleep
+from loginpage import LoginPage
 from selenium.common.exceptions import *
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
@@ -238,6 +239,9 @@ class AssetPage(BasePageClass):
         self.get_placedata()
 
     def open_asset_app(self):
+        loginpage = LoginPage(self.driver)
+        loginpage.loginDashboard()
+        self.username = loginpage.usernameText
         appicon = IconListPage(self.driver)
         appicon.click_asset_icon()
 
@@ -2265,11 +2269,10 @@ class AssetPage(BasePageClass):
 
     def get_total_row_count(self):
         countText = self.driver.find_element_by_id("assetstable_info").text
-        splitedText = countText.split("of")
-        while '' in splitedText:
-            splitedText.remove('')
-        totalCount = splitedText[1].replace(" entries", "")
+        splitedText = countText.split(" ")
+        totalCount = splitedText[10]
         return int(totalCount)
+
 
     def get_total_row_count_filter(self):
         countText = self.driver.find_element_by_id("assetstable_info").text

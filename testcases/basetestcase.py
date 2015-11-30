@@ -3,24 +3,28 @@ import os
 from datetime import datetime
 from selenium import webdriver
 from pages.homepage import HomePage
-from pages.loginpage import LoginPage
 from pages.basepage import BasePage
 import nose
 
-from pyvirtualdisplay import Display
+#from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
     username = ""
-    # driver = ""
 
     @classmethod
     def setUpClass(cls):
-        display = Display(visible=0, size=(1280,1024))
-        display.start()
+        #display = Display(visible=0, size=(1280,1024))
+        #display.start()
         # create a new Firefox session
 
         cls.driver = webdriver.Firefox()
-        # cls.driver = driver
+
+        '''
+        chromedriver = "../drivers/windows/chromedriver.exe"
+        os.environ["webdriver.chrome.driver"] = chromedriver
+        cls.driver = webdriver.Chrome(chromedriver)
+        '''
+
         cls.driver.implicitly_wait(30)
         cls.driver.maximize_window()
 
@@ -31,9 +35,6 @@ class BaseTestCase(unittest.TestCase):
         homepage = HomePage(cls.driver)
         homepage.loginlink.click()
 
-        loginpage = LoginPage(cls.driver)
-        loginpage.loginDashboard()
-        cls.username = loginpage.usernameText
 
     @classmethod
     def tearDownClass(cls):

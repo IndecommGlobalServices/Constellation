@@ -81,11 +81,14 @@ class MapPageTest(BaseTestCase):
             self.mappage.get_map_basic_data_layer.click()
 
             self.mappage.get_checking_and_unchecking_basic_data_layer()
+            '''
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             sleep(10)
+            '''
+            sleep(2)
             self.mappage.get_map_basic_data_layer_asset.click()
             sleep(2)
             self.mappage.get_map_zoom_out.click()
@@ -126,15 +129,23 @@ class MapPageTest(BaseTestCase):
             mouse_hover_field = self.mappage.get_map_mouse_hover_icon
             ActionChains(self.driver).move_to_element(mouse_hover_field)\
                 .perform()
+            sleep(10)
             self.mappage.get_map_base_map_accordian.click()
+            sleep(10)
             self.mappage.get_map_default_view_radio.click()
+            sleep(2)
             self.mappage.get_map_basic_data_layer.click()
+            sleep(2)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
+            sleep(2)
+            '''
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            '''
             self.mappage.get_map_basic_data_layer_assessment.click()
+            sleep(2)
             self.mappage.get_map_zoom_out.click()
             sleep(10)
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
@@ -172,10 +183,12 @@ class MapPageTest(BaseTestCase):
             self.mappage.get_map_basic_data_layer.click()
             sleep(5)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
+            '''
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
+            '''
             sleep(5)
             self.mappage.get_map_basic_data_layer_incident.click()
             sleep(5)
