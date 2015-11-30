@@ -10,19 +10,16 @@ from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
     username = ""
-    # driver = ""
+
 
     @classmethod
     def setUpClass(cls):
         if os.getenv("OS") == None:
-            display = Display(visible=0, size=(1280, 1024))
+            display = Display(visible=0, size=(1280,800))
             display.start()
-
-
         # create a new Firefox session
-        cls.driver = webdriver.Firefox(capabilities = DesiredCapabilities().FIREFOX)
-      
 
+        cls.driver = webdriver.Firefox(capabilities = DesiredCapabilities().FIREFOX)
         '''
         chromedriver = "../drivers/windows/chromedriver.exe"
         os.environ["webdriver.chrome.driver"] = chromedriver
