@@ -334,22 +334,10 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.asset_create_click()
-        self.assetpage.select_asset_template_type("Place")
-        self.assetpage.enter_asset_type_name.send_keys(self.assetpage.asset_place_name)
-        self.assetpage.enter_asset_type_address.send_keys(self.assetpage.asset_place_address)
-        self.assetpage.enter_asset_type_address2.send_keys(self.assetpage.asset_place_address2)
-        self.assetpage.enter_asset_type_city.send_keys(self.assetpage.asset_place_city)
-        self.assetpage.enter_asset_type_state.send_keys(self.assetpage.asset_place_state)
-        self.assetpage.enter_asset_type_zip.send_keys(self.assetpage.asset_place_zip)
-        self.assetpage.enter_asset_type_owner.send_keys(self.assetpage.asset_place_owner)
-        WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
-            (By.XPATH, self.assetpage._asset_overview_type_drop_down_locator))).click()
-        sleep(2)
-        self.assetpage.get_overview_newtype_text_box.send_keys(self.assetpage.asset_place_type)
-        self.assetpage.get_overview_place_type_add_button.click()
+        self.assetpage.create_place_asset()
         self.assetpage.asset_overview_cancel_click()
         expectedAfterResetFilter = self.assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type", expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
+        self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
 
     @attr(priority="high")
     #@SkipTest
@@ -878,9 +866,9 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
+        WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID, "map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
-        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
             self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "550"
@@ -939,7 +927,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver, 50).until(EC.presence_of_element_located((By.ID, "map_control")))
+        WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
         self.assetpage.get_asset_location_edit_icon.click()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),

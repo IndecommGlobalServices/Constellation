@@ -623,11 +623,12 @@ class AssessmentPage(BasePageClass):
     def delete_existing_assessments(self):
         self.search_assessment_textbox(self.asset_school_name)
         sleep(5)
-        if len(self.get_assessment_table("Asset")) >= 0:
+        if len(self.get_assessment_table("Asset")) > 0:
             self.select_multiple_checkboxes(self.get_total_row_count())
             self.get_action_dropdown.click()
             self.get_action_delete_button.click()
             self.get_delete_assessment_delete_button.click()
+        self.get_search_assessment_textbox.clear()
 
 
     def create_assessment(self, startdate, enddate, assignedto):
