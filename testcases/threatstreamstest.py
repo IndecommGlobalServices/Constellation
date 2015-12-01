@@ -9,7 +9,7 @@ from nose.plugins.skip import SkipTest
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
-import ConfigParser
+import ConfigParser, re
 
 class ThreatStreamTest(BaseTestCase):
 
@@ -704,31 +704,288 @@ class ThreatStreamTest(BaseTestCase):
         act_text = self.tstream.get_ts_threat_filter_name_text.text
         self.assertNotEqual(act_text, "New_Filter_TC_25_edit_name", "In Edit Filter window Cancel button is not Working.")
 
-    @attr(priority="high")
-    @SkipTest
-    def test_TS_099(self):
-        sleep(15)
-        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, self.tstream._ts_app_name_text)))
-        self.tstream.get_ts_app_settingl_ink.click()
-        WebDriverWait(self.driver,10).until(EC.text_to_be_present_in_element((By.XPATH,
-                                                self.tstream._ts_setting_window_locator), "Threat Stream settings"))
-        sleep(10)
-        if not self.tstream.get_ts_setting_window_checkbox.is_selected():
-            self.tstream.get_ts_setting_window_checkbox.click()
-            sleep(2)
-            self.tstream.get_ts_setting_window_save_button.click()
-            sleep(2)
-            print "dddddddddddd"
-        else:
 
-            print "rrrrrrrrrrrrrrrrrrrr"
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_26_To_Test_New_Filter_Visibility_User_Option(self):
+        """
+        Test : test_TS_26
+        Description : To verify that visibility as User has been selected properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_26")
+        self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        sleep(1)
+        self.tstream.get_ts_filter_create_visibility_user.click()
+        sleep(1)
+        visibility_type = self.tstream.get_ts_filter_create_visibility_text.text
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        self.assertEqual(visibility_type, "User", "Visibility type is not equal to 'User'")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_27_To_Test_New_Filter_Visibility_Tenant_Option(self):
+        """
+        Test : test_TS_26
+        Description : To verify that visibility as Tenant has been selected properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_27")
+        self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        sleep(1)
+        self.tstream.get_ts_filter_create_visibility_tenant.click()
+        sleep(1)
+        visibility_type = self.tstream.get_ts_filter_create_visibility_text.text
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        self.assertEqual(visibility_type, "Tenant", "Visibility type is not equal to 'Tenant'")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_28_To_Test_New_Filter_Visibility_Groups_Option(self):
+        """
+        Test : test_TS_28
+        Description : To verify that visibility as Groups has been selected properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_28")
+        self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        sleep(1)
+        self.tstream.get_ts_filter_create_visibility_groups.click()
+        sleep(1)
+        visibility_type = self.tstream.get_ts_filter_create_visibility_text.text
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        self.assertEqual(visibility_type, "Groups", "Visibility type is not equal to 'Groups'")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_29_To_Test_New_Filter_Add_Tag(self):
+        """
+        Test : test_TS_29
+        Description : To verify that new tag added properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_29")
+        self.tstream.get_ts_filter_create_tags_textbox.send_keys("Bomb")
+        self.tstream.get_ts_filter_create_tags_add_button.click()
+        list = self.tstream.get_ts_filter_create_tags_delete_icon
+        if list[0].is_displayed():
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertTrue(True, "New Tag could not be added.")
+        else:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertFalse(True, "New Tag could not be added.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_30_To_Test_New_Filter_Delete_Tag(self):
+        """
+        Test : test_TS_30
+        Description : To verify that new tag has been deleted properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_30")
+        self.tstream.get_ts_filter_create_tags_textbox.send_keys("Bomb")
+        self.tstream.get_ts_filter_create_tags_add_button.click()
+        list = self.tstream.get_ts_filter_create_tags_delete_icon
+        list[0].click()
+        sleep(5)
+        list = self.tstream.get_ts_filter_create_tags_delete_icon
+        if len(list)>=1:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertFalse(True, "New Tag could not be deleted.")
+        else:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertTrue(True, "New Tag could not be deleted.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_31_To_Test_Manage_Feeds_Rss_Atom_Filter(self):
+        """
+        Test : test_TS_31
+        Description : To verify that In manage feeds window Rss/Atom Filter is selected.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_manage_feeds_link.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                       self.tstream._ts_manage_feeds_app_text_locator)))
+        self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        self.tstream.get_ts_manage_feeds_dropdown_rss_atom_menu_item.click()
+        sleep(2)
+        text = self.tstream.get_ts_manage_feeds_filter_text.text
+        self.tstream.get_ts_threat_streams_link.click()
+        self.assertEqual(text, "Rss/atom", "Selected feeds filter type is not equal to Rss/atom")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_32_To_Test_Manage_Feeds_Rss_Atom_Off_Filter(self):
+        """
+        Test : test_TS_32
+        Description : To verify that In manage feeds window Rss/Atom-Off Filter is selected.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_manage_feeds_link.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                       self.tstream._ts_manage_feeds_app_text_locator)))
+        self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        self.tstream.get_ts_manage_feeds_dropdown_rss_atom_off_menu_item.click()
+        sleep(2)
+        text = self.tstream.get_ts_manage_feeds_filter_text.text
+        self.tstream.get_ts_threat_streams_link.click()
+        self.assertEqual(text, "Rss/atom-OFF", "Selected feeds filter type is not equal to Rss/atom-OFF")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_33_To_Test_Manage_Feeds_Twitter_Filter(self):
+        """
+        Test : test_TS_33
+        Description : To verify that In manage feeds window Twitter Filter is selected.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_manage_feeds_link.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                       self.tstream._ts_manage_feeds_app_text_locator)))
+        self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        self.tstream.get_ts_manage_feeds_dropdown_twitter_menu_item.click()
+        sleep(2)
+        text = self.tstream.get_ts_manage_feeds_filter_text.text
+        self.tstream.get_ts_threat_streams_link.click()
+        self.assertEqual(text, "Twitter", "Selected feeds filter type is not equal to Twitter")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_34_To_Test_Manage_Feeds_Reset_Filter(self):
+        """
+        Test : test_TS_34
+        Description : To verify that In manage feeds Reset Feeds filter.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_manage_feeds_link.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                       self.tstream._ts_manage_feeds_app_text_locator)))
+        self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        self.tstream.get_ts_manage_feeds_dropdown_twitter_menu_item.click()
+        sleep(2)
+        text1 = self.tstream.get_ts_manage_feeds_filter_text.text
+        self.tstream.get_ts_manage_feeds_reset_filter.click()
+        sleep(2)
+        text2 = self.tstream.get_ts_manage_feeds_filter_text.text
+        if (text1 != text2) and (text2 == 'Type'):
+            self.tstream.get_ts_threat_streams_link.click()
+            self.assertTrue(text2, "Filter Could not reset.")
+        else:
+            self.tstream.get_ts_threat_streams_link.click()
+            self.assertFalse(True, "Filter Could not reset.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_35_To_Test_Manage_Feeds_Search_Textbox(self):
+        """
+        Test : test_TS_35
+        Description : To verify that search feeds text box is working properly.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_manage_feeds_link.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                       self.tstream._ts_manage_feeds_app_text_locator)))
+        self.tstream.get_ts_manage_feeds_search_feeds_textbox.clear()
+        self.tstream.get_ts_manage_feeds_search_feeds_textbox.send_keys("Latest")
+        sleep(5)
+        feeds_list = self.tstream.get_ts_manage_feeds_texts_list
+        word_count = 0
+        for text in feeds_list:
+            if "Latest" in text.text.encode('utf-8'):
+                word_count = word_count+1
+        if word_count>=1:
+            self.tstream.get_ts_threat_streams_link.click()
+            self.assertTrue(word_count, "Feeds does not have searched word.")
+        else:
+            self.tstream.get_ts_threat_streams_link.click()
+            self.assertFalse(True,"Feeds does not have searched word.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_36_To_Test_Setting_Compact_View_Save_Button(self):
+        """
+        Test : test_TS_36
+        Description : To verify that Compact View Check Box.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
         self.tstream.get_ts_setting_link.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                        self.tstream._ts_setting_window_title_locator)))
+        before_click = self.tstream.get_ts_setting_window_checkbox.get_attribute("class")
+        self.tstream.get_ts_setting_window_checkbox.click()
         sleep(2)
         self.tstream.get_ts_setting_window_save_button.click()
-        sleep(2)
-        WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable ((By.XPATH, self.tstream._ts_setting_link_locator)))
         self.tstream.get_ts_setting_link.click()
-        # sleep(3)
-        # xxx = self.tstream.get_ts_app_setting_window_checkbox.is_selected()
-        # print xxx
-        self.assertTrue(self.tstream.get_ts_setting_window_checkbox.is_selected(), "Check box has been enabled.")
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                        self.tstream._ts_setting_window_title_locator)))
+        after_click = self.tstream.get_ts_setting_window_checkbox.get_attribute("class")
+        self.tstream.get_ts_setting_window_save_button.click()
+        self.assertNotEqual(before_click, after_click, "The Click is not happened for Compact View check box.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_37_To_Test_Setting_Compact_View_Cancel_Button(self):
+        """
+        Test : test_TS_37
+        Description : To verify that Settings window cancel button.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_setting_link.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                        self.tstream._ts_setting_window_title_locator)))
+        before_click = self.tstream.get_ts_setting_window_checkbox.get_attribute("class")
+        self.tstream.get_ts_setting_window_checkbox.click()
+        sleep(2)
+        self.tstream.get_ts_setting_window_close_button.click()
+        self.tstream.get_ts_setting_link.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                        self.tstream._ts_setting_window_title_locator)))
+        after_click = self.tstream.get_ts_setting_window_checkbox.get_attribute("class")
+        self.tstream.get_ts_setting_window_close_button.click()
+        self.assertEqual(before_click, after_click, "Cancel button is not working properly.")
