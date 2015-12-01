@@ -6,6 +6,7 @@ from pages.IconListPage import IconListPage
 from basepage import BasePage
 from time import sleep, time
 import os, json
+from loginpage import LoginPage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -144,6 +145,9 @@ class AssessmentPage(BasePageClass):
         self.get_assessment_app()
 
     def get_assessment_app(self):
+        loginpage = LoginPage(self.driver)
+        loginpage.loginDashboard()
+        self.username = loginpage.usernameText
         appicon = IconListPage(self.driver)
         appicon.click_assessments_icon()
 

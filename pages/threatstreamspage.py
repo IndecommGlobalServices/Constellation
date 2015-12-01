@@ -4,6 +4,7 @@ from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+from loginpage import LoginPage
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -492,6 +493,9 @@ class ThreatStreamPage(BasePageClass):
 
     def __init__(self, driver):
         super(ThreatStreamPage, self).__init__(driver)
+        loginpage = LoginPage(self.driver)
+        loginpage.loginDashboard()
+        self.username = loginpage.usernameText
         appicon = IconListPage(self.driver)
         appicon.click_threatstream()
         sleep(20)
