@@ -19,12 +19,12 @@ class BaseTestCase(unittest.TestCase):
             display.start()
         # create a new Firefox session
 
-        cls.driver = webdriver.Firefox(capabilities = DesiredCapabilities().FIREFOX)
-        '''
+        #cls.driver = webdriver.Firefox(capabilities = DesiredCapabilities().FIREFOX)
+
         chromedriver = "../drivers/windows/chromedriver.exe"
         os.environ["webdriver.chrome.driver"] = chromedriver
         cls.driver = webdriver.Chrome(chromedriver)
-        '''
+
 
         cls.driver.implicitly_wait(30)
         cls.driver.set_window_size(1280, 1024)
