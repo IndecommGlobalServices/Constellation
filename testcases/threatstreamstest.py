@@ -49,7 +49,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_threat_dropdown_filter.click()
         self.tstream.get_ts_threat_dropdown_starred_filter.click()
         act_text = self.tstream.get_ts_threat_filter_name_text.text
-        self.assertEqual('Starn red', act_text, "Selected filter name is not same as 'Starred'.")
+        self.assertEqual('Starred', act_text, "Selected filter name is not same as 'Starred'.")
 
 
     @attr(priority="high")
@@ -393,7 +393,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_15")
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("gun")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
-        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("love")
+        self.tstream.get_ts_filter_created_phrases_textbox.send_keys("love")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
         self.tstream.get_ts_filter_create_save_button.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
