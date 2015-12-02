@@ -4,6 +4,7 @@ from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from selenium.webdriver.common.keys import Keys
 from time import sleep
+from loginpage import LoginPage
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -12,11 +13,11 @@ class ThreatStreamPage(BasePageClass):
 
 
     _ts_app_name_text = ".//*[@id='header']/span[contains(@class,'ng-scope active')]/span"
-    _ts_setting_link_locator = "//img[contains(@alt,'Settings')]"
-    _ts_setting_window_title_locator = ".//*[@id='threatstream_settings_modal']//h4[@class='modal-title']"
-    _ts_setting_window_compact_view_checkbox_locator = "//label[contains(text(),'Compact View')]"
-    _ts_setting_window_save_button_locator = ".//*[@id='threatstream_settings_modal']//button[contains(text(),'Save')]"
-    _ts_setting_window_close_button_locator = ".//*[@id='threatstream_settings_modal']//button[contains(text(),'Close')]"
+    _ts_setting_link_locator = ".//*[@id='page_content']/div[contains(@class,'header icon_bar')]/img[@title='Settings']"
+    _ts_setting_window_locator = ".//div[@id='threatstream_settings_modal']//h4[@class='modal-title']"
+    _ts_setting_window_compact_view_checkbox_locator = ".//form[contains(@class,'ng-pristine ng-valid')]/div[@class='modal-body']/div/label/span/span"
+    _ts_setting_window_save_button_locator = ".//*[@id='threatstream_settings_modal']//div[@class='modal-footer']/button[contains(text(),'Save')]"
+    _ts_setting_window_close_button_locator = ".//*[@id='threatstream_settings_modal']//div[@class='modal-footer']/button[contains(text(),'Close')]"
 
     #Threat Stream dropdown selection
     _ts_threat_dropdown_filter_locator = ".//div[contains(@class,'leftcolumn')]//div[contains(@class,'squintemheader')]//a[@data-toggle='dropdown']/span/span"
@@ -44,7 +45,6 @@ class ThreatStreamPage(BasePageClass):
     _ts_filter_create_visibility_groups_locator = "//div[contains(@class,'leftcolumn')]//a[text()='Groups']"
     _ts_filter_create_visibility_tenant_locator = "//div[contains(@class,'leftcolumn')]//a[text()='Tenant']"
     _ts_filter_create_visibility_user_locator = "//div[contains(@class,'leftcolumn')]//a[text()='User']"
-    _ts_filter_create_visibility_text_locator = "//div[label='Visibility']//button[@type='button']"
     _ts_filter_create_tags_textbox_locator = "//div[contains(@class,'leftcolumn')]//input[@ng-model='newTag']"
     _ts_filter_create_tags_add_button_locator = "//div[contains(@class,'leftcolumn')]//button[contains(@ng-click,'addTag')]"
     _ts_filter_create_tags_delete_icon_locator = "//div[contains(@class,'leftcolumn')]//a[contains(@ng-click,'deleteTag')]"
@@ -71,27 +71,7 @@ class ThreatStreamPage(BasePageClass):
     _ts_feed_email_window_comment_textbox_locator = ".//div[contains(@class,'modal in')]//input[@placeholder='Optional comment']"
     _ts_feed_email_window_send_button_locator = ".//div[contains(@class,'modal in')]//button[contains(text(),'Send')]"
     _ts_feed_email_window_cancel_button_locator = ".//div[contains(@class,'modal in')]//button[contains(text(),'Cancel')]"
-
-    #Manage Feeds Locator
-    _ts_manage_feeds_link_locator = "//img[contains(@alt,'Manage feeds')]"
-    _ts_manage_feeds_app_text_locator = ".//*[@id='header']//span[contains(text(),'Manage Feeds')]"
-    _ts_manage_feeds_filter_text_locator = ".//*[@id='span_filters']//button[@type='button']"
-    _ts_manage_feeds_filter_drop_down_locator = ".//*[@id='span_filters']//button[@data-toggle='dropdown']"
-    _ts_manage_feeds_dropdown_rss_atom_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Rss/atom']"
-    _ts_manage_feeds_dropdown_rss_atom_off_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Rss/atom-OFF']"
-    _ts_manage_feeds_dropdown_twitter_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Twitter']"
-    _ts_manage_feeds_reset_filters_locator = ".//*[@id='span_filters']/button"
-    _ts_manage_feeds_search_feeds_locator = ".//*[@id='txt_search_feeds']"
-    _ts_manage_feeds_text_locator = ".//*[@id='feedstable']/tbody/tr/td[2]"
-
-    _ts_threat_streams_link_locator = ".//*[@id='header']//a[contains(text(),'Threat Streams')]"
-
-    #Settings Locator
-    #_ts_settings_link_locator = "//img[contains(@alt,'Settings')]"
-
-
-
-
+    
     @property
     def get_ts_app_name(self):
         return self.driver.find_element_by_xpath(self._ts_app_name_text)
@@ -306,14 +286,6 @@ class ThreatStreamPage(BasePageClass):
                           + self._ts_filter_create_visibility_user_locator + err.message)
 
     @property
-    def get_ts_filter_create_visibility_text(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_filter_create_visibility_text_locator)
-        except Exception, err:
-            raise type(err)("Filter create window Visibility User not available - " \
-                          + self._ts_filter_create_visibility_text_locator + err.message)
-
-    @property
     def get_ts_filter_create_type_refresh_button(self):
         try:
             return self.driver.find_element_by_xpath(self._ts_filter_create_type_refresh_button_locator)
@@ -494,109 +466,6 @@ class ThreatStreamPage(BasePageClass):
             raise type(err)("Email share window Cancel button is not available - " \
                           + self._ts_feed_email_window_cancel_button_locator  + err.message)
 
-    @property
-    def get_ts_manage_feeds_link(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_link_locator)
-        except Exception, err:
-            raise type(err)("Manage Feeds Link is not available - " \
-                          + self._ts_manage_feeds_link_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_filter_drop_down_arrow(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_filter_drop_down_locator)
-        except Exception, err:
-            raise type(err)("Manage Feeds Drop Down Filter Arrow is not available - " \
-                          + self._ts_manage_feeds_filter_drop_down_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_dropdown_rss_atom_menu_item(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_dropdown_rss_atom_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds drop down Rss/Atom menu item is not available - " \
-                          + self._ts_manage_feeds_dropdown_rss_atom_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_dropdown_rss_atom_off_menu_item(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_dropdown_rss_atom_off_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds drop down Rss/Atom-Off menu item is not available - " \
-                          + self._ts_manage_feeds_dropdown_rss_atom_off_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_dropdown_twitter_menu_item(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_dropdown_twitter_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds drop down Twitter menu item is not available - " \
-                          + self._ts_manage_feeds_dropdown_twitter_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_filter_text(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_filter_text_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds filter text is not available - " \
-                          + self._ts_manage_feeds_filter_text_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_reset_filter(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_reset_filters_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds reset filter button is not available - " \
-                          + self._ts_manage_feeds_reset_filters_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_search_feeds_textbox(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_search_feeds_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds reset filter button is not available - " \
-                          + self._ts_manage_feeds_search_feeds_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_search_feeds_textbox(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_search_feeds_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds search feeds filter is not available - " \
-                          + self._ts_manage_feeds_search_feeds_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_app_text(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_app_text_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds app text button is not available - " \
-                          + self._ts_manage_feeds_app_text_locator  + err.message)
-
-    @property
-    def get_ts_threat_streams_link(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_threat_streams_link_locator)
-        except Exception, err:
-            raise type(err)("Manage feeds app text button is not available - " \
-                          + self._ts_threat_streams_link_locator  + err.message)
-
-    @property
-    def get_ts_settings_window_title(self):
-        try:
-            return self.driver.find_element_by_xpath(self._ts_setting_window_title_locator)
-        except Exception, err:
-            raise type(err)("Settings Window Title is not available - " \
-                          + self._ts_setting_window_title_locator  + err.message)
-
-    @property
-    def get_ts_manage_feeds_texts_list(self):
-        try:
-            return self.driver.find_elements_by_xpath(self._ts_manage_feeds_text_locator)
-        except Exception, err:
-            raise type(err)("Search feeds text are not available - " \
-                          + self._ts_manage_feeds_text_locator  + err.message)
 
     def get_ts_new_filter_name(self, file_name):
         xpath = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'"+str(file_name)+"')]"
@@ -611,10 +480,22 @@ class ThreatStreamPage(BasePageClass):
         Revision:
         :return: None
         """
+        # if not self.get_asset_create_asset:
+        #     try:
+        #         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+        #             (By.LINK_TEXT, self._asset_link_locator))).click()
+        #         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self._asset_create_asset)))
+        #     except:
+        #         inspectstack = inspect.stack()[1][3]
+        #         self.recoverapp(inspectstack)
+
 
 
     def __init__(self, driver):
         super(ThreatStreamPage, self).__init__(driver)
+        loginpage = LoginPage(self.driver)
+        loginpage.loginDashboard()
+        self.username = loginpage.usernameText
         appicon = IconListPage(self.driver)
         appicon.click_threatstream()
-        sleep(25)
+        sleep(20)

@@ -6,6 +6,7 @@ from pages.IconListPage import IconListPage
 from basepage import BasePage
 from time import sleep, time
 import os, json
+from loginpage import LoginPage
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
@@ -144,6 +145,9 @@ class AssessmentPage(BasePageClass):
         self.get_assessment_app()
 
     def get_assessment_app(self):
+        loginpage = LoginPage(self.driver)
+        loginpage.loginDashboard()
+        self.username = loginpage.usernameText
         appicon = IconListPage(self.driver)
         appicon.click_assessments_icon()
 
@@ -619,11 +623,12 @@ class AssessmentPage(BasePageClass):
     def delete_existing_assessments(self):
         self.search_assessment_textbox(self.asset_school_name)
         sleep(5)
-        if len(self.get_assessment_table("Asset")) >= 0:
+        if len(self.get_assessment_table("Asset")) > 0:
             self.select_multiple_checkboxes(self.get_total_row_count())
             self.get_action_dropdown.click()
             self.get_action_delete_button.click()
             self.get_delete_assessment_delete_button.click()
+        self.get_search_assessment_textbox.clear()
 
 
     def create_assessment(self, startdate, enddate, assignedto):
