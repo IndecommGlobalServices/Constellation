@@ -7,7 +7,7 @@ from loginpage import LoginPage
 from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
+from selenium.webdriver.common.by import By
 
 class ThreatStreamPage(BasePageClass):
 
@@ -606,12 +606,33 @@ class ThreatStreamPage(BasePageClass):
         except Exception, err:
             raise type(err)("Newly created filter name is not available - "+ xpath  + err.message)
 
+    def delete_created_filter(self, filter_name):
+        self.get_ts_threat_dropdown_filter.click()
+        self.get_ts_new_filter_name(filter_name).click()
+        sleep(4)#required to update filter window title
+        self.get_ts_threat_filter_edit_cog_wheel.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self._ts_filter_create_title_locator)))
+        self.get_ts_filter_create_delete_button.click()
+        sleep(2)#required to display delete confirm popup
+        self.get_ts_filter_create_confirm_delete_button.click()
+        sleep(2)#required to
+
     def return_to_apps_main_page(self):
         """
         Description : This function will helps to go back to threat stream page.
         Revision:
         :return: None
         """
+        # if not self.get_asset_create_asset:
+        #     try:
+        #         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+        #             (By.LINK_TEXT, self._asset_link_locator))).click()
+        #         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located((By.XPATH, self._asset_create_asset)))
+        #     except:
+        #         inspectstack = inspect.stack()[1][3]
+        #         self.recoverapp(inspectstack)
+
 
 
     def __init__(self, driver):
@@ -621,4 +642,4 @@ class ThreatStreamPage(BasePageClass):
         self.username = loginpage.usernameText
         appicon = IconListPage(self.driver)
         appicon.click_threatstream()
-        sleep(25)
+        sleep(20)
