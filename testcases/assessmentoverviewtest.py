@@ -100,6 +100,7 @@ class AssessmentOverviewPageTest(BaseTestCase):
     def test_AST_58_To_Verify_Overview_Dates_Change_Day(self):
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=1)
+        sleep(1)
         self.ast.get_overview_startdate_textbox.clear()
         self.ast.get_overview_startdate_textbox.send_keys(str(start_date))
         self.ast.get_overview_enddate_textbox.clear()
@@ -117,12 +118,13 @@ class AssessmentOverviewPageTest(BaseTestCase):
     def test_AST_59_To_Verify_Overview_Dates_Change_Month(self):
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=31)
+        sleep(1)
         self.ast.get_overview_startdate_textbox.clear()
         self.ast.get_overview_startdate_textbox.send_keys(str(start_date))
         self.ast.get_overview_enddate_textbox.clear()
         self.ast.get_overview_enddate_textbox.send_keys(str(end_date))
         #self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
-        sleep(5)
+        sleep(10)
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 50).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, self.ast._ast_saved_text_locator), "Saved"), "The message appeared is" +
@@ -136,6 +138,7 @@ class AssessmentOverviewPageTest(BaseTestCase):
     def test_AST_60_To_Verify_Overview_Dates_Change_Year(self):
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=365)
+        sleep(1)
         self.ast.get_overview_startdate_textbox.clear()
         self.ast.get_overview_startdate_textbox.send_keys(str(start_date))
         self.ast.get_overview_enddate_textbox.clear()

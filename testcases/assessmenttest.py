@@ -21,7 +21,7 @@ class AssessmenttPageTest(BaseTestCase):
         super(AssessmenttPageTest, cls).setUpClass()
         cls.ast = AssessmentPage(cls.driver)
         cls.ast.get_asset_avilability("")
-
+        cls.ast.delete_existing_assessments()
 
     def setUp(self):
         self.errors_and_failures = self.tally()

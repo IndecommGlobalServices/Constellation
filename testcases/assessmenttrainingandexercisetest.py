@@ -60,12 +60,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
             if not schoolsafetyoptions[option].get_attribute("class") == \
                     "answer_choice radio ng-binding ng-isolate-scope checked":
                 schoolsafetyoptions[option].click()
-
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
-
                 schoolsafetychecked = self.ast.get_schooldata_radiobutton\
                     (self.config.get(self.mainsection, 'SECTION_SCHOOL'),
                      self.config.get(self.subsection, 'SECTION_SCHOOL_SAFETY_PLAN'))
@@ -91,9 +86,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                     "answer_choice radio ng-binding ng-isolate-scope checked":
 
                 schoolsafetyoptions[option].click()
-
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
 
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
@@ -123,9 +115,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 schoolsafetyoptions[option].click()
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
 
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
@@ -158,9 +147,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
 
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
                 schoolsafetychecked = self.ast.get_schooldata_radiobutton\
@@ -192,9 +178,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
 
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
                 schoolsafetychecked = self.ast.get_schooldata_radiobutton\
@@ -224,9 +207,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
 
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
@@ -258,9 +238,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
 
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
                 schoolsafetychecked = self.ast.get_schooldata_radiobutton\
@@ -290,9 +267,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
 
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
@@ -325,9 +299,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
 
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
                 schoolsafetychecked = self.ast.get_schooldata_radiobutton\
@@ -359,9 +330,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
 
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
@@ -417,9 +385,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
 
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
                 schoolsafetychecked = self.ast.get_schooldata_radiobutton\
@@ -451,9 +416,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
 
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
-
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
                 schoolsafetychecked = self.ast.get_schooldata_radiobutton\
@@ -483,9 +445,6 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
                 self.ast.get_assessment_scroll.send_keys(Keys.ARROW_UP)
-
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
 
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
 
@@ -521,7 +480,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 except Exception, err:
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
-
+                    pass
                 self.ast.delete_uploaded_files_assessmentpage\
                     (self.config.get(self.mainsection, section["main_section"]),
                      self.config.get(self.subsection, section["sub_section"]),
@@ -548,6 +507,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                 except Exception, err:
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.delete_uploaded_files_assessmentpage\
                     (self.config.get(self.mainsection, section["main_section"]),
                      self.config.get(self.subsection, section["sub_section"]),
@@ -576,6 +536,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
                     flag = 1
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
                                                  self.config.get(self.subsection, section["sub_section"]))
         if flag == 1:

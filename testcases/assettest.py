@@ -1395,11 +1395,9 @@ class AssetpageTest(BaseTestCase):
         Revision:
         :return: None
         """
-
         #self.assetpage.app_sanity_check()
         self.assetpage.edit_asset("School")
-        self.assertEqual(self.assetpage.asset_school_name[self.assetpage.editSchool], self.assetpage.
-                         get_asset_overview_edit_name_text_box)
+        self.assertEqual(self.assetpage.asset_school_name[1], self.assetpage.get_overview_name_text)
         self.assertEqual(self.assetpage.asset_school_district[1], self.assetpage.get_overview_district_text)
         self.assertEqual(self.assetpage.asset_school_grade[1], self.assetpage.get_overview_grade_text)
 

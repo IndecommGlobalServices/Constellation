@@ -21,7 +21,6 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
     @classmethod
     def setUpClass(cls):
         super(AssessmentSchoolDataPageTest, cls).setUpClass()
-
         cls.AssessmentSections = 'AssessmentSections'
         cls.messages = 'Messages'
         cls.mainsection = 'SchoolDataMainSection'
@@ -57,8 +56,6 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                     self.config.get(self.subsection, 'SECTION_SCHOOL_TYPE'))
             if not schooltypeoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 schooltypeoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
                 schooltypeoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
                                 self.config.get(self.subsection, 'SECTION_SCHOOL_TYPE'))
@@ -67,7 +64,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AST_69_To_Verify_SchooGrade_Checkbox(self):
+    def test_AST_69_To_Verify_SchoolGrade_Checkbox(self):
         """
         Description : To test the school grade option checkbox
         :return:
@@ -77,8 +74,6 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                                     self.config.get(self.subsection, 'SECTION_GRADE_LEVELS'))
             if not schoolgradeoption[option].get_attribute("class") == "checkbox ng-binding checked":
                 schoolgradeoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
                 schoolgradeoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_SCHOOL_INFORMATION'),
                                                     self.config.get(self.subsection, 'SECTION_GRADE_LEVELS'))
@@ -205,8 +200,6 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                     self.config.get(self.subsection, 'SECTION_LAW_ENFORCEMENT_OFFICER'))
             if not policeoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 policeoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
                 policeoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_POLICE'),
                                 self.config.get(self.subsection, 'SECTION_LAW_ENFORCEMENT_OFFICER'))
@@ -238,6 +231,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                     # self.defaultTestResult()
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
                                                 self.config.get(self.subsection, section["sub_section"]),
                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
@@ -260,9 +254,11 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                 except Exception, err:
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
                                                               self.config.get(self.subsection, section["sub_section"]),
                                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
+
 
     @attr(priority="high")
     #@SkipTest
@@ -284,7 +280,9 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                     flag = 1
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
                                                  self.config.get(self.subsection, section["sub_section"]))
+
         if flag == 1:
             self.fail("Test has failed")
