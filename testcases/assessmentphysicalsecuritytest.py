@@ -55,8 +55,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_PERIMETER_TYPE_OF_WALL'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_PERIMETER'),
                                                     self.config.get(self.subsection, 'SECTION_PERIMETER_TYPE_OF_WALL'))
@@ -74,8 +72,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_PERIMETER_FENCING'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_PERIMETER'),
                                                     self.config.get(self.subsection, 'SECTION_PERIMETER_FENCING'))
@@ -93,8 +89,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_PERIMETER_GATES_LOCKED'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_PERIMETER'),
                                                     self.config.get(self.subsection, 'SECTION_PERIMETER_GATES_LOCKED'))
@@ -112,8 +106,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_PERIMETER_SAME_KEY'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_PERIMETER'),
                                                     self.config.get(self.subsection, 'SECTION_PERIMETER_SAME_KEY'))
@@ -131,8 +123,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_PERIMETER_ADDITIONAL_FENCING'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_PERIMETER'),
                                                     self.config.get(self.subsection, 'SECTION_PERIMETER_ADDITIONAL_FENCING'))
@@ -150,8 +140,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_CCTV'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_CCTV'),
                                                     self.config.get(self.subsection, 'SECTION_CCTV'))
@@ -187,8 +175,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_CCTV_ADDITIONAL_CAMERAS'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_CCTV'),
                                                     self.config.get(self.subsection, 'SECTION_CCTV_ADDITIONAL_CAMERAS'))
@@ -245,8 +231,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_LOCKS_AVAILABILITY'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LOCK'),
                                                     self.config.get(self.subsection, 'SECTION_LOCKS_AVAILABILITY'))
@@ -264,8 +248,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_LOCK_MAIN_ENTRANCE'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LOCK'),
                                                     self.config.get(self.subsection, 'SECTION_LOCK_MAIN_ENTRANCE'))
@@ -283,8 +265,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                                                     self.config.get(self.subsection, 'SECTION_LOCK_OTHER_PARTS'))
             if not locksoption[option].get_attribute("class") == "checkbox ng-binding checked":
                 locksoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 locksoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_LOCK'),
                                                     self.config.get(self.subsection, 'SECTION_LOCK_OTHER_PARTS'))
@@ -304,8 +284,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_IDENTIFICATION_CARDS'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_IDENTIFICATION'),
                                                     self.config.get(self.subsection, 'SECTION_IDENTIFICATION_CARDS'))
@@ -323,8 +301,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_IDENTIFICATION_PHOTOGRAPH'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_IDENTIFICATION'),
                                                     self.config.get(self.subsection, 'SECTION_IDENTIFICATION_PHOTOGRAPH'))
@@ -342,8 +318,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_IDENTIFICATION_STUDENT_PHOTOGRAPH'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_IDENTIFICATION'),
                                                     self.config.get(self.subsection, 'SECTION_IDENTIFICATION_STUDENT_PHOTOGRAPH'))
@@ -361,8 +335,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_IDENTIFICATION_VISITOR_SIGN'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_IDENTIFICATION'),
                                                     self.config.get(self.subsection, 'SECTION_IDENTIFICATION_VISITOR_SIGN'))
@@ -380,8 +352,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_IDENTIFICATION_TEMPORARY_ID'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_IDENTIFICATION'),
                                                     self.config.get(self.subsection, 'SECTION_IDENTIFICATION_TEMPORARY_ID'))
@@ -399,8 +369,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_IDENTIFICATION_VISITOR_CHECKOUT'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_IDENTIFICATION'),
                                                     self.config.get(self.subsection, 'SECTION_IDENTIFICATION_VISITOR_CHECKOUT'))
@@ -418,8 +386,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_IDENTIFICATION_DISTRICT_STAFF_CHECKIN'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_IDENTIFICATION'),
                                                     self.config.get(self.subsection, 'SECTION_IDENTIFICATION_DISTRICT_STAFF_CHECKIN'))
@@ -437,8 +403,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_IDENTIFICATION_DISTRICT_STAFF_PHOTOGRAPH'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_IDENTIFICATION'),
                                                     self.config.get(self.subsection, 'SECTION_IDENTIFICATION_DISTRICT_STAFF_PHOTOGRAPH'))
@@ -456,8 +420,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_LIGHTING_DARK'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LIGHTING'),
                                                     self.config.get(self.subsection, 'SECTION_LIGHTING_DARK'))
@@ -475,8 +437,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_LIGHTING_CONTROL'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LIGHTING'),
                                                     self.config.get(self.subsection, 'SECTION_LIGHTING_CONTROL'))
@@ -494,8 +454,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_LIGHTING_ADDITIONAL'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_LIGHTING'),
                                                     self.config.get(self.subsection, 'SECTION_LIGHTING_ADDITIONAL'))
@@ -514,8 +472,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_ALARMS_ACCESSALARMS'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ALARMS'),
                                                     self.config.get(self.subsection, 'SECTION_ALARMS_ACCESSALARMS'))
@@ -533,8 +489,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_ALARM_MONITORS'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ALARMS'),
                                                     self.config.get(self.subsection, 'SECTION_ALARM_MONITORS'))
@@ -552,8 +506,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_ALARMS_PANICALARMS'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ALARMS'),
                                                     self.config.get(self.subsection, 'SECTION_ALARMS_PANICALARMS'))
@@ -571,8 +523,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_ALARMS_KEYINDIVIDUAL_PANICALARM'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ALARMS'),
                                                     self.config.get(self.subsection, 'SECTION_ALARMS_KEYINDIVIDUAL_PANICALARM'))
@@ -590,8 +540,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_BIOMETRIC_AVAILABILITY'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BIOMETRIC'),
                                                     self.config.get(self.subsection, 'SECTION_BIOMETRIC_AVAILABILITY'))
@@ -609,8 +557,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_BIOMETRIC_CHARACTERESTICS'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BIOMETRIC'),
                                                     self.config.get(self.subsection, 'SECTION_BIOMETRIC_CHARACTERESTICS'))
@@ -628,8 +574,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_BIOMETRIC_LOCK'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_BIOMETRIC'),
                                                     self.config.get(self.subsection, 'SECTION_BIOMETRIC_LOCK'))
@@ -647,8 +591,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                                                     self.config.get(self.subsection, 'SECTION_BIOMETRIC_OTHERPARTS'))
             if not biometricoption[option].get_attribute("class") == "checkbox ng-binding checked":
                 biometricoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 biometricoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_BIOMETRIC'),
                                                     self.config.get(self.subsection, 'SECTION_BIOMETRIC_OTHERPARTS'))
@@ -669,8 +611,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_SECURITY_SWORN'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SECURITY'),
                                                     self.config.get(self.subsection, 'SECTION_SECURITY_SWORN'))
@@ -689,8 +629,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_SECURITY_SRO'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SECURITY'),
                                                     self.config.get(self.subsection, 'SECTION_SECURITY_SRO'))
@@ -727,8 +665,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_SECURITY_SECTION'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SECURITY'),
                                                     self.config.get(self.subsection, 'SECTION_SECURITY_SECTION'))
@@ -746,8 +682,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                                                     self.config.get(self.subsection, 'SECTION_SECURITY_CHARACTERISTICS'))
             if not characteristicsoption[option].get_attribute("class") == "checkbox ng-binding checked":
                 characteristicsoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 characteristicsoption = self.ast.get_schooldata_checkbox(self.config.get(self.mainsection, 'SECTION_SECURITY'),
                                                     self.config.get(self.subsection, 'SECTION_SECURITY_CHARACTERISTICS'))
@@ -766,8 +700,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_SECURITY_ADDITIONAL'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_SECURITY'),
                                                     self.config.get(self.subsection, 'SECTION_SECURITY_ADDITIONAL'))
@@ -803,8 +735,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_ROOFACCESS_DESCRIPTION'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ROOFACCESS'),
                                                     self.config.get(self.subsection, 'SECTION_ROOFACCESS_DESCRIPTION'))
@@ -822,8 +752,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_ROOFACCESS_ACCESS'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_ROOFACCESS'),
                                                     self.config.get(self.subsection, 'SECTION_ROOFACCESS_ACCESS'))
@@ -840,8 +768,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_PHYSICALKEY_AREA'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_PHYSICALKEY'),
                                                     self.config.get(self.subsection, 'SECTION_PHYSICALKEY_AREA'))
@@ -858,8 +784,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_PHYSICALKEY_POSITION'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_PHYSICALKEY'),
                                                     self.config.get(self.subsection, 'SECTION_PHYSICALKEY_POSITION'))
@@ -876,8 +800,6 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
             self.config.get(self.subsection, 'SECTION_PHYSICALKEY_PoC'))
             if not landoption[option].get_attribute("class") == "answer_choice radio ng-binding ng-isolate-scope checked":
                 landoption[option].click()
-                WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, self.ast._ast_overview_save_button_locator))).click()
                 self.ast.save_editeddata(self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
                 landoption = self.ast.get_schooldata_radiobutton(self.config.get(self.mainsection, 'SECTION_PHYSICALKEY'),
                                                     self.config.get(self.subsection, 'SECTION_PHYSICALKEY_PoC'))
@@ -907,6 +829,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                 except Exception, err:
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
                                                 self.config.get(self.subsection, section["sub_section"]),
                                                 self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
@@ -929,6 +852,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                 except Exception, err:
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
                                                               self.config.get(self.subsection, section["sub_section"]),
                                                               self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
@@ -953,6 +877,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                     flag = 1
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
                                                  self.config.get(self.subsection, section["sub_section"]))
         if flag == 1:

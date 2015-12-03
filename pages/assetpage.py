@@ -616,7 +616,7 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_name_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_panel_name_text)
+            return self.driver.find_element_by_xpath(self._asset_overview_panel_name_text).text
         except Exception, err:
             raise type(err)("Asset name not available in overview panel - searched XPATH - " \
                           + self._asset_overview_panel_name_text + err.message)
@@ -1652,7 +1652,7 @@ class AssetPage(BasePageClass):
         sleep(2)
         self.get_overview_newtype_text_box.send_keys(self.asset_place_type)
         self.get_overview_place_type_add_button.click()
-        self.get_asset_overview_save_button.click()
+        # self.get_asset_overview_save_button.click()
 
 
     def get_schooldata(self):
@@ -1704,7 +1704,6 @@ class AssetPage(BasePageClass):
         self.enter_school_district(self.asset_school_district[index])
         self.enter_school_grade(self.asset_school_grade[index])
         self.enter_asset_type(self.asset_school_type[index])
-        self.get_asset_overview_save_button.click()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self._asset_name_breadcrumb), self.get_asset_name_breadcrumb.text))
 
@@ -1791,6 +1790,7 @@ class AssetPage(BasePageClass):
             self.create_school_asset(self.newSchool, self.asset_school_name[self.newSchool])
         elif type == "Place":
             self.create_place_asset()
+        self.get_asset_overview_save_button.click()
 
 
     def create_school_asset_for_assessmentapp(self, schoolname):
@@ -1798,6 +1798,7 @@ class AssetPage(BasePageClass):
         self.asset_create_click()
         self.select_asset_template_type("School")
         self.create_school_asset(self.newSchool, schoolname)
+        self.get_asset_overview_save_button.click()
 
     def edit_asset(self, type):
         """

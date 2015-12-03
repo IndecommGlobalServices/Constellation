@@ -373,7 +373,7 @@ class AssessmentPage(BasePageClass):
     @property
     def get_overview_save_button(self):
         try:
-            WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable(
                 (By.XPATH, self._ast_overview_save_button_locator)))
             return self.driver.find_element_by_xpath(self._ast_overview_save_button_locator)
         except Exception, err:
@@ -603,6 +603,7 @@ class AssessmentPage(BasePageClass):
     def create_assessment_select_haystax_template(self):
         WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self._ast_action_dropdown_loactor)))
+        sleep(1)
         self.get_main_create_assessment_button.click()
         self.get_create_templatetype_dropdown.click()
         self.get_create_haystax_template_option.click()
@@ -622,13 +623,15 @@ class AssessmentPage(BasePageClass):
 
     def delete_existing_assessments(self):
         self.search_assessment_textbox(self.asset_school_name)
-        sleep(5)
+        sleep(2)
         if len(self.get_assessment_table("Asset")) > 0:
             self.select_multiple_checkboxes(self.get_total_row_count())
             self.get_action_dropdown.click()
             self.get_action_delete_button.click()
             self.get_delete_assessment_delete_button.click()
         self.get_search_assessment_textbox.clear()
+        self.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
+        sleep(1)
 
 
     def create_assessment(self, startdate, enddate, assignedto):
@@ -758,7 +761,7 @@ class AssessmentPage(BasePageClass):
 
     def save_editeddata(self, mainsection):
         WebDriverWait(self.driver, 50).until(expected_conditions.element_to_be_clickable(
-                    (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled").click()
+                    (By.XPATH, self._ast_overview_save_button_locator)),"Save button is disabled or not available").click()
         try:
             WebDriverWait(self.driver, 150).until(expected_conditions.text_to_be_present_in_element(
                 (By.XPATH, self._ast_saved_text_locator), "Saved"))
@@ -790,9 +793,9 @@ class AssessmentPage(BasePageClass):
             self.create_assessment(str(start_date), str(end_date), "dee@dee")
 
     def open_overview_page(self):
-        if self.select_assessment(self.asset_school_name):
-            WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_all_elements_located(
-                (By.CLASS_NAME, "widgetcontent")))
+        self.select_assessment(self.asset_school_name)
+        WebDriverWait(self.driver, 10).until(expected_conditions.presence_of_all_elements_located(
+            (By.CLASS_NAME, "widgetcontent")))
 
     def open_main_section(self, mainsection):
         self.select_assessment(self.asset_school_name)

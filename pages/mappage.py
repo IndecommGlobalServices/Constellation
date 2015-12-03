@@ -9,6 +9,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from basepage import BasePage
 from time import sleep
+from loginpage import LoginPage
 import inspect
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -406,6 +407,10 @@ class MapPage(BasePageClass):
 
     def __init__(self, driver):
         super(MapPage, self).__init__(driver)
+        loginpage = LoginPage(self.driver)
+        loginpage.loginDashboard()
+        self.username = loginpage.usernameText
+
 
     def open_map_app(self):
         appicon = IconListPage(self.driver)

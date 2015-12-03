@@ -665,6 +665,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 except Exception, err:
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
                                                 self.config.get(self.subsection, section["sub_section"]),
                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
@@ -687,6 +688,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 except Exception, err:
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.delete_uploaded_files_assessmentpage(self.config.get(self.mainsection, section["main_section"]),
                                                               self.config.get(self.subsection, section["sub_section"]),
                                                               self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
@@ -711,6 +713,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                     flag = 1
                     print err.message + " under " + self.config.get(self.mainsection, section["main_section"]) \
                           +" - " +self.config.get(self.subsection, section["sub_section"])
+                    pass
                 self.ast.schooldata_delete_comment(self.config.get(self.mainsection, section["main_section"]),
                                                  self.config.get(self.subsection, section["sub_section"]))
         if flag == 1:

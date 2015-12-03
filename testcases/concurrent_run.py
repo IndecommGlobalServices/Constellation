@@ -8,10 +8,10 @@ import xml.etree.ElementTree as ET
 start = time.time()
 cwd = os.getcwd()
 os.chdir('..')
-path = os.path.join(os.getcwd(), "testresults"+str(datetime.today().strftime('%Y%m%d'))+"_"+str(datetime.today().time().strftime('%H%M')))
-# if not os.path.exists(path):
-#    os.makedirs(path)
-# os.chdir(path)
+path = os.path.join(os.getcwd(), "testresults_"+str(datetime.today().strftime('%Y%m%d'))+"_"+str(datetime.today().time().strftime('%H%M')))
+if not os.path.exists(path):
+   os.makedirs(path)
+os.chdir(path)
 
 testresult = os.path.join(os.getcwd(), r"Testresult_" + str(datetime.today().strftime('%Y%m%d'))+"_"+
                               str(datetime.today().time().strftime('%H%M'))+".xml")
@@ -39,11 +39,12 @@ os.chdir(cwd)
 
 # assessmenttests = glob.glob('assessment*.py')
 
-tests = (['assettest', str(asset_filepath), 'Assetest'],
-         ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
-         ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
+tests = (
+         # ['assettest', str(asset_filepath), 'Assetest'],
+         # ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
+         # ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
          ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
-         ['maptest', str(map_filepath), 'Maptest'],
+         # ['maptest', str(map_filepath), 'Maptest'],
          ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'],
          ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'],
          ['assessmentschoolinfrastructuretest', str(assessmentinfra_filepath), 'AssessmentSchoolInfrastructuretest'],
