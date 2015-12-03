@@ -614,9 +614,9 @@ class ThreatStreamPage(BasePageClass):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self._ts_filter_create_title_locator)))
         self.get_ts_filter_create_delete_button.click()
-        sleep(2)#required to display delete confirm popup
+        sleep(4)#required to display delete confirm popup
         self.get_ts_filter_create_confirm_delete_button.click()
-        sleep(2)#required to
+        sleep(4)#required to update threat stream apps
 
     def return_to_apps_main_page(self):
         """

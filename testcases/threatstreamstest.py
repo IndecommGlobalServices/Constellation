@@ -417,8 +417,6 @@ class ThreatStreamTest(BaseTestCase):
                counter1 = counter1+1
             elif "love" in (feed_text_val[num].text).encode('utf-8'):
                 counter2 = counter2+1
-
-        print counter1, "ddddd", counter2
         if counter1>=1 and counter2>=1:
             self.tstream.delete_created_filter("New_Filter_TC_15")
             self.assertTrue(True, "The phrases are not appearing in the feeds.")
@@ -574,8 +572,10 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_threat_dropdown_filter.click()
         try:
             if self.tstream.get_ts_new_filter_name("New_Filter_TC_21").is_displayed():
+                self.tstream.get_ts_threat_dropdown_filter.click()
                 self.assertFalse(True, "New filter has been created and Cancel button is not working.")
         except:
+            self.tstream.get_ts_threat_dropdown_filter.click()
             self.assertTrue(True, "New filter has been created and Cancel button is not working.")
 
 
@@ -987,6 +987,7 @@ class ThreatStreamTest(BaseTestCase):
                                                                         self.tstream._ts_setting_window_title_locator)))
         after_click = self.tstream.get_ts_setting_window_checkbox.get_attribute("class")
         self.tstream.get_ts_setting_window_save_button.click()
+        sleep(3)#Required to make settings link enable
         self.assertNotEqual(before_click, after_click, "The Click is not happened for Compact View check box.")
 
     @attr(priority="high")
