@@ -47,6 +47,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_starred_filter.click()
         act_text = self.tstream.get_ts_threat_filter_name_text.text
         self.assertEqual('Starred', act_text, "Selected filter name is not same as 'Starred'.")
@@ -63,6 +64,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_stream_filter.click()
         act_text = self.tstream.get_ts_threat_filter_name_text.text
         self.assertEqual('Stream', act_text, "Selected filter name is not same as 'Stream'.")
@@ -78,6 +80,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
         act_text = self.tstream.get_ts_threat_filter_name_text.text
         self.assertEqual('Trending Last Day', act_text, "Selected filter name is not same as 'Trending Last Day'.")
@@ -93,6 +96,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_trendinglasthour_filter.click()
         act_text = self.tstream.get_ts_threat_filter_name_text.text
         self.assertEqual('Trending Last Hour', act_text, "Selected filter name is not same as 'Trending Last Hour'.")
@@ -108,6 +112,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_second_filter_dropdown.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_filter_dropdown_relevance.click()
         act_text = self.tstream.get_ts_threat_second_filter_name_text.text
         self.assertEqual('Relevance', act_text, "Selected filter name is not same as 'Relevance'.")
@@ -123,6 +128,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_second_filter_dropdown.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_filter_dropdown_time.click()
         act_text = self.tstream.get_ts_threat_second_filter_name_text.text
         self.assertEqual('Time', act_text, "Selected filter name is not same as 'Time'.")
@@ -138,6 +144,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
@@ -178,6 +185,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
@@ -188,11 +196,9 @@ class ThreatStreamTest(BaseTestCase):
             detail_links[0].click()
             hide_list = self.tstream.get_ts_feed_data_hide_button_locator
             hide_list[0].click()
-            sleep(4)
+            sleep(4)#Required to update feeds in window
             feed_text_val = self.tstream.get_ts_feeds_list_text_value
             after_hide_text = (feed_text_val[0].text).encode('utf-8')
-            print before_hide_text
-            print after_hide_text
             self.assertNotEqual(before_hide_text,after_hide_text, "The Feed can not be hided.")
         else:
             self.skipTest("Trending Last Day filter does not have any feeds. Hide Button could not be tested.")
@@ -208,6 +214,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
@@ -221,8 +228,9 @@ class ThreatStreamTest(BaseTestCase):
             self.tstream.get_ts_feed_email_window_email_textbox.send_keys("test@indecomm.net")
             self.tstream.get_ts_feed_email_window_comment_textbox.send_keys("This is a comment.")
             self.tstream.get_ts_feed_email_window_send_button.click()
-            sleep(2)
+            sleep(2)#Required to update feeds window
             self.tstream.get_ts_threat_dropdown_filter.click()
+            sleep(2)#required to update dropdown menu
             self.tstream.get_ts_threat_dropdown_stream_filter.click()
             try:
                 if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
@@ -243,6 +251,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
@@ -259,8 +268,9 @@ class ThreatStreamTest(BaseTestCase):
             if send_button_state:
                 self.assertFalse(send_button_state, "Email address is invalid but SEND button is enabled.")
             self.tstream.get_ts_feed_email_window_cancel_button.click()
-            sleep(2)
+            sleep(2)#required to update feeds window
             self.tstream.get_ts_threat_dropdown_filter.click()
+            sleep(2)#required to update dropdown menu
             self.tstream.get_ts_threat_dropdown_stream_filter.click()
             try:
                 if self.tstream.get_ts_feed_share_email_window_title.is_displayed():
@@ -282,14 +292,17 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_13_1")
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_rss_atom.click()
         sleep(2) #required to load option properly.
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_groups.click()
         self.tstream.get_ts_filter_create_tags_textbox.send_keys("Fire")
         self.tstream.get_ts_filter_create_tags_add_button.click()
@@ -317,15 +330,19 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_13_2")
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
         sleep(2) #required to load option properly.
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_groups.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_tags_textbox.send_keys("Bomb")
         self.tstream.get_ts_filter_create_tags_add_button.click()
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("Threat")
@@ -352,15 +369,19 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_14")
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
         sleep(2) #required to load option properly.
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_groups.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_tags_textbox.send_keys("Bomb")
         self.tstream.get_ts_filter_create_tags_add_button.click()
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("bomb")
@@ -391,7 +412,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
-        sleep(2)
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -440,9 +461,9 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("")
-        sleep(2)
-        self.tstream.get_ts_filter_create_save_button.click()
-        sleep(2)
+        sleep(3)
+        #self.tstream.get_ts_filter_create_save_button.click()
+        #sleep(2)
         state = self.tstream.get_ts_filter_create_save_button.is_enabled()
         self.tstream.get_ts_filter_create_cancel_button.click()
         if state:
@@ -462,6 +483,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -492,6 +514,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -509,7 +532,7 @@ class ThreatStreamTest(BaseTestCase):
         sleep(5)
         for item in phrases_count[::-1]:
             item.click()
-            sleep(1)
+            sleep(2)
         phrases_count = self.tstream.get_ts_filter_create_phrases_delete_icon
         count_after_delete = len(phrases_count)
         self.tstream.get_ts_filter_create_cancel_button.click()
@@ -526,16 +549,19 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_19")
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
-        sleep(1) #required to load option properly.
+        sleep(2) #required to load option properly.
         text_before_refresh = self.tstream.get_ts_filter_create_type_text.text
-        sleep(4)
+        sleep(2)
         self.tstream.get_ts_filter_create_type_refresh_button.click()
+        sleep(2)#required to update type text
         text_after_refresh = self.tstream.get_ts_filter_create_type_text.text
         self.tstream.get_ts_filter_create_cancel_button.click()
         if (text_after_refresh == "Type") and (text_after_refresh != text_before_refresh):
@@ -554,14 +580,17 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_21")
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
         sleep(2) #required to load option properly.
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_groups.click()
         self.tstream.get_ts_filter_create_tags_textbox.send_keys("and")
         self.tstream.get_ts_filter_create_tags_add_button.click()
@@ -590,7 +619,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
-        sleep(2)
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -599,12 +628,13 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_23"))
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_new_filter_name("New_Filter_TC_23").click()
         self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.clear()
-        sleep(1)#required to clear textbox
+        sleep(2)#required to clear textbox
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_23_edit_name")
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("love")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
@@ -629,6 +659,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -659,6 +690,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -667,6 +699,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_24_2"))
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_new_filter_name("New_Filter_TC_24_2").click()
         sleep(2)#required to display filter name on title.
         self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
@@ -702,6 +735,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -710,13 +744,13 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_25"))
         self.tstream.get_ts_threat_dropdown_filter.click()
-        sleep(2)
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_new_filter_name("New_Filter_TC_25").click()
         self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.clear()
-        sleep(1)#required to update text box
+        sleep(2)#required to update text box
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_25_edit_name")
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("love")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
@@ -738,14 +772,15 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_26")
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
-        sleep(1)
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_user.click()
-        sleep(1)
+        sleep(2)
         visibility_type = self.tstream.get_ts_filter_create_visibility_text.text
         self.tstream.get_ts_filter_create_cancel_button.click()
         self.assertEqual(visibility_type, "User", "Visibility type is not equal to 'User'")
@@ -761,14 +796,15 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_27")
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
-        sleep(1)
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_tenant.click()
-        sleep(1)
+        sleep(2)
         visibility_type = self.tstream.get_ts_filter_create_visibility_text.text
         self.tstream.get_ts_filter_create_cancel_button.click()
         self.assertEqual(visibility_type, "Tenant", "Visibility type is not equal to 'Tenant'")
@@ -784,14 +820,15 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_28")
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
-        sleep(1)
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_groups.click()
-        sleep(1)
+        sleep(2)
         visibility_type = self.tstream.get_ts_filter_create_visibility_text.text
         self.tstream.get_ts_filter_create_cancel_button.click()
         self.assertEqual(visibility_type, "Groups", "Visibility type is not equal to 'Groups'")
@@ -807,6 +844,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -832,6 +870,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -863,6 +902,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                        self.tstream._ts_manage_feeds_app_text_locator)))
         self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_manage_feeds_dropdown_rss_atom_menu_item.click()
         sleep(2)#Required for selected filter to update
         text = self.tstream.get_ts_manage_feeds_filter_text.text
@@ -883,6 +923,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                        self.tstream._ts_manage_feeds_app_text_locator)))
         self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_manage_feeds_dropdown_rss_atom_off_menu_item.click()
         sleep(2)#Required for selected filter to update
         text = self.tstream.get_ts_manage_feeds_filter_text.text
@@ -903,6 +944,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                        self.tstream._ts_manage_feeds_app_text_locator)))
         self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_manage_feeds_dropdown_twitter_menu_item.click()
         sleep(2)#Required for selected filter to update
         text = self.tstream.get_ts_manage_feeds_filter_text.text
@@ -923,12 +965,14 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                        self.tstream._ts_manage_feeds_app_text_locator)))
         self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        sleep(2)#required to update dropdown menu
         self.tstream.get_ts_manage_feeds_dropdown_twitter_menu_item.click()
         sleep(2)#Required for selected filter to update
         text1 = self.tstream.get_ts_manage_feeds_filter_text.text
         self.tstream.get_ts_manage_feeds_reset_filter.click()
         sleep(2)#Wait to reset filter
         text2 = self.tstream.get_ts_manage_feeds_filter_text.text
+        sleep(2)#required to update filter text
         if (text1 != text2) and (text2 == 'Type'):
             self.tstream.get_ts_threat_streams_link.click()
             self.assertTrue(text2, "Filter Could not reset.")
@@ -1007,6 +1051,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_setting_window_checkbox.click()
         sleep(2)#Required for check box info update
         self.tstream.get_ts_setting_window_close_button.click()
+        sleep(2)#Required to make settings link enable
         self.tstream.get_ts_setting_link.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                         self.tstream._ts_setting_window_title_locator)))
