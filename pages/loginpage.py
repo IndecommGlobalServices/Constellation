@@ -49,238 +49,238 @@ class LoginPage(BasePageClass):
         super(LoginPage,cls).__init__(driver)
 
     @property
-    def get_big_logo(self):
+    def get_big_logo(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._login_big_logo_id_locator)))
-            return self.driver.find_element_by_id(self._login_big_logo_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._login_big_logo_id_locator)))
+            return cls.driver.find_element_by_id(cls._login_big_logo_id_locator)
         except Exception, err:
             raise type(err)("Big Logo - searched ID - "
-                            + self._login_big_logo_id_locator + err.message)
+                            + cls._login_big_logo_id_locator + err.message)
 
     @property
-    def email(self):
+    def email(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._email_input_id_locator)))
-            return self.driver.find_element_by_id(self._email_input_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._email_input_id_locator)))
+            return cls.driver.find_element_by_id(cls._email_input_id_locator)
         except Exception, err:
             raise type(err)("login email - searched ID - "
-                            + self._email_input_id_locator + err.message)
+                            + cls._email_input_id_locator + err.message)
 
     @property
-    def password(self):
+    def password(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._password_input_id_locator)))
-            return self.driver.find_element_by_id(self._password_input_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._password_input_id_locator)))
+            return cls.driver.find_element_by_id(cls._password_input_id_locator)
         except Exception, err:
             raise type(err)("login password - searched ID - "
-                            + self._password_input_id_locator + err.message)
+                            + cls._password_input_id_locator + err.message)
 
     @property
-    def login(self):
+    def login(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, self._login_click_xpath_locator)))
-            return self.driver.find_element_by_xpath(self._login_click_xpath_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, cls._login_click_xpath_locator)))
+            return cls.driver.find_element_by_xpath(cls._login_click_xpath_locator)
         except Exception, err:
             raise type(err)("login button - searched XPATH - "
-                            + self._login_click_xpath_locator + err.message)
+                            + cls._login_click_xpath_locator + err.message)
 
     @property
-    def loginerror(self):
+    def loginerror(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._login_error_id_locator)))
-            return self.driver.find_element_by_id(self._login_error_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._login_error_id_locator)))
+            return cls.driver.find_element_by_id(cls._login_error_id_locator)
         except Exception, err:
             raise type(err)("login error status message - searched ID - "
-                            + self._login_error_id_locator + err.message)
+                            + cls._login_error_id_locator + err.message)
     # _login_main_register_id_locator
 
     @property
-    def get_login_main_register(self):
+    def get_login_main_register(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._login_main_register_id_locator)))
-            return self.driver.find_element_by_id(self._login_main_register_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._login_main_register_id_locator)))
+            return cls.driver.find_element_by_id(cls._login_main_register_id_locator)
         except Exception, err:
             raise type(err)("Main Register button - searched ID - "
-                            + self._login_main_register_id_locator + err.message)
+                            + cls._login_main_register_id_locator + err.message)
 
     # Register related
     @property
-    def get_register_username_email(self):
+    def get_register_username_email(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._register_username_email_input_id_locator)))
-            return self.driver.find_element_by_id(self._register_username_email_input_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._register_username_email_input_id_locator)))
+            return cls.driver.find_element_by_id(cls._register_username_email_input_id_locator)
         except Exception, err:
             raise type(err)("register username - searched ID - "
-                            + self._register_username_email_input_id_locator + err.message)
+                            + cls._register_username_email_input_id_locator + err.message)
 
     @property
-    def get_register_first_name(self):
+    def get_register_first_name(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._register_first_name_input_id_locator)))
-            return self.driver.find_element_by_id(self._register_first_name_input_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._register_first_name_input_id_locator)))
+            return cls.driver.find_element_by_id(cls._register_first_name_input_id_locator)
         except Exception, err:
             raise type(err)("register first name - searched ID - "
-                            + self._register_first_name_input_id_locator + err.message)
+                            + cls._register_first_name_input_id_locator + err.message)
 
     @property
-    def get_register_last_name(self):
+    def get_register_last_name(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._register_last_name_input_id_locator)))
-            return self.driver.find_element_by_id(self._register_last_name_input_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._register_last_name_input_id_locator)))
+            return cls.driver.find_element_by_id(cls._register_last_name_input_id_locator)
         except Exception, err:
             raise type(err)("register last name - searched ID - "
-                            + self._register_last_name_input_id_locator + err.message)
+                            + cls._register_last_name_input_id_locator + err.message)
 
     @property
-    def get_register_password_1(self):
+    def get_register_password_1(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._register_password_1_input_id_locator)))
-            return self.driver.find_element_by_id(self._register_password_1_input_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._register_password_1_input_id_locator)))
+            return cls.driver.find_element_by_id(cls._register_password_1_input_id_locator)
         except Exception, err:
             raise type(err)("register password 1 - searched ID - "
-                            + self._register_password_1_input_id_locator + err.message)
+                            + cls._register_password_1_input_id_locator + err.message)
 
     @property
-    def get_register_password_2(self):
+    def get_register_password_2(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._register_password_2_input_id_locator)))
-            return self.driver.find_element_by_id(self._register_password_2_input_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._register_password_2_input_id_locator)))
+            return cls.driver.find_element_by_id(cls._register_password_2_input_id_locator)
         except Exception, err:
             raise type(err)("register password 2 - searched ID - "
-                            + self._register_password_2_input_id_locator + err.message)
+                            + cls._register_password_2_input_id_locator + err.message)
 
     @property
-    def get_register_13_year(self):
+    def get_register_13_year(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, self._register_13_year_check_box_xpath_locator)))
-            return self.driver.find_element_by_xpath(self._register_13_year_check_box_xpath_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, cls._register_13_year_check_box_xpath_locator)))
+            return cls.driver.find_element_by_xpath(cls._register_13_year_check_box_xpath_locator)
         except Exception, err:
             raise type(err)("I am 13 years or older - searched XPATH - "
-                            + self._register_13_year_check_box_xpath_locator + err.message)
+                            + cls._register_13_year_check_box_xpath_locator + err.message)
 
     @property
-    def get_register_agree_service_terms(self):
+    def get_register_agree_service_terms(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, self._register_agree_service_terms_check_box_xpath_locator)))
-            return self.driver.find_element_by_xpath(self._register_agree_service_terms_check_box_xpath_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, cls._register_agree_service_terms_check_box_xpath_locator)))
+            return cls.driver.find_element_by_xpath(cls._register_agree_service_terms_check_box_xpath_locator)
         except Exception, err:
             raise type(err)("I agree to the terms of service policy - searched XPATH - "
-                            + self._register_agree_service_terms_check_box_xpath_locator + err.message)
+                            + cls._register_agree_service_terms_check_box_xpath_locator + err.message)
     
     @property
-    def get_register_register(self):
+    def get_register_register(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._register_register_button_id_locator)))
-            return self.driver.find_element_by_id(self._register_register_button_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._register_register_button_id_locator)))
+            return cls.driver.find_element_by_id(cls._register_register_button_id_locator)
         except Exception, err:
             raise type(err)("register button - searched ID - "
-                            + self._register_register_button_id_locator + err.message)
+                            + cls._register_register_button_id_locator + err.message)
     
     @property
-    def get_register_cancel(self):
+    def get_register_cancel(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._register_cancel_button_id_locator)))
-            return self.driver.find_element_by_id(self._register_cancel_button_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._register_cancel_button_id_locator)))
+            return cls.driver.find_element_by_id(cls._register_cancel_button_id_locator)
         except Exception, err:
             raise type(err)("cancel button - searched ID - "
-                            + self._register_cancel_button_id_locator + err.message)
+                            + cls._register_cancel_button_id_locator + err.message)
     
     @property
-    def get_register_error_status_message(self):
+    def get_register_error_status_message(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._register_error_id_locator)))
-            return self.driver.find_element_by_id(self._register_error_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._register_error_id_locator)))
+            return cls.driver.find_element_by_id(cls._register_error_id_locator)
         except Exception, err:
             raise type(err)("Register error status message - searched ID - "
-                            + self._register_error_id_locator + err.message)
+                            + cls._register_error_id_locator + err.message)
 
     @property
-    def get_register_error_password_status_message(self):
+    def get_register_error_password_status_message(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, self._register_error_xpath_locator)))
-            return self.driver.find_element_by_xpath(self._register_error_xpath_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, cls._register_error_xpath_locator)))
+            return cls.driver.find_element_by_xpath(cls._register_error_xpath_locator)
         except Exception, err:
             raise type(err)("Register error password status message - searched class name - "
-                            + self._register_error_xpath_locator + err.message)
+                            + cls._register_error_xpath_locator + err.message)
 
     #
     @property
-    def get_reset_password(self):
+    def get_reset_password(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._forgot_pwd_reset_password_id_locator)))
-            return self.driver.find_element_by_id(self._forgot_pwd_reset_password_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._forgot_pwd_reset_password_id_locator)))
+            return cls.driver.find_element_by_id(cls._forgot_pwd_reset_password_id_locator)
         except Exception, err:
             raise type(err)("Reset password button - searched ID - "
-                            + self._forgot_pwd_reset_password_id_locator + err.message)
+                            + cls._forgot_pwd_reset_password_id_locator + err.message)
 
     #
     @property
-    def get_forgot_pwd_username(self):
+    def get_forgot_pwd_username(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._forgot_pwd_input_username_id_locator)))
-            return self.driver.find_element_by_id(self._forgot_pwd_input_username_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._forgot_pwd_input_username_id_locator)))
+            return cls.driver.find_element_by_id(cls._forgot_pwd_input_username_id_locator)
         except Exception, err:
             raise type(err)("Forgot password user email - searched ID - "
-                            + self._forgot_pwd_input_username_id_locator + err.message)
+                            + cls._forgot_pwd_input_username_id_locator + err.message)
 
     @property
-    def get_forgot_pwd_reset(self):
+    def get_forgot_pwd_reset(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._forgot_pwd_reset_id_locator)))
-            return self.driver.find_element_by_id(self._forgot_pwd_reset_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._forgot_pwd_reset_id_locator)))
+            return cls.driver.find_element_by_id(cls._forgot_pwd_reset_id_locator)
         except Exception, err:
             raise type(err)("Forgot password reset button - searched ID - "
-                            + self._forgot_pwd_reset_id_locator + err.message)
+                            + cls._forgot_pwd_reset_id_locator + err.message)
 
     @property
-    def get_forgot_pwd_error_status_message(self):
+    def get_forgot_pwd_error_status_message(cls):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._forgot_pwd_error_id_locator)))
-            return self.driver.find_element_by_id(self._forgot_pwd_error_id_locator)
+            WebDriverWait(cls.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.ID, cls._forgot_pwd_error_id_locator)))
+            return cls.driver.find_element_by_id(cls._forgot_pwd_error_id_locator)
         except Exception, err:
             raise type(err)("Forgot password error status message - searched ID - "
-                            + self._forgot_pwd_error_id_locator + err.message)
+                            + cls._forgot_pwd_error_id_locator + err.message)
 
 
-    def loginDashboard(self):
+    def loginDashboard(cls):
         with open(L1) as data_file:
             data_text = json.load(data_file)
             for each in data_text:
-                self.usernameText = each["username"]
+                cls.usernameText = each["username"]
                 passwordText = each["password"]
-                self.email.clear()
-                self.email.send_keys(self.usernameText)
-                self.password.clear()
-                self.password.send_keys(passwordText)
-                self.login.click()
+                cls.email.clear()
+                cls.email.send_keys(cls.usernameText)
+                cls.password.clear()
+                cls.password.send_keys(passwordText)
+                cls.login.click()
 
-    def clearallfields(self):
-        self.get_register_username_email.clear()
-        self.get_register_first_name.clear()
-        self.get_register_last_name.clear()
-        self.get_register_password_1.clear()
-        self.get_register_password_2.clear()
+    def clearallfields(cls):
+        cls.get_register_username_email.clear()
+        cls.get_register_first_name.clear()
+        cls.get_register_last_name.clear()
+        cls.get_register_password_1.clear()
+        cls.get_register_password_2.clear()
 
     def _validate_page(cls, driver):
         try:
