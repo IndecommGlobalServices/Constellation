@@ -409,7 +409,7 @@ class MapPage(BasePageClass):
         super(MapPage, self).__init__(driver)
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
-        self.username = loginpage.usernameText
+        # self.username = loginpage.usernameText
 
 
     def open_map_app(self):

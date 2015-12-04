@@ -20,8 +20,11 @@ class AssessmenttPageTest(BaseTestCase):
     def setUpClass(cls):
         super(AssessmenttPageTest, cls).setUpClass()
         cls.ast = AssessmentPage(cls.driver)
-        cls.ast.get_asset_avilability("")
-        cls.ast.delete_existing_assessments()
+        try:
+            cls.ast.get_asset_avilability("")
+            cls.ast.delete_existing_assessments()
+        except:
+            pass
 
     def setUp(self):
         self.errors_and_failures = self.tally()
@@ -64,7 +67,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.ast.get_search_assessment_textbox.clear()
         self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
         if flag == 1:
-            self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
+            self.assertEqual(assignedto, self.ast.username, "When no email is specified the users login should appear")
         else:
             self.assertTrue(False, "Assessment creation had failed or newly created assessment is not appearing in yellow color background")
 
@@ -72,7 +75,6 @@ class AssessmenttPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_ast_04_To_verify_datevalidation_createassessment(self):
-
         dateformat = ['date', '23-11-2015', '2015-22-11']
         self.ast.create_assessment_select_haystax_template()
         for date in dateformat:
@@ -85,6 +87,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_create_enddate_textbox.send_keys(date)
             self.ast.get_create_enddate_textbox.send_keys(Keys.TAB)
             self.assertNotEqual(self.ast.get_create_enddate_textbox.text, date, "End date textbox no date format validation")
+        self.ast.get_create_assessment_cancel_button.click()
 
     @attr(priority="high")
     #@SkipTest
@@ -362,7 +365,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_assign_button.click()
             self.ast.get_ast_assignto_textbox.send_keys(emailid)
             self.ast.get_ast_assignto_assign_button.click()
-            sleep(8)
+            sleep(10)
             assignedto = self.ast.get_assessment_table("Assigned to")
             self.assertEqual(assignedto[0].text, emailid, "Assigned Email id is not appearing")
         else:
@@ -381,7 +384,7 @@ class AssessmenttPageTest(BaseTestCase):
             self.ast.get_action_assign_button.click()
             self.ast.get_ast_assignto_textbox.send_keys(emailid)
             self.ast.get_ast_assignto_assign_button.click()
-            sleep(5)
+            sleep(10)
             assignedto = self.ast.get_assessment_table("Assigned to")
             if len(assignedto) < noofassessments:
                 noofassessments = len(assignedto)
@@ -413,6 +416,7 @@ class AssessmenttPageTest(BaseTestCase):
     #@SkipTest
     def test_ast_40_To_Verify_Assign_Assessment_cancel(self):
         emailid = ['Email1@domain', 'Email2@domain']
+        sleep(8)
         countbeforedeletion = self.ast.get_total_row_count()
         if countbeforedeletion >= 1:
             self.ast.select_multiple_checkboxes(1)
@@ -425,7 +429,7 @@ class AssessmenttPageTest(BaseTestCase):
                 emailidtoenter = emailid[1]
             self.ast.get_ast_assignto_textbox.send_keys(emailidtoenter)
             self.ast.get_ast_assignto_cancel_button.click()
-            sleep(5)
+            sleep(10)
             assignedto = self.ast.get_assessment_table("Assigned to")
             self.assertNotEqual(assignedto[0].text, emailidtoenter, "Assigned Email id saved on cancel operation")
         else:

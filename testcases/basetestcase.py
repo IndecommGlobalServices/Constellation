@@ -9,7 +9,6 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
-    username = ""
 
     @classmethod
     def setUpClass(cls):
@@ -18,6 +17,8 @@ class BaseTestCase(unittest.TestCase):
             display = Display(visible=0, size=(1280,800))
             display.start()
         # create a new Firefox session
+
+        cls.driver = webdriver.Firefox()
         '''
         cls.driver = webdriver.Firefox()
         '''

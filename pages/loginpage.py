@@ -45,10 +45,8 @@ class LoginPage(BasePageClass):
 
     usernameText = ""
 
-    def __init__(self,driver):
-        super(LoginPage,self).__init__(driver)
-
-    # _login_big_logo_id_locator
+    def __init__(cls,driver):
+        super(LoginPage,cls).__init__(driver)
 
     @property
     def get_big_logo(self):
@@ -284,8 +282,13 @@ class LoginPage(BasePageClass):
         self.get_register_password_1.clear()
         self.get_register_password_2.clear()
 
-    def _validate_page(self, driver):
+    def _validate_page(cls, driver):
         try:
-            driver.find_element_by_id(self._email_input_id_locator)
+            WebDriverWait(driver, 20).until(expected_conditions.presence_of_all_elements_located(
+                (By.ID, cls._email_input_id_locator)))
         except:
-            raise InvalidPageException("Login page not loaded")
+            try:
+                HomePage(driver)._validate_page(driver)
+                HomePage(driver).loginlink.click()
+            except:
+                raise InvalidPageException("Login page not loaded")

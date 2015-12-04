@@ -142,12 +142,12 @@ class AssessmentPage(BasePageClass):
     def __init__(self, driver):
         super(AssessmentPage, self).__init__(driver)
         # self.get_schooldata()
-        self.get_assessment_app()
-
-    def get_assessment_app(self):
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
         self.username = loginpage.usernameText
+        self.get_assessment_app()
+
+    def get_assessment_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_assessments_icon()
 
@@ -511,8 +511,10 @@ class AssessmentPage(BasePageClass):
         with open(schooldatafile) as data_file:
             school_data = json.load(data_file)
             for each in school_data:
-                if relevance == "" or relevance == 'schooldata':
+                if relevance == "":
                     self.asset_school_name = each["asset_name"][0]
+                elif relevance == 'schooldata':
+                    self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "SCHOOL_DATA"))]
                 elif relevance == 'overview':
                     self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "OVERVIEW_SCHOOL"))]
                 elif relevance == 'infrastructure':

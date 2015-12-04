@@ -8,7 +8,7 @@ from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 import ConfigParser
 import os, json
-from time import sleep
+from nose.plugins.skip import SkipTest
 
 
 cwd = os.getcwd()
@@ -28,8 +28,11 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
         cls.config = ConfigParser.ConfigParser()
         cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
-        cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
-        cls.ast.delete_existing_assessments()
+        try:
+            cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_OVERVIEW'))
+            cls.ast.delete_existing_assessments()
+        except:
+            pass
 
     def setUp(self):
         self.errors_and_failures = self.tally()
@@ -789,7 +792,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                                                     self.config.get(self.subsection, 'SECTION_PHYSICALKEY_POSITION'))
                 self.assertEqual(landoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_231_To_Test_Physical_Key_Point_Of_Contact_Radio_Button(self):
         """
         Description :
@@ -806,7 +809,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                 self.assertEqual(landoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_232_To_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test fileupload in SECTION_PERIMETER_TYPE_OF_WALL
