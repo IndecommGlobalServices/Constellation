@@ -13,6 +13,7 @@ import ConfigParser
 from nose.plugins.skip import SkipTest
 from time import sleep
 from datetime import date, timedelta, datetime
+from nose.plugins.skip import SkipTest
 import json, os, re
 
 cwd = os.getcwd()
@@ -757,7 +758,7 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
                 self.assertEqual(radiobuttonstatus[option].get_attribute("class"), self.unchecked_var)
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_285_To_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test file upload in all sections.
@@ -786,7 +787,7 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
                                                 self.config.get(self.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_286_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test edit caption for all the sections.

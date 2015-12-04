@@ -8,6 +8,7 @@ from pages.loginpage import LoginPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from time import sleep
+from nose.plugins.skip import SkipTest
 import ConfigParser
 import os, json
 
@@ -207,7 +208,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_84_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test file upload in All the sections under School Data Tab.
@@ -237,7 +238,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOLDATA'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_85_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test file upload with caption in All the sections under School Data Tab.

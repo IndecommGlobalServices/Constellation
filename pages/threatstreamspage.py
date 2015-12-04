@@ -640,7 +640,7 @@ class ThreatStreamPage(BasePageClass):
         super(ThreatStreamPage, self).__init__(driver)
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
-        self.username = loginpage.usernameText
+        # self.username = loginpage.usernameText
         appicon = IconListPage(self.driver)
         appicon.click_threatstream()
         sleep(20)

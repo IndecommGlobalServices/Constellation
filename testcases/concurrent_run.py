@@ -39,12 +39,11 @@ os.chdir(cwd)
 
 # assessmenttests = glob.glob('assessment*.py')
 
-tests = (
-         # ['assettest', str(asset_filepath), 'Assetest'],
-         # ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
-         # ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
+tests = (['assettest', str(asset_filepath), 'Assetest'],
+         ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
+         ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
          ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
-         # ['maptest', str(map_filepath), 'Maptest'],
+         ['maptest', str(map_filepath), 'Maptest'],
          ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'],
          ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'],
          ['assessmentschoolinfrastructuretest', str(assessmentinfra_filepath), 'AssessmentSchoolInfrastructuretest'],

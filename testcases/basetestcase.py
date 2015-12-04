@@ -9,7 +9,6 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pyvirtualdisplay import Display
 
 class BaseTestCase(unittest.TestCase):
-    username = ""
 
     @classmethod
     def setUpClass(cls):
@@ -18,10 +17,10 @@ class BaseTestCase(unittest.TestCase):
             display.start()
         # create a new Firefox session
 
-        #cls.driver = webdriver.Firefox()
+        cls.driver = webdriver.Firefox()
         chromedriver = "../drivers/chromedriver"
         os.environ["webdriver.chrome.driver"]= chromedriver
-        cls.driver = webdriver.Chrome(chromedriver)
+        #cls.driver = webdriver.Chrome(chromedriver)
         cls.driver.implicitly_wait(40)
         cls.driver.set_window_size(1280, 1024)
         cls.driver.maximize_window()

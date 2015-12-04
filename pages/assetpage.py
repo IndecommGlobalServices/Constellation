@@ -241,7 +241,7 @@ class AssetPage(BasePageClass):
     def open_asset_app(self):
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
-        self.username = loginpage.usernameText
+        # self.username = loginpage.usernameText
         appicon = IconListPage(self.driver)
         appicon.click_asset_icon()
 

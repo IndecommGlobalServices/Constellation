@@ -6,6 +6,7 @@ from pages.assessmentpage import AssessmentPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 import ConfigParser
+from nose.plugins.skip import SkipTest
 import os,json
 
 cwd = os.getcwd()
@@ -642,7 +643,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                 self.assertEqual(toxicoption[option].get_attribute("class"), "answer_choice radio ng-binding ng-isolate-scope checked")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_161_To_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test fileupload in SECTION_PERIMETER_TYPE_OF_WALL
@@ -671,7 +672,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
                                                 self.config.get(self.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_162_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test edit caption

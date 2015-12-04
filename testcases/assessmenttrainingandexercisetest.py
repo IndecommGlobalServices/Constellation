@@ -6,7 +6,7 @@ from pages.assessmentpage import AssessmentPage
 from pages.loginpage import LoginPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
-from time import sleep
+from nose.plugins.skip import SkipTest
 import ConfigParser
 from selenium.webdriver.common.keys import Keys
 import os, json
@@ -457,7 +457,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_308_To_Verify_File_Upload_For_All_Sections(self):
         """
         Description : To test fileupload in SECTION_PERIMETER_TYPE_OF_WALL
@@ -488,7 +488,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
 
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_309_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test edit caption

@@ -64,7 +64,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.ast.get_search_assessment_textbox.clear()
         self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
         if flag == 1:
-            self.assertEqual(assignedto, self.username, "When no email is specified the users login should appear")
+            self.assertEqual(assignedto, self.ast.username, "When no email is specified the users login should appear")
         else:
             self.assertTrue(False, "Assessment creation had failed or newly created assessment is not appearing in yellow color background")
 
