@@ -7,6 +7,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
+from pages.homepage import HomePage
+
 
 cwd = os.getcwd()
 os.chdir('..')
