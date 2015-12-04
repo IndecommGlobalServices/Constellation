@@ -29,8 +29,11 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         cls.config = ConfigParser.ConfigParser()
         cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
-        cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_SCHOOLDATA'))
-        cls.ast.delete_existing_assessments()
+        try:
+            cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_SCHOOLDATA'))
+            cls.ast.delete_existing_assessments()
+        except:
+            pass
 
     def setUp(self):
         self.errors_and_failures = self.tally()

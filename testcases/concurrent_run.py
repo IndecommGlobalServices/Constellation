@@ -3,6 +3,7 @@ import glob
 import time
 import os
 from datetime import datetime
+from time import sleep
 import xml.etree.ElementTree as ET
 
 start = time.time()
@@ -39,8 +40,7 @@ os.chdir(cwd)
 
 # assessmenttests = glob.glob('assessment*.py')
 
-tests = (['assettest', str(asset_filepath), 'Assetest'],
-         ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
+tests = (['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
          ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
          ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
          ['maptest', str(map_filepath), 'Maptest'],
@@ -54,6 +54,10 @@ processes = []
 
 for test in tests:
     processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2] , shell=True))
+    sleep(2)
+
+sleep(20)
+processes.append(Popen('nosetests --tests assettest --xunit-file=' + str(asset_filepath) + ' --xunit-testsuite-name=Assettest' , shell=True))
 
 for process in processes:
     process.wait()
