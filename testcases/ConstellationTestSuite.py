@@ -7,7 +7,18 @@ cwd = os.getcwd()
 os.chdir('..')
 filepath = os.path.join(os.getcwd(), filename)
 os.chdir(cwd)
-nose.run(argv=["", "assettest", "--verbosity=3","--with-xunit",
+nose.run(argv=["", "logintest",
+               "assettest",
+               "assessmenttest",
+               "assessmentoverviewtest",
+               "assessmentschooldatatest",
+               "assessmentphysicalsecuritytest",
+               "assessmentpoliciesandplanningtest",
+               "assessmentschoolinfrastructuretest",
+               "assessmenttrainingandexercisetest",
+               "maptest",
+               "threatstreamstest"
+               "--verbosity=3","--with-xunit",
                "--xunit-file="+filepath+"", "--nologcapture","-s", "--nocapture"])
 
 
