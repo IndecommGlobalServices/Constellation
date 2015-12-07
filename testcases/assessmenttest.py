@@ -1,3 +1,5 @@
+import ConfigParser
+
 __author__ = 'Deepa.Sivadas'
 from selenium.webdriver.common.keys import Keys
 from pages.assessmentpage import AssessmentPage
@@ -19,12 +21,11 @@ class AssessmenttPageTest(BaseTestCase):
     @classmethod
     def setUpClass(cls):
         super(AssessmenttPageTest, cls).setUpClass()
+        cls.AssessmentSections = 'AssessmentSections'
+        cls.config = ConfigParser.ConfigParser()
+        cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
-        try:
-            cls.ast.get_asset_avilability("")
-            cls.ast.delete_existing_assessments()
-        except:
-            pass
+        cls.ast.get_school_name("")
 
     def setUp(self):
         self.errors_and_failures = self.tally()
@@ -32,10 +33,6 @@ class AssessmenttPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        try:
-            self.ast.get_main_create_assessment_red_button.click()
-        except:
-            pass
 
     @attr(priority="high")
     #@SkipTest
@@ -318,6 +315,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.ast.select_multiple_checkboxes(1)
         self.ast.get_action_dropdown.click()
         self.ast.get_action_delete_button.click()
+        sleep(2)
         self.ast.get_delete_assessment_delete_button.click()
         sleep(5)#Mandatory sleep for the list to refresh
         countafterdeletion = self.ast.get_total_row_count()
