@@ -106,6 +106,7 @@ class AssetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
+        sleep(2)
         countbeforedeletion = self.assetpage.get_total_row_count()
         self.assetpage.get_asset_list_first_check_box.click()
         self.assetpage.get_asset_select_action_drop_down.click()
@@ -867,7 +868,8 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID, "map_control")))
-        self.assetpage.get_asset_location_edit_icon.click()
+        WebDriverWait(self.driver, 50).until(EC.element_to_be_clickable(
+            (By.XPATH,self.assetpage._asset_location_edit_icon_xpath_locator))).click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
             self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
@@ -902,7 +904,8 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
         WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
-        self.assetpage.get_asset_location_edit_icon.click()
+        WebDriverWait(self.driver, 50).until(EC.element_to_be_clickable(
+            (By.XPATH,self.assetpage._asset_location_edit_icon_xpath_locator))).click()
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
         self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
@@ -927,9 +930,10 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,50).until(EC.presence_of_element_located((By.ID,"map_control")))
-        self.assetpage.get_asset_location_edit_icon.click()
-        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver, 50).until(EC.presence_of_element_located((By.ID,"map_control")))
+        WebDriverWait(self.driver, 50).until(EC.element_to_be_clickable(
+            (By.XPATH,self.assetpage._asset_location_edit_icon_xpath_locator))).click()
+        WebDriverWait(self.driver, 50).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_location_title_id_locator), r"Asset location"),
         self.config.get(self.section, 'MESSAGE_LOCATION_POPUP_NOT_DISPLAYED'))
         lati = "40.7127"

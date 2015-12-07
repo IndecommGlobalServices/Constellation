@@ -139,6 +139,11 @@ class AssessmentPage(BasePageClass):
     # Scroll
     _assessment_scroll = ".//*[@id='main_content']"
 
+
+    #Dashboard
+    _ast_dashboard_on_icon = "//img[@ng-src = '../images/icon_pie_chart_on.png']"
+    _ast_dashboard_off_icon = "//img[@ng-src = '../images/icon_pie_chart_off.png']"
+
     def __init__(self, driver):
         super(AssessmentPage, self).__init__(driver)
         # self.get_schooldata()

@@ -296,7 +296,7 @@ class AssetPage(BasePageClass):
     @property
     def get_deleteasset_cancel_button(self):
         try:
-            WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(
+            WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
                 (By.XPATH, self._asset_deleteasset_cancel_click_xpath_locator)), "Cancel button not available")
             return self.driver.find_element_by_xpath(self._asset_deleteasset_cancel_click_xpath_locator)
         except Exception, err:
