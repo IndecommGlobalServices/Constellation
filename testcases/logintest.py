@@ -2,6 +2,7 @@ from selenium.webdriver.common.keys import Keys
 from pages.loginpage import LoginPage
 from time import sleep
 from pages.IconListPage import IconListPage
+from random import randint
 
 
 from testcases.basetestcase import BaseTestCase
@@ -28,9 +29,7 @@ class LoginPageTest(BaseTestCase):
         self.assertEqual("https://constellation-qa.haystax.com/apps/#/", self.driver.current_url)
         self.assertTrue(self.iconpage.get_top_logo.is_displayed, "Constellation Logo not displayed.")
         print self.iconpage.get_loggedin_username.text
-        #sleep(5)
         self.iconpage.get_loggedin_username.click()
-        #sleep(5)
         self.iconpage.get_logout.click()
         sleep(5)
         self.assertTrue(self.loginpage.get_big_logo.is_displayed, "Constellation big logo is not displayed.")
@@ -58,11 +57,12 @@ class LoginPageTest(BaseTestCase):
         self.loginpage.password.clear()
         sleep(2)
         self.assertTrue(not (self.loginpage.login.is_enabled()), "Login button is enabled.")
-    '''
+
     def test_G_05_register_new_user_successful(self):
         self.loginpage.get_login_main_register.click()
         self.loginpage.clearallfields()
-        self.loginpage.get_register_username_email.send_keys("k2838k1@indec.co.in")
+        email1 = "kk" + str(randint(0000,9999)) + "@yahoo.com"
+        self.loginpage.get_register_username_email.send_keys(email1)
         self.loginpage.get_register_first_name.send_keys("kiran")
         self.loginpage.get_register_last_name.send_keys("kumar")
         self.loginpage.get_register_password_1.send_keys("welcome123@@")
@@ -72,7 +72,7 @@ class LoginPageTest(BaseTestCase):
         self.loginpage.get_register_register.click()
         sleep(5)
         self.assertEqual("Registration successful. Check your email for a verification message", self.loginpage.loginerror.text)
-    '''
+
 
     def test_G_06_07_register_invalid_email(self):
         self.driver.refresh()
@@ -141,7 +141,6 @@ class LoginPageTest(BaseTestCase):
     def test_G_13_register_cancel_button(self):
         self.driver.refresh()
         self.loginpage.get_login_main_register.click()
-#        sleep(5)
         self.loginpage.clearallfields()
         self.loginpage.get_register_13_year.click()
         self.loginpage.get_register_agree_service_terms.click()
@@ -152,10 +151,8 @@ class LoginPageTest(BaseTestCase):
     def test_G_14_01_forgot_password_invalid_email(self):
         self.driver.refresh()
         self.loginpage.get_reset_password.click()
-#       sleep(5)
         self.loginpage.get_forgot_pwd_username.clear()
         self.loginpage.get_forgot_pwd_username.send_keys("wel@wlssk")
-#        sleep(5)
         self.loginpage.get_forgot_pwd_reset.click()
         sleep(5)
         self.assertEqual("email property is an invalid value.", self.loginpage.get_forgot_pwd_error_status_message.text)
@@ -163,7 +160,6 @@ class LoginPageTest(BaseTestCase):
     def test_G_14_02_forgot_password_username_empty_disable_reset_button(self):
         self.driver.refresh()
         self.loginpage.get_reset_password.click()
-#        sleep(5)
         self.loginpage.get_forgot_pwd_username.clear()
         sleep(5)
         self.assertTrue(not (self.loginpage.get_forgot_pwd_reset.is_enabled()), "Reset button is enabled.")
@@ -171,17 +167,14 @@ class LoginPageTest(BaseTestCase):
     def test_G_14_03_forgot_password_email_sent_successful(self):
         self.driver.refresh()
         self.loginpage.get_reset_password.click()
-#        sleep(5)
         self.loginpage.get_forgot_pwd_username.clear()
         self.loginpage.get_forgot_pwd_username.send_keys("kiran.k@indecomm.net")
-#        sleep(5)
         self.loginpage.get_forgot_pwd_reset.click()
         sleep(5)
         self.assertEqual("Reset request successful. Check your email for instructions on how to complete the process.",
                          self.loginpage.loginerror.text)
 
     def test_G_16_Main_Page_valid(self):
-        #self.driver.refresh()
         self.loginpage = LoginPage(self.driver)
         self.iconpage = IconListPage(self.driver)
         self.loginpage.loginDashboard()
@@ -191,7 +184,6 @@ class LoginPageTest(BaseTestCase):
         print "Constellation Logo is displayed."
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         print "Logged in user name is displayed as " + self.iconpage.get_loggedin_username.text
-#        sleep(5)
         self.iconpage.get_loggedin_username.click()
         sleep(5)
         self.assertTrue(self.iconpage.get_profile.is_displayed, "Profile not displayed.")
@@ -225,11 +217,9 @@ class LoginPageTest(BaseTestCase):
         self.assertTrue(self.iconpage.get_app_threatstreams_icon.is_displayed, "Threat Streams icon not displayed.")
         print "Threat Streams icon is displayed."
         self.iconpage.get_logout.click()
-        #sleep(5)
         self.assertTrue(self.loginpage.get_big_logo.is_displayed, "Constellation big logo is not displayed.")
 
     def test_G_17_Global_Naviagation(self):
-        #self.driver.refresh()
         self.loginpage = LoginPage(self.driver)
         self.iconpage = IconListPage(self.driver)
         self.loginpage.loginDashboard()
@@ -239,79 +229,50 @@ class LoginPageTest(BaseTestCase):
         print "Constellation Logo is displayed."
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         print "Logged in user name is displayed as " + self.iconpage.get_loggedin_username.text
-#        sleep(5)
-
         self.assertTrue(self.iconpage.get_status.is_displayed, "Status not displayed.")
         print "Status link is displayed."
-#        sleep(2)
         self.iconpage.get_status.click()
-#        sleep(2)
         self.iconpage.get_top_logo.click()
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
-
         self.assertTrue(self.iconpage.get_help.is_displayed, "Help not displayed.")
         print "Help link is displayed."
-#        sleep(2)
         self.iconpage.get_help.click()
-#        sleep(2)
         self.iconpage.get_top_logo.click()
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
-
         self.assertTrue(self.iconpage.get_app_asset_icon.is_displayed, "Asset icon not displayed.")
         print "Asset icon is displayed."
-#        sleep(2)
         self.iconpage.get_app_asset_icon.click()
-#        sleep(2)
         self.iconpage.get_top_logo.click()
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
-
         self.assertTrue(self.iconpage.get_app_assessments_icon.is_displayed, "Assessments icon not displayed.")
         print "Assessments icon is displayed."
-#        sleep(2)
         self.iconpage.get_app_assessments_icon.click()
-#        sleep(2)
         self.iconpage.get_top_logo.click()
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
-
         self.assertTrue(self.iconpage.get_app_map_icon.is_displayed, "Map icon not displayed.")
         print "Map icon is displayed."
-#        sleep(2)
         self.iconpage.get_app_map_icon.click()
-#        sleep(2)
         self.iconpage.get_top_logo.click()
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
-
         self.assertTrue(self.iconpage.get_app_dashboard_icon.is_displayed, "Dashboard icon not displayed.")
         print "Dashboard icon is displayed."
-#        sleep(2)
         if self.iconpage.get_app_dashboard_icon.is_enabled:
-#            sleep(2)
             self.iconpage.get_app_dashboard_icon.click()
-#            sleep(2)
             self.iconpage.get_top_logo.click()
             self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         else:
-#            sleep(2)
             print "Dashboard is disabled."
-
         self.assertTrue(self.iconpage.get_app_incidents_icon.is_displayed, "Incidents icon not displayed.")
         print "Incidents icon is displayed."
-        #sleep(2)
         if self.iconpage.get_app_incidents_icon.is_enabled:
-        #    sleep(2)
             self.iconpage.get_app_incidents_icon.click()
-        #    sleep(2)
             self.iconpage.get_top_logo.click()
             self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         else:
-        #    sleep(2)
             print "Incidents is disabled."
-
         self.assertTrue(self.iconpage.get_app_threatstreams_icon.is_displayed, "Threat Streams icon not displayed.")
         print "Threat Streams icon is displayed."
-        #sleep(2)
         self.iconpage.get_app_threatstreams_icon.click()
-        #sleep(2)
         self.iconpage.get_top_logo.click()
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         self.iconpage.get_loggedin_username.click()
@@ -320,7 +281,6 @@ class LoginPageTest(BaseTestCase):
         self.assertTrue(self.loginpage.get_big_logo.is_displayed, "Constellation big logo is not displayed.")
 
     def test_G_18_profile_saved_successfully(self):
-        #self.driver.refresh()
         self.loginpage = LoginPage(self.driver)
         self.iconpage = IconListPage(self.driver)
         self.loginpage.loginDashboard()
@@ -353,7 +313,6 @@ class LoginPageTest(BaseTestCase):
         self.assertTrue(self.loginpage.get_big_logo.is_displayed, "Constellation big logo is not displayed.")
 
     def test_G_19_profile_FN_LN_validation(self):
-        #self.driver.refresh()
         self.loginpage = LoginPage(self.driver)
         self.iconpage = IconListPage(self.driver)
         self.loginpage.loginDashboard()
