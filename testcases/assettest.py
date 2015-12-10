@@ -26,7 +26,7 @@ class AssetpageTest(BaseTestCase):
 
     def setUp(self):
         self.errors_and_failures = self.tally()
-        WebDriverWait(self.driver, 10). until(EC.presence_of_element_located(
+        WebDriverWait(self.driver, 50). until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
 
     def tearDown(self):
@@ -1683,4 +1683,14 @@ class AssetpageTest(BaseTestCase):
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
 
+
+    def test_demo(self):
+        self.pagination_info()
+        sleep(2)
+        self.pagination_drop_down_click(-1)
+        sleep(2)
+        self.pagination_next()
+        sleep(2)
+        self.pagination_previous()
+        sleep(2)
 

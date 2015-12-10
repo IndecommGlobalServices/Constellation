@@ -433,3 +433,14 @@ class AssessmenttPageTest(BaseTestCase):
         else:
             self.skipTest("No assessment listed")
 
+    def test_demo(self):
+        self.pagination_info()
+        sleep(3)
+        self.pagination_next()
+        sleep(2)
+        self.pagination_previous()
+        sleep(5)
+        self.pagination_drop_down_click(-1)
+        sleep(8)
+
+
