@@ -21,41 +21,13 @@ class IconListPage(BasePageClass, object):
     _loggedin_top_logo_id_locator = "toplogo"
     _icon_username_xpath = ".//*[@id='navbar-collapse-01']/ul/li[1]/a"
 
-    # Profile and Logout
-
-    _icon_profile_link = ".//*[@id='navbar-collapse-01']/ul/li[1]/ul/li[1]/a"
-    _icon_logout_link = ".//*[@id='navbar-collapse-01']/ul/li[1]/ul/li[2]/a"
-
-    # My Organisation
-    _icon_my_organisation = ".//*[@id='navbar-collapse-01']/ul/li[2]/a"
-    _icon_invite_members = ".//*[@id='navbar-collapse-01']/ul/li[2]/ul/li[1]/a"
-    _icon_manage_access = ".//*[@id='navbar-collapse-01']/ul/li[2]/ul/li[2]/a"
-    _icon_pending_invitation = ".//*[@id='navbar-collapse-01']/ul/li[2]/ul/li[3]/a"
-
-    # Status
-    _icon_status = ".//*[@id='navbar-collapse-01']/ul/li[3]/a"
-
-    #Help
-    _icon_help = ".//*[@id='navbar-collapse-01']/ul/li[4]/a"
-
-    # Feedback icon
-    _icon_feedback = ".//*[@id='page_applist']/img"
-
-    # Update profile
-    _profile_header = ".//*[@id='profile_modal']/div/div/div/h4"
-    _profile_email_read_only = ".//*[@id='profile_modal']/div/div/form/div[1]/div[1]/span"
-    _profile_first_name_name_locator = "profile_firstname"
-    _profile_last_name_name_locator = "profile_lastame"
-
-
-    #Loggedin
-    _loggedin_top_logo_id_locator = "toplogo"
-    _icon_username_xpath = ".//*[@id='navbar-collapse-01']/ul/li[1]/a"
 
     # Profile and Logout
 
     _icon_profile_link = ".//*[@id='navbar-collapse-01']/ul/li[1]/ul/li[1]/a"
-    _icon_logout_link = ".//*[@id='navbar-collapse-01']/ul/li[1]/ul/li[2]/a"
+    _icon_logout_link = "Logout"
+    #    _icon_logout_link = ".//*[@id='navbar-collapse-01']/ul/li[1]/ul/li[2]/a"
+
 
     # My Organisation
     _icon_my_organisation = ".//*[@id='navbar-collapse-01']/ul/li[2]/a"
@@ -79,7 +51,6 @@ class IconListPage(BasePageClass, object):
     _profile_last_name_name_locator = "profile_lastame"
     _profile_cancel = ".//*[@id='profile_modal']/div/div/form/div[2]/button[1]"
     _profile_save = ".//*[@id='profile_modal']/div/div/form/div[2]/button[2]"
-    #  <br/><span class="error" ng-show="saved">Profile updated.</span>
 
     @property
     def get_app_asset_icon(self):
@@ -126,7 +97,7 @@ class IconListPage(BasePageClass, object):
 
     @property
     def get_logout(self):
-        return self.driver.find_element_by_xpath(self._icon_logout_link)
+        return self.driver.find_element_by_link_text(self._icon_logout_link)
 
     #
     @property
@@ -177,10 +148,6 @@ class IconListPage(BasePageClass, object):
     @property
     def get_profile(self):
         return self.driver.find_element_by_xpath(self._icon_profile_link)
-
-    @property
-    def get_logout(self):
-        return self.driver.find_element_by_xpath(self._icon_logout_link)
 
     #
     @property

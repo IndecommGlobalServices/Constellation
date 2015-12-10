@@ -20,7 +20,7 @@ class LoginPage(BasePageClass):
     _login_big_logo_id_locator = "largelogo"
     _email_input_id_locator     = "inputusername"
     _password_input_id_locator  = "inputpassword"
-    _login_click_xpath_locator  = "//form[@id='login_form']/li[3]/button"
+    _login_click_xpath_locator  = "//*[@id='li-buttons']/button[1]" #"//form[@id='login_form']/li[3]/button"
     _login_main_register_id_locator = "buttonregister"
 
     _login_error_id_locator = "loginerrorspan"
@@ -31,10 +31,10 @@ class LoginPage(BasePageClass):
     _register_first_name_input_id_locator = "inputregfirstname"
     _register_last_name_input_id_locator = "inputreglastname"
     _register_password_1_input_id_locator = "inputregpassword1"
-    _register_password_2_input_id_locator = "inputregpassword2"
+    _register_password_2_input_id_locator = "inputregpassword2" # inputregpassword2
     _register_13_year_check_box_xpath_locator = ".//*[@id='inputregageli']/label/span/span[2]"
     _register_agree_service_terms_check_box_xpath_locator = ".//*[@id='inputusepolicyli']/label/span/span[2]"
-    _register_register_button_id_locator = "buttonregisterregister"
+    _register_register_button_id_locator = "buttonregisterregister" #"registerbuttonsli"
     _register_cancel_button_id_locator = "buttonregistercancel"
     _register_error_id_locator = "registererrorspan"
     _register_error_xpath_locator = ".//*[@id='registererror']/p[2]"
@@ -271,10 +271,15 @@ class LoginPage(BasePageClass):
             for each in data_text:
                 cls.usernameText = each["username"]
                 passwordText = each["password"]
+                sleep(5)
                 cls.email.clear()
+                sleep(5)
                 cls.email.send_keys(cls.usernameText)
+                sleep(5)
                 cls.password.clear()
+                sleep(5)
                 cls.password.send_keys(passwordText)
+                sleep(5)
                 cls.login.click()
 
     def clearallfields(cls):
