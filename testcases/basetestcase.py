@@ -9,7 +9,6 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pyvirtualdisplay import Display
 from time import sleep
 
-
 class BaseTestCase(unittest.TestCase):
 
     @classmethod
@@ -19,7 +18,6 @@ class BaseTestCase(unittest.TestCase):
             display = Display(visible=0, size=(1280,800))
             display.start()
         # create a new Firefox session
-
 
         # chromedriver = "../drivers/chromedriver"
         # os.environ["webdriver.chrome.driver"]= chromedriver
@@ -39,13 +37,9 @@ class BaseTestCase(unittest.TestCase):
         homepage = HomePage(cls.driver)
         homepage.loginlink.click()
 
-
-       
-
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()# close the browser
-
 
     def take_screenshot(self):
         cwd = os.getcwd()
@@ -62,7 +56,6 @@ class BaseTestCase(unittest.TestCase):
     def tally(self):
         return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
 
-
     def pagination_info(self):
         sleep(20)
         list_of_nodes = self.basepage.get_pg_list_of_nodes
@@ -70,16 +63,24 @@ class BaseTestCase(unittest.TestCase):
         pagination_end = list_of_nodes[-3].text
         print "Pagination start at page number : ", pagination_start
         print "Pagination end at page number : ", pagination_end
-        self.pagination_active_page()
+        print "Current Active Page Number is :", self.pagination_active_page()
+        drop_down_arrow = self.basepage.get_pg_drop_down_arrow
+        drop_down_arrow.click()
+        sleep(1)
+        self.pagination_total_pages()
+
+    def pagination_total_pages(self):
         drop_down_arrow = self.basepage.get_pg_drop_down_arrow
         drop_down_arrow.click()
         sleep(1)
         list_of_group_pages_dropdown = self.basepage.get_pg_list_of_page_groups
-        print "Total number of total pages available are:",(list_of_group_pages_dropdown[-1].text).split("-")[1]
+        total_pages = (list_of_group_pages_dropdown[-1].text).split("-")[1]
         for index, item in enumerate(list_of_group_pages_dropdown):
             print index+1, "Page group is : ", item.text
+        #print "Total number of total pages available are:", total_pages
         drop_down_arrow.click()
         sleep(1)
+        return total_pages
 
     def pagination_next(self):
         list_of_nodes = self.basepage.get_pg_list_of_nodes
@@ -88,7 +89,6 @@ class BaseTestCase(unittest.TestCase):
             sleep(3)
         elif list_of_nodes[-1].get_attribute("class") == "next disabled":
             print "This is last page. No more next page available."
-        self.pagination_active_page()
 
     def pagination_previous(self):
         list_of_nodes = self.basepage.get_pg_list_of_nodes
@@ -97,11 +97,9 @@ class BaseTestCase(unittest.TestCase):
             sleep(3)
         elif list_of_nodes[0].get_attribute("class") == "previous disabled":
             print "This is first page. No more previous page available."
-        self.pagination_active_page()
 
     def pagination_drop_down_click(self, page_index):
-        drop_down_arrow = self.basepage.get_pg_drop_down_arrow
-        drop_down_arrow.click()
+        self.basepage.get_pg_drop_down_arrow.click()
         sleep(1)
         list_of_page_drop_down = self.basepage.get_pg_list_of_page_groups
         if len(list_of_page_drop_down) >= 1:
@@ -110,4 +108,5 @@ class BaseTestCase(unittest.TestCase):
     def pagination_active_page(self):
         sleep(2)
         active_page = self.basepage.get_pg_active_page
-        print "Current Active page number is :", active_page.text
+        #print "Current Active page number is :", active_page.text
+        return int(active_page.text)

@@ -1683,14 +1683,57 @@ class AssetpageTest(BaseTestCase):
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
 
-
-    def test_demo(self):
-        self.pagination_info()
-        sleep(2)
-        self.pagination_drop_down_click(-1)
-        sleep(2)
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_86_to_test_pagination_next_button(self):
+        current_page_num = self.pagination_active_page()
         self.pagination_next()
         sleep(2)
+        next_page_num = self.pagination_active_page()
+        self.assertEqual(next_page_num, current_page_num + 1,"The next button click is not working.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_87_to_test_pagination_next_button_disabled(self):
+        self.pagination_drop_down_click(-1)
+        sleep(2)
+        current_page_num = self.pagination_active_page()
+        total_pages = self.pagination_total_pages()
+        flag = 1
+        while flag:
+            if int(current_page_num) == int(total_pages):
+                flag = 0
+            else:
+                self.pagination_next()
+                current_page_num = self.pagination_active_page()
+        next_page_num = self.pagination_active_page()
+        self.assertEqual(current_page_num, next_page_num, "Next Arrow button is not disabled.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_88_to_test_pagination_previous_button(self):
+        self.pagination_next()
+        current_page_num = self.pagination_active_page()
         self.pagination_previous()
         sleep(2)
+        previous_page_num = self.pagination_active_page()
+        self.assertEqual(previous_page_num, current_page_num - 1, "The Previous button click is not working.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_89_to_test_pagination_previous_button_disabled(self):
+        self.pagination_drop_down_click(1)
+        sleep(2)
+        current_page_num = self.pagination_active_page()
+        flag = 1
+        while flag:
+            if int(current_page_num) == int(1):
+                flag = 0
+            else:
+                self.pagination_previous()
+                current_page_num = self.pagination_active_page()
+        previous_page_num = self.pagination_active_page()
+        self.assertEqual(current_page_num, previous_page_num, "Previous Arrow button is not disabled.")
+
+
 
