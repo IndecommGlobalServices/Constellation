@@ -14,9 +14,9 @@ class BaseTestCase(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
 
-        if os.getenv("OS") == None:
-            display = Display(visible=0, size=(1280,800))
-            display.start()
+        # if os.getenv("OS") == None:
+        #     display = Display(visible=0, size=(1280,800))
+        #     display.start()
         # create a new Firefox session
 
         # chromedriver = "../drivers/chromedriver"
@@ -56,8 +56,7 @@ class BaseTestCase(unittest.TestCase):
     def tally(self):
         return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
 
-    def pagination_info(self):
-        sleep(20)
+    def get_pagination_info(self):
         list_of_nodes = self.basepage.get_pg_list_of_nodes
         pagination_start = list_of_nodes[1].text
         pagination_end = list_of_nodes[-3].text
@@ -67,19 +66,16 @@ class BaseTestCase(unittest.TestCase):
         drop_down_arrow = self.basepage.get_pg_drop_down_arrow
         drop_down_arrow.click()
         sleep(1)
-        self.pagination_total_pages()
+        print "Total number of total pages available are:",self.pagination_total_pages()
 
     def pagination_total_pages(self):
         drop_down_arrow = self.basepage.get_pg_drop_down_arrow
         drop_down_arrow.click()
-        sleep(1)
+        sleep(2)
         list_of_group_pages_dropdown = self.basepage.get_pg_list_of_page_groups
         total_pages = (list_of_group_pages_dropdown[-1].text).split("-")[1]
-        for index, item in enumerate(list_of_group_pages_dropdown):
-            print index+1, "Page group is : ", item.text
-        #print "Total number of total pages available are:", total_pages
         drop_down_arrow.click()
-        sleep(1)
+        sleep(2)
         return total_pages
 
     def pagination_next(self):
@@ -100,13 +96,23 @@ class BaseTestCase(unittest.TestCase):
 
     def pagination_drop_down_click(self, page_index):
         self.basepage.get_pg_drop_down_arrow.click()
-        sleep(1)
+        sleep(2)
         list_of_page_drop_down = self.basepage.get_pg_list_of_page_groups
         if len(list_of_page_drop_down) >= 1:
             list_of_page_drop_down[page_index].click()
+        else:
+            print "Pagination does not have page groups"
 
     def pagination_active_page(self):
         sleep(2)
         active_page = self.basepage.get_pg_active_page
         #print "Current Active page number is :", active_page.text
         return int(active_page.text)
+
+    def pagination_start_end_node_value(self):
+        sleep(2)
+        list_of_nodes = self.basepage.get_pg_list_of_nodes
+        sleep(2)
+        pagination_start_node = list_of_nodes[1].text.encode('utf-8')
+        pagination_end_node = list_of_nodes[-3].text.encode('utf-8')
+        return (pagination_start_node, pagination_end_node)

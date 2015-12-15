@@ -610,14 +610,18 @@ class ThreatStreamPage(BasePageClass):
         self.get_ts_threat_dropdown_filter.click()
         sleep(1)#required to update dropdown menu
         self.get_ts_new_filter_name(filter_name).click()
-        sleep(5)#required to update filter window title
+        #sleep(5)#required to update filter window title
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                        self._ts_threat_filter_edit_cog_wheel_locator)))
         self.get_ts_threat_filter_edit_cog_wheel.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self._ts_filter_create_title_locator)))
         self.get_ts_filter_create_delete_button.click()
         sleep(4)#required to display delete confirm popup
         self.get_ts_filter_create_confirm_delete_button.click()
-        sleep(7)#required to update threat stream apps
+        #sleep(7)#required to update threat stream apps
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
+                                                self._ts_threat_filter_name_text_locator),"Stream"))
 
     def return_to_apps_main_page(self):
         """
