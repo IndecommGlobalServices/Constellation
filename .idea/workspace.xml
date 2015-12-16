@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/testcases/assessmentphysicalsecuritytest.py" line="166" mnemonic="1" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="Pagination sc">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assessmentpage.py" afterPath="$PROJECT_DIR$/pages/assessmentpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/basepage.py" afterPath="$PROJECT_DIR$/pages/basepage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmenttest.py" afterPath="$PROJECT_DIR$/testcases/assessmenttest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/basetestcase.py" afterPath="$PROJECT_DIR$/testcases/basetestcase.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
     </list>
     <ignored path="Constellation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,7 +18,6 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
-  <component name="ExportTestResults" outputFolder="$PROJECT_DIR$" userTempatePath="" />
   <component name="FavoritesManager">
     <favorites_list name="Constellation" />
   </component>
@@ -200,25 +191,6 @@
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
-  <component name="ProjectInspectionProfilesVisibleTreeState">
-    <entry key="Project Default">
-      <profile-state>
-        <expanded-state>
-          <State>
-            <id />
-          </State>
-          <State>
-            <id>Python</id>
-          </State>
-        </expanded-state>
-        <selected-state>
-          <State>
-            <id>PyUnresolvedReferencesInspection</id>
-          </State>
-        </selected-state>
-      </profile-state>
-    </entry>
-  </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
     <OptionsSetting value="true" id="Remove" />
@@ -336,11 +308,6 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="restartRequiresConfirmation" value="true" />
-  </component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Constellation\testcases" />
-    </key>
   </component>
   <component name="RunManager" selected="Python tests.Unittest AssessmenttPageTest.test_ast_118_to_test_search_asset_pagination">
     <configuration default="false" name="Unittest AssessmenttPageTest.test_ast_114_to_test_pagination_previous_button_disabled" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
@@ -593,9 +560,6 @@
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="" />
@@ -933,7 +897,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="1" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31324404" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
@@ -979,14 +943,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24627976" sideWeight="0.50864196" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3970588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout-to-restore>
-  </component>
-  <component name="Vcs.Log.UiProperties">
-    <option name="RECENTLY_FILTERED_USER_GROUPS">
-      <collection />
-    </option>
-    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
-      <collection />
-    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
