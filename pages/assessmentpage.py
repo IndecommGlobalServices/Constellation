@@ -581,6 +581,11 @@ class AssessmentPage(BasePageClass):
             if index == count:
                 break
 
+    def deselect_checkboxes(self):
+        checks = self.driver.find_elements_by_xpath("//label[@class = 'checkbox checked']")
+        for check in checks:
+            check.click()
+
     def search_assessment_textbox(self, keyword):
         WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
             (By.XPATH, self._ast_search_assessment_text_box_locator)), "Assessment search text box not available")
