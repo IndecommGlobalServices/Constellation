@@ -1817,6 +1817,9 @@ class AssetpageTest(BaseTestCase):
 
         elif str(page_count) > str(1):
             self.pagination_drop_down_click(0)
+            sleep(2)
+            list_of_nodes = self.basepage.get_pg_list_of_nodes
+            sleep(2)
             list_of_nodes[1].click()
             sleep(2)
             if list_of_nodes[0].get_attribute("class") == "previous disabled":
@@ -1840,21 +1843,47 @@ class AssetpageTest(BaseTestCase):
         if str(page_count) == str(1):
             previous_node_value = list_of_nodes[0].get_attribute("class")
             next_node_value = list_of_nodes[-1].get_attribute("class")
-            print"cccccccccccccc"
             if (previous_node_value == "previous disabled") and (next_node_value == "next disabled"):
                 self.assertTrue(True, "There is only one page and next/previous button is enabled.")
             else:
                 self.assertFalse(True, "There is only one page and next/previous button is enabled.")
-
         elif str(page_count) > str(1):
             self.pagination_drop_down_click(-1)
+            sleep(2)
+            list_of_nodes = self.basepage.get_pg_list_of_nodes
             list_of_nodes[-3].click()
             sleep(2)
-            if list_of_nodes[0].get_attribute("class") == "next disabled":
-                print "gggg"
+            if list_of_nodes[-1].get_attribute("class") == "next disabled":
                 self.assertTrue(True, "Displayed Page is last page but next button is enabled.")
             else:
-                print "tttttt"
                 self.assertFalse(True, "Displayed Page is last page but next button is enabled.")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_104_to_test_search_asset_pagination(self):
+        """
+        Test : test_AS_104
+        Description :To verify that if searched asset is not available than pagination should be disabled.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.assetpage.asset_search_assetname("123$%")
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
+                       ((By.XPATH, self.assetpage._asset_search_no_matching_text_locator), "No matching records found"))
+        if self.assetpage.get_asset_search_no_matching_text.is_displayed():
+            list_of_nodes = self.basepage.get_pg_list_of_nodes
+            node_length = len(list_of_nodes)
+            previous_node_text = list_of_nodes[0].get_attribute("class")
+            next_node_text = list_of_nodes[-1].get_attribute("class")
+            sleep(20)
+            if(previous_node_text == "previous disabled") and (next_node_text == "next disabled") and (node_length==3):
+                self.assertTrue(True, "No Pages available but still next and previous button is enabled.")
+            else:
+                self.assertFalse(True, "No Pages available but still next and previous button is enabled.")
+
+
+
 
 

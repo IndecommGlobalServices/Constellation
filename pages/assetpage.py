@@ -62,6 +62,7 @@ class AssetPage(BasePageClass):
 
     #asset search textbox
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
+    _asset_search_no_matching_text_locator = ".//*[@id='assetstable']/tbody/tr/td"
 
     # New Asset creation related
     #_asset_create_asset = "//img[@alt='Create asset']"
@@ -1139,6 +1140,14 @@ class AssetPage(BasePageClass):
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._asset_search_textbox_locator + err.message)
+
+    @property
+    def get_asset_search_no_matching_text(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_search_no_matching_text_locator)
+        except Exception, err:
+            raise type(err)("No Matching text is not available - searched XPATH - " \
+                          + self._asset_search_no_matching_text_locator + err.message)
 
     @property
     def get_asset_photos_documents_header_text(self):
