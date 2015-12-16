@@ -9,15 +9,17 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from pyvirtualdisplay import Display
 from time import sleep
 
+
 class BaseTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
 
-        # if os.getenv("OS") == None:
-        #     display = Display(visible=0, size=(1280,800))
-        #     display.start()
+        if os.getenv("OS") == None:
+            display = Display(visible=0, size=(1280, 800))
+            display.start()
         # create a new Firefox session
+
 
         # chromedriver = "../drivers/chromedriver"
         # os.environ["webdriver.chrome.driver"]= chromedriver
@@ -29,17 +31,18 @@ class BaseTestCase(unittest.TestCase):
         cls.driver.maximize_window()
 
         # navigate to the application home page
-        #basepage = BasePage(cls.driver)
-        cls.basepage = BasePage(cls.driver)
-
-        cls.basepage.accessURL()
+        basepage = BasePage(cls.driver)
+        basepage.accessURL()
 
         homepage = HomePage(cls.driver)
         homepage.loginlink.click()
 
+       
+
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()# close the browser
+
 
     def take_screenshot(self):
         cwd = os.getcwd()
@@ -56,63 +59,60 @@ class BaseTestCase(unittest.TestCase):
     def tally(self):
         return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
 
-    def get_pagination_info(self):
-        list_of_nodes = self.basepage.get_pg_list_of_nodes
+
+    def pagination_info(self):
+        sleep(20)
+        pg_list_of_nodes_locator = "//div[contains(@class,'dataTables_paginate paging_numbered')]/div/ul/li"
+        list_of_nodes = self.driver.find_elements_by_xpath(pg_list_of_nodes_locator)
         pagination_start = list_of_nodes[1].text
         pagination_end = list_of_nodes[-3].text
         print "Pagination start at page number : ", pagination_start
         print "Pagination end at page number : ", pagination_end
-        print "Current Active Page Number is :", self.pagination_active_page()
-        drop_down_arrow = self.basepage.get_pg_drop_down_arrow
+        pg_active_page_locator = "//li[contains(@class, 'active')]//a"
+        active_page = self.driver.find_element_by_xpath(pg_active_page_locator)
+        print "Current Active page number is :", active_page.text
+        pg_drop_down_arrow_locator = "//li[contains(@class, 'dropup')]"
+        drop_down_arrow = self.driver.find_element_by_xpath(pg_drop_down_arrow_locator)
         drop_down_arrow.click()
         sleep(1)
-        print "Total number of total pages available are:",self.pagination_total_pages()
-
-    def pagination_total_pages(self):
-        drop_down_arrow = self.basepage.get_pg_drop_down_arrow
+        pg_list_of_drop_down_locator = "//li[contains(@class, 'dropup')]//ul/li/a"
+        list_of_page_drop_down = self.driver.find_elements_by_xpath(pg_list_of_drop_down_locator)
+        print "Total number of pages available in pagination are :",(list_of_page_drop_down[-1].text).split("-")[1]
+        for index, item in enumerate(list_of_page_drop_down):
+            print index+1, "Page group is : ",item.text
         drop_down_arrow.click()
-        sleep(2)
-        list_of_group_pages_dropdown = self.basepage.get_pg_list_of_page_groups
-        total_pages = (list_of_group_pages_dropdown[-1].text).split("-")[1]
-        drop_down_arrow.click()
-        sleep(2)
-        return total_pages
+        sleep(1)
 
     def pagination_next(self):
-        list_of_nodes = self.basepage.get_pg_list_of_nodes
+        pg_list_of_nodes_locator = "//div[contains(@class,'dataTables_paginate paging_numbered')]/div/ul/li"
+        list_of_nodes = self.driver.find_elements_by_xpath(pg_list_of_nodes_locator)
+        pg_active_page_locator = "//li[contains(@class, 'active')]//a"
         if list_of_nodes[-1].get_attribute("class") == "next":
             list_of_nodes[-1].click()
             sleep(3)
         elif list_of_nodes[-1].get_attribute("class") == "next disabled":
             print "This is last page. No more next page available."
+        active_page = self.driver.find_element_by_xpath(pg_active_page_locator)
+        print "Current Active page number is :", active_page.text
 
     def pagination_previous(self):
-        list_of_nodes = self.basepage.get_pg_list_of_nodes
+        pg_list_of_nodes_locator = "//div[contains(@class,'dataTables_paginate paging_numbered')]/div/ul/li"
+        list_of_nodes = self.driver.find_elements_by_xpath(pg_list_of_nodes_locator)
+        pg_active_page_locator = "//li[contains(@class, 'active')]//a"
         if list_of_nodes[0].get_attribute("class") == "previous":
             list_of_nodes[0].click()
-            sleep(3)
         elif list_of_nodes[0].get_attribute("class") == "previous disabled":
             print "This is first page. No more previous page available."
+        active_page = self.driver.find_element_by_xpath(pg_active_page_locator)
+        print "Current Active page number is :", active_page.text
+
 
     def pagination_drop_down_click(self, page_index):
-        self.basepage.get_pg_drop_down_arrow.click()
-        sleep(2)
-        list_of_page_drop_down = self.basepage.get_pg_list_of_page_groups
-        if len(list_of_page_drop_down) >= 1:
+        pg_drop_down_arrow_locator = "//li[contains(@class, 'dropup')]"
+        drop_down_arrow = self.driver.find_element_by_xpath(pg_drop_down_arrow_locator)
+        drop_down_arrow.click()
+        sleep(1)
+        pg_list_of_drop_down_locator = "//li[contains(@class, 'dropup')]//ul/li/a"
+        list_of_page_drop_down = self.driver.find_elements_by_xpath(pg_list_of_drop_down_locator)
+        if len(list_of_page_drop_down)>=1:
             list_of_page_drop_down[page_index].click()
-        else:
-            print "Pagination does not have page groups"
-
-    def pagination_active_page(self):
-        sleep(2)
-        active_page = self.basepage.get_pg_active_page
-        #print "Current Active page number is :", active_page.text
-        return int(active_page.text)
-
-    def pagination_start_end_node_value(self):
-        sleep(2)
-        list_of_nodes = self.basepage.get_pg_list_of_nodes
-        sleep(2)
-        pagination_start_node = list_of_nodes[1].text.encode('utf-8')
-        pagination_end_node = list_of_nodes[-3].text.encode('utf-8')
-        return (pagination_start_node, pagination_end_node)

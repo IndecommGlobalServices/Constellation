@@ -326,6 +326,7 @@ class AssessmenttPageTest(BaseTestCase):
     def test_ast_35_To_Verify_Delete_MultipleAssessment(self):
         countbeforedeletion = self.ast.get_total_row_count()
         if countbeforedeletion >= 1:
+            sleep(5)
             self.ast.select_multiple_checkboxes(2)
             self.ast.get_action_dropdown.click()
             self.ast.get_action_delete_button.click()
@@ -341,14 +342,15 @@ class AssessmenttPageTest(BaseTestCase):
     def test_ast_36_To_Verify_Delete_Assessment_Cancel(self):
         countbeforedeletion = self.ast.get_total_row_count()
         if countbeforedeletion >= 1:
+            sleep(5)
             self.ast.select_multiple_checkboxes(2)
             self.ast.get_action_dropdown.click()
             self.ast.get_action_delete_button.click()
             self.ast.get_delete_assessment_cancel_button.click()
             sleep(5)#mandatory for the list to refresh
+            self.ast.deselect_checkboxes()
             countafterdeletion = self.ast.get_total_row_count()
             self.assertEqual(countbeforedeletion, countafterdeletion, "Assessment deleted even after cancel is pressed")
-            #self.ast.deselect_checkboxes()
         else:
             self.skipTest("No Assessments listed")
 
@@ -358,6 +360,7 @@ class AssessmenttPageTest(BaseTestCase):
         emailid = "Email@domain"
         countbeforedeletion = self.ast.get_total_row_count()
         if countbeforedeletion >= 1:
+            sleep(5)
             self.ast.select_multiple_checkboxes(1)
             self.ast.get_action_dropdown.click()
             self.ast.get_action_assign_button.click()
@@ -377,12 +380,13 @@ class AssessmenttPageTest(BaseTestCase):
         noofassessments = 2
         countbeforedeletion = self.ast.get_total_row_count()
         if countbeforedeletion >= 1:
+            sleep(5)
             self.ast.select_multiple_checkboxes(noofassessments)
             self.ast.get_action_dropdown.click()
             self.ast.get_action_assign_button.click()
             self.ast.get_ast_assignto_textbox.send_keys(emailid)
             self.ast.get_ast_assignto_assign_button.click()
-            sleep(10)
+            sleep(12)
             assignedto = self.ast.get_assessment_table("Assigned to")
             if len(assignedto) < noofassessments:
                 noofassessments = len(assignedto)
@@ -414,9 +418,9 @@ class AssessmenttPageTest(BaseTestCase):
     #@SkipTest
     def test_ast_40_To_Verify_Assign_Assessment_cancel(self):
         emailid = ['Email1@domain', 'Email2@domain']
-        sleep(8)
         countbeforedeletion = self.ast.get_total_row_count()
         if countbeforedeletion >= 1:
+            sleep(8)
             self.ast.select_multiple_checkboxes(1)
             self.ast.get_action_dropdown.click()
             self.ast.get_action_assign_button.click()
