@@ -12,6 +12,7 @@ from time import sleep
 import json, os, re, inspect
 from selenium.webdriver.common.action_chains import ActionChains
 import ConfigParser
+from lib.pagination import Pagination
 
 class AssetpageTest(BaseTestCase):
 
@@ -19,6 +20,7 @@ class AssetpageTest(BaseTestCase):
     def setUpClass(cls):
         super(AssetpageTest, cls).setUpClass()
         cls.assetpage = AssetPage(cls.driver)
+        cls.pagination = Pagination(cls.driver)
         cls.assetpage.open_asset_app()
         cls.section = 'Messages'
         cls.config = ConfigParser.ConfigParser()
@@ -1693,12 +1695,12 @@ class AssetpageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
-        self.pagination_previous()
+        self.pagination.pagination_previous()
         sleep(2)
-        current_page_num = self.pagination_active_page()
-        self.pagination_next()
+        current_page_num = self.pagination.pagination_active_page()
+        self.pagination.pagination_next()
         sleep(2)
-        next_page_num = self.pagination_active_page()
+        next_page_num = self.pagination.pagination_active_page()
         self.assertEqual(next_page_num, current_page_num + 1,"The next button click is not working.")
 
     @attr(priority="high")
@@ -1711,18 +1713,18 @@ class AssetpageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
-        self.pagination_drop_down_click(-1)
+        self.pagination.pagination_drop_down_click(-1)
         sleep(2)
-        current_page_num = self.pagination_active_page()
-        total_pages = self.pagination_total_pages()
+        current_page_num = self.pagination.pagination_active_page()
+        total_pages = self.pagination.pagination_total_pages()
         flag = 1
         while flag:
             if int(current_page_num) == int(total_pages):
                 flag = 0
             else:
-                self.pagination_next()
-                current_page_num = self.pagination_active_page()
-        next_page_num = self.pagination_active_page()
+                self.pagination.pagination_next()
+                current_page_num = self.pagination.pagination_active_page()
+        next_page_num = self.pagination.pagination_active_page()
         self.assertEqual(current_page_num, next_page_num, "Next Arrow button is not disabled.")
 
     @attr(priority="high")
@@ -1735,11 +1737,11 @@ class AssetpageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
-        self.pagination_next()
-        current_page_num = self.pagination_active_page()
-        self.pagination_previous()
+        self.pagination.pagination_next()
+        current_page_num = self.pagination.pagination_active_page()
+        self.pagination.pagination_previous()
         sleep(2)
-        previous_page_num = self.pagination_active_page()
+        previous_page_num = self.pagination.pagination_active_page()
         self.assertEqual(previous_page_num, current_page_num - 1, "The Previous button click is not working.")
 
     @attr(priority="high")
@@ -1752,19 +1754,18 @@ class AssetpageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
-        self.pagination_drop_down_click(0)
+        self.pagination.pagination_drop_down_click(0)
         sleep(2)
-        current_page_num = self.pagination_active_page()
+        current_page_num = self.pagination.pagination_active_page()
         flag = 1
         while flag:
             if int(current_page_num) == int(1):
                 flag = 0
             else:
-                self.pagination_previous()
-                current_page_num = self.pagination_active_page()
-        previous_page_num = self.pagination_active_page()
+                self.pagination.pagination_previous()
+                current_page_num = self.pagination.pagination_active_page()
+        previous_page_num = self.pagination.pagination_active_page()
         self.assertEqual(current_page_num, previous_page_num, "Previous Arrow button is not disabled.")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -1776,37 +1777,38 @@ class AssetpageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
-        self.basepage.get_pg_drop_down_arrow.click()
+        self.pagination.get_pg_drop_down_arrow.click()
         sleep(2)
-        list_of_page_drop_down = self.basepage.get_pg_list_of_page_groups
-        self.basepage.get_pg_drop_down_arrow.click()
+        list_of_page_drop_down = self.pagination.get_pg_list_of_page_groups
+        sleep(2)
+        self.pagination.get_pg_drop_down_arrow.click()
         sleep(2)
         if len(list_of_page_drop_down)>=1:
-            self.pagination_drop_down_click(-1)
+            self.pagination.pagination_drop_down_click(-1)
             last_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[1]
-            if last_page>=5:
+            if int(last_page) >= 5:
                 first_page = int(last_page)-4
             else:
-                first_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[1]
-            start_value, end_value = self.pagination_start_end_node_value()
+                first_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[0]
+            start_value, end_value = self.pagination.pagination_start_end_node_value()
             actual_group = [str(start_value), str(end_value)]
             expected_group = [str(first_page), str(last_page)]
             self.assertListEqual(actual_group, expected_group, "Selected Group value is not matching with Actual.")
         else:
-            self.skipTest("There is only page available.")
+            self.skipTest("There is only one page available.")
 
     @attr(priority="high")
     #@SkipTest
     def test_AS_102_to_test_direct_click_first_page(self):
         """
-        Test : test_AS_101
+        Test : test_AS_102
         Description :To verify that first page is selected directly and previous button is disabled.
         Revision:
         Author : Bijesh
         :return: None
         """
-        page_count = self.pagination_total_pages()
-        list_of_nodes = self.basepage.get_pg_list_of_nodes
+        page_count = self.pagination.pagination_total_pages()
+        list_of_nodes = self.pagination.get_pg_list_of_nodes
         if str(page_count) == str(1):
             previous_node_value = list_of_nodes[0].get_attribute("class")
             next_node_value = list_of_nodes[-1].get_attribute("class")
@@ -1816,9 +1818,9 @@ class AssetpageTest(BaseTestCase):
                 self.assertFalse(True, "There is only one page and next/previous button is enabled.")
 
         elif str(page_count) > str(1):
-            self.pagination_drop_down_click(0)
+            self.pagination.pagination_drop_down_click(0)
             sleep(2)
-            list_of_nodes = self.basepage.get_pg_list_of_nodes
+            list_of_nodes = self.pagination.get_pg_list_of_nodes
             sleep(2)
             list_of_nodes[1].click()
             sleep(2)
@@ -1827,19 +1829,18 @@ class AssetpageTest(BaseTestCase):
             else:
                 self.assertFalse(True, "Current Page number is One but previous button is enabled.")
 
-
     @attr(priority="high")
     #@SkipTest
     def test_AS_103_to_test_direct_click_last_page(self):
         """
-        Test : test_AS_101
+        Test : test_AS_103
         Description :To verify that last page is selected directly and next button is disabled.
         Revision:
         Author : Bijesh
         :return: None
         """
-        page_count = self.pagination_total_pages()
-        list_of_nodes = self.basepage.get_pg_list_of_nodes
+        page_count = self.pagination.pagination_total_pages()
+        list_of_nodes = self.pagination.get_pg_list_of_nodes
         if str(page_count) == str(1):
             previous_node_value = list_of_nodes[0].get_attribute("class")
             next_node_value = list_of_nodes[-1].get_attribute("class")
@@ -1848,16 +1849,15 @@ class AssetpageTest(BaseTestCase):
             else:
                 self.assertFalse(True, "There is only one page and next/previous button is enabled.")
         elif str(page_count) > str(1):
-            self.pagination_drop_down_click(-1)
+            self.pagination.pagination_drop_down_click(-1)
             sleep(2)
-            list_of_nodes = self.basepage.get_pg_list_of_nodes
+            list_of_nodes = self.pagination.get_pg_list_of_nodes
             list_of_nodes[-3].click()
             sleep(2)
             if list_of_nodes[-1].get_attribute("class") == "next disabled":
                 self.assertTrue(True, "Displayed Page is last page but next button is enabled.")
             else:
                 self.assertFalse(True, "Displayed Page is last page but next button is enabled.")
-
 
     @attr(priority="high")
     #@SkipTest
@@ -1873,17 +1873,12 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
                        ((By.XPATH, self.assetpage._asset_search_no_matching_text_locator), "No matching records found"))
         if self.assetpage.get_asset_search_no_matching_text.is_displayed():
-            list_of_nodes = self.basepage.get_pg_list_of_nodes
+            list_of_nodes = self.pagination.get_pg_list_of_nodes
             node_length = len(list_of_nodes)
             previous_node_text = list_of_nodes[0].get_attribute("class")
             next_node_text = list_of_nodes[-1].get_attribute("class")
-            sleep(20)
+            sleep(2)
             if(previous_node_text == "previous disabled") and (next_node_text == "next disabled") and (node_length==3):
                 self.assertTrue(True, "No Pages available but still next and previous button is enabled.")
             else:
                 self.assertFalse(True, "No Pages available but still next and previous button is enabled.")
-
-
-
-
-

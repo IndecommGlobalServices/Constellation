@@ -58,7 +58,7 @@ class AssessmentPage(BasePageClass):
     # Assessment search related locators
     _ast_search_assessment_text_box_locator = ".//*[@id='search-assessments']"
     _ast_search_asset_text_box_locator = ".//*[@id='search-assessment-manager']"
-    _ast_assessmentlist_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']/tbody/tr/td"
+    _ast_assessmentlist_No_Matching_Records_Found_locator = ".//*[@id='tblAssessments']//td[@class='dataTables_empty']"
 
     # Assessment delete related locators
     _ast_check_box_locator = ".//*[@id='tblAssessments']/tbody/tr/td[1]/label/span/span[2]"
