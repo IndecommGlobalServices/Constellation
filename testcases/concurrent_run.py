@@ -1,7 +1,7 @@
 from subprocess import Popen
 import glob
 import time
-import os
+import os, nose
 from datetime import datetime
 from time import sleep
 import xml.etree.ElementTree as ET
@@ -40,24 +40,32 @@ os.chdir(cwd)
 
 # assessmenttests = glob.glob('assessment*.py')
 
-tests = (['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
-         ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
-         ['maptest', str(map_filepath), 'Maptest'])
-         # ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
-         # ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'],
-         # ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'],
-         # ['assessmentschoolinfrastructuretest', str(assessmentinfra_filepath), 'AssessmentSchoolInfrastructuretest'],
-         # ['assessmentphysicalsecuritytest', str(assessmentphysical_filepath), 'AssessmentPhysicalSecuritytest'],
-         # ['assessmenttrainingandexercisetest', str(assessmenttrainning_filepath), 'AssessmentTrainingandExercisetest'])
+tests1 = (['assessmentschoolinfrastructuretest', str(assessmentinfra_filepath), 'AssessmentSchoolInfrastructuretest'],
+          ['assettest', str(asset_filepath), 'Assettest'],
+         ['assessmentphysicalsecuritytest', str(assessmentphysical_filepath), 'AssessmentPhysicalSecuritytest'],
+         ['assessmenttrainingandexercisetest', str(assessmenttrainning_filepath), 'AssessmentTrainingandExercisetest'])
+
+testsordered1 = (['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
+                 ['maptest', str(map_filepath), 'Maptest'],
+                 ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'])
+
+testsordered2 = (['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
+                 ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
+                 ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'])
 
 processes = []
 
-for test in tests:
+for test in tests1:
     processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2] , shell=True))
     sleep(2)
 
-sleep(20)
-processes.append(Popen('nosetests --tests assettest --xunit-file=' + str(asset_filepath) + ' --xunit-testsuite-name=Assettest' , shell=True))
+for test in testsordered1:
+    processes.append(os.system('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2]))
+    sleep(2)
+
+for test in testsordered2:
+    processes.append(os.system('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2]))
+    sleep(2)
 
 for process in processes:
     process.wait()
