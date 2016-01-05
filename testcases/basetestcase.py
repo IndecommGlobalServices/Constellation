@@ -13,17 +13,17 @@ class BaseTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-
         if os.getenv("OS") == None:
             display = Display(visible=0, size=(1280,800))
             display.start()
         # create a new Firefox session
 
-        # chromedriver = "../drivers/chromedriver"
-        # os.environ["webdriver.chrome.driver"]= chromedriver
-        # cls.driver = webdriver.Chrome(chromedriver)
-
         cls.driver = webdriver.Firefox()
+        '''
+        chromedriver = "../drivers/windows/chromedriver.exe"
+        os.environ["webdriver.chrome.driver"] = chromedriver
+        cls.driver = webdriver.Chrome(chromedriver)
+        '''
         cls.driver.implicitly_wait(40)
         cls.driver.set_window_size(1280, 1024)
         cls.driver.maximize_window()

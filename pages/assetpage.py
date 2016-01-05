@@ -238,6 +238,7 @@ class AssetPage(BasePageClass):
         super(AssetPage, self).__init__(driver)
         self.get_schooldata()
         self.get_placedata()
+        self.basepage = BasePage(self.driver)
 
     def open_asset_app(self):
         loginpage = LoginPage(self.driver)
@@ -281,7 +282,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_link_delete_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_link_delete_text_xpath_locator)
+            #return self.driver.find_element_by_xpath(self._asset_link_delete_text_xpath_locator)
+            return self.basepage.findElementByXpath(self._asset_link_delete_text_xpath_locator)
         except Exception, err:
             raise type(err)("Delete option not present in the select action dropdown - searched XPATH - " \
                           + self._asset_link_delete_text_xpath_locator + err.message)
@@ -289,7 +291,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_delete_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_select_action_delete_click_xpath_locator)
+            #return self.driver.find_element_by_xpath(self._asset_select_action_delete_click_xpath_locator)
+            return self.basepage.findElementByXpath(self._asset_select_action_delete_click_xpath_locator)
         except Exception, err:
             raise type(err)("Delete button not available in Delete Assets popup - searched XPATH - " \
                           + self._asset_select_action_delete_click_xpath_locator + err.message)
@@ -307,7 +310,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_reset_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_filter_reset_button_locator)
+            #return self.driver.find_element_by_xpath(self._asset_filter_reset_button_locator)
+            return self.basepage.findElementByXpath(self._asset_filter_reset_button_locator)
         except Exception, err:
             raise type(err)("Reset filter button not available - searched XPATH - " \
                           + self._asset_filter_reset_button_locator + err.message)
@@ -333,7 +337,8 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_district_drop_down(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_district_drop_down_locator)
+            #return self.driver.find_element_by_xpath(self._asset_overview_district_drop_down_locator)
+            return self.basepage.findElementByXpath(self._asset_overview_district_drop_down_locator)
         except Exception, err:
             raise type(err)("District dropdown not available - searched XPATH - " \
                           + self._asset_overview_district_drop_down_locator + err.message)
@@ -341,7 +346,8 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_grade_drop_down(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_grade_drop_down_locator)
+            #return self.driver.find_element_by_xpath(self._asset_overview_grade_drop_down_locator)
+            return self.basepage.findIfElementVisible(self._asset_overview_grade_drop_down_locator)
         except Exception, err:
             raise type(err)("Grade dropdown not available - searched XPATH - " \
                           + self._asset_overview_grade_drop_down_locator + err.message)
@@ -357,7 +363,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_list_first_check_box(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_list_select_first_check_box_xpath_locator)
+            #return self.driver.find_element_by_xpath(self._asset_list_select_first_check_box_xpath_locator)
+            return self.basepage.findElementByXpath(self._asset_list_select_first_check_box_xpath_locator)
         except Exception, err:
             raise type(err)("Asset table checkbox not available - searched XPATH - " \
                           + self._asset_list_select_first_check_box_xpath_locator + err.message)
@@ -373,7 +380,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_place_type_first_element(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_select_first_element_locator)
+            #return self.driver.find_element_by_xpath(self._asset_place_type_drop_down_select_first_element_locator)
+            return self.basepage.findElementByXpath(self._asset_place_type_drop_down_select_first_element_locator)
         except Exception, err:
             raise type(err)("Place type dropdown list not available - searched XPATH - " \
                           + self._asset_place_type_drop_down_select_first_element_locator + err.message)
@@ -381,7 +389,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_school_district_drop_down(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
+            #return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_locator)
+            return self.basepage.findElementByXpath(self._asset_school_district_drop_down_locator)
         except Exception, err:
             raise type(err)("District dropdown not available - searched XPATH - " \
                           + self._asset_school_district_drop_down_locator + err.message)
@@ -389,7 +398,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_school_district_first_element(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_firt_element_locator)
+            #return self.driver.find_element_by_xpath(self._asset_school_district_drop_down_firt_element_locator)
+            return self.basepage.findElementByXpath(self._asset_school_district_drop_down_firt_element_locator)
         except Exception, err:
             raise type(err)("District dropdown list not available - searched XPATH - " \
                           + self._asset_school_district_drop_down_firt_element_locator + err.message)
@@ -412,14 +422,16 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_school_type_drop_down(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator)
+            #return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_locator)
+            return self.basepage.findElementByXpath(self._asset_school_type_drop_down_locator)
         except Exception, err:
             raise type(err)("School type dropdown not available - searched XPATH - " \
                           + self._asset_school_type_drop_down_locator + err.message)
     @property
     def get_asset_school_type_first_element(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
+            #return self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
+            return self.basepage.findElementByXpath(self._asset_school_type_drop_down_select_first_element_locator)
         except Exception, err:
             raise type(err)("School type dropdown list not available - searched XPATH - " \
                           + self._asset_school_type_drop_down_select_first_element_locator + err.message)
@@ -435,7 +447,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_name_list(self):
         try:
-            return  self.driver.find_elements_by_xpath(self._asset_list_asset_name_black_color_locator)
+            #return  self.driver.find_elements_by_xpath(self._asset_list_asset_name_black_color_locator)
+            return self.basepage.findElementsByXpath(self._asset_list_asset_name_black_color_locator)
         except Exception, err:
             raise type(err)("Black color in the list not available after insertion - searched XPATH - " \
                           + self._asset_list_asset_name_black_color_locator + err.message)
@@ -444,6 +457,7 @@ class AssetPage(BasePageClass):
     def enter_asset_type_name(self):
         try:
             return self.driver.find_element_by_xpath(self._asset_overview_name_text_box_locator)
+            #return self.basepage.findElementByXpath(self._asset_overview_name_text_box_locator)
         except Exception, err:
             raise type(err)("Asset name textbox not available - searched XPATH - " \
                           + self._asset_overview_name_text_box_locator + err.message)
@@ -506,7 +520,8 @@ class AssetPage(BasePageClass):
     @property
     def asset_type_Saved_label(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_type_Saved_label_locator)
+            #return self.driver.find_element_by_xpath(self._asset_type_Saved_label_locator)
+            return self.basepage.findElementByXpath(self._asset_type_Saved_label_locator)
         except Exception, err:
             raise type(err)("'Saved' label not available - searched XPATH - " \
                           + self._asset_type_Saved_label_locator + err.message)
@@ -515,6 +530,7 @@ class AssetPage(BasePageClass):
     def select_asset_schooltype_column(self):
         try:
             return self.driver.find_elements_by_xpath(self._asset_school_type_lists_locator)
+            #return self.basepage.findElementsByXpath(self._asset_school_type_lists_locator)
         except Exception, err:
             raise type(err)("School Type column not available - searched XPATH - " \
                           + self._asset_school_type_lists_locator + err.message)
@@ -546,9 +562,10 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_newdistrict_text_box(self):
         try:
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-                (By.XPATH, self._asset_overview_district_text_box_locator)))
-            return self.driver.find_element_by_xpath(self._asset_overview_district_text_box_locator)
+            #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+            #    (By.XPATH, self._asset_overview_district_text_box_locator)))
+            #return self.driver.find_element_by_xpath(self._asset_overview_district_text_box_locator)
+            return self.basepage.findElementByXpath(self._asset_overview_district_text_box_locator)
         except Exception, err:
             raise type(err)("School District textbox not available - searched XPATH - " \
                           + self._asset_overview_district_text_box_locator + err.message)
@@ -556,9 +573,10 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_newgrade_text_box(self):
         try:
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-                (By.XPATH, self._asset_overview_grade_text_box_locator)))
+            #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+            #    (By.XPATH, self._asset_overview_grade_text_box_locator)))
             return self.driver.find_element_by_xpath(self._asset_overview_grade_text_box_locator)
+            #return self.basepage.findElementByXpath(self._asset_overview_grade_text_box_locator)
         except Exception, err:
             raise type(err)("School Grade textbox not available - searched XPATH - " \
                           + self._asset_overview_grade_text_box_locator + err.message)
@@ -566,9 +584,9 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_newtype_text_box(self):
         try:
-            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-                (By.XPATH, self._asset_overview_type_text_box_locator)))
-            return self.driver.find_element_by_xpath(self._asset_overview_type_text_box_locator)
+            #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+            #    (By.XPATH, self._asset_overview_type_text_box_locator)))
+            return self.basepage.findElementByXpath(self._asset_overview_type_text_box_locator)
         except Exception, err:
             raise type(err)("Asset Type textbox not available - searched XPATH - " \
                           + self._asset_overview_type_text_box_locator + err.message)
@@ -584,7 +602,8 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_district_add_button(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[0]
+            #return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[0]
+            return self.basepage.findElementsByXpath(self._asset_overview_add_button_locator)[0]
         except Exception, err:
             raise type(err)("School District textbox not available - searched XPATH - " \
                           + self._asset_overview_add_button_locator + err.message)
@@ -592,7 +611,8 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_grade_add_button(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[1]
+            #return self.driver.find_elements_by_xpath(self._asset_overview_add_button_locator)[1]
+            return self.basepage.findElementsByXpath(self._asset_overview_add_button_locator)[1]
         except Exception, err:
             err.msg = "School Grade Add button not available - " + err.msg
             raise type(err)("School Grade Add button not available - searched XPATH - " \
@@ -649,7 +669,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_overview_cancel_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_cancel_button_locator)
+            #return self.driver.find_element_by_xpath(self._asset_overview_cancel_button_locator)
+            return self.basepage.findElementByXpath(self._asset_overview_cancel_button_locator)
         except Exception, err:
             raise type(err)("Cancel button not available in overview dialog - searched XPATH - " \
                           + self._asset_overview_cancel_button_locator + err.message)
@@ -657,7 +678,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_overview_save_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_save_button_locator)
+            return self.basepage.findElementByXpath(self._asset_overview_save_button_locator)
+            #self.driver.find_element_by_xpath(self._asset_overview_save_button_locator)
         except Exception, err:
             raise type(err)("Save button not available in overview dialog - searched XPATH - " \
                           + self._asset_overview_save_button_locator + err.message)
@@ -681,7 +703,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_firstname_textbox(self):
         try:
-            return self.driver.find_element_by_name(self._asset_newcontact_firstname_textbox_locator)
+            #return self.driver.find_element_by_name(self._asset_newcontact_firstname_textbox_locator)
+            return self.basepage.findElementByName(self._asset_newcontact_firstname_textbox_locator)
         except Exception, err:
             raise type(err)("New contact first name textbox not available in Points of Contact- searched XPATH - " \
                           + self._asset_newcontact_firstname_textbox_locator + err.message)
@@ -697,7 +720,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_prefix_textbox(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_newcontact_prefix_textbox_locator)
+            #return self.driver.find_element_by_xpath(self._asset_newcontact_prefix_textbox_locator)
+            return self.basepage.findElementByXpath(self._asset_newcontact_prefix_textbox_locator)
         except Exception, err:
             raise type(err)("New contact Prefix textbox not available in Points of Contact- searched XPATH - " \
                           + self._asset_newcontact_prefix_textbox_locator + err.message)
@@ -721,7 +745,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_email_textbox(self):
         try:
-            return self.driver.find_element_by_name(self._asset_newcontact_email_textbox_locator)
+            #return self.driver.find_element_by_name(self._asset_newcontact_email_textbox_locator)
+            return self.basepage.findElementByName(self._asset_newcontact_email_textbox_locator)
         except Exception, err:
             raise type(err)("New contact Email ID textbox not available in Points of Contact- searched XPATH - " \
                           + self._asset_newcontact_email_textbox_locator + err.message)
@@ -795,7 +820,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_delete_popup_delete_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_popup_delete_button_locator)
+            #return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_popup_delete_button_locator)
+            return self.basepage.findElementByXpath(self._asset_newcontact_delete_contact_popup_delete_button_locator)
         except Exception, err:
             raise type(err)("New contact Delete Button not available in Delete Contact popup- searched XPATH - " \
                           + self._asset_newcontact_delete_contact_popup_delete_button_locator + err.message)
@@ -803,7 +829,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_delete_popup_cancel_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_popup_cancel_button_locator)
+            #return self.driver.find_element_by_xpath(self._asset_newcontact_delete_contact_popup_cancel_button_locator)
+            return self.basepage.findElementByXpath(self._asset_newcontact_delete_contact_popup_cancel_button_locator)
         except Exception, err:
             raise type(err)("New contact Cancel Button not available in Delete Contact popup- searched XPATH - " \
                           + self._asset_newcontact_delete_contact_popup_cancel_button_locator + err.message)
@@ -811,7 +838,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_window_cross_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_newcontact_window_popup_cross_button_locator)
+            #return self.driver.find_element_by_xpath(self._asset_newcontact_window_popup_cross_button_locator)
+            return self.basepage.findElementByXpath(self._asset_newcontact_window_popup_cross_button_locator)
         except Exception, err:
             raise type(err)("Cross Button not available in Delete Contact popup- searched XPATH - " \
                           + self._asset_newcontact_window_popup_cross_button_locator + err.message)
@@ -819,7 +847,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_firstname_error_message(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_newcontact_firstname_error_message_locator)
+            #return self.driver.find_element_by_xpath(self._asset_newcontact_firstname_error_message_locator)
+            return self.basepage.findElementByXpath(self._asset_newcontact_firstname_error_message_locator)
         except Exception, err:
             raise type(err)("Validation message for First name not available in contact information- searched XPATH - " \
                           + self._asset_newcontact_firstname_error_message_locator + err.message)
@@ -827,7 +856,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_lastname_error_message(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_newcontact_lastname_error_message_locator)
+            #return self.driver.find_element_by_xpath(self._asset_newcontact_lastname_error_message_locator)
+            return self.basepage.findElementByXpath(self._asset_newcontact_lastname_error_message_locator)
         except Exception, err:
             raise type(err)("Validation message for Last name not available in contact information- searched XPATH - " \
                           + self._asset_newcontact_lastname_error_message_locator + err.message)
@@ -835,7 +865,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_newcontact_email_error_message(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_newcontact_email_error_message_locator)
+            #return self.driver.find_element_by_xpath(self._asset_newcontact_email_error_message_locator)
+            return self.basepage.findElementByXpath(self._asset_newcontact_email_error_message_locator)
         except Exception, err:
             raise type(err)("Validation message for Email ID not available in contact information  - searched XPATH - " \
                           + self._asset_newcontact_email_error_message_locator + err.message)
@@ -843,7 +874,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_contact_first_last_name_value_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_contact_first_last_name_value_text)
+            #return self.driver.find_element_by_xpath(self._asset_contact_first_last_name_value_text)
+            return self.basepage.findElementByXpath(self._asset_contact_first_last_name_value_text)
         except Exception, err:
             raise type(err)("Contact Name not appearing in Points of contact widget  - searched XPATH - " \
                           + self._asset_contact_first_last_name_value_text + err.message)
@@ -899,7 +931,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_point_of_contact_name_tab(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_point_of_contact_name_tab_locator)
+            #return self.driver.find_element_by_xpath(self._asset_point_of_contact_name_tab_locator)
+            return self.basepage.findElementByXpath(self._asset_point_of_contact_name_tab_locator)
         except Exception, err:
             raise type(err)("In Point of Contact widget Name Tab not available - searched XPATH - " \
                           + self._asset_point_of_contact_name_tab_locator + err.message)
@@ -931,7 +964,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_point_of_contact_name_text_value(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_point_of_contact_name_text_value_locator)
+            #return self.driver.find_elements_by_xpath(self._asset_point_of_contact_name_text_value_locator)
+            return self.basepage.findElementsByXpath(self._asset_point_of_contact_name_text_value_locator)
         except Exception, err:
             raise type(err)("In Point of Contact widget contacts do not have Name Values - searched XPATH - " \
                           + self._asset_point_of_contact_name_text_value_locator + err.message)
@@ -939,7 +973,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_point_of_contact_title_text_value(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_point_of_contact_title_text_value_locator)
+            #return self.driver.find_elements_by_xpath(self._asset_point_of_contact_title_text_value_locator)
+            return self.basepage.findElementsByXpath(self._asset_point_of_contact_title_text_value_locator)
         except Exception, err:
             raise type(err)("In Point of Contact widget contacts do not have Title Values - searched XPATH - " \
                           + self._asset_point_of_contact_title_text_value_locator + err.message)
@@ -947,7 +982,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_point_of_contact_phone_text_value(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_point_of_contact_phone_text_value_locator)
+            #return self.driver.find_elements_by_xpath(self._asset_point_of_contact_phone_text_value_locator)
+            return self.basepage.findElementsByXpath(self._asset_point_of_contact_phone_text_value_locator)
         except Exception, err:
             raise type(err)("In Point of Contact widget contacts do not have Phone Values - searched XPATH - " \
                           + self._asset_point_of_contact_phone_text_value_locator + err.message)
@@ -956,7 +992,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_point_of_contact_email_text_value(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_point_of_contact_email_text_value_locator)
+            #return self.driver.find_elements_by_xpath(self._asset_point_of_contact_email_text_value_locator)
+            return self.basepage.findElementsByXpath(self._asset_point_of_contact_email_text_value_locator)
         except Exception, err:
             raise type(err)("In Point of Contact widget contacts do not have Email Values - searched XPATH - " \
                           + self._asset_point_of_contact_email_text_value_locator + err.message)
@@ -1063,7 +1100,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_detail_email_value_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_detail_email_value_text_locator)
+            #return self.driver.find_element_by_xpath(self._asset_detail_email_value_text_locator)
+            return self.basepage.findElementByXpath(self._asset_detail_email_value_text_locator)
         except Exception, err:
             raise type(err)("Asset Details email value text box not available. - searched XPATH - " \
                           + self._asset_detail_email_value_text_locator + err.message)
@@ -1096,7 +1134,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_overview_edit_link(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
+            #return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
+            return self.basepage.findIfElementVisible(self._asset_overview_edit_link_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._asset_overview_edit_link_locator + err.message)
@@ -1160,7 +1199,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_uploaded_file_count(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_photos_documents_uploaded_file_locator)
+            #return self.driver.find_elements_by_xpath(self._asset_photos_documents_uploaded_file_locator)
+            return self.basepage.findElementsByXpath(self._asset_photos_documents_uploaded_file_locator)
         except Exception, err:
             raise type(err)("In Photos / Documents widget, No file uploaded - searched XPATH - " \
                           + self._asset_photos_documents_uploaded_file_locator + err.message)
@@ -1168,7 +1208,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_upload_file_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_photos_documents_upload_file_button_locator)
+            #return self.driver.find_element_by_xpath(self._asset_photos_documents_upload_file_button_locator)
+            return self.basepage.findElementByXpath(self._asset_photos_documents_upload_file_button_locator)
         except Exception, err:
             raise type(err)("File Upload button not available - searched XPATH - " \
                           + self._asset_photos_documents_upload_file_button_locator + err.message)
@@ -1176,7 +1217,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_attached_file_button(self):
         try:
-            return self.driver.find_element_by_id(self._asset_photos_documents_attached_file_button_locator)
+            #return self.driver.find_element_by_id(self._asset_photos_documents_attached_file_button_locator)
+            return self.basepage.findElementById(self._asset_photos_documents_attached_file_button_locator)
         except Exception, err:
             raise type(err)("In File Upload window Attach File button is not available - searched XPATH - " \
                           + self._asset_photos_documents_attached_file_button_locator + err.message)
@@ -1184,7 +1226,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_caption_textbox(self):
         try:
-            return self.driver.find_element_by_id(self._asset_photos_documents_caption_textbox_locator)
+            #return self.driver.find_element_by_id(self._asset_photos_documents_caption_textbox_locator)
+            return self.basepage.findElementById(self._asset_photos_documents_caption_textbox_locator)
         except Exception, err:
             raise type(err)("In File Upload window Caption Text Box is not available - searched XPATH - " \
                           + self._asset_photos_documents_caption_textbox_locator + err.message)
@@ -1200,7 +1243,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_window_cancel_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_photos_documents_window_cancel_button_locator)
+            #return self.driver.find_element_by_xpath(self._asset_photos_documents_window_cancel_button_locator)
+            return self.basepage.findElementByXpath(self._asset_photos_documents_window_cancel_button_locator)
         except Exception, err:
             raise type(err)("In File Upload window Cancel button is not available - searched XPATH - " \
                           + self._asset_photos_documents_window_cancel_button_locator + err.message)
@@ -1208,7 +1252,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_delete_icon_image(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_photos_documents_delete_icon_locator)
+            #return self.driver.find_element_by_xpath(self._asset_photos_documents_delete_icon_locator)
+            return self.basepage.findElementByXpath(self._asset_photos_documents_delete_icon_locator)
         except Exception, err:
             raise type(err)("Delete icon is not displayed - search XPATH - " \
                           + self._asset_photos_documents_delete_icon_locator + err.message)
@@ -1216,7 +1261,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_photos_documents_delete_window_delete_button(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_photos_documents_delete_window_delete_locator)
+            #return self.driver.find_element_by_xpath(self._asset_photos_documents_delete_window_delete_locator)
+            return self.basepage.findElementByXpath(self._asset_photos_documents_delete_window_delete_locator)
         except Exception, err:
             raise type(err)("In File Delete Window Delete button is not available - searched XPATH - " \
                           + self._asset_photos_documents_delete_window_delete_locator + err.message)
@@ -1288,7 +1334,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_annotation_text_value(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_annotation_text_value_locator)
+            #return self.driver.find_element_by_xpath(self._asset_annotation_text_value_locator)
+            return self.basepage.findElementByXpath(self._asset_annotation_text_value_locator)
         except Exception, err:
             raise type(err)("In Annotation widget no annotation available - searched XPATH - " \
                           + self._asset_annotation_text_value_locator + err.message)
@@ -1303,7 +1350,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_annotation_edit_image(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_annotation_edit_image_locator)
+            #return self.driver.find_element_by_xpath(self._asset_annotation_edit_image_locator)
+            return self.basepage.findElementByXpath(self._asset_annotation_edit_image_locator)
         except Exception, err:
             raise type(err)("Annotation text edit link is not available - searched XPATH - " \
                           + self._asset_annotation_edit_image_locator + err.message)
@@ -1387,6 +1435,7 @@ class AssetPage(BasePageClass):
     def get_asset_location_marker_available_image(self):
         try:
             return self.driver.find_element_by_xpath(self._asset_location_marker_avaliable_xpath_locator)
+            #return self.basepage.findElementByXpath(self._asset_location_marker_avaliable_xpath_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._asset_location_marker_avaliable_xpath_locator + err.message)
@@ -1414,7 +1463,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_chart_dashboard_image_off(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_chart_dashboard_img_off_xpath_locator)
+            #return self.driver.find_element_by_xpath(self._asset_chart_dashboard_img_off_xpath_locator)
+            return self.basepage.findElementByXpath(self._asset_chart_dashboard_img_off_xpath_locator)
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._asset_chart_dashboard_img_off_xpath_locator + err.message)
@@ -1423,6 +1473,7 @@ class AssetPage(BasePageClass):
     def get_asset_chart_total_graph(self):
         try:
             return self.driver.find_elements_by_xpath(self._asset_chart_total_Graph_In_Container_xpath_locator)
+            #return self.basepage.findElementsByXpath(self._asset_chart_total_Graph_In_Container_xpath_locator)
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._asset_chart_total_Graph_In_Container_xpath_locator + err.message)
@@ -1449,14 +1500,15 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
-        sleep(2)
+        #assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
+        #sleep(2)
+        assets_checkbox = self.basepage.findElementsByXpath(self._asset_list_check_box_locator)
         for asset_checkbox in assets_checkbox:
-            sleep(1)
+            #sleep(1)
             asset_checkbox.click()
 
         for asset_checkbox in assets_checkbox:
-            sleep(1)
+            #sleep(1)
             asset_checkbox.click()
 
     def asset_filter_based_on_place_and_school(self, assetType):
@@ -1465,8 +1517,9 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-            (By.XPATH, self._asset_filter_drop_down_locator))).click()
+        #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+        #    (By.XPATH, self._asset_filter_drop_down_locator))).click()
+        self.basepage.findElementByXpath(self._asset_filter_drop_down_locator).click()
         self.driver.find_element_by_link_text(assetType).click()
 
     def get_asset_school_district(self):
@@ -1494,9 +1547,10 @@ class AssetPage(BasePageClass):
         :return: None
         """
         self.asset_filter_based_on_place_and_school("School")
-        WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
-            (By.XPATH, self._asset_school_grade_drop_down_locator))).click()
-        sleep(2)
+        self.basepage.findElementByXpath(self._asset_school_grade_drop_down_locator).click()
+        #WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
+        #    (By.XPATH, self._asset_school_grade_drop_down_locator))).click()
+        #sleep(2)
         chkGradeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
         items = chkGradeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
@@ -1517,17 +1571,19 @@ class AssetPage(BasePageClass):
         :return: None
         """
         self.asset_filter_based_on_place_and_school("School")
-        WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
-            (By.XPATH, self._asset_school_type_drop_down_locator))).click()
-        sleep(2)
+        self.basepage.findElementByXpath(self._asset_school_type_drop_down_locator).click()
+        #WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
+        #    (By.XPATH, self._asset_school_type_drop_down_locator))).click()
+        #sleep(2)
         #chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
         chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/descendant::div[@label='School Type']/ul")
         items = chkSchoolTypeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
         if len(items) > 1:
-            firstelemet = self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
-            self.selectedtype = firstelemet.text
-            firstelemet.click()
+            #firstelement = self.driver.find_element_by_xpath(self._asset_school_type_drop_down_select_first_element_locator)
+            firstelement = self.basepage.findElementByXpath(self._asset_school_type_drop_down_select_first_element_locator)
+            self.selectedtype = firstelement.text
+            firstelement.click()
         else:
             print "No items to select in Type drop down."
         sleep(2)
@@ -1547,8 +1603,9 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        search_textbox = WebDriverWait(self.driver,20).until(EC.presence_of_element_located(
-            (By.XPATH, self._asset_search_textbox_locator)))
+        #search_textbox = WebDriverWait(self.driver,20).until(EC.presence_of_element_located(
+        #    (By.XPATH, self._asset_search_textbox_locator)))
+        search_textbox = self.basepage.findElementByXpath(self._asset_search_textbox_locator)
         self.textbox_clear(search_textbox)
         search_textbox.send_keys(name)
 
@@ -1656,9 +1713,8 @@ class AssetPage(BasePageClass):
         self.enter_asset_type_state.send_keys(self.asset_place_state)
         self.enter_asset_type_zip.send_keys(self.asset_place_zip)
         self.enter_asset_type_owner.send_keys(self.asset_place_owner)
-        WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
-            (By.XPATH, self._asset_overview_type_drop_down_locator))).click()
-        sleep(2)
+        self.basepage.findElementByXpath(self._asset_overview_type_drop_down_locator).click()
+        #sleep(2)
         self.get_overview_newtype_text_box.send_keys(self.asset_place_type)
         self.get_overview_place_type_add_button.click()
         # self.get_asset_overview_save_button.click()
@@ -1722,9 +1778,9 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(2)
+        #sleep(2)
         self.get_overview_district_drop_down.click()
-        sleep(2)
+        #sleep(2)
         self.get_overview_newdistrict_text_box.send_keys(value)
         self.get_overview_district_add_button.click()
 
@@ -1747,8 +1803,9 @@ class AssetPage(BasePageClass):
         :return: None
         """
         sleep(2)
-        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
-            (By.XPATH, self._asset_overview_type_drop_down_locator))).click()
+        #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+        #    (By.XPATH, self._asset_overview_type_drop_down_locator))).click()
+        self.basepage.findElementByXpath(self._asset_overview_type_drop_down_locator).click()
         self.get_overview_school_newtype_text_box.send_keys(value)
         self.get_overview_type_add_button.click()
         #self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
@@ -1760,7 +1817,7 @@ class AssetPage(BasePageClass):
         :return: None
         """
         self.get_asset_overview_save_button.click()
-        sleep(2)
+        #sleep(2)
 
     def asset_overview_cancel_click(self):
         """
@@ -1769,7 +1826,7 @@ class AssetPage(BasePageClass):
         :return: None
         """
         self.get_asset_overview_cancel_button.click()
-        sleep(2)
+        #sleep(2)
         '''
         # check all fields are enabled
         self.assertTrue(place_name.is_enabled()
@@ -1845,8 +1902,9 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
-            (By.XPATH, self._asset_select_action_delete_select_xpath_locator)))
+        #WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+        #    (By.XPATH, self._asset_select_action_delete_select_xpath_locator)))
+        self.basepage.findElementByXpath(self._asset_select_action_delete_select_xpath_locator)
         try:
             self.asset_search_assetname(asset_name1)
             sleep(6)
@@ -1965,9 +2023,9 @@ class AssetPage(BasePageClass):
         """
         try:
             while(self.get_asset_newcontact_delete_icon.is_displayed()):
-                sleep(2)
+                #sleep(2)
                 self.get_asset_newcontact_delete_icon.click()
-                sleep(1)
+                #sleep(1)
                 self.get_asset_newcontact_delete_popup_delete_button.click()
         except Exception, err:
             pass
@@ -2017,10 +2075,10 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        sleep(2)
+        #sleep(2)
         #delete existing contacts.
         self.delete_existing_contact()
-        sleep(2)
+        #sleep(2)
         firstname = ['jkl','vwx','def','pqr']
         lastname = ['mno','abc','stu','ghi']
         phonelist = [r'661-111-1111',r'222-222-2222',r'433-333-3333',r'123-444-4444']
@@ -2029,7 +2087,7 @@ class AssetPage(BasePageClass):
         for contact in range(4):
             self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],
                                     emaillist[contact])
-            sleep(2)
+        #    sleep(2)
 
     def file_path(self, image_file_name):
         """
@@ -2101,9 +2159,9 @@ class AssetPage(BasePageClass):
         try:
             sleep(2)
             while(self.get_asset_annotation_delete_image.is_displayed()):
-                sleep(2)
+                #sleep(2)
                 self.get_asset_annotation_delete_image.click()
-                sleep(2)
+                #sleep(2)
         except Exception, err:
             pass
 
@@ -2186,17 +2244,17 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "District":
-                    sleep(2)
+                    #sleep(2)
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                 elif totalGraph.text == "Grade Level":
-                    sleep(2)
+                    #sleep(2)
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
                 elif totalGraph.text == "School Type":
-                    sleep(2)
+                    #sleep(2)
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_3))
                     for asset in assets:
                         print asset.text
@@ -2272,11 +2330,13 @@ class AssetPage(BasePageClass):
                 print totalGraph.text
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "District":
-                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
+                    #assets = self.driver.find_elements_by_xpath(str(chart_xpath_1))
+                    assets = self.basepage.findElementsByXpath(str(chart_xpath_1))
                     for asset in assets:
                         print asset.text
                 elif totalGraph.text == "Grade Level":
-                    assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
+                    #assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
+                    assets = self.basepage.findElementsByXpath(str(chart_xpath_2))
                     for asset in assets:
                         print asset.text
         else :
@@ -2285,14 +2345,17 @@ class AssetPage(BasePageClass):
     def get_total_row_count(self):
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
             (By.XPATH, self._asset_select_action_delete_select_xpath_locator)))
-        countText = self.driver.find_element_by_id("assetstable_info").text
+        countText = (self.driver.find_element_by_id("assetstable_info").text).encode('utf-8').split('\n')[2].strip()
+        #print "count text:" + countText
         splitedText = countText.split(" ")
-        totalCount = splitedText[10]
+        totalCount = splitedText[5]
+
+        print "total count:" + totalCount
         return int(totalCount)
 
-
     def get_total_row_count_filter(self):
-        countText = self.driver.find_element_by_id("assetstable_info").text
+        #countText = self.driver.find_element_by_id("assetstable_info").text
+        countText = self.basepage.findElementById("assetstable_info").text
         splitedText = countText.split(" ")
         totalCount = splitedText[6]
         return int(totalCount)

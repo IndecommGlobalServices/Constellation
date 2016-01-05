@@ -75,7 +75,10 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.get_select_checkbox_in_grid()
         self.assetpage.get_asset_select_action_drop_down.click()
-        self.assertFalse(self.assetpage.get_asset_link_delete_text.is_enabled(),
+        state = self.assetpage.get_asset_link_delete_text.is_enabled()
+        sleep(1)
+        self.assetpage.get_asset_select_action_drop_down.click()
+        self.assertFalse(state,
                          self.config.get(self.section, 'MESSAGE_WHEN_NO_ASSETS_AVAILABLE'))
 
 
@@ -94,8 +97,9 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_select_action_drop_down.click()
         self.assetpage.get_asset_link_delete_text.click()
         self.assetpage.get_asset_delete_button.click() # Delete
+        sleep(2)
         countafterdeletion = self.assetpage.get_total_row_count()
-        self.assertEqual(int(countbeforedeletion), int(countafterdeletion),
+        self.assertEqual(int(countbeforedeletion), int(countafterdeletion)+1,
                          self.config.get(self.section, 'MESSAGE_COULD_NOT_DELETE_ASSET'))
 
     @attr(priority="high")
@@ -265,7 +269,7 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_place_name)
-        sleep(5) # Necessary sleep to let the app search for the input string
+        #sleep(5) # Necessary sleep to let the app search for the input string
         for item in self.assetpage.get_asset_list_background:
             if (item.text  == self.assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
                                                                 == "rgba(255, 236, 158, 1)"):
@@ -528,10 +532,10 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_newcontact_firstname_textbox.clear()#clear first and last name.
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
         self.assetpage.get_asset_newcontact_prefix_textbox.clear()#clear Prefix filed.
-        sleep(2) #required to check Error message.
+        #sleep(2) #required to check Error message.
         firstname_error = self.assetpage.get_asset_newcontact_firstname_error_message.is_displayed()#Verify Error messages.
         lastname_error = self.assetpage.get_asset_newcontact_lastname_error_message.is_displayed()
-        sleep(2) #required to check Error message.
+        #sleep(2) #required to check Error message.
         self.assetpage.get_asset_newcontact_window_cross_button.click()#click on cross button to close window.
         self.assertTrue(firstname_error, self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_FIRST_NAME'))
         self.assertTrue(lastname_error, self.config.get(self.section, 'MESSAGE_ERROR_NOT_DISPLAYED_FOR_LAST_NAME'))
@@ -622,9 +626,9 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_newcontact_lastname_textbox.send_keys("ZLastName")
         self.assetpage.get_asset_newcontact_email_textbox.clear()
         self.assetpage.get_asset_newcontact_email_textbox.send_keys(r"testtest.com")
-        sleep(2)
+        #sleep(2)
         self.assetpage.get_asset_newcontact_firstname_textbox.click()
-        sleep(2)
+        #sleep(2)
         exp_error_message = self.assetpage.get_asset_newcontact_email_error_message.is_displayed()
         self.assetpage.get_asset_newcontact_window_cross_button.click()#Click on Cross button to close window.
         self.assertTrue(exp_error_message,
@@ -653,7 +657,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_newcontact_lastname_textbox.clear()
         self.assetpage.get_asset_newcontact_lastname_textbox.send_keys("ZLastNameDel")
         self.assetpage.get_asset_newcontact_cancel_button.click()#click on cancel button.
-        sleep(2)
+        #sleep(2)
         try:
             if self.assetpage.get_asset_contact_first_last_name_value_text.is_displayed():
                 self.assertFalse(True,
@@ -678,7 +682,7 @@ class AssetpageTest(BaseTestCase):
         exp_name_ascending = r"stu, def, mno, jkl, ghi, pqr, abc, vwx"
         exp_name_descending = r"abc, vwx, ghi, pqr, mno, jkl, stu, def"
         self.assetpage.get_asset_point_of_contact_name_tab.click()#click on contact name tab.
-        sleep(2)
+        #sleep(2)
         act_name_list = self.assetpage.get_asset_point_of_contact_name_text_value#Reading all contact names.
         act_name_list_value = []
         for name in act_name_list:
@@ -686,7 +690,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(exp_name_ascending, ", ".join(act_name_list_value),
                          self.config.get(self.section, 'MESSAGE_CONTACT_NAMES_IN_ASCENDING_ORDER'))
         self.assetpage.get_asset_point_of_contact_name_tab.click()
-        sleep(2)
+        #sleep(2)
         act_name_list = self.assetpage.get_asset_point_of_contact_name_text_value#Reading all contact's names.
         act_name_list_value =[]
         for name in act_name_list:
@@ -711,7 +715,7 @@ class AssetpageTest(BaseTestCase):
         exp_title_ascending = r"CC, HH, PP, ZZ"
         exp_title_descending = r"ZZ, PP, HH, CC"
         self.assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab to sort ascendingly.
-        sleep(2)
+        #sleep(2)
         act_title_list = self.assetpage.get_asset_point_of_contact_title_text_value#Reading all contact's title values.
         act_title_list_value = []
         for title in act_title_list:
@@ -719,7 +723,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(exp_title_ascending, ", ".join(act_title_list_value),
                          self.config.get(self.section, 'MESSAGE_CONTACT_TITLES_NOT_IN_ASCENDING_ORDER'))
         self.assetpage.get_asset_point_of_contact_title_tab.click()#click on contact title tab to sort descendingly.
-        sleep(2)
+        #sleep(2)
         act_title_list = self.assetpage.get_asset_point_of_contact_title_text_value#Reading all contact's title values.
         act_title_list_value = []
         for title in act_title_list:
@@ -744,7 +748,7 @@ class AssetpageTest(BaseTestCase):
         exp_phone_ascending = r"123-444-4444, 222-222-2222, 433-333-3333, 661-111-1111"
         exp_phone_descending = r"661-111-1111, 433-333-3333, 222-222-2222, 123-444-4444"
         self.assetpage.get_asset_point_of_contact_phone_tab.click()#click on contact phone tab.
-        sleep(2)
+        #sleep(2)
         act_phone_list = self.assetpage.get_asset_point_of_contact_phone_text_value#Reading all contact's phone values.
         act_phone_list_value = []
         for phone in act_phone_list:
@@ -752,7 +756,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(exp_phone_ascending, ", ".join(act_phone_list_value),
                          self.config.get(self.section, 'MESSAGE_CONTACT_PHONE_NUMBERS_NOT_IN_ASCENDING_ORDER'))
         self.assetpage.get_asset_point_of_contact_phone_tab.click()
-        sleep(2)
+        #sleep(2)
         act_phone_list = self.assetpage.get_asset_point_of_contact_phone_text_value#Reading all contact's phone values.
         act_phone_list_value = []
         for phone in act_phone_list:
@@ -777,7 +781,7 @@ class AssetpageTest(BaseTestCase):
         exp_email_ascending = r"abc@def, ghi@jkl, mno@pqr, stu@vwx"
         exp_email_descending = r"stu@vwx, mno@pqr, ghi@jkl, abc@def"
         self.assetpage.get_asset_point_of_contact_email_tab.click()  #click on contact email tab.
-        sleep(2)
+        #sleep(2)
         act_email_list = self.assetpage.get_asset_point_of_contact_email_text_value#Reading all contact's email values.
         act_email_list_value = []
         for email in act_email_list:
@@ -785,7 +789,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(exp_email_ascending, ", ".join(act_email_list_value),
                          self.config.get(self.section, 'MESSAGE_CONTACT_EMAILS_NOT_IN_ASCENDING_ORDER'))
         self.assetpage.get_asset_point_of_contact_email_tab.click()
-        sleep(2)
+        #sleep(2)
         act_email_list = self.assetpage.get_asset_point_of_contact_email_text_value#Reading all contact's email values.
         act_email_list_value = []
         for email in act_email_list:
@@ -819,7 +823,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.delete_existing_contact()#delete existing contacts.
         try:
             if self.assetpage.get_asset_newcontact_delete_icon.is_displayed():
-                sleep(2)
+                #sleep(2)
                 self.assertFalse(False, self.config.get(self.section, 'MESSAGE_NEW_CONTACT_NOT_DELETED'))
         except NoSuchElementException:
             self.assertTrue(True, self.config.get(self.section, 'MESSAGE_CONTACT_DELETED'))
@@ -849,11 +853,11 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_newcontact_save_button.click()
         try:
             if self.assetpage.get_asset_newcontact_delete_icon.is_displayed():
-                sleep(2)
+                #sleep(2)
                 self.assetpage.get_asset_newcontact_delete_icon.click()
-                sleep(2)
+                #sleep(2)
                 self.assetpage.get_asset_newcontact_delete_popup_cancel_button.click()
-                sleep(2)
+                #sleep(2)
                 self.assertTrue(True, self.config.get(self.section, 'MESSAGE_CANCEL_IS_WORKING'))
         except NoSuchElementException:
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_CONTACT_DELETED'))
@@ -976,11 +980,11 @@ class AssetpageTest(BaseTestCase):
         image_icon = self.driver.find_element_by_xpath(caption_path)
         Hover = ActionChains(self.driver).move_to_element(image_icon)
         Hover.perform()
-        sleep(1) # required. so that Delete icon remain displayed.
+        #sleep(1) # required. so that Delete icon remain displayed.
         try:
             self.assetpage.get_asset_photos_documents_delete_icon_image.click()
             self.assetpage.get_asset_photos_documents_delete_window_delete_button.click()
-            sleep(3)  # required. Widget should be refreshed.
+            #sleep(3)  # required. Widget should be refreshed.
         except NoSuchElementException:
             self.assertFalse(True,
                              self.config.get(self.section, 'MESSAGE_DELETE_ICON_NOT_DISPLAYED_FILE_COULD_NOT_BE_DELETED'))
@@ -1014,13 +1018,13 @@ class AssetpageTest(BaseTestCase):
         number_of_image_before_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
         image_count_before_file_upload = len(number_of_image_before_upload)
         self.assetpage.get_asset_photos_documents_upload_file_button.click()
-        sleep(1)
+        #sleep(1)
         file_path = self.assetpage.file_path("Test_Case_41.jpg")
         self.assetpage.get_asset_photos_documents_attached_file_button.send_keys(file_path)
-        sleep(1)
+        #sleep(1)
         caption_val = "Test_Case_41"
         self.assetpage.get_asset_photos_documents_caption_textbox.send_keys(caption_val)
-        sleep(1)
+        #sleep(1)
         self.assetpage.get_asset_photos_documents_window_cancel_button.click()
         try:
             number_of_image_after_upload = self.assetpage.get_asset_photos_documents_uploaded_file_count
@@ -1170,7 +1174,7 @@ class AssetpageTest(BaseTestCase):
         image_file_name = ["Test_Case_45_1.jpg", "Test_Case_45_2.jpg", "Test_Case_45_3.jpg"]
         for num in range(3):
             self.assetpage.upload_a_file_with_caption(caption_val[num], image_file_name[num])
-            sleep(2) #required  to update image properly
+            #sleep(2) #required  to update image properly
         image_count_after_file_upload = len(self.assetpage.get_asset_photos_documents_uploaded_file_count)
         if (image_count_after_file_upload == image_count_before_file_upload+3):
             self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
@@ -1221,7 +1225,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()#Select Annotation type.
         self.assetpage.get_asset_annotation_edit_window_dropdown_groups.click()
         self.assetpage.get_asset_annotation_edit_window_save_button.click()
-        sleep(2)
+        #sleep(2)
         act_text_val = ((self.assetpage.get_asset_annotation_text_value.text).split(' - '))[1].strip()#read annotation value.
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
 
@@ -1245,7 +1249,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
         self.assetpage.get_asset_annotation_edit_window_dropdown_tenant.click()#Select Annotation type.
         self.assetpage.get_asset_annotation_edit_window_save_button.click()
-        sleep(2)
+        #sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text#read annotation value.
         act_text_val = (text_val.split(' - '))[1].strip()
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
@@ -1270,7 +1274,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
         self.assetpage.get_asset_annotation_edit_window_dropdown_user.click()#Select Annotation type.
         self.assetpage.get_asset_annotation_edit_window_save_button.click()
-        sleep(2)
+        #sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text#read annotation value.
         act_text_val = (text_val.split(' - '))[1].strip()
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
@@ -1295,12 +1299,12 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_annotation_edit_window_visibility_dropdown.click()
         self.assetpage.get_asset_annotation_edit_window_dropdown_groups.click()#Select Annotation type.
         self.assetpage.get_asset_annotation_edit_window_save_button.click()
-        sleep(2)
+        #sleep(2)
         self.assetpage.get_asset_annotation_edit_image.click()#click on annotation edit link.
         self.assetpage.get_asset_annotation_edit_window_text_area.clear()#clear annotation text.
         self.assetpage.get_asset_annotation_edit_window_text_area.send_keys(exp_text_val)#Enter new anootation text.
         self.assetpage.get_asset_annotation_edit_window_save_button.click()
-        sleep(2)
+        #sleep(2)
         text_val = self.assetpage.get_asset_annotation_text_value.text
         act_text_val = (text_val.split(' - '))[1].strip()
         self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
@@ -1454,7 +1458,7 @@ class AssetpageTest(BaseTestCase):
                                            r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300",
                                            "http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
-        sleep(5)
+        #sleep(5)
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(),
                         self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
@@ -1477,7 +1481,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_email_text_box.clear()
         self.assetpage.get_asset_detail_edit_email_text_box.send_keys("test@test")
         self.assetpage.get_asset_detail_edit_save_button.click()
-        sleep(2)
+        #sleep(2)
         email = self.assetpage.get_asset_detail_email_value_text.text
         regex = re.compile(r'[\w.-]+@[\w.-]+')
         self.assertRegexpMatches(str(email), regex, self.config.get(self.section, 'MESSAGE_EMAIL_NOT_MATCHING'))
@@ -1517,9 +1521,9 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        sleep(2)
+        #sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
-            sleep(2)
+            #sleep(2)
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
@@ -1528,7 +1532,7 @@ class AssetpageTest(BaseTestCase):
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        sleep(2)
+        #sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -1540,7 +1544,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        sleep(2)
+        #sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1552,7 +1556,7 @@ class AssetpageTest(BaseTestCase):
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        sleep(2) # sleep is mandatory here otherwise it will fail
+        #sleep(2) # sleep is mandatory here otherwise it will fail
 
     @attr(priority="high")
     #@SkipTest
@@ -1564,13 +1568,13 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        sleep(2)
+        #sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         self.assetpage.get_asset_place_type_drop_down.click()
-        sleep(1) # sleep is mandatory here otherwise it will fail
+        #sleep(1) # sleep is mandatory here otherwise it will fail
         self.assetpage.get_asset_place_type_first_element.click()
         self.assetpage.place_related_charts_Place_And_Type_Is_Selected()
         countafterfilter = self.assetpage.get_total_row_count_filter()
@@ -1579,7 +1583,7 @@ class AssetpageTest(BaseTestCase):
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        sleep(2)
+        #sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -1591,7 +1595,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        sleep(2)
+        #sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1604,7 +1608,7 @@ class AssetpageTest(BaseTestCase):
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        sleep(2) # sleep is mandatory here otherwise it will fail
+        #sleep(2) # sleep is mandatory here otherwise it will fail
 
 
     @attr(priority="high")
@@ -1617,7 +1621,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        sleep(2)
+        #sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1632,7 +1636,7 @@ class AssetpageTest(BaseTestCase):
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        sleep(2)
+        #sleep(2)
     @attr(priority="high")
     #@SkipTest
     def test_AS_95(self):
@@ -1643,7 +1647,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        sleep(2)
+        #sleep(2)
         if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
             self.assetpage.get_asset_chart_dashboard_image_off.click()
         countbeforefilter = self.assetpage.get_total_row_count()
@@ -1658,7 +1662,7 @@ class AssetpageTest(BaseTestCase):
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        sleep(2)
+        #sleep(2)
 
     @attr(priority="high")
     #@SkipTest
