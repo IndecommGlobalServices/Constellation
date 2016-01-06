@@ -147,6 +147,7 @@ class AssessmentPage(BasePageClass):
     def __init__(self, driver):
         super(AssessmentPage, self).__init__(driver)
         # self.get_schooldata()
+        self.basepage = BasePage(self.driver)
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
         self.username = loginpage.usernameText
@@ -322,7 +323,8 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_action_assign_button(self):
-        return self.driver.find_element_by_link_text("Assign")
+        return self.basepage.findElementByLinkText("Assign")
+        # return self.driver.find_element_by_link_text("Assign")
 
     @property
     def get_ast_checkbox(self):
@@ -567,9 +569,10 @@ class AssessmentPage(BasePageClass):
     def get_total_row_count(self):
         WebDriverWait(self.driver, 20).until(expected_conditions.presence_of_element_located(
             (By.XPATH, self._ast_action_dropdown_loactor)))
-        countText = self.driver.find_element_by_id("tblAssessments_info").text
+        countText = self.driver.find_element_by_id("tblAssessments_info").text.encode('utf-8').split('\n')[2].strip()
         splitedText = countText.split(" ")
-        totalCount = splitedText[10]
+        totalCount = splitedText[5]
+        print "total count:" + totalCount
         return int(totalCount)
 
     def select_multiple_checkboxes(self, count):

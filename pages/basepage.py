@@ -46,3 +46,8 @@ class BasePage(BasePageClass):
         wait = WebDriverWait(self.driver, 100, poll_frequency=5, ignored_exceptions=[StaleElementReferenceException, ElementNotVisibleException, ElementNotSelectableException])
         element = wait.until(EC.presence_of_element_located((By.NAME, name)))
         return element
+
+    def findElementByLinkText(self, name):
+        wait = WebDriverWait(self.driver, 100, poll_frequency=5, ignored_exceptions=[StaleElementReferenceException, ElementNotVisibleException, ElementNotSelectableException])
+        element = wait.until(EC.presence_of_element_located((By.LINK_TEXT, name)))
+        return element
