@@ -2,7 +2,6 @@ __author__ = 'Deepa.Sivadas'
 
 from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
-from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
@@ -29,7 +28,6 @@ class MapPage(BasePageClass):
 
     # Scroll vertically to view default, Night View, Terrain, Satelite Default, Satelite Grey
     _map_scroll = ".//*[@id='mapdiv']/div[2]/div[1]/div[1]"
-    #              .//*[@id='mapdiv']/div[2]/div[1]/div[1]
     _map_sub_scroll = ".//*[@id='leaflet-control-accordion-layers-1']/article"
 
     # View Map in Full Screen
@@ -55,12 +53,11 @@ class MapPage(BasePageClass):
     _map_basic_data_layer_asset = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[1]/input"
     _map_basic_data_layer_assessment = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[2]/input"
     _map_basic_data_layer_incident = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[3]/input"
-    _map_basic_data_layer_threat_streams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[4]/input"
-    _map_basic_data_layer_indicator_teams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[5]/input"
-    _map_basic_data_layer_annotations = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[6]/input"
-    _map_basic_data_layer_threat_streams_trending_last_day = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[7]/input"
-    _map_basic_data_layer_threat_streams_stream_1 = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[8]/input"
-    _map_basic_data_layer_threat_streams_stream_2 = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[9]/input"
+    _map_basic_data_layer_indicator_teams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[4]/input"
+    _map_basic_data_layer_field_interviews = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[5]/input"
+    _map_basic_data_layer_threat_streams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[6]/input"
+    _map_basic_data_layer_threat_streams_heat_map = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[7]/input"
+    _map_basic_data_layer_annotations = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[8]/input"
 
     # Water fall handle - Right hand side - Last Icon
     _map_water_fall_handle = ".//*[@id='waterfall_handle']"
@@ -290,6 +287,24 @@ class MapPage(BasePageClass):
 
 
     @property
+    def get_map_basic_data_layer_indicator_teams(self):
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_indicator_teams)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Indicator teams - searched XPATH - "
+                            + self._map_basic_data_layer_indicator_teams + err.message)
+
+
+    @property
+    def get_map_basic_data_layer_field_interviews(self):
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_field_interviews)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Field Interview - searched XPATH - "
+                            + self._map_basic_data_layer_field_interviews + err.message)
+
+
+    @property
     def get_map_basic_data_layer_threat_streams(self):
         try:
             return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams)
@@ -299,12 +314,12 @@ class MapPage(BasePageClass):
 
 
     @property
-    def get_map_basic_data_layer_indicator_teams(self):
+    def get_map_basic_data_layer_threat_streams_heat_map(self):
         try:
-            return self.driver.find_element_by_xpath(self._map_basic_data_layer_indicator_teams)
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_heat_map)
         except Exception, err:
-            raise type(err)("Basic Data Layer Indicator Teams - searched XPATH - "
-                            + self._map_basic_data_layer_indicator_teams + err.message)
+            raise type(err)("Basic Data Layer Threat Streams Heat Map - searched XPATH - "
+                            + self._map_basic_data_layer_threat_streams_heat_map + err.message)
 
 
     @property
@@ -312,35 +327,9 @@ class MapPage(BasePageClass):
         try:
             return self.driver.find_element_by_xpath(self._map_basic_data_layer_annotations)
         except Exception, err:
-            raise type(err)("Basic Data Layer Annotations - searched XPATH - "
+            raise type(err)("Basic Data Layer Annotation - searched XPATH - "
                             + self._map_basic_data_layer_annotations + err.message)
 
-
-    @property
-    def get_map_basic_data_layer_threat_streams_trending_last_day(self):
-        try:
-            return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_trending_last_day)
-        except Exception, err:
-            raise type(err)("Basic Data Layer Threat Streams Trending Last Day - searched XPATH - "
-                            + self._map_basic_data_layer_threat_streams_trending_last_day + err.message)
-
-
-    @property
-    def get_map_basic_data_layer_threat_streams_stream_1(self):
-        try:
-            return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_stream_1)
-        except Exception, err:
-            raise type(err)("Basic Data Layer Threat Streams Stream 1 - searched XPATH - "
-                            + self._map_basic_data_layer_threat_streams_stream_1 + err.message)
-
-
-    @property
-    def get_map_basic_data_layer_threat_streams_stream_2(self):
-        try:
-            return self.driver.find_element_by_xpath(self._map_basic_data_layer_threat_streams_stream_2)
-        except Exception, err:
-            raise type(err)("Basic Data Layer Threat Streams Stream 2 - searched XPATH - "
-                            + self._map_basic_data_layer_threat_streams_stream_2 + err.message)
 
 
     # Scroll
@@ -415,92 +404,41 @@ class MapPage(BasePageClass):
     def open_map_app(self):
         appicon = IconListPage(self.driver)
         appicon.click_map_icon()
-        '''
-        feedbackformIcon = self.driver.find_element_by_xpath(".//*[@id='H1']/img")
-        sleep(5)
-        if feedbackformIcon.is_displayed():
-            sleep(5)
-            self.driver.find_element_by_xpath(".//*[@id='submit_feedback_modal']/div/div/form/div[2]/button[1]").click()
-            print "Closed Feedback form..."
-        '''
-        #WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH,
-        #                                                                "//a[contains(text(),'Leaflet')]"), "Leaflet"))
-
 
     # This function is used - if check box is selected, it should be unchecked
     def get_checking_and_unchecking_basic_data_layer(self):
         sleep(2)
-        if self.get_map_basic_data_layer_asset.is_displayed():
-            if self.get_map_basic_data_layer_asset.is_selected():
-                self.get_map_basic_data_layer_asset.click()
+        #1
+        if self.get_map_basic_data_layer_asset.is_selected():
+            self.get_map_basic_data_layer_asset.click()
         sleep(2)
-        if self.get_map_basic_data_layer_assessment.is_displayed():
-            if self.get_map_basic_data_layer_assessment.is_selected():
-                self.get_map_basic_data_layer_assessment.click()
+        #2
+        if self.get_map_basic_data_layer_assessment.is_selected():
+            self.get_map_basic_data_layer_assessment.click()
 
-        if self.get_map_basic_data_layer_incident.is_displayed():
-            if self.get_map_basic_data_layer_incident.is_selected():
-                self.get_map_basic_data_layer_incident.click()
-
-        if self.get_map_basic_data_layer_threat_streams.is_displayed():
-            '''
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            '''
-            if self.get_map_basic_data_layer_threat_streams.is_selected():
-                self.get_map_basic_data_layer_threat_streams.click()
-
-        if self.get_map_basic_data_layer_indicator_teams.is_displayed():
-            '''
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            '''
-            if self.get_map_basic_data_layer_indicator_teams.is_selected():
-                self.get_map_basic_data_layer_indicator_teams.click()
-
-        if self.get_map_basic_data_layer_annotations.is_displayed():
-            '''
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            '''
-            if self.get_map_basic_data_layer_annotations.is_selected():
-                self.get_map_basic_data_layer_annotations.click()
-
-        if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_displayed():
-            '''
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
-            '''
-            if self.get_map_basic_data_layer_threat_streams_trending_last_day.is_selected():
-                self.get_map_basic_data_layer_threat_streams_trending_last_day.click()
-
-        if self.get_map_basic_data_layer_threat_streams_stream_1.is_displayed():
-            '''
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
-            '''
-            if self.get_map_basic_data_layer_threat_streams_stream_1.is_selected():
-                self.get_map_basic_data_layer_threat_streams_stream_1.click()
-
-        if self.get_map_basic_data_layer_threat_streams_stream_2.is_displayed():
-            '''
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
-            self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
-            '''
-            if self.get_map_basic_data_layer_threat_streams_stream_2.is_selected():
-                self.get_map_basic_data_layer_threat_streams_stream_2.click()
+        self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+        self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+        self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
+        #3
+        if self.get_map_basic_data_layer_incident.is_selected():
+            self.get_map_basic_data_layer_incident.click()
+        #4
+        if self.get_map_basic_data_layer_indicator_teams.is_selected():
+            self.get_map_basic_data_layer_indicator_teams.click()
+        #5
+        if self.get_map_basic_data_layer_field_interviews.is_selected():
+            self.get_map_basic_data_layer_field_interviews.click()
+        #6
+        if self.get_map_basic_data_layer_threat_streams.is_selected():
+            self.get_map_basic_data_layer_threat_streams.click()
+        self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+        self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
+        #7
+        if self.get_map_basic_data_layer_threat_streams_heat_map.is_selected():
+            self.get_map_basic_data_layer_threat_streams_heat_map.click()
+        #8
+        if self.get_map_basic_data_layer_annotations.is_selected():
+            self.get_map_basic_data_layer_annotations.click()
 
     def return_to_icon_list_page(self):
         try:
