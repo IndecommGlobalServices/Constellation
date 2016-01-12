@@ -415,7 +415,7 @@ class MapPage(BasePageClass):
         #2
         if self.get_map_basic_data_layer_assessment.is_selected():
             self.get_map_basic_data_layer_assessment.click()
-
+        sleep(2)
         self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.get_map_scroll.send_keys(Keys.ARROW_DOWN)
         self.get_map_scroll.send_keys(Keys.ARROW_DOWN)

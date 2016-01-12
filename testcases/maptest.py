@@ -87,6 +87,10 @@ class MapPageTest(BaseTestCase):
             items = assetTotal.find_elements_by_tag_name("li")
             print "Found " + str(len(items)-1) + " assets"
 
+
+
+
+
             # Extract the integer value displayed "Eg : Displaying 5 items"
             # This will be helpful to assert
             map_assets_count = self.mappage.get_total_map_status_count()
@@ -118,6 +122,8 @@ class MapPageTest(BaseTestCase):
             sleep(2)
             self.mappage.get_checking_and_unchecking_basic_data_layer()
             sleep(2)
+            self.mappage.get_map_sub_scroll.send_keys(Keys.ARROW_UP)
+            self.mappage.get_map_scroll.send_keys(Keys.ARROW_UP)
             self.mappage.get_map_basic_data_layer_assessment.click()
             sleep(2)
             self.mappage.get_map_zoom_out.click()
@@ -277,25 +283,49 @@ class MapPageTest(BaseTestCase):
 
             self.mappage.get_map_basic_data_layer_threat_streams.click()
             self.mappage.get_map_zoom_out.click()
-            sleep(10)
-            self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
-            sleep(10)
-            map_threat_streams_count = self.mappage.get_total_map_status_count()
-            sleep(10)
-            print "Found " + str(map_threat_streams_count) + " map status threat streams count"
+            sleep(5)
 
             self.mappage.get_map_water_fall_handle.click()
             sleep(10)
             threatstreamsTotal = self.mappage.get_map_water_fall_list
             sleep(10)
             items = threatstreamsTotal.find_elements_by_tag_name("li")
-            sleep(10)
+
+            ######################################
+
+            for i in items:
+                self.driver.find_element_by_id("waterfall_scrollable").send_keys(Keys.END)
+                while i.text == "Show more items":
+                    self.driver.find_element_by_link_text("Show more items").click()
+                    sleep(10)
+                    if i.text != "Show more items":
+                        break
+            else:
+                print "No Show more items link is displayed"
+
+
+            ####################################
+
+            items = threatstreamsTotal.find_elements_by_tag_name("li")
+            sleep(5)
             print "Found " + str(len(items)-1) + " threat streams"
+
+            ##################################
+
+            self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
+            sleep(5)
+            map_threat_streams_count = self.mappage.get_total_map_status_count()
+            sleep(5)
+            print "Found " + str(map_threat_streams_count) + " map status threat streams count"
+
+            ################################
+
             self.assertEqual(map_threat_streams_count,len(items)-1,"total threat streams not matching" )
             self.mappage.get_map_water_fall_handle.click()
         except Exception as e:
             print e
             raise
+
     @attr(priority="high")
     #@SkipTest
     def test_map_12_to_verify_Default_Map_View_Based_On_Threat_Streams_Heat_Map(self):
