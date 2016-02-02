@@ -640,3 +640,4 @@ class AssessmenttPageTest(BaseTestCase):
                 self.assertTrue(True, "No Pages available but still next and previous button is enabled.")
             else:
                 self.assertFalse(True, "No Pages available but still next and previous button is enabled.")
+        self.ast.get_search_assessment_textbox.clear()

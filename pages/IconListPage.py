@@ -237,7 +237,7 @@ class IconListPage(BasePageClass, object):
         except:
             pass
 
-    def click_incident(self):
+    def click_incidents_icon(self):
         try:
             self.get_app_incidents_icon.click()
         except:

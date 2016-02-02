@@ -33,6 +33,13 @@ class MapPageTest(BaseTestCase):
         self.mappage.return_to_apps_main_page()
 
 
+    @attr(priority="high")
+    #@SkipTest
+    @attr(status='smoke')
+    def test_map_smoke(self):
+        self.assertTrue(self.mappage.get_map_water_fall_scrollable.is_displayed(), "Map is not loaded fully")
+
+
     # All maps in one test case
     @attr(priority="high")
     def test_map_01_05_to_verify_all_maps(self):
