@@ -58,4 +58,3 @@ class BaseTestCase(unittest.TestCase):
 
     def tally(self):
         return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
-

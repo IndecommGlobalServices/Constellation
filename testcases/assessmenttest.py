@@ -452,6 +452,7 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
+        self.basepage.reset_and_search_clear()
         self.pagination.pagination_previous()
         sleep(2)
         current_page_num = self.pagination.pagination_active_page()
@@ -470,6 +471,7 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
+        self.basepage.reset_and_search_clear()
         self.pagination.pagination_drop_down_click(-1)
         sleep(2)
         current_page_num = self.pagination.pagination_active_page()
@@ -494,6 +496,7 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
+        self.basepage.reset_and_search_clear()
         self.pagination.pagination_next()
         current_page_num = self.pagination.pagination_active_page()
         self.pagination.pagination_previous()
@@ -511,6 +514,7 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
+        self.basepage.reset_and_search_clear()
         self.pagination.pagination_drop_down_click(0)
         sleep(2)
         current_page_num = self.pagination.pagination_active_page()
@@ -534,6 +538,7 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
+        self.basepage.reset_and_search_clear()
         self.pagination.get_pg_drop_down_arrow.click()
         sleep(2)
         list_of_page_drop_down = self.pagination.get_pg_list_of_page_groups
@@ -564,6 +569,7 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
+        self.basepage.reset_and_search_clear()
         page_count = self.pagination.pagination_total_pages()
         list_of_nodes = self.pagination.get_pg_list_of_nodes
         if str(page_count) == str(1):
@@ -596,6 +602,7 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
+        self.basepage.reset_and_search_clear()
         page_count = self.pagination.pagination_total_pages()
         list_of_nodes = self.pagination.get_pg_list_of_nodes
         if str(page_count) == str(1):
@@ -627,6 +634,7 @@ class AssessmenttPageTest(BaseTestCase):
         :return: None
         """
         sleep(10)
+        self.basepage.reset_and_search_clear()
         self.ast.get_search_assessment_textbox.send_keys("zaqwerty")
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
               ((By.XPATH, self.ast._ast_assessmentlist_No_Matching_Records_Found_locator), "No matching records found"))
