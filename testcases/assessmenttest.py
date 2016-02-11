@@ -453,13 +453,16 @@ class AssessmenttPageTest(BaseTestCase):
         :return: None
         """
         self.basepage.reset_and_search_clear()
-        self.pagination.pagination_previous()
-        sleep(2)
-        current_page_num = self.pagination.pagination_active_page()
-        self.pagination.pagination_next()
-        sleep(2)
-        next_page_num = self.pagination.pagination_active_page()
-        self.assertEqual(next_page_num, current_page_num + 1,"The next button click is not working.")
+        if self.pagination.pagination_total_pages() >=1 :
+            self.pagination.pagination_previous()
+            sleep(2)
+            current_page_num = self.pagination.pagination_active_page()
+            self.pagination.pagination_next()
+            sleep(2)
+            next_page_num = self.pagination.pagination_active_page()
+            self.assertEqual(next_page_num, current_page_num + 1,"The next button click is not working.")
+        else:
+             self.skipTest("Pagination has only one page.")
 
     @attr(priority="high")
     #@SkipTest
@@ -472,19 +475,22 @@ class AssessmenttPageTest(BaseTestCase):
         :return: None
         """
         self.basepage.reset_and_search_clear()
-        self.pagination.pagination_drop_down_click(-1)
-        sleep(2)
-        current_page_num = self.pagination.pagination_active_page()
-        total_pages = self.pagination.pagination_total_pages()
-        flag = 1
-        while flag:
-            if int(current_page_num) == int(total_pages):
-                flag = 0
-            else:
-                self.pagination.pagination_next()
-                current_page_num = self.pagination.pagination_active_page()
-        next_page_num = self.pagination.pagination_active_page()
-        self.assertEqual(current_page_num, next_page_num, "Next Arrow button is not disabled.")
+        if self.pagination.pagination_total_pages() >=1 :
+            self.pagination.pagination_drop_down_click(-1)
+            sleep(2)
+            current_page_num = self.pagination.pagination_active_page()
+            total_pages = self.pagination.pagination_total_pages()
+            flag = 1
+            while flag:
+                if int(current_page_num) == int(total_pages):
+                    flag = 0
+                else:
+                    self.pagination.pagination_next()
+                    current_page_num = self.pagination.pagination_active_page()
+            next_page_num = self.pagination.pagination_active_page()
+            self.assertEqual(current_page_num, next_page_num, "Next Arrow button is not disabled.")
+        else:
+            self.skipTest("Pagination has only one page.")
 
     @attr(priority="high")
     #@SkipTest
@@ -497,12 +503,15 @@ class AssessmenttPageTest(BaseTestCase):
         :return: None
         """
         self.basepage.reset_and_search_clear()
-        self.pagination.pagination_next()
-        current_page_num = self.pagination.pagination_active_page()
-        self.pagination.pagination_previous()
-        sleep(2)
-        previous_page_num = self.pagination.pagination_active_page()
-        self.assertEqual(previous_page_num, current_page_num - 1, "The Previous button click is not working.")
+        if self.pagination.pagination_total_pages() >=1 :
+            self.pagination.pagination_next()
+            current_page_num = self.pagination.pagination_active_page()
+            self.pagination.pagination_previous()
+            sleep(2)
+            previous_page_num = self.pagination.pagination_active_page()
+            self.assertEqual(previous_page_num, current_page_num - 1, "The Previous button click is not working.")
+        else:
+            self.skipTest("Pagination has only one page.")
 
     @attr(priority="high")
     #@SkipTest
@@ -515,18 +524,21 @@ class AssessmenttPageTest(BaseTestCase):
         :return: None
         """
         self.basepage.reset_and_search_clear()
-        self.pagination.pagination_drop_down_click(0)
-        sleep(2)
-        current_page_num = self.pagination.pagination_active_page()
-        flag = 1
-        while flag:
-            if int(current_page_num) == int(1):
-                flag = 0
-            else:
-                self.pagination.pagination_previous()
-                current_page_num = self.pagination.pagination_active_page()
-        previous_page_num = self.pagination.pagination_active_page()
-        self.assertEqual(current_page_num, previous_page_num, "Previous Arrow button is not disabled.")
+        if self.pagination.pagination_total_pages() >=1 :
+            self.pagination.pagination_drop_down_click(0)
+            sleep(2)
+            current_page_num = self.pagination.pagination_active_page()
+            flag = 1
+            while flag:
+                if int(current_page_num) == int(1):
+                    flag = 0
+                else:
+                    self.pagination.pagination_previous()
+                    current_page_num = self.pagination.pagination_active_page()
+            previous_page_num = self.pagination.pagination_active_page()
+            self.assertEqual(current_page_num, previous_page_num, "Previous Arrow button is not disabled.")
+        else:
+            self.skipTest("Pagination has only one page.")
 
     @attr(priority="high")
     #@SkipTest
@@ -557,7 +569,7 @@ class AssessmenttPageTest(BaseTestCase):
             expected_group = [str(first_page), str(last_page)]
             self.assertListEqual(actual_group, expected_group, "Selected Group value is not matching with Actual.")
         else:
-            self.skipTest("There is only one page available.")
+            self.skipTest("Pagination has only one page.")
 
     @attr(priority="high")
     #@SkipTest
@@ -633,7 +645,6 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
-        sleep(10)
         self.basepage.reset_and_search_clear()
         self.ast.get_search_assessment_textbox.send_keys("zaqwerty")
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element

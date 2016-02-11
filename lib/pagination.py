@@ -61,10 +61,13 @@ class Pagination(object):
         drop_down_arrow.click()
         sleep(2)
         list_of_group_pages_dropdown = self.get_pg_list_of_page_groups
-        total_pages = (list_of_group_pages_dropdown[-1].text).split("-")[1]
-        drop_down_arrow.click()
-        sleep(2)
-        return total_pages
+        if len(list_of_group_pages_dropdown) == 0:
+            return 0
+        else:
+            total_pages = (list_of_group_pages_dropdown[-1].text).split("-")[1]
+            drop_down_arrow.click()
+            sleep(2)
+            return total_pages
 
     def pagination_next(self):
         list_of_nodes = self.get_pg_list_of_nodes
