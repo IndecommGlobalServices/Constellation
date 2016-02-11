@@ -838,7 +838,7 @@ class AssessmentPhysicalSecuritiesPageTest(BaseTestCase):
                                                 self.config.get(self.AssessmentSections, 'MAIN_PHYSICAL_SECURITY'))
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AST_233_To_Verify_Edit_Caption_For_All_Sections(self):
         """
         Description : To test edit caption

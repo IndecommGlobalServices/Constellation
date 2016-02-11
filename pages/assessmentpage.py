@@ -572,7 +572,7 @@ class AssessmentPage(BasePageClass):
         countText = self.driver.find_element_by_id("tblAssessments_info").text.encode('utf-8').split('\n')[2].strip()
         splitedText = countText.split(" ")
         totalCount = splitedText[5]
-        print "total count:" + totalCount
+        # print "total count:" + totalCount
         return int(totalCount)
 
     def select_multiple_checkboxes(self, count):
@@ -657,7 +657,11 @@ class AssessmentPage(BasePageClass):
         self.get_create_assignedto_textbox.send_keys(assignedto)
         self.get_create_assets_textbox.clear()
         self.get_create_assets_textbox.send_keys(self.asset_school_name)
-        self.driver.find_element_by_xpath("//li[contains(text(), '"+self.asset_school_name+"')]").click()
+        sleep(5)
+        try:
+            self.driver.find_element_by_xpath("//li[contains(text(), '"+self.asset_school_name+"')]").click()
+        except Exception, err:
+            raise type(err)("Searched asset name is not populated"  + err.message)
         self.get_create_assets_add_button.click()
         self.get_create_assessment_save_button.click()
 
