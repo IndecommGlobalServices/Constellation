@@ -661,6 +661,7 @@ class AssessmentPage(BasePageClass):
         try:
             self.driver.find_element_by_xpath("//li[contains(text(), '"+self.asset_school_name+"')]").click()
         except Exception, err:
+            self.get_create_assessment_cancel_button.click()
             raise type(err)("Searched asset name is not populated"  + err.message)
         self.get_create_assets_add_button.click()
         self.get_create_assessment_save_button.click()
