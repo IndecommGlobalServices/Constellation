@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assessmentpage.py" afterPath="$PROJECT_DIR$/pages/assessmentpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assessmenttest.py" afterPath="$PROJECT_DIR$/testcases/assessmenttest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/basetestcase.py" afterPath="$PROJECT_DIR$/testcases/basetestcase.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Constellation.iws" />
@@ -62,7 +61,7 @@
       <file leaf-file-name="assessmenttest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.137931">
+            <state vertical-scroll-proportion="0.0">
               <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
               <folding />
             </state>
@@ -72,8 +71,8 @@
       <file leaf-file-name="basetestcase.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66019416">
-              <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.31965813">
+              <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -175,7 +174,6 @@
         <option value="$PROJECT_DIR$/testcases/assessmentpoliciesandplanningtest.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentoverviewtest.py" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
-        <option value="$PROJECT_DIR$/testcases/basetestcase.py" />
         <option value="$PROJECT_DIR$/testcases/a" />
         <option value="$PROJECT_DIR$/testcases/maptest.py" />
         <option value="$PROJECT_DIR$/pages/basepage.py" />
@@ -189,6 +187,7 @@
         <option value="$PROJECT_DIR$/testcases/logintest.py" />
         <option value="$PROJECT_DIR$/pages/assessmentpage.py" />
         <option value="$PROJECT_DIR$/testcases/assessmenttest.py" />
+        <option value="$PROJECT_DIR$/testcases/basetestcase.py" />
       </list>
     </option>
   </component>
@@ -244,7 +243,6 @@
     </navigator>
     <panes>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -293,6 +291,7 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -594,12 +593,6 @@
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
     </task>
-    <task id="LOCAL-00036" summary="Assessmentschooldata updated">
-      <created>1445507988299</created>
-      <option name="number" value="00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1445507988299</updated>
-    </task>
     <task id="LOCAL-00037" summary="Assessmentschooldata updated">
       <created>1445508037907</created>
       <option name="number" value="00037" />
@@ -888,7 +881,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455181466838</updated>
     </task>
-    <option name="localTasksCounter" value="85" />
+    <task id="LOCAL-00085" summary="Concurrent test">
+      <created>1455273987181</created>
+      <option name="number" value="00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1455273987192</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -933,20 +932,20 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23202614" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4493464" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24627976" sideWeight="0.50864196" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3970588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4493464" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33169934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3970588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -1382,7 +1381,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.137931">
+        <state vertical-scroll-proportion="0.0">
           <caret line="328" column="0" selection-start-line="328" selection-start-column="0" selection-end-line="328" selection-end-column="0" />
           <folding />
         </state>
@@ -1390,8 +1389,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66019416">
-          <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.31965813">
+          <caret line="20" column="5" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
           <folding />
         </state>
       </provider>
