@@ -2350,7 +2350,7 @@ class AssetPage(BasePageClass):
         splitedText = countText.split(" ")
         totalCount = splitedText[5]
 
-        print "total count:" + totalCount
+        # print "total count:" + totalCount
         return int(totalCount)
 
     def get_total_row_count_filter(self):

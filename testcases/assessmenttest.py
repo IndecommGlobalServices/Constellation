@@ -39,6 +39,7 @@ class AssessmenttPageTest(BaseTestCase):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
 
+
     @attr(priority="high")
     #@SkipTest
     @attr(status='smoke')
@@ -322,7 +323,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.ast.get_action_delete_button.click()
         sleep(2)
         self.ast.get_delete_assessment_delete_button.click()
-        sleep(5)#Mandatory sleep for the list to refresh
+        sleep(10)#Mandatory sleep for the list to refresh
         countafterdeletion = self.ast.get_total_row_count()
         self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete asset")
 
@@ -416,6 +417,7 @@ class AssessmenttPageTest(BaseTestCase):
                 self.assertEqual("rgba(192, 57, 43, 1)", self.ast.get_ast_assignto_textbox.value_of_css_property("border-bottom-color"),  "Email ID validation error in create assessment")
                 self.ast.get_ast_assignto_textbox.clear()
             self.ast.get_ast_assignto_cancel_button.click()
+            self.ast.deselect_checkboxes()
         else:
             self.skipTest("No assessment listed")
 
@@ -425,7 +427,7 @@ class AssessmenttPageTest(BaseTestCase):
         emailid = ['Email1@domain', 'Email2@domain']
         countbeforedeletion = self.ast.get_total_row_count()
         if countbeforedeletion >= 1:
-            sleep(8)
+            sleep(10)
             self.ast.select_multiple_checkboxes(1)
             self.ast.get_action_dropdown.click()
             self.ast.get_action_assign_button.click()
@@ -660,3 +662,4 @@ class AssessmenttPageTest(BaseTestCase):
             else:
                 self.assertFalse(True, "No Pages available but still next and previous button is enabled.")
         self.ast.get_search_assessment_textbox.clear()
+        self.basepage.reset_and_search_clear()

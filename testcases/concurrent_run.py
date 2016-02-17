@@ -36,22 +36,34 @@ assessmentphysical_filepath = os.path.join(os.getcwd(), r"TestResult-Assessments
                                    str(datetime.today().time().strftime('%H%M'))+".xml")
 assessmenttrainning_filepath = os.path.join(os.getcwd(), r"TestResult-AssessmentsTrainning_" + str(datetime.today().strftime('%Y%m%d')) +"_"+
                                   str(datetime.today().time().strftime('%H%M'))+".xml")
+login_filepath = os.path.join(os.getcwd(), r"TestResult-Login_" + str(datetime.today().strftime('%Y%m%d')) +"_"+
+                                  str(datetime.today().time().strftime('%H%M'))+".xml")
 os.chdir(cwd)
 
 # assessmenttests = glob.glob('assessment*.py')
 
 tests1 = (['assessmentschoolinfrastructuretest', str(assessmentinfra_filepath), 'AssessmentSchoolInfrastructuretest'],
           ['assettest', str(asset_filepath), 'Assettest'],
-         ['assessmentphysicalsecuritytest', str(assessmentphysical_filepath), 'AssessmentPhysicalSecuritytest'],
-         ['assessmenttrainingandexercisetest', str(assessmenttrainning_filepath), 'AssessmentTrainingandExercisetest'])
+          ['assessmentphysicalsecuritytest', str(assessmentphysical_filepath), 'AssessmentPhysicalSecuritytest'],
+          ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
+          ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
+          ['logintest', str(login_filepath), 'Logintest'],
+          ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'])
 
-testsordered1 = (['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
-                 ['maptest', str(map_filepath), 'Maptest'],
-                 ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'])
-
-testsordered2 = (['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
-                 ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
-                 ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'])
+test2 =  (['maptest', str(map_filepath), 'Maptest'],
+          ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'],
+          ['assessmenttrainingandexercisetest', str(assessmenttrainning_filepath), 'AssessmentTrainingandExercisetest'],
+          ['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'])
+#
+# testsordered1 = (['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
+#                  ['assessmenttest', str(assessment_filepath), 'Assessmenttest'],
+#                  ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
+#                  ['logintest', str(login_filepath), 'Logintest'],
+#                  ['assessmentschooldatatest', str(assessmentschooldatatest_filepath), 'AssessmentSchoolDatatest'])
+#
+# testsordered2 = (['threatstreamstest', str(threatstream_filepath), 'ThreatStreamtest'],
+#                  ['assessmentoverviewtest', str(assessmentoverviewtest_filepath), 'AssessmentOverviewtest'],
+#                  ['assessmentpoliciesandplanningtest', str(assessmentpolicies_filepath), 'AssessmentPoliciesandPlanningtest'])
 
 processes = []
 
@@ -59,16 +71,34 @@ for test in tests1:
     processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2] , shell=True))
     sleep(2)
 
-for test in testsordered1:
-    processes.append(os.system('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2]))
-    sleep(2)
+sleep(650)
 
-for test in testsordered2:
-    processes.append(os.system('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2]))
+for test in test2:
+    processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2], shell=True))
     sleep(2)
 
 for process in processes:
     process.wait()
+
+# for test in testsordered1:
+#     processes.append(os.system('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2]))
+#     sleep(2)
+#
+# for test in testsordered1:
+#     processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2] , shell=True))
+#     sleep(2)
+#
+# for process in processes:
+#     process.wait()
+#
+# for test in testsordered2:
+#     processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2] , shell=True))
+#     sleep(2)
+# for test in testsordered2:
+#     processes.append(os.system('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2]))
+#     sleep(2)
+# for process in processes:
+#     process.wait()
 
 print "*" * 50
 print "Time taken: %s minutes" % ((time.time() - start) /60)
