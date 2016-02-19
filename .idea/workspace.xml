@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
     </list>
     <ignored path="Constellation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,66 +30,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="basetestcase.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="basepage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/basepage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1712" column="16" selection-start-line="1712" selection-start-column="16" selection-end-line="1712" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.9100529">
+              <caret line="1218" column="4" selection-start-line="1218" selection-start-column="4" selection-end-line="1218" selection-end-column="4" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assessmenttest.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9100529">
-              <caret line="661" column="54" selection-start-line="661" selection-start-column="54" selection-end-line="661" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pagination.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/pagination.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1144" column="11" selection-start-line="1144" selection-start-column="11" selection-end-line="1144" selection-end-column="11" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -147,9 +98,9 @@
         <option value="$PROJECT_DIR$/pages/assetpage.py" />
         <option value="$PROJECT_DIR$/pages/basepage.py" />
         <option value="$PROJECT_DIR$/testcases/basetestcase.py" />
-        <option value="$PROJECT_DIR$/testcases/assettest.py" />
         <option value="$PROJECT_DIR$/lib/pagination.py" />
         <option value="$PROJECT_DIR$/testcases/assessmenttest.py" />
+        <option value="$PROJECT_DIR$/testcases/assettest.py" />
       </list>
     </option>
   </component>
@@ -203,8 +154,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -253,6 +202,8 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -287,7 +238,7 @@
       <recent name="C:\Constellation\testcases" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in assessmenttest">
+  <component name="RunManager" selected="Python tests.Unittests in assettest">
     <configuration default="false" name="Unittest AssetpageTest.test_AS_104_to_test_search_asset_pagination" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -529,9 +480,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in assessmenttest" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_ast_111_to_test_pagination_next_button" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in assettest" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in assettest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in assessmenttest" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssessmenttPageTest.test_ast_111_to_test_pagination_next_button" />
         <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_97_to_test_pagination_next_button" />
         <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_104_to_test_search_asset_pagination" />
       </list>
@@ -547,12 +498,6 @@
       <created>1441947410271</created>
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
-    </task>
-    <task id="LOCAL-00034" summary="New files">
-      <created>1445411000061</created>
-      <option name="number" value="00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1445411000061</updated>
     </task>
     <task id="LOCAL-00035" summary="New files">
       <created>1445421230501</created>
@@ -842,13 +787,16 @@
       <option name="project" value="LOCAL" />
       <updated>1455181036354</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Pagination scripts.">
+      <created>1455181318671</created>
+      <option name="number" value="00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1455181318671</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_AssessmenttPageTest_test_ast_111_to_test_pagination_next_button - 2016.02.11 at 12h 16m 08s.xml">
-      <configuration name="Unittest AssessmenttPageTest.test_ast_111_to_test_pagination_next_button" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittest_AssessmenttPageTest_test_ast_111_to_test_pagination_next_button - 2016.02.11 at 12h 52m 33s.xml">
       <configuration name="Unittest AssessmenttPageTest.test_ast_111_to_test_pagination_next_button" configurationId="tests" />
     </history-entry>
@@ -867,13 +815,16 @@
     <history-entry file="Unittests_in_assessmenttest - 2016.02.11 at 12h 11m 12s.xml">
       <configuration name="Unittests in assessmenttest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_assettest - 2016.02.10 at 23h 13m 04s.xml">
-      <configuration name="Unittests in assettest" configurationId="tests" />
+    <history-entry file="Unittests_in_assessmenttest - 2016.02.11 at 14h 32m 40s.xml">
+      <configuration name="Unittests in assessmenttest" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_assettest - 2016.02.10 at 23h 14m 59s.xml">
       <configuration name="Unittests in assettest" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_assettest - 2016.02.11 at 11h 42m 08s.xml">
+      <configuration name="Unittests in assettest" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_assettest - 2016.02.19 at 13h 25m 43s.xml">
       <configuration name="Unittests in assettest" configurationId="tests" />
     </history-entry>
   </component>
@@ -890,9 +841,8 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31324404" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31770834" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3360522" sideWeight="0.5089286" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24306688" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -903,6 +853,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3970588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1298,39 +1249,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/basepage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/logintest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9100529">
           <caret line="172" column="16" selection-start-line="172" selection-start-column="16" selection-end-line="172" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1712" column="16" selection-start-line="1712" selection-start-column="16" selection-end-line="1712" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1344,9 +1266,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9100529">
-          <caret line="661" column="54" selection-start-line="661" selection-start-column="54" selection-end-line="661" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="661" column="17" selection-start-line="661" selection-start-column="17" selection-end-line="661" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/basepage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02910959">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7671233">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.9100529">
+          <caret line="1218" column="4" selection-start-line="1218" selection-start-column="4" selection-end-line="1218" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
