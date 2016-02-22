@@ -30,7 +30,10 @@ class AssessmenttPageTest(BaseTestCase):
         cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
         cls.pagination = Pagination(cls.driver)
-        cls.ast.get_school_name("")
+        try:
+            cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_MAINSCHOOL'))
+        except Exception, err:
+            print err.message
 
     def setUp(self):
         self.errors_and_failures = self.tally()
@@ -315,7 +318,7 @@ class AssessmenttPageTest(BaseTestCase):
                 self.ast.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_ast_34_To_Verify_Delete_Assessment(self):
         countbeforedeletion = self.ast.get_total_row_count()
         self.ast.select_multiple_checkboxes(1)
@@ -328,7 +331,7 @@ class AssessmenttPageTest(BaseTestCase):
         self.assertGreater(countbeforedeletion, countafterdeletion, "Couldn't delete asset")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_ast_35_To_Verify_Delete_MultipleAssessment(self):
         countbeforedeletion = self.ast.get_total_row_count()
         if countbeforedeletion >= 1:

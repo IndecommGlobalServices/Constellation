@@ -29,7 +29,7 @@ class AssessmentTrainningandExercisePageTest(BaseTestCase):
         cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
         try:
-            cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_OVERVIEW'))
+            cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_TRAINING_EXERCISE'))
             cls.ast.delete_existing_assessments()
         except:
             pass

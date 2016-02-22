@@ -520,6 +520,8 @@ class AssessmentPage(BasePageClass):
             for each in school_data:
                 if relevance == "":
                     self.asset_school_name = each["asset_name"][0]
+                elif relevance == 'mainschool':
+                    self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "MAIN_SCHOOL"))]
                 elif relevance == 'schooldata':
                     self.asset_school_name = each["asset_name"][int(self.config.get(self.schoolnames, "SCHOOL_DATA"))]
                 elif relevance == 'overview':
@@ -638,7 +640,7 @@ class AssessmentPage(BasePageClass):
 
     def delete_existing_assessments(self):
         self.search_assessment_textbox(self.asset_school_name)
-        sleep(2)
+        sleep(10)
         if len(self.get_assessment_table("Asset")) > 0:
             self.select_multiple_checkboxes(self.get_total_row_count())
             self.get_action_dropdown.click()
@@ -657,7 +659,7 @@ class AssessmentPage(BasePageClass):
         self.get_create_assignedto_textbox.send_keys(assignedto)
         self.get_create_assets_textbox.clear()
         self.get_create_assets_textbox.send_keys(self.asset_school_name)
-        sleep(5)
+        sleep(15)
         try:
             self.driver.find_element_by_xpath("//li[contains(text(), '"+self.asset_school_name+"')]").click()
         except Exception, err:

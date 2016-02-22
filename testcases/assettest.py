@@ -959,7 +959,7 @@ class AssetpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_MARKER_NAME_NOT_DISPLAYED_ON_MAP'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_40(self):
         """
         Test : test_AS_40
@@ -1003,7 +1003,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_FILES_BEFORE_AFTER_SAME_FILE_COULD_NOT_BE_DELETED'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_41(self):
         """
         Test : test_AS_41
@@ -1036,7 +1036,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, error)
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_42(self):
         """
         Test : test_AS_42
@@ -1060,7 +1060,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_FAILED_FOR_NO_CAPTION'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_43(self):
         """
         Test : test_AS_43
@@ -1087,7 +1087,7 @@ class AssetpageTest(BaseTestCase):
         self.assertTrue(True, self.config.get(self.section, 'MESSAGE_TEST_CASE_PASSED'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_44_1(self):
         """
         Test : test_AS_44_1
@@ -1110,7 +1110,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_PDF_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_44_2(self):
         """
         Test : test_AS_44_2
@@ -1133,7 +1133,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_HTML_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_44_3(self):
         """
         Test : test_AS_44_3
@@ -1157,7 +1157,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_TEXT_FILE_NOT_UPLOADED'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_45(self):
         """
         Test : test_AS_45
@@ -1182,7 +1182,7 @@ class AssetpageTest(BaseTestCase):
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_MULTIPLE_FILES_COULD_NOT_BE_UPLOADED'))
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_47(self):
         """
         Test : test_AS_47
@@ -1637,6 +1637,8 @@ class AssetpageTest(BaseTestCase):
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
         #sleep(2)
+
+
     @attr(priority="high")
     #@SkipTest
     def test_AS_95(self):
@@ -1709,7 +1711,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(next_page_num, current_page_num + 1,"The next button click is not working.")
 
     @attr(priority="high")
-    #@SkipTest
+    @SkipTest
     def test_AS_98_to_test_pagination_next_button_disabled(self):
         """
         Test : test_AS_98
