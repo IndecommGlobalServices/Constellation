@@ -2,6 +2,7 @@ from selenium.webdriver.common.keys import Keys
 from pages.loginpage import LoginPage
 from time import sleep
 from pages.IconListPage import IconListPage
+from pages.assetpage import AssetPage
 from random import randint
 
 
@@ -20,6 +21,7 @@ class LoginPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
+        #self.loginpage.return_to_apps_main_page()
 
     def test_G_01_04_login_valid(self):
         self.loginpage = LoginPage(self.driver)
@@ -71,7 +73,7 @@ class LoginPageTest(BaseTestCase):
         self.loginpage.get_register_agree_service_terms.click()
         self.loginpage.get_register_register.click()
         sleep(5)
-        self.assertEqual("Registration successful. Check your email for a verification message", self.loginpage.loginerror.text)
+        self.assertEqual("Registration successful. Check your email for a verification message before trying to log in.", self.loginpage.loginerror.text)
 
 
     def test_G_06_07_register_invalid_email(self):
@@ -232,28 +234,35 @@ class LoginPageTest(BaseTestCase):
         self.assertTrue(self.iconpage.get_status.is_displayed, "Status not displayed.")
         # print "Status link is displayed."
         self.iconpage.get_status.click()
+        sleep(5)
         self.iconpage.get_top_logo.click()
+        sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         self.assertTrue(self.iconpage.get_help.is_displayed, "Help not displayed.")
         # print "Help link is displayed."
+        sleep(5)
         self.iconpage.get_help.click()
+        sleep(5)
         self.iconpage.get_top_logo.click()
+        sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
+        sleep(5)
         self.assertTrue(self.iconpage.get_app_asset_icon.is_displayed, "Asset icon not displayed.")
         # print "Asset icon is displayed."
         self.iconpage.get_app_asset_icon.click()
+        sleep(5)
         self.iconpage.get_top_logo.click()
+        sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
+        sleep(5)
         self.assertTrue(self.iconpage.get_app_assessments_icon.is_displayed, "Assessments icon not displayed.")
         # print "Assessments icon is displayed."
         self.iconpage.get_app_assessments_icon.click()
+        sleep(5)
         self.iconpage.get_top_logo.click()
+        sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
-        self.assertTrue(self.iconpage.get_app_map_icon.is_displayed, "Map icon not displayed.")
-        # print "Map icon is displayed."
-        self.iconpage.get_app_map_icon.click()
-        self.iconpage.get_top_logo.click()
-        self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
+        sleep(5)
         self.assertTrue(self.iconpage.get_app_dashboard_icon.is_displayed, "Dashboard icon not displayed.")
         # print "Dashboard icon is displayed."
         if self.iconpage.get_app_dashboard_icon.is_enabled:
@@ -266,16 +275,22 @@ class LoginPageTest(BaseTestCase):
         # print "Incidents icon is displayed."
         if self.iconpage.get_app_incidents_icon.is_enabled:
             self.iconpage.get_app_incidents_icon.click()
+            sleep(5)
             self.iconpage.get_top_logo.click()
             self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         else:
             print "Incidents is disabled."
+        self.iconpage.get_top_logo.click()
+        sleep(5)
         self.assertTrue(self.iconpage.get_app_threatstreams_icon.is_displayed, "Threat Streams icon not displayed.")
         # print "Threat Streams icon is displayed."
         self.iconpage.get_app_threatstreams_icon.click()
+        sleep(5)
         self.iconpage.get_top_logo.click()
+        sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         self.iconpage.get_loggedin_username.click()
+        sleep(5)
         self.iconpage.get_logout.click()
         sleep(5)
         self.assertTrue(self.loginpage.get_big_logo.is_displayed, "Constellation big logo is not displayed.")
@@ -307,7 +322,9 @@ class LoginPageTest(BaseTestCase):
         # print name
         # print self.iconpage.get_loggedin_username.text
         self.assertEqual(self.iconpage.get_loggedin_username.text, name, "profile username doesnot match.")
+        sleep(2)
         self.iconpage.get_loggedin_username.click()
+        sleep(2)
         self.iconpage.get_logout.click()
         sleep(5)
         self.assertTrue(self.loginpage.get_big_logo.is_displayed, "Constellation big logo is not displayed.")
