@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
     </list>
     <ignored path="Constellation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,8 +30,8 @@
       <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9417808">
-              <caret line="1222" column="4" selection-start-line="1222" selection-start-column="4" selection-end-line="1222" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.02910959">
+              <caret line="1112" column="13" selection-start-line="1112" selection-start-column="13" selection-end-line="1112" selection-end-column="13" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -497,12 +496,6 @@
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
     </task>
-    <task id="LOCAL-00037" summary="Assessmentschooldata updated">
-      <created>1445508037907</created>
-      <option name="number" value="00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1445508037907</updated>
-    </task>
     <task id="LOCAL-00038" summary="baseconfig.cfg">
       <created>1445511724025</created>
       <option name="number" value="00038" />
@@ -791,7 +784,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456296571302</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Upload test cases uncommented.">
+      <created>1456296711895</created>
+      <option name="number" value="00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1456296711895</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1287,8 +1286,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9417808">
-          <caret line="1222" column="4" selection-start-line="1222" selection-start-column="4" selection-end-line="1222" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.02910959">
+          <caret line="1112" column="13" selection-start-line="1112" selection-start-column="13" selection-end-line="1112" selection-end-column="13" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
