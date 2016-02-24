@@ -496,12 +496,6 @@
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
     </task>
-    <task id="LOCAL-00038" summary="baseconfig.cfg">
-      <created>1445511724025</created>
-      <option name="number" value="00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1445511724025</updated>
-    </task>
     <task id="LOCAL-00039" summary="Read from config">
       <created>1445518568102</created>
       <option name="number" value="00039" />
@@ -790,7 +784,13 @@
       <option name="project" value="LOCAL" />
       <updated>1456296711895</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Upload test cases uncommented.">
+      <created>1456296744983</created>
+      <option name="number" value="00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1456296744983</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TestHistory">
