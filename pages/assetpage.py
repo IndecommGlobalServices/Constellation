@@ -1656,6 +1656,7 @@ class AssetPage(BasePageClass):
         print ("Application recovering called from " + inspectstack)
         basepage = BasePage(self.driver)
         basepage.accessURL()
+
         iconlistpage = IconListPage(self.driver)
         iconlistpage.click_asset_icon()
 
