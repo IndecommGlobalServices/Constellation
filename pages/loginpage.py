@@ -8,6 +8,9 @@ from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
 
 from pages.homepage import HomePage
+from pages.IconListPage import IconListPage
+import inspect
+from basepage import BasePage
 
 
 cwd = os.getcwd()
@@ -299,3 +302,36 @@ class LoginPage(BasePageClass):
                 HomePage(driver).loginlink.click()
             except:
                 raise InvalidPageException("Login page not loaded")
+
+    def return_to_apps_main_page(self):
+        """
+        Description : This function will helps to go back to assets page.
+        Revision:
+        :return: None
+        """
+        if not self.email:
+            try:
+                WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                    (By.XPATH, self.login))).click()
+
+                WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
+                    (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
+
+            except:
+                inspectstack = inspect.stack()[1][3]
+                self.recoverapp(inspectstack)
+
+
+    def recoverapp(self, inspectstack):
+        """
+        Description : This function helps to go back to assets page. Inspect stack prints the test name from which
+                                 this function is called.
+        Revision:
+        :return: None
+        """
+        print ("Application recovering called from " + inspectstack)
+        basepage = BasePage(self.driver)
+        basepage.loginURL()
+
+        #iconlistpage = IconListPage(self.driver)
+        #iconlistpage.click_asset_icon()

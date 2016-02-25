@@ -273,7 +273,7 @@ class MapPageTest(BaseTestCase):
             print e
             raise
     @attr(priority="high")
-    #@SkipTest
+
     def test_map_11_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
         try:
             self.driver.refresh()

@@ -9,10 +9,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 class IconListPage(BasePageClass, object):
     _app_asset_icon_locator  = "app_assets"
+    #_app_asset_icon_locator = "//img[@src = '../images/app_icon_assets.png']"
     #_app_assessments_icon_locator = "app_assessments"
-    _app_assessments_icon_locator = ".//*[@id='app_assessments']/div/img"
-    # _app_map_icon_locator = "//img[@src = '../images/app_icon_map.png']"
-    _app_map_icon_locator = "//div[@id='app_map']"
+    _app_assessments_icon_locator = "//*[@id='app_assessments']/div/img"
+    #_app_map_icon_locator = "//img[@src = '../images/app_icon_map.png']"
+    _app_map_icon_locator = "//*[@id='app_map']/div/img"
+    #_app_map_icon_locator = "app_map"
     _app_dashboard_icon_locator = "app_dashboard"
     _app_threatstreams_icon_locator = "app_threatstreams"
     _app_incidents_icon_locator = "app_incidents"
@@ -38,8 +40,10 @@ class IconListPage(BasePageClass, object):
     # Status
     _icon_status = ".//*[@id='navbar-collapse-01']/ul/li[3]/a"
 
+
     #Help
-    _icon_help = ".//*[@id='navbar-collapse-01']/ul/li[4]/a"
+    _icon_help = ".//*[@id='navbar-collapse-01']/ul/li[5]/a"
+
 
     # Feedback icon
     _icon_feedback = ".//*[@id='page_applist']/img"

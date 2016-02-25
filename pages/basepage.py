@@ -20,6 +20,9 @@ class BasePage(BasePageClass):
     def accessURL(self):
         self.driver.get("https://constellation-qa.haystax.com/#/")
 
+    def loginURL(self):
+        self.driver.get("https://constellation-qa.haystax.com/#/login")
+
     def findElementByXpath(self, xpath):
         wait = WebDriverWait(self.driver, 100, poll_frequency=5, ignored_exceptions=[StaleElementReferenceException, ElementNotVisibleException, ElementNotSelectableException])
         element = wait.until(EC.presence_of_element_located((By.XPATH, xpath)))
