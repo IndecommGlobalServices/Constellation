@@ -76,11 +76,11 @@ class ThreatStreamPage(BasePageClass):
     #Manage Feeds Locator
     _ts_manage_feeds_link_locator = "//img[contains(@alt,'Manage feeds')]"
     _ts_manage_feeds_app_text_locator = ".//*[@id='header']//span[contains(text(),'Manage Feeds')]"
-    _ts_manage_feeds_filter_text_locator = ".//*[@id='span_filters']//button[@type='button']"
-    _ts_manage_feeds_filter_drop_down_locator = ".//*[@id='span_filters']//button[@data-toggle='dropdown']"
-    _ts_manage_feeds_dropdown_rss_atom_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Rss/atom']"
-    _ts_manage_feeds_dropdown_rss_atom_off_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Rss/atom-OFF']"
-    _ts_manage_feeds_dropdown_twitter_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Twitter']"
+    _ts_manage_feeds_filter_type_text_locator = "//*[@id='span_filters']/div/div/button[@type='button']"
+    _ts_manage_feeds_filter_type_drop_down_locator = "//*[@id='span_filters']/div/div/button[contains(@class,'dropdown-toggle')]"
+    _ts_manage_feeds_type_dropdown_rss_atom_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Rss/atom']"
+    _ts_manage_feeds_type_dropdown_rss_atom_off_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Rss/atom-OFF']"
+    _ts_manage_feeds_type_dropdown_twitter_locator = ".//*[@id='span_filters']/div/div/ul//a[text()='Twitter']"
     _ts_manage_feeds_reset_filters_locator = ".//*[@id='span_filters']/button"
     _ts_manage_feeds_search_feeds_locator = ".//*[@id='txt_search_feeds']"
     _ts_manage_feeds_text_locator = ".//*[@id='feedstable']/tbody/tr/td[2]"
@@ -504,44 +504,44 @@ class ThreatStreamPage(BasePageClass):
                           + self._ts_manage_feeds_link_locator  + err.message)
 
     @property
-    def get_ts_manage_feeds_filter_drop_down_arrow(self):
+    def get_ts_manage_feeds_filter_type_drop_down_arrow(self):
         try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_filter_drop_down_locator)
+            return self.driver.find_element_by_xpath(self._ts_manage_feeds_filter_type_drop_down_locator)
         except Exception, err:
             raise type(err)("Manage Feeds Drop Down Filter Arrow is not available - " \
-                          + self._ts_manage_feeds_filter_drop_down_locator  + err.message)
+                          + self._ts_manage_feeds_filter_type_drop_down_locator  + err.message)
 
     @property
-    def get_ts_manage_feeds_dropdown_rss_atom_menu_item(self):
+    def get_ts_manage_feeds_type_dropdown_rss_atom_menu_item(self):
         try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_dropdown_rss_atom_locator)
+            return self.driver.find_element_by_xpath(self._ts_manage_feeds_type_dropdown_rss_atom_locator)
         except Exception, err:
             raise type(err)("Manage feeds drop down Rss/Atom menu item is not available - " \
-                          + self._ts_manage_feeds_dropdown_rss_atom_locator  + err.message)
+                          + self._ts_manage_feeds_type_dropdown_rss_atom_locator  + err.message)
 
     @property
-    def get_ts_manage_feeds_dropdown_rss_atom_off_menu_item(self):
+    def get_ts_manage_feeds_type_dropdown_rss_atom_off_menu_item(self):
         try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_dropdown_rss_atom_off_locator)
+            return self.driver.find_element_by_xpath(self._ts_manage_feeds_type_dropdown_rss_atom_off_locator)
         except Exception, err:
             raise type(err)("Manage feeds drop down Rss/Atom-Off menu item is not available - " \
-                          + self._ts_manage_feeds_dropdown_rss_atom_off_locator  + err.message)
+                          + self._ts_manage_feeds_type_dropdown_rss_atom_off_locator  + err.message)
 
     @property
-    def get_ts_manage_feeds_dropdown_twitter_menu_item(self):
+    def get_ts_manage_feeds_type_dropdown_twitter_menu_item(self):
         try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_dropdown_twitter_locator)
+            return self.driver.find_element_by_xpath(self._ts_manage_feeds_type_dropdown_twitter_locator)
         except Exception, err:
             raise type(err)("Manage feeds drop down Twitter menu item is not available - " \
-                          + self._ts_manage_feeds_dropdown_twitter_locator  + err.message)
+                          + self._ts_manage_feeds_type_dropdown_twitter_locator  + err.message)
 
     @property
-    def get_ts_manage_feeds_filter_text(self):
+    def get_ts_manage_feeds_filter_type_text(self):
         try:
-            return self.driver.find_element_by_xpath(self._ts_manage_feeds_filter_text_locator)
+            return self.driver.find_element_by_xpath(self._ts_manage_feeds_filter_type_text_locator)
         except Exception, err:
             raise type(err)("Manage feeds filter text is not available - " \
-                          + self._ts_manage_feeds_filter_text_locator  + err.message)
+                          + self._ts_manage_feeds_filter_type_text_locator  + err.message)
 
     @property
     def get_ts_manage_feeds_reset_filter(self):

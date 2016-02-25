@@ -690,7 +690,7 @@ class ThreatStreamTest(BaseTestCase):
         :return: None
         """
         self.tstream.get_ts_threat_dropdown_filter.click()
-        sleep(2)#required to update dropdown menu
+        sleep(3)#required to update dropdown menu
         self.tstream.get_ts_threat_dropdown_addnew_filter.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
@@ -699,16 +699,16 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_24_2"))
         self.tstream.get_ts_threat_dropdown_filter.click()
-        sleep(2)#required to update dropdown menu
+        sleep(4)#required to update dropdown menu
         self.tstream.get_ts_new_filter_name("New_Filter_TC_24_2").click()
-        sleep(2)#required to display filter name on title.
+        sleep(4)#required to display filter name on title.
         self.tstream.get_ts_threat_filter_edit_cog_wheel.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_delete_button.click()
-        sleep(2)#required to display confirm delete popup
+        sleep(3)#required to display confirm delete popup
         self.tstream.get_ts_filter_create_confirm_cancel_button.click()
-        sleep(2)
+        sleep(3)
         self.tstream.get_ts_filter_create_cancel_button.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_24_2"))
@@ -901,11 +901,11 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_manage_feeds_link.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                        self.tstream._ts_manage_feeds_app_text_locator)))
-        self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        self.tstream.get_ts_manage_feeds_filter_type_drop_down_arrow.click()
         sleep(2)#required to update dropdown menu
-        self.tstream.get_ts_manage_feeds_dropdown_rss_atom_menu_item.click()
+        self.tstream.get_ts_manage_feeds_type_dropdown_rss_atom_menu_item.click()
         sleep(2)#Required for selected filter to update
-        text = self.tstream.get_ts_manage_feeds_filter_text.text
+        text = self.tstream.get_ts_manage_feeds_filter_type_text.text
         self.tstream.get_ts_threat_streams_link.click()
         self.assertEqual(text, "Rss/atom", "Selected feeds filter type is not equal to Rss/atom")
 
@@ -922,11 +922,11 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_manage_feeds_link.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                        self.tstream._ts_manage_feeds_app_text_locator)))
-        self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        self.tstream.get_ts_manage_feeds_filter_type_drop_down_arrow.click()
         sleep(2)#required to update dropdown menu
-        self.tstream.get_ts_manage_feeds_dropdown_rss_atom_off_menu_item.click()
+        self.tstream.get_ts_manage_feeds_type_dropdown_rss_atom_off_menu_item.click()
         sleep(2)#Required for selected filter to update
-        text = self.tstream.get_ts_manage_feeds_filter_text.text
+        text = self.tstream.get_ts_manage_feeds_filter_type_text.text
         self.tstream.get_ts_threat_streams_link.click()
         self.assertEqual(text, "Rss/atom-OFF", "Selected feeds filter type is not equal to Rss/atom-OFF")
 
@@ -943,11 +943,11 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_manage_feeds_link.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                        self.tstream._ts_manage_feeds_app_text_locator)))
-        self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        self.tstream.get_ts_manage_feeds_filter_type_drop_down_arrow.click()
         sleep(2)#required to update dropdown menu
-        self.tstream.get_ts_manage_feeds_dropdown_twitter_menu_item.click()
+        self.tstream.get_ts_manage_feeds_type_dropdown_twitter_menu_item.click()
         sleep(2)#Required for selected filter to update
-        text = self.tstream.get_ts_manage_feeds_filter_text.text
+        text = self.tstream.get_ts_manage_feeds_filter_type_text.text
         self.tstream.get_ts_threat_streams_link.click()
         self.assertEqual(text, "Twitter", "Selected feeds filter type is not equal to Twitter")
 
@@ -964,14 +964,14 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_manage_feeds_link.click()
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                        self.tstream._ts_manage_feeds_app_text_locator)))
-        self.tstream.get_ts_manage_feeds_filter_drop_down_arrow.click()
+        self.tstream.get_ts_manage_feeds_filter_type_drop_down_arrow.click()
         sleep(2)#required to update dropdown menu
-        self.tstream.get_ts_manage_feeds_dropdown_twitter_menu_item.click()
+        self.tstream.get_ts_manage_feeds_type_dropdown_twitter_menu_item.click()
         sleep(2)#Required for selected filter to update
-        text1 = self.tstream.get_ts_manage_feeds_filter_text.text
+        text1 = self.tstream.get_ts_manage_feeds_filter_type_text.text
         self.tstream.get_ts_manage_feeds_reset_filter.click()
         sleep(2)#Wait to reset filter
-        text2 = self.tstream.get_ts_manage_feeds_filter_text.text
+        text2 = self.tstream.get_ts_manage_feeds_filter_type_text.text
         sleep(2)#required to update filter text
         if (text1 != text2) and (text2 == 'Type'):
             self.tstream.get_ts_threat_streams_link.click()
