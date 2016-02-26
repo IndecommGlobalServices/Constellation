@@ -89,7 +89,7 @@ class AssessmentPage(BasePageClass):
     _ast_breadcrumb_text_locator = ".//*[@id='header']/div[1]/span[3]/span"
     _ast_overview_text = ".//*[@id='overview']/div[1]"
     _ast_overview_notes_textbox_locator = "assessment_notes"
-    _ast_overview_save_button_locator = "//div[@id='header']//button[contains(text(),'Save')]"
+    _ast_overview_save_button_locator = "//div[@id='header']//button[@class = 'btn btn-danger btn-xs']"
     _ast_overview_start_date_textbox_locator = "//span[@name= 'started_picker']//input[@type = 'text']"
     _ast_overview_end_date_textbox_locator="//span[@name= 'ended_picker']//input[@type = 'text']"
     _ast_saved_text_locator = ".//*[@id='header']/div[4]"

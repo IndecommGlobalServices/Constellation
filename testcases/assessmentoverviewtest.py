@@ -22,8 +22,11 @@ class AssessmentOverviewPageTest(BaseTestCase):
         cls.config = ConfigParser.ConfigParser()
         cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
-        cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_OVERVIEW'))
-
+        try:
+            cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_OVERVIEW'))
+            cls.ast.delete_existing_assessments()
+        except:
+            pass
 
     def setUp(self):
         self.errors_and_failures = self.tally()
@@ -42,21 +45,9 @@ class AssessmentOverviewPageTest(BaseTestCase):
     #@SkipTest
     def test_AST_44_To_Verify_Overview_Add_Notes(self):
         note = "New note"
-        start_date = datetime.today().date()
-        end_date = start_date + timedelta(days=31)
-        sleep(1)
-        self.ast.get_overview_startdate_textbox.clear()
-        self.ast.get_overview_startdate_textbox.send_keys(str(start_date))
-        self.ast.get_overview_enddate_textbox.clear()
-        self.ast.get_overview_enddate_textbox.send_keys(str(end_date))
-        #self.ast.get_overview_enddate_textbox.send_keys(Keys.TAB)
-        sleep(10)
-        WebDriverWait(self.driver, 10).until(expected_conditions.element_to_be_clickable(
-            (By.ID, self.ast._ast_overview_notes_textbox_locator)))
-        sleep(10)
+        sleep(5)
         self.ast.get_overview_notes_textbox.clear()
         self.ast.get_overview_notes_textbox.send_keys(note)
-        sleep(10)
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 80).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, self.ast._ast_saved_text_locator), "Saved"),"The message appeared is " +
