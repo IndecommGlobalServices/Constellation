@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/basetestcase.py" afterPath="$PROJECT_DIR$/testcases/basetestcase.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/logintest.py" afterPath="$PROJECT_DIR$/testcases/logintest.py" />
     </list>
     <ignored path="Constellation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="basetestcase.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="basetestcase.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2571428">
-              <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="52" column="70" selection-start-line="52" selection-start-column="70" selection-end-line="52" selection-end-column="70" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -66,19 +65,21 @@
       <file leaf-file-name="maptest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="275" column="0" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.057142857">
+              <caret line="6" column="5" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="33" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="logintest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="logintest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/logintest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="298" column="8" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
-              <folding />
+            <state vertical-scroll-proportion="1.1428572">
+              <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+              <folding>
+                <element signature="e#0#47#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -86,7 +87,7 @@
       <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.71428573">
+            <state vertical-scroll-proportion="0.0">
               <caret line="1558" column="12" selection-start-line="1558" selection-start-column="12" selection-end-line="1558" selection-end-column="12" />
               <folding />
             </state>
@@ -190,10 +191,10 @@
         <option value="$PROJECT_DIR$/testcases/concurrent_run.py" />
         <option value="$PROJECT_DIR$/pages/mappage.py" />
         <option value="$PROJECT_DIR$/pages/IconListPage.py" />
-        <option value="$PROJECT_DIR$/testcases/logintest.py" />
         <option value="$PROJECT_DIR$/testcases/maptest.py" />
         <option value="$PROJECT_DIR$/pages/assetpage.py" />
         <option value="$PROJECT_DIR$/testcases/basetestcase.py" />
+        <option value="$PROJECT_DIR$/testcases/logintest.py" />
       </list>
     </option>
   </component>
@@ -248,6 +249,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -296,7 +298,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -332,131 +333,7 @@
       <recent name="C:\Constellation\testcases" />
     </key>
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/data/json_Schooldata.json</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pages/assessmentpage.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/pages/assetpage.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/ConstellationSmokeTest.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/assessmentoverviewtest.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/assessmentphysicalsecuritytest.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/assessmentpoliciesandplanningtest.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/assessmenttest.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/assettest.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/baseconfig.cfg</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/basetestcase.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/testcases/logintest.py</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
-  </component>
-  <component name="RunManager" selected="Python tests.Unittest AssetpageTest.test_AS_92">
+  <component name="RunManager" selected="Python tests.Unittests in logintest">
     <configuration default="false" name="Unittests in logintest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -698,11 +575,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_92" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_91" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_90" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in logintest" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in logintest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_92" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_91" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_90" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
       </list>
     </recent_temporary>
   </component>
@@ -716,12 +593,6 @@
       <created>1441947410271</created>
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
-    </task>
-    <task id="LOCAL-00035" summary="New files">
-      <created>1445421230501</created>
-      <option name="number" value="00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1445421230501</updated>
     </task>
     <task id="LOCAL-00036" summary="Assessmentschooldata updated">
       <created>1445507988299</created>
@@ -1011,13 +882,16 @@
       <option name="project" value="LOCAL" />
       <updated>1456253105456</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="Removed Print messages in Assests - Charts">
+      <created>1456253873670</created>
+      <option name="number" value="00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1456253873670</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_AssetpageTest_test_AS_90 - 2016.02.24 at 00h 23m 22s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_90" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittest_AssetpageTest_test_AS_91 - 2016.02.24 at 00h 25m 13s.xml">
       <configuration name="Unittest AssetpageTest.test_AS_91" configurationId="tests" />
     </history-entry>
@@ -1042,17 +916,19 @@
     <history-entry file="Unittests_in_logintest - 2016.02.23 at 23h 24m 12s.xml">
       <configuration name="Unittests in logintest" configurationId="tests" />
     </history-entry>
+    <history-entry file="Unittests_in_logintest - 2016.02.26 at 10h 56m 16s.xml">
+      <configuration name="Unittests in logintest" configurationId="tests" />
+    </history-entry>
     <history-entry file="Unittests_in_maptest - 2016.02.24 at 00h 06m 05s.xml">
       <configuration name="Unittests in maptest" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="668" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2936203" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3425775" sideWeight="0.50595236" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24338624" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1063,6 +939,7 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3970588" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1106,7 +983,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="new" />
     <MESSAGE value="AssessmentInfrastructure" />
     <MESSAGE value="Assettestchanges" />
     <MESSAGE value="TestSuite" />
@@ -1131,7 +1007,8 @@
     <MESSAGE value="Pagination scripts." />
     <MESSAGE value="Map Testcases rectified" />
     <MESSAGE value="Login and Map testcases rectified" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login and Map testcases rectified" />
+    <MESSAGE value="Removed Print messages in Assests - Charts" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed Print messages in Assests - Charts" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.87" />
   </component>
   <component name="XDebuggerManager">
@@ -1484,22 +1361,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/logintest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="298" column="8" selection-start-line="298" selection-start-column="8" selection-end-line="298" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="275" column="0" selection-start-line="275" selection-start-column="0" selection-end-line="275" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1510,7 +1371,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.71428573">
+        <state vertical-scroll-proportion="0.0">
           <caret line="1558" column="12" selection-start-line="1558" selection-start-column="12" selection-end-line="1558" selection-end-column="12" />
           <folding />
         </state>
@@ -1518,10 +1379,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2571428">
-          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="52" column="70" selection-start-line="52" selection-start-column="70" selection-end-line="52" selection-end-column="70" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.057142857">
+          <caret line="6" column="5" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/logintest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.1428572">
+          <caret line="16" column="26" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
+          <folding>
+            <element signature="e#0#47#0" expanded="true" />
           </folding>
         </state>
       </provider>
