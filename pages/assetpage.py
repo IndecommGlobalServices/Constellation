@@ -44,8 +44,10 @@ class AssetPage(BasePageClass):
     _asset_name_breadcrumb = "//*[@id='header']/div[1]/span[3]/span"
 
     # Asset Filter related to place and school
-    _asset_filter_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='Asset Type']/button[@data-toggle='dropdown']"
-    _asset_place_type_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='Type']/button[@data-toggle='dropdown']"
+    #_asset_filter_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='Asset Type']/button[@data-toggle='dropdown']"
+    _asset_filter_drop_down_locator = ".//*[@id='span_filters']/div/div/button[1]"
+    #_asset_place_type_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='Type']/button[@data-toggle='dropdown']"
+    _asset_place_type_drop_down_locator = ".//*[@id='span_filters']/div/div/ul/li[1]/a"
     _asset_place_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
 
     _asset_school_district_drop_down_firt_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
@@ -1519,8 +1521,8 @@ class AssetPage(BasePageClass):
         """
         #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
         #    (By.XPATH, self._asset_filter_drop_down_locator))).click()
-        self.basepage.findElementByXpath(self._asset_filter_drop_down_locator).click()
-        self.driver.find_element_by_link_text(assetType).click()
+        self.basepage.findElementByXpath(self._asset_filter_drop_down_locator).send_keys(Keys.ENTER)
+        self.driver.find_element_by_link_text(assetType).send_keys(Keys.ENTER)
 
     def get_asset_school_district(self):
         """

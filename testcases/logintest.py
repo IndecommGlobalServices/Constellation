@@ -236,7 +236,7 @@ class LoginPageTest(BaseTestCase):
         # print "Status link is displayed."
         self.iconpage.get_status.click()
         sleep(5)
-        self.iconpage.get_top_logo.click()
+        self.iconpage.get_top_logo.send_keys(Keys.ENTER)
         sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         self.assertTrue(self.iconpage.get_help.is_displayed, "Help not displayed.")
@@ -244,7 +244,7 @@ class LoginPageTest(BaseTestCase):
         sleep(5)
         self.iconpage.get_help.click()
         sleep(5)
-        self.iconpage.get_top_logo.click()
+        self.iconpage.get_top_logo.send_keys(Keys.ENTER)
         sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         sleep(5)
@@ -252,7 +252,7 @@ class LoginPageTest(BaseTestCase):
         # print "Asset icon is displayed."
         self.iconpage.get_app_asset_icon.click()
         sleep(5)
-        self.iconpage.get_top_logo.click()
+        self.iconpage.get_top_logo.send_keys(Keys.ENTER)
         sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         sleep(5)
@@ -260,34 +260,37 @@ class LoginPageTest(BaseTestCase):
         # print "Assessments icon is displayed."
         self.iconpage.get_app_assessments_icon.click()
         sleep(5)
-        self.iconpage.get_top_logo.click()
+        self.iconpage.get_top_logo.send_keys(Keys.ENTER)
         sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         sleep(5)
-        self.assertTrue(self.iconpage.get_app_dashboard_icon.is_displayed, "Dashboard icon not displayed.")
+        #self.assertTrue(self.iconpage.get_app_dashboard_icon.is_displayed, "Dashboard icon not displayed.")
         # print "Dashboard icon is displayed."
+        '''
         if self.iconpage.get_app_dashboard_icon.is_enabled:
             self.iconpage.get_app_dashboard_icon.click()
             self.iconpage.get_top_logo.click()
             self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         else:
             print "Dashboard is disabled."
+        '''
         self.assertTrue(self.iconpage.get_app_incidents_icon.is_displayed, "Incidents icon not displayed.")
         # print "Incidents icon is displayed."
-        if self.iconpage.get_app_incidents_icon.is_enabled:
-            self.iconpage.get_app_incidents_icon.click()
-            sleep(5)
-            self.iconpage.get_top_logo.click()
-            self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
-        else:
-            print "Incidents is disabled."
-        self.iconpage.get_top_logo.click()
+
+        #if self.iconpage.get_app_incidents_icon.is_enabled:
+        self.iconpage.get_app_incidents_icon.click()
+        sleep(5)
+        self.iconpage.get_top_logo.send_keys(Keys.ENTER)
+        self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
+        #else:
+        #    print "Incidents is disabled."
+        #self.iconpage.get_top_logo.click()
         sleep(5)
         self.assertTrue(self.iconpage.get_app_threatstreams_icon.is_displayed, "Threat Streams icon not displayed.")
         # print "Threat Streams icon is displayed."
         self.iconpage.get_app_threatstreams_icon.click()
         sleep(5)
-        self.iconpage.get_top_logo.click()
+        self.iconpage.get_top_logo.send_keys(Keys.ENTER)
         sleep(5)
         self.assertTrue(self.iconpage.get_loggedin_username.is_displayed, "Logged in user name not displayed.")
         self.iconpage.get_loggedin_username.click()

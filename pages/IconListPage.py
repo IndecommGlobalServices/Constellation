@@ -10,8 +10,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 class IconListPage(BasePageClass, object):
     _app_asset_icon_locator  = "app_assets"
     #_app_asset_icon_locator = "//img[@src = '../images/app_icon_assets.png']"
-    #_app_assessments_icon_locator = "app_assessments"
-    _app_assessments_icon_locator = "//*[@id='app_assessments']/div/img"
+    _app_assessments_icon_locator = "app_assessments"
+    #_app_assessments_icon_locator = "//*[@id='app_assessments']/div/img"
     #_app_map_icon_locator = "//img[@src = '../images/app_icon_map.png']"
     _app_map_icon_locator = "//*[@id='app_map']/div/img"
     #_app_map_icon_locator = "app_map"
