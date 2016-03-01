@@ -6,7 +6,7 @@ from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-from pyvirtualdisplay import Display
+#from pyvirtualdisplay import Display
 from time import sleep
 
 class BaseTestCase(unittest.TestCase):

@@ -22,13 +22,7 @@ class LoginPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        try:
-            if self.mappage.get_map_404.is_displayed():
-                self.mappage.get_map_404_close.click()
-                print "Server Error 500 - Something has gone terribly wrong."
-        except Exception :
-            pass
-        #self.loginpage.return_to_apps_main_page()
+            self.loginpage.return_to_apps_main_page()
 
     def test_G_01_04_login_valid(self):
         self.loginpage = LoginPage(self.driver)

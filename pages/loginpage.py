@@ -309,17 +309,17 @@ class LoginPage(BasePageClass):
         Revision:
         :return: None
         """
-        if not self.email:
-            try:
-                WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
-                    (By.XPATH, self.login))).click()
+        #if not self.email:
+        try:
+            WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, self.login))).click()
 
-                WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
-                    (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
+            #WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
+            #    (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
 
-            except:
-                inspectstack = inspect.stack()[1][3]
-                self.recoverapp(inspectstack)
+        except:
+            inspectstack = inspect.stack()[1][3]
+            self.recoverapp(inspectstack)
 
 
     def recoverapp(self, inspectstack):
@@ -332,6 +332,6 @@ class LoginPage(BasePageClass):
         print ("Application recovering called from " + inspectstack)
         basepage = BasePage(self.driver)
         basepage.loginURL()
-
         #iconlistpage = IconListPage(self.driver)
-        #iconlistpage.click_asset_icon()
+        #iconlistpage.get_loggedin_username.click()
+        #iconlistpage.get_logout.click()

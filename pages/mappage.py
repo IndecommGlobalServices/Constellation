@@ -464,9 +464,6 @@ class MapPage(BasePageClass):
             WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, self._bread_crumb_click_apps_link_xpath_locator))).click()
 
-            WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
-                (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
-
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)

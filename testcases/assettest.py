@@ -99,6 +99,7 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_delete_button.click() # Delete
         sleep(2)
         countafterdeletion = self.assetpage.get_total_row_count()
+        sleep(2)
         self.assertEqual(int(countbeforedeletion), int(countafterdeletion)+1,
                          self.config.get(self.section, 'MESSAGE_COULD_NOT_DELETE_ASSET'))
 
@@ -118,7 +119,9 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_select_action_drop_down.click()
         self.assetpage.get_asset_link_delete_text.click()
         self.assetpage.get_deleteasset_cancel_button.click() # Cancel
+        sleep(2)
         countafterdeletion = self.assetpage.get_total_row_count()
+        sleep(2)
         self.assertEqual(int(countbeforedeletion), int(countafterdeletion),
                          self.config.get(self.section, 'MESSAGE_ASSET_DELETED_ON_CANCEL'))
 
