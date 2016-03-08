@@ -6,19 +6,16 @@ from pages.homepage import HomePage
 from pages.loginpage import LoginPage
 from pages.basepage import BasePage
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-#from pyvirtualdisplay import Display
+from pyvirtualdisplay import Display
 from time import sleep
 
 class BaseTestCase(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-
-
         # if os.getenv("OS") == None:
         #     display = Display(visible=0, size=(1280,800))
         #     display.start()
-
         # create a new Firefox session
 
         cls.driver = webdriver.Firefox()
@@ -58,3 +55,4 @@ class BaseTestCase(unittest.TestCase):
 
     def tally(self):
         return len(self._resultForDoCleanups.errors) + len(self._resultForDoCleanups.failures)
+
