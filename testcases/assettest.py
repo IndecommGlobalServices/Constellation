@@ -1775,18 +1775,21 @@ class AssetpageTest(BaseTestCase):
         """
         self.basepage.reset_and_search_clear()
         self.pagination.get_pg_drop_down_arrow.click()
-        sleep(2)
+        sleep(1)
         list_of_page_drop_down = self.pagination.get_pg_list_of_page_groups
-        sleep(2)
+        sleep(1)
         self.pagination.get_pg_drop_down_arrow.click()
-        sleep(2)
+        sleep(1)
         if len(list_of_page_drop_down)>=1:
             self.pagination.pagination_drop_down_click(-1)
+            self.pagination.get_pg_drop_down_arrow.click()
             last_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[1]
+            last_page_first = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[0]
+            self.pagination.get_pg_drop_down_arrow.click()
             if int(last_page) >= 5:
                 first_page = int(last_page)-4
             else:
-                first_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[0]
+                first_page = last_page_first
             start_value, end_value = self.pagination.pagination_start_end_node_value()
             actual_group = [str(start_value), str(end_value)]
             expected_group = [str(first_page), str(last_page)]
@@ -1852,6 +1855,7 @@ class AssetpageTest(BaseTestCase):
             sleep(2)
             list_of_nodes = self.pagination.get_pg_list_of_nodes
             list_of_nodes[-3].click()
+            self.pagination.pagination_next()
             sleep(2)
             if list_of_nodes[-1].get_attribute("class") == "next disabled":
                 self.assertTrue(True, "Displayed Page is last page but next button is enabled.")

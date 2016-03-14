@@ -86,7 +86,7 @@ class AssetPage(BasePageClass):
     # Overview panel related
     #Asset Overview dialouge locators
     _asset_overview_templatetype_dropdown_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])"
-    _asset_overview_name_text_box_locator = "//input[@placeholder='Name']"
+    _asset_overview_name_text_box_locator = "//typeahead//input[@placeholder='Name']"
     _asset_overview_address_text_box_locator = ".//*[@id='asset_overview_modal']/descendant::input[@placeholder='Address']"
     _asset_overview_address2_text_box_locator = "//input[@ng-model='asset_edit.address.address2']"
     _asset_overview_city_text_box_locator = "//input[@ng-model='asset_edit.address.city']"
@@ -98,8 +98,8 @@ class AssetPage(BasePageClass):
     _asset_overview_district_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input"
     _asset_overview_grade_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input"
 
-    _asset_overview_type_drop_down_locator = "//div[@class='forminputfields']//div[@label='Type']//button[@data-toggle='dropdown']"
-    # "(//div[@label='Type']//button[@data-toggle='dropdown'])[2]"
+    #_asset_overview_type_drop_down_locator = "//div[@service='Asset']//button[@data-toggle='dropdown']"
+    _asset_overview_type_drop_down_locator = ".//*[@id='asset_overview_modal']//label[text()= 'Type']/following-sibling::div/button[@data-toggle='dropdown']"
     _asset_overview_district_drop_down_locator = "//div[@class='forminputfields']//div[@label= 'District']/button[@data-toggle='dropdown']"
     _asset_overview_grade_drop_down_locator = "//div[@class='forminputfields']//div[@label= 'Grade']/button[@data-toggle='dropdown']"
     _asset_overview_add_button_locator = ".//*[@id='newItemButton']"
@@ -178,7 +178,7 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
     _asset_detail_edit_place_size_textbox_locator = "//input[@placeholder='size (sq ft)']"
     _asset_detail_edit_school_size_textbox_locator = "//input[@placeholder='Size_sqfeet']"
-    _asset_detail_edit_email_textbox_locator = "//input[@placeholder='Email']"
+    _asset_detail_edit_email_textbox_locator = "//span[@on='key']//input[@placeholder='Email']"
     _asset_detail_email_value_text_locator = ".//span[text()='Email']/../following-sibling::td"
     _asset_detail_edit_website_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
     _asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/descendant::div[@class='modal-footer']/button[text()='Save']"
@@ -201,10 +201,11 @@ class AssetPage(BasePageClass):
     _asset_annotation_widget_locator = ".//*[@id='widgets']/descendant::div[@class='widgetheader' and contains(text(),'Annotations')]"
     _asset_annotation_plus_image_locator = "//div[contains(text(),'Annotations')]//img"
     _asset_annotation_edit_window_text_area_locator = "//label[text()='Annotation']//following-sibling::textarea"
-    _asset_annotation_edit_window_visibility_dropdown_locator = "//label[text()='Visibility']//following-sibling::div//button[@data-toggle='dropdown']"
-    _asset_annotation_edit_window_dropdown_groups_locator = "//label[text()='Visibility']//following-sibling::div//ul//li[1]//a"
-    _asset_annotation_edit_window_dropdown_tenant_locator = "//label[text()='Visibility']//following-sibling::div//ul//li[2]//a"
-    _asset_annotation_edit_window_dropdown_user_locator = "//label[text()='Visibility']//following-sibling::div//ul//li[3]//a"
+    #_asset_annotation_edit_window_visibility_dropdown_locator = "//label[text()='Visibility']//following-sibling::div//button[@data-toggle='dropdown']"
+    _asset_annotation_edit_window_visibility_dropdown_locator = ".//*[@id='asset_annotation_modal']//button[contains(@class,'dropdown')]"
+    _asset_annotation_edit_window_dropdown_groups_locator = ".//*[@id='asset_annotation_modal']//li[1]"
+    _asset_annotation_edit_window_dropdown_tenant_locator = ".//*[@id='asset_annotation_modal']//li[2]"
+    _asset_annotation_edit_window_dropdown_user_locator = ".//*[@id='asset_annotation_modal']//li[3]"
     _asset_annotation_edit_window_save_button_locator = "//*[@id='asset_annotation_modal']/descendant::button[text()='Save']"
     _asset_annotation_edit_window_cancel_button_locator = "//*[@id='asset_annotation_modal']/descendant::button[text()='Cancel']"
     _asset_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
@@ -2057,7 +2058,7 @@ class AssetPage(BasePageClass):
         self.get_asset_newcontact_phone_textbox.send_keys(phone)
         self.get_asset_newcontact_email_textbox.clear()
         self.get_asset_newcontact_email_textbox.send_keys(email)
-        sleep(2)
+        sleep(4)
         self.get_asset_newcontact_save_button.click()#Click on Save Button.
         WebDriverWait(self.driver,100).until(EC.text_to_be_present_in_element((By.XPATH,
                                                                         self._asset_header_save_text_locator), "Saved"))
@@ -2068,10 +2069,7 @@ class AssetPage(BasePageClass):
         Revision:
         :return: None
         """
-        #sleep(2)
-        #delete existing contacts.
         self.delete_existing_contact()
-        #sleep(2)
         firstname = ['jkl','vwx','def','pqr']
         lastname = ['mno','abc','stu','ghi']
         phonelist = [r'661-111-1111',r'222-222-2222',r'433-333-3333',r'123-444-4444']
@@ -2080,7 +2078,7 @@ class AssetPage(BasePageClass):
         for contact in range(4):
             self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],
                                     emaillist[contact])
-        #    sleep(2)
+            sleep(2) #required to update apps.
 
     def file_path(self, image_file_name):
         """
