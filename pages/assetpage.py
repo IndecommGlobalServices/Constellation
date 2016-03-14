@@ -85,6 +85,7 @@ class AssetPage(BasePageClass):
 
     # Overview panel related
     #Asset Overview dialouge locators
+    _asset_create_template_type_drop_down_locator = ".//*[@id='asset_overview_modal']//button[contains(@class,'dropdown-toggle')]"
     _asset_overview_templatetype_dropdown_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])"
     _asset_overview_name_text_box_locator = "//typeahead//input[@placeholder='Name']"
     _asset_overview_address_text_box_locator = ".//*[@id='asset_overview_modal']/descendant::input[@placeholder='Address']"
@@ -316,6 +317,14 @@ class AssetPage(BasePageClass):
         except Exception, err:
             raise type(err)("Reset filter button not available - searched XPATH - " \
                           + self._asset_filter_reset_button_locator + err.message)
+
+    @property
+    def get_create_template_type_drop_down(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_create_template_type_drop_down_locator)
+        except Exception, err:
+            raise type(err)("Template type dropdown not available - searched XPATH - " \
+                          + self._asset_create_template_type_drop_down_locator + err.message)
 
     @property
     def get_overview_templatetype_drop_down(self):
@@ -1678,7 +1687,7 @@ class AssetPage(BasePageClass):
 
     def select_asset_template_type(self, template):
         # Select Place from the dropdown to create new place asset
-        self.get_overview_templatetype_drop_down.click()
+        self.get_create_template_type_drop_down.click()
         self.driver.find_element_by_link_text(template).click()
 
     def get_placedata(self):
@@ -2212,12 +2221,9 @@ class AssetPage(BasePageClass):
         if len(totalGraphInContainer) >= 1:
             print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
-                print totalGraph.text, "555555555555555"
                 print "Printing according to the chart wise data..."
                 if totalGraph.text == "Place type":
                     assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
-                    for asset in assets:
-                        print asset.text, "jhdfjhgdjhjkhgjkfdhgdfkj"
         else:
             #pass
             print "No chart found at place and type level."
