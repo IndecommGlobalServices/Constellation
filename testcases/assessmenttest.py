@@ -132,7 +132,6 @@ class AssessmenttPageTest(BaseTestCase):
             sleep(5)
             self.assertEqual("rgba(192, 57, 43, 1)", self.ast.get_create_assignedto_textbox.value_of_css_property("border-bottom-color"),  "Email ID validation error in create assessment")
             self.ast.get_create_assignedto_textbox.clear()
-            
 
     # @attr(priority="high")
     # @SkipTest
@@ -459,7 +458,6 @@ class AssessmenttPageTest(BaseTestCase):
         Author : Bijesh
         :return: None
         """
-
         self.basepage.reset_and_search_clear()
         if self.pagination.pagination_total_pages() >=1 :
             self.pagination.pagination_previous()

@@ -44,23 +44,22 @@ class AssetPage(BasePageClass):
     _asset_name_breadcrumb = "//*[@id='header']/div[1]/span[3]/span"
 
     # Asset Filter related to place and school
-    #_asset_filter_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='Asset Type']/button[@data-toggle='dropdown']"
     _asset_filter_drop_down_locator = ".//*[@id='span_filters']/div/div/button[1]"
-    #_asset_place_type_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='Type']/button[@data-toggle='dropdown']"
-    _asset_place_type_drop_down_locator = ".//*[@id='span_filters']/div/div/ul/li[1]/a"
+    _asset_place_type_drop_down_locator = "//button[contains(text(),'Place type')]/following-sibling::button"
     _asset_place_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
+    _asset_type_filter_text_locator = ".//*[@id='span_filters']//div[@label='Asset type']/button[@type='button']"
 
     _asset_school_district_drop_down_firt_element_locator = ".//*[@id='span_filters']/div[2]/div/ul/li[1]/a"
     _asset_school_district_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='District']/button[@data-toggle='dropdown']"
-    _asset_school_district_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[4]"
+    _asset_school_district_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[5]"
 
-    _asset_school_grade_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='Grade Level']/button[@data-toggle='dropdown']"
+    _asset_school_grade_drop_down_locator = ".//button[text()='Grade level']/following-sibling::button[@data-toggle='dropdown']"
     _asset_school_grade_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[3]/div/ul/li[1]/a"
-    _asset_school_grade_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[5]"
+    _asset_school_grade_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[6]"
 
-    _asset_school_type_drop_down_locator = ".//*[@id='span_filters']/descendant::div[@label='School Type']/button[@data-toggle='dropdown']"
+    _asset_school_type_drop_down_locator = ".//button[text()='School type']/following-sibling::button[@data-toggle='dropdown']"
     _asset_school_type_drop_down_select_first_element_locator = ".//*[@id='span_filters']/div[4]/div/ul/li[1]/a"
-    _asset_school_type_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[6]"
+    _asset_school_type_lists_locator = ".//*[@id='assetstable']/tbody/tr/td[7]"
 
     #asset search textbox
     _asset_search_textbox_locator = ".//*[@id='txt_search_assets']"
@@ -72,7 +71,6 @@ class AssetPage(BasePageClass):
 
     # Reset filter related
     _asset_filter_reset_button_locator = ".//*[@id='span_filters']/button"
-    _asset_filter_asset_type_text_locator = ".//*[@id='span_filters']/div/div/button[1]"
 
     # Place and School - Creation mode related
     _asset_type_field_name_text_box_locator = "//input[@ng-model='model']"
@@ -355,14 +353,6 @@ class AssetPage(BasePageClass):
                           + self._asset_overview_grade_drop_down_locator + err.message)
 
     @property
-    def get_asset_asset_type_text(self):
-        try:
-            return self.driver.find_element_by_xpath(self._asset_filter_asset_type_text_locator)
-        except Exception, err:
-            raise type(err)("Asset type dropdown not available - searched XPATH - " \
-                          + self._asset_filter_asset_type_text_locator + err.message)
-
-    @property
     def get_asset_list_first_check_box(self):
         try:
             #return self.driver.find_element_by_xpath(self._asset_list_select_first_check_box_xpath_locator)
@@ -387,6 +377,14 @@ class AssetPage(BasePageClass):
         except Exception, err:
             raise type(err)("Place type dropdown list not available - searched XPATH - " \
                           + self._asset_place_type_drop_down_select_first_element_locator + err.message)
+
+    @property
+    def get_asset_type_filter_text(self):
+        try:
+            return self.basepage.findElementByXpath(self._asset_type_filter_text_locator)
+        except Exception, err:
+            raise type(err)("Asset Type filter text is not visible - searched XPATH - " \
+                          + self._asset_type_filter_text_locator + err.message)
 
     @property
     def get_asset_school_district_drop_down(self):
@@ -1522,7 +1520,8 @@ class AssetPage(BasePageClass):
         #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
         #    (By.XPATH, self._asset_filter_drop_down_locator))).click()
         self.basepage.findElementByXpath(self._asset_filter_drop_down_locator).send_keys(Keys.ENTER)
-        self.driver.find_element_by_link_text(assetType).send_keys(Keys.ENTER)
+        #self.driver.find_element_by_xpath(".//*[@id='span_filters']/div/div/ul/li[3]/a").send_keys(Keys.ENTER)
+        self.driver.find_element_by_link_text(assetType).click()
 
     def get_asset_school_district(self):
         """
@@ -1539,7 +1538,7 @@ class AssetPage(BasePageClass):
             self.selecteddistrict = self.get_asset_school_district_first_element.text
             self.get_asset_school_district_first_element.click()
         else:
-            print "No items to select in District drop down."
+            pass
         sleep(2)
 
     def get_asset_school_grade(self):
@@ -1550,20 +1549,16 @@ class AssetPage(BasePageClass):
         """
         self.asset_filter_based_on_place_and_school("School")
         self.basepage.findElementByXpath(self._asset_school_grade_drop_down_locator).click()
-        #WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
-        #    (By.XPATH, self._asset_school_grade_drop_down_locator))).click()
-        #sleep(2)
         chkGradeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[3]/div/ul")
         items = chkGradeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
-
         if len(items) > 1:
             firstelement =self.driver.find_element_by_xpath\
                 (self._asset_school_grade_drop_down_select_first_element_locator)
             self.selectedgrade = firstelement.text
             firstelement.click()
         else:
-            print "No items to select in Grade drop down."
+            pass
         sleep(2)
 
     def get_asset_school_type(self):
@@ -1574,11 +1569,7 @@ class AssetPage(BasePageClass):
         """
         self.asset_filter_based_on_place_and_school("School")
         self.basepage.findElementByXpath(self._asset_school_type_drop_down_locator).click()
-        #WebDriverWait(self.driver,10).until(EC.presence_of_element_located(
-        #    (By.XPATH, self._asset_school_type_drop_down_locator))).click()
-        #sleep(2)
-        #chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/div[4]/div/ul")
-        chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/descendant::div[@label='School Type']/ul")
+        chkSchoolTypeDropDownValuesExists = self.driver.find_element_by_xpath(".//*[@id='span_filters']/descendant::div[@label='School type']/ul")
         items = chkSchoolTypeDropDownValuesExists.find_elements_by_tag_name("li")
         sleep(5)
         if len(items) > 1:
@@ -1658,7 +1649,6 @@ class AssetPage(BasePageClass):
         print ("Application recovering called from " + inspectstack)
         basepage = BasePage(self.driver)
         basepage.accessURL()
-
         iconlistpage = IconListPage(self.driver)
         iconlistpage.click_asset_icon()
 
@@ -2188,8 +2178,9 @@ class AssetPage(BasePageClass):
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath))
                     #for asset in assets:
                     #    print asset.text
-        else :
-            print "No chart found at place level."
+        else:
+            pass
+            #print "No chart found at place level."
 
     def place_related_charts_Place_Is_Selected(self):
         """
@@ -2207,8 +2198,9 @@ class AssetPage(BasePageClass):
                 assets = self.driver.find_elements_by_xpath(str(chart_xpath))
                 #for asset in assets:
                 #    print asset.text
-        else :
-            print "No chart found at place level."
+        else:
+            pass
+            #print "No chart found at place level."
 
 
     def place_related_charts_Place_And_Type_Is_Selected(self):
@@ -2220,15 +2212,16 @@ class AssetPage(BasePageClass):
         chart_xpath = self.svg_path_1+self.svg_path_2+r"/*[name()='tspan']"
         totalGraphInContainer = self.get_asset_chart_total_graph
         if len(totalGraphInContainer) >= 1:
-            #print "Printing chart names..."
+            print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
-                #print totalGraph.text
-                #print "Printing according to the chart wise data..."
-                if totalGraph.text == "Type":
+                print totalGraph.text, "555555555555555"
+                print "Printing according to the chart wise data..."
+                if totalGraph.text == "Place type":
                     assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
-                    #for asset in assets:
-                    #    print asset.text
-        else :
+                    for asset in assets:
+                        print asset.text, "jhdfjhgdjhjkhgjkfdhgdfkj"
+        else:
+            #pass
             print "No chart found at place and type level."
 
     def school_related_charts_School_Is_Selected(self):
@@ -2262,7 +2255,8 @@ class AssetPage(BasePageClass):
                     #for asset in assets:
                     #    print asset.text
         else :
-            print "No chart found at school level."
+            pass
+            #print "No chart found at school level."
 
 
     def school_related_charts_School_And_District_Is_Selected(self):
@@ -2289,7 +2283,8 @@ class AssetPage(BasePageClass):
                     #for asset in assets:
                     #    print asset.text
         else :
-            print "No chart found at school and district level."
+            pass
+            #print "No chart found at school and district level."
 
     def school_related_charts_School_And_Grade_Is_Selected(self):
         """
@@ -2314,8 +2309,9 @@ class AssetPage(BasePageClass):
                     assets = self.driver.find_elements_by_xpath(str(chart_xpath_2))
                     #for asset in assets:
                     #    print asset.text
-        else :
-            print "No chart found at school and grade level."
+        else:
+            pass
+            #print "No chart found at school and grade level."
 
     def school_related_charts_School_And_Type_Is_Selected(self):
         """
@@ -2342,8 +2338,9 @@ class AssetPage(BasePageClass):
                     assets = self.basepage.findElementsByXpath(str(chart_xpath_2))
                     #for asset in assets:
                     #    print asset.text
-        else :
-            print "No chart found at school and type level."
+        else:
+            pass
+            #print "No chart found at school and type level."
 
     def get_total_row_count(self):
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
@@ -2356,11 +2353,16 @@ class AssetPage(BasePageClass):
         return int(totalCount)
 
     def get_total_row_count_filter(self):
-        #countText = self.driver.find_element_by_id("assetstable_info").text
         countText = self.basepage.findElementById("assetstable_info").text
         splitedText = countText.split(" ")
         totalCount = splitedText[6]
         return int(totalCount)
+
+    def make_dashboard_on(self):
+            sleep(1)
+            if "off" in self.get_asset_chart_dashboard_image_off.get_attribute("src"):
+                self.get_asset_chart_dashboard_image_off.click()
+                sleep(3)
 
     def _validate_page(self, driver):
         pass

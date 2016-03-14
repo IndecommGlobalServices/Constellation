@@ -274,15 +274,15 @@ class LoginPage(BasePageClass):
             for each in data_text:
                 cls.usernameText = each["username"]
                 passwordText = each["password"]
-                sleep(5)
+                #sleep(5)
                 cls.email.clear()
-                sleep(5)
+                #sleep(5)
                 cls.email.send_keys(cls.usernameText)
-                sleep(5)
+                #sleep(5)
                 cls.password.clear()
-                sleep(5)
+                #sleep(5)
                 cls.password.send_keys(passwordText)
-                sleep(5)
+                #sleep(5)
                 cls.login.click()
 
     def clearallfields(cls):

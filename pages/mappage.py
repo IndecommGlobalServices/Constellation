@@ -10,7 +10,6 @@ from basepage import BasePage
 from time import sleep
 from loginpage import LoginPage
 import inspect
-
 from selenium.webdriver.support import expected_conditions as EC
 
 class MapPage(BasePageClass):

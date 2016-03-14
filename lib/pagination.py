@@ -75,7 +75,8 @@ class Pagination(object):
             list_of_nodes[-1].click()
             sleep(3)
         elif list_of_nodes[-1].get_attribute("class") == "next disabled":
-            print "This is last page. No more next page available."
+            pass
+            #print "This is last page. No more next page available."
 
     def pagination_previous(self):
         list_of_nodes = self.get_pg_list_of_nodes
@@ -83,7 +84,8 @@ class Pagination(object):
             list_of_nodes[0].click()
             sleep(3)
         elif list_of_nodes[0].get_attribute("class") == "previous disabled":
-            print "This is first page. No more previous page available."
+            pass
+            #print "This is first page. No more previous page available."
 
     def pagination_drop_down_click(self, page_index):
         self.get_pg_drop_down_arrow.click()
@@ -92,7 +94,8 @@ class Pagination(object):
         if len(list_of_page_drop_down) >= 1:
             list_of_page_drop_down[page_index].click()
         else:
-            print "Pagination does not have page groups"
+            pass
+            #print "Pagination does not have page groups"
 
     def pagination_active_page(self):
         sleep(2)

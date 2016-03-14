@@ -24,7 +24,12 @@ class MapPageTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-
+        try:
+            if self.mappage.get_map_404.is_displayed():
+                self.mappage.get_map_404_close.click()
+                print "Server Error 500 - Something has gone terribly wrong."
+        except Exception :
+            pass
         self.mappage.return_to_apps_main_page()
 
 
@@ -268,7 +273,7 @@ class MapPageTest(BaseTestCase):
             print e
             raise
     @attr(priority="high")
-
+    #@SkipTest
     def test_map_11_to_verify_Default_Map_View_Based_On_Threat_Streams(self):
         try:
             self.driver.refresh()

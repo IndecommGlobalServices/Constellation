@@ -42,8 +42,8 @@ class IncidentsPageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     @attr(status='smoke')
-    def test_assessment_smoke(self):
-        self.assertTrue(self.incident.get_main_create_incident_button, "Create assessment button not available")
+    def test_incident_smoke(self):
+        self.assertTrue(self.incident.get_main_create_incident_button, "Create incidents button not available")
         self.assertTrue(self.incident.get_Type_dropdown.is_displayed(), "Type filter dropdown not available")
         self.assertTrue(self.incident.get_status_dropdown.is_displayed(), "Status filter dropdown not available")
         self.incident.get_setings_button.click()

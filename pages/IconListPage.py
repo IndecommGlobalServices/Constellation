@@ -10,14 +10,15 @@ from selenium.webdriver.support.wait import WebDriverWait
 class IconListPage(BasePageClass, object):
     _app_asset_icon_locator  = "app_assets"
     #_app_asset_icon_locator = "//img[@src = '../images/app_icon_assets.png']"
-    _app_assessments_icon_locator = "app_assessments"
-    #_app_assessments_icon_locator = "//*[@id='app_assessments']/div/img"
+    #_app_assessments_icon_locator = "app_assessments"
+    _app_assessments_icon_locator = "//*[@id='app_assessments']/div/img"
     #_app_map_icon_locator = "//img[@src = '../images/app_icon_map.png']"
     _app_map_icon_locator = "//*[@id='app_map']/div/img"
     #_app_map_icon_locator = "app_map"
     _app_dashboard_icon_locator = "app_dashboard"
-    _app_threatstreams_icon_locator = "app_threatstreams"
+    _app_threatstreams_icon_locator = "//*[@id='app_threatstreams']/div/img"
     _app_incidents_icon_locator = "app_incidents"
+    _app_scroll_bar_locator = ".//*[@id='apparea']"
 
     #Loggedin
     _loggedin_top_logo_id_locator = "toplogo"
@@ -40,10 +41,8 @@ class IconListPage(BasePageClass, object):
     # Status
     _icon_status = ".//*[@id='navbar-collapse-01']/ul/li[3]/a"
 
-
     #Help
     _icon_help = ".//*[@id='navbar-collapse-01']/ul/li[5]/a"
-
 
     # Feedback icon
     _icon_feedback = ".//*[@id='page_applist']/img"
@@ -74,11 +73,16 @@ class IconListPage(BasePageClass, object):
 
     @property
     def get_app_threatstreams_icon(self):
-        return self.driver.find_element_by_id(self._app_threatstreams_icon_locator)
+        return self.driver.find_element_by_xpath(self._app_threatstreams_icon_locator)
 
     @property
     def get_app_incidents_icon(self):
         return self.driver.find_element_by_id(self._app_incidents_icon_locator)
+
+    @property
+    def get_app_scroll_bar(self):
+        return self.driver.find_element_by_xpath(self._app_scroll_bar_locator)
+
 
     @property
     def get_top_logo(self):
@@ -249,6 +253,8 @@ class IconListPage(BasePageClass, object):
 
     def click_threatstream(self):
         try:
+            self.get_app_scroll_bar.send_keys(Keys.ARROW_DOWN)
+            self.get_app_scroll_bar.send_keys(Keys.ARROW_DOWN)
             self.get_app_threatstreams_icon.click()
         except:
             pass

@@ -136,8 +136,8 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.asset_filter_based_on_place_and_school('Place')
-        self.assertTrue(self.assetpage.get_asset_place_type_drop_down.is_displayed(),
-                        self.config.get(self.section, 'MESSAGE_INVALID_FILTER'))
+        asset_filter_text = self.assetpage.get_asset_type_filter_text.text
+        self.assertEqual('Place', str(asset_filter_text),self.config.get(self.section, 'MESSAGE_INVALID_FILTER') )
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -151,8 +151,8 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.asset_filter_based_on_place_and_school('School')
-        self.assertTrue(self.assetpage.get_asset_school_district_drop_down.is_displayed(),
-                        self.config.get(self.section, 'MESSAGE_INVALID_FILTER'))
+        asset_filter_text = self.assetpage.get_asset_type_filter_text.text
+        self.assertEqual('School', str(asset_filter_text),self.config.get(self.section, 'MESSAGE_INVALID_FILTER') )
         self.assetpage.get_asset_reset_button.click()
 
     @attr(priority="high")
@@ -167,7 +167,8 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.get_asset_school_district()
         for item in self.assetpage.select_asset_schooltype_district_column:
-            self.assertEqual(self.assetpage.selecteddistrict, item.text,
+            district_text = self.assetpage.selecteddistrict
+            self.assertEqual(str(district_text), item.text,
                              self.config.get(self.section, 'MESSAGE_INVALID_RESULT_ON_FILTER'))
         self.assetpage.get_asset_reset_button.click()
 
@@ -214,9 +215,14 @@ class AssetpageTest(BaseTestCase):
         Author : Kiran
         :return: None
         """
+        self.assetpage.asset_filter_based_on_place_and_school('Place')
+        asset_filter_text = self.assetpage.get_asset_type_filter_text.text
         self.assetpage.get_asset_reset_button.click()
-        expectedAfterResetFilter = self.assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)
+        expectedAfterResetFilter = self.assetpage.get_asset_type_filter_text.text
+        if str(asset_filter_text) == str(expectedAfterResetFilter):
+            self.assertFalse(expectedAfterResetFilter, "Filters are not reset.")
+        else:
+            self.assertEqual('Asset type',expectedAfterResetFilter, "Filters are not reset.")
 
     @attr(priority="high")
     #@SkipTest
@@ -329,8 +335,8 @@ class AssetpageTest(BaseTestCase):
         """
         self.assetpage.asset_create_click()
         self.assetpage.asset_overview_cancel_click()
-        expectedAfterResetFilter = self.assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
+        expectedAfterResetFilter = self.assetpage.get_asset_type_filter_text.text
+        self.assertEqual("Asset type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
 
 
     @attr(priority="high")
@@ -346,8 +352,8 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.asset_create_click()
         self.assetpage.create_place_asset()
         self.assetpage.asset_overview_cancel_click()
-        expectedAfterResetFilter = self.assetpage.get_asset_asset_type_text.text
-        self.assertEqual("Asset Type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
+        expectedAfterResetFilter = self.assetpage.get_asset_type_filter_text.text
+        self.assertEqual("Asset type",expectedAfterResetFilter)# Checking "Asset Type" displayed after reset
 
     @attr(priority="high")
     #@SkipTest
@@ -1524,10 +1530,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        #sleep(2)
-        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
-            #sleep(2)
-            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        self.assetpage.make_dashboard_on()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.charts_When_No_Asset_Type_Is_Selected()
         countafterfilter = self.assetpage.get_total_row_count_filter()
@@ -1547,9 +1550,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        #sleep(2)
-        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
-            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        self.assetpage.make_dashboard_on()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         self.assetpage.place_related_charts_Place_Is_Selected()
@@ -1571,22 +1572,18 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        #sleep(2)
-        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
-            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        self.assetpage.make_dashboard_on()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("Place")
         self.assetpage.get_asset_place_type_drop_down.click()
-        #sleep(1) # sleep is mandatory here otherwise it will fail
         self.assetpage.get_asset_place_type_first_element.click()
         self.assetpage.place_related_charts_Place_And_Type_Is_Selected()
+        sleep(2)
         countafterfilter = self.assetpage.get_total_row_count_filter()
-
         if countafterfilter == countbeforefilter:
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        #sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -1598,9 +1595,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        #sleep(2)
-        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
-            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        self.assetpage.make_dashboard_on()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         sleep(1)
@@ -1611,8 +1606,6 @@ class AssetpageTest(BaseTestCase):
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        #sleep(2) # sleep is mandatory here otherwise it will fail
-
 
     @attr(priority="high")
     #@SkipTest
@@ -1624,9 +1617,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        #sleep(2)
-        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
-            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        self.assetpage.make_dashboard_on()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         self.assetpage.get_asset_school_district_drop_down.click()
@@ -1639,8 +1630,6 @@ class AssetpageTest(BaseTestCase):
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        #sleep(2)
-
 
     @attr(priority="high")
     #@SkipTest
@@ -1652,9 +1641,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        #sleep(2)
-        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
-            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        self.assetpage.make_dashboard_on()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         self.assetpage.get_asset_school_grade_drop_down.click()
@@ -1662,12 +1649,10 @@ class AssetpageTest(BaseTestCase):
         sleep(1)# sleep is mandatory here otherwise it will fail
         self.assetpage.school_related_charts_School_And_Grade_Is_Selected()
         countafterfilter = self.assetpage.get_total_row_count_filter()
-
         if countafterfilter == countbeforefilter:
             self.assertEqual(int(countbeforefilter), int(countafterfilter),"No records to filter.")
         else:
             self.assertNotEquals(int(countbeforefilter), int(countafterfilter),"Count is matching.")
-        #sleep(2)
 
     @attr(priority="high")
     #@SkipTest
@@ -1679,9 +1664,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_reset_button.click()
-        sleep(2)
-        if self.assetpage.get_asset_chart_dashboard_image_off.is_displayed():
-            self.assetpage.get_asset_chart_dashboard_image_off.click()
+        self.assetpage.make_dashboard_on()
         countbeforefilter = self.assetpage.get_total_row_count()
         self.assetpage.asset_filter_based_on_place_and_school("School")
         self.assetpage.get_asset_school_type_drop_down.click()
@@ -1714,7 +1697,7 @@ class AssetpageTest(BaseTestCase):
         self.assertEqual(next_page_num, current_page_num + 1,"The next button click is not working.")
 
     @attr(priority="high")
-    @SkipTest
+    #@SkipTest
     def test_AS_98_to_test_pagination_next_button_disabled(self):
         """
         Test : test_AS_98

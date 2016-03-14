@@ -297,7 +297,6 @@ class LoginPageTest(BaseTestCase):
         sleep(5)
         self.iconpage.get_logout.click()
         sleep(5)
-
         self.assertTrue(self.loginpage.get_big_logo.is_displayed, "Constellation big logo is not displayed.")
 
     def test_G_18_profile_saved_successfully(self):
