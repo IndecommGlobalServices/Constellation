@@ -32,7 +32,7 @@ class ThreatStreamTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     @attr(status='smoke')
-    def test_threatsstream_smoke(self):
+    def test_threatsstream_smokde(self):
         self.assertTrue(self.tstream.get_ts_threat_dropdown_filter.is_displayed(), "Dropdown filter not available")
 
 
