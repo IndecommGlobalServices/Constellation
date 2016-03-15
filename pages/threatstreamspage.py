@@ -40,7 +40,7 @@ class ThreatStreamPage(BasePageClass):
     _ts_filter_create_type_dropdown_arrow_locator = "//div[contains(@class,'leftcolumn')]//div[@label='Type']//button[@data-toggle='dropdown']"
     _ts_filter_create_type_dropdown_rss_atom_locator = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'Rss')]"
     _ts_filter_create_type_dropdown_twitter_locator = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'Twitter')]"
-    _ts_filter_create_type_refresh_button_locator = "//div[contains(@class,'leftcolumn')]//div[@class='modal-body']/div/a/img"
+    _ts_filter_create_type_refresh_button_locator = "//div[contains(@class,'leftcolumn')]//div/a[contains(@ng-click,'reset_type')]"
     _ts_filter_create_visibility_dropdown_locator = "//div[contains(@class,'leftcolumn')]//div[@label='Visibility']//button[@data-toggle='dropdown']"
     _ts_filter_create_visibility_groups_locator = "//div[contains(@class,'leftcolumn')]//a[text()='Groups']"
     _ts_filter_create_visibility_tenant_locator = "//div[contains(@class,'leftcolumn')]//a[text()='Tenant']"
@@ -57,6 +57,8 @@ class ThreatStreamPage(BasePageClass):
     _ts_filter_create_delete_button_locator = "//div[contains(@class,'leftcolumn')]//button[contains(@ng-click,'delete_filter_edit')]"
     _ts_filter_create_confirm_delete_button_locator = "//div[contains(@class,'leftcolumn')]//button[contains(@ng-click,'submit_filter_delete')]"
     _ts_filter_create_confirm_cancel_button_locator = "//div[contains(@class,'leftcolumn')]//button[contains(@ng-click,'cancel_filter_delete')]"
+    _ts_filter_create_advance_link_locator = "//div[contains(@class,'leftcolumn')]//label/span[contains(text(), 'Advanced')]"
+    _ts_filter_create_advance_filter_check = ".//div[contains(@class,'leftcolumn')]//div[@ng-show='showAdvancedFilters']"
 
     #Twitter or RSS/ATOM content locator
     _ts_feeds_list_locator = "//div[contains(@class,'leftcolumn')]//ul[contains(@class,'squintems')]//li"
@@ -411,6 +413,22 @@ class ThreatStreamPage(BasePageClass):
                           + self._ts_filter_create_confirm_cancel_button_locator  + err.message)
 
     @property
+    def get_ts_filter_create_advance_link (self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_advance_link_locator)
+        except Exception, err:
+            raise type(err)("Filter create Advanced link is not available - " \
+                          + self._ts_filter_create_advance_link_locator  + err.message)
+
+    @property
+    def get_ts_filter_create_advance_filter_check (self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_advance_filter_check)
+        except Exception, err:
+            raise type(err)("Filter create Advanced link is not available - " \
+                          + self._ts_filter_create_advance_filter_check  + err.message)
+
+    @property
     def get_ts_feeds_list(self):
         try:
             return self.driver.find_elements_by_xpath(self._ts_feeds_list_locator)
@@ -622,6 +640,12 @@ class ThreatStreamPage(BasePageClass):
         #sleep(7)#required to update threat stream apps
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self._ts_threat_filter_name_text_locator),"Stream"))
+
+    def show_advance_info(self):
+            sleep(1)
+            if "ng-hide" in self.get_ts_filter_create_advance_filter_check.get_attribute("class"):
+                self.get_ts_filter_create_advance_link.click()
+                sleep(1)
 
     def return_to_apps_main_page(self):
         """

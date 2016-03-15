@@ -297,6 +297,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_13_1")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
         sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_rss_atom.click()
@@ -335,6 +336,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_13_2")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
         sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
@@ -374,6 +376,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_14")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
         sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
@@ -417,6 +420,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_15")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("gun")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
         sleep(2)
@@ -488,6 +492,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_17")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("gun")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
         sleep(2)
@@ -519,6 +524,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_18")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("test1")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("test2")
@@ -554,6 +560,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_19")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
         sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
@@ -585,6 +592,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_21")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_type_dropdown_arrow.click()
         sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_type_dropdown_twitter.click()
@@ -624,6 +632,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_23")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_save_button.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"New_Filter_TC_23"))
@@ -777,6 +786,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_26")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
         sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_user.click()
@@ -801,6 +811,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_27")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
         sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_tenant.click()
@@ -825,6 +836,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_28")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_visibility_dropdown_arrow.click()
         sleep(2)#required to update dropdown menu
         self.tstream.get_ts_filter_create_visibility_groups.click()
@@ -849,6 +861,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_29")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_tags_textbox.send_keys("Bomb")
         self.tstream.get_ts_filter_create_tags_add_button.click()
         list = self.tstream.get_ts_filter_create_tags_delete_icon
@@ -875,6 +888,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
                                                                          self.tstream._ts_filter_create_title_locator)))
         self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_30")
+        self.tstream.show_advance_info()
         self.tstream.get_ts_filter_create_tags_textbox.send_keys("Bomb")
         self.tstream.get_ts_filter_create_tags_add_button.click()
         list = self.tstream.get_ts_filter_create_tags_delete_icon
