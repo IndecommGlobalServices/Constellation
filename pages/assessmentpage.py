@@ -613,7 +613,7 @@ class AssessmentPage(BasePageClass):
         if len(assessment_list)<=0:
             start_date = datetime.today().date()
             end_date = start_date + timedelta(days=31)
-            self.create_assessment(str(start_date), str(end_date), "dee@dee")
+            self.create_assessment(str(start_date), str(end_date), "deepa.sivadas@indecomm.net")
         assessment_list = self.get_assessment_table("Assessment")
         assessment_list[0].click()
 
@@ -650,7 +650,6 @@ class AssessmentPage(BasePageClass):
         self.get_search_assessment_textbox.send_keys(Keys.BACKSPACE)
         sleep(1)
 
-
     def create_assessment(self, startdate, enddate, assignedto):
         self.create_assessment_select_haystax_template()
         self.get_create_startdate_textbox.send_keys(startdate)
@@ -668,6 +667,10 @@ class AssessmentPage(BasePageClass):
         self.get_create_assets_add_button.click()
         self.get_create_assessment_save_button.click()
 
+    def create_initial_assessment(self):
+        start_date = datetime.today().date()
+        end_date = start_date + timedelta(days=31)
+        self.create_assessment(str(start_date), str(end_date), "deepa.sivadas@indecomm.net")
 
     # def validate_email_textbox(self, textbox):
     #     emailid = ['Email', 'Email.', 'email.com', 'email@']
@@ -812,7 +815,7 @@ class AssessmentPage(BasePageClass):
         if not self.select_assessment(self.asset_school_name):
             start_date = datetime.today().date()
             end_date = start_date + timedelta(days=31)
-            self.create_assessment(str(start_date), str(end_date), "dee@dee")
+            self.create_assessment(str(start_date), str(end_date), "deepa.sivadas@indecomm.net")
 
     def open_overview_page(self):
         self.select_assessment(self.asset_school_name)

@@ -7,8 +7,6 @@
     <list default="true" id="fe45a34d-de37-4a7c-b364-a50758fd6e39" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/assetpage.py" afterPath="$PROJECT_DIR$/pages/assetpage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/threatstreamspage.py" afterPath="$PROJECT_DIR$/pages/threatstreamspage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/threatstreamstest.py" afterPath="$PROJECT_DIR$/testcases/threatstreamstest.py" />
     </list>
     <ignored path="Constellation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,21 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.8135593">
-              <caret line="1883" column="12" selection-start-line="1883" selection-start-column="12" selection-end-line="1883" selection-end-column="12" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="2226" column="0" selection-start-line="2226" selection-start-column="0" selection-end-line="2226" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="1417" column="33" selection-start-line="1417" selection-start-column="23" selection-end-line="1417" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.33159268">
+              <caret line="308" column="8" selection-start-line="308" selection-start-column="8" selection-end-line="308" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -86,6 +84,7 @@
         <option value="$PROJECT_DIR$/data/json_login.json" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/data/json_SearchAssessments.json" />
+        <option value="$PROJECT_DIR$/pages/threatstreamspage.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTS.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationMapTest.py" />
         <option value="$PROJECT_DIR$/data/json_assessment_physicalsecurity_sections.json" />
@@ -98,6 +97,7 @@
         <option value="$PROJECT_DIR$/testcases/ConstellationTestMap.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTestThreatStreams.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTestSuite.py" />
+        <option value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
         <option value="$PROJECT_DIR$/testcases/assessmenttest.py" />
         <option value="$PROJECT_DIR$/testcases/assessmentschoolinfrastructuretest.py" />
         <option value="$PROJECT_DIR$/testcases/assessmenttrainingandexercisetest.py" />
@@ -115,8 +115,6 @@
         <option value="$PROJECT_DIR$/testcases/logintest.py" />
         <option value="$PROJECT_DIR$/pages/loginpage.py" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
-        <option value="$PROJECT_DIR$/pages/threatstreamspage.py" />
-        <option value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
         <option value="$PROJECT_DIR$/pages/assetpage.py" />
       </list>
     </option>
@@ -171,6 +169,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -203,24 +203,8 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -255,8 +239,8 @@
       <recent name="C:\Constellation\testcases" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssetpageTest.test_AS_55">
-    <configuration default="false" name="Unittest AssetpageTest.test_AS_55" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in assettest">
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_59_1" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -268,7 +252,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_55" />
+      <option name="METHOD_NAME" value="test_AS_59_1" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -278,7 +262,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest AssetpageTest.test_AS_94" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_59_2" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -290,7 +274,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_94" />
+      <option name="METHOD_NAME" value="test_AS_59_2" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -300,7 +284,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest ThreatStreamTest.test_TS_13_1_To_Verify_New_RSS_Filter_Type_Appears_On_Window_Title" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -310,9 +294,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
-      <option name="CLASS_NAME" value="ThreatStreamTest" />
-      <option name="METHOD_NAME" value="test_TS_13_1_To_Verify_New_RSS_Filter_Type_Appears_On_Window_Title" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_103_to_test_direct_click_last_page" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -322,7 +306,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittests in threatstreamstest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_101_to_test_pagination_page_group_select" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -332,33 +316,33 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_101_to_test_pagination_page_group_select" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittests in assettest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest ThreatStreamTest.test_TS_19_To_Test_New_Filter_Window_Reset_Button" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
-      <option name="CLASS_NAME" value="ThreatStreamTest" />
-      <option name="METHOD_NAME" value="test_TS_19_To_Test_New_Filter_Window_Reset_Button" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -489,19 +473,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_55" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_94" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_13_1_To_Verify_New_RSS_Filter_Type_Appears_On_Window_Title" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in threatstreamstest" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_19_To_Test_New_Filter_Window_Reset_Button" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_59_1" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_59_2" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_101_to_test_pagination_page_group_select" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in assettest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_55" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_19_To_Test_New_Filter_Window_Reset_Button" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in threatstreamstest" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_13_1_To_Verify_New_RSS_Filter_Type_Appears_On_Window_Title" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_94" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in assettest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_101_to_test_pagination_page_group_select" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_59_2" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_59_1" />
       </list>
     </recent_temporary>
   </component>
@@ -515,6 +499,12 @@
       <created>1441947410271</created>
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Assessmentschooldata updated">
+      <created>1445507988299</created>
+      <option name="number" value="00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1445507988299</updated>
     </task>
     <task id="LOCAL-00037" summary="Assessmentschooldata updated">
       <created>1445508037907</created>
@@ -804,45 +794,39 @@
       <option name="project" value="LOCAL" />
       <updated>1457961005017</updated>
     </task>
-    <task id="LOCAL-00085" summary="Xpath modified  for Asset test cases.">
-      <created>1457972337439</created>
-      <option name="number" value="00085" />
-      <option name="project" value="LOCAL" />
-      <updated>1457972337449</updated>
-    </task>
-    <option name="localTasksCounter" value="86" />
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 16h 18m 32s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittest_AssetpageTest_test_AS_103_to_test_direct_click_last_page - 2016.03.14 at 17h 29m 47s.xml">
+      <configuration name="Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 16h 21m 02s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittest_AssetpageTest_test_AS_103_to_test_direct_click_last_page - 2016.03.14 at 17h 32m 52s.xml">
+      <configuration name="Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 16h 25m 58s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittest_AssetpageTest_test_AS_103_to_test_direct_click_last_page - 2016.03.14 at 17h 37m 42s.xml">
+      <configuration name="Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 16h 43m 53s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittest_AssetpageTest_test_AS_103_to_test_direct_click_last_page - 2016.03.14 at 17h 40m 42s.xml">
+      <configuration name="Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 16h 49m 50s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittest_AssetpageTest_test_AS_103_to_test_direct_click_last_page - 2016.03.14 at 17h 46m 39s.xml">
+      <configuration name="Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 16h 52m 35s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittest_AssetpageTest_test_AS_103_to_test_direct_click_last_page - 2016.03.14 at 17h 49m 14s.xml">
+      <configuration name="Unittest AssetpageTest.test_AS_103_to_test_direct_click_last_page" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 16h 55m 15s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittest_AssetpageTest_test_AS_59_2 - 2016.03.14 at 17h 24m 28s.xml">
+      <configuration name="Unittest AssetpageTest.test_AS_59_2" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 16h 59m 19s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittest_AssetpageTest_test_AS_59_2 - 2016.03.14 at 17h 26m 50s.xml">
+      <configuration name="Unittest AssetpageTest.test_AS_59_2" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_AssetpageTest_test_AS_55 - 2016.03.15 at 17h 06m 30s.xml">
-      <configuration name="Unittest AssetpageTest.test_AS_55" configurationId="tests" />
+    <history-entry file="Unittests_in_assettest - 2016.03.14 at 20h 04m 10s.xml">
+      <configuration name="Unittests in assettest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_ThreatStreamTest_test_TS_19_To_Test_New_Filter_Window_Reset_Button - 2016.03.15 at 16h 15m 47s.xml">
-      <configuration name="Unittest ThreatStreamTest.test_TS_19_To_Test_New_Filter_Window_Reset_Button" configurationId="tests" />
+    <history-entry file="Unittests_in_assettest - 2016.03.14 at 21h 45m 33s.xml">
+      <configuration name="Unittests in assettest" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -1069,6 +1053,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/pages/threatstreamspage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="496" column="17" selection-start-line="496" selection-start-column="17" selection-end-line="496" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5811966">
@@ -1203,6 +1194,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/threatstreamstest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7413793">
+          <caret line="1060" column="0" selection-start-line="1060" selection-start-column="0" selection-end-line="1060" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.027881041">
@@ -1277,34 +1275,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/threatstreamspage.py">
+    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="130" selection-start-line="42" selection-start-column="130" selection-end-line="42" selection-end-column="130" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/threatstreamstest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82245433">
-          <caret line="573" column="0" selection-start-line="573" selection-start-column="0" selection-end-line="573" selection-end-column="0" />
+          <caret line="2226" column="0" selection-start-line="2226" selection-start-column="0" selection-end-line="2226" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="1417" column="33" selection-start-line="1417" selection-start-column="23" selection-end-line="1417" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8135593">
-          <caret line="1883" column="12" selection-start-line="1883" selection-start-column="12" selection-end-line="1883" selection-end-column="12" />
+        <state vertical-scroll-proportion="0.33159268">
+          <caret line="308" column="8" selection-start-line="308" selection-start-column="8" selection-end-line="308" selection-end-column="8" />
           <folding />
         </state>
       </provider>

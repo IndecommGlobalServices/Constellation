@@ -31,6 +31,7 @@ class AssessmentSchoolDataPageTest(BaseTestCase):
         cls.ast = AssessmentPage(cls.driver)
         cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_SCHOOLDATA'))
         cls.ast.delete_existing_assessments()
+        cls.ast.create_initial_assessment()
 
     def setUp(self):
         self.errors_and_failures = self.tally()
