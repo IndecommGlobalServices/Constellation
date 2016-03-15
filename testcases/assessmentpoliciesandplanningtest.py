@@ -39,6 +39,7 @@ class AssessmentPoliciesandPlanningPageTest(BaseTestCase):
         try:
             cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_POLICIES_PLANNING'))
             cls.ast.delete_existing_assessments()
+            cls.ast.create_initial_assessment()
         except:
             pass
 
