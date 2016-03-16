@@ -88,6 +88,7 @@ class AssetPage(BasePageClass):
     _asset_create_template_type_drop_down_locator = ".//*[@id='asset_overview_modal']//button[contains(@class,'dropdown-toggle')]"
     _asset_overview_templatetype_dropdown_locator = "(//div[@label='Type']//button[@data-toggle='dropdown'])"
     _asset_overview_name_text_box_locator = "//typeahead//input[@placeholder='Name']"
+    _asset_overview_edit_name_text_box_locator ="//div[@ng-show = 'asset.overview.name']//input[@name = 'name']"
     _asset_overview_address_text_box_locator = ".//*[@id='asset_overview_modal']/descendant::input[@placeholder='Address']"
     _asset_overview_address2_text_box_locator = "//input[@ng-model='asset_edit.address.address2']"
     _asset_overview_city_text_box_locator = "//input[@ng-model='asset_edit.address.city']"
@@ -111,14 +112,11 @@ class AssetPage(BasePageClass):
     _asset_overview_panel_owner_text = ".//*[@id='widgets']/descendant::div[@class='widgetheader']/following-sibling::div[@class='widgetcontent']/descendant::td[span[text()='Owner']]/following-sibling::td"
     _asset_overview_panel_district_text = ".//*[@id='widgets']/descendant::div[@class='widgetheader']/following-sibling::div[@class='widgetcontent']/descendant::td[span[text()='District']]/following-sibling::td"
     _asset_overview_panel_grade_text = ".//*[@id='widgets']/descendant::div[@class='widgetheader']/following-sibling::div[@class='widgetcontent']/descendant::td[span[text()='Grade']]/following-sibling::td"
-    _asset_overview_edit_link_locator = ".//*[@id='widgets']//div[contains(text(),'Overview')]/div/img"
-    #_asset_overview_edit_link_locator =".//*[@id='widgets']/div[1]/div/div[1]/div/img"
-    _asset_overview_edit_name_textbox_locator = "//div[@ng-show='asset.overview.name']/input"
+    _asset_overview_edit_link_locator = "//div[contains(text(),'Overview')]/div/img"
     _asset_overview_window_popup_cross_button_locator = "//*[@id='asset_overview_modal']/div/div/div/button"
 
     _asset_type_cancel_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[1]"
     _asset_type_save_button_locator = "//div[@id='asset_overview_modal']/div/div/form/div[2]/button[2]"
-
 
     # Point of Contacts related
     _asset_points_of_contact_header_locator = "//div[contains(text(), 'Points of Contact')]"
@@ -169,8 +167,8 @@ class AssetPage(BasePageClass):
     _asset_header_save_text_locator = ".//*[@id='header']/div[contains(@class,'right ng-binding')]"
 
     # Asset Detail panel related
-    _asset_detail_edit_link_locator = "//div[contains(text(),'Details')]/div/img"
-    _asset_details_edit_widget_locator = ".//*[@id='widgets']//div[contains(text(),'Details')]"
+    _asset_detail_edit_link_locator = ".//*[@id='widgets']/div[5]/div/div[1]/div/img"
+    _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
     _asset_detail_edit_title_locator = ".//h4[@id='H2']"
     _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
     _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
@@ -566,10 +564,12 @@ class AssetPage(BasePageClass):
     @property
     def get_overview_editname_text_box(self):
         try:
-            return self.driver.find_element_by_name("name")
+            WebDriverWait(self.driver, 50).until(EC.presence_of_element_located(
+               (By.XPATH, self._asset_overview_edit_name_text_box_locator)))
+            return self.driver.find_element_by_xpath(self._asset_overview_edit_name_text_box_locator)
         except Exception, err:
-            raise type(err)("Asset Name textbox not found with element name 'name' - searched XPATH - " \
-                          + err.message)
+            raise type(err)("Asset Name textbox not found with element name 'name' - searched XPATH - "
+                            + self._asset_overview_edit_name_text_box_locator + err.message)
 
     @property
     def get_overview_newdistrict_text_box(self):
@@ -1146,8 +1146,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_overview_edit_link(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
-            #return self.basepage.findIfElementVisible(self._asset_overview_edit_link_locator)
+            #return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
+            return self.basepage.findIfElementVisible(self._asset_overview_edit_link_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._asset_overview_edit_link_locator + err.message)
@@ -1155,7 +1155,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_overview_edit_name_text_box(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_overview_edit_name_textbox_locator)
+            return self.driver.find_element_by_name(self._asset_overview_edit_name_textbox_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._asset_overview_edit_name_textbox_locator + err.message)
@@ -1757,8 +1757,8 @@ class AssetPage(BasePageClass):
         if(index == 0):
             self.enter_asset_type_name.send_keys(schoolname)
         else:
-            self.get_asset_overview_edit_name_text_box.clear()
-            self.get_asset_overview_edit_name_text_box.send_keys(schoolname)
+            self.get_overview_editname_text_box.clear()
+            self.get_overview_editname_text_box.send_keys(schoolname)
         self.enter_asset_type_address.clear()
         self.enter_asset_type_address.send_keys(self.asset_school_address[index])
         self.enter_asset_type_address2.clear()
@@ -1879,9 +1879,8 @@ class AssetPage(BasePageClass):
         """
         self.select_school_or_place_asset(self.asset_school_name[0], type)
         if type == "School":
-            WebDriverWait(self.driver, 40).until(EC.text_to_be_present_in_element(
+            WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self._asset_details_edit_widget_locator), "Details"))
-            sleep(10)
             self.get_asset_overview_edit_link.click()
             self.create_school_asset(self.editSchool, self.asset_school_name[self.editSchool])
         elif type == "Place":
