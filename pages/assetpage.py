@@ -97,8 +97,8 @@ class AssetPage(BasePageClass):
     _asset_overview_owner_text_box_locator = "//input[@placeholder='Owner']"
     _asset_overview_phone_text_box_locator = ".//*[@id='asset_overview_modal']/descendant::input[@name='phone']"
     _asset_overview_type_text_box_locator = "//input[@placeholder='Enter new value']"
-    _asset_overview_district_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[2]/div/div/ul/li/input"
-    _asset_overview_grade_text_box_locator = ".//*[@id='asset_overview_modal']/div/div/form/div[1]/span/span[3]/div/div/ul/li/input"
+    _asset_overview_district_text_box_locator = "//div[@key = 'overview.district']//input[@ng-model = 'itemInput']"
+    _asset_overview_grade_text_box_locator = "//div[@key = 'overview.grade']//input[@ng-model = 'itemInput']"
 
     #_asset_overview_type_drop_down_locator = "//div[@service='Asset']//button[@data-toggle='dropdown']"
     _asset_overview_type_drop_down_locator = ".//*[@id='asset_overview_modal']//label[text()= 'Type']/following-sibling::div/button[@data-toggle='dropdown']"
@@ -1786,6 +1786,7 @@ class AssetPage(BasePageClass):
         #sleep(2)
         self.get_overview_district_drop_down.click()
         #sleep(2)
+        self.get_overview_newdistrict_text_box.clear()
         self.get_overview_newdistrict_text_box.send_keys(value)
         self.get_overview_district_add_button.click()
 
@@ -1798,6 +1799,7 @@ class AssetPage(BasePageClass):
         sleep(2)
         self.get_overview_grade_drop_down.click()
         sleep(2)
+        self.get_overview_newgrade_text_box.clear()
         self.get_overview_newgrade_text_box.send_keys(value)
         self.get_overview_grade_add_button.click()
 
@@ -1811,6 +1813,7 @@ class AssetPage(BasePageClass):
         #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
         #    (By.XPATH, self._asset_overview_type_drop_down_locator))).click()
         self.basepage.findElementByXpath(self._asset_overview_type_drop_down_locator).click()
+        self.get_overview_newtype_text_box.clear()
         self.get_overview_school_newtype_text_box.send_keys(value)
         self.get_overview_type_add_button.click()
         #self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
@@ -1924,7 +1927,8 @@ class AssetPage(BasePageClass):
                 self.asset_search_assetname("")
                 sleep(2)
                 self.create_asset(asset_type)
-                sleep(2)
+                WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                        (By.XPATH, self._asset_name_breadcrumb)))
         except Exception, err:
             raise type(err)("No Asset is existing or Asset Creation has been failed. "+err.message)
 
