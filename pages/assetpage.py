@@ -1146,7 +1146,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_overview_edit_link(self):
         try:
-            #return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
+            WebDriverWait(self.driver,20).until(EC.element_to_be_clickable(
+                (By.NAME , self._asset_overview_edit_link_locator)))
             return self.basepage.findIfElementVisible(self._asset_overview_edit_link_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
@@ -1813,7 +1814,7 @@ class AssetPage(BasePageClass):
         #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
         #    (By.XPATH, self._asset_overview_type_drop_down_locator))).click()
         self.basepage.findElementByXpath(self._asset_overview_type_drop_down_locator).click()
-        self.get_overview_newtype_text_box.clear()
+        self.get_overview_school_newtype_text_box.clear()
         self.get_overview_school_newtype_text_box.send_keys(value)
         self.get_overview_type_add_button.click()
         #self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
@@ -2049,7 +2050,7 @@ class AssetPage(BasePageClass):
         """
         self.get_asset_points_of_contact_header.click()
         self.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element((By.XPATH,
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element((By.XPATH,
                                                   self._assets_points_of_contact_title_locator), "Contact information"))
         self.get_asset_newcontact_firstname_textbox.clear()# Fill all fields.
         self.get_asset_newcontact_firstname_textbox.send_keys(firstname)
@@ -2225,9 +2226,9 @@ class AssetPage(BasePageClass):
         chart_xpath = self.svg_path_1+self.svg_path_2+r"/*[name()='tspan']"
         totalGraphInContainer = self.get_asset_chart_total_graph
         if len(totalGraphInContainer) >= 1:
-            print "Printing chart names..."
+            # print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
-                print "Printing according to the chart wise data..."
+                # print "Printing according to the chart wise data..."
                 if totalGraph.text == "Place type":
                     assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
         else:
