@@ -1886,3 +1886,107 @@ class AssetpageTest(BaseTestCase):
                 self.assertTrue(True, "No Pages available but still next and previous button is enabled.")
             else:
                 self.assertFalse(True, "No Pages available but still next and previous button is enabled.")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_101_and_102(self):
+        """
+        Test : test_AS_101_and_102
+        Description : To create place asset and verify that asset is created properly.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        check = 0
+        self.assetpage.create_asset("Person")
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_name_breadcrumb), self.assetpage.get_asset_name_breadcrumb.text))
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                    (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
+        self.assetpage.asset_search_assetname(self.assetpage.asset_person_name)
+        sleep(10) # Necessary sleep to let the app search for the input string
+        for item in self.assetpage.get_asset_list_background:
+            if (item.text  == self.assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
+                                                                == "rgba(255, 236, 158, 1)"):
+                check = 1
+                break
+        self.assetpage.textbox_clear(self.driver.find_element_by_xpath(self.assetpage._asset_search_textbox_locator))
+        self.assertFalse(check == 0, self.config.get(self.section,'MESSAGE_NEW_ASSET_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_104(self):
+        """
+        Test : test_AS_16
+        Description : To verify New Asset phone field.
+        Revision:
+        :return: None
+        """
+        self.assetpage.asset_create_click()
+        self.assetpage.select_asset_template_type("Person")
+        asset_phone = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH ,self.assetpage._asset_overview_phone_text_box_locator)))
+        asset_phone.send_keys("123abc1234")
+        asset_phone.send_keys(Keys.TAB)
+        regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
+        self.assertRegexpMatches("123abc1234", regex,
+                                 self.config.get(self.section, 'MESSAGE_PHONE_VALUE_NOT_MATCHING'))
+        self.assetpage.asset_overview_cancel_click()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_105(self):
+        """
+        Test : test_AS_20
+        Description : To edit overview section. Enter all required fields info and click on save button.
+        Revision:
+        :return: None
+        """
+        self.assetpage.select_school_or_place_asset(self.assetpage.asset_person_name, "Person")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
+        self.assetpage.get_asset_overview_edit_link.click()
+        self.assetpage.set_person_overview_fields(r"Ind address", r"Ind address 2", r"Ind city", r"KA", r"94821", r"98989898", r"pp@p.com")
+        self.assetpage.asset_overview_save_click()# Click on Save
+        self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_106(self):
+        """
+        Test : test_AS_106
+        Description : To edit overview section. Enter all required fields info and click on cancel button.
+        Revision:
+        :return: None
+        """
+        self.assetpage.select_school_or_place_asset(self.assetpage.asset_person_name, "Person")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
+        self.assetpage.get_asset_overview_edit_link.click()
+        self.assetpage.set_person_overview_fields(r"Ind address", r"Ind address 2", r"Ind city", r"KA", r"94821", r"98989898", r"pp@p.com")
+        self.assetpage.asset_overview_cancel_click()#click on Cancel
+        self.assertEqual(self.assetpage.asset_person_name, self.assetpage.get_asset_name_breadcrumb.text)
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_107(self):
+        """
+        Test : test_AS_107
+        Description : To edit Details section. Enter all required fields info and click on save button.
+        Revision:
+        :return: None
+        """
+        self.assetpage.select_school_or_place_asset(self.assetpage.asset_person_name, "Person")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
+        self.assetpage.get_asset_detail_edit_link.click()
+        self.assetpage.set_person_details_fields()
+        self.assetpage.get_asset_detail_edit_save_button.click()
+        self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
