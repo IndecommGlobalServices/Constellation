@@ -172,11 +172,11 @@ class AssetPage(BasePageClass):
     _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
     _asset_detail_edit_title_locator = ".//h4[@id='H2']"
     _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
-    _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
+    _asset_detail_edit_closed_textbox_locator = "//span[@ng-switch-when = 'closed']//input[@ng-model='datetime_internal']"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
     _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
-    _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
+    _asset_detail_edit_opened_textbox_locator = "//span[@ng-switch-when = 'opened']//input[@ng-model='datetime_internal']"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
     _asset_detail_edit_place_size_textbox_locator = "//input[@placeholder='size (sq ft)']"
     _asset_detail_edit_school_size_textbox_locator = "//input[@placeholder='Size_sqfeet']"
@@ -1053,7 +1053,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_detail_edit_closed_text_box(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_detail_edit_closed_textbox_locator)[0]
+            return self.driver.find_elements_by_xpath(self._asset_detail_edit_closed_textbox_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._asset_detail_edit_closed_textbox_locator + err.message)
@@ -1061,10 +1061,10 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_detail_edit_detail_opened_number_text_box(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_detail_edit_closed_textbox_locator)[1]
+            return self.driver.find_elements_by_xpath(self._asset_detail_edit_opened_textbox_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
-                          + self._asset_detail_edit_closed_textbox_locator + err.message)
+                          + self._asset_detail_edit_opened_textbox_locator + err.message)
 
     @property
     def get_asset_detail_edit_description_text_box(self):
@@ -2048,113 +2048,9 @@ class AssetPage(BasePageClass):
         except Exception, err:
             raise type(err)("No Asset is existing or Asset Creation has been failed. "+err.message)
 
-
-    def set_place_overview_fields(self,paddress, paddress1, pcity, pstate, pzip, powner):
-        """
-        Description : This function will enter data in all fields of Overview Edit Window.
-        Revision:
-        :return: None
-        """
-        self.enter_asset_type_address.clear()
-        self.enter_asset_type_address.send_keys(paddress)
-        self.enter_asset_type_address.send_keys(Keys.TAB)
-        self.enter_asset_type_address2.clear()
-        self.enter_asset_type_address2.send_keys(paddress1)
-        self.enter_asset_type_address2.send_keys(Keys.TAB)
-        self.enter_asset_type_city.clear()
-        self.enter_asset_type_city.send_keys(pcity)
-        self.enter_asset_type_city.send_keys(Keys.TAB)
-        self.enter_asset_type_state.clear()
-        self.enter_asset_type_state.send_keys(pstate)
-        self.enter_asset_type_state.send_keys(Keys.TAB)
-        self.enter_asset_type_zip.clear()
-        self.enter_asset_type_zip.send_keys(pzip)
-        self.enter_asset_type_zip.send_keys(Keys.TAB)
-        self.enter_asset_type_phone.send_keys(Keys.TAB)
-        self.enter_asset_type_owner.clear()
-        self.enter_asset_type_owner.send_keys(powner)
-        self.enter_asset_type_owner.send_keys(Keys.TAB)
-
-    def set_person_overview_fields(self,paddress, paddress1, pcity, pstate, pzip, pphone, pemail):
-        """
-        Description : This function will enter data in all fields of Overview Edit Window.
-        Revision:
-        :return: None
-        """
-        self.enter_asset_type_address.clear()
-        self.enter_asset_type_address.send_keys(paddress)
-        self.enter_asset_type_address.send_keys(Keys.TAB)
-        self.enter_asset_type_address2.clear()
-        self.enter_asset_type_address2.send_keys(paddress1)
-        self.enter_asset_type_address2.send_keys(Keys.TAB)
-        self.enter_asset_type_city.clear()
-        self.enter_asset_type_city.send_keys(pcity)
-        self.enter_asset_type_city.send_keys(Keys.TAB)
-        self.enter_asset_type_state.clear()
-        self.enter_asset_type_state.send_keys(pstate)
-        self.enter_asset_type_state.send_keys(Keys.TAB)
-        self.enter_asset_type_zip.clear()
-        self.enter_asset_type_zip.send_keys(pzip)
-        self.enter_asset_type_zip.send_keys(Keys.TAB)
-        self.enter_asset_type_phone.clear()
-        self.enter_asset_type_phone.send_keys(pphone)
-        self.enter_asset_type_phone.send_keys(Keys.TAB)
-        self.enter_asset_type_email.clear()
-        self.enter_asset_type_email.send_keys(pemail)
-        self.enter_asset_type_email.send_keys(Keys.TAB)
-
-    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
-        # fill out the fields
-
-        self.get_asset_detail_edit_capacity_text_box.clear()
-        self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
-        self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_closed_text_box.clear()
-        self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
-        self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_description_text_box.clear()
-        self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
-        self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_email_text_box.clear()
-        self.get_asset_detail_edit_email_text_box.send_keys(pemail)
-        self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_fax_text_box.clear()
-        self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
-        self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_opened_number_text_box.clear()
-        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
-        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_place_size_text_box.clear()
-        self.get_asset_detail_edit_detail_place_size_text_box.send_keys(psize)
-        self.get_asset_detail_edit_detail_place_size_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_website_text_box.clear()
-        self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
-        self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
-
-    def set_person_details_fields(self):
-        self.get_asset_detail_affiliation_textbox.clear()
-        self.get_asset_detail_affiliation_textbox.send_keys("Text")
-        self.get_asset_detail_birthdate_textbox.clear()
-        self.get_asset_detail_birthdate_textbox.send_keys("Text")
-        self.get_asset_detail_birthplace_textbox.clear()
-        self.get_asset_detail_birthplace_textbox.send_keys("Text")
-        self.get_asset_detail_employer_textbox.clear()
-        self.get_asset_detail_employer_textbox.send_keys("Text")
-        self.get_asset_detail_gender_textbox.clear()
-        self.get_asset_detail_gender_textbox.send_keys("Text")
-        self.get_asset_detail_height_textbox.clear()
-        self.get_asset_detail_height_textbox.send_keys("Text")
-        self.get_asset_detail_race_textbox.clear()
-        self.get_asset_detail_race_textbox.send_keys("Text")
-        self.get_asset_detail_title_textbox.clear()
-        self.get_asset_detail_title_textbox.send_keys("Text")
-        self.get_asset_detail_weight_textbox.clear()
-        self.get_asset_detail_weight_textbox.send_keys("Text")
-
-
-
-
-
+    def set_value_textbox(self, xpath, value):
+        self.basepage.findElementByXpath(xpath).clear()
+        self.basepage.findElementByXpath(xpath).send_keys(value)
 
 
     def set_school_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, ssize, pwebsite):
