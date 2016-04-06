@@ -32,18 +32,18 @@
       <file leaf-file-name="assessmenttest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="186" column="28" selection-start-line="186" selection-start-column="28" selection-end-line="186" selection-end-column="28" />
+            <state vertical-scroll-proportion="-4.862069">
+              <caret line="191" column="106" selection-start-line="191" selection-start-column="105" selection-end-line="191" selection-end-column="106" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4528302">
-              <caret line="1463" column="81" selection-start-line="1463" selection-start-column="81" selection-end-line="1463" selection-end-column="81" />
+            <state vertical-scroll-proportion="-3.891892">
+              <caret line="272" column="25" selection-start-line="272" selection-start-column="25" selection-end-line="272" selection-end-column="25" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -51,11 +51,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.275862">
-              <caret line="1250" column="78" selection-start-line="1250" selection-start-column="78" selection-end-line="1250" selection-end-column="78" />
+            <state vertical-scroll-proportion="0.3985849">
+              <caret line="1811" column="75" selection-start-line="1811" selection-start-column="75" selection-end-line="1811" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -367,29 +367,7 @@
       <recent name="C:\NewConstellation\testcases" />
     </key>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest AssetpageTest.test_AS_026">
-    <configuration default="false" name="Unittest AssetpageTest.test_AS_105" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_105" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python tests.Unittest AssetpageTest.test_AS_058">
     <configuration default="false" name="Unittest AssetpageTest.test_AS_021" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -403,28 +381,6 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetpageTest" />
       <option name="METHOD_NAME" value="test_AS_021" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest AssetpageTest.test_AS_020" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
-      <option name="CLASS_NAME" value="AssetpageTest" />
-      <option name="METHOD_NAME" value="test_AS_020" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -469,6 +425,50 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
       <option name="CLASS_NAME" value="AssetpageTest" />
       <option name="METHOD_NAME" value="test_AS_026" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_056" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_056" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_058" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_058" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -601,19 +601,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_105" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_021" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_020" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_023" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_026" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_021" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_023" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_026" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_056" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_058" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_026" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_023" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_021" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_020" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_105" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_058" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_056" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_026" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_023" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_021" />
       </list>
     </recent_temporary>
   </component>
@@ -627,12 +627,6 @@
       <created>1441947410271</created>
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Modified AS_16 and AS_12">
-      <created>1446107116703</created>
-      <option name="number" value="00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1446107116703</updated>
     </task>
     <task id="LOCAL-00046" summary="New file">
       <created>1446112248277</created>
@@ -922,7 +916,13 @@
       <option name="project" value="LOCAL" />
       <updated>1459767883910</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Modification in edit testcases">
+      <created>1459854226429</created>
+      <option name="number" value="00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1459854226430</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1017,7 +1017,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="infrasdtructure updates" />
     <MESSAGE value="updates" />
     <MESSAGE value="json created" />
     <MESSAGE value="Revert" />
@@ -1042,7 +1041,8 @@
     <MESSAGE value="Asset_55" />
     <MESSAGE value="Numbering" />
     <MESSAGE value="Test casess added for person asset" />
-    <option name="LAST_COMMIT_MESSAGE" value="Test casess added for person asset" />
+    <MESSAGE value="Modification in edit testcases" />
+    <option name="LAST_COMMIT_MESSAGE" value="Modification in edit testcases" />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.87" />
   </component>
   <component name="XDebuggerManager">
@@ -1323,7 +1323,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="33" column="41" selection-start-line="33" selection-start-column="41" selection-end-line="33" selection-end-column="41" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1331,7 +1330,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="54" column="28" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1373,14 +1371,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="186" column="28" selection-start-line="186" selection-start-column="28" selection-end-line="186" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1415,21 +1405,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
+    <entry file="file://$PROJECT_DIR$/testcases/assessmenttest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.275862">
-          <caret line="1250" column="78" selection-start-line="1250" selection-start-column="78" selection-end-line="1250" selection-end-column="78" />
+        <state vertical-scroll-proportion="-4.862069">
+          <caret line="191" column="106" selection-start-line="191" selection-start-column="105" selection-end-line="191" selection-end-column="106" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4528302">
-          <caret line="1463" column="81" selection-start-line="1463" selection-start-column="81" selection-end-line="1463" selection-end-column="81" />
+        <state vertical-scroll-proportion="-3.891892">
+          <caret line="272" column="25" selection-start-line="272" selection-start-column="25" selection-end-line="272" selection-end-column="25" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3985849">
+          <caret line="1811" column="75" selection-start-line="1811" selection-start-column="75" selection-end-line="1811" selection-end-column="75" />
+          <folding />
         </state>
       </provider>
     </entry>

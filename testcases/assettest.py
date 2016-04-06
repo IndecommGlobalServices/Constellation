@@ -1461,8 +1461,16 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_link.click()
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
                                          (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
-        self.assetpage.set_school_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
-                       r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "3", "6300", r"http://www.haystax.com")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_capacity_textbox_locator, "1234")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_closed_textbox_locator, r"2017-05-16")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_description_textbox_locator, r"Description of School 3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_detail_district_number_textbox_locator, "2")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_email_textbox_locator, r"indecomm@indecomm.net")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_fax_textbox_locator, r"123-4567-892")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_opened_textbox_locator, r"2015-02-23")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_school_number_textbox_locator, "3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_school_size_textbox_locator, r"6300")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_website_textbox_locator, r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_cancel_button.click()
         textfrombreadcrumb = WebDriverWait(self.driver, 50).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_name_breadcrumb))).text
@@ -1485,9 +1493,16 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_link.click()
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
                                          (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
-        self.assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2",
-                                           r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300",
-                                           "http://www.haystax.com")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_capacity_textbox_locator, "1234")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_closed_textbox_locator, r"2017-05-16")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_description_textbox_locator, r"Description of School 3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_detail_district_number_textbox_locator, "2")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_email_textbox_locator, r"indecomm@indecomm.net")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_fax_textbox_locator, r"123-4567-892")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_opened_textbox_locator, r"2015-02-23")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_school_number_textbox_locator, "3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_school_size_textbox_locator, r"6300")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_website_textbox_locator, r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
         #sleep(5)
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(),
