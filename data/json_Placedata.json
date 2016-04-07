@@ -7,7 +7,10 @@
     "asset_state": "KA",
     "asset_zip": "12345",
     "asset_owner": "Kiran 1",
-    "asset_type": "BA"
+    "asset_type": "BA",
+    "asset_phone": "96562632",
+    "asset_email": "Deepa@g.com",
+    "person_name": "Deepa"
 
   }
 

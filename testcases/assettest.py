@@ -48,7 +48,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_01(self):
+    def test_AS_001(self):
         """
         Test : test_AS_01
         Description : To verify delete functionality when no assets are available. Delete button should be disabled.
@@ -65,7 +65,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_02(self):
+    def test_AS_002(self):
         """
         Test : test_AS_02
         Description : To verify delete functionality when no asset is selected. Delete button should be disabled.
@@ -84,7 +84,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_03(self):
+    def test_AS_003(self):
         """
         Test : test_AS_03
         Description : To verify delete functionality. User selected asset should be deleted.
@@ -105,7 +105,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_04(self):
+    def test_AS_004(self):
         """
         Test : test_AS_04
         Description : To verify delete window cancel button functionality.
@@ -127,7 +127,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_06(self):
+    def test_AS_006(self):
         """
         Test : test_AS_06
         Description : To verify filter functionality. Check whether type filter has 'Place' option or not.
@@ -142,7 +142,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_07(self):
+    def test_AS_007(self):
         """
         Test : test_AS_07
         Description : To verify filter functionality. Check whether type filter has 'School' option or not.
@@ -157,7 +157,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_08(self):
+    def test_AS_008(self):
         """
         Test : test_AS_08
         Description : To verify filter functionality. Select 'School/District' filter.
@@ -174,7 +174,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_09(self):
+    def test_AS_009(self):
         """
         Test : test_AS_09
         Description : To verify filter functionality. Select 'School/Grade' filter.
@@ -190,7 +190,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_10(self):
+    def test_AS_010(self):
         """
         Test : test_AS_10
         Description : To verify filter functionality. Select 'School/School Type' filter.
@@ -207,7 +207,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_11(self):
+    def test_AS_011(self):
         """
         Test : test_AS_11
         Description : To verify Reset Filters buttons functionality. Select 'School/School Type' filter.
@@ -226,7 +226,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_12(self):
+    def test_AS_012(self):
         """
         Test : test_AS_12
         Description : To verify Search text box functionality. Enter multiple string.
@@ -261,7 +261,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_14_and_17(self):
+    def test_AS_014_and_017(self):
         """
         Test : test_AS_14_and_17
         Description : To create place asset and verify that asset is created properly.
@@ -289,7 +289,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_15(self):
+    def test_AS_015(self):
         """
         Test : test_AS_15
         Description : To verify New Asset Name field.
@@ -306,7 +306,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_16(self):
+    def test_AS_016(self):
         """
         Test : test_AS_16
         Description : To verify New Asset phone field.
@@ -326,7 +326,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_18(self):
+    def test_AS_018(self):
         """
         Test : test_AS_18
         Description : To verify cancel button functionality of New asset window. Without any data entry.
@@ -341,7 +341,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_19(self):
+    def test_AS_019(self):
         """
         Test : test_AS_19
         Description : To verify cancel button functionality of New asset window. With required date entry.
@@ -357,7 +357,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_20(self):
+    def test_AS_020(self):
         """
         Test : test_AS_20
         Description : To edit overview section. Enter all required fields info and click on save button.
@@ -368,14 +368,20 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
         self.assetpage.get_asset_overview_edit_link.click()
-        self.assetpage.set_place_overview_fields(r"Ind address", r"Ind address 2", r"Ind city", r"KA", r"94821", r"Indecomm")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_address_text_box_locator, r"Ind address")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_address2_text_box_locator, r"Ind address 2")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_city_text_box_locator, r"Ind city")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_state_text_box_locator, r"KA")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_zip_text_box_locator,  r"94821")
+        self.assetpage.set_value_textbox(self.assetpage._asset_type_field_owner_text_box_locator, r"Indecomm")
+
         self.assetpage.asset_overview_save_click()# Click on Save
         self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(),
                         self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_21(self):
+    def test_AS_021(self):
         """
         Test : test_AS_21
         Description : To edit overview section. Enter all required fields info and click on cancel button.
@@ -386,15 +392,19 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
         self.assetpage.get_asset_overview_edit_link.click()
-        self.assetpage.set_place_overview_fields("indecomm address cancel", "indecomm address 2 cancel", "Indecomm city",
-                                            "KA", "94821", "Indecomm_Cancel")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_address_text_box_locator, r"Ind address")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_address2_text_box_locator, r"Ind address 2")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_city_text_box_locator, r"Ind city")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_state_text_box_locator, r"KA")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_zip_text_box_locator,  r"94821")
+        self.assetpage.set_value_textbox(self.assetpage._asset_type_field_owner_text_box_locator, r"Indecomm")
         self.assetpage.asset_overview_cancel_click()#click on Cancel
         self.assertEqual(self.assetpage.asset_place_name, self.assetpage.get_asset_name_breadcrumb.text)
 
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_23(self):
+    def test_AS_023(self):
         """
         Test : test_AS_23
         Description : To edit overview section. Enter all required fields info and click on save button.
@@ -405,15 +415,21 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
         self.assetpage.get_asset_detail_edit_link.click()
-        self.assetpage.set_place_details_fields("1234", r"2017-05-16", r"Description of School 3",
-                r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23",r"6300", r"http://www.haystax.com")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_capacity_textbox_locator, "1234")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_closed_textbox_locator, r"2017-05-16")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_description_textbox_locator, r"Description of School 3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_email_textbox_locator, r"indecomm@indecomm.net")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_fax_textbox_locator, r"123-4567-892")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_opened_textbox_locator, r"2015-02-23")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_place_size_textbox_locator, r"6300")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_website_textbox_locator, r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
         self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(),
                         self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_24(self):
+    def test_AS_024(self):
         """
         Test : test_AS_24
         Description : To verify email field of the Detail section.
@@ -436,7 +452,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_25(self):
+    def test_AS_025(self):
         """
         Test : test_AS_25
         Description : To verify FAX field of the Detail section.
@@ -460,7 +476,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_26(self):
+    def test_AS_026(self):
         """
         Test : test_AS_26
         Description : To verify cancel button functionality of the Detail section.
@@ -471,15 +487,21 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
         self.assetpage.get_asset_detail_edit_link.click()
-        self.assetpage.set_place_details_fields("4321", r"2020-05-16", r"Cancelled",r"cancel@indecomm.net",
-                                                r"111-111-1111", r"2017-02-23", r"10001", r"http://www.haystax.com")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_capacity_textbox_locator, "1234")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_closed_textbox_locator, r"2017-05-16")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_description_textbox_locator, r"Description of School 3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_email_textbox_locator, r"indecomm@indecomm.net")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_fax_textbox_locator, r"123-4567-892")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_opened_textbox_locator, r"2015-02-23")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_place_size_textbox_locator, r"6300")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_website_textbox_locator, r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_cancel_button.click()
         self.assertEqual(self.assetpage.asset_place_name, self.assetpage.get_asset_name_breadcrumb.text)
 
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_27(self):
+    def test_AS_027(self):
         """
         Test : test_AS_27
         Description : To verify all mandatory fields in Contact Section.
@@ -499,7 +521,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_28(self):
+    def test_AS_028(self):
         """
         Test : test_AS_28
         Description : To verify that main contact has same info as first contact.
@@ -522,7 +544,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_29(self):
+    def test_AS_029(self):
         """
         Test : test_AS_29
         Description : To verify error message for first and last name.
@@ -551,7 +573,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_30(self):
+    def test_AS_030(self):
         """
         Test : test_AS_30
         Description : To verify phone field of the Contact section.
@@ -581,7 +603,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_31_1(self):
+    def test_AS_031_1(self):
         """
         Test : test_AS_31_1
         Description : To verify email field of the Contact section.
@@ -613,8 +635,8 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_31_2(self):
-        """
+    def test_AS_031_2(self):
+        """0
         Test : test_AS_31_2
         Description : To verify email field of the Contact section. Email address with wrong address.
         Revision:
@@ -645,7 +667,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_32(self):
+    def test_AS_032(self):
         """
         Test : test_AS_32
         Description : To verify cancel button functionality of the Contact window.
@@ -676,7 +698,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_33_1(self):
+    def test_AS_033_1(self):
         """
         Test : test_AS_33_1
         Description : To verify contact name in ascending order.
@@ -685,7 +707,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.select_school_or_place_asset(self.assetpage.asset_place_name, "Place")
-        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+        WebDriverWait(self.driver, 50).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.assetpage._asset_main_contct_widget_locator), r"Points of Contact"))
         self.assetpage.multiple_contact_create()#create multiple contacts.
         exp_name_ascending = r"stu, def, mno, jkl, ghi, pqr, abc, vwx"
@@ -709,7 +731,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_33_2(self):
+    def test_AS_033_2(self):
         """
         Test : test_AS_33_2
         Description : To verify contact title's value in ascending order.
@@ -742,7 +764,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_33_3(self):
+    def test_AS_033_3(self):
         """
         Test : test_AS_33_3
         Description : To verify contact phone's value in ascending order.
@@ -775,7 +797,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_33_4(self):
+    def test_AS_033_4(self):
         """
         Test : test_AS_33_4
         Description : To verify contact email's value in ascending order.
@@ -808,7 +830,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_34(self):
+    def test_AS_034(self):
         """
         Test : test_AS_34
         Description : To verify delete option of contact.
@@ -839,7 +861,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_35(self):
+    def test_AS_035(self):
         """
         Test : test_AS_35
         Description : To verify delete window cancel button functionality.
@@ -873,7 +895,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_36(self):
+    def test_AS_036(self):
         """
         Test : test_AS_36
         Description : To verify Latitude and Longitude boundary values.
@@ -910,7 +932,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_37(self):
+    def test_AS_037(self):
         """
         Test : test_AS_37
         Description : To verify whether Marker is displayed on the map after_setting Latitude and Longitude values.
@@ -937,7 +959,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_38(self):
+    def test_AS_038(self):
         """
         Test : test_AS_38
         Description : To verify Place name once click on Marker.
@@ -969,7 +991,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_40(self):
+    def test_AS_040(self):
         """
         Test : test_AS_40
         Description : To verify whether uploaded file deleted properly or not.
@@ -1013,7 +1035,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_41(self):
+    def test_AS_041(self):
         """
         Test : test_AS_41
         Description : To verify cancel button functionality of File upload window.
@@ -1046,7 +1068,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_42(self):
+    def test_AS_042(self):
         """
         Test : test_AS_42
         Description : To verify an image file with caption is uploaded properly.
@@ -1070,7 +1092,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_43(self):
+    def test_AS_043(self):
         """
         Test : test_AS_43
         Description : To verify error message when file with more than 12 MB is uploaded.
@@ -1097,7 +1119,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_44_1(self):
+    def test_AS_044_1(self):
         """
         Test : test_AS_44_1
         Description : To verify a pdf file with caption is uploaded properly.
@@ -1120,7 +1142,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_44_2(self):
+    def test_AS_044_2(self):
         """
         Test : test_AS_44_2
         Description : To verify a html file with caption is uploaded properly.
@@ -1143,7 +1165,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_44_3(self):
+    def test_AS_044_3(self):
         """
         Test : test_AS_44_3
         Description : To verify a text file with caption is uploaded properly.
@@ -1167,7 +1189,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_45(self):
+    def test_AS_045(self):
         """
         Test : test_AS_45
         Description : To verify whether multiple files has been uploaded properly or not.
@@ -1192,7 +1214,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     @SkipTest
-    def test_AS_47(self):
+    def test_AS_047(self):
         """
         Test : test_AS_47
         Description : To verify an image file without caption is uploaded properly.
@@ -1216,7 +1238,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_48_1(self):
+    def test_AS_048_1(self):
         """
         Test : test_AS_48_1
         Description : To verify annotation groups text.
@@ -1240,7 +1262,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_48_2(self):
+    def test_AS_048_2(self):
         """
         Test : test_AS_48_2
         Description : To verify annotation tenant text.
@@ -1265,7 +1287,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_48_3(self):
+    def test_AS_048_3(self):
         """
         Test : test_AS_48_3
         Description : To verify annotation users text.
@@ -1290,7 +1312,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_48_4(self):
+    def test_AS_048_4(self):
         """
         Test : test_AS_48_4
         Description : To verify annotation edit functionality.
@@ -1320,7 +1342,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priotity = "high")
     #@SkipTest
-    def test_AS_49_50(self):
+    def test_AS_049_50(self):
         """
         Test : test_AS_49_50
         Description : To verify school asset creation and verify that created asset is displayed in the asset list.
@@ -1350,7 +1372,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_51(self):
+    def test_AS_051(self):
         """
         Test : test_AS_51
         Description : To verify asset school Name field.
@@ -1370,7 +1392,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_53(self):
+    def test_AS_053(self):
         """
         Test : test_AS_53
         Description : To verify asset school Grade and District fields.
@@ -1393,7 +1415,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_54(self):
+    def test_AS_054(self):
         """
         Test : test_AS_54
         Description : To verify Cancel Button functionality of Create Asset Window.
@@ -1406,7 +1428,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_55(self):
+    def test_AS_055(self):
         """
         Test : test_AS_55
         Description : To verify Asset edit functionality.
@@ -1422,7 +1444,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_56(self):
+    def test_AS_056(self):
         """
         Test : test_AS_56
         Description : To verify cancel button functionality of Detail Window. Enter data in all required fields.
@@ -1439,8 +1461,16 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_link.click()
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
                                          (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
-        self.assetpage.set_school_details_fields("1234", r"2017-05-16", r"Description of School 3", "2",
-                       r"indecomm@indecomm.net", r"123-4567-892", r"2015-02-23", "3", "6300", r"http://www.haystax.com")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_capacity_textbox_locator, "1234")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_closed_textbox_locator, r"2017-05-16")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_description_textbox_locator, r"Description of School 3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_detail_district_number_textbox_locator, "2")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_email_textbox_locator, r"indecomm@indecomm.net")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_fax_textbox_locator, r"123-4567-892")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_opened_textbox_locator, r"2015-02-23")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_school_number_textbox_locator, "3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_school_size_textbox_locator, r"6300")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_website_textbox_locator, r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_cancel_button.click()
         textfrombreadcrumb = WebDriverWait(self.driver, 50).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_name_breadcrumb))).text
@@ -1450,7 +1480,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_58(self):
+    def test_AS_058(self):
         """
         Test : test_AS_58
         Description : To verify save button functionality of Detail Window.
@@ -1463,9 +1493,16 @@ class AssetpageTest(BaseTestCase):
         self.assetpage.get_asset_detail_edit_link.click()
         WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
                                          (By.XPATH, self.assetpage._asset_detail_edit_title_locator), r"Asset details"))
-        self.assetpage.set_school_details_fields("1234", "2017-05-16", "Description of School 3","2",
-                                           r"ki22ran2.k@indecomm.net", "123-4567-892", "2015-02-23", "3", "6300",
-                                           "http://www.haystax.com")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_capacity_textbox_locator, "1234")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_closed_textbox_locator, r"2017-05-16")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_description_textbox_locator, r"Description of School 3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_detail_district_number_textbox_locator, "2")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_email_textbox_locator, r"indecomm@indecomm.net")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_fax_textbox_locator, r"123-4567-892")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_opened_textbox_locator, r"2015-02-23")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_school_number_textbox_locator, "3")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_school_size_textbox_locator, r"6300")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_edit_website_textbox_locator, r"http://www.haystax.com")
         self.assetpage.get_asset_detail_edit_save_button.click()
         #sleep(5)
         self.assertTrue(self.driver.find_element_by_xpath(".//*[@id='header']/div[3]").is_displayed(),
@@ -1473,7 +1510,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_59_1(self):
+    def test_AS_059_1(self):
         """
         Test : test_AS_59_1
         Description : To verify email text box functionality of Detail Window.
@@ -1497,7 +1534,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_59_2(self):
+    def test_AS_059_2(self):
         """
         Test : test_AS_59_2
         Description : To verify email text box functionality of Detail Window. Invalid value. Verify error message.
@@ -1522,7 +1559,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_90(self):
+    def test_AS_086(self):
         """
         Test : test_AS_90
         Description : To verify chart when no asset is selected.
@@ -1542,7 +1579,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_91(self):
+    def test_AS_087(self):
         """
         Test : test_AS_91
         Description : To verify chart when place filter is selected.
@@ -1564,7 +1601,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_92(self):
+    def test_AS_088(self):
         """
         Test : test_AS_92
         Description : To verify chart when place and type filters are selected.
@@ -1587,7 +1624,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_93(self):
+    def test_AS_089(self):
         """
         Test : test_AS_93
         Description : To verify chart when school filter is selected.
@@ -1609,7 +1646,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_94(self):
+    def test_AS_090(self):
         """
         Test : test_AS_94
         Description : To verify chart when school and district filters are selected.
@@ -1633,7 +1670,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_95(self):
+    def test_AS_091(self):
         """
         Test : test_AS_95
         Description : To verify chart when school and grade filters are selected.
@@ -1656,7 +1693,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_96(self):
+    def test_AS_092(self):
         """
         Test : test_AS_96
         Description : To verify chart when school and type filters are selected.
@@ -1679,7 +1716,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_97_to_test_pagination_next_button(self):
+    def test_AS_093_to_test_pagination_next_button(self):
         """
         Test : test_AS_97
         Description :To Test pagination next button.
@@ -1698,7 +1735,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_98_to_test_pagination_next_button_disabled(self):
+    def test_AS_094_to_test_pagination_next_button_disabled(self):
         """
         Test : test_AS_98
         Description :To Test pagination next button. Last Page is active.
@@ -1723,7 +1760,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_99_to_test_pagination_previous_button(self):
+    def test_AS_095_to_test_pagination_previous_button(self):
         """
         Test : test_AS_99
         Description :To Test pagination previous button.
@@ -1741,7 +1778,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_100_to_test_pagination_previous_button_disabled(self):
+    def test_AS_096_to_test_pagination_previous_button_disabled(self):
         """
         Test : test_AS_100
         Description :To Test pagination previous button. First page is active.
@@ -1765,7 +1802,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_101_to_test_pagination_page_group_select(self):
+    def test_AS_097_to_test_pagination_page_group_select(self):
         """
         Test : test_AS_101
         Description :To verify that page group is selected from drop down menu
@@ -1799,7 +1836,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_102_to_test_direct_click_first_page(self):
+    def test_AS_098_to_test_direct_click_first_page(self):
         """
         Test : test_AS_102
         Description :To verify that first page is selected directly and previous button is disabled.
@@ -1832,7 +1869,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_103_to_test_direct_click_last_page(self):
+    def test_AS_099_to_test_direct_click_last_page(self):
         """
         Test : test_AS_103
         Description :To verify that last page is selected directly and next button is disabled.
@@ -1864,7 +1901,7 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_104_to_test_search_asset_pagination(self):
+    def test_AS_100_to_test_search_asset_pagination(self):
         """
         Test : test_AS_104
         Description :To verify that if searched asset is not available than pagination should be disabled.
@@ -1886,3 +1923,127 @@ class AssetpageTest(BaseTestCase):
                 self.assertTrue(True, "No Pages available but still next and previous button is enabled.")
             else:
                 self.assertFalse(True, "No Pages available but still next and previous button is enabled.")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_101_and_102(self):
+        """
+        Test : test_AS_101_and_102
+        Description : To create place asset and verify that asset is created properly.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        check = 0
+        self.assetpage.create_asset("Person")
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_name_breadcrumb), self.assetpage.get_asset_name_breadcrumb.text))
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                    (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
+            (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
+        self.assetpage.asset_search_assetname(self.assetpage.asset_person_name)
+        sleep(10) # Necessary sleep to let the app search for the input string
+        for item in self.assetpage.get_asset_list_background:
+            if (item.text  == self.assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
+                                                                == "rgba(255, 236, 158, 1)"):
+                check = 1
+                break
+        self.assetpage.textbox_clear(self.driver.find_element_by_xpath(self.assetpage._asset_search_textbox_locator))
+        self.assertFalse(check == 0, self.config.get(self.section,'MESSAGE_NEW_ASSET_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_104(self):
+        """
+        Test : test_AS_16
+        Description : To verify New Asset phone field.
+        Revision:
+        :return: None
+        """
+        self.assetpage.asset_create_click()
+        self.assetpage.select_asset_template_type("Person")
+        asset_phone = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+            (By.XPATH ,self.assetpage._asset_overview_phone_text_box_locator)))
+        asset_phone.send_keys("123abc1234")
+        asset_phone.send_keys(Keys.TAB)
+        regex = re.compile(r'^\(?([0-9]{3})\)?[-. ]?([A-Za-z0-9]{3})[-. ]?([0-9]{4})$')
+        self.assertRegexpMatches("123abc1234", regex,
+                                 self.config.get(self.section, 'MESSAGE_PHONE_VALUE_NOT_MATCHING'))
+        self.assetpage.asset_overview_cancel_click()
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_105(self):
+        """
+        Test : test_AS_20
+        Description : To edit overview section. Enter all required fields info and click on save button.
+        Revision:
+        :return: None
+        """
+        self.assetpage.select_school_or_place_asset(self.assetpage.asset_person_name, "Person")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
+        self.assetpage.get_asset_overview_edit_link.click()
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_address_text_box_locator, r"Ind address")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_address2_text_box_locator, r"Ind address 2")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_city_text_box_locator, r"Ind city")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_state_text_box_locator, r"KA")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_zip_text_box_locator,  r"94821")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_phone_text_box_locator, r"98989898")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_email_text_box_locator,  r"pp@p.com")
+        self.assetpage.asset_overview_save_click()# Click on Save
+        self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_106(self):
+        """
+        Test : test_AS_106
+        Description : To edit overview section. Enter all required fields info and click on cancel button.
+        Revision:
+        :return: None
+        """
+        self.assetpage.select_school_or_place_asset(self.assetpage.asset_person_name, "Person")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
+        self.assetpage.get_asset_overview_edit_link.click()
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_address_text_box_locator, r"Ind address")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_address2_text_box_locator, r"Ind address 2")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_city_text_box_locator, r"Ind city")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_state_text_box_locator, r"KA")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_zip_text_box_locator,  r"94821")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_phone_text_box_locator, r"98989898")
+        self.assetpage.set_value_textbox(self.assetpage._asset_overview_email_text_box_locator,  r"pp@p.com")
+        self.assetpage.asset_overview_cancel_click()#click on Cancel
+        self.assertEqual(self.assetpage.asset_person_name, self.assetpage.get_asset_name_breadcrumb.text)
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_AS_107(self):
+        """
+        Test : test_AS_107
+        Description : To edit Details section. Enter all required fields info and click on save button.
+        Revision:
+        :return: None
+        """
+        self.assetpage.select_school_or_place_asset(self.assetpage.asset_person_name, "Person")
+        WebDriverWait(self.driver,20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.assetpage._asset_details_edit_widget_locator), r"Details"))
+        self.assetpage.get_asset_detail_edit_link.click()
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_affliation_text_locator, "text")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_birthdate_text_locator, "text")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detial_birthplace_text_locator, "text")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_employer_text_locator, "text")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_gender_text_locator, "text")
+        self.assetpage.set_value_textbox(self.assetpage._asset_detail_height_text_locator, "text")
+        self.assetpage.set_value_textbox(self.assetpage._asset_details_race_text_locator, "text")
+        self.assetpage.set_value_textbox(self.assetpage._asset_details_title_text_locator, "text")
+        self.assetpage.set_value_textbox(self.assetpage._asset_details_weight_text_locator, "text")
+        self.assetpage.get_asset_detail_edit_save_button.click()
+        self.assertTrue(self.assetpage.asset_type_Saved_label.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))

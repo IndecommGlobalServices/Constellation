@@ -96,6 +96,7 @@ class AssetPage(BasePageClass):
     _asset_overview_zip_text_box_locator = "//input[@ng-model='asset_edit.address.zip']"
     _asset_overview_owner_text_box_locator = "//input[@placeholder='Owner']"
     _asset_overview_phone_text_box_locator = ".//*[@id='asset_overview_modal']/descendant::input[@name='phone']"
+    _asset_overview_email_text_box_locator = ".//*[@id='asset_overview_modal']/descendant::input[@Placeholder='Email']"
     _asset_overview_type_text_box_locator = "//input[@placeholder='Enter new value']"
     _asset_overview_district_text_box_locator = "//div[@key = 'overview.district']//input[@ng-model = 'itemInput']"
     _asset_overview_grade_text_box_locator = "//div[@key = 'overview.grade']//input[@ng-model = 'itemInput']"
@@ -171,11 +172,11 @@ class AssetPage(BasePageClass):
     _asset_details_edit_widget_locator = ".//*[@id='widgets']/div[5]/div/div[1]"
     _asset_detail_edit_title_locator = ".//h4[@id='H2']"
     _asset_detail_edit_capacity_textbox_locator = "//input[@placeholder='Capacity']"
-    _asset_detail_edit_closed_textbox_locator = ".//*[@id='datetimepicker']/div/input"
+    _asset_detail_edit_closed_textbox_locator = "//span[@ng-switch-when = 'closed']//input[@ng-model='datetime_internal']"
     _asset_detail_edit_description_textbox_locator = ".//*[@id='asset_details_description_edit']"
     _asset_detail_edit_detail_district_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[4]/div/span/input"
     _asset_detail_edit_fax_textbox_locator = "//input[@placeholder='Fax, e.g. 555-555-5555']"
-    _asset_detail_edit_opened_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[6]/div/span/input"
+    _asset_detail_edit_opened_textbox_locator = "//span[@ng-switch-when = 'opened']//input[@ng-model='datetime_internal']"
     _asset_detail_edit_school_number_textbox_locator = ".//*[@id='asset_details_modal']/div/div/form/div[1]/span[8]/div/span/input"
     _asset_detail_edit_place_size_textbox_locator = "//input[@placeholder='size (sq ft)']"
     _asset_detail_edit_school_size_textbox_locator = "//input[@placeholder='Size_sqfeet']"
@@ -185,6 +186,17 @@ class AssetPage(BasePageClass):
     _asset_detail_edit_save_button_locator = ".//*[@id='asset_details_modal']/descendant::div[@class='modal-footer']/button[text()='Save']"
     _asset_detail_edit_cancel_button_locator = ".//*[@id='asset_details_modal']/descendant::div[@class='modal-footer']/button[text()='Cancel']"
     _asset_detail_edit_window_popup_cross_button_locator = ".//*[@id='asset_details_modal']/descendant::button[@class='close fui-cross']"
+
+    #Asset details for perosn asset
+    _asset_detail_affliation_text_locator = "//input[@placeholder = 'Affiliation']"
+    _asset_detail_birthdate_text_locator = "//input[@placeholder = 'Birthdate']"
+    _asset_detial_birthplace_text_locator = "//input[@placeholder = 'Birthplace']"
+    _asset_detail_employer_text_locator = "//input[@placeholder = 'Employer']"
+    _asset_detail_gender_text_locator = "//input[@placeholder = 'Gender']"
+    _asset_detail_height_text_locator = "//input[@placeholder = 'Height']"
+    _asset_details_race_text_locator = "//input[@placeholder = 'Race']"
+    _asset_details_title_text_locator = "//div[@id='asset_details_modal']//input[@placeholder='Title']"
+    _asset_details_weight_text_locator = "//input[@placeholder = 'Weight']"
 
     # Asset Photo/Document Upload Panel
     _asset_photos_documents_header_locator = "//div[contains(text(),'Photos / Documents')]"
@@ -526,6 +538,15 @@ class AssetPage(BasePageClass):
         except Exception, err:
             raise type(err)("Asset Phone no textbox not available - searched XPATH - " \
                           + self._asset_overview_phone_text_box_locator + err.message)
+
+    @property
+    def enter_asset_type_email(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_overview_email_text_box_locator)
+        except Exception, err:
+            raise type(err)("Asset Email textbox not available - searched XPATH - " \
+                          + self._asset_overview_email_text_box_locator + err.message)
+
 
     @property
     def asset_type_Saved_label(self):
@@ -1032,7 +1053,7 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_detail_edit_closed_text_box(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_detail_edit_closed_textbox_locator)[0]
+            return self.driver.find_elements_by_xpath(self._asset_detail_edit_closed_textbox_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._asset_detail_edit_closed_textbox_locator + err.message)
@@ -1040,10 +1061,10 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_detail_edit_detail_opened_number_text_box(self):
         try:
-            return self.driver.find_elements_by_xpath(self._asset_detail_edit_closed_textbox_locator)[1]
+            return self.driver.find_elements_by_xpath(self._asset_detail_edit_opened_textbox_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
-                          + self._asset_detail_edit_closed_textbox_locator + err.message)
+                          + self._asset_detail_edit_opened_textbox_locator + err.message)
 
     @property
     def get_asset_detail_edit_description_text_box(self):
@@ -1142,11 +1163,83 @@ class AssetPage(BasePageClass):
             raise type(err)(" - searched XPATH - " \
                           + self._asset_detail_edit_window_popup_cross_button_locator + err.message)
 
+    @property
+    def get_asset_detail_affiliation_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_detail_affliation_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_detail_affliation_text_locator + err.message)
+
+    @property
+    def get_asset_detail_birthdate_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_detail_birthdate_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_detail_birthdate_text_locator + err.message)
+    @property
+    def get_asset_detail_birthplace_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_detial_birthplace_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_detial_birthplace_text_locator + err.message)
+
+    @property
+    def get_asset_detail_employer_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_detail_employer_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_detail_employer_text_locator + err.message)
+
+    @property
+    def get_asset_detail_gender_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_detail_gender_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_detail_gender_text_locator + err.message)
+
+    @property
+    def get_asset_detail_height_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_detail_height_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_detail_height_text_locator + err.message)
+
+    @property
+    def get_asset_detail_race_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_details_race_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_details_race_text_locator + err.message)
+
+    @property
+    def get_asset_detail_title_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_details_title_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_details_title_text_locator + err.message)
+
+    @property
+    def get_asset_detail_weight_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._asset_details_weight_text_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._asset_details_weight_text_locator + err.message)
+
     # Asset overview related properties
     @property
     def get_asset_overview_edit_link(self):
         try:
-            #return self.driver.find_element_by_xpath(self._asset_overview_edit_link_locator)
+            WebDriverWait(self.driver,20).until(EC.element_to_be_clickable(
+                (By.XPATH , self._asset_overview_edit_link_locator)))
             return self.basepage.findIfElementVisible(self._asset_overview_edit_link_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
@@ -1703,6 +1796,9 @@ class AssetPage(BasePageClass):
                 self.asset_place_zip = each["asset_zip"]
                 self.asset_place_owner = each["asset_owner"]
                 self.asset_place_type = each["asset_type"]
+                self.asset_place_phone = each["asset_phone"]
+                self.asset_place_email  =each["asset_email"]
+                self.asset_person_name = each["person_name"]
 
     def create_place_asset(self):
         """
@@ -1722,6 +1818,24 @@ class AssetPage(BasePageClass):
         #sleep(2)
         self.get_overview_newtype_text_box.send_keys(self.asset_place_type)
         self.get_overview_place_type_add_button.click()
+        # self.get_asset_overview_save_button.click()
+
+
+    def create_person_asset(self):
+        """
+        Description : This function will enter place data in asset template.
+        Revision:
+        :return: None
+        """
+        self.select_asset_template_type("Person")
+        self.enter_asset_type_name.send_keys(self.asset_person_name)
+        self.enter_asset_type_address.send_keys(self.asset_place_address)
+        self.enter_asset_type_address2.send_keys(self.asset_place_address2)
+        self.enter_asset_type_city.send_keys(self.asset_place_city)
+        self.enter_asset_type_state.send_keys(self.asset_place_state)
+        self.enter_asset_type_zip.send_keys(self.asset_place_zip)
+        self.enter_asset_type_phone.send_keys(self.asset_place_phone)
+        self.enter_asset_type_email.send_keys(self.asset_place_email)
         # self.get_asset_overview_save_button.click()
 
 
@@ -1813,7 +1927,7 @@ class AssetPage(BasePageClass):
         #WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
         #    (By.XPATH, self._asset_overview_type_drop_down_locator))).click()
         self.basepage.findElementByXpath(self._asset_overview_type_drop_down_locator).click()
-        self.get_overview_newtype_text_box.clear()
+        self.get_overview_school_newtype_text_box.clear()
         self.get_overview_school_newtype_text_box.send_keys(value)
         self.get_overview_type_add_button.click()
         #self.get_overview_type_drop_down.send_keys(Keys.TAB, value, Keys.TAB, Keys.ENTER)
@@ -1864,6 +1978,8 @@ class AssetPage(BasePageClass):
             self.create_school_asset(self.newSchool, self.asset_school_name[self.newSchool])
         elif type == "Place":
             self.create_place_asset()
+        elif type == "Person":
+            self.create_person_asset()
         self.get_asset_overview_save_button.click()
 
 
@@ -1932,97 +2048,9 @@ class AssetPage(BasePageClass):
         except Exception, err:
             raise type(err)("No Asset is existing or Asset Creation has been failed. "+err.message)
 
-
-    def set_place_overview_fields(self,paddress, paddress1, pcity, pstate, pzip, powner):
-        """
-        Description : This function will enter data in all fields of Overview Edit Window.
-        Revision:
-        :return: None
-        """
-        self.enter_asset_type_address.clear()
-        self.enter_asset_type_address.send_keys(paddress)
-        self.enter_asset_type_address.send_keys(Keys.TAB)
-        self.enter_asset_type_address2.clear()
-        self.enter_asset_type_address2.send_keys(paddress1)
-        self.enter_asset_type_address2.send_keys(Keys.TAB)
-        self.enter_asset_type_city.clear()
-        self.enter_asset_type_city.send_keys(pcity)
-        self.enter_asset_type_city.send_keys(Keys.TAB)
-        self.enter_asset_type_state.clear()
-        self.enter_asset_type_state.send_keys(pstate)
-        self.enter_asset_type_state.send_keys(Keys.TAB)
-        self.enter_asset_type_zip.clear()
-        self.enter_asset_type_zip.send_keys(pzip)
-        self.enter_asset_type_zip.send_keys(Keys.TAB)
-        self.enter_asset_type_phone.send_keys(Keys.TAB)
-        self.enter_asset_type_owner.clear()
-        self.enter_asset_type_owner.send_keys(powner)
-        self.enter_asset_type_owner.send_keys(Keys.TAB)
-
-    def set_place_details_fields(self, pcapacity, pclosed, pdescription, pemail, pfax, popened, psize, pwebsite):
-        # fill out the fields
-
-        self.get_asset_detail_edit_capacity_text_box.clear()
-        self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
-        self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_closed_text_box.clear()
-        self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
-        self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_description_text_box.clear()
-        self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
-        self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_email_text_box.clear()
-        self.get_asset_detail_edit_email_text_box.send_keys(pemail)
-        self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_fax_text_box.clear()
-        self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
-        self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_opened_number_text_box.clear()
-        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
-        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_place_size_text_box.clear()
-        self.get_asset_detail_edit_detail_place_size_text_box.send_keys(psize)
-        self.get_asset_detail_edit_detail_place_size_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_website_text_box.clear()
-        self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
-        self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
-
-    def set_school_details_fields(self, pcapacity, pclosed, pdescription, pdistrict, pemail, pfax, popened, pschoolnumber, ssize, pwebsite):
-        # fill out the fields
-        #WebDriverWait(self.driver,10).until(EC.presence_of_element_located((By.XPATH, self._asset_detail_edit_capacity_textbox_locator)))
-        self.get_asset_detail_edit_capacity_text_box.clear()
-        self.get_asset_detail_edit_capacity_text_box.send_keys(pcapacity)
-        self.get_asset_detail_edit_capacity_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_closed_text_box.clear()
-        self.get_asset_detail_edit_closed_text_box.send_keys(pclosed)
-        self.get_asset_detail_edit_closed_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_description_text_box.clear()
-        self.get_asset_detail_edit_description_text_box.send_keys(pdescription)
-        self.get_asset_detail_edit_description_text_box.send_keys(Keys.TAB)
-        if pdistrict is not None:
-            self.get_asset_detail_edit_detail_district_number_text_box.send_keys("")
-            self.get_asset_detail_edit_detail_district_number_text_box.send_keys(pdistrict)
-            self.get_asset_detail_edit_detail_district_number_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_email_text_box.clear()
-        self.get_asset_detail_edit_email_text_box.send_keys(pemail)
-        self.get_asset_detail_edit_email_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_fax_text_box.clear()
-        self.get_asset_detail_edit_detail_fax_text_box.send_keys(pfax)
-        self.get_asset_detail_edit_detail_fax_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_opened_number_text_box.clear()
-        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(popened)
-        self.get_asset_detail_edit_detail_opened_number_text_box.send_keys(Keys.TAB)
-        if pschoolnumber is not None:
-            self.get_asset_detail_edit_detail_school_number_text_box.send_keys("")
-            self.get_asset_detail_edit_detail_school_number_text_box.send_keys(pschoolnumber)
-            self.get_asset_detail_edit_detail_school_number_text_box.send_keys(Keys.TAB)
-        if ssize is not None:
-            self.get_asset_detail_edit_detail_school_size_text_box.send_keys("")
-            self.get_asset_detail_edit_detail_school_size_text_box.send_keys(ssize)
-            self.get_asset_detail_edit_detail_school_size_text_box.send_keys(Keys.TAB)
-        self.get_asset_detail_edit_detail_website_text_box.clear()
-        self.get_asset_detail_edit_detail_website_text_box.send_keys(pwebsite)
-        self.get_asset_detail_edit_detail_website_text_box.send_keys(Keys.TAB)
+    def set_value_textbox(self, xpath, value):
+        self.basepage.findElementByXpath(xpath).clear()
+        self.basepage.findElementByXpath(xpath).send_keys(value)
 
     def delete_existing_contact(self):
         """
@@ -2049,7 +2077,7 @@ class AssetPage(BasePageClass):
         """
         self.get_asset_points_of_contact_header.click()
         self.get_asset_add_contact_button.click()
-        WebDriverWait(self.driver,30).until(EC.text_to_be_present_in_element((By.XPATH,
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element((By.XPATH,
                                                   self._assets_points_of_contact_title_locator), "Contact information"))
         self.get_asset_newcontact_firstname_textbox.clear()# Fill all fields.
         self.get_asset_newcontact_firstname_textbox.send_keys(firstname)
@@ -2225,9 +2253,9 @@ class AssetPage(BasePageClass):
         chart_xpath = self.svg_path_1+self.svg_path_2+r"/*[name()='tspan']"
         totalGraphInContainer = self.get_asset_chart_total_graph
         if len(totalGraphInContainer) >= 1:
-            print "Printing chart names..."
+            # print "Printing chart names..."
             for totalGraph in totalGraphInContainer:
-                print "Printing according to the chart wise data..."
+                # print "Printing according to the chart wise data..."
                 if totalGraph.text == "Place type":
                     assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
         else:
