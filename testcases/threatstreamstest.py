@@ -189,6 +189,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
+        sleep(10)
         feed_text_val = self.tstream.get_ts_feeds_list_text_value
         if len(feed_text_val)>=1:
             before_hide_text = (feed_text_val[0].text).encode('utf-8')
@@ -575,6 +576,33 @@ class ThreatStreamTest(BaseTestCase):
             self.assertTrue(text_after_refresh, "The Type value has not been reset.")
         else:
             self.assertFalse(True, "The Type value has not been reset." )
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_20_To_Test_New_Filter_Window_Map_Icon(self):
+        """
+        Test : test_TS_20
+        Description : To verify Type Map icon functionality.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_20")
+        self.tstream.show_advance_info()
+        self.tstream.show_location_options()
+        status = self.tstream.get_ts_filter_create_location_latitude_textbox.is_displayed()
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        sleep(2)
+        if status:
+            self.assertTrue(status, "Location Icon is disabled.")
+        else:
+            self.assertFalse(status, "Location Icon is disabled." )
+
 
     @attr(priority="high")
     #@SkipTest
@@ -1072,3 +1100,260 @@ class ThreatStreamTest(BaseTestCase):
         after_click = self.tstream.get_ts_setting_window_checkbox.get_attribute("class")
         self.tstream.get_ts_setting_window_close_button.click()
         self.assertEqual(before_click, after_click, "Cancel button is not working properly.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_38_To_Test_New_Filter_Assets_Name_Add(self):
+        """
+        Test : test_TS_30
+        Description : To verify Asset name added properly or not.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_38")
+        self.tstream.show_advance_info()
+        self.tstream.get_ts_filter_create_assets_textbox.send_keys("Haystax School")
+        sleep(2)
+        assets_list = self.tstream.get_ts_filter_create_assets_name_list
+        assets_list[0].click()
+        sleep(2)
+        self.tstream.get_ts_filter_create_assets_add_button.click()
+        icon_list = self.tstream.get_ts_filter_create_assets_delete_icon
+        if icon_list[0].is_displayed():
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertTrue(True, "Asset could not be added.")
+        else:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertFalse(True, "Asset Tag could not be added.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_39_To_Test_New_Filter_Assets_Delete(self):
+        """
+        Test : test_TS_39
+        Description : To verify Asset name has beed deleted properly or not.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_39")
+        self.tstream.show_advance_info()
+        self.tstream.get_ts_filter_create_assets_textbox.send_keys("Haystax School")
+        sleep(2)
+        assets_list = self.tstream.get_ts_filter_create_assets_name_list
+        assets_list[0].click()
+        sleep(2)
+        self.tstream.get_ts_filter_create_assets_add_button.click()
+        icon_list = self.tstream.get_ts_filter_create_assets_delete_icon
+        icon_count_before_delete = len(icon_list)
+        icon_list[0].click()
+        icon_list = self.tstream.get_ts_filter_create_assets_delete_icon
+        icon_count_after_delete = len(icon_list)
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        self.assertEqual(icon_count_before_delete, icon_count_after_delete+1, "Asset could not be deleted.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_40_To_Verify_Multiple_Assets_Deleted_Properly(self):
+        """
+        Test : test_TS_40
+        Description : To verify that added assets has been deleted properly. Multiple Assets.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_40")
+        self.tstream.show_advance_info()
+        for num in range(3):
+            self.tstream.get_ts_filter_create_assets_textbox.send_keys("Haystax School")
+            sleep(1)
+            assets_list = self.tstream.get_ts_filter_create_assets_name_list
+            assets_list[0].click()
+            sleep(1)
+            self.tstream.get_ts_filter_create_assets_add_button.click()
+            sleep(2)
+        icon_list = self.tstream.get_ts_filter_create_assets_delete_icon
+        icon_count_before_delete = len(icon_list)
+        for item in icon_list[::-1]:
+            item.click()
+            sleep(2)
+        icon_list = self.tstream.get_ts_filter_create_assets_delete_icon
+        icon_count_after_delete = len(icon_list)
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        self.assertEqual(icon_count_before_delete, icon_count_after_delete+icon_count_before_delete, "Assets could not be deleted.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_41_To_Verify_Locations_Options(self):
+        """
+        Test : test_TS_41
+        Description : To verify that locations options(Latitude, Longitude and Radius) has been added.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        location_value = "77"
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_41")
+        self.tstream.show_advance_info()
+        self.tstream.show_location_options()
+        sleep(1)
+        self.tstream.get_ts_filter_create_location_latitude_textbox.send_keys(location_value)
+        self.tstream.get_ts_filter_create_location_longitude_textbox.send_keys(location_value)
+        self.tstream.get_ts_filter_create_location_radius_textbox.send_keys(location_value)
+        sleep(1)
+        location_text_actual = self.tstream.get_ts_filter_create_location_text.text
+        location_text_expected = 'Lat long: ['+ location_value+', '+location_value+'], radius: '+location_value+' miles'
+        self.tstream.get_ts_filter_create_cancel_button.click()
+        self.assertEqual(location_text_actual, location_text_expected, "Location text are not matching.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_42_To_Verify_Locations_Latitude_With_Invalid_Value(self):
+        """
+        Test : test_TS_42
+        Description : To verify that error message for invalid value of Location Latitude.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_42")
+        self.tstream.show_advance_info()
+        self.tstream.show_location_options()
+        sleep(1)
+        self.tstream.get_ts_filter_create_location_latitude_textbox.send_keys("100")
+        sleep(1)
+        if self.tstream.get_ts_filter_create_location_latitude_error_message.is_displayed():
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertTrue(True, "Error message is not displayed.")
+        else:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertFalse(True, "Error message is not displayed.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_43_To_Verify_Locations_Longitude_With_Invalid_Value(self):
+        """
+        Test : test_TS_43
+        Description : To verify that error message for invalid value of Location Longitude.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_43")
+        self.tstream.show_advance_info()
+        self.tstream.show_location_options()
+        sleep(1)
+        self.tstream.get_ts_filter_create_location_longitude_textbox.send_keys("200")
+        sleep(1)
+        if self.tstream.get_ts_filter_create_location_longitude_error_message.is_displayed():
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertTrue(True, "Error message is not displayed.")
+        else:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertFalse(True, "Error message is not displayed.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_44_To_Verify_Locations_Radius_With_Invalid_Value(self):
+        """
+        Test : test_TS_44
+        Description : To verify that error message for invalid value of Location Radius.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_44")
+        self.tstream.show_advance_info()
+        self.tstream.show_location_options()
+        sleep(1)
+        self.tstream.get_ts_filter_create_location_radius_textbox.send_keys("abc")
+        sleep(1)
+        if self.tstream.get_ts_filter_create_location_radius_error_message.is_displayed():
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertTrue(True, "Error message is not displayed.")
+        else:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertFalse(True, "Error message is not displayed.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_45_To_Verify_New_Filter_Advance_Link(self):
+        """
+        Test : test_TS_45
+        Description : To verify that Advance link is working.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.get_ts_threat_dropdown_filter.click()
+        sleep(2)#required to update dropdown menu
+        self.tstream.get_ts_threat_dropdown_addnew_filter.click()
+        WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH, \
+                                                                         self.tstream._ts_filter_create_title_locator)))
+        self.tstream.get_ts_filter_create_name_textbox.send_keys("New_Filter_TC_45")
+        self.tstream.show_advance_info()
+        visibility_display_status = self.tstream.get_ts_filter_create_visibility_dropdown_arrow.is_displayed()
+        location_display_status = self.tstream.get_ts_filter_create_location_icon.is_displayed()
+        if visibility_display_status and location_display_status:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertTrue(True, "Advance Link is not working.")
+        else:
+            self.tstream.get_ts_filter_create_cancel_button.click()
+            self.assertFalse(False, "Advance Link is not working.")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_TS_46_To_Verify_Dashboard_Link(self):
+        """
+        Test : test_TS_45
+        Description : To verify that Dashboard link is working.
+        Revision:
+        Author : Bijesh
+        :return: None
+        """
+        self.tstream.show_dashboard_info()
+        sleep(1)
+        document_graph_status = self.tstream.get_ts_dashboard_document_graph.is_displayed()
+        rss_graph_status = self.tstream.get_ts_dashboard_rss_graph.is_displayed()
+        twitter_graph_status = self.tstream.get_ts_dashboard_twitter_graph.is_displayed()
+        if document_graph_status and rss_graph_status and twitter_graph_status:
+            self.assertTrue(True, "Dashboard does not displays all graphs.")
+        else:
+            self.assertFalse(True, "Dashboard does not displays all graphs.")
