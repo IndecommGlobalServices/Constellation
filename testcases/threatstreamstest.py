@@ -425,7 +425,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_filter_create_phrases_textbox.send_keys("gun")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
         sleep(2)
-        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("love")
+        self.tstream.get_ts_filter_create_phrases_textbox.send_keys("kill")
         self.tstream.get_ts_filter_create_phrases_add_button.click()
         sleep(2)
         self.tstream.get_ts_filter_create_save_button.click()
@@ -434,8 +434,8 @@ class ThreatStreamTest(BaseTestCase):
         sleep(20) #Required to update feeds in new filter window.
         feed_text_val = self.tstream.get_ts_feeds_list_text_value
         counter1 = counter2 = 0
-        if len(feed_text_val)>10:
-            loop_count = 10
+        if len(feed_text_val)>15:
+            loop_count = 15
         else:
             loop_count = len(feed_text_val)
         for num in range(loop_count):
