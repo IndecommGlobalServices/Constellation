@@ -59,6 +59,20 @@ class ThreatStreamPage(BasePageClass):
     _ts_filter_create_confirm_cancel_button_locator = "//div[contains(@class,'leftcolumn')]//button[contains(@ng-click,'cancel_filter_delete')]"
     _ts_filter_create_advance_link_locator = "//div[contains(@class,'leftcolumn')]//label/span[contains(text(), 'Advanced')]"
     _ts_filter_create_advance_filter_check = ".//div[contains(@class,'leftcolumn')]//div[@ng-show='showAdvancedFilters']"
+    _ts_filter_create_location_icon_locator = "//div[contains(@class,'leftcolumn')]//div[label='Location']//img"
+    _ts_filter_create_location_icon_check = "//div[contains(@class,'leftcolumn')]//div[contains(@class, 'location-show-hide ng-hide')]"
+    _ts_filter_create_location_latitude_textbox_locator = "//div[contains(@class,'leftcolumn')]//label[contains(text(),'Latitude')]/following-sibling::input"
+    _ts_filter_create_location_latitude_error_message_locator = "//div[contains(@class,'leftcolumn')]//span[contains(@ng-show,'form_filter_edit.latitude')]/small"
+    _ts_filter_create_location_longitude_textbox_locator = "//div[contains(@class,'leftcolumn')]//label[contains(text(),'Longitude')]/following-sibling::input"
+    _ts_filter_create_location_longitude_error_message_locator = "//div[contains(@class,'leftcolumn')]//span[contains(@ng-show,'form_filter_edit.longitude')]/small"
+    _ts_filter_create_location_radius_textbox_locator = "//div[contains(@class,'leftcolumn')]//label[contains(text(),'Radius')]/following-sibling::input"
+    _ts_filter_create_location_radius_error_message_locator = "//div[contains(@class,'leftcolumn')]//span[contains(@ng-show,'form_filter_edit.radius')]/small"
+    _ts_filter_create_location_text_locator = "//div[contains(@class,'leftcolumn')]//span[contains(@class,'smalllocationtext')]"
+    _ts_filter_create_assets_textbox_locator = "//div[contains(@class,'leftcolumn')]//label[contains(text(),'Assets')]/following-sibling::typeahead/div/input"
+    _ts_filter_create_assets_add_button_locator = "//div[contains(@class,'leftcolumn')]//label[contains(text(),'Assets')]/following-sibling::button"
+    _ts_filter_create_assets_delete_icon_locator = "//div[contains(@class,'leftcolumn')]//a[contains(@ng-click,'deleteAsset')]"
+    _ts_filter_create_assets_name_list_locator = "//div[contains(@class,'leftcolumn')]//label[contains(text(),'Assets')]/following-sibling::typeahead//li"
+
 
     #Twitter or RSS/ATOM content locator
     _ts_feeds_list_locator = "//div[contains(@class,'leftcolumn')]//ul[contains(@class,'squintems')]//li"
@@ -92,8 +106,11 @@ class ThreatStreamPage(BasePageClass):
     #Settings Locator
     #_ts_settings_link_locator = "//img[contains(@alt,'Settings')]"
 
-
-
+    #Dashboard Locators
+    _ts_dashboard_link_locator = "//img[@title='Dashboard']"
+    _ts_dashboard_document_graph_locator = "//span[@id='dynamicsparklinetotal']"
+    _ts_dashboard_rss_graph_locator = "//span[@id='dynamicsparklinerss']"
+    _ts_dashboard_twitter_graph_locator = "//span[@id='dynamicsparklinetwitter']"
 
     @property
     def get_ts_app_name(self):
@@ -362,7 +379,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_filter_create_phrases_add_button_locator)
         except Exception, err:
             raise type(err)("Filter create window Phrases Add button is not available - " \
-                          + self._ts_filter_create_phrases_add_button_locator  + err.message)
+                          + self._ts_filter_create_phrases_add_button_locator + err.message)
 
     @property
     def get_ts_filter_create_phrases_delete_icon(self):
@@ -370,7 +387,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_elements_by_xpath(self._ts_filter_create_phrases_delete_icon_locator)
         except Exception, err:
             raise type(err)("Filter create window Phrases delete icon is not available - " \
-                          + self._ts_filter_create_phrases_delete_icon_locator  + err.message)
+                          + self._ts_filter_create_phrases_delete_icon_locator + err.message)
 
     @property
     def get_ts_filter_create_save_button(self):
@@ -378,7 +395,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_filter_create_save_button_locator)
         except Exception, err:
             raise type(err)("Filter create window Save button is not available - " \
-                          + self._ts_filter_create_save_button_locator  + err.message)
+                          + self._ts_filter_create_save_button_locator + err.message)
 
     @property
     def get_ts_filter_create_cancel_button(self):
@@ -386,7 +403,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_filter_create_cancel_button_locator)
         except Exception, err:
             raise type(err)("Filter create window Cancel button is not available - " \
-                          + self._ts_filter_create_cancel_button_locator  + err.message)
+                          + self._ts_filter_create_cancel_button_locator + err.message)
 
     @property
     def get_ts_filter_create_delete_button(self):
@@ -394,7 +411,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_filter_create_delete_button_locator)
         except Exception, err:
             raise type(err)("Filter create window Delete button is not available - " \
-                          + self._ts_filter_create_delete_button_locator  + err.message)
+                          + self._ts_filter_create_delete_button_locator + err.message)
 
     @property
     def get_ts_filter_create_confirm_delete_button(self):
@@ -402,7 +419,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_filter_create_confirm_delete_button_locator)
         except Exception, err:
             raise type(err)("Filter create Delete confirm window's Delete button is not available - " \
-                          + self._ts_filter_create_confirm_delete_button_locator  + err.message)
+                          + self._ts_filter_create_confirm_delete_button_locator + err.message)
 
     @property
     def get_ts_filter_create_confirm_cancel_button(self):
@@ -410,23 +427,127 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_filter_create_confirm_cancel_button_locator)
         except Exception, err:
             raise type(err)("Filter create Delete confirm window's Cancel button is not available - " \
-                          + self._ts_filter_create_confirm_cancel_button_locator  + err.message)
+                          + self._ts_filter_create_confirm_cancel_button_locator + err.message)
 
     @property
-    def get_ts_filter_create_advance_link (self):
+    def get_ts_filter_create_advance_link(self):
         try:
             return self.driver.find_element_by_xpath(self._ts_filter_create_advance_link_locator)
         except Exception, err:
             raise type(err)("Filter create Advanced link is not available - " \
-                          + self._ts_filter_create_advance_link_locator  + err.message)
+                          + self._ts_filter_create_advance_link_locator + err.message)
 
     @property
-    def get_ts_filter_create_advance_filter_check (self):
+    def get_ts_filter_create_advance_filter_check(self):
         try:
             return self.driver.find_element_by_xpath(self._ts_filter_create_advance_filter_check)
         except Exception, err:
-            raise type(err)("Filter create Advanced link is not available - " \
-                          + self._ts_filter_create_advance_filter_check  + err.message)
+            raise type(err)("Filter create Advanced options are not available - " \
+                          + self._ts_filter_create_advance_filter_check + err.message)
+
+    @property
+    def get_ts_filter_create_location_icon(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_icon_locator)
+        except Exception, err:
+            raise type(err)("Filter create location option are not available - " \
+                          + self._ts_filter_create_location_icon_locator + err.message)
+
+    @property
+    def get_ts_filter_create_location_icon_check(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_icon_check)
+        except Exception, err:
+            raise type(err)("Filter create location icon is not available - " \
+                          + self._ts_filter_create_location_icon_check + err.message)
+
+    @property
+    def get_ts_filter_create_location_latitude_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_latitude_textbox_locator)
+        except Exception, err:
+            raise type(err)("Filter create location latitude textbox is not available - " \
+                          + self._ts_filter_create_location_latitude_textbox_locator + err.message)
+
+    @property
+    def get_ts_filter_create_location_latitude_error_message(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_latitude_error_message_locator)
+        except Exception, err:
+            raise type(err)("Filter create location latitude error message is not available - " \
+                          + self._ts_filter_create_location_latitude_error_message_locator + err.message)
+
+    @property
+    def get_ts_filter_create_location_longitude_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_longitude_textbox_locator)
+        except Exception, err:
+            raise type(err)("Filter create location longitude textbox is not available - " \
+                          + self._ts_filter_create_location_longitude_textbox_locator + err.message)
+
+    @property
+    def get_ts_filter_create_location_longitude_error_message(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_longitude_error_message_locator)
+        except Exception, err:
+            raise type(err)("Filter create location longitude error message is not available - " \
+                          + self._ts_filter_create_location_longitude_error_message_locator + err.message)
+
+    @property
+    def get_ts_filter_create_location_radius_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_radius_textbox_locator)
+        except Exception, err:
+            raise type(err)("Filter create location Radius textbox is not available - " \
+                          + self._ts_filter_create_location_radius_textbox_locator + err.message)
+
+    @property
+    def get_ts_filter_create_location_radius_error_message(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_radius_error_message_locator)
+        except Exception, err:
+            raise type(err)("Filter create location radius error message is not available - " \
+                          + self._ts_filter_create_location_radius_error_message_locator + err.message)
+
+    @property
+    def get_ts_filter_create_location_text(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_location_text_locator)
+        except Exception, err:
+            raise type(err)("Filter create location longitude textbox is not available - " \
+                          + self._ts_filter_create_location_text_locator + err.message)
+
+    @property
+    def get_ts_filter_create_assets_textbox(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_assets_textbox_locator)
+        except Exception, err:
+            raise type(err)("Filter create Assets textbox is not available - " \
+                          + self._ts_filter_create_assets_textbox_locator + err.message)
+
+    @property
+    def get_ts_filter_create_assets_add_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_filter_create_assets_add_button_locator)
+        except Exception, err:
+            raise type(err)("Filter create Assets textbox is not available - " \
+                          + self._ts_filter_create_assets_add_button_locator + err.message)
+
+    @property
+    def get_ts_filter_create_assets_delete_icon(self):
+        try:
+            return self.driver.find_elements_by_xpath(self._ts_filter_create_assets_delete_icon_locator)
+        except Exception, err:
+            raise type(err)("Filter create Assets textbox is not available - " \
+                          + self._ts_filter_create_assets_delete_icon_locator + err.message)
+
+    @property
+    def get_ts_filter_create_assets_name_list(self):
+        try:
+            return self.driver.find_elements_by_xpath(self._ts_filter_create_assets_name_list_locator)
+        except Exception, err:
+            raise type(err)("Filter create Assets name list is not available - " \
+                          + self._ts_filter_create_assets_name_list_locator + err.message)
 
     @property
     def get_ts_feeds_list(self):
@@ -434,7 +555,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_elements_by_xpath(self._ts_feeds_list_locator)
         except Exception, err:
             raise type(err)("In feed Detail link is not available - "
-                          + self._ts_feeds_list_locator  + err.message)
+                          + self._ts_feeds_list_locator + err.message)
 
     @property
     def get_ts_feeds_list_text_value(self):
@@ -442,7 +563,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_elements_by_xpath(self._ts_feeds_list_text_locator)
         except Exception, err:
             raise type(err)("In feed Detail link is not available - "
-                          + self._ts_feeds_list_text_locator  + err.message)
+                          + self._ts_feeds_list_text_locator + err.message)
 
     @property
     def get_ts_feed_data_details_link(self):
@@ -450,7 +571,8 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_elements_by_xpath(self._ts_feed_data_details_link_locator)
         except Exception, err:
             raise type(err)("In feed Detail link is not available - "
-                          + self._ts_feed_data_details_link_locator  + err.message)
+                          + self._ts_feed_data_details_link_locator + err.message)
+
     @property
     def get_ts_feed_data_important_button(self):
         try:
@@ -480,7 +602,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_feed_email_window_title_locator)
         except Exception, err:
             raise type(err)("Email share window title is not available - " \
-                          + self._ts_feed_email_window_title_locator  + err.message)
+                          + self._ts_feed_email_window_title_locator + err.message)
 
     @property
     def get_ts_feed_email_window_email_textbox(self):
@@ -488,14 +610,15 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_feed_email_window_email_textbox_locator)
         except Exception, err:
             raise type(err)("Email share window Email text box is not available - " \
-                          + self._ts_feed_email_window_email_textbox_locator  + err.message)
+                          + self._ts_feed_email_window_email_textbox_locator + err.message)
+
     @property
     def get_ts_feed_email_window_comment_textbox(self):
         try:
             return self.driver.find_element_by_xpath(self._ts_feed_email_window_comment_textbox_locator)
         except Exception, err:
             raise type(err)("Email share window Comment text box is not available - " \
-                          + self._ts_feed_email_window_comment_textbox_locator  + err.message)
+                          + self._ts_feed_email_window_comment_textbox_locator + err.message)
 
     @property
     def get_ts_feed_email_window_send_button(self):
@@ -503,7 +626,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_feed_email_window_send_button_locator)
         except Exception, err:
             raise type(err)("Email share window Send button is not available - " \
-                          + self._ts_feed_email_window_send_button_locator  + err.message)
+                          + self._ts_feed_email_window_send_button_locator + err.message)
 
     @property
     def get_ts_feed_email_window_cancel_button(self):
@@ -511,7 +634,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_feed_email_window_cancel_button_locator)
         except Exception, err:
             raise type(err)("Email share window Cancel button is not available - " \
-                          + self._ts_feed_email_window_cancel_button_locator  + err.message)
+                          + self._ts_feed_email_window_cancel_button_locator + err.message)
 
     @property
     def get_ts_manage_feeds_link(self):
@@ -519,7 +642,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_link_locator)
         except Exception, err:
             raise type(err)("Manage Feeds Link is not available - " \
-                          + self._ts_manage_feeds_link_locator  + err.message)
+                          + self._ts_manage_feeds_link_locator + err.message)
 
     @property
     def get_ts_manage_feeds_filter_type_drop_down_arrow(self):
@@ -527,7 +650,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_filter_type_drop_down_locator)
         except Exception, err:
             raise type(err)("Manage Feeds Drop Down Filter Arrow is not available - " \
-                          + self._ts_manage_feeds_filter_type_drop_down_locator  + err.message)
+                          + self._ts_manage_feeds_filter_type_drop_down_locator + err.message)
 
     @property
     def get_ts_manage_feeds_type_dropdown_rss_atom_menu_item(self):
@@ -535,7 +658,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_type_dropdown_rss_atom_locator)
         except Exception, err:
             raise type(err)("Manage feeds drop down Rss/Atom menu item is not available - " \
-                          + self._ts_manage_feeds_type_dropdown_rss_atom_locator  + err.message)
+                          + self._ts_manage_feeds_type_dropdown_rss_atom_locator + err.message)
 
     @property
     def get_ts_manage_feeds_type_dropdown_rss_atom_off_menu_item(self):
@@ -543,7 +666,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_type_dropdown_rss_atom_off_locator)
         except Exception, err:
             raise type(err)("Manage feeds drop down Rss/Atom-Off menu item is not available - " \
-                          + self._ts_manage_feeds_type_dropdown_rss_atom_off_locator  + err.message)
+                          + self._ts_manage_feeds_type_dropdown_rss_atom_off_locator + err.message)
 
     @property
     def get_ts_manage_feeds_type_dropdown_twitter_menu_item(self):
@@ -551,7 +674,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_type_dropdown_twitter_locator)
         except Exception, err:
             raise type(err)("Manage feeds drop down Twitter menu item is not available - " \
-                          + self._ts_manage_feeds_type_dropdown_twitter_locator  + err.message)
+                          + self._ts_manage_feeds_type_dropdown_twitter_locator + err.message)
 
     @property
     def get_ts_manage_feeds_filter_type_text(self):
@@ -559,7 +682,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_filter_type_text_locator)
         except Exception, err:
             raise type(err)("Manage feeds filter text is not available - " \
-                          + self._ts_manage_feeds_filter_type_text_locator  + err.message)
+                          + self._ts_manage_feeds_filter_type_text_locator + err.message)
 
     @property
     def get_ts_manage_feeds_reset_filter(self):
@@ -567,7 +690,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_reset_filters_locator)
         except Exception, err:
             raise type(err)("Manage feeds reset filter button is not available - " \
-                          + self._ts_manage_feeds_reset_filters_locator  + err.message)
+                          + self._ts_manage_feeds_reset_filters_locator + err.message)
 
     @property
     def get_ts_manage_feeds_search_feeds_textbox(self):
@@ -575,7 +698,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_search_feeds_locator)
         except Exception, err:
             raise type(err)("Manage feeds reset filter button is not available - " \
-                          + self._ts_manage_feeds_search_feeds_locator  + err.message)
+                          + self._ts_manage_feeds_search_feeds_locator + err.message)
 
     @property
     def get_ts_manage_feeds_search_feeds_textbox(self):
@@ -583,7 +706,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_search_feeds_locator)
         except Exception, err:
             raise type(err)("Manage feeds search feeds filter is not available - " \
-                          + self._ts_manage_feeds_search_feeds_locator  + err.message)
+                          + self._ts_manage_feeds_search_feeds_locator + err.message)
 
     @property
     def get_ts_manage_feeds_app_text(self):
@@ -591,7 +714,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_manage_feeds_app_text_locator)
         except Exception, err:
             raise type(err)("Manage feeds app text button is not available - " \
-                          + self._ts_manage_feeds_app_text_locator  + err.message)
+                          + self._ts_manage_feeds_app_text_locator + err.message)
 
     @property
     def get_ts_threat_streams_link(self):
@@ -599,7 +722,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_threat_streams_link_locator)
         except Exception, err:
             raise type(err)("Manage feeds app text button is not available - " \
-                          + self._ts_threat_streams_link_locator  + err.message)
+                          + self._ts_threat_streams_link_locator + err.message)
 
     @property
     def get_ts_settings_window_title(self):
@@ -607,7 +730,7 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_element_by_xpath(self._ts_setting_window_title_locator)
         except Exception, err:
             raise type(err)("Settings Window Title is not available - " \
-                          + self._ts_setting_window_title_locator  + err.message)
+                          + self._ts_setting_window_title_locator + err.message)
 
     @property
     def get_ts_manage_feeds_texts_list(self):
@@ -615,7 +738,39 @@ class ThreatStreamPage(BasePageClass):
             return self.driver.find_elements_by_xpath(self._ts_manage_feeds_text_locator)
         except Exception, err:
             raise type(err)("Search feeds text are not available - " \
-                          + self._ts_manage_feeds_text_locator  + err.message)
+                          + self._ts_manage_feeds_text_locator + err.message)
+
+    @property
+    def get_ts_dashboard_link(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_dashboard_link_locator)
+        except Exception, err:
+            raise type(err)("Dashboard link is  not available - " + self._ts_dashboard_link_locator + err.message)
+
+    @property
+    def get_ts_dashboard_document_graph(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_dashboard_document_graph_locator)
+        except Exception, err:
+            raise type(err)("Dashboard document graph is not available - " \
+                            + self._ts_dashboard_document_graph_locator + err.message)
+
+    @property
+    def get_ts_dashboard_rss_graph(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_dashboard_rss_graph_locator)
+        except Exception, err:
+            raise type(err)("Dashboard rss graph is not available - " \
+                            + self._ts_dashboard_rss_graph_locator + err.message)
+
+    @property
+    def get_ts_dashboard_twitter_graph(self):
+        try:
+            return self.driver.find_element_by_xpath(self._ts_dashboard_twitter_graph_locator)
+        except Exception, err:
+            raise type(err)("Dashboard twitter graph is not available - " \
+                            + self._ts_dashboard_twitter_graph_locator + err.message)
+
 
     def get_ts_new_filter_name(self, file_name):
         xpath = "//div[contains(@class,'leftcolumn')]//a[contains(text(),'"+str(file_name)+"')]"
@@ -645,6 +800,18 @@ class ThreatStreamPage(BasePageClass):
             sleep(1)
             if "ng-hide" in self.get_ts_filter_create_advance_filter_check.get_attribute("class"):
                 self.get_ts_filter_create_advance_link.click()
+                sleep(1)
+
+    def show_location_options(self):
+            sleep(1)
+            if "ng-hide" in self.get_ts_filter_create_location_icon_check.get_attribute("class"):
+                self.get_ts_filter_create_location_icon.click()
+                sleep(1)
+
+    def show_dashboard_info(self):
+        sleep(1)
+        if "toggle-off" in self.get_ts_dashboard_link.get_attribute("class"):
+                self.get_ts_dashboard_link.click()
                 sleep(1)
 
     def return_to_apps_main_page(self):
