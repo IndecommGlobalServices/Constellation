@@ -32,7 +32,7 @@ class ThreatStreamTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     @attr(status='smoke')
-    def test_threatsstream_smokde(self):
+    def test_threatsstream_smoke(self):
         self.assertTrue(self.tstream.get_ts_threat_dropdown_filter.is_displayed(), "Dropdown filter not available")
 
 
@@ -149,7 +149,7 @@ class ThreatStreamTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
         detail_links = self.tstream.get_ts_feed_data_details_link
-        if len(detail_links)>=1:
+        if len(detail_links) >= 1:
             detail_links[0].click()
             important_list = self.tstream.get_ts_feed_data_important_button
             button_text = (important_list[0].text).encode('utf-8')
@@ -189,7 +189,7 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_threat_dropdown_trendinglastday_filter.click()
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element((By.XPATH, \
                                                 self.tstream._ts_threat_filter_name_text_locator),"Trending Last Day"))
-        sleep(10)
+        sleep(2)
         feed_text_val = self.tstream.get_ts_feeds_list_text_value
         if len(feed_text_val)>=1:
             before_hide_text = (feed_text_val[0].text).encode('utf-8')

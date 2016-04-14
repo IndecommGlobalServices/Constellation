@@ -2259,8 +2259,8 @@ class AssetPage(BasePageClass):
                 if totalGraph.text == "Place type":
                     assets = totalGraph.find_elements_by_xpath(str(chart_xpath))
         else:
-            #pass
-            print "No chart found at place and type level."
+            pass
+            #print "No chart found at place and type level."
 
     def school_related_charts_School_Is_Selected(self):
         """
