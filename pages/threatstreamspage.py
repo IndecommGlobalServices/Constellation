@@ -60,7 +60,7 @@ class ThreatStreamPage(BasePageClass):
     _ts_filter_create_advance_link_locator = "//div[contains(@class,'leftcolumn')]//label/span[contains(text(), 'Advanced')]"
     _ts_filter_create_advance_filter_check = ".//div[contains(@class,'leftcolumn')]//div[@ng-show='showAdvancedFilters']"
     _ts_filter_create_location_icon_locator = "//div[contains(@class,'leftcolumn')]//div[label='Location']//img"
-    _ts_filter_create_location_icon_check = "//div[contains(@class,'leftcolumn')]//div[contains(@class, 'location-show-hide ng-hide')]"
+    _ts_filter_create_location_icon_check = "//div[contains(@class,'leftcolumn')]//div[contains(@class, 'location-show-hide')]"
     _ts_filter_create_location_latitude_textbox_locator = "//div[contains(@class,'leftcolumn')]//label[contains(text(),'Latitude')]/following-sibling::input"
     _ts_filter_create_location_latitude_error_message_locator = "//div[contains(@class,'leftcolumn')]//span[contains(@ng-show,'form_filter_edit.latitude')]/small"
     _ts_filter_create_location_longitude_textbox_locator = "//div[contains(@class,'leftcolumn')]//label[contains(text(),'Longitude')]/following-sibling::input"
@@ -458,7 +458,7 @@ class ThreatStreamPage(BasePageClass):
         try:
             return self.driver.find_element_by_xpath(self._ts_filter_create_location_icon_check)
         except Exception, err:
-            raise type(err)("Filter create location icon is not available - " \
+            raise type(err)("Filter create location check not is not available - " \
                           + self._ts_filter_create_location_icon_check + err.message)
 
     @property
@@ -804,7 +804,7 @@ class ThreatStreamPage(BasePageClass):
 
     def show_location_options(self):
             sleep(1)
-            if "ng-hide" in self.get_ts_filter_create_location_icon_check.get_attribute("class"):
+            if " ng-hide" in self.get_ts_filter_create_location_icon_check.get_attribute("class"):
                 self.get_ts_filter_create_location_icon.click()
                 sleep(1)
 
