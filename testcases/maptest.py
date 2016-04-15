@@ -8,7 +8,11 @@ from pages.mappage import MapPage
 from time import sleep
 from selenium.webdriver.common.action_chains import ActionChains
 from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 from selenium.webdriver.common.keys import Keys
+from random import randint
+
+from selenium.common.exceptions import NoSuchElementException
 
 class MapPageTest(BaseTestCase):
 
@@ -42,6 +46,7 @@ class MapPageTest(BaseTestCase):
 
     # All maps in one test case
     @attr(priority="high")
+    #@SkipTest
     def test_map_01_05_to_verify_all_maps(self):
         try:
 
@@ -63,6 +68,7 @@ class MapPageTest(BaseTestCase):
             raise
 
     @attr(priority="high")
+    #@SkipTest
     def test_map_06_to_verify_Default_Map_View_Based_On_Assets(self):
         try:
             self.driver.refresh()
@@ -404,4 +410,68 @@ class MapPageTest(BaseTestCase):
             print e
             raise
 
-    
+    @attr(priority="high")
+    #@SkipTest
+    def test_map_14_to_verify_tag_is_added_in_manage_filter(self):
+        try:
+            self.mappage.manage_filter_tags()
+            new_asset_tag = self.mappage.get_map_tag_add_textbox
+            self.assertTrue(new_asset_tag.is_displayed())
+            add_button = self.mappage.get_map_tag_add_button
+            self.assertTrue(add_button.is_displayed())
+
+            # Enter text inside "Add a tag by using random value"
+            tag_name = "Dallas" #+ str(randint(0000,9999))
+            new_asset_tag.send_keys(tag_name)
+
+            # Click on Add Tag
+            add_button.click()
+            sleep(5)
+
+            tag_name = "lowa" #+ str(randint(0000,9999))
+            new_asset_tag.send_keys(tag_name)
+
+            # Click on Add Tag
+            add_button.click()
+            sleep(5)
+
+            # Verify added tag
+            last_element = self.mappage.get_map_tag_last_element.text
+            self.assertEqual(tag_name.strip(),last_element.strip(), "Tag not added.")
+            self.mappage.manage_filter_save()
+
+        except Exception as e:
+            print e
+            raise
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_map_15_to_verify_tag_is_deleted_in_manage_filter(self):
+        try:
+            self.mappage.manage_filter_tags()
+            new_asset_tag = self.mappage.get_map_tag_add_textbox
+            self.assertTrue(new_asset_tag.is_displayed())
+            add_button = self.mappage.get_map_tag_add_button
+            self.assertTrue(add_button.is_displayed())
+            tag_total_count = self.mappage.get_map_tag_total_count
+            print "Found before delete " + str(len(tag_total_count)) + " tag"
+            if tag_total_count >= 1:
+                last_element = self.mappage.get_map_tag_last_element.text
+                sleep(2)
+                last_element_delete = self.mappage.get_map_tag_last_element_delete
+                last_element_delete.click()
+                print "Tag " + last_element + " deleted successfully."
+            else:
+                print "No Tags found to delete."
+
+            tag_total_count1 = self.mappage.get_map_tag_total_count
+            print "Found after delete " + str(len(tag_total_count1)) + " tag"
+
+            self.assertNotEqual(tag_total_count, tag_total_count1, "count are same." )
+
+            # Click on Save
+            self.mappage.manage_filter_save()
+
+        except Exception as e:
+            print e
+            raise

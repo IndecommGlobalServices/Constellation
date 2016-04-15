@@ -69,7 +69,113 @@ class MapPage(BasePageClass):
     _map_404 = ".//*[@id='error_modal' and @hide-modal='' and @aria-hidden='false']"
     _map_404_close = ".//*[@id='error_modal']/div/div/form/div[2]/button"
 
+    # Manage Filter - Tag related
+    _map_manage_filter = "//img[@alt='Manage filters']"
+    _map_filter_dialog_title = "//*[@id='map_filters_modal']/div/div/div/h4"
+    _map_filter_title_closed_arrow = "//span[@class='filtertitle closed']"
+    _map_Add_a_tag = "name"
+    _map_add_button = ".//*[@id='map_filters_modal']/div/div/form/div[1]/div[2]/div[2]/div/button"
+    _map_tag_total_count = ".//*[@id='map_filters_modal']/div/div/form/div[1]/div[2]/div[2]/div/span"
+    _map_tag_last_element = "//*[@id='map_filters_modal']/div/div/form/div[1]/div[2]/div[2]/div/span[last()]"
+    _map_filter_title_open_arrow = "//span[@class='filtertitle open']"
+    _map_save_tag_options = "//*[@id='map_filters_modal']/div/div/form/div[2]/button[2]"
+    _map_last_element_delete = "//*[@id='map_filters_modal']/div/div/form/div[1]/div[2]/div[2]/div/span[last()]/span/a/img"
 
+
+
+    @property
+    def get_map_tag_last_element_delete(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_last_element_delete)))
+            return self.driver.find_element_by_xpath(self._map_last_element_delete)
+        except Exception, err:
+            raise type(err)("Delete tag - searched XPATH - " + self._map_last_element_delete + err.message)
+
+
+    @property
+    def get_map_tag_save(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_save_tag_options)))
+            return self.driver.find_element_by_xpath(self._map_save_tag_options)
+        except Exception, err:
+            raise type(err)("Save tag - searched XPATH - " + self._map_save_tag_options + err.message)
+
+
+    @property
+    def get_map_tag_open_arrow(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_filter_title_open_arrow)))
+            return self.driver.find_element_by_xpath(self._map_filter_title_open_arrow)
+        except Exception, err:
+            raise type(err)("Filter Title open arrow  - searched XPATH - " + self._map_filter_title_open_arrow + err.message)
+
+
+    @property
+    def get_map_tag_last_element(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_tag_last_element)))
+            return self.driver.find_element_by_xpath(self._map_tag_last_element)
+        except Exception, err:
+            raise type(err)("Tag last element - searched XPATH - " + self._map_tag_last_element + err.message)
+
+
+    @property
+    def get_map_tag_total_count(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_tag_total_count)))
+            return self.driver.find_elements_by_xpath(self._map_tag_total_count)
+        except Exception, err:
+            raise type(err)("Total Tag count - searched XPATH - " + self._map_tag_total_count + err.message)
+
+    @property
+    def get_map_tag_add_button(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_add_button)))
+            return self.driver.find_element_by_xpath(self._map_add_button)
+        except Exception, err:
+            raise type(err)("Add button - searched XPATH - " + self._map_add_button + err.message)
+
+    @property
+    def get_map_tag_add_textbox(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.NAME, self._map_Add_a_tag)))
+            return self.driver.find_element_by_name(self._map_Add_a_tag)
+        except Exception, err:
+            raise type(err)("Add a tag  - searched NAME - " + self._map_Add_a_tag + err.message)
+
+    @property
+    def get_map_tag_closed_arrow(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_filter_title_closed_arrow)))
+            return self.driver.find_element_by_xpath(self._map_filter_title_closed_arrow)
+        except Exception, err:
+            raise type(err)("Filter Closed Arrow - searched XPATH - " + self._map_filter_title_closed_arrow + err.message)
+
+    @property
+    def get_map_filter_dialog_title(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_filter_dialog_title)))
+            return self.driver.find_element_by_xpath(self._map_filter_dialog_title)
+        except Exception, err:
+            raise type(err)("Filter Dialog Title - searched XPATH - " + self._map_filter_dialog_title + err.message)
+
+    @property
+    def get_map_manage_filter(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
+                (By.XPATH, self._map_manage_filter)))
+            return self.driver.find_element_by_xpath(self._map_manage_filter)
+        except Exception, err:
+            raise type(err)("Manage Filter - searched XPATH - " + self._map_manage_filter + err.message)
 
     @property
     def get_map_404(self):
@@ -482,3 +588,30 @@ class MapPage(BasePageClass):
         basepage.accessURL()
         iconlistpage = IconListPage(self.driver)
         iconlistpage.click_map_icon()
+
+    def manage_filter_tags(self):
+        self.driver.refresh()
+        sleep(10)
+
+        # Click on Manage Filter
+        #get Manage filters
+        manage_filters = self.get_map_manage_filter
+        # Click on Manage Filter to open the dialog
+        manage_filters.click()
+
+        # Click on Tag, small arrow
+        filter_title_closed = self.get_map_tag_closed_arrow
+        if filter_title_closed.is_displayed():
+            filter_title_closed.click()
+        else :
+            pass
+
+
+
+    def manage_filter_save(self):
+        #Before saving click on small arrow, to close the tag dropdown
+        filter_title_open = self.get_map_tag_open_arrow
+        filter_title_open.click()
+        #click on Save button
+        save_tag_options = self.get_map_tag_save
+        save_tag_options.click()
