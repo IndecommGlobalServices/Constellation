@@ -472,6 +472,7 @@ class MapPageTest(BaseTestCase):
             # Click on Save
             self.mappage.manage_filter_save()
 
+
         except Exception as e:
             print e
             raise
