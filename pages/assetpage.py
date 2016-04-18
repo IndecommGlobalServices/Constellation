@@ -2037,6 +2037,7 @@ class AssetPage(BasePageClass):
                 for i in asset_list:
                     if i.text == asset_name1:
                         i.click()
+                        sleep(5)#Mandatory. Asset page is taking more time to load.
                         break
             else:
                 sleep(4)
