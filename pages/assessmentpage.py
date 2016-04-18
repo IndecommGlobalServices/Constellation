@@ -72,7 +72,7 @@ class AssessmentPage(BasePageClass):
     _ast_create_end_date_text_box_locator = ".//*[@id='datetimepicker']//div//input[@id='create_multi_assessment_datepicker-02']"
     _ast_create_assignedto_text_box_locator = "//span//input[contains(@placeholder,'Email address')]"
     _ast_create_assignedto_button_locator = "//button[contains(text(), 'Assign')]"
-    _ast_create_asset_text_box_locator = "//input[@placeholder= 'Name']"
+    _ast_create_asset_text_box_locator = "//input[contains(@placeholder, 'Start typing the asset name here')]"
     _ast_create_asset_add_button_locator = "//button[contains(text(), 'Add')]"
     _ast_create_assessments_cancel_button_locator = "//div[@id='assessment_create_modal']/descendant::button[contains(text(), 'Cancel')]"
     _ast_create_assessments_save_button_locator = "//div[@id='assessment_create_modal']/descendant::button[contains(text(), 'Save')]"
