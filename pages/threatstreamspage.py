@@ -833,6 +833,8 @@ class ThreatStreamPage(BasePageClass):
 
     def __init__(self, driver):
         super(ThreatStreamPage, self).__init__(driver)
+
+    def logintoapp(self):
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()
         # self.username = loginpage.usernameText

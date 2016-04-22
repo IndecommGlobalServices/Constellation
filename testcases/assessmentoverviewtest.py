@@ -22,6 +22,7 @@ class AssessmentOverviewPageTest(BaseTestCase):
         cls.config = ConfigParser.ConfigParser()
         cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
+        cls.ast.logintoapp()
         try:
             cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_OVERVIEW'))
             cls.ast.delete_existing_assessments()
@@ -103,9 +104,10 @@ class AssessmentOverviewPageTest(BaseTestCase):
     def test_AST_58_To_Verify_Overview_Dates_Change_Day(self):
         start_date = datetime.today().date()
         end_date = start_date + timedelta(days=1)
-        sleep(1)
+        sleep(2)
         self.ast.get_overview_startdate_textbox.clear()
         self.ast.get_overview_startdate_textbox.send_keys(str(start_date))
+        sleep(1)
         self.ast.get_overview_enddate_textbox.clear()
         self.ast.get_overview_enddate_textbox.send_keys(str(end_date))
         sleep(10)

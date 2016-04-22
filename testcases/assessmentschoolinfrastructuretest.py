@@ -26,6 +26,7 @@ class AssessmentSchoolInfrastructurePageTest(BaseTestCase):
         cls.config = ConfigParser.ConfigParser()
         cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
+        cls.ast.logintoapp()
         try:
             cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_SCHOOL_INFRASTRUCTURE'))
             cls.ast.delete_existing_assessments()

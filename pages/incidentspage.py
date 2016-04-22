@@ -45,6 +45,8 @@ class IncidentsPage(BasePageClass):
     def __init__(self, driver):
         super(IncidentsPage, self).__init__(driver)
         # self.get_schooldata()
+
+    def logintoapp(self):
         self.basepage = BasePage(self.driver)
         loginpage = LoginPage(self.driver)
         loginpage.loginDashboard()

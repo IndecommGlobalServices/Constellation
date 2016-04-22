@@ -30,6 +30,7 @@ class AssessmenttPageTest(BaseTestCase):
         cls.config = ConfigParser.ConfigParser()
         cls.config.readfp(open('baseconfig.cfg'))
         cls.ast = AssessmentPage(cls.driver)
+        cls.ast.logintoapp()
         cls.pagination = Pagination(cls.driver)
         try:
             cls.ast.get_asset_avilability(cls.config.get(cls.AssessmentSections, 'MAIN_MAINSCHOOL'))
@@ -43,16 +44,6 @@ class AssessmenttPageTest(BaseTestCase):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
 
-
-    @attr(priority="high")
-    #@SkipTest
-    @attr(status='smoke')
-    def test_assessment_smoke(self):
-        self.assertTrue(self.ast.get_main_create_assessment_button, "Create assessment button not available")
-        self.assertTrue(self.ast.get_ast_typefilter_dropdown.is_displayed(), "Type filter dropdown not available")
-        self.assertTrue(self.ast.get_ast_statusfilter_dropdown.is_displayed(), "Status filter dropdown not available")
-        self.assertTrue(self.ast.get_resetfilter_button.is_displayed(), "Reset button not available")
-        self.ast.get_resetfilter_button.click()
 
     @attr(priority="high")
     #@SkipTest

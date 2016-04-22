@@ -29,6 +29,7 @@ class IncidentsPageTest(BaseTestCase):
         cls.config = ConfigParser.ConfigParser()
         cls.config.readfp(open('baseconfig.cfg'))
         cls.incident = IncidentsPage(cls.driver)
+        cls.incident.logintoapp()
         cls.pagination = Pagination(cls.driver)
 
 

@@ -17,6 +17,7 @@ class ThreatStreamTest(BaseTestCase):
     def setUpClass(cls):
         super(ThreatStreamTest, cls).setUpClass()
         cls.tstream = ThreatStreamPage(cls.driver)
+        cls.tstream.logintoapp()
         cls.section = 'Messages'
         cls.config = ConfigParser.ConfigParser()
         cls.config.readfp(open('baseconfig.cfg'))
@@ -28,13 +29,6 @@ class ThreatStreamTest(BaseTestCase):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
         #self.tstream.return_to_apps_main_page()
-
-    @attr(priority="high")
-    #@SkipTest
-    @attr(status='smoke')
-    def test_threatsstream_smoke(self):
-        self.assertTrue(self.tstream.get_ts_threat_dropdown_filter.is_displayed(), "Dropdown filter not available")
-
 
     @attr(priority="high")
     #@SkipTest

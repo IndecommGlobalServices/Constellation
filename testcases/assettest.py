@@ -38,16 +38,6 @@ class AssetpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
-    def test_asset_smoke(self):
-        self.assertTrue(self.assetpage.get_asset_create_asset, "Create assest button not available")
-        self.assertTrue(self.assetpage.get_filter_drop_down.is_displayed(), "Type filter dropdown not available")
-        self.assertTrue(self.assetpage.get_asset_select_action_drop_down.is_displayed(), "Select action dropdown not available")
-        self.assertTrue(self.assetpage.get_asset_reset_button.is_displayed(), "Reset button not available")
-        self.assetpage.get_asset_reset_button.click()
-
-    @attr(priority="high")
-    #@SkipTest
     def test_AS_001(self):
         """
         Test : test_AS_01

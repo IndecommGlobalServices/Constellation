@@ -20,6 +20,7 @@ class MapPageTest(BaseTestCase):
     def setUpClass(self):
         super(MapPageTest, self).setUpClass()
         self.mappage = MapPage(self.driver)
+        self.mappage.logintoapp()
 
     def setUp(self):
         self.errors_and_failures = self.tally()
@@ -35,14 +36,6 @@ class MapPageTest(BaseTestCase):
         except Exception :
             pass
         self.mappage.return_to_apps_main_page()
-
-
-    @attr(priority="high")
-    #@SkipTest
-    @attr(status='smoke')
-    def test_map_smoke(self):
-        self.assertTrue(self.mappage.get_map_water_fall_scrollable.is_displayed(), "Map is not loaded fully")
-
 
     # All maps in one test case
     @attr(priority="high")

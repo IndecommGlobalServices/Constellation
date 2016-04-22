@@ -1,6 +1,6 @@
 from subprocess import Popen
 import glob
-import time
+import time, sys
 import os, nose
 from datetime import datetime
 from time import sleep
@@ -68,7 +68,7 @@ test2 =  (['maptest', str(map_filepath), 'Maptest'],
 processes = []
 
 for test in tests1:
-    processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2] , shell=True))
+    processes.append(Popen('nosetests --tests ' + test[0] + ' --xunit-file=' + test[1] + ' --xunit-testsuite-name=' + test[2], shell=True))
     sleep(2)
 
 sleep(650)

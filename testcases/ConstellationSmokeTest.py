@@ -6,6 +6,5 @@ os.chdir('..')
 smoketest_filepath = os.path.join(os.getcwd(), r"testresult-smoketest_" + str(datetime.today().strftime('%Y%m%d')) +"_"+
                              str(datetime.today().time().strftime('%H%M'))+".xml")
 os.chdir(cwd)
-nose.run(argv=["","assettest","assessmenttest", "maptest", "threatstreamstest", "incidenttest", "-a status=smoke",
-               "--xunit-file="+smoketest_filepath+""])
+nose.run(argv=["","smoketest", "--xunit-file="+smoketest_filepath+""])
 
