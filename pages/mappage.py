@@ -72,7 +72,7 @@ class MapPage(BasePageClass):
     # Manage Filter - Tag related
     _map_manage_filter = "//img[@alt='Manage filters']"
     _map_filter_dialog_title = "//*[@id='map_filters_modal']/div/div/div/h4"
-    _map_filter_title_closed_arrow = "//span[@class='filtertitle closed']"
+    _map_filter_title_arrow = "//span[contains(@class,'filtertitle')]"
     _map_Add_a_tag = "name"
     _map_add_button = ".//*[@id='map_filters_modal']/div/div/form/div[1]/div[2]/div[2]/div/button"
     _map_tag_total_count = ".//*[@id='map_filters_modal']/div/div/form/div[1]/div[2]/div[2]/div/span"
@@ -151,13 +151,13 @@ class MapPage(BasePageClass):
             raise type(err)("Add a tag  - searched NAME - " + self._map_Add_a_tag + err.message)
 
     @property
-    def get_map_tag_closed_arrow(self):
+    def get_map_tag_arrow(self):
         try:
             WebDriverWait(self.driver,10).until(expected_conditions.presence_of_all_elements_located(
-                (By.XPATH, self._map_filter_title_closed_arrow)))
-            return self.driver.find_element_by_xpath(self._map_filter_title_closed_arrow)
+                (By.XPATH, self._map_filter_title_arrow)))
+            return self.driver.find_element_by_xpath(self._map_filter_title_arrow)
         except Exception, err:
-            raise type(err)("Filter Closed Arrow - searched XPATH - " + self._map_filter_title_closed_arrow + err.message)
+            raise type(err)("Filter Arrow - searched XPATH - " + self._map_filter_title_arrow + err.message)
 
     @property
     def get_map_filter_dialog_title(self):
@@ -601,13 +601,9 @@ class MapPage(BasePageClass):
         # Click on Manage Filter to open the dialog
         manage_filters.click()
 
-        # Click on Tag, small arrow
-        filter_title_closed = self.get_map_tag_closed_arrow
-        if filter_title_closed.is_displayed():
-            filter_title_closed.click()
-        else :
-            pass
-
+        if "closed" in self.get_map_tag_arrow.get_attribute("class"):
+            self.get_map_tag_arrow.click()
+            sleep(1)
 
 
     def manage_filter_save(self):

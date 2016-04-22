@@ -32,7 +32,7 @@ class MapPageTest(BaseTestCase):
         try:
             if self.mappage.get_map_404.is_displayed():
                 self.mappage.get_map_404_close.click()
-                print "Server Error 500 - Something has gone terribly wrong."
+                #print "Server Error 500 - Something has gone terribly wrong."
         except Exception :
             pass
         self.mappage.return_to_apps_main_page()
@@ -91,7 +91,7 @@ class MapPageTest(BaseTestCase):
             # Count the total no. of Assets displayed in the collection
             assetTotal = self.mappage.get_map_water_fall_list
             items = assetTotal.find_elements_by_tag_name("li")
-            print "Found " + str(len(items)-1) + " assets"
+            #print "Found " + str(len(items)-1) + " assets"
 
 
 
@@ -100,7 +100,7 @@ class MapPageTest(BaseTestCase):
             # Extract the integer value displayed "Eg : Displaying 5 items"
             # This will be helpful to assert
             map_assets_count = self.mappage.get_total_map_status_count()
-            print "Found " + str(map_assets_count) + " map status asset count"
+            #print "Found " + str(map_assets_count) + " map status asset count"
 
             self.assertEqual(map_assets_count,len(items)-1,"total assets not matching" )
             # click on Water fall handle on Right hand side - Vertical - Last Icon
@@ -138,14 +138,14 @@ class MapPageTest(BaseTestCase):
             sleep(10)
             map_assessment_count = self.mappage.get_total_map_status_count()
             sleep(10)
-            print "Found " + str(map_assessment_count) + " map status assessment count"
+            #print "Found " + str(map_assessment_count) + " map status assessment count"
             self.mappage.get_map_water_fall_handle.click()
             sleep(10)
             assessmentTotal = self.mappage.get_map_water_fall_list
             sleep(10)
             items = assessmentTotal.find_elements_by_tag_name("li")
             sleep(10)
-            print "Found " + str(len(items)-1) + " assessment"
+            #print "Found " + str(len(items)-1) + " assessment"
             self.assertEqual(map_assessment_count,len(items)-1,"total assessment not matching" )
             self.mappage.get_map_water_fall_handle.click()
         except Exception as e:
@@ -179,14 +179,14 @@ class MapPageTest(BaseTestCase):
             sleep(10)
             map_incident_count = self.mappage.get_total_map_status_count()
             sleep(10)
-            print "Found " + str(map_incident_count) + " map status incident count"
+            #print "Found " + str(map_incident_count) + " map status incident count"
             self.mappage.get_map_water_fall_handle.click()
             sleep(10)
             incidentTotal = self.mappage.get_map_water_fall_list
             sleep(10)
             items = incidentTotal.find_elements_by_tag_name("li")
             sleep(10)
-            print "Found " + str(len(items)-1) + " incident"
+            #print "Found " + str(len(items)-1) + " incident"
             self.assertEqual(map_incident_count,len(items)-1,"total incident not matching" )
             self.mappage.get_map_water_fall_handle.click()
         except Exception as e:
@@ -223,12 +223,12 @@ class MapPageTest(BaseTestCase):
             sleep(10)
             items = indicatorteamsTotal.find_elements_by_tag_name("li")
             sleep(10)
-            print "Found " + str(len(items)-1) + " indicator teams"
+            #print "Found " + str(len(items)-1) + " indicator teams"
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
             sleep(10)
             map_indicator_teams_count = self.mappage.get_total_map_status_count()
             sleep(10)
-            print "Found " + str(map_indicator_teams_count) + " map status indicator teams count"
+            #print "Found " + str(map_indicator_teams_count) + " map status indicator teams count"
             self.assertEqual(map_indicator_teams_count,len(items)-1,"total indicator teams not matching" )
             self.mappage.get_map_water_fall_handle.click()
         except Exception as e:
@@ -258,14 +258,14 @@ class MapPageTest(BaseTestCase):
             sleep(10)
             map_field_interviews_count = self.mappage.get_total_map_status_count()
             sleep(10)
-            print "Found " + str(map_field_interviews_count) + " map status field interviews count"
+            #print "Found " + str(map_field_interviews_count) + " map status field interviews count"
             self.mappage.get_map_water_fall_handle.click()
             sleep(10)
             fieldinterviewsTotal = self.mappage.get_map_water_fall_list
             sleep(10)
             items = fieldinterviewsTotal.find_elements_by_tag_name("li")
             sleep(10)
-            print "Found " + str(len(items)-1) + " field interviews"
+            #print "Found " + str(len(items)-1) + " field interviews"
             self.assertEqual(map_field_interviews_count,len(items)-1,"total field interviews not matching" )
             self.mappage.get_map_water_fall_handle.click()
         except Exception as e:
@@ -307,14 +307,15 @@ class MapPageTest(BaseTestCase):
                     if i.text != "Show more items":
                         break
             else:
-                print "No Show more items link is displayed"
+                pass
+        #        print "No Show more items link is displayed"
 
 
             ####################################
 
             items = threatstreamsTotal.find_elements_by_tag_name("li")
             sleep(5)
-            print "Found " + str(len(items)-1) + " threat streams"
+        #    print "Found " + str(len(items)-1) + " threat streams"
 
             ##################################
 
@@ -322,7 +323,7 @@ class MapPageTest(BaseTestCase):
             sleep(5)
             map_threat_streams_count = self.mappage.get_total_map_status_count()
             sleep(5)
-            print "Found " + str(map_threat_streams_count) + " map status threat streams count"
+        #    print "Found " + str(map_threat_streams_count) + " map status threat streams count"
 
             ################################
 
@@ -352,15 +353,15 @@ class MapPageTest(BaseTestCase):
             self.mappage.get_map_items_map_status.is_displayed()# Verify the map status by items are displayed
             sleep(10)
             map_threat_streams_heat_map_count = self.mappage.get_total_map_status_count()
-            print "Found " + str(map_threat_streams_heat_map_count) + \
-                  " map status threat streams heat map count"
+            #print "Found " + str(map_threat_streams_heat_map_count) + \
+            #      " map status threat streams heat map count"
             self.mappage.get_map_water_fall_handle.click()
             sleep(10)
             threatstreamsheatmapTotal = self.mappage.get_map_water_fall_list
             sleep(10)
             items = threatstreamsheatmapTotal.find_elements_by_tag_name("li")
             sleep(10)
-            print "Found " + str(len(items)-1) + " threat streams heat map"
+            #print "Found " + str(len(items)-1) + " threat streams heat map"
             self.assertEqual(map_threat_streams_heat_map_count,len(items)-1,
                              "total threat streams heat map not matching" )
             self.mappage.get_map_water_fall_handle.click()
@@ -389,14 +390,14 @@ class MapPageTest(BaseTestCase):
             sleep(10)
             map_annotations_count = self.mappage.get_total_map_status_count()
             sleep(10)
-            print "Found " + str(map_annotations_count) + " map status annotations count"
+            #print "Found " + str(map_annotations_count) + " map status annotations count"
             self.mappage.get_map_water_fall_handle.click()
             sleep(10)
             annotationsTotal = self.mappage.get_map_water_fall_list
             sleep(10)
             items = annotationsTotal.find_elements_by_tag_name("li")
             sleep(10)
-            print "Found " + str(len(items)-1) + " annotations"
+            #print "Found " + str(len(items)-1) + " annotations"
             self.assertEqual(map_annotations_count,len(items)-1,"total annotations not matching" )
             self.mappage.get_map_water_fall_handle.click()
         except Exception as e:
@@ -447,18 +448,20 @@ class MapPageTest(BaseTestCase):
             add_button = self.mappage.get_map_tag_add_button
             self.assertTrue(add_button.is_displayed())
             tag_total_count = self.mappage.get_map_tag_total_count
-            print "Found before delete " + str(len(tag_total_count)) + " tag"
+            #print "Found before delete " + str(len(tag_total_count)) + " tag"
             if tag_total_count >= 1:
                 last_element = self.mappage.get_map_tag_last_element.text
                 sleep(2)
                 last_element_delete = self.mappage.get_map_tag_last_element_delete
                 last_element_delete.click()
-                print "Tag " + last_element + " deleted successfully."
+                #print "Tag " + last_element + " deleted successfully."
             else:
-                print "No Tags found to delete."
+                pass
+                #print "No Tags found to delete."
+
 
             tag_total_count1 = self.mappage.get_map_tag_total_count
-            print "Found after delete " + str(len(tag_total_count1)) + " tag"
+            #print "Found after delete " + str(len(tag_total_count1)) + " tag"
 
             self.assertNotEqual(tag_total_count, tag_total_count1, "count are same." )
 
