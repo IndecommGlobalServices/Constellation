@@ -41,8 +41,8 @@
       <file leaf-file-name="threatstreamstest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/threatstreamstest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.9188544">
-              <caret line="1212" column="25" selection-start-line="1212" selection-start-column="25" selection-end-line="1212" selection-end-column="25" />
+            <state vertical-scroll-proportion="0.75656325">
+              <caret line="1201" column="23" selection-start-line="1201" selection-start-column="23" selection-end-line="1201" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -249,72 +249,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Python tests.Unittests in threatstreamstest">
-    <configuration default="false" name="Unittests in maptest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests in smoketest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/smoketest.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests in assessmenttest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assessmenttest.py" />
-      <option name="CLASS_NAME" value="" />
-      <option name="METHOD_NAME" value="" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
     <configuration default="false" name="Unittest ThreatStreamTest.test_TS_38_To_Test_New_Filter_Assets_Name_Add" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -352,6 +286,72 @@
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest ThreatStreamTest.test_TS_39_To_Test_New_Filter_Assets_Delete" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
+      <option name="CLASS_NAME" value="ThreatStreamTest" />
+      <option name="METHOD_NAME" value="test_TS_39_To_Test_New_Filter_Assets_Delete" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest ThreatStreamTest.test_TS_40_To_Verify_Multiple_Assets_Deleted_Properly" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
+      <option name="CLASS_NAME" value="ThreatStreamTest" />
+      <option name="METHOD_NAME" value="test_TS_40_To_Verify_Multiple_Assets_Deleted_Properly" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest ThreatStreamTest.test_TS_41_To_Verify_Locations_Options" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
+      <option name="CLASS_NAME" value="ThreatStreamTest" />
+      <option name="METHOD_NAME" value="test_TS_41_To_Verify_Locations_Options" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -482,19 +482,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in smoketest" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in assessmenttest" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_38_To_Test_New_Filter_Assets_Name_Add" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in threatstreamstest" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_38_To_Test_New_Filter_Assets_Name_Add" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in threatstreamstest" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_39_To_Test_New_Filter_Assets_Delete" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_40_To_Verify_Multiple_Assets_Deleted_Properly" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_41_To_Verify_Locations_Options" />
     </list>
     <recent_temporary>
       <list size="5">
         <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in threatstreamstest" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_38_To_Test_New_Filter_Assets_Name_Add" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in assessmenttest" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in smoketest" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_41_To_Verify_Locations_Options" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_40_To_Verify_Multiple_Assets_Deleted_Properly" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_39_To_Test_New_Filter_Assets_Delete" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest ThreatStreamTest.test_TS_38_To_Test_New_Filter_Assets_Name_Add" />
       </list>
     </recent_temporary>
   </component>
@@ -508,12 +508,6 @@
       <created>1441947410271</created>
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
-    </task>
-    <task id="LOCAL-00045" summary="Modified AS_16 and AS_12">
-      <created>1446107116703</created>
-      <option name="number" value="00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1446107116703</updated>
     </task>
     <task id="LOCAL-00046" summary="New file">
       <created>1446112248277</created>
@@ -803,15 +797,33 @@
       <option name="project" value="LOCAL" />
       <updated>1461577191214</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Threat stream test cases has been  corrected.">
+      <created>1461579722204</created>
+      <option name="number" value="00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1461579722204</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_ThreatStreamTest_test_TS_10_To_Test_Hide_Button - 2016.04.14 at 13h 03m 27s.xml">
-      <configuration name="Unittest ThreatStreamTest.test_TS_10_To_Test_Hide_Button" configurationId="tests" />
-    </history-entry>
     <history-entry file="Unittest_ThreatStreamTest_test_TS_38_To_Test_New_Filter_Assets_Name_Add - 2016.04.25 at 15h 47m 38s.xml">
       <configuration name="Unittest ThreatStreamTest.test_TS_38_To_Test_New_Filter_Assets_Name_Add" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittest_ThreatStreamTest_test_TS_39_To_Test_New_Filter_Assets_Delete - 2016.04.25 at 16h 24m 25s.xml">
+      <configuration name="Unittest ThreatStreamTest.test_TS_39_To_Test_New_Filter_Assets_Delete" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittest_ThreatStreamTest_test_TS_39_To_Test_New_Filter_Assets_Delete - 2016.04.25 at 16h 25m 59s.xml">
+      <configuration name="Unittest ThreatStreamTest.test_TS_39_To_Test_New_Filter_Assets_Delete" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittest_ThreatStreamTest_test_TS_39_To_Test_New_Filter_Assets_Delete - 2016.04.25 at 16h 28m 59s.xml">
+      <configuration name="Unittest ThreatStreamTest.test_TS_39_To_Test_New_Filter_Assets_Delete" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittest_ThreatStreamTest_test_TS_40_To_Verify_Multiple_Assets_Deleted_Properly - 2016.04.25 at 16h 31m 14s.xml">
+      <configuration name="Unittest ThreatStreamTest.test_TS_40_To_Verify_Multiple_Assets_Deleted_Properly" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittest_ThreatStreamTest_test_TS_41_To_Verify_Locations_Options - 2016.04.25 at 16h 32m 53s.xml">
+      <configuration name="Unittest ThreatStreamTest.test_TS_41_To_Verify_Locations_Options" configurationId="tests" />
     </history-entry>
     <history-entry file="Unittests_in_assessmenttest - 2016.04.25 at 14h 59m 28s.xml">
       <configuration name="Unittests in assessmenttest" configurationId="tests" />
@@ -822,19 +834,7 @@
     <history-entry file="Unittests_in_assessmenttest - 2016.04.25 at 15h 46m 15s.xml">
       <configuration name="Unittests in assessmenttest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_maptest - 2016.04.14 at 15h 55m 41s.xml">
-      <configuration name="Unittests in maptest" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_maptest - 2016.04.19 at 11h 47m 20s.xml">
-      <configuration name="Unittests in maptest" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_smoketest - 2016.04.22 at 14h 24m 41s.xml">
-      <configuration name="Unittests in smoketest" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_threatstreamstest - 2016.04.14 at 11h 43m 50s.xml">
-      <configuration name="Unittests in threatstreamstest" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_threatstreamstest - 2016.04.14 at 11h 49m 06s.xml">
+    <history-entry file="Unittests_in_threatstreamstest - 2016.04.25 at 16h 08m 27s.xml">
       <configuration name="Unittests in threatstreamstest" configurationId="tests" />
     </history-entry>
   </component>
@@ -898,7 +898,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="infrasdtructure updates" />
     <MESSAGE value="updates" />
     <MESSAGE value="json created" />
     <MESSAGE value="Revert" />
@@ -923,7 +922,8 @@
     <MESSAGE value="Asset_55" />
     <MESSAGE value="Map - Manage Filters - Tags - Add and Delete testcases added" />
     <MESSAGE value="Pagination test case has been corrected in Assessment." />
-    <option name="LAST_COMMIT_MESSAGE" value="Pagination test case has been corrected in Assessment." />
+    <MESSAGE value="Threat stream test cases has been  corrected." />
+    <option name="LAST_COMMIT_MESSAGE" value="Threat stream test cases has been  corrected." />
     <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.87" />
   </component>
   <component name="XDebuggerManager">
@@ -1294,8 +1294,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/threatstreamstest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.9188544">
-          <caret line="1212" column="25" selection-start-line="1212" selection-start-column="25" selection-end-line="1212" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.75656325">
+          <caret line="1201" column="23" selection-start-line="1201" selection-start-column="23" selection-end-line="1201" selection-end-column="23" />
           <folding />
         </state>
       </provider>

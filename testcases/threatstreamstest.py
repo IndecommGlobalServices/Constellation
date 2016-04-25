@@ -1146,12 +1146,12 @@ class ThreatStreamTest(BaseTestCase):
         self.tstream.get_ts_filter_create_assets_textbox.send_keys("Haystax School")
         sleep(2)
         assets_list = self.tstream.get_ts_filter_create_assets_name_list
-        assets_list[0].click()
+        assets_list[1].click()
         sleep(2)
         self.tstream.get_ts_filter_create_assets_add_button.click()
         icon_list = self.tstream.get_ts_filter_create_assets_delete_icon
         icon_count_before_delete = len(icon_list)
-        icon_list[1].click()
+        icon_list[0].click()
         icon_list = self.tstream.get_ts_filter_create_assets_delete_icon
         icon_count_after_delete = len(icon_list)
         self.tstream.get_ts_filter_create_cancel_button.click()
