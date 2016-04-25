@@ -268,7 +268,11 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_place_name)
-        #sleep(5) # Necessary sleep to let the app search for the input string
+        sleep(5) # Necessary sleep to let the app search for the input string
+        if self.pagination.pagination_total_pages() >= 1:
+            while (self.assetpage.get_assettable_created_column.get_attribute("class") != "sorting_desc"):
+                self.assetpage.get_assettable_created_column.click()
+                sleep(5)
         for item in self.assetpage.get_asset_list_background:
             if (item.text  == self.assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
                                                                 == "rgba(255, 236, 158, 1)"):
@@ -1352,6 +1356,10 @@ class AssetpageTest(BaseTestCase):
             (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_school_name[0])
         sleep(5)#necessary sleep to let the app finish searching for the assetname
+        if self.pagination.pagination_total_pages() >= 1:
+            while (self.assetpage.get_assettable_created_column.get_attribute("class") != "sorting_desc"):
+                self.assetpage.get_assettable_created_column.click()
+                sleep(5)
         for item in self.assetpage.get_asset_list_background:
             if (item.text  == self.assetpage.asset_school_name[0]) and \
                     (item.value_of_css_property("background-color") == "rgba(255, 236, 158, 1)"):
@@ -1934,7 +1942,11 @@ class AssetpageTest(BaseTestCase):
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
             (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
         self.assetpage.asset_search_assetname(self.assetpage.asset_person_name)
-        sleep(10) # Necessary sleep to let the app search for the input string
+        sleep(5) # Necessary sleep to let the app search for the input string
+        if self.pagination.pagination_total_pages() >= 1:
+            while (self.assetpage.get_assettable_created_column.get_attribute("class") != "sorting_desc"):
+                self.assetpage.get_assettable_created_column.click()
+                sleep(5)
         for item in self.assetpage.get_asset_list_background:
             if (item.text  == self.assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
                                                                 == "rgba(255, 236, 158, 1)"):

@@ -37,6 +37,7 @@ class AssetPage(BasePageClass):
     _asset_list_assets_name_locator = ".//*[@id='assetstable']/tbody/tr/td[2]/a"
     _asset_list_background_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
     _asset_list_asset_type_locator = ".//*[@id='assetstable']/tbody/tr/td[3]"
+    _asset_table_createdcolumn_locator = ".//*[@id='assetstable']/thead/tr/th[3]"
     _asset_list_No_Matching_Records_Found_locator = ".//*[@id='assetstable']/tbody/tr/td"
     _asset_list_asset_name_black_color_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
 
@@ -1582,6 +1583,10 @@ class AssetPage(BasePageClass):
         except Exception, err:
             raise type(err)(" - search XPATH - " \
                           + self._asset_chart_total_Graph_In_Container_xpath_locator + err.message)
+
+    @property
+    def get_assettable_created_column(self):
+        return self.driver.find_element_by_xpath(self._asset_table_createdcolumn_locator)
 
     def get_asset_photos_documents_image_caption_text(self, caption_val):
         caption_xpath = " //div[contains(@ng-repeat,'file in files')]//div[contains(text(),'"+caption_val+"')]"
