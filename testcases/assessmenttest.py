@@ -558,17 +558,20 @@ class AssessmenttPageTest(BaseTestCase):
         sleep(2)
         if len(list_of_page_drop_down) >= 1:
             self.pagination.pagination_drop_down_click(-1)
+            self.pagination.get_pg_drop_down_arrow.click()
             last_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[1]
+            last_page_first = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[0]
+            self.pagination.get_pg_drop_down_arrow.click()
             if int(last_page) >= 5:
                 first_page = int(last_page)-4
             else:
-                first_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[0]
+                first_page = last_page_first
             start_value, end_value = self.pagination.pagination_start_end_node_value()
             actual_group = [str(start_value), str(end_value)]
             expected_group = [str(first_page), str(last_page)]
             self.assertListEqual(actual_group, expected_group, "Selected Group value is not matching with Actual.")
         else:
-            self.skipTest("Pagination has only one page.")
+            self.skipTest("There is only one page available.")
 
     @attr(priority="high")
     #@SkipTest
