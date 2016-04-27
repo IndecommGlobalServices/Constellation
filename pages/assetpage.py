@@ -1540,8 +1540,8 @@ class AssetPage(BasePageClass):
     @property
     def get_asset_location_marker_available_image(self):
         try:
-            return self.driver.find_element_by_xpath(self._asset_location_marker_avaliable_xpath_locator)
-            #return self.basepage.findElementByXpath(self._asset_location_marker_avaliable_xpath_locator)
+            # return self.driver.find_element_by_xpath(self._asset_location_marker_avaliable_xpath_locator)
+            return self.basepage.findElementByXpath(self._asset_location_marker_avaliable_xpath_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
                           + self._asset_location_marker_avaliable_xpath_locator + err.message)

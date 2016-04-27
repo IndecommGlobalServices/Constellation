@@ -1,8 +1,6 @@
 __author__ = 'Deepa.Sivadas'
 from lib.base import BasePageClass
-from lib.base import InvalidPageException
 from time import sleep
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait

@@ -88,7 +88,8 @@ class AssessmentPage(BasePageClass):
     _ast_overview_button_locator = "//button[@title='Overview']"
     _ast_breadcrumb_text_locator = ".//*[@id='header']/div[1]/span[3]/span"
     _ast_overview_text = ".//*[@id='overview']/div[1]"
-    _ast_overview_notes_textbox_locator = "assessment_notes"
+    _ast_overview_notes_textbox_locator = ".//*[@class='textinput full_width ng-pristine ng-untouched ng-valid']"
+    _ast_overview_notes_textbox_edited_locator= ".//*[@class='textinput full_width ng-valid ng-valid-parse ng-touched ng-pristine']"
     _ast_overview_save_button_locator = "//div[@id='header']//button[@class = 'btn btn-danger btn-xs']"
     _ast_overview_start_date_textbox_locator = "//span[@name= 'started_picker']//input[@type = 'text']"
     _ast_overview_end_date_textbox_locator="//span[@name= 'ended_picker']//input[@type = 'text']"
@@ -377,14 +378,18 @@ class AssessmentPage(BasePageClass):
 
     @property
     def get_overview_notes_textbox(self):
-        return self.driver.find_element_by_id(self._ast_overview_notes_textbox_locator)
+        return self.basepage.findElementByXpath(self._ast_overview_notes_textbox_locator)
+
+    @property
+    def get_overview_notes_edited_textbox(self):
+        return self.basepage.findElementByXpath(self._ast_overview_notes_textbox_edited_locator)
 
     @property
     def get_overview_save_button(self):
         try:
             WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable(
                 (By.XPATH, self._ast_overview_save_button_locator)))
-            return self.driver.find_element_by_xpath(self._ast_overview_save_button_locator)
+            return self.basepage.findElementByXpath(self._ast_overview_save_button_locator)
         except Exception, err:
             raise type(err)(" Save button not available - searched XPATH - " \
                           + self._ast_overview_save_button_locator + err.message)

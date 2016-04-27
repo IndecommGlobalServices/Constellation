@@ -47,6 +47,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_select_action_drop_down.click()
+        self.basepage.findElementByXpath()
         if len(self.assetpage.get_asset_name_list)<= 0:
             self.assertFalse(self.assetpage.get_asset_link_delete_text.is_enabled(),
                              self.config.get(self.section, 'MESSAGE_WHEN_NO_ASSETS_AVAILABLE'))
@@ -630,7 +631,7 @@ class AssetpageTest(BaseTestCase):
     @attr(priority="high")
     #@SkipTest
     def test_AS_031_2(self):
-        """0
+        """
         Test : test_AS_31_2
         Description : To verify email field of the Contact section. Email address with wrong address.
         Revision:
@@ -979,8 +980,7 @@ class AssetpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
         sleep(1)
         self.assetpage.get_asset_location_marker_available_image.click()
-        placeText = self.assetpage.get_asset_location_place_name_text.text
-        self.assertEqual(self.assetpage.asset_place_name, placeText,
+        self.assertEqual(self.assetpage.asset_place_name, self.assetpage.get_asset_location_place_name_text.text,
                          self.config.get(self.section, 'MESSAGE_MARKER_NAME_NOT_DISPLAYED_ON_MAP'))
 
     @attr(priority="high")
@@ -1559,7 +1559,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_086(self):
         """
-        Test : test_AS_90
+        Test : test_AS_086
         Description : To verify chart when no asset is selected.
         Revision:
         :return: None
@@ -1579,7 +1579,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_087(self):
         """
-        Test : test_AS_91
+        Test : test_AS_087
         Description : To verify chart when place filter is selected.
         Revision:
         :return: None
@@ -1601,7 +1601,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_088(self):
         """
-        Test : test_AS_92
+        Test : test_AS_088
         Description : To verify chart when place and type filters are selected.
         Revision:
         :return: None
@@ -1624,7 +1624,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_089(self):
         """
-        Test : test_AS_93
+        Test : test_AS_089
         Description : To verify chart when school filter is selected.
         Revision:
         :return: None
@@ -1646,7 +1646,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_090(self):
         """
-        Test : test_AS_94
+        Test : test_AS_090
         Description : To verify chart when school and district filters are selected.
         Revision:
         :return: None
@@ -1670,7 +1670,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_091(self):
         """
-        Test : test_AS_95
+        Test : test_AS_091
         Description : To verify chart when school and grade filters are selected.
         Revision:
         :return: None
@@ -1693,7 +1693,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_092(self):
         """
-        Test : test_AS_96
+        Test : test_AS_092
         Description : To verify chart when school and type filters are selected.
         Revision:
         :return: None
@@ -1716,7 +1716,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_093_to_test_pagination_next_button(self):
         """
-        Test : test_AS_97
+        Test : test_AS_093
         Description :To Test pagination next button.
         Revision:
         Author : Bijesh
@@ -1735,7 +1735,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_094_to_test_pagination_next_button_disabled(self):
         """
-        Test : test_AS_98
+        Test : test_AS_094
         Description :To Test pagination next button. Last Page is active.
         Revision:
         Author : Bijesh
@@ -1760,7 +1760,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_095_to_test_pagination_previous_button(self):
         """
-        Test : test_AS_99
+        Test : test_AS_095
         Description :To Test pagination previous button.
         Revision:
         Author : Bijesh
@@ -1778,7 +1778,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_096_to_test_pagination_previous_button_disabled(self):
         """
-        Test : test_AS_100
+        Test : test_AS_096
         Description :To Test pagination previous button. First page is active.
         Revision:
         Author : Bijesh
@@ -1802,7 +1802,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_097_to_test_pagination_page_group_select(self):
         """
-        Test : test_AS_101
+        Test : test_AS_097
         Description :To verify that page group is selected from drop down menu
         Revision:
         Author : Bijesh
@@ -1836,7 +1836,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_098_to_test_direct_click_first_page(self):
         """
-        Test : test_AS_102
+        Test : test_AS_098
         Description :To verify that first page is selected directly and previous button is disabled.
         Revision:
         Author : Bijesh
@@ -1869,7 +1869,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_099_to_test_direct_click_last_page(self):
         """
-        Test : test_AS_103
+        Test : test_AS_099
         Description :To verify that last page is selected directly and next button is disabled.
         Revision:
         Author : Bijesh
@@ -1901,7 +1901,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_100_to_test_search_asset_pagination(self):
         """
-        Test : test_AS_104
+        Test : test_AS_100
         Description :To verify that if searched asset is not available than pagination should be disabled.
         Revision:
         Author : Bijesh
@@ -1948,11 +1948,11 @@ class AssetpageTest(BaseTestCase):
                 self.assetpage.get_assettable_created_column.click()
                 sleep(5)
         for item in self.assetpage.get_asset_list_background:
-            if (item.text  == self.assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
-                                                                == "rgba(255, 236, 158, 1)"):
+            if (item.text  == self.assetpage.asset_person_name) and \
+                    (item.value_of_css_property("background-color") == r"rgba(255, 236, 158, 1)"):
                 check = 1
                 break
-        self.assetpage.textbox_clear(self.driver.find_element_by_xpath(self.assetpage._asset_search_textbox_locator))
+        self.assetpage.textbox_clear(self.basepage.findElementByXpath(self.assetpage._asset_search_textbox_locator))
         self.assertFalse(check == 0, self.config.get(self.section,'MESSAGE_NEW_ASSET_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
 
 
@@ -1960,7 +1960,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_104(self):
         """
-        Test : test_AS_16
+        Test : test_AS_104
         Description : To verify New Asset phone field.
         Revision:
         :return: None
@@ -1980,7 +1980,7 @@ class AssetpageTest(BaseTestCase):
     #@SkipTest
     def test_AS_105(self):
         """
-        Test : test_AS_20
+        Test : test_AS_105
         Description : To edit overview section. Enter all required fields info and click on save button.
         Revision:
         :return: None

@@ -53,8 +53,8 @@ class AssessmentOverviewPageTest(BaseTestCase):
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 80).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, self.ast._ast_saved_text_locator), "Saved"),"The message appeared is " +
-                                            self.driver.find_element_by_xpath(self.ast._ast_saved_text_locator).text)
-        self.assertEqual(note, self.ast.get_overview_notes_textbox.get_attribute("value"),
+                                            self.basepage.findElementByXpath(self.ast._ast_saved_text_locator).text)
+        self.assertEqual(note, self.ast.get_overview_notes_edited_textbox.get_attribute("value"),
                          "Entered text not appearing in notes textarea")
 
 
@@ -110,7 +110,6 @@ class AssessmentOverviewPageTest(BaseTestCase):
         sleep(1)
         self.ast.get_overview_enddate_textbox.clear()
         self.ast.get_overview_enddate_textbox.send_keys(str(end_date))
-        sleep(10)
         self.ast.get_overview_save_button.click()
         WebDriverWait(self.driver, 100).until(expected_conditions.text_to_be_present_in_element(
             (By.XPATH, self.ast._ast_saved_text_locator), "Saved"), "The message appeared is" +
