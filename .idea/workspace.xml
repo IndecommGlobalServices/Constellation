@@ -539,12 +539,6 @@
       <option name="number" value="Default" />
       <updated>1441947410271</updated>
     </task>
-    <task id="LOCAL-00048" summary="Assessment Overview">
-      <created>1446117620990</created>
-      <option name="number" value="00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1446117620990</updated>
-    </task>
     <task id="LOCAL-00049" summary="Baseconfig">
       <created>1446201133428</created>
       <option name="number" value="00049" />
@@ -833,7 +827,13 @@
       <option name="project" value="LOCAL" />
       <updated>1461749659035</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="Assessment pagination test case has been update.">
+      <created>1461749727008</created>
+      <option name="number" value="00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1461749727008</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TestHistory">
