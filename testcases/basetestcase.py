@@ -16,7 +16,7 @@ class BaseTestCase(unittest.TestCase):
         # if os.getenv("OS") == None:
         #     display = Display(visible=0, size=(1280,800))
         #     display.start()
-        # create a new Firefox session
+        #create a new Firefox session
 
         cls.driver = webdriver.Firefox()
         '''

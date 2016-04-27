@@ -559,6 +559,8 @@ class AssessmenttPageTest(BaseTestCase):
         if len(list_of_page_drop_down) >= 1:
             self.pagination.pagination_drop_down_click(-1)
             self.pagination.get_pg_drop_down_arrow.click()
+            sleep(1)
+            list_of_page_drop_down = self.pagination.get_pg_list_of_page_groups
             last_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[1]
             last_page_first = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[0]
             self.pagination.get_pg_drop_down_arrow.click()
