@@ -47,7 +47,6 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.assetpage.get_asset_select_action_drop_down.click()
-        self.basepage.findElementByXpath()
         if len(self.assetpage.get_asset_name_list)<= 0:
             self.assertFalse(self.assetpage.get_asset_link_delete_text.is_enabled(),
                              self.config.get(self.section, 'MESSAGE_WHEN_NO_ASSETS_AVAILABLE'))
@@ -978,7 +977,6 @@ class AssetpageTest(BaseTestCase):
         #self.driver.execute_script("window.scrollTo(0, (document.body.scrollHeight)-200);")
         self.assertTrue(self.assetpage.get_asset_location_marker_available_image.is_displayed(),
                         self.config.get(self.section, 'MESSAGE_MARKER_NOT_DISPLAYED_ON_MAP'))
-        sleep(1)
         self.assetpage.get_asset_location_marker_available_image.click()
         self.assertEqual(self.assetpage.asset_place_name, self.assetpage.get_asset_location_place_name_text.text,
                          self.config.get(self.section, 'MESSAGE_MARKER_NAME_NOT_DISPLAYED_ON_MAP'))
