@@ -155,7 +155,6 @@ class IconListPage(BasePageClass, object):
     def get_feedback(self):
         return self.driver.find_element_by_xpath(self._icon_feedback)
 
-
     @property
     def get_top_logo(self):
         try:
