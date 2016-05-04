@@ -32,9 +32,8 @@ class SmokeTest(BaseTestCase):
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        self.appicon.get_top_logo.click()
-        # basepage = BasePage(self.driver)
-        # basepage.accessURL()
+        basepage = BasePage(self.driver)
+        basepage.accessURL()
 
     @attr(priority="high")
     #@SkipTest
@@ -89,14 +88,13 @@ class SmokeTest(BaseTestCase):
     def test_06_timeline_smoke(self):
         self.timeline = TimelinePage(self.driver)
         self.appicon.click_timeline_icon()
-        self.assertTrue(self.timeline.get_timeline_app_name_label.text == r"Timeline")
+        self.assertTrue(self.timeline.get_timeline_app_name_label.is_displayed(), "Timeline")
 
     @attr(priority="high")
     #@SkipTest
     def test_07_events_smoke(self):
         self.events = EventsPage(self.driver)
         self.appicon.click_events_icon()
-        self.assertTrue(self.events.get_events_app_name_label.text == r"Events")
         self.assertTrue(self.events.get_Type_dropdown.is_displayed(), "Type filter dropdown not available")
         self.assertTrue(self.events.get_main_create_incident_button, "Create incidents button not available")
 
@@ -105,6 +103,6 @@ class SmokeTest(BaseTestCase):
     def test_05_fieldinterviews_smoke(self):
         self.fieldinterviews = FieldInterviewsPage(self.driver)
         self.appicon.click_fieldinterview_icon()
-        self.assertTrue(self.fieldinterviews.get_fieldinterviews_app_name_label.text == r"Field Interviews")
+        self.assertTrue(self.fieldinterviews.get_fieldinterviews_app_name_label.is_displayed(), "Field Interviews")
         self.assertTrue(self.fieldinterviews.get_Contacttype_dropdown.is_displayed(),
                         "Type filter dropdown not available")

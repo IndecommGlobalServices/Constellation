@@ -15,8 +15,11 @@ class TimelinePage(BasePageClass, object):
 
     @property
     def get_timeline_app_name_label(self):
-        return self.basepage.findElementByXpath(self._app_timeline_appname_locator)
-
+        try:
+            return self.basepage.findElementByXpath(self._app_timeline_appname_locator)
+        except Exception, err:
+            raise type(err)("Timeline app name label is not found " \
+                          + err.message)
 
 
     def __init__(self, driver):

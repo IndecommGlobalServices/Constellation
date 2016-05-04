@@ -16,7 +16,11 @@ class FieldInterviewsPage(BasePageClass, object):
 
     @property
     def get_fieldinterviews_app_name_label(self):
-        return self.basepage.findElementByXpath(self._app_fieldinterviews_appname_locator)
+        try:
+            return self.basepage.findElementByXpath(self._app_fieldinterviews_appname_locator)
+        except Exception, err:
+            raise type(err)(" App name label not found  " \
+                          + err.message)
 
     @property
     def get_Contacttype_dropdown(self):
