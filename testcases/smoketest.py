@@ -2,6 +2,7 @@ from time import sleep
 
 __author__ = 'Deepa.Sivadas'
 from nose.plugins.attrib import attr
+from nose.plugins.skip import SkipTest
 from pages.assetpage import AssetPage
 from pages.assessmentpage import AssessmentPage
 from pages.basepage import BasePage
@@ -10,6 +11,9 @@ from pages.IconListPage import IconListPage
 from pages.mappage import MapPage
 from pages.threatstreamspage import ThreatStreamPage
 from pages.incidentspage import IncidentsPage
+from pages.timelinepage import TimelinePage
+from pages.eventspage import EventsPage
+from pages.fieldinterviews import FieldInterviewsPage
 from testcases.basetestcase import BaseTestCase
 
 class SmokeTest(BaseTestCase):
@@ -34,7 +38,6 @@ class SmokeTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_01_asset_smoke(self):
         self.assetpage = AssetPage(self.driver)
         self.appicon.click_asset_icon()
@@ -47,7 +50,6 @@ class SmokeTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_02_assessment_smoke(self):
         self.ast = AssessmentPage(self.driver)
         self.appicon.click_assessments_icon()
@@ -59,16 +61,7 @@ class SmokeTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
-    def test_05_map_smoke(self):
-        self.mappage = MapPage(self.driver)
-        self.appicon.click_map_icon()
-        self.assertTrue(self.mappage.get_map_water_fall_scrollable.is_displayed(), "Map is not loaded fully")
-
-    @attr(priority="high")
-    #@SkipTest
-    @attr(status='smoke')
-    def test_03_threatsstream_smoke(self):
+    def test_03_threatstream_smoke(self):
         self.tstream = ThreatStreamPage(self.driver)
         self.appicon.click_threatstream()
         sleep(20)
@@ -76,7 +69,6 @@ class SmokeTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    @attr(status='smoke')
     def test_04_incident_smoke(self):
         self.incident = IncidentsPage(self.driver)
         self.appicon.click_incidents_icon()
@@ -85,3 +77,38 @@ class SmokeTest(BaseTestCase):
         self.assertTrue(self.incident.get_status_dropdown.is_displayed(), "Status filter dropdown not available")
         self.incident.get_setings_button.click()
         self.incident.get_close_button.click()
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_08_map_smoke(self):
+        self.mappage = MapPage(self.driver)
+        self.appicon.click_map_icon()
+        self.assertTrue(self.mappage.get_map_water_fall_scrollable.is_displayed(), "Map is not loaded fully")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_06_timeline_smoke(self):
+        self.timeline = TimelinePage(self.driver)
+        self.appicon.click_timeline_icon()
+        self.assertTrue(self.timeline.get_timeline_app_name_label.text == r"Timeline")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_07_events_smoke(self):
+        self.events = EventsPage(self.driver)
+        self.appicon.click_events_icon()
+        self.assertTrue(self.events.get_events_app_name_label.text == r"Events")
+        self.assertTrue(self.events.get_Type_dropdown.is_displayed(), "Type filter dropdown not available")
+        self.assertTrue(self.events.get_main_create_incident_button, "Create incidents button not available")
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_05_fieldinterviews_smoke(self):
+        self.fieldinterviews = FieldInterviewsPage(self.driver)
+        self.appicon.click_fieldinterview_icon()
+        self.assertTrue(self.fieldinterviews.get_fieldinterviews_app_name_label.text == r"Field Interviews")
+        self.assertTrue(self.fieldinterviews.get_Contacttype_dropdown.is_displayed(),
+                        "Type filter dropdown not available")
