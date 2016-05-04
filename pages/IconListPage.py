@@ -102,15 +102,6 @@ class IconListPage(BasePageClass, object):
         return self.driver.find_element_by_xpath(self._app_scroll_bar_locator)
 
 
-    @property
-    def get_top_logo(self):
-        try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._loggedin_top_logo_id_locator)))
-            return self.driver.find_element_by_id(self._loggedin_top_logo_id_locator)
-        except Exception, err:
-            raise type(err)("Top Logo - searched ID - "
-                            + self._loggedin_top_logo_id_locator + err.message)
 
     @property
     def get_loggedin_username(self):
@@ -158,9 +149,7 @@ class IconListPage(BasePageClass, object):
     @property
     def get_top_logo(self):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
-                (By.ID, self._loggedin_top_logo_id_locator)))
-            return self.driver.find_element_by_id(self._loggedin_top_logo_id_locator)
+            return self.basepage.findElementById(self._loggedin_top_logo_id_locator)
         except Exception, err:
             raise type(err)("Top Logo - searched ID - "
                             + self._loggedin_top_logo_id_locator + err.message)
@@ -255,7 +244,7 @@ class IconListPage(BasePageClass, object):
             #     (By.XPATH, self._app_map_icon_locator)))
             self.get_app_map_icon.click()
         except Exception, err:
-            raise type(err)("Asset name not available in breadcrumb - searched XPATH - " \
+            raise type(err)("Map Icon not displayed - " \
                           + err.message)
 
     def click_dashboard(self):
@@ -282,19 +271,19 @@ class IconListPage(BasePageClass, object):
         try:
             self.get_app_timeline_icon.click()
         except Exception, err:
-            raise type(err)("Asset name not available in breadcrumb - searched XPATH - " \
+            raise type(err)("Timeline Icon not displayed - " \
                           + err.message)
 
     def click_events_icon(self):
         try:
             self.get_app_events_icon.click()
         except Exception, err:
-            raise type(err)("Asset name not available in breadcrumb - searched XPATH - " \
+            raise type(err)("Events Icon not displayed - " \
                           + err.message)
 
     def click_fieldinterview_icon(self):
         try:
             self.get_app_fieldinterview_icon.click()
         except Exception, err:
-            raise type(err)("Asset name not available in breadcrumb - searched XPATH - " \
+            raise type(err)("Field interview icon not displayed - " \
                           + err.message)

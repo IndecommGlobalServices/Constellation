@@ -1,7 +1,7 @@
-from time import sleep
-
 __author__ = 'Deepa.Sivadas'
+
 from nose.plugins.attrib import attr
+from time import sleep
 from nose.plugins.skip import SkipTest
 from pages.assetpage import AssetPage
 from pages.assessmentpage import AssessmentPage
@@ -26,15 +26,15 @@ class SmokeTest(BaseTestCase):
         # self.username = loginpage.usernameText
         cls.appicon = IconListPage(cls.driver)
 
-
     def setUp(self):
         self.errors_and_failures = self.tally()
 
     def tearDown(self):
         if self.tally() > self.errors_and_failures:
             self.take_screenshot()
-        basepage = BasePage(self.driver)
-        basepage.accessURL()
+        self.appicon.get_top_logo.click()
+        # basepage = BasePage(self.driver)
+        # basepage.accessURL()
 
     @attr(priority="high")
     #@SkipTest
@@ -46,7 +46,6 @@ class SmokeTest(BaseTestCase):
         self.assertTrue(self.assetpage.get_asset_select_action_drop_down.is_displayed(), "Select action dropdown not available")
         self.assertTrue(self.assetpage.get_asset_reset_button.is_displayed(), "Reset button not available")
         self.assetpage.get_asset_reset_button.click()
-
 
     @attr(priority="high")
     #@SkipTest
@@ -78,7 +77,6 @@ class SmokeTest(BaseTestCase):
         self.incident.get_setings_button.click()
         self.incident.get_close_button.click()
 
-
     @attr(priority="high")
     #@SkipTest
     def test_08_map_smoke(self):
@@ -93,7 +91,6 @@ class SmokeTest(BaseTestCase):
         self.appicon.click_timeline_icon()
         self.assertTrue(self.timeline.get_timeline_app_name_label.text == r"Timeline")
 
-
     @attr(priority="high")
     #@SkipTest
     def test_07_events_smoke(self):
@@ -102,7 +99,6 @@ class SmokeTest(BaseTestCase):
         self.assertTrue(self.events.get_events_app_name_label.text == r"Events")
         self.assertTrue(self.events.get_Type_dropdown.is_displayed(), "Type filter dropdown not available")
         self.assertTrue(self.events.get_main_create_incident_button, "Create incidents button not available")
-
 
     @attr(priority="high")
     #@SkipTest
