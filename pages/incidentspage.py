@@ -68,7 +68,7 @@ class IncidentsPage(BasePageClass):
                           + self._incident_main_create_assessment_button_locator + err.message)
 
     @property
-    def get_setings_button(self):
+    def get_settings_button(self):
         try:
             WebDriverWait(self.driver, 20).until(expected_conditions.element_to_be_clickable(
                 (By.XPATH, self._incident_setttings_button_locator )))

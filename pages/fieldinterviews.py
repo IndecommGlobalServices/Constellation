@@ -12,7 +12,7 @@ class FieldInterviewsPage(BasePageClass, object):
 
 
     _app_fieldinterviews_appname_locator = ".//*[@id='header']/span[2]/span"
-    _app_fieldinterviews_Contacttype_dropdown_locator = "//div[@model='filter.value']//button[contains(text(), 'Contact type')]"
+    _app_fieldinterviews_contacttype_dropdown_locator = "//div[@model='filter.value']//button[contains(text(), 'Contact type')]"
 
     @property
     def get_fieldinterviews_app_name_label(self):
@@ -25,10 +25,10 @@ class FieldInterviewsPage(BasePageClass, object):
     @property
     def get_Contacttype_dropdown(self):
         try:
-            return self.basepage.findElementByXpath(self._app_fieldinterviews_Contacttype_dropdown_locator)
+            return self.basepage.findElementByXpath(self._app_fieldinterviews_contacttype_dropdown_locator)
         except Exception, err:
             raise type(err)(" - searched XPATH - " \
-                          + self._app_fieldinterviews_Contacttype_dropdown_locator + err.message)
+                          + self._app_fieldinterviews_contacttype_dropdown_locator + err.message)
 
 
     def __init__(self, driver):
