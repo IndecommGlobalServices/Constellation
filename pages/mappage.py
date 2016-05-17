@@ -12,6 +12,7 @@ from loginpage import LoginPage
 import inspect
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class MapPage(BasePageClass):
 
     _map_name_text = ".//*[@id='header']/div[1]/span[2]/span"
@@ -473,7 +474,7 @@ class MapPage(BasePageClass):
     @property
     def get_map_water_fall_scrollable(self):
         try:
-            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver,1).until(expected_conditions.presence_of_element_located(
                 (By.XPATH, self._map_water_fall_scrollable)))
             return self.driver.find_element_by_xpath(self._map_water_fall_scrollable)
         except Exception, err:
@@ -568,10 +569,10 @@ class MapPage(BasePageClass):
         :return: None
         """
         try:
-            WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+            WebDriverWait(self.driver, 1).until(EC.presence_of_element_located(
                 (By.XPATH, self._bread_crumb_click_apps_link_xpath_locator))).click()
 
-            WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
+            WebDriverWait(self.driver, 1).until(expected_conditions.presence_of_element_located(
                 (By.XPATH, IconListPage(self.driver)._app_map_icon_locator)),"Map Icon")
 
         except:
@@ -613,3 +614,4 @@ class MapPage(BasePageClass):
         #click on Save button
         save_tag_options = self.get_map_tag_save
         save_tag_options.click()
+
