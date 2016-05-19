@@ -1,28 +1,14 @@
 __author__ = 'Deepa.Sivadas'
 from lib.base import BasePageClass
-from lib.base import InvalidPageException
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-from pages.basepage import BasePage
-import sys
-from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from basepage import BasePage
-from time import sleep
 from loginpage import LoginPage
-from selenium.common.exceptions import *
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-import os, json, inspect
-from selenium.webdriver.common.action_chains import ActionChains
-
+import inspect
 
 class EventsPage(BasePageClass, object):
-
 
     _app_events_appname_locator = "//span[contains(text(),'Events')]"
     _app_events_Type_dropdown_locator = "//div[@model='filter.value']//button[contains(text(), 'Type')]"
@@ -38,11 +24,8 @@ class EventsPage(BasePageClass, object):
     _event_deleteevent_cancel_click_xpath_locator = ".//*[@id='delete_event_modal']/descendant::button[text()='Cancel']"
 
     # New Event creation related
-    #_asset_create_asset = "//img[@alt='Create asset']"
-    #_event_create_event = "//img[@ng-src='../images/icon_create_item_off.png']"
-
+    _event_create_event = "//img[@ng-src='../images/icon_create_item_off.png']"
     _event_link_locator = "Events"
-
     _event_list_event_name_black_color_locator = "//*[@id='eventsTable']/tbody/tr/td[2]"
 
     # Creating Events
@@ -106,7 +89,6 @@ class EventsPage(BasePageClass, object):
     @property
     def get_event_name_list(self):
         try:
-            #return  self.driver.find_elements_by_xpath(self._asset_list_asset_name_black_color_locator)
             return self.basepage.findElementsByXpath(self._event_list_event_name_black_color_locator)
         except Exception, err:
             raise type(err)("Black color in the list not available after insertion - searched XPATH - " \
@@ -115,7 +97,6 @@ class EventsPage(BasePageClass, object):
     @property
     def get_event_link_delete_text(self):
         try:
-            #return self.driver.find_element_by_xpath(self._asset_link_delete_text_xpath_locator)
             return self.basepage.findElementByXpath(self._event_link_delete_text_xpath_locator)
         except Exception, err:
             raise type(err)("Delete option not present in the select action dropdown - searched XPATH - " \
@@ -124,12 +105,10 @@ class EventsPage(BasePageClass, object):
     @property
     def get_event_list_first_check_box(self):
         try:
-            #return self.driver.find_element_by_xpath(self._asset_list_select_first_check_box_xpath_locator)
             return self.basepage.findElementByXpath(self._event_list_select_first_check_box_xpath_locator)
         except Exception, err:
-            raise type(err)("Asset table checkbox not available - searched XPATH - " \
+            raise type(err)("Event table checkbox not available - searched XPATH - " \
                           + self._event_list_select_first_check_box_xpath_locator + err.message)
-
 
     @property
     def get_deleteevent_cancel_button(self):
@@ -142,12 +121,9 @@ class EventsPage(BasePageClass, object):
                           + self._event_deleteevent_cancel_click_xpath_locator + err.message)
 
 
-
-
     def __init__(self, driver):
         super(EventsPage,self).__init__(driver)
         self.basepage = BasePage(self.driver)
-
 
     def open_event_app(self):
         loginpage = LoginPage(self.driver)
@@ -166,7 +142,6 @@ class EventsPage(BasePageClass, object):
     @property
     def get_event_delete_button(self):
         try:
-            #return self.driver.find_element_by_xpath(self._asset_select_action_delete_click_xpath_locator)
             return self.basepage.findElementByXpath(self._event_select_action_delete_click_xpath_locator)
         except Exception, err:
             raise type(err)("Delete button not available in Delete Events popup - searched XPATH - " \
@@ -202,7 +177,7 @@ class EventsPage(BasePageClass, object):
 
     def app_sanity_check(self):
         """
-        Description : This function should be called before any test to see the asset page is displayed.
+        Description : This function should be called before any test to see the event page is displayed.
         Revision:
         :return: None
         """
@@ -219,36 +194,30 @@ class EventsPage(BasePageClass, object):
         Revision:
         :return: None
         """
-        #assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
-        #sleep(2)
         events_checkbox = self.basepage.findElementsByXpath(self._event_list_check_box_locator)
         for event_checkbox in events_checkbox:
-            #sleep(1)
             event_checkbox.click()
 
         for event_checkbox in events_checkbox:
-            #sleep(1)
             event_checkbox.click()
 
     def get_total_row_count(self):
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
             (By.XPATH, self._event_select_action_delete_select_xpath_locator)))
         countText = (self.driver.find_element_by_id("eventsTable_info").text).encode('utf-8').split('\n')[2].strip()
-        #print "count text:" + countText
         splitedText = countText.split(" ")
         totalCount = splitedText[5]
-        # print "total count:" + totalCount
         return int(totalCount)
 
     def event_create_click(self):
         """
-        Description : This function will click on Create Asset Link.
+        Description : This function will click on Create Event Link.
         Revision:
         :return: None
         """
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
             (By.XPATH, self._event_select_action_delete_select_xpath_locator)))
-        WebDriverWait(self.driver, 50).until(EC.presence_of_element_located((By.XPATH, self._event_create_asset))).click()
+        WebDriverWait(self.driver, 50).until(EC.presence_of_element_located((By.XPATH, self._event_create_event))).click()
 
     def create_event(self):
         """
@@ -260,15 +229,4 @@ class EventsPage(BasePageClass, object):
         # Click on Create Event Icon
         self.event_create_click()
         # Enter the values
-        self.enter_asset_type_name.send_keys(self.asset_place_name)
-        self.enter_asset_type_address.send_keys(self.asset_place_address)
-        self.enter_asset_type_address2.send_keys(self.asset_place_address2)
-        self.enter_asset_type_city.send_keys(self.asset_place_city)
-        self.enter_asset_type_state.send_keys(self.asset_place_state)
-        self.enter_asset_type_zip.send_keys(self.asset_place_zip)
-        self.enter_asset_type_owner.send_keys(self.asset_place_owner)
-        self.basepage.findElementByXpath(self._asset_overview_type_drop_down_locator).click()
-        #sleep(2)
-        self.get_overview_newtype_text_box.send_keys(self.asset_place_type)
-        self.get_overview_place_type_add_button.click()
-        # self.get_asset_overview_save_button.click()
+

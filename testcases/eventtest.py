@@ -1,16 +1,10 @@
-import unittest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
-from selenium.webdriver.common.keys import Keys
 from pages.eventspage import EventsPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
-from nose.plugins.skip import SkipTest
 from time import sleep
-import json, os, re, inspect
-from selenium.webdriver.common.action_chains import ActionChains
 import ConfigParser
 from lib.pagination import Pagination
 
@@ -94,7 +88,7 @@ class EventpageTest(BaseTestCase):
     #@SkipTest
     def test_EV_004(self):
         """
-        Test : test_AS_04
+        Test : test_EV_04
         Description : To verify delete window cancel button functionality.
         Revision:
         Author : Kiran
@@ -114,10 +108,10 @@ class EventpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_AS_014_and_017(self):
+    def test_EV_05(self):
         """
-        Test : test_AS_14_and_17
-        Description : To create place asset and verify that asset is created properly.
+        Test : test_EV_05
+        Description : To create event and verify that event is created properly.
         Revision:
         Author : Kiran
         :return: None
@@ -128,25 +122,3 @@ class EventpageTest(BaseTestCase):
         self.eventpage.create_event()
 
 
-
-
-        # self.assetpage.create_asset("Place")
-        # WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
-        #     (By.XPATH, self.assetpage._asset_name_breadcrumb), self.assetpage.get_asset_name_breadcrumb.text))
-        # WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
-        #             (By.LINK_TEXT, self.assetpage._asset_link_locator))).click()
-        # WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
-        #     (By.XPATH, self.assetpage._asset_select_action_delete_select_xpath_locator)))
-        # self.assetpage.asset_search_assetname(self.assetpage.asset_place_name)
-        # sleep(5) # Necessary sleep to let the app search for the input string
-        # if self.pagination.pagination_total_pages() >= 1:
-        #     while (self.assetpage.get_assettable_created_column.get_attribute("class") != "sorting_desc"):
-        #         self.assetpage.get_assettable_created_column.click()
-        #         sleep(5)
-        # for item in self.assetpage.get_asset_list_background:
-        #     if (item.text  == self.assetpage.asset_place_name) and (item.value_of_css_property("background-color")\
-        #                                                         == "rgba(255, 236, 158, 1)"):
-        #         check = 1
-        #         break
-        # self.assetpage.textbox_clear(self.driver.find_element_by_xpath(self.assetpage._asset_search_textbox_locator))
-        # self.assertFalse(check == 0, self.config.get(self.section,'MESSAGE_NEW_ASSET_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
