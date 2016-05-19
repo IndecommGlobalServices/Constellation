@@ -32,14 +32,47 @@ class EventsPage(BasePageClass, object):
 
     # Events Delete related locators
     _event_select_action_delete_select_xpath_locator = ".//*[@id='event_actions_dropdown']/button[text()='Select action']/following-sibling::button"
+    _event_select_action_delete_click_xpath_locator = ".//*[@id='delete_event_modal']/descendant::button[text()='Delete']"
+    _event_list_select_first_check_box_xpath_locator = ".//*[@id='eventsTable']/tbody/tr[1]/td[1]/label/span/span[2]"
+    _event_list_check_box_locator = ".//*[@id='eventsTable']/tbody/tr/td[1]/label/span/span[2]"
+    _event_deleteevent_cancel_click_xpath_locator = ".//*[@id='delete_event_modal']/descendant::button[text()='Cancel']"
 
     # New Event creation related
     #_asset_create_asset = "//img[@alt='Create asset']"
-    _event_create_event = "//img[@ng-src='../images/icon_create_item_off.png']"
+    #_event_create_event = "//img[@ng-src='../images/icon_create_item_off.png']"
 
     _event_link_locator = "Events"
 
     _event_list_event_name_black_color_locator = "//*[@id='eventsTable']/tbody/tr/td[2]"
+
+    # Creating Events
+    _event_create_click = "//img[@title='Create event']"
+
+    # Name - //input[@name='name']
+    #
+    # Start Date - //label[contains(text(),'Start Date')]/following-sibling::span/descendant::input[@ng-model='datetime_internal']
+    #
+    # Date - 2016-05-25 12:00 am
+    #
+    # End Date -
+    #
+    # //label[contains(text(),'End Date')]/following-sibling::span/descendant::input[@ng-model='datetime_internal']
+    #
+    # 2016-06-04 12:00 am
+    #
+    # Type
+    #
+    # Click - //button[contains(text(),'Type')]
+    # Enter New Value - //input[@ng-model='itemInput']
+    # Click - Add - //button[@id='newItemButton']
+    #
+    # Importance
+    #
+    # Click - //button[contains(text(),'Importance')]
+    # Enter New Value - //input[@ng-model='itemInput']
+    # Click - Add - //button[@id='newItemButton']
+    #
+
 
 
     @property
@@ -88,6 +121,28 @@ class EventsPage(BasePageClass, object):
             raise type(err)("Delete option not present in the select action dropdown - searched XPATH - " \
                           + self._event_link_delete_text_xpath_locator + err.message)
 
+    @property
+    def get_event_list_first_check_box(self):
+        try:
+            #return self.driver.find_element_by_xpath(self._asset_list_select_first_check_box_xpath_locator)
+            return self.basepage.findElementByXpath(self._event_list_select_first_check_box_xpath_locator)
+        except Exception, err:
+            raise type(err)("Asset table checkbox not available - searched XPATH - " \
+                          + self._event_list_select_first_check_box_xpath_locator + err.message)
+
+
+    @property
+    def get_deleteevent_cancel_button(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.element_to_be_clickable(
+                (By.XPATH, self._event_deleteevent_cancel_click_xpath_locator)), "Cancel button not available")
+            return self.driver.find_element_by_xpath(self._event_deleteevent_cancel_click_xpath_locator)
+        except Exception, err:
+            raise type(err)("Cancel button not available in Delete Events popup - searched XPATH - " \
+                          + self._event_deleteevent_cancel_click_xpath_locator + err.message)
+
+
+
 
     def __init__(self, driver):
         super(EventsPage,self).__init__(driver)
@@ -108,6 +163,14 @@ class EventsPage(BasePageClass, object):
             return False
         return True
 
+    @property
+    def get_event_delete_button(self):
+        try:
+            #return self.driver.find_element_by_xpath(self._asset_select_action_delete_click_xpath_locator)
+            return self.basepage.findElementByXpath(self._event_select_action_delete_click_xpath_locator)
+        except Exception, err:
+            raise type(err)("Delete button not available in Delete Events popup - searched XPATH - " \
+                          + self._event_select_action_delete_click_xpath_locator + err.message)
 
     def return_to_apps_main_page(self):
         """
@@ -149,3 +212,63 @@ class EventsPage(BasePageClass, object):
         except:
             inspectstack = inspect.stack()[1][3]
             self.recoverapp(inspectstack)
+
+    def get_select_checkbox_in_grid(self):
+        """
+        Description : This function will select the checkbox from the event list..
+        Revision:
+        :return: None
+        """
+        #assets_checkbox = self.driver.find_elements_by_xpath(self._asset_list_check_box_locator)
+        #sleep(2)
+        events_checkbox = self.basepage.findElementsByXpath(self._event_list_check_box_locator)
+        for event_checkbox in events_checkbox:
+            #sleep(1)
+            event_checkbox.click()
+
+        for event_checkbox in events_checkbox:
+            #sleep(1)
+            event_checkbox.click()
+
+    def get_total_row_count(self):
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+            (By.XPATH, self._event_select_action_delete_select_xpath_locator)))
+        countText = (self.driver.find_element_by_id("eventsTable_info").text).encode('utf-8').split('\n')[2].strip()
+        #print "count text:" + countText
+        splitedText = countText.split(" ")
+        totalCount = splitedText[5]
+        # print "total count:" + totalCount
+        return int(totalCount)
+
+    def event_create_click(self):
+        """
+        Description : This function will click on Create Asset Link.
+        Revision:
+        :return: None
+        """
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+            (By.XPATH, self._event_select_action_delete_select_xpath_locator)))
+        WebDriverWait(self.driver, 50).until(EC.presence_of_element_located((By.XPATH, self._event_create_asset))).click()
+
+    def create_event(self):
+        """
+        Description : This function will enter event data.
+        Revision:
+        :return: None
+        """
+
+        # Click on Create Event Icon
+        self.event_create_click()
+        # Enter the values
+        self.enter_asset_type_name.send_keys(self.asset_place_name)
+        self.enter_asset_type_address.send_keys(self.asset_place_address)
+        self.enter_asset_type_address2.send_keys(self.asset_place_address2)
+        self.enter_asset_type_city.send_keys(self.asset_place_city)
+        self.enter_asset_type_state.send_keys(self.asset_place_state)
+        self.enter_asset_type_zip.send_keys(self.asset_place_zip)
+        self.enter_asset_type_owner.send_keys(self.asset_place_owner)
+        self.basepage.findElementByXpath(self._asset_overview_type_drop_down_locator).click()
+        #sleep(2)
+        self.get_overview_newtype_text_box.send_keys(self.asset_place_type)
+        self.get_overview_place_type_add_button.click()
+        # self.get_asset_overview_save_button.click()
