@@ -1,3 +1,7 @@
+import json
+import os
+from time import sleep
+
 __author__ = 'Deepa.Sivadas'
 from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
@@ -8,6 +12,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import inspect
 
+cwd = os.getcwd()
+os.chdir('..')
+eventData = os.path.join(os.getcwd(), "data", "json_Eventdata.json")
+os.chdir(cwd)
+
 class EventsPage(BasePageClass, object):
 
     _app_events_appname_locator = "//span[contains(text(),'Events')]"
@@ -17,8 +26,10 @@ class EventsPage(BasePageClass, object):
 
 
     # Events Delete related locators
-    _event_select_action_delete_select_xpath_locator = ".//*[@id='event_actions_dropdown']/button[text()='Select action']/following-sibling::button"
-    _event_select_action_delete_click_xpath_locator = ".//*[@id='delete_event_modal']/descendant::button[text()='Delete']"
+    _event_select_action_delete_select_xpath_locator = ".//*[@id='event_actions_dropdown']/button[text()=" \
+                                                       "'Select action']/following-sibling::button"
+    _event_select_action_delete_click_xpath_locator = ".//*[@id='delete_event_modal']/descendant::button[text()=" \
+                                                      "'Delete']"
     _event_list_select_first_check_box_xpath_locator = ".//*[@id='eventsTable']/tbody/tr[1]/td[1]/label/span/span[2]"
     _event_list_check_box_locator = ".//*[@id='eventsTable']/tbody/tr/td[1]/label/span/span[2]"
     _event_deleteevent_cancel_click_xpath_locator = ".//*[@id='delete_event_modal']/descendant::button[text()='Cancel']"
@@ -29,8 +40,36 @@ class EventsPage(BasePageClass, object):
     _event_list_event_name_black_color_locator = "//*[@id='eventsTable']/tbody/tr/td[2]"
 
     # Creating Events
-    _event_create_click = "//img[@title='Create event']"
 
+    _event_create_click = "//img[@title='Create event']"
+    # //*[@id='event_overview_edit_modal']/div/div/form/div[1]/div[1]/input
+    # //input[@placeholder='Name']
+
+    _event_title = "//h4[contains(text(),'Event overview')]"
+    _event_type_field_name_text_box_locator = "//*[@id='event_overview_edit_modal']/div/div/form/div[1]/div[1]/input"
+    _event_type_field_Start_Date_text_box_locator = "//label[contains(text(),'Start Date')]/following-sibling::span" \
+                                                    "/descendant::input[@ng-model='datetime_internal']"
+    _event_type_field_End_Date_text_box_locator = "//label[contains(text(),'End Date')]/following-sibling::span" \
+                                                  "/descendant::input[@ng-model='datetime_internal']"
+    _event_type_field_Venue_text_box_locator = "//input[@placeholder='Venue']"
+    _event_type_field_TAG_text_box_locator = "//input[@placeholder='Add a tag']"
+    _event_type_field_TAG_button_locator = "//button[@ng-click='addEventTag()']"
+    _event_type_field_CANCEL_button_locator = "//button[@ng-click='cancelEventOverviewEdit()']"
+    _event_type_field_SAVE_button_locator = "//button[@ng-click='saveEventOverviewEdit()']"
+
+    # Event name on Breadcrumb
+    _event_name_breadcrumb = "//*[@id='header']/div[1]/span[3]/span"
+
+    _event_search_textbox_locator = "//input[@id='txt_search_events']"
+
+    _event_table_createdcolumn_locator = "//*[@id='eventsTable']/thead/tr/th[3]"
+    _event_list_background_locator = ".//*[@id='assetstable']/tbody/tr/td[2]"
+
+
+
+
+    #
+    #
     # Name - //input[@name='name']
     #
     # Start Date - //label[contains(text(),'Start Date')]/following-sibling::span/descendant::input[@ng-model='datetime_internal']
@@ -123,6 +162,7 @@ class EventsPage(BasePageClass, object):
 
     def __init__(self, driver):
         super(EventsPage,self).__init__(driver)
+        self.get_eventdata()
         self.basepage = BasePage(self.driver)
 
     def open_event_app(self):
@@ -146,6 +186,104 @@ class EventsPage(BasePageClass, object):
         except Exception, err:
             raise type(err)("Delete button not available in Delete Events popup - searched XPATH - " \
                           + self._event_select_action_delete_click_xpath_locator + err.message)
+
+    @property
+    def get_event_title_click(self):
+        try:
+            return self.basepage.findElementByXpath(self._event_title)
+        except Exception, err:
+            raise type(err)("Event title - searched XPATH - " \
+                          + self._event_title + err.message)
+
+
+
+    @property
+    def enter_event_type_name(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_name_text_box_locator)
+            #return self.basepage.findElementByXpath(self._asset_overview_name_text_box_locator)
+        except Exception, err:
+            raise type(err)("Event name textbox not available - searched XPATH - " \
+                          + self._event_type_field_name_text_box_locator + err.message)
+
+    @property
+    def enter_event_type_start_date(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_Start_Date_text_box_locator)
+            #return self.basepage.findElementByXpath(self._asset_overview_name_text_box_locator)
+        except Exception, err:
+            raise type(err)("Event Start Date textbox not available - searched XPATH - " \
+                          + self._event_type_field_Start_Date_text_box_locator + err.message)
+
+    @property
+    def enter_event_type_end_date(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_End_Date_text_box_locator)
+            #return self.basepage.findElementByXpath(self._asset_overview_name_text_box_locator)
+        except Exception, err:
+            raise type(err)("Event End Date textbox not available - searched XPATH - " \
+                          + self._event_type_field_End_Date_text_box_locator + err.message)
+
+    @property
+    def enter_event_type_venue(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_Venue_text_box_locator)
+            #return self.basepage.findElementByXpath(self._asset_overview_name_text_box_locator)
+        except Exception, err:
+            raise type(err)("Event Venue textbox not available - searched XPATH - " \
+                          + self._event_type_field_Venue_text_box_locator + err.message)
+
+
+    @property
+    def enter_event_type_tag(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_TAG_text_box_locator)
+            #return self.basepage.findElementByXpath(self._asset_overview_name_text_box_locator)
+        except Exception, err:
+            raise type(err)("Event TAG textbox not available - searched XPATH - " \
+                          + self._event_type_field_TAG_text_box_locator + err.message)
+
+    @property
+    def get_event_type_tag_add_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_TAG_button_locator)
+        except Exception, err:
+            raise type(err)("Event Type TAG Add button not available - searched XPATH - " \
+                          + self._event_type_field_TAG_button_locator + err.message)
+
+    @property
+    def get_event_type_cancel_add_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_CANCEL_button_locator)
+        except Exception, err:
+            raise type(err)("Event Type CANCEL Add button not available - searched XPATH - " \
+                          + self._event_type_field_CANCEL_button_locator + err.message)
+
+    @property
+    def get_event_type_save_add_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_SAVE_button_locator)
+        except Exception, err:
+            raise type(err)("Event Type SAVE Add button not available - searched XPATH - " \
+                          + self._event_type_field_SAVE_button_locator + err.message)
+
+    @property
+    def get_event_name_breadcrumb(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_name_breadcrumb)
+        except Exception, err:
+            raise type(err)("Event name not available in breadcrumb - searched XPATH - " \
+                          + self._event_name_breadcrumb + err.message)
+
+    @property
+    def get_eventtable_created_column(self):
+        return self.driver.find_element_by_xpath(self._event_table_createdcolumn_locator)
+
+    @property
+    def get_event_list_background(self):
+        return self.driver.find_elements_by_xpath(self._event_list_background_locator)
+
+
 
     def return_to_apps_main_page(self):
         """
@@ -219,6 +357,17 @@ class EventsPage(BasePageClass, object):
             (By.XPATH, self._event_select_action_delete_select_xpath_locator)))
         WebDriverWait(self.driver, 50).until(EC.presence_of_element_located((By.XPATH, self._event_create_event))).click()
 
+    def get_eventdata(self):
+        with open(eventData) as data_file:
+            for each in json.load(data_file):
+                self.event_name = each["event_name"]
+                self.event_start_date = each["event_start_date"]
+                self.event_end_date = each["event_end_date"]
+                self.event_venue = each["event_venue"]
+                self.event_tag = each["event_tag"]
+
+
+
     def create_event(self):
         """
         Description : This function will enter event data.
@@ -228,5 +377,35 @@ class EventsPage(BasePageClass, object):
 
         # Click on Create Event Icon
         self.event_create_click()
+
+        # Click on Event title, so that the pop-up will disappear
+        self.get_event_title_click.click()
         # Enter the values
 
+        self.enter_event_type_name.send_keys(self.event_name)
+        self.enter_event_type_start_date.send_keys(self.event_start_date)
+        self.enter_event_type_end_date.send_keys(self.event_end_date)
+        self.enter_event_type_venue.send_keys(self.event_venue)
+        self.enter_event_type_tag.send_keys(self.event_tag)
+        self.get_event_type_tag_add_button.click()
+        self.get_event_type_save_add_button.click()
+
+    def textbox_clear(self, textboxlocator):
+        """
+        Description : This function will clear search text box.
+        Revision:
+        :return: None
+        """
+        textboxlocator.clear()
+
+    def event_search_eventname(self, name):
+        """
+        Description : This function will enter string in search text box.
+        Revision:
+        :return: None
+        """
+        #search_textbox = WebDriverWait(self.driver,20).until(EC.presence_of_element_located(
+        #    (By.XPATH, self._asset_search_textbox_locator)))
+        search_textbox = self.basepage.findElementByXpath(self._event_search_textbox_locator)
+        self.textbox_clear(search_textbox)
+        search_textbox.send_keys(name)

@@ -108,7 +108,7 @@ class EventpageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_EV_05(self):
+    def test_EV_005(self):
         """
         Test : test_EV_05
         Description : To create event and verify that event is created properly.
@@ -121,4 +121,27 @@ class EventpageTest(BaseTestCase):
 
         self.eventpage.create_event()
 
+        WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.eventpage._event_name_breadcrumb), self.eventpage.get_event_name_breadcrumb.text))
+
+        WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                    (By.LINK_TEXT, self.eventpage._event_link_locator))).click()
+
+        WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
+            (By.XPATH, self.eventpage._event_select_action_delete_select_xpath_locator)))
+
+        self.eventpage.event_search_eventname(self.eventpage.event_name)
+
+
+        if self.pagination.pagination_total_pages() >= 1:
+            while (self.eventpage.get_eventtable_created_column.get_attribute("class") != "sorting_desc"):
+                self.eventpage.get_eventtable_created_column.click()
+                sleep(5)
+        for item in self.eventpage.get_event_list_background:
+            if (item.text  == self.eventpage.event_name) and (item.value_of_css_property("background-color")\
+                                                                == "rgba(255, 236, 158, 1)"):
+                check = 1
+                self.assertTrue(check == 1, self.config.get(self.section,'MESSAGE_NEW_EVENT_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
+                break
+        self.eventpage.textbox_clear(self.driver.find_element_by_xpath(self.eventpage._event_search_textbox_locator))
 
