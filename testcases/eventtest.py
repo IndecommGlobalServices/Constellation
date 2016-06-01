@@ -1,3 +1,4 @@
+from nose.plugins.skip import SkipTest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -8,8 +9,8 @@ from time import sleep
 import ConfigParser
 from lib.pagination import Pagination
 
-class EventpageTest(BaseTestCase):
 
+class EventpageTest(BaseTestCase):
     @classmethod
     def setUpClass(cls):
         super(EventpageTest, cls).setUpClass()
@@ -22,7 +23,7 @@ class EventpageTest(BaseTestCase):
 
     def setUp(self):
         self.errors_and_failures = self.tally()
-        WebDriverWait(self.driver, 50). until(EC.presence_of_element_located(
+        WebDriverWait(self.driver, 50).until(EC.presence_of_element_located(
             (By.XPATH, self.eventpage._event_select_action_delete_select_xpath_locator)))
 
     def tearDown(self):
@@ -31,7 +32,7 @@ class EventpageTest(BaseTestCase):
         self.eventpage.return_to_apps_main_page()
 
     @attr(priority="high")
-    #@SkipTest
+    # @SkipTest
     def test_EV_001(self):
         """
         Test : test_EV_01
@@ -41,14 +42,14 @@ class EventpageTest(BaseTestCase):
         :return: None
         """
         self.eventpage.get_event_select_action_drop_down.click()
-        if len(self.eventpage.get_event_name_list)<= 0:
+        if len(self.eventpage.get_event_name_list) <= 0:
             self.assertFalse(self.eventpage.get_event_link_delete_text.is_enabled(),
                              self.config.get(self.section, 'MESSAGE_WHEN_NO_EVENTS_AVAILABLE'))
         else:
             self.skipTest(self.config.get(self.section, 'MESSAGE_TEST_CAN_NOT_BE_VALIDATED'))
 
     @attr(priority="high")
-    #@SkipTest
+    # @SkipTest
     def test_EV_002(self):
         """
         Test : test_EV_02
@@ -65,6 +66,8 @@ class EventpageTest(BaseTestCase):
         self.assertFalse(state,
                          self.config.get(self.section, 'MESSAGE_WHEN_NO_EVENTS_AVAILABLE'))
 
+    @attr(priority="high")
+    @SkipTest
     def test_EV_003(self):
         """
         Test : test_EV_03
@@ -77,15 +80,15 @@ class EventpageTest(BaseTestCase):
         self.eventpage.get_event_list_first_check_box.click()
         self.eventpage.get_event_select_action_drop_down.click()
         self.eventpage.get_event_link_delete_text.click()
-        self.eventpage.get_event_delete_button.click() # Delete
+        self.eventpage.get_event_delete_button.click()  # Delete
         sleep(2)
         countafterdeletion = self.eventpage.get_total_row_count()
         sleep(2)
-        self.assertEqual(int(countbeforedeletion), int(countafterdeletion)+1,
+        self.assertEqual(int(countbeforedeletion), int(countafterdeletion) + 1,
                          self.config.get(self.section, 'MESSAGE_COULD_NOT_DELETE_EVENT'))
 
     @attr(priority="high")
-    #@SkipTest
+    # @SkipTest
     def test_EV_004(self):
         """
         Test : test_EV_04
@@ -99,7 +102,7 @@ class EventpageTest(BaseTestCase):
         self.eventpage.get_event_list_first_check_box.click()
         self.eventpage.get_event_select_action_drop_down.click()
         self.eventpage.get_event_link_delete_text.click()
-        self.eventpage.get_deleteevent_cancel_button.click() # Cancel
+        self.eventpage.get_deleteevent_cancel_button.click()  # Cancel
         sleep(2)
         countafterdeletion = self.eventpage.get_total_row_count()
         sleep(2)
@@ -107,7 +110,7 @@ class EventpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_EVENT_DELETED_ON_CANCEL'))
 
     @attr(priority="high")
-    #@SkipTest
+    # @SkipTest
     def test_EV_005(self):
         """
         Test : test_EV_05
@@ -118,45 +121,106 @@ class EventpageTest(BaseTestCase):
         """
         check = 0
 
-
         self.eventpage.create_event()
 
         WebDriverWait(self.driver, 30).until(EC.text_to_be_present_in_element(
             (By.XPATH, self.eventpage._event_name_breadcrumb), self.eventpage.get_event_name_breadcrumb.text))
 
         WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
-                    (By.LINK_TEXT, self.eventpage._event_link_locator))).click()
+            (By.LINK_TEXT, self.eventpage._event_link_locator))).click()
 
         WebDriverWait(self.driver, 30).until(EC.presence_of_element_located(
             (By.XPATH, self.eventpage._event_select_action_delete_select_xpath_locator)))
 
         self.eventpage.event_search_eventname(self.eventpage.event_name)
 
-
         if self.pagination.pagination_total_pages() >= 1:
             while (self.eventpage.get_eventtable_created_column.get_attribute("class") != "sorting_desc"):
                 self.eventpage.get_eventtable_created_column.click()
                 sleep(5)
         for item in self.eventpage.get_event_list_background:
-            if (item.text  == self.eventpage.event_name) and (item.value_of_css_property("background-color")\
-                                                                == "rgba(255, 236, 158, 1)"):
+            if (item.text == self.eventpage.event_name) and (item.value_of_css_property("background-color") \
+                                                                     == "rgba(255, 236, 158, 1)"):
                 check = 1
-                self.assertTrue(check == 1, self.config.get(self.section,'MESSAGE_NEW_EVENT_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
+                self.assertTrue(check == 1,
+                                self.config.get(self.section, 'MESSAGE_NEW_EVENT_NOT_APPEARING_ON_YELLOW_BACKGROUND'))
                 break
         self.eventpage.textbox_clear(self.driver.find_element_by_xpath(self.eventpage._event_search_textbox_locator))
 
     @attr(priority="high")
-    #@SkipTest
-    def test_EV_015(self):
+    # @SkipTest
+    def test_EV_006(self):
         """
-        Test : test_AS_15
-        Description : To verify New Asset Name field.
+        Test : test_EV_006
+        Description : To verify New Event Name field.
         Revision:
         :return: None
         """
         self.eventpage.event_create_click()
-        self.eventpage.select_asset_template_type("Place")
-        self.eventpage.enter_asset_type_name.send_keys("")#Clear the text filed and leave it without any value
-        self.assertFalse(self.eventpage.get_asset_overview_save_button.is_enabled(),
-                         self.config.get(self.section,'MESSAGE_SAVE_BUTTON_IS_NOT_DISABLED'))
-        self.eventpage.asset_overview_cancel_click()
+        self.eventpage.enter_event_type_name.send_keys("")  # Clear the text filed and leave it without any value
+        self.assertFalse(self.eventpage.get_event_type_save_add_button.is_enabled(),
+                         self.config.get(self.section, 'MESSAGE_SAVE_BUTTON_IS_NOT_DISABLED'))
+        self.eventpage.get_event_type_cancel_add_button.click()
+
+    @attr(priority="high")
+    # @SkipTest
+    def test_EV_007(self):
+        """
+        Test : test_EV_007
+        Description : To verify cancel button functionality of New event window. Without any data entry.
+        Revision:
+        :return: None
+        """
+        self.eventpage.event_create_click()
+        self.eventpage.get_event_type_cancel_add_button.click()
+        expectedAfterResetFilter = self.eventpage.get_Type_dropdown.text
+        self.assertEqual("Type", expectedAfterResetFilter)  # Checking "Asset Type" displayed after reset
+
+    @attr(priority="high")
+    # @SkipTest
+    def test_EV_008(self):
+        """
+        Test : test_EV_008
+        Description : To edit overview section. Enter all required fields info and click on save button.
+        Revision:
+        :return: None
+        """
+        self.eventpage.select_event_type(self.eventpage.event_name)
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.eventpage._event_details_edit_widget_locator), r"Details"))
+        self.eventpage.get_event_overview_edit_link.click()
+        self.eventpage.get_event_title_click.click()
+
+        self.eventpage.enter_event_type_name.clear()
+        self.eventpage.enter_event_type_name.send_keys("kk edit event")
+
+        self.eventpage.enter_event_type_venue.clear()
+        self.eventpage.enter_event_type_venue.send_keys("edit Bangalore 1")
+
+        self.eventpage.get_event_type_save_add_button.click()  # Click on Save
+        self.assertTrue(self.eventpage.event_type_Saved_label.is_displayed(),
+                        self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
+
+    @attr(priority="high")
+    # @SkipTest
+    def test_EV_009(self):
+        """
+        Test : test_EV_009
+        Description : To edit overview section. Enter all required fields info and click on cancel button.
+        Revision:
+        :return: None
+        """
+        self.eventpage.select_event_type(self.eventpage.event_name)
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
+            (By.XPATH, self.eventpage._event_details_edit_widget_locator), r"Details"))
+        self.eventpage.get_event_overview_edit_link.click()
+        self.eventpage.get_event_title_click.click()
+
+        self.eventpage.enter_event_type_name.clear()
+        self.eventpage.enter_event_type_name.send_keys("kk edit event")
+
+        self.eventpage.enter_event_type_venue.clear()
+        self.eventpage.enter_event_type_venue.send_keys("edit Bangalore 1")
+
+        self.eventpage.get_event_type_cancel_add_button.click()  # click on Cancel
+        self.assertEqual(self.eventpage.event_name, self.eventpage.get_event_name_breadcrumb.text)

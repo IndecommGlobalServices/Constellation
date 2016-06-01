@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="d2d11fb5-9917-4e11-bad4-76c996f29b48" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/json_Eventdata.json" afterPath="$PROJECT_DIR$/data/json_Eventdata.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/eventspage.py" afterPath="$PROJECT_DIR$/pages/eventspage.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/assettest.py" afterPath="$PROJECT_DIR$/testcases/assettest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/eventtest.py" afterPath="$PROJECT_DIR$/testcases/eventtest.py" />
     </list>
     <ignored path="Constellation.iws" />
@@ -29,10 +29,10 @@
       <file leaf-file-name="eventtest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21167883">
-              <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.19516729">
+              <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
               <folding>
-                <element signature="e#0#43#0" expanded="true" />
+                <element signature="e#0#38#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -41,8 +41,8 @@
       <file leaf-file-name="eventspage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="434" column="0" selection-start-line="434" selection-start-column="0" selection-end-line="434" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.42857143">
+              <caret line="485" column="0" selection-start-line="485" selection-start-column="0" selection-end-line="485" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -51,11 +51,9 @@
       <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="293" column="42" selection-start-line="293" selection-start-column="42" selection-end-line="293" selection-end-column="42" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="-3.857143">
+              <caret line="9" column="38" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="38" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -63,8 +61,8 @@
       <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.657143">
-              <caret line="1823" column="55" selection-start-line="1823" selection-start-column="8" selection-end-line="1823" selection-end-column="55" />
+            <state vertical-scroll-proportion="-2.2571428">
+              <caret line="2055" column="8" selection-start-line="2055" selection-start-column="8" selection-end-line="2055" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -80,9 +78,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/testcases/baseconfig.cfg" />
-        <option value="$PROJECT_DIR$/testcases/eventtest.py" />
         <option value="$PROJECT_DIR$/data/json_Eventdata.json" />
         <option value="$PROJECT_DIR$/pages/eventspage.py" />
+        <option value="$PROJECT_DIR$/testcases/assettest.py" />
+        <option value="$PROJECT_DIR$/testcases/eventtest.py" />
       </list>
     </option>
   </component>
@@ -169,8 +168,8 @@
       <pane id="Scratches" />
     </panes>
   </component>
-  <component name="RunManager" selected="Python tests.Unittest EventpageTest.test_EV_005">
-    <configuration default="false" name="Unittest EventpageTest.test_EV_05" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in eventtest">
+    <configuration default="false" name="Unittest EventpageTest.test_EV_007" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -182,7 +181,73 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
       <option name="CLASS_NAME" value="EventpageTest" />
-      <option name="METHOD_NAME" value="test_EV_05" />
+      <option name="METHOD_NAME" value="test_EV_007" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest EventpageTest.test_EV_008" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
+      <option name="CLASS_NAME" value="EventpageTest" />
+      <option name="METHOD_NAME" value="test_EV_008" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest AssetpageTest.test_AS_020" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/assettest.py" />
+      <option name="CLASS_NAME" value="AssetpageTest" />
+      <option name="METHOD_NAME" value="test_AS_020" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest EventpageTest.test_EV_009" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
+      <option name="CLASS_NAME" value="EventpageTest" />
+      <option name="METHOD_NAME" value="test_EV_009" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -207,28 +272,6 @@
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest EventpageTest.test_EV_005" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
-      <option name="CLASS_NAME" value="EventpageTest" />
-      <option name="METHOD_NAME" value="test_EV_005" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -358,16 +401,20 @@
       <option name="USE_KEYWORD" value="false" />
       <method />
     </configuration>
-    <list size="3">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_05" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_005" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_007" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_008" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_020" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_009" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
     </list>
     <recent_temporary>
-      <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_005" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_05" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_009" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_008" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest AssetpageTest.test_AS_020" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_007" />
       </list>
     </recent_temporary>
   </component>
@@ -388,38 +435,44 @@
       <option name="project" value="LOCAL" />
       <updated>1463740037404</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Introducted Type dropdown functionality in events while creating">
+      <created>1464767652165</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1464767652165</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_EventpageTest_test_EV_005 - 2016.06.01 at 12h 40m 55s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_005" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_008 - 2016.06.01 at 14h 26m 42s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_008" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_05 - 2016.05.20 at 11h 02m 40s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_05" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_008 - 2016.06.01 at 14h 34m 52s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_008" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_05 - 2016.05.20 at 11h 21m 29s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_05" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_008 - 2016.06.01 at 14h 37m 27s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_008" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_05 - 2016.05.20 at 12h 14m 03s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_05" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_008 - 2016.06.01 at 14h 40m 39s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_008" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_05 - 2016.05.20 at 12h 17m 37s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_05" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_008 - 2016.06.01 at 14h 44m 10s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_008" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_05 - 2016.05.20 at 12h 38m 21s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_05" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_008 - 2016.06.01 at 14h 47m 59s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_008" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_05 - 2016.05.20 at 12h 41m 13s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_05" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_008 - 2016.06.01 at 14h 56m 07s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_008" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_05 - 2016.05.20 at 13h 42m 19s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_05" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_008 - 2016.06.01 at 15h 00m 16s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_008" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_05 - 2016.05.20 at 13h 45m 19s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_05" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_009 - 2016.06.01 at 15h 37m 36s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_009" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_eventtest - 2016.05.20 at 15h 51m 29s.xml">
+    <history-entry file="Unittests_in_eventtest - 2016.06.01 at 15h 49m 56s.xml">
       <configuration name="Unittests in eventtest" configurationId="tests" />
     </history-entry>
   </component>
@@ -429,17 +482,17 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20138355" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3425775" sideWeight="0.50595236" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24338624" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.46560848" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46560848" sideWeight="0.4940476" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24627976" sideWeight="0.50864196" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3968254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -462,7 +515,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Added script for Creating Events, Data-driven from JSON, Verified Background Color once record is created" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added script for Creating Events, Data-driven from JSON, Verified Background Color once record is created" />
+    <MESSAGE value="Introducted Type dropdown functionality in events while creating" />
+    <option name="LAST_COMMIT_MESSAGE" value="Introducted Type dropdown functionality in events while creating" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -474,7 +528,7 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -487,14 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_Eventdata.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14591439">
-          <caret line="5" column="15" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/basepage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33271375">
@@ -503,38 +549,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
+    <entry file="file://$PROJECT_DIR$/data/json_Eventdata.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="293" column="42" selection-start-line="293" selection-start-column="42" selection-end-line="293" selection-end-column="42" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.42">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.657143">
-          <caret line="1823" column="55" selection-start-line="1823" selection-start-column="8" selection-end-line="1823" selection-end-column="55" />
+        <state vertical-scroll-proportion="-2.2571428">
+          <caret line="2055" column="8" selection-start-line="2055" selection-start-column="8" selection-end-line="2055" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="434" column="0" selection-start-line="434" selection-start-column="0" selection-end-line="434" selection-end-column="0" />
+        <state vertical-scroll-proportion="-0.42857143">
+          <caret line="485" column="0" selection-start-line="485" selection-start-column="0" selection-end-line="485" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-3.857143">
+          <caret line="9" column="38" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21167883">
-          <caret line="119" column="0" selection-start-line="119" selection-start-column="0" selection-end-line="119" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.19516729">
+          <caret line="72" column="25" selection-start-line="72" selection-start-column="25" selection-end-line="72" selection-end-column="25" />
           <folding>
-            <element signature="e#0#43#0" expanded="true" />
+            <element signature="e#0#38#0" expanded="true" />
           </folding>
         </state>
       </provider>
