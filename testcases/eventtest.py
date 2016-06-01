@@ -145,3 +145,18 @@ class EventpageTest(BaseTestCase):
                 break
         self.eventpage.textbox_clear(self.driver.find_element_by_xpath(self.eventpage._event_search_textbox_locator))
 
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_015(self):
+        """
+        Test : test_AS_15
+        Description : To verify New Asset Name field.
+        Revision:
+        :return: None
+        """
+        self.eventpage.event_create_click()
+        self.eventpage.select_asset_template_type("Place")
+        self.eventpage.enter_asset_type_name.send_keys("")#Clear the text filed and leave it without any value
+        self.assertFalse(self.eventpage.get_asset_overview_save_button.is_enabled(),
+                         self.config.get(self.section,'MESSAGE_SAVE_BUTTON_IS_NOT_DISABLED'))
+        self.eventpage.asset_overview_cancel_click()

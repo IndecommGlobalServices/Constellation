@@ -56,6 +56,11 @@ class EventsPage(BasePageClass, object):
     _event_type_field_TAG_button_locator = "//button[@ng-click='addEventTag()']"
     _event_type_field_CANCEL_button_locator = "//button[@ng-click='cancelEventOverviewEdit()']"
     _event_type_field_SAVE_button_locator = "//button[@ng-click='saveEventOverviewEdit()']"
+    _event_type_field_type_drop_down_locator = "//button[contains(text(), 'Type')]"
+    _event_type_field_type_text_box_locator = "//input[@placeholder='Enter new value']"
+    _event_type_field_add_button_locator = "//*[@id='newItemButton']"
+
+
 
     # Event name on Breadcrumb
     _event_name_breadcrumb = "//*[@id='header']/div[1]/span[3]/span"
@@ -225,6 +230,35 @@ class EventsPage(BasePageClass, object):
                           + self._event_type_field_End_Date_text_box_locator + err.message)
 
     @property
+    def get_event_type_drop_down(self):
+        try:
+            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_type_field_type_drop_down_locator)))
+            return self.driver.find_element_by_xpath(self._event_type_field_type_drop_down_locator)
+        except Exception, err:
+            raise type(err)("Event type dropdown not available - searched XPATH - " \
+                          + self._event_type_field_type_drop_down_locator + err.message)
+
+    @property
+    def get_event_newtype_text_box(self):
+        try:
+            WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_type_field_type_text_box_locator)))
+            return self.driver.find_element_by_xpath(self._event_type_field_type_text_box_locator)
+        except Exception, err:
+            raise type(err)("Event Type textbox not available - searched XPATH - " \
+                          + self._event_type_field_type_text_box_locator + err.message)
+
+    @property
+    def get_event_type_add_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_type_field_add_button_locator)
+        except Exception, err:
+            raise type(err)("Event Type Add button not available - searched XPATH - " \
+                          + self._event_type_field_add_button_locator + err.message)
+
+
+    @property
     def enter_event_type_venue(self):
         try:
             return self.driver.find_element_by_xpath(self._event_type_field_Venue_text_box_locator)
@@ -363,6 +397,7 @@ class EventsPage(BasePageClass, object):
                 self.event_name = each["event_name"]
                 self.event_start_date = each["event_start_date"]
                 self.event_end_date = each["event_end_date"]
+                self.event_type = each["event_type"]
                 self.event_venue = each["event_venue"]
                 self.event_tag = each["event_tag"]
 
@@ -385,6 +420,9 @@ class EventsPage(BasePageClass, object):
         self.enter_event_type_name.send_keys(self.event_name)
         self.enter_event_type_start_date.send_keys(self.event_start_date)
         self.enter_event_type_end_date.send_keys(self.event_end_date)
+        self.get_event_type_drop_down.click()
+        self.get_event_newtype_text_box.send_keys(self.event_type)
+        self.get_event_type_add_button.click()
         self.enter_event_type_venue.send_keys(self.event_venue)
         self.enter_event_type_tag.send_keys(self.event_tag)
         self.get_event_type_tag_add_button.click()
