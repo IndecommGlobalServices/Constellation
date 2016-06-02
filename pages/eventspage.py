@@ -78,30 +78,19 @@ class EventsPage(BasePageClass, object):
     _event_overview_edit_link_locator = "//div[contains(text(),'Overview')]/div/img"
     # Event Details panel
     _event_details_edit_widget_locator = "//*[@id='widgets']/div[2]/div/div[1]"
+    _event_detail_edit_link_locator = "//img[@ng-click = 'openEventDetailsEdit()']"
+    _event_detail_edit_attendees_textbox_locator = "//input[@ng-model = 'event_edit.details.attendees']"
+    _event_detail_edit_address1_textbox_locator = "//input[@ng-model = 'event_edit.details.address.address1']"
+    _event_detail_edit_address2_textbox_locator = "//input[@ng-model = 'event_edit.details.address.address2']"
+    _event_detail_edit_city_textbox_locator = "//input[@ng-model = 'event_edit.details.address.city']"
+    _event_detail_edit_state_textbox_locator = "//input[@ng-model = 'event_edit.details.address.state']"
+    _event_detail_edit_zip_textbox_locator = "//input[@ng-model = 'event_edit.details.address.zip']"
+    _event_detail_edit_url_textbox_locator = "//input[@ng-model = 'event_edit.details.url']"
+    _event_detail_edit_description_textbox_locator = "//textarea[@ng-model = 'event_edit.details.description']"
+    _event_detail_edit_save_button_locator = "//button[@ng-click = 'saveEventDetailsEdit()']"
+    _event_detail_edit_cancel_button_locator = "//button[@ng-click = 'cancelEventDetailsEdit()']"
 
 
-
-
-    #
-    #
-    # Name - //input[@name='name']
-    #
-    # Start Date - //label[contains(text(),'Start Date')]/following-sibling::span/descendant::input[@ng-model='datetime_internal']
-    #
-    # Date - 2016-05-25 12:00 am
-    #
-    # End Date -
-    #
-    # //label[contains(text(),'End Date')]/following-sibling::span/descendant::input[@ng-model='datetime_internal']
-    #
-    # 2016-06-04 12:00 am
-    #
-    # Type
-    #
-    # Click - //button[contains(text(),'Type')]
-    # Enter New Value - //input[@ng-model='itemInput']
-    # Click - Add - //button[@id='newItemButton']
-    #
     # Importance
     #
     # Click - //button[contains(text(),'Importance')]
@@ -353,6 +342,112 @@ class EventsPage(BasePageClass, object):
         except Exception, err:
             raise type(err)("'Saved' label not available - searched XPATH - " \
                           + self._event_type_Saved_label_locator + err.message)
+
+    # Events Details related properties
+    @property
+    def get_event_detail_edit_link(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_detail_edit_link_locator)
+        except Exception, err:
+            raise type(err)("Event Details Edit link not available - searched XPATH - " \
+                          + self._event_detail_edit_link_locator + err.message)
+
+    @property
+    def get_event_detail_edit_attendees_text_box(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_detail_edit_attendees_textbox_locator)))
+            return self.driver.find_element_by_xpath(self._event_detail_edit_attendees_textbox_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_attendees_textbox_locator + err.message)
+
+    @property
+    def get_event_detail_edit_address1_text_box(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_detail_edit_address1_textbox_locator)))
+            return self.driver.find_element_by_xpath(self._event_detail_edit_address1_textbox_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_address1_textbox_locator + err.message)
+
+    @property
+    def get_event_detail_edit_address2_text_box(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_detail_edit_address2_textbox_locator)))
+            return self.driver.find_element_by_xpath(self._event_detail_edit_address2_textbox_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_address2_textbox_locator + err.message)
+
+    @property
+    def get_event_detail_edit_city_text_box(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_detail_edit_city_textbox_locator)))
+            return self.driver.find_element_by_xpath(self._event_detail_edit_city_textbox_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_city_textbox_locator + err.message)
+
+    @property
+    def get_event_detail_edit_state_text_box(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_detail_edit_state_textbox_locator)))
+            return self.driver.find_element_by_xpath(self._event_detail_edit_state_textbox_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_state_textbox_locator + err.message)
+
+    @property
+    def get_event_detail_edit_zip_text_box(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_detail_edit_zip_textbox_locator)))
+            return self.driver.find_element_by_xpath(self._event_detail_edit_zip_textbox_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_zip_textbox_locator + err.message)
+
+    @property
+    def get_event_detail_edit_url_text_box(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_detail_edit_url_textbox_locator)))
+            return self.driver.find_element_by_xpath(self._event_detail_edit_url_textbox_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_url_textbox_locator + err.message)
+
+    @property
+    def get_event_detail_edit_description_text_box(self):
+        try:
+            WebDriverWait(self.driver, 20).until(EC.presence_of_element_located(
+                (By.XPATH, self._event_detail_edit_description_textbox_locator)))
+            return self.driver.find_element_by_xpath(self._event_detail_edit_description_textbox_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_description_textbox_locator + err.message)
+
+    @property
+    def get_event_detail_edit_save_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_detail_edit_save_button_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_save_button_locator + err.message)
+
+    @property
+    def get_event_detail_edit_cancel_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_detail_edit_cancel_button_locator)
+        except Exception, err:
+            raise type(err)(" - searched XPATH - " \
+                          + self._event_detail_edit_cancel_button_locator + err.message)
+
 
 
     def return_to_apps_main_page(self):
