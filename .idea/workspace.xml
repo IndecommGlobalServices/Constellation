@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d2d11fb5-9917-4e11-bad4-76c996f29b48" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/pages/fieldinterviews.py" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/eventspage.py" afterPath="$PROJECT_DIR$/pages/eventspage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/timelinepage.py" afterPath="$PROJECT_DIR$/pages/timelinepage.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/ConstellationTestSuite.py" afterPath="$PROJECT_DIR$/testcases/ConstellationTestSuite.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/baseconfig.cfg" afterPath="$PROJECT_DIR$/testcases/baseconfig.cfg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/fieldinterviewstest.py" afterPath="$PROJECT_DIR$/testcases/fieldinterviewstest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/smoketest.py" afterPath="$PROJECT_DIR$/testcases/smoketest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/concurrent_run.py" afterPath="$PROJECT_DIR$/testcases/concurrent_run.py" />
     </list>
     <ignored path="Constellation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="concurrent_run.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="concurrent_run.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testcases/concurrent_run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="3.354515">
+              <caret line="59" column="31" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
               <folding>
                 <element signature="e#0#28#0" expanded="true" />
               </folding>
@@ -76,14 +68,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConstellationTestSuite.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ConstellationTestSuite.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/ConstellationTestSuite.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73913044">
+            <state vertical-scroll-proportion="0.0">
               <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConstellationSmokeTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/ConstellationSmokeTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -124,6 +126,7 @@
         <option value="$PROJECT_DIR$/testcases/fieldinterviewstest.py" />
         <option value="$PROJECT_DIR$/testcases/smoketest.py" />
         <option value="$PROJECT_DIR$/testcases/ConstellationTestSuite.py" />
+        <option value="$PROJECT_DIR$/testcases/concurrent_run.py" />
       </list>
     </option>
   </component>
@@ -189,20 +192,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="testcases" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pages" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -465,7 +454,13 @@
       <option name="project" value="LOCAL" />
       <updated>1464944503892</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added new test file for new modules.">
+      <created>1464945623279</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1464945623279</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -541,7 +536,8 @@
     <MESSAGE value="Data file for Time line modle." />
     <MESSAGE value="Test file for Time line module." />
     <MESSAGE value="Test file for Field Interviews module." />
-    <option name="LAST_COMMIT_MESSAGE" value="Test file for Field Interviews module." />
+    <MESSAGE value="Added new test file for new modules." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added new test file for new modules." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -610,22 +606,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/concurrent_run.py">
+    <entry file="file://$PROJECT_DIR$/testcases/ConstellationSmokeTest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/ConstellationTestSuite.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73913044">
+        <state vertical-scroll-proportion="0.0">
           <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
           <folding>
             <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/concurrent_run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="3.354515">
+          <caret line="59" column="31" selection-start-line="59" selection-start-column="31" selection-end-line="59" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
