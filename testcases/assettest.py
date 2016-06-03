@@ -401,7 +401,7 @@ class AssetpageTest(BaseTestCase):
     def test_AS_023(self):
         """
         Test : test_AS_23
-        Description : To edit overview section. Enter all required fields info and click on save button.
+        Description : To edit Details section. Enter all required fields info and click on save button.
         Revision:
         :return: None
         """
