@@ -7,11 +7,11 @@ from lib.base import BasePageClass
 from pages.IconListPage import IconListPage
 from basepage import BasePage
 from loginpage import LoginPage
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 import inspect
-
 cwd = os.getcwd()
 os.chdir('..')
 eventData = os.path.join(os.getcwd(), "data", "json_Eventdata.json")

@@ -1,7 +1,7 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from pages.fieldinterviews import FieldInterviewsPage
+from pages.fieldinterviewspage import FieldInterviewsPage
 from testcases.basetestcase import BaseTestCase
 from nose.plugins.attrib import attr
 from time import sleep

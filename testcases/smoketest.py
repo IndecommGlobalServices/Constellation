@@ -13,7 +13,7 @@ from pages.threatstreamspage import ThreatStreamPage
 from pages.incidentspage import IncidentsPage
 from pages.timelinepage import TimelinePage
 from pages.eventspage import EventsPage
-from pages.fieldinterviews import FieldInterviewsPage
+from pages.fieldinterviewspage import FieldInterviewsPage
 from testcases.basetestcase import BaseTestCase
 
 class SmokeTest(BaseTestCase):
@@ -78,17 +78,19 @@ class SmokeTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_08_map_smoke(self):
-        self.mappage = MapPage(self.driver)
-        self.appicon.click_map_icon()
-        self.assertTrue(self.mappage.get_map_water_fall_scrollable.is_displayed(), "Map is not loaded fully")
+    def test_05_fieldinterviews_smoke(self):
+        self.fieldinterviews = FieldInterviewsPage(self.driver)
+        self.appicon.click_fieldinterview_icon()
+        self.assertTrue(self.fieldinterviews.get_field_interviews_app_name_label.is_displayed(), "Field Interviews")
+        self.assertTrue(self.fieldinterviews.get_contact_type_drop_down.is_displayed(),
+                        "Type filter dropdown not available")
 
     @attr(priority="high")
     #@SkipTest
     def test_06_timeline_smoke(self):
         self.timeline = TimelinePage(self.driver)
         self.appicon.click_timeline_icon()
-        self.assertTrue(self.timeline.get_timeline_app_name_label.is_displayed(), "Timeline")
+        self.assertTrue(self.timeline.get_time_line_app_name_label.is_displayed(),"Timeline app name is not available.")
 
     @attr(priority="high")
     #@SkipTest
@@ -100,9 +102,7 @@ class SmokeTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_05_fieldinterviews_smoke(self):
-        self.fieldinterviews = FieldInterviewsPage(self.driver)
-        self.appicon.click_fieldinterview_icon()
-        self.assertTrue(self.fieldinterviews.get_fieldinterviews_app_name_label.is_displayed(), "Field Interviews")
-        self.assertTrue(self.fieldinterviews.get_Contacttype_dropdown.is_displayed(),
-                        "Type filter dropdown not available")
+    def test_08_map_smoke(self):
+        self.mappage = MapPage(self.driver)
+        self.appicon.click_map_icon()
+        self.assertTrue(self.mappage.get_map_water_fall_scrollable.is_displayed(), "Map is not loaded fully")

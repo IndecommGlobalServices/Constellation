@@ -16,8 +16,11 @@ nose.run(argv=["", "logintest",
                "assessmentpoliciesandplanningtest",
                "assessmentschoolinfrastructuretest",
                "assessmenttrainingandexercisetest",
+               "eventtest",
+               "fieldinterviewstest",
                "maptest",
-               "threatstreamstest"
+               "threatstreamstest",
+               "timelinetest"
                "--verbosity=3","--with-xunit",
                "--xunit-file="+filepath+"", "--nologcapture","-s", "--nocapture"])
 
