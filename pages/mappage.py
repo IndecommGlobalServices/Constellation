@@ -26,6 +26,9 @@ class MapPage(BasePageClass):
     _map_click_terrain_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[3]/input"
     _map_click_satelite_default_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[4]/input"
     _map_click_satelite_grey_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[5]/input"
+    _map_click_satelite_ESRI_World_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[6]/input"
+    _map_click_Streets_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[7]/input"
+    _map_click_Outdoor_action_radio_xpath_locator = ".//*[@id='leaflet-control-accordion-layers-0']/article/div[8]/input"
 
     # Scroll vertically to view default, Night View, Terrain, Satelite Default, Satelite Grey
     _map_scroll = ".//*[@id='mapdiv']/div[2]/div[1]/div[1]"
@@ -56,9 +59,10 @@ class MapPage(BasePageClass):
     _map_basic_data_layer_incident = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[3]/input"
     _map_basic_data_layer_indicator_teams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[4]/input"
     _map_basic_data_layer_field_interviews = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[5]/input"
-    _map_basic_data_layer_threat_streams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[6]/input"
-    _map_basic_data_layer_threat_streams_heat_map = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[7]/input"
-    _map_basic_data_layer_annotations = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[8]/input"
+    _map_basic_data_layer_events = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[6]/input"
+    _map_basic_data_layer_threat_streams = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[7]/input"
+    _map_basic_data_layer_threat_streams_heat_map = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[8]/input"
+    _map_basic_data_layer_annotations = ".//*[@id='leaflet-control-accordion-layers-1']/article/div[9]/input"
 
     # Water fall handle - Right hand side - Last Icon
     _map_water_fall_handle = ".//*[@id='waterfall_handle']"
@@ -295,6 +299,36 @@ class MapPage(BasePageClass):
             raise type(err)("Satelite Grey View Radio - searched XPATH - "
                             + self._map_click_satelite_grey_action_radio_xpath_locator + err.message)
 
+    @property
+    def get_map_satelite_esri_world_view_radio(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_satelite_ESRI_World_action_radio_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_satelite_ESRI_World_action_radio_xpath_locator)
+        except Exception, err:
+            raise type(err)("Satelite Grey View Radio - searched XPATH - "
+                            + self._map_click_satelite_ESRI_World_action_radio_xpath_locator + err.message)
+
+    @property
+    def get_map_streets_view_radio(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_Streets_action_radio_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_Streets_action_radio_xpath_locator)
+        except Exception, err:
+            raise type(err)("Streets - searched XPATH - "
+                            + self._map_click_Streets_action_radio_xpath_locator + err.message)
+
+    @property
+    def get_map_outdoor_view_radio(self):
+        try:
+            WebDriverWait(self.driver,10).until(expected_conditions.presence_of_element_located(
+                (By.XPATH, self._map_click_Outdoor_action_radio_xpath_locator)))
+            return self.driver.find_element_by_xpath(self._map_click_Outdoor_action_radio_xpath_locator)
+        except Exception, err:
+            raise type(err)("Outdoor - searched XPATH - "
+                            + self._map_click_Outdoor_action_radio_xpath_locator + err.message)
+
 
     # Full Screen related
     @property
@@ -410,6 +444,13 @@ class MapPage(BasePageClass):
             raise type(err)("Basic Data Layer Field Interview - searched XPATH - "
                             + self._map_basic_data_layer_field_interviews + err.message)
 
+    @property
+    def get_map_basic_data_layer_events(self):
+        try:
+            return self.driver.find_element_by_xpath(self._map_basic_data_layer_events)
+        except Exception, err:
+            raise type(err)("Basic Data Layer Events - searched XPATH - "
+                            + self._map_basic_data_layer_events + err.message)
 
     @property
     def get_map_basic_data_layer_threat_streams(self):
@@ -538,14 +579,18 @@ class MapPage(BasePageClass):
         if self.get_map_basic_data_layer_field_interviews.is_selected():
             self.get_map_basic_data_layer_field_interviews.click()
         #6
+        if self.get_map_basic_data_layer_events.is_selected():
+            self.get_map_basic_data_layer_events.click()
+
+        #7
         if self.get_map_basic_data_layer_threat_streams.is_selected():
             self.get_map_basic_data_layer_threat_streams.click()
         self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
         self.get_map_sub_scroll.send_keys(Keys.ARROW_DOWN)
-        #7
+        #8
         if self.get_map_basic_data_layer_threat_streams_heat_map.is_selected():
             self.get_map_basic_data_layer_threat_streams_heat_map.click()
-        #8
+        #9
         if self.get_map_basic_data_layer_annotations.is_selected():
             self.get_map_basic_data_layer_annotations.click()
 

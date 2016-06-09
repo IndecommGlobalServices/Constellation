@@ -16,7 +16,7 @@ class IconListPage(BasePageClass, object):
     # _app_assessments_icon_locator = "//*[@id='app_assessments']/div/img"
     #_app_map_icon_locator = "//img[@src = '../images/app_icon_map.png']"
     # _app_map_icon_locator = "//*[@id='app_map']/div/img"
-    _app_map_icon_locator = "app_map"
+    _app_map_icon_locator = "//*[@id='app_map']/div/img"   #"app_map"
     _app_dashboard_icon_locator = "app_dashboard"
     # _app_threatstreams_icon_locator = "//*[@id='app_threatstreams']/div/img"
     _app_threatstreams_icon_locator = "app_threatstreams"
@@ -71,7 +71,7 @@ class IconListPage(BasePageClass, object):
 
     @property
     def get_app_map_icon(self):
-        return self.basepage.findElementById(self._app_map_icon_locator)
+        return self.basepage.findElementByXpath(self._app_map_icon_locator)
 
     @property
     def get_app_dashboard_icon(self):
