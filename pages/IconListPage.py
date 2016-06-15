@@ -1,24 +1,14 @@
 __author__ = 'Deepa.Sivadas'
 from lib.base import BasePageClass
-from lib.base import InvalidPageException
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
 from pages.basepage import BasePage
 
 
 class IconListPage(BasePageClass, object):
     _app_asset_icon_locator  = "app_assets"
-    # _app_asset_icon_locator = "//div[contains(text(),'Assets')]"
-    # _app_asset_icon_locator = "//img[@src = '../images/app_icon_assets.png']"
     _app_assessments_icon_locator = "app_assessments"
-    # _app_assessments_icon_locator = "//*[@id='app_assessments']/div/img"
-    #_app_map_icon_locator = "//img[@src = '../images/app_icon_map.png']"
-    # _app_map_icon_locator = "//*[@id='app_map']/div/img"
     _app_map_icon_locator = "//*[@id='app_map']/div/img"   #"app_map"
     _app_dashboard_icon_locator = "app_dashboard"
-    # _app_threatstreams_icon_locator = "//*[@id='app_threatstreams']/div/img"
     _app_threatstreams_icon_locator = "app_threatstreams"
     _app_incidents_icon_locator = "app_incidents"
     _app_timeline_icon_locator = "//div[@id = 'app_events']//img[@src='../images/app_icon_timeline.png']"
@@ -35,8 +25,6 @@ class IconListPage(BasePageClass, object):
 
     _icon_profile_link = ".//*[@id='navbar-collapse-01']/ul/li[1]/ul/li[1]/a"
     _icon_logout_link = "Logout"
-    #    _icon_logout_link = ".//*[@id='navbar-collapse-01']/ul/li[1]/ul/li[2]/a"
-
 
     # My Organisation
     _icon_my_organisation = ".//*[@id='navbar-collapse-01']/ul/li[2]/a"
@@ -240,8 +228,6 @@ class IconListPage(BasePageClass, object):
 
     def click_map_icon(self):
         try:
-            # WebDriverWait(self.driver, 50).until(expected_conditions.presence_of_element_located(
-            #     (By.XPATH, self._app_map_icon_locator)))
             self.get_app_map_icon.click()
         except Exception, err:
             raise type(err)("Map Icon not displayed - " \

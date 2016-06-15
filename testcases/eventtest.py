@@ -36,7 +36,7 @@ class EventpageTest(BaseTestCase):
         self.eventpage.return_to_apps_main_page()
 
     @attr(priority="high")
-    # @SkipTest
+    #@SkipTest
     def test_EV_001(self):
         """
         Test : test_EV_01
@@ -53,7 +53,7 @@ class EventpageTest(BaseTestCase):
             self.skipTest(self.config.get(self.section, 'MESSAGE_TEST_CAN_NOT_BE_VALIDATED'))
 
     @attr(priority="high")
-    # @SkipTest
+    #@SkipTest
     def test_EV_002(self):
         """
         Test : test_EV_02
@@ -92,7 +92,7 @@ class EventpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_COULD_NOT_DELETE_EVENT'))
 
     @attr(priority="high")
-    # @SkipTest
+    #@SkipTest
     def test_EV_004(self):
         """
         Test : test_EV_04
@@ -114,7 +114,7 @@ class EventpageTest(BaseTestCase):
                          self.config.get(self.section, 'MESSAGE_EVENT_DELETED_ON_CANCEL'))
 
     @attr(priority="high")
-    # @SkipTest
+    #@SkipTest
     def test_EV_005(self):
         """
         Test : test_EV_05
@@ -152,7 +152,7 @@ class EventpageTest(BaseTestCase):
         self.eventpage.textbox_clear(self.driver.find_element_by_xpath(self.eventpage._event_search_textbox_locator))
 
     @attr(priority="high")
-    # @SkipTest
+    #@SkipTest
     def test_EV_006(self):
         """
         Test : test_EV_006
@@ -167,7 +167,7 @@ class EventpageTest(BaseTestCase):
         self.eventpage.get_event_type_cancel_add_button.click()
 
     @attr(priority="high")
-    # @SkipTest
+    #@SkipTest
     def test_EV_007(self):
         """
         Test : test_EV_007
@@ -181,7 +181,7 @@ class EventpageTest(BaseTestCase):
         self.assertEqual("Type", expectedAfterResetFilter)  # Checking "event Type" displayed after reset
 
     @attr(priority="high")
-    # @SkipTest
+    #@SkipTest
     def test_EV_008(self):
         """
         Test : test_EV_008
@@ -206,7 +206,7 @@ class EventpageTest(BaseTestCase):
                         self.config.get(self.section, 'MESSAGE_SAVED_TEXT_NOT_DISPLAYED'))
 
     @attr(priority="high")
-    # @SkipTest
+    #@SkipTest
     def test_EV_009(self):
         """
         Test : test_EV_009
@@ -803,3 +803,292 @@ class EventpageTest(BaseTestCase):
                 self.assertTrue(True, self.config.get(self.section, 'MESSAGE_CANCEL_IS_WORKING'))
         except NoSuchElementException:
             self.assertFalse(True, self.config.get(self.section, 'MESSAGE_CONTACT_DELETED'))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_028(self):
+        """
+        Test : test_EV_028
+        Description : To verify annotation groups text.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.eventpage.select_event_type(self.eventpage.event_name)
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element(
+                                            (By.XPATH, self.eventpage._event_annotation_widget_locator), "Annotations"))
+        exp_text_val = r"This is Indecomm Testing"
+        self.eventpage.delete_all_annotation()
+        self.eventpage.get_event_annotation_plus_image.click()
+        self.eventpage.get_event_annotation_edit_window_text_area.send_keys(exp_text_val)#Enter Annotation text.
+        self.eventpage.get_event_annotation_edit_window_visibility_dropdown.click()#Select Annotation type.
+        self.eventpage.get_event_annotation_edit_window_dropdown_groups.click()
+        self.eventpage.get_event_annotation_edit_window_save_button.click()
+        #sleep(2)
+        act_text_val = ((self.eventpage.get_event_annotation_text_value.text).split(' - '))[1].strip()#read annotation value.
+        print exp_text_val
+        print act_text_val
+        self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_029(self):
+        """
+        Test : test_EV_029
+        Description : To verify annotation tenant text.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.eventpage.select_event_type(self.eventpage.event_name)
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
+                                           ((By.XPATH, self.eventpage._event_annotation_widget_locator), "Annotations"))
+        exp_text_val = r"This is Indecomm Testing"
+        self.eventpage.delete_all_annotation()#delete All Annotation.
+        self.eventpage.get_event_annotation_plus_image.click()#Click on Annotation Plus image.
+        self.eventpage.get_event_annotation_edit_window_text_area.send_keys(exp_text_val)#Enter Annotation text.
+        self.eventpage.get_event_annotation_edit_window_visibility_dropdown.click()
+        self.eventpage.get_event_annotation_edit_window_dropdown_tenant.click()#Select Annotation type.
+        self.eventpage.get_event_annotation_edit_window_save_button.click()
+        #sleep(2)
+        text_val = self.eventpage.get_event_annotation_text_value.text#read annotation value.
+        act_text_val = (text_val.split(' - '))[1].strip()
+        print exp_text_val
+        print act_text_val
+        self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_030(self):
+        """
+        Test : test_EV_030
+        Description : To verify annotation users text.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.eventpage.select_event_type(self.eventpage.event_name)
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
+                                           ((By.XPATH, self.eventpage._event_annotation_widget_locator), "Annotations"))
+        exp_text_val = r"This is Indecomm Testing"
+        self.eventpage.delete_all_annotation()#delete All Annotation.
+        self.eventpage.get_event_annotation_plus_image.click()#Click on Annotation Plus image.
+        self.eventpage.get_event_annotation_edit_window_text_area.send_keys(exp_text_val)#Enter Annotation text.
+        self.eventpage.get_event_annotation_edit_window_visibility_dropdown.click()
+        self.eventpage.get_event_annotation_edit_window_dropdown_user.click()#Select Annotation type.
+        self.eventpage.get_event_annotation_edit_window_save_button.click()
+        #sleep(2)
+        text_val = self.eventpage.get_event_annotation_text_value.text#read annotation value.
+        act_text_val = (text_val.split(' - '))[1].strip()
+        print exp_text_val
+        print act_text_val
+        self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_031(self):
+        """
+        Test : test_EV_031
+        Description : To verify annotation edit functionality.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.eventpage.select_event_type(self.eventpage.event_name)
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
+                                           ((By.XPATH, self.eventpage._event_annotation_widget_locator), "Annotations"))
+        exp_text_val = r"This is Indecomm Testing. Gropus."
+        self.eventpage.delete_all_annotation()#delete All Annotation.
+        self.eventpage.get_event_annotation_plus_image.click()#Click on Annotation Plus image.
+        self.eventpage.get_event_annotation_edit_window_text_area.send_keys("Random Text Value.")#Enter Annotation text.
+        self.eventpage.get_event_annotation_edit_window_visibility_dropdown.click()
+        self.eventpage.get_event_annotation_edit_window_dropdown_groups.click()#Select Annotation type.
+        self.eventpage.get_event_annotation_edit_window_save_button.click()
+        #sleep(2)
+        self.eventpage.get_event_annotation_edit_image.click()#click on annotation edit link.
+        self.eventpage.get_event_annotation_edit_window_text_area.clear()#clear annotation text.
+        self.eventpage.get_event_annotation_edit_window_text_area.send_keys(exp_text_val)#Enter new anootation text.
+        self.eventpage.get_event_annotation_edit_window_save_button.click()
+        #sleep(2)
+        text_val = self.eventpage.get_event_annotation_text_value.text
+        act_text_val = (text_val.split(' - '))[1].strip()
+        self.assertEqual(str(act_text_val),str(exp_text_val), self.config.get(self.section, 'MESSAGE_ANNOTATIONS_NOT_MATCHING'))
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_032_to_test_pagination_next_button(self):
+        """
+        Test : test_EV_032
+        Description :To Test pagination next button.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.basepage.reset_and_search_clear()
+        self.pagination.pagination_previous()
+        sleep(2)
+        current_page_num = self.pagination.pagination_active_page()
+        self.pagination.pagination_next()
+        sleep(2)
+        next_page_num = self.pagination.pagination_active_page()
+        self.assertEqual(next_page_num, current_page_num + 1,"The next button click is not working.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_033_to_test_pagination_next_button_disabled(self):
+        """
+        Test : test_EV_033
+        Description :To Test pagination next button. Last Page is active.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.basepage.reset_and_search_clear()
+        self.pagination.pagination_drop_down_click(-1)
+        sleep(2)
+        current_page_num = self.pagination.pagination_active_page()
+        total_pages = self.pagination.pagination_total_pages()
+        flag = 1
+        while flag:
+            if int(current_page_num) == int(total_pages):
+                flag = 0
+            else:
+                self.pagination.pagination_next()
+                current_page_num = self.pagination.pagination_active_page()
+        next_page_num = self.pagination.pagination_active_page()
+        self.assertEqual(current_page_num, next_page_num, "Next Arrow button is not disabled.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_034_to_test_pagination_previous_button(self):
+        """
+        Test : test_EV_034
+        Description :To Test pagination previous button.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.basepage.reset_and_search_clear()
+        self.pagination.pagination_next()
+        current_page_num = self.pagination.pagination_active_page()
+        self.pagination.pagination_previous()
+        sleep(2)
+        previous_page_num = self.pagination.pagination_active_page()
+        self.assertEqual(previous_page_num, current_page_num - 1, "The Previous button click is not working.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_035_to_test_pagination_previous_button_disabled(self):
+        """
+        Test : test_EV_035
+        Description :To Test pagination previous button. First page is active.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.basepage.reset_and_search_clear()
+        self.pagination.pagination_drop_down_click(0)
+        sleep(2)
+        current_page_num = self.pagination.pagination_active_page()
+        flag = 1
+        while flag:
+            if int(current_page_num) == int(1):
+                flag = 0
+            else:
+                self.pagination.pagination_previous()
+                current_page_num = self.pagination.pagination_active_page()
+        previous_page_num = self.pagination.pagination_active_page()
+        self.assertEqual(current_page_num, previous_page_num, "Previous Arrow button is not disabled.")
+
+
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_036_to_test_direct_click_first_page(self):
+        """
+        Test : test_EV_036
+        Description :To verify that first page is selected directly and previous button is disabled.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.basepage.reset_and_search_clear()
+        page_count = self.pagination.pagination_total_pages()
+        list_of_nodes = self.pagination.get_pg_list_of_nodes
+        if str(page_count) == str(1):
+            previous_node_value = list_of_nodes[0].get_attribute("class")
+            next_node_value = list_of_nodes[-1].get_attribute("class")
+            if (previous_node_value == "previous disabled") and (next_node_value == "next disabled"):
+                self.assertTrue(True, "There is only one page and next/previous button is enabled.")
+            else:
+                self.assertFalse(True, "There is only one page and next/previous button is enabled.")
+
+        elif str(page_count) > str(1):
+            self.pagination.pagination_drop_down_click(0)
+            sleep(2)
+            list_of_nodes = self.pagination.get_pg_list_of_nodes
+            sleep(2)
+            list_of_nodes[1].click()
+            sleep(2)
+            if list_of_nodes[0].get_attribute("class") == "previous disabled":
+                self.assertTrue(True, "Current Page number is One but previous button is enabled.")
+            else:
+                self.assertFalse(True, "Current Page number is One but previous button is enabled.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_037_to_test_direct_click_last_page(self):
+        """
+        Test : test_EV_037
+        Description :To verify that last page is selected directly and next button is disabled.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.basepage.reset_and_search_clear()
+        page_count = self.pagination.pagination_total_pages()
+        list_of_nodes = self.pagination.get_pg_list_of_nodes
+        if str(page_count) == str(1):
+            previous_node_value = list_of_nodes[0].get_attribute("class")
+            next_node_value = list_of_nodes[-1].get_attribute("class")
+            if (previous_node_value == "previous disabled") and (next_node_value == "next disabled"):
+                self.assertTrue(True, "There is only one page and next/previous button is enabled.")
+            else:
+                self.assertFalse(True, "There is only one page and next/previous button is enabled.")
+        elif str(page_count) > str(1):
+            self.pagination.pagination_drop_down_click(-1)
+            sleep(2)
+            list_of_nodes = self.pagination.get_pg_list_of_nodes
+            list_of_nodes[-3].click()
+            self.pagination.pagination_next()
+            sleep(2)
+            if list_of_nodes[-1].get_attribute("class") == "next disabled":
+                self.assertTrue(True, "Displayed Page is last page but next button is enabled.")
+            else:
+                self.assertFalse(True, "Displayed Page is last page but next button is enabled.")
+
+    @attr(priority="high")
+    #@SkipTest
+    def test_EV_38_to_test_search_event_pagination(self):
+        """
+        Test : test_EV_38
+        Description :To verify that if searched event is not available than pagination should be disabled.
+        Revision:
+        Author : Kiran
+        :return: None
+        """
+        self.basepage.reset_and_search_clear()
+        self.eventpage.event_search_eventname("123$%")
+        WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
+                       ((By.XPATH, self.eventpage._event_search_no_matching_text_locator), "No matching records found"))
+        if self.eventpage.get_event_search_no_matching_text.is_displayed():
+            list_of_nodes = self.pagination.get_pg_list_of_nodes
+            node_length = len(list_of_nodes)
+            previous_node_text = list_of_nodes[0].get_attribute("class")
+            next_node_text = list_of_nodes[-1].get_attribute("class")
+            sleep(2)
+            if(previous_node_text == "previous disabled") and (next_node_text == "next disabled") and (node_length==3):
+                self.assertTrue(True, "No Pages available but still next and previous button is enabled.")
+            else:
+                self.assertFalse(True, "No Pages available but still next and previous button is enabled.")
+

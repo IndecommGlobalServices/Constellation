@@ -54,6 +54,7 @@ class EventsPage(BasePageClass, object):
     # Event name on Breadcrumb
     _event_name_breadcrumb = "//*[@id='header']/div[1]/span[3]/span"
     _event_search_textbox_locator = "//input[@id='txt_search_events']"
+    _event_search_no_matching_text_locator = ".//*[@id='eventsTable']/tbody/tr/td"
     _event_table_createdcolumn_locator = "//*[@id='eventsTable']/thead/tr/th[3]"
     _event_list_background_locator = ".//*[@id='eventstable']/tbody/tr/td[2]"
     _event_type_Saved_label_locator = ".//*[@id='header']/div[contains(text(),'Saved')]"
@@ -160,6 +161,24 @@ class EventsPage(BasePageClass, object):
     # Enter New Value - //input[@ng-model='itemInput']
     # Click - Add - //button[@id='newItemButton']
     #
+    
+    # Event Annotation Panel
+    _event_annotation_widget_locator = ".//*[@id='widgets']/descendant::div[@class='widgetheader' and contains(text(),'Annotations')]"
+    _event_annotation_plus_image_locator = "//div[contains(text(),'Annotations')]//img"
+    _event_annotation_edit_window_text_area_locator = "//label[text()='Annotation']//following-sibling::textarea"
+    #_event_annotation_edit_window_visibility_dropdown_locator = "//label[text()='Visibility']//following-sibling::div//button[@data-toggle='dropdown']"
+    _event_annotation_edit_window_visibility_dropdown_locator = ".//*[@id='event_annotation_modal']//button[contains(@class,'dropdown')]"
+    _event_annotation_edit_window_dropdown_groups_locator = ".//*[@id='event_annotation_modal']//li[1]"
+    _event_annotation_edit_window_dropdown_tenant_locator = ".//*[@id='event_annotation_modal']//li[2]"
+    _event_annotation_edit_window_dropdown_user_locator = ".//*[@id='event_annotation_modal']//li[3]"
+    _event_annotation_edit_window_save_button_locator = "//*[@id='event_annotation_modal']/descendant::button[text()='Save']"
+    _event_annotation_edit_window_cancel_button_locator = "//*[@id='event_annotation_modal']/descendant::button[text()='Cancel']"
+    _event_annotation_text_value_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div"
+    _event_annotation_delete_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'deleteItem')]"
+    #_event_annotation_edit_image_locator = "//div[contains(text(),'Annotations')]//following-sibling::div/div/div/a[contains(@ng-click,'editItem')]"
+    _event_annotation_edit_image_locator = "//a[contains(@ng-click,'editAnnotation')]" #//img[@src='../images/edit_white.png']"
+
+    
     @property
     def get_events_app_name_label(self):
         return self.basepage.findElementByXpath(self._app_events_appname_locator)
@@ -266,6 +285,13 @@ class EventsPage(BasePageClass, object):
             raise type(err)("Event title - searched XPATH - " \
                           + self._event_title + err.message)
 
+    @property
+    def get_event_search_no_matching_text(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_search_no_matching_text_locator)
+        except Exception, err:
+            raise type(err)("No Matching text is not available - searched XPATH - " \
+                          + self._event_search_no_matching_text_locator + err.message)
 
 
     @property
@@ -904,7 +930,96 @@ class EventsPage(BasePageClass, object):
             return self.driver.find_element_by_xpath(self._event_map_scroll)
         except Exception, err:
             raise type(err)("Accordian main scroll bar - searched XPATH - " + self._event_map_scroll + err.message)
+    
+    
+    @property
+    def get_event_annotation_plus_image(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_plus_image_locator)
+        except Exception, err:
+            raise type(err)("In Annotation widget Edit/Plus image not available - searched XPATH - " \
+                          + self._event_annotation_plus_image_locator + err.message)
 
+    @property
+    def get_event_annotation_edit_window_text_area(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_edit_window_text_area_locator)
+        except Exception, err:
+            raise type(err)("In Annotation edit window text are is not available - searched XPATH - " \
+                          + self._event_annotation_edit_window_text_area_locator + err.message)
+
+    @property
+    def get_event_annotation_edit_window_visibility_dropdown(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_edit_window_visibility_dropdown_locator)
+        except Exception, err:
+            raise type(err)("In Annotation edit window visibility drop down is not available - searched XPATH - " \
+                          + self._event_annotation_edit_window_visibility_dropdown_locator + err.message)
+
+    @property
+    def get_event_annotation_edit_window_dropdown_groups(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_edit_window_dropdown_groups_locator)
+        except Exception, err:
+            raise type(err)("In Annotation edit window visibility groups option is not available - searched XPATH - " \
+                          + self._event_annotation_edit_window_dropdown_groups_locator + err.message)
+
+    @property
+    def get_event_annotation_edit_window_dropdown_tenant(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_edit_window_dropdown_tenant_locator)
+        except Exception, err:
+            raise type(err)("In Annotation edit window visibility tenant option is not available - searched XPATH - " \
+                          + self._event_annotation_edit_window_dropdown_tenant_locator + err.message)
+
+    @property
+    def get_event_annotation_edit_window_dropdown_user(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_edit_window_dropdown_user_locator)
+        except Exception, err:
+            raise type(err)("In Annotation edit window visibility user option is not available - searched XPATH - " \
+                          + self._event_annotation_edit_window_dropdown_user_locator + err.message)
+
+    @property
+    def get_event_annotation_edit_window_save_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_edit_window_save_button_locator)
+        except Exception, err:
+            raise type(err)("In Annotation edit window save button is not available - searched XPATH - " \
+                          + self._event_annotation_edit_window_save_button_locator + err.message)
+
+    @property
+    def get_event_annotation_edit_window_cancel_button(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_edit_window_cancel_button_locator)
+        except Exception, err:
+            raise type(err)("In Annotation edit window cancel button is not available - searched XPATH - " \
+                          + self._event_annotation_edit_window_cancel_button_locator + err.message)
+
+    @property
+    def get_event_annotation_text_value(self):
+        try:
+            #return self.driver.find_element_by_xpath(self._event_annotation_text_value_locator)
+            return self.basepage.findElementByXpath(self._event_annotation_text_value_locator)
+        except Exception, err:
+            raise type(err)("In Annotation widget no annotation available - searched XPATH - " \
+                          + self._event_annotation_text_value_locator + err.message)
+
+    @property
+    def get_event_annotation_delete_image(self):
+        try:
+            return self.driver.find_element_by_xpath(self._event_annotation_delete_image_locator)
+        except Exception, err:
+            raise type(err)("Annotation text delete link is not available - searched XPATH - " \
+                          + self._event_annotation_delete_image_locator + err.message)
+    @property
+    def get_event_annotation_edit_image(self):
+        try:
+            #return self.driver.find_element_by_xpath(self._event_annotation_edit_image_locator)
+            return self.basepage.findElementByXpath(self._event_annotation_edit_image_locator)
+        except Exception, err:
+            raise type(err)("Annotation text edit link is not available - searched XPATH - " \
+                          + self._event_annotation_edit_image_locator + err.message)
 
     def return_to_apps_main_page(self):
         """
@@ -1129,3 +1244,18 @@ class EventsPage(BasePageClass, object):
             self.create_new_contact(firstname[contact],lastname[contact],titlelist[contact],phonelist[contact],
                                     emaillist[contact])
             sleep(2) #required to update apps.
+    
+    def delete_all_annotation(self):
+        """
+        Description : This function will delete all annotation texts.
+        Revision:
+        :return:
+        """
+        try:
+            sleep(2)
+            while(self.get_event_annotation_delete_image.is_displayed()):
+                #sleep(2)
+                self.get_event_annotation_delete_image.click()
+                #sleep(2)
+        except Exception, err:
+            pass
