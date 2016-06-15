@@ -5,12 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="442306e3-1825-47b2-9570-377e99330aa7" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/IconListPage.py" afterPath="$PROJECT_DIR$/pages/IconListPage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/eventspage.py" afterPath="$PROJECT_DIR$/pages/eventspage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/mappage.py" afterPath="$PROJECT_DIR$/pages/mappage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/eventtest.py" afterPath="$PROJECT_DIR$/testcases/eventtest.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/logintest.py" afterPath="$PROJECT_DIR$/testcases/logintest.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/maptest.py" afterPath="$PROJECT_DIR$/testcases/maptest.py" />
     </list>
     <ignored path="Constellation.iws" />
@@ -32,43 +33,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="eventtest.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="eventtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.56271183">
-              <caret line="918" column="26" selection-start-line="918" selection-start-column="26" selection-end-line="918" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="json_Eventdata.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/data/json_Eventdata.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.625">
-              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pagination.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lib/pagination.py">
-          <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="basepage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/basepage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+              <caret line="407" column="71" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -77,8 +46,28 @@
       <file leaf-file-name="eventspage.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-5.857143">
-              <caret line="290" column="97" selection-start-line="290" selection-start-column="97" selection-end-line="290" selection-end-column="97" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="89" column="107" selection-start-line="89" selection-start-column="107" selection-end-line="89" selection-end-column="107" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="maptest.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.94423795">
+              <caret line="345" column="17" selection-start-line="345" selection-start-column="17" selection-end-line="345" selection-end-column="17" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mappage.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pages/mappage.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -88,8 +77,10 @@
         <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1911" column="39" selection-start-line="1911" selection-start-column="39" selection-end-line="1911" selection-end-column="39" />
-              <folding />
+              <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -98,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1295" column="0" selection-start-line="1288" selection-start-column="4" selection-end-line="1295" selection-end-column="0" />
+              <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
               <folding />
             </state>
           </provider>
@@ -112,15 +103,13 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/testcases/assettest.py" />
-        <option value="$PROJECT_DIR$/pages/assetpage.py" />
-        <option value="$PROJECT_DIR$/testcases/logintest.py" />
         <option value="$PROJECT_DIR$/pages/IconListPage.py" />
         <option value="$PROJECT_DIR$/pages/mappage.py" />
-        <option value="$PROJECT_DIR$/testcases/maptest.py" />
+        <option value="$PROJECT_DIR$/testcases/assettest.py" />
+        <option value="$PROJECT_DIR$/pages/assetpage.py" />
         <option value="$PROJECT_DIR$/pages/eventspage.py" />
         <option value="$PROJECT_DIR$/testcases/eventtest.py" />
-        <option value="$PROJECT_DIR$/data/json_Eventdata.json" />
+        <option value="$PROJECT_DIR$/testcases/maptest.py" />
       </list>
     </option>
   </component>
@@ -155,7 +144,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -189,30 +177,39 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Constellation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittest EventpageTest.test_EV_032_to_test_pagination_next_button">
-    <configuration default="false" name="Unittest EventpageTest.test_EV_036_to_test_pagination_page_group_select" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in eventtest">
+    <configuration default="false" name="Unittests in maptest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest EventpageTest.test_EV_027" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -224,7 +221,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
       <option name="CLASS_NAME" value="EventpageTest" />
-      <option name="METHOD_NAME" value="test_EV_036_to_test_pagination_page_group_select" />
+      <option name="METHOD_NAME" value="test_EV_027" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -256,7 +253,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest EventpageTest.test_EV_005" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest EventpageTest.test_EV_014" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -268,7 +265,7 @@
       <module name="Constellation" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
       <option name="CLASS_NAME" value="EventpageTest" />
-      <option name="METHOD_NAME" value="test_EV_005" />
+      <option name="METHOD_NAME" value="test_EV_014" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -278,7 +275,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest EventpageTest.test_EV_028" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittest MapPageTest.test_map_15_to_verify_tag_is_added_in_manage_filter" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -288,31 +285,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
-      <option name="CLASS_NAME" value="EventpageTest" />
-      <option name="METHOD_NAME" value="test_EV_028" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittest EventpageTest.test_EV_032_to_test_pagination_next_button" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
-      <option name="CLASS_NAME" value="EventpageTest" />
-      <option name="METHOD_NAME" value="test_EV_032_to_test_pagination_next_button" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="CLASS_NAME" value="MapPageTest" />
+      <option name="METHOD_NAME" value="test_map_15_to_verify_tag_is_added_in_manage_filter" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -445,19 +420,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_036_to_test_pagination_page_group_select" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_005" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_028" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_032_to_test_pagination_next_button" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_027" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_014" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_15_to_verify_tag_is_added_in_manage_filter" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_032_to_test_pagination_next_button" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_028" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_005" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_036_to_test_pagination_page_group_select" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_15_to_verify_tag_is_added_in_manage_filter" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_014" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_027" />
       </list>
     </recent_temporary>
   </component>
@@ -478,45 +453,39 @@
       <option name="project" value="LOCAL" />
       <updated>1464857249629</updated>
     </task>
-    <task id="LOCAL-00002" summary="Added 17 scripts for events(27) and Added 3 scripts for maps(19)">
-      <created>1465455430431</created>
-      <option name="number" value="00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1465455430431</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_EventpageTest_test_EV_005 - 2016.06.15 at 16h 14m 17s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_005" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 46m 24s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_028 - 2016.06.15 at 16h 17m 01s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_028" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 48m 21s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_032_to_test_pagination_next_button - 2016.06.15 at 16h 21m 27s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_032_to_test_pagination_next_button" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 50m 17s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_036_to_test_pagination_page_group_select - 2016.06.15 at 11h 51m 49s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_036_to_test_pagination_page_group_select" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 53m 43s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_037_to_test_direct_click_first_page - 2016.06.15 at 11h 50m 02s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_037_to_test_direct_click_first_page" configurationId="tests" />
+    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 56m 10s.xml">
+      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_038_to_test_direct_click_last_page - 2016.06.15 at 11h 48m 45s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_038_to_test_direct_click_last_page" configurationId="tests" />
+    <history-entry file="Unittest_MapPageTest_test_map_15_to_verify_tag_is_added_in_manage_filter - 2016.06.08 at 14h 26m 23s.xml">
+      <configuration name="Unittest MapPageTest.test_map_15_to_verify_tag_is_added_in_manage_filter" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_39_to_test_search_event_pagination - 2016.06.15 at 11h 42m 54s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_39_to_test_search_event_pagination" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_39_to_test_search_event_pagination - 2016.06.15 at 11h 47m 28s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_39_to_test_search_event_pagination" configurationId="tests" />
-    </history-entry>
-    <history-entry file="Unittests_in_eventtest - 2016.06.15 at 13h 48m 26s.xml">
+    <history-entry file="Unittests_in_eventtest - 2016.06.07 at 16h 37m 26s.xml">
       <configuration name="Unittests in eventtest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_eventtest - 2016.06.15 at 16h 11m 29s.xml">
+    <history-entry file="Unittests_in_eventtest - 2016.06.08 at 15h 07m 22s.xml">
       <configuration name="Unittests in eventtest" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_maptest - 2016.06.07 at 17h 49m 36s.xml">
+      <configuration name="Unittests in maptest" configurationId="tests" />
+    </history-entry>
+    <history-entry file="Unittests_in_maptest - 2016.06.08 at 14h 24m 16s.xml">
+      <configuration name="Unittests in maptest" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -528,11 +497,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3809524" sideWeight="0.27517295" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24338624" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36684304" sideWeight="0.72482705" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24627976" sideWeight="0.50864196" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3968254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -540,9 +507,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39858907" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37037036" sideWeight="0.72482705" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33169934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3968254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -558,8 +527,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added 1 testcase for events - edit - details panel - save" />
-    <MESSAGE value="Added 17 scripts for events(27) and Added 3 scripts for maps(19)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added 17 scripts for events(27) and Added 3 scripts for maps(19)" />
+    <option name="LAST_COMMIT_MESSAGE" value="added 1 testcase for events - edit - details panel - save" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -569,120 +537,8 @@
     <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="407" column="71" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="89" column="107" selection-start-line="89" selection-start-column="107" selection-end-line="89" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="345" column="17" selection-start-line="345" selection-start-column="17" selection-end-line="345" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/ConstellationTestSuite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/concurrent_run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/mappage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="407" column="71" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="89" column="107" selection-start-line="89" selection-start-column="107" selection-end-line="89" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/mappage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -698,6 +554,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="64" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -705,6 +562,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -712,7 +570,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -728,9 +588,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -746,6 +604,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="64" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="64" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -753,6 +612,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -760,7 +620,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -776,9 +638,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -794,6 +654,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="103" column="39" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -801,6 +662,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -808,7 +670,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="489" column="35" selection-start-line="470" selection-start-column="4" selection-end-line="494" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -824,9 +688,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -842,7 +704,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="489" column="35" selection-start-line="470" selection-start-column="4" selection-end-line="494" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -851,6 +715,13 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="84" column="88" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="88" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.44930416">
+          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -868,60 +739,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/concurrent_run.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/ConstellationTestSuite.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="11.088957">
-          <caret line="274" column="40" selection-start-line="274" selection-start-column="40" selection-end-line="274" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/logintest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30981594">
-          <caret line="301" column="35" selection-start-line="301" selection-start-column="35" selection-end-line="301" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63917524">
-          <caret line="110" column="47" selection-start-line="110" selection-start-column="47" selection-end-line="110" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pages/mappage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.63190186">
-          <caret line="570" column="56" selection-start-line="568" selection-start-column="10" selection-end-line="570" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/basepage.py">
-      <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/pagination.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="80" column="8" selection-start-line="80" selection-start-column="8" selection-end-line="80" selection-end-column="8" />
+          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
           <folding />
         </state>
       </provider>
@@ -929,42 +750,42 @@
     <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1911" column="39" selection-start-line="1911" selection-start-column="39" selection-end-line="1911" selection-end-column="39" />
-          <folding />
+          <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="1295" column="0" selection-start-line="1288" selection-start-column="4" selection-end-line="1295" selection-end-column="0" />
+          <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.857143">
-          <caret line="290" column="97" selection-start-line="290" selection-start-column="97" selection-end-line="290" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/json_Eventdata.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.625">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="107" selection-start-line="89" selection-start-column="107" selection-end-line="89" selection-end-column="107" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.56271183">
-          <caret line="918" column="26" selection-start-line="918" selection-start-column="26" selection-end-line="918" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0">
+          <caret line="407" column="71" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94423795">
+          <caret line="345" column="17" selection-start-line="345" selection-start-column="17" selection-end-line="345" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
