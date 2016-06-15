@@ -1906,7 +1906,7 @@ class AssetpageTest(BaseTestCase):
         :return: None
         """
         self.basepage.reset_and_search_clear()
-        self.assetpage.asset_search_assetname("123$%")
+        self.assetpage.asset_search_assetname("123qwertyuiop")
         WebDriverWait(self.driver, 20).until(EC.text_to_be_present_in_element
                        ((By.XPATH, self.assetpage._asset_search_no_matching_text_locator), "No matching records found"))
         if self.assetpage.get_asset_search_no_matching_text.is_displayed():
