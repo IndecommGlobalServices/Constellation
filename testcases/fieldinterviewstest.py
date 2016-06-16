@@ -393,10 +393,12 @@ class FieldinterviewsTest(BaseTestCase):
             if column_text != search_text:
                 self.fieldinterviewspage.get_fi_search_textbox.clear()
                 self.fieldinterviewspage.get_fi_search_textbox.send_keys("")
+                sleep(2)
                 self.assertFalse(search_text, "Searched text is not appearing in the field interviews list.")
                 break
         self.fieldinterviewspage.get_fi_search_textbox.clear()
         self.fieldinterviewspage.get_fi_search_textbox.send_keys("")
+        sleep(2)
         self.assertTrue(search_text, "Searched text is not appearing in the field interviews list.")
 
     @attr(priority="high")
@@ -415,12 +417,14 @@ class FieldinterviewsTest(BaseTestCase):
         sleep(5)
         error_message = self.fieldinterviewspage.get_fi_search_error_message.text
         if error_message == r"No matching records found":
-            self.fieldinterviewspage.get_fi_search_textbox.send_keys(Keys.CONTROL+'a', Keys.DELETE)
-            sleep(2)
+            self.fieldinterviewspage.get_fi_search_textbox.send_keys(Keys.CONTROL+'a')
+            self.fieldinterviewspage.get_fi_search_textbox.send_keys(Keys.DELETE)
+            sleep(3)
             self.assertTrue(error_message, "Either error message is not appears or wrong Error message.")
         else:
-            self.fieldinterviewspage.get_fi_search_textbox.send_keys(Keys.CONTROL+'a', Keys.DELETE)
-            sleep(2)
+            self.fieldinterviewspage.get_fi_search_textbox.send_keys(Keys.CONTROL+'a')
+            self.fieldinterviewspage.get_fi_search_textbox.send_keys(Keys.DELETE)
+            sleep(3)
             self.assertFalse(error_message, "Either error message is not appears or wrong Error message.")
 
     @attr(priority="high")
@@ -584,8 +588,13 @@ class FieldinterviewsTest(BaseTestCase):
         if len(list_of_page_drop_down)>=1:
             self.pagination.pagination_drop_down_click(-1)
             self.pagination.get_pg_drop_down_arrow.click()
-            last_page = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[1]
-            last_page_first = (list_of_page_drop_down[-1].text.encode('utf-8')).split("-")[0]
+            sleep(1)
+            list_of_page_drop_down = self.pagination.get_pg_list_of_page_groups
+            sleep(1)
+            self.pagination.get_pg_drop_down_arrow.click()
+            page_list = ((list_of_page_drop_down[-1]).text.encode('utf-8')).split("-")
+            last_page = int(page_list[-1])
+            last_page_first = int(page_list[0])
             self.pagination.get_pg_drop_down_arrow.click()
             if int(last_page) >= 5:
                 first_page = int(last_page)-4
