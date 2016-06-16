@@ -139,10 +139,10 @@ class FieldinterviewsTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_005_to_test_settings_window_cancel_button(self):
+    def test_FI_005_to_test_settings_window_close_button(self):
         """
         Test : test_FI_005
-        Description : This test will check Settings window Cancel button functionality.
+        Description : This test will check Settings window Close button functionality.
         Revision:
         Author : Bijesh
         :return: None

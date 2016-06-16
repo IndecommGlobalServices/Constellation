@@ -32,7 +32,7 @@ class TimelinepageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_001_timeline_settings_start_end_date(self):
+    def test_TL_001_timeline_settings_start_end_date(self):
         """
         Test : test_FI_001 To verify Start and End date check boxes.
         Description : .
@@ -65,7 +65,7 @@ class TimelinepageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_002_timeline_settings_end_date_less(self):
+    def test_TL_002_timeline_settings_end_date_less(self):
         """
         Test : test_FI_002 To verify End date less than start date.
         Description : .
@@ -92,7 +92,7 @@ class TimelinepageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_003_timeline_settings_add_new_tags(self):
+    def test_TL_003_timeline_settings_add_new_tags(self):
         """
         Test : test_FI_003 To verify that new tags added properly.
         Description : .
@@ -130,7 +130,7 @@ class TimelinepageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_004_timeline_settings_add_new_tag_wrong_value(self):
+    def test_TL_004_timeline_settings_add_new_tag_wrong_value(self):
         """
         Test : test_FI_004 To verify that time line does not have any info if wrong tags has been added.
         Description : .
@@ -163,7 +163,7 @@ class TimelinepageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_005_timeline_settings_enable_assessments_checkbox(self):
+    def test_TL_005_timeline_settings_enable_assessments_checkbox(self):
         """
         Test : test_FI_005 To verify that assessments checkbox.
         Description : .
@@ -204,7 +204,7 @@ class TimelinepageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_006_timeline_settings_enable_events_checkbox(self):
+    def test_TL_006_timeline_settings_enable_events_checkbox(self):
         """
         Test : test_FI_006 To verify that events checkbox.
         Description : .
@@ -245,7 +245,7 @@ class TimelinepageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_007_timeline_settings_enable_incidents_checkbox(self):
+    def test_TL_007_timeline_settings_enable_incidents_checkbox(self):
         """
         Test : test_FI_007 To verify that incidents checkbox.
         Description : .
@@ -286,7 +286,7 @@ class TimelinepageTest(BaseTestCase):
 
     @attr(priority="high")
     #@SkipTest
-    def test_FI_008_timeline_settings_enable_field_interviews_checkbox(self):
+    def test_TL_008_timeline_settings_enable_field_interviews_checkbox(self):
         """
         Test : test_FI_008 To verify that filed interviews checkbox.
         Description : .
