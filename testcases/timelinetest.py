@@ -123,9 +123,9 @@ class TimelinepageTest(BaseTestCase):
         tag_count_final = len(self.timelinepage.get_tl_settings_window_tags_delete_link)
         sleep(1)
         self.timelinepage.delete_all_tags()
-        sleep(1)
+        sleep(2)
         self.timelinepage.get_tl_settings_window_save_button.click()
-        sleep(1)
+        sleep(2)
         self.assertEqual(tag_count_final, tag_count+1,"New tag could not be added.")
 
     @attr(priority="high")
@@ -157,6 +157,7 @@ class TimelinepageTest(BaseTestCase):
         WebDriverWait(self.driver, 20).until(EC.visibility_of_element_located((By.XPATH,
                                                                  self.timelinepage._tl_settings_window_header_locator)))
         self.timelinepage.delete_all_tags()
+        sleep(2)
         self.timelinepage.get_tl_settings_window_save_button.click()
         sleep(2)
         self.assertEqual(time_line_info, 1, "Tag could not be added properly.")

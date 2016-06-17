@@ -8,12 +8,12 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Constellation.iml" afterPath="$PROJECT_DIR$/.idea/Constellation.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/basetestcase.py" afterPath="$PROJECT_DIR$/testcases/basetestcase.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/fieldinterviewstest.py" afterPath="$PROJECT_DIR$/testcases/fieldinterviewstest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pages/IconListPage.py" afterPath="$PROJECT_DIR$/pages/IconListPage.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testcases/timelinetest.py" afterPath="$PROJECT_DIR$/testcases/timelinetest.py" />
     </list>
     <ignored path="Constellation.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="$PROJECT_DIR$/.idea/shelf/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,33 +31,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="fieldinterviewstest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/fieldinterviewstest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="eventtest.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="407" column="71" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
+              <caret line="1087" column="69" selection-start-line="1087" selection-start-column="69" selection-end-line="1087" selection-end-column="69" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="timelinetest.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/testcases/timelinetest.py">
+      <file leaf-file-name="fieldinterviewstest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/fieldinterviewstest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <caret line="311" column="47" selection-start-line="311" selection-start-column="47" selection-end-line="311" selection-end-column="47" />
               <folding>
                 <element signature="e#0#43#0" expanded="true" />
               </folding>
@@ -65,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="eventspage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
+      <file leaf-file-name="pagination.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/pagination.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
+              <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -87,43 +75,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="maptest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+      <file leaf-file-name="IconListPage.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="345" column="17" selection-start-line="345" selection-start-column="17" selection-end-line="345" selection-end-column="17" />
+            <state vertical-scroll-proportion="0.3789809">
+              <caret line="14" column="66" selection-start-line="14" selection-start-column="66" selection-end-line="14" selection-end-column="66" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mappage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/mappage.py">
+      <file leaf-file-name="timelinetest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/testcases/timelinetest.py">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assettest.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#15#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="assetpage.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
+              <caret line="123" column="14" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -138,22 +104,24 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/pages/IconListPage.py" />
         <option value="$PROJECT_DIR$/pages/mappage.py" />
         <option value="$PROJECT_DIR$/testcases/assettest.py" />
         <option value="$PROJECT_DIR$/pages/assetpage.py" />
         <option value="$PROJECT_DIR$/pages/eventspage.py" />
         <option value="$PROJECT_DIR$/testcases/eventtest.py" />
         <option value="$PROJECT_DIR$/testcases/maptest.py" />
+        <option value="$PROJECT_DIR$/testcases/fieldinterviewstest.py" />
+        <option value="$PROJECT_DIR$/testcases/timelinetest.py" />
         <option value="$PROJECT_DIR$/testcases/basetestcase.py" />
+        <option value="$PROJECT_DIR$/pages/IconListPage.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="65" />
+    <option name="y" value="-4" />
+    <option name="width" value="1301" />
+    <option name="height" value="668" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -184,27 +152,27 @@
         <subPane>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
+              <option name="myItemId" value="Constellation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
+              <option name="myItemId" value="Constellation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
+              <option name="myItemId" value="Constellation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
+              <option name="myItemId" value="Constellation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="constellation" />
+              <option name="myItemId" value="Constellation" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -222,8 +190,8 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Python tests.Unittests in eventtest">
-    <configuration default="false" name="Unittests in maptest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python tests.Unittests in timelinetest">
+    <configuration default="false" name="Unittests in fieldinterviewstest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -233,7 +201,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/fieldinterviewstest.py" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
@@ -245,7 +213,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest EventpageTest.test_EV_027" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests in threatstreamstest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -255,29 +223,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
-      <option name="CLASS_NAME" value="EventpageTest" />
-      <option name="METHOD_NAME" value="test_EV_027" />
-      <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
-      <option name="PATTERN" value="" />
-      <option name="USE_PATTERN" value="false" />
-      <option name="PUREUNITTEST" value="true" />
-      <option name="PARAMS" value="" />
-      <option name="USE_PARAM" value="false" />
-      <method />
-    </configuration>
-    <configuration default="false" name="Unittests in eventtest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/threatstreamstest.py" />
       <option name="CLASS_NAME" value="" />
       <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
@@ -289,7 +235,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest EventpageTest.test_EV_014" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests in timelinetest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -299,9 +245,31 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/eventtest.py" />
-      <option name="CLASS_NAME" value="EventpageTest" />
-      <option name="METHOD_NAME" value="test_EV_014" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/timelinetest.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="FOLDER_NAME" value="" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
+      <option name="PATTERN" value="" />
+      <option name="USE_PATTERN" value="false" />
+      <option name="PUREUNITTEST" value="true" />
+      <option name="PARAMS" value="" />
+      <option name="USE_PARAM" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Unittest TimelinepageTest.test_TL_004_timeline_settings_add_new_tag_wrong_value" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/testcases" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Constellation" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/timelinetest.py" />
+      <option name="CLASS_NAME" value="TimelinepageTest" />
+      <option name="METHOD_NAME" value="test_TL_004_timeline_settings_add_new_tag_wrong_value" />
       <option name="FOLDER_NAME" value="" />
       <option name="TEST_TYPE" value="TEST_METHOD" />
       <option name="PATTERN" value="" />
@@ -311,7 +279,7 @@
       <option name="USE_PARAM" value="false" />
       <method />
     </configuration>
-    <configuration default="false" name="Unittest MapPageTest.test_map_15_to_verify_tag_is_added_in_manage_filter" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="Unittests in smoketest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs />
@@ -321,11 +289,11 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Constellation" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/maptest.py" />
-      <option name="CLASS_NAME" value="MapPageTest" />
-      <option name="METHOD_NAME" value="test_map_15_to_verify_tag_is_added_in_manage_filter" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/testcases/smoketest.py" />
+      <option name="CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
       <option name="FOLDER_NAME" value="" />
-      <option name="TEST_TYPE" value="TEST_METHOD" />
+      <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
       <option name="PUREUNITTEST" value="true" />
@@ -456,19 +424,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
-      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_027" />
-      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_014" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_15_to_verify_tag_is_added_in_manage_filter" />
+      <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in fieldinterviewstest" />
+      <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in threatstreamstest" />
+      <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in timelinetest" />
+      <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TimelinepageTest.test_TL_004_timeline_settings_add_new_tag_wrong_value" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in smoketest" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in eventtest" />
-        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittest MapPageTest.test_map_15_to_verify_tag_is_added_in_manage_filter" />
-        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in maptest" />
-        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_014" />
-        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittest EventpageTest.test_EV_027" />
+        <item index="0" class="java.lang.String" itemvalue="Python tests.Unittests in timelinetest" />
+        <item index="1" class="java.lang.String" itemvalue="Python tests.Unittests in smoketest" />
+        <item index="2" class="java.lang.String" itemvalue="Python tests.Unittests in threatstreamstest" />
+        <item index="3" class="java.lang.String" itemvalue="Python tests.Unittest TimelinepageTest.test_TL_004_timeline_settings_add_new_tag_wrong_value" />
+        <item index="4" class="java.lang.String" itemvalue="Python tests.Unittests in fieldinterviewstest" />
       </list>
     </recent_temporary>
   </component>
@@ -489,65 +457,77 @@
       <option name="project" value="LOCAL" />
       <updated>1464857249629</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Modified field interviews test cases.">
+      <created>1466076285317</created>
+      <option name="number" value="00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1466076285317</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Modified field interviews test cases.">
+      <created>1466078166440</created>
+      <option name="number" value="00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1466078166440</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 46m 24s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
+    <history-entry file="Unittests_in_fieldinterviewstest - 2016.06.16 at 15h 37m 45s.xml">
+      <configuration name="Unittests in fieldinterviewstest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 48m 21s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
+    <history-entry file="Unittests_in_fieldinterviewstest - 2016.06.16 at 15h 56m 38s.xml">
+      <configuration name="Unittests in fieldinterviewstest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 50m 17s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
+    <history-entry file="Unittests_in_smoketest - 2016.06.17 at 12h 09m 17s.xml">
+      <configuration name="Unittests in smoketest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 53m 43s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
+    <history-entry file="Unittests_in_smoketest - 2016.06.17 at 12h 22m 14s.xml">
+      <configuration name="Unittests in smoketest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_EventpageTest_test_EV_014 - 2016.06.07 at 15h 56m 10s.xml">
-      <configuration name="Unittest EventpageTest.test_EV_014" configurationId="tests" />
+    <history-entry file="Unittests_in_threatstreamstest - 2016.06.16 at 17h 03m 33s.xml">
+      <configuration name="Unittests in threatstreamstest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittest_MapPageTest_test_map_15_to_verify_tag_is_added_in_manage_filter - 2016.06.08 at 14h 26m 23s.xml">
-      <configuration name="Unittest MapPageTest.test_map_15_to_verify_tag_is_added_in_manage_filter" configurationId="tests" />
+    <history-entry file="Unittests_in_threatstreamstest - 2016.06.16 at 19h 17m 32s.xml">
+      <configuration name="Unittests in threatstreamstest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_eventtest - 2016.06.07 at 16h 37m 26s.xml">
-      <configuration name="Unittests in eventtest" configurationId="tests" />
+    <history-entry file="Unittests_in_timelinetest - 2016.06.16 at 17h 43m 08s.xml">
+      <configuration name="Unittests in timelinetest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_eventtest - 2016.06.08 at 15h 07m 22s.xml">
-      <configuration name="Unittests in eventtest" configurationId="tests" />
+    <history-entry file="Unittests_in_timelinetest - 2016.06.16 at 17h 50m 03s.xml">
+      <configuration name="Unittests in timelinetest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_maptest - 2016.06.07 at 17h 49m 36s.xml">
-      <configuration name="Unittests in maptest" configurationId="tests" />
+    <history-entry file="Unittests_in_timelinetest - 2016.06.16 at 17h 59m 27s.xml">
+      <configuration name="Unittests in timelinetest" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_in_maptest - 2016.06.08 at 14h 24m 16s.xml">
-      <configuration name="Unittests in maptest" configurationId="tests" />
+    <history-entry file="Unittests_in_timelinetest - 2016.06.16 at 18h 07m 23s.xml">
+      <configuration name="Unittests in timelinetest" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="0" />
+    <frame x="65" y="-4" width="1301" height="668" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22395833" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3809524" sideWeight="0.27517295" order="12" side_tool="true" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24338624" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22378717" sideWeight="0.491358" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3968254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32952693" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3694853" sideWeight="0.72482705" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24627976" sideWeight="0.50864196" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3809524" sideWeight="0.27517295" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24338624" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33169934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39858907" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37037036" sideWeight="0.72482705" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33169934" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3968254" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39858907" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -563,13 +543,104 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added 1 testcase for events - edit - details panel - save" />
-    <option name="LAST_COMMIT_MESSAGE" value="added 1 testcase for events - edit - details panel - save" />
+    <MESSAGE value="Modified field interviews test cases." />
+    <option name="LAST_COMMIT_MESSAGE" value="Modified field interviews test cases." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/timelinetest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="123" column="14" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1087" column="69" selection-start-line="1087" selection-start-column="69" selection-end-line="1087" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/fieldinterviewstest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="311" column="47" selection-start-line="311" selection-start-column="47" selection-end-line="311" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pagination.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="1087" column="69" selection-start-line="1087" selection-start-column="69" selection-end-line="1087" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/fieldinterviewstest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="311" column="47" selection-start-line="311" selection-start-column="47" selection-end-line="311" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/pagination.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/basetestcase.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -582,7 +653,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -590,7 +660,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -598,7 +667,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -606,9 +674,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -616,57 +681,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="407" column="71" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/mappage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/assettest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/assetpage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -682,7 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="107" selection-start-line="89" selection-start-column="107" selection-end-line="89" selection-end-column="107" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -690,7 +703,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="64" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -698,7 +710,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -706,9 +717,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -716,7 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -732,7 +739,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="89" column="107" selection-start-line="89" selection-start-column="107" selection-end-line="89" selection-end-column="107" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -740,7 +746,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="105" column="64" selection-start-line="105" selection-start-column="12" selection-end-line="105" selection-end-column="64" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -748,7 +753,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -756,9 +760,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -766,7 +767,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -782,7 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1098" column="38" selection-start-line="1098" selection-start-column="38" selection-end-line="1098" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -790,7 +789,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="103" column="39" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -798,7 +796,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="29" selection-start-line="15" selection-start-column="29" selection-end-line="15" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -806,9 +803,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="489" column="35" selection-start-line="470" selection-start-column="4" selection-end-line="494" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -816,7 +810,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="84" column="88" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="88" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -832,7 +825,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -840,9 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="489" column="35" selection-start-line="470" selection-start-column="4" selection-end-line="494" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -850,14 +839,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="84" column="88" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="88" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44930416">
-          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -868,11 +849,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///usr/local/lib/python2.7/dist-packages/selenium/webdriver/support/expected_conditions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/pages/mappage.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -880,9 +867,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="979" column="51" selection-start-line="979" selection-start-column="51" selection-end-line="979" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -890,30 +874,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="238" column="167" selection-start-line="238" selection-start-column="167" selection-end-line="238" selection-end-column="167" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.06369427">
+          <caret line="314" column="17" selection-start-line="314" selection-start-column="17" selection-end-line="314" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/pages/eventspage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.0477707">
           <caret line="89" column="0" selection-start-line="89" selection-start-column="0" selection-end-line="89" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/testcases/eventtest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="407" column="71" selection-start-line="407" selection-start-column="71" selection-end-line="407" selection-end-column="71" />
+          <caret line="1087" column="69" selection-start-line="1087" selection-start-column="69" selection-end-line="1087" selection-end-column="69" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/maptest.py">
+    <entry file="file://$PROJECT_DIR$/lib/pagination.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="345" column="17" selection-start-line="345" selection-start-column="17" selection-end-line="345" selection-end-column="17" />
+          <caret line="89" column="8" selection-start-line="89" selection-start-column="8" selection-end-line="89" selection-end-column="8" />
           <folding />
         </state>
       </provider>
@@ -921,10 +910,18 @@
     <entry file="file://$PROJECT_DIR$/testcases/fieldinterviewstest.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="311" column="47" selection-start-line="311" selection-start-column="47" selection-end-line="311" selection-end-column="47" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testcases/timelinetest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="123" column="14" selection-start-line="123" selection-start-column="14" selection-end-line="123" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -938,13 +935,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testcases/timelinetest.py">
+    <entry file="file://$PROJECT_DIR$/pages/IconListPage.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#43#0" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.3789809">
+          <caret line="14" column="66" selection-start-line="14" selection-start-column="66" selection-end-line="14" selection-end-column="66" />
+          <folding />
         </state>
       </provider>
     </entry>
